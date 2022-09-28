@@ -1,0 +1,25 @@
+using Vintagestory.API.Client;
+using Vintagestory.API.Common;
+using Vintagestory.API.MathTools;
+
+namespace TabletopGames
+{
+    public class BlockBoard : Block
+    {
+        public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => true;
+
+        public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => new(1, 1, 0, 1); // Yellow
+
+        public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+        {
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityBoard beb) return false;
+
+            var i = blockSel.SelectionBoxIndex;
+            return i switch
+            {
+                64 => base.OnBlockInteractStart(world, byPlayer, blockSel),
+                _ => beb.TryPut(byPlayer, i) || beb.TryTake(byPlayer, i)
+            };
+        }
+    }
+}

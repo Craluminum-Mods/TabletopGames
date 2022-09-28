@@ -1,0 +1,79 @@
+{
+    "code": "chesspiece",
+    "class": "TabletopGames_ItemChessPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
+        },
+        "groundStorageTransform": {
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.5
+        },
+        "onTtgBoardTransform": {
+            "translation": { "x": 0, "y": 0.03, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.2
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "shape": { "base": "item/chesspiece/pawn" },
+    "textures": {
+        "team": { "base": "game:block/transparent" },
+        "black": { "base": "game:block/creative/col68" },
+        "white": { "base": "game:block/creative/col75" }
+    },
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "bishop" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "king" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "knight" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "pawn" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "queen" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "rook" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "bishop" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "king" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "knight" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "pawn" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "queen" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "rook" } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "rotate": true,
+        "translation": { "x": 3, "y": -1.5, "z": 0 },
+        "rotation": { "x": 155, "y": 45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
+        "scale": 2.41
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.2, "y": -1.9, "z": -2 },
+        "scale": 0.25
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
+        "scale": 0.5
+    }
+}

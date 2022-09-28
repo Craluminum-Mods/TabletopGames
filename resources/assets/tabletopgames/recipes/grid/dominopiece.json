@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "BB_,BKB,BB_",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:bone" },
+            "K": { "type": "item", "code": "game:knife-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "dominopiece", "quantity": 28, "attributes": { "type": "0_0", "rotation": 0 } }
+    }
+]

@@ -1,0 +1,10 @@
+{
+    "type": "code",
+    "modid": "tabletopgames",
+    "name": "Tabletop Games",
+    "authors": ["Unknown"],
+    "version": "1.0.0",
+    "dependencies": {
+        "game": "1.17.0"
+    }
+}

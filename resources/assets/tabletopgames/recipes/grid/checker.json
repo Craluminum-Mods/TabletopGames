@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "SB",
+        "ingredients": {
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true },
+            "B": { "type": "item", "code": "game:plank-*", "quantity": 3, "allowedVariants": ["ebony", "purpleheart"] }
+        },
+        "width": 2,
+        "height": 1,
+        "output": { "type": "item", "code": "checker", "quantity": 12, "attributes": { "team": "white", "crown": false } }
+    }
+]

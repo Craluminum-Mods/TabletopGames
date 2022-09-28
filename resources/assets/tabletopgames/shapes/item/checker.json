@@ -1,0 +1,43 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [ 1.0, 0.0, 1.0 ], 
+			"to": [ 15.0, 5.0, 15.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#team", "uv": [ 0.0, 0.0, 14.0, 5.0 ] },
+				"east": { "texture": "#team", "uv": [ 0.0, 0.0, 14.0, 5.0 ] },
+				"south": { "texture": "#team", "uv": [ 0.0, 0.0, 14.0, 5.0 ] },
+				"west": { "texture": "#team", "uv": [ 0.0, 0.0, 14.0, 5.0 ] },
+				"up": { "texture": "#team", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false },
+				"down": { "texture": "#team", "uv": [ 0.0, 0.0, 14.0, 14.0 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "top",
+					"from": [ 0.0, 5.0, 0.0 ], 
+					"to": [ 14.0, 5.01, 14.0 ], 
+					"rotationOrigin": [ 0.0, 5.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#crown", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
+						"east": { "texture": "#crown", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
+						"south": { "texture": "#crown", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
+						"west": { "texture": "#crown", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
+						"up": { "texture": "#crown", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#crown", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "enabled": false, "autoUv": false }
+					}
+				}
+			]
+		}
+	]}

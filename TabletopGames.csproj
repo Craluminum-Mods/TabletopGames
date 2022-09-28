@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net461</TargetFramework>
+		<LangVersion>9</LangVersion>
+	</PropertyGroup>
+	
+	<ItemGroup>
+        <Reference Include="Vintagestory">
+            <HintPath>$(VINTAGE_STORY)\Vintagestory.exe</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="VintagestoryAPI">
+            <HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="VSSurvivalMod">
+            <HintPath>$(VINTAGE_STORY)\Mods\VSSurvivalMod.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(VINTAGE_STORY)\Lib\Newtonsoft.Json.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'ReleaseToMods'">
+		<None Include="UNLICENSE" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="resources/**">
+			<Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+	<Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'ReleaseToMods'">
+		<ZipDirectory DestinationFile="$(VINTAGE_STORY_DATA)/Mods/$(TargetName)-v1.0.0.zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
+	</Target>
+</Project>
