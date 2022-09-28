@@ -27,7 +27,7 @@ namespace TabletopGames
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-            dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}]");
+            dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName());
         }
 
         public override void TranslateMesh(MeshData mesh, int index)
