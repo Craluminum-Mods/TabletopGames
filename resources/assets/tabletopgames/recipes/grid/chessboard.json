@@ -10,7 +10,7 @@
         },
         "width": 2,
         "height": 3,
-        "output": { "type": "block", "code": "chessboard-8x8" }
+        "output": { "type": "block", "code": "chessboard-8x8-east" }
     },
     {
         "ingredientPattern": "HC,BT,XX",
@@ -24,6 +24,6 @@
         "recipeGroup": 1,
         "width": 2,
         "height": 3,
-        "output": { "type": "block", "code": "chessboard-8x8" }
+        "output": { "type": "block", "code": "chessboard-8x8-east" }
     }
 ]

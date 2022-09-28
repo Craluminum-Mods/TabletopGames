@@ -8,7 +8,7 @@
     "item-chesspiece-pawn": "Pawn ({0})",
     "item-chesspiece-queen": "Queen ({0})",
     "item-chesspiece-rook": "Rook ({0})",
-    "block-chessboard-8x8": "Chessboard (8x8)",
+    "block-chessboard-8x8-*": "Chessboard (8x8)",
     "block-dominoboard-8x8": "Domino board (8x8)",
     "RotateClockwise": "Rotate Clockwise",
     "RotateAntiClockwise": "Rotate Anti-Clockwise",

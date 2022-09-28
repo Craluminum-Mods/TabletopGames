@@ -23,6 +23,7 @@ namespace TabletopGames
 
         public override void Initialize(ICoreAPI api)
         {
+            mat.RotateYDeg(Block.Shape.rotateY);
             base.Initialize(api);
             inventory.LateInitialize("ttgchessboard-1", api);
         }
