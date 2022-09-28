@@ -8,7 +8,7 @@ using Vintagestory.API.MathTools;
 
 namespace TabletopGames
 {
-    class ItemDominoPiece : ItemChecker
+    class ItemDominoPiece : ItemWithAttributesTemplate
     {
         public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_DominoPiece_Meshrefs", () => new Dictionary<int, MeshRef>());
 

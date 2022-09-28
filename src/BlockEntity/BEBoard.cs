@@ -1,25 +1,25 @@
-using TabletopGames.ModUtils;
-using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
+using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
-    public class BlockEntityBoard : BlockEntityDisplay
+    /// <summary>
+    /// Flat board with 8x8 sections and 64 slot inventory
+    /// </summary>
+    public class BEBoard : BlockEntityDisplay
     {
         internal InventoryGeneric inventory;
-
         Matrixf mat = new();
-
         public override InventoryBase Inventory => inventory;
         public override string InventoryClassName => "ttgboard";
-        public override string AttributeTransformCode => "onTtgBoardTransform";
+        public override string AttributeTransformCode => "onTabletopGamesTransform";
 
-        public BlockEntityBoard()
+        public BEBoard()
         {
-            inventory = new InventoryGeneric(64, "ttgboard-1", Api, (f, f2) => new ItemSlotCCBoard(f2));
+            inventory = new InventoryGeneric(64, "ttgboard-1", Api);
             meshes = new MeshData[64];
         }
 
@@ -29,19 +29,9 @@ namespace TabletopGames
             inventory.LateInitialize("ttgboard-1", api);
         }
 
-        public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
-        {
-            var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-
-            if (selBoxIndex is not 64)
-            {
-                dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}]");
-            }
-        }
-
         public override void TranslateMesh(MeshData mesh, int index)
         {
-            var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .09375f, fromBorderX: .1725f, fromBorderZ: .83f);
+            var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .125f, fromBorderX: .0625f, fromBorderZ: .9375f);
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
         }

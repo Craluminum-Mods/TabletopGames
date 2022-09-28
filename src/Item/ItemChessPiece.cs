@@ -7,7 +7,7 @@ using TabletopGames.ChessUtils;
 
 namespace TabletopGames
 {
-    class ItemChessPiece : ItemChecker
+    class ItemChessPiece : ItemWithAttributesTemplate
     {
         public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_ChessPiece_Meshrefs", () => new Dictionary<int, MeshRef>());
 

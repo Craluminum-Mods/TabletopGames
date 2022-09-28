@@ -1,18 +1,18 @@
-using TabletopGames.ModUtils;
+using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
-    public class BlockEntityDominoBoard : BlockEntityBoard
+    public class BEDominoBoard : BEBoard
     {
         Matrixf mat = new();
-
         public override string InventoryClassName => "ttgdominoboard";
-        public override string AttributeTransformCode => "onTtgDominoBoardTransform";
+        public override string AttributeTransformCode => "onTabletopGamesDominoBoardTransform";
 
-        public BlockEntityDominoBoard()
+        public BEDominoBoard()
         {
             inventory = new InventoryGeneric(64, "ttgdominoboard-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
             meshes = new MeshData[64];
@@ -22,6 +22,12 @@ namespace TabletopGames
         {
             base.Initialize(api);
             inventory.LateInitialize("ttgdominoboard-1", api);
+        }
+
+        public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
+        {
+            var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+            dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}]");
         }
 
         public override void TranslateMesh(MeshData mesh, int index)

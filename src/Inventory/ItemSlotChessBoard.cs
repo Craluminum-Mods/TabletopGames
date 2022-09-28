@@ -2,9 +2,9 @@ using Vintagestory.API.Common;
 
 namespace TabletopGames
 {
-    public class ItemSlotDominoBoard : ItemSlot
+    public class ItemSlotChessBoard : ItemSlot
     {
-        public ItemSlotDominoBoard(InventoryBase inventory) : base(inventory)
+        public ItemSlotChessBoard(InventoryBase inventory) : base(inventory)
         {
         }
 
@@ -12,12 +12,12 @@ namespace TabletopGames
 
         public override bool CanTakeFrom(ItemSlot sourceSlot, EnumMergePriority priority = EnumMergePriority.AutoMerge)
         {
-            return sourceSlot.Itemstack.Collectible is ItemDominoPiece;
+            return sourceSlot.Itemstack.Collectible is ItemChessPiece or ItemChecker;
         }
 
         public override bool CanHold(ItemSlot sourceSlot)
         {
-            return sourceSlot.Itemstack.Collectible is ItemDominoPiece;
+            return sourceSlot.Itemstack.Collectible is ItemChessPiece or ItemChecker;
         }
     }
 }

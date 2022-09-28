@@ -4,7 +4,7 @@ using Vintagestory.API.MathTools;
 
 namespace TabletopGames
 {
-    public class BlockBoard : Block
+    public class BlockChessBoard : Block
     {
         public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => true;
 
@@ -12,7 +12,7 @@ namespace TabletopGames
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityBoard beb) return false;
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BEChessBoard beb) return false;
 
             var i = blockSel.SelectionBoxIndex;
             return i switch

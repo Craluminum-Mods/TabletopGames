@@ -1,7 +1,7 @@
 {
-    "code": "board",
-    "class": "TabletopGames_Board",
-    "entityClass": "TabletopGames_BEBoard",
+    "code": "chessboard",
+    "class": "TabletopGames_ChessBoard",
+    "entityClass": "TabletopGames_BEChessBoard",
     "attributes": {
         "moldrackable": true,
         "onmoldrackTransform": {
@@ -9,7 +9,8 @@
             "rotation": { "x": 0, "y": 0, "z": 85 }
         }
     },
-    "shape": { "base": "block/board_8x8" },
+    "variantGroups": [{ "code": "size", "states": ["8x8"] }],
+    "shape": { "base": "block/chessboard-{size}" },
     "blockmaterial": "Wood",
     "creativeinventory": { "tabletopgames": ["*"] },
     "lightAbsorption": 0,
@@ -17,7 +18,7 @@
     "sideopaque": { "all": false },
     "textures": {
         "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "block/8x8-blackwhite" },
+        "board": { "base": "block/checkerboard-{size}" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "heldTpIdleAnimation": "holdunderarm",
@@ -108,5 +109,8 @@
         "rotation": { "x": 0, "y": -45, "z": 0 },
         "origin": { "x": 0.5, "y": 0, "z": 0.5 },
         "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 }
     }
 }

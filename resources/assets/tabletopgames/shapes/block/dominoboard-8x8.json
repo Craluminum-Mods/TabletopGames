@@ -8,7 +8,6 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"dominoboard": "C:/Users/craluminum/Desktop/dominoboard",
         "wood": "block/wood/debarked/oak"
 	},
 	"elements": [

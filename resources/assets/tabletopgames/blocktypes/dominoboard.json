@@ -10,14 +10,15 @@
             "scale": 0.9
         }
     },
-    "shape": { "base": "block/dominoboard_8x8" },
+    "variantGroups": [{ "code": "size", "states": ["8x8"] }],
+    "shape": { "base": "block/dominoboard-{size}" },
     "blockmaterial": "Wood",
     "creativeinventory": { "tabletopgames": ["*"] },
     "lightAbsorption": 0,
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "textures": {
-        "dominoboard": { "base": "block/8x8-dominoboard" },
+        "dominoboard": { "base": "block/dominoboard-{size}" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "heldTpIdleAnimation": "holdunderarm",

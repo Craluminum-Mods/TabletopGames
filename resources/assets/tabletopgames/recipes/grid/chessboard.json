@@ -1,0 +1,29 @@
+[
+    {
+        "ingredientPattern": "HC,BT,XX",
+        "ingredients": {
+            "X": { "type": "item", "code": "game:plank-*", "quantity": 2 },
+            "B": { "type": "item", "code": "game:stone-basalt", "quantity": 4 },
+            "C": { "type": "item", "code": "game:stone-chalk", "quantity": 4 },
+            "T": { "type": "item", "code": "game:chisel-*", "IsTool": true },
+            "H": { "type": "item", "code": "game:hammer-*", "IsTool": true }
+        },
+        "width": 2,
+        "height": 3,
+        "output": { "type": "block", "code": "chessboard-8x8" }
+    },
+    {
+        "ingredientPattern": "HC,BT,XX",
+        "ingredients": {
+            "X": { "type": "item", "code": "game:plank-*", "quantity": 2 },
+            "B": { "type": "item", "code": "game:stone-basalt", "quantity": 4 },
+            "C": { "type": "item", "code": "game:stone-limestone", "quantity": 4 },
+            "T": { "type": "item", "code": "game:chisel-*", "IsTool": true },
+            "H": { "type": "item", "code": "game:hammer-*", "IsTool": true }
+        },
+        "recipeGroup": 1,
+        "width": 2,
+        "height": 3,
+        "output": { "type": "block", "code": "chessboard-8x8" }
+    }
+]
