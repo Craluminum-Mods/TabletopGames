@@ -28,12 +28,27 @@ namespace TabletopGames.ModUtils
 
         public static ItemStack GenItemstack(this CollectibleObject collobj, ICoreAPI api, string json)
         {
-            var jstack = new JsonItemStack()
+            var jstack = new JsonItemStack();
+
+            switch (json)
             {
-                Code = collobj.Code,
-                Type = EnumItemClass.Item,
-                Attributes = new JsonObject(JToken.Parse(json))
-            };
+                case null or "":
+                    jstack = new JsonItemStack()
+                    {
+                        Code = collobj.Code,
+                        Type = EnumItemClass.Item
+                    };
+                    break;
+
+                case not null:
+                    jstack = new JsonItemStack()
+                    {
+                        Code = collobj.Code,
+                        Type = EnumItemClass.Item,
+                        Attributes = new JsonObject(JToken.Parse(json))
+                    };
+                    break;
+            }
 
             jstack.Resolve(api.World, "some type");
 

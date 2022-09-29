@@ -1,0 +1,45 @@
+{
+    "code": "chessboardbox",
+    "class": "TabletopGames_ItemChessboardBox",
+    "maxStackSize": 1,
+    "attributes": {
+        "moldrackable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": 0, "y": -0.15, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 }
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Halves",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "heldTpIdleAnimation": "holdunderarm",
+    "shape": { "base": "item/box/chessboardbox-8x8" },
+    "textures": {
+        "black": { "base": "game:block/creative/col64" },
+        "board": { "base": "block/checkerboard-8x8" },
+        "wood": { "base": "game:block/wood/debarked/oak" }
+    },
+    "guiTransform": {
+        "rotate": true,
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 145, "y": 30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 2.46
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "rotation": { "x": 0, "y": 0, "z": 0 }
+    }
+}

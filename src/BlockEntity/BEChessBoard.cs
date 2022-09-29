@@ -2,6 +2,7 @@ using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Datastructures;
 using TabletopGames.ModUtils;
 
 namespace TabletopGames
@@ -31,7 +32,7 @@ namespace TabletopGames
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-            if (selBoxIndex is not 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName());
+            if (selBoxIndex is not 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
         }
 
         public override void TranslateMesh(MeshData mesh, int index)
@@ -39,6 +40,32 @@ namespace TabletopGames
             var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .09375f, fromBorderX: .1725f, fromBorderZ: .83f);
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
+        }
+
+        // Impossible to fix
+        public override void OnBlockPlaced(ItemStack byItemStack = null)
+        {
+            base.OnBlockPlaced(byItemStack);
+
+            var clonedItemstack = byItemStack.Clone();
+
+            if (clonedItemstack == null) return;
+
+            ITreeAttribute slotsTree = clonedItemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+
+            if (slotsTree == null) return;
+
+            foreach (var slot in inventory)
+            {
+                var slotId = inventory.GetSlotId(slot);
+                var itemstack = slotsTree.GetItemstack("slot-" + slotId);
+
+                if (itemstack?.ResolveBlockOrItem(Api.World) == false) continue;
+                inventory[slotId].Itemstack = itemstack;
+                inventory.MarkSlotDirty(slotId);
+            }
+            updateMeshes();
+            MarkDirty(true);
         }
     }
 }

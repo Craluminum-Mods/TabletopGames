@@ -2,11 +2,15 @@
     "code": "chessboard",
     "class": "TabletopGames_ChessBoard",
     "entityClass": "TabletopGames_BEChessBoard",
+    "maxStackSize": 1,
     "attributes": {
         "moldrackable": true,
         "onmoldrackTransform": {
             "translation": { "x": -0.04, "y": 0.07, "z": 0 },
             "rotation": { "x": 0, "y": 0, "z": 85 }
+        },
+        "tabletopgames": {
+            "packTo": "tabletopgames:chessboardbox"
         }
     },
     "variantGroups": [
