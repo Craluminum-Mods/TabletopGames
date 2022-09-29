@@ -1,23 +1,12 @@
 [
     {
-        "ingredientPattern": "SB",
+        "ingredientPattern": "BBB,K__,BBB",
         "ingredients": {
-            "S": { "type": "item", "code": "game:saw-*", "IsTool": true },
-            "B": { "type": "item", "code": "game:plank-ebony", "quantity": 3 }
+            "B": { "type": "item", "code": "game:bone" },
+            "K": { "type": "item", "code": "game:knife-*", "IsTool": true }
         },
-        "width": 2,
-        "height": 1,
-        "output": { "type": "item", "code": "checker", "quantity": 12, "attributes": { "team": "white", "crown": false } }
-    },
-    {
-        "ingredientPattern": "SB",
-        "ingredients": {
-            "S": { "type": "item", "code": "game:saw-*", "IsTool": true },
-            "B": { "type": "item", "code": "game:plank-purpleheart", "quantity": 3 }
-        },
-        "recipeGroup": 1,
-        "width": 2,
-        "height": 1,
-        "output": { "type": "item", "code": "checker", "quantity": 12, "attributes": { "team": "white", "crown": false } }
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "checker", "quantity": 24, "attributes": { "team": "white", "crown": false } }
     }
 ]

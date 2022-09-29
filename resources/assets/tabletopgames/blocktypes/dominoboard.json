@@ -2,6 +2,7 @@
     "code": "dominoboard",
     "class": "TabletopGames_DominoBoard",
     "entityClass": "TabletopGames_BEDominoBoard",
+    "maxStackSize": 1,
     "attributes": {
         "moldrackable": true,
         "onmoldrackTransform": {
