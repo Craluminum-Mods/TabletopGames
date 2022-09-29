@@ -1,0 +1,6 @@
+Textures
+==============
+Some icons are converted from png to svg with https://convertio.co/png-svg/
+
+Unpacking icon: https://icons8.com/icon/t99PIxlAujPN/unpacking
+Packing icon: https://icons8.com/icon/x158grZGmi75/packing
