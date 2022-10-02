@@ -1,49 +1,42 @@
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Util;
 using TabletopGames.ChessUtils;
+using System.Linq;
 
 namespace TabletopGames
 {
     class ItemChessPiece : ItemWithAttributesTemplate
     {
-        public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_ChessPiece_Meshrefs", () => new Dictionary<int, MeshRef>());
+        public string modelPrefix;
+
+        public override string MeshRefName => "tableTopGames_ChessPiece_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            capi = api as ICoreClientAPI;
 
             skillItems = api.GetChessPiecesToolModes(this);
+            modelPrefix = Attributes["modelPrefix"].AsString();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            switch (toolMode)
-            {
-                case 0: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "bishop"); break;
-                case 1: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "king"); break;
-                case 2: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "knight"); break;
-                case 3: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "pawn"); break;
-                case 4: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "queen"); break;
-                case 5: slot.Itemstack.ChangeChessPieceAttributes(team: "white", type: "rook"); break;
-                case 6: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "bishop"); break;
-                case 7: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "king"); break;
-                case 8: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "knight"); break;
-                case 9: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "pawn"); break;
-                case 10: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "queen"); break;
-                case 11: slot.Itemstack.ChangeChessPieceAttributes(team: "black", type: "rook"); break;
-            }
+            var stack = slot.Itemstack;
+            var chessData = stack.Collectible.Attributes["tabletopgames"]["chess"].AsObject<ChessData>();
+            var colors = chessData.Colors.Keys.ToList();
+            var types = chessData.Pieces.ToList();
+
+            if (toolMode < types.Count) stack.Attributes.SetString("type", types[toolMode]);
+            else stack.Attributes.SetString("color", colors[toolMode - types.Count]);
         }
 
         public override string GetHeldItemName(ItemStack itemStack)
         {
-            string team = itemStack.Attributes.GetString("team");
+            string color = itemStack.Attributes.GetString("color");
             string type = itemStack.Attributes.GetString("type");
 
-            return Lang.GetMatching($"tabletopgames:item-chesspiece-{type}", Lang.Get($"color-{team}"));
+            return Lang.GetMatching($"tabletopgames:item-chesspiece-{type}", Lang.Get($"color-{color}"));
         }
 
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
@@ -51,13 +44,13 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string team = itemstack.Attributes.GetString("team");
+            string color = itemstack.Attributes.GetString("color");
             string type = itemstack.Attributes.GetString("type");
 
-            tmpTextures["team"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            tmpTextures["team"] = new AssetLocation(Textures[team].Base.Path);
+            tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+            tmpTextures["color"] = new AssetLocation(Textures[color].Base.Path);
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, "tabletopgames:shapes/item/chesspiece/" + type + ".json");
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + type + ".json");
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this);
             return mesh;
@@ -65,10 +58,10 @@ namespace TabletopGames
 
         public override string GetMeshCacheKey(ItemStack itemstack)
         {
-            string team = itemstack.Attributes.GetString("team");
+            string color = itemstack.Attributes.GetString("color");
             string type = itemstack.Attributes.GetString("type");
 
-            return Code.ToShortString() + "-" + team + "-" + type;
+            return Code.ToShortString() + "-" + color + "-" + type;
         }
     }
 }

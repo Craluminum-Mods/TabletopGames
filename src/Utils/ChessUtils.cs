@@ -1,82 +1,43 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using TabletopGames.ModUtils;
+using System.Collections.Generic;
+using Vintagestory.API.MathTools;
+using System.Linq;
 
 namespace TabletopGames.ChessUtils
 {
     public static class ChessUtils
     {
-        public static void ChangeChessPieceAttributes(this ItemStack itemstack, string team, string type)
+        public static SkillItem[] GetChessPiecesToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
-            itemstack.Attributes.SetString("team", team);
-            itemstack.Attributes.SetString("type", type);
+            var chessData = collobj.Attributes["tabletopgames"]["chess"].AsObject<ChessData>();
+            var hexColors = chessData.Colors;
+            var colors = chessData.Colors.Keys.ToList();
+            var types = chessData.Pieces;
+            var modes = new List<SkillItem>();
+
+            modes.AddRange(types.Select(type => new SkillItem { Name = Lang.Get($"tabletopgames:item-chesspiece-{type}", Lang.Get("tabletopgames:Keep color")) }));
+            modes.AddRange(colors.Select((color, index) => new SkillItem { Name = Lang.Get($"color-{color}"), Linebreak = index == 0 }));
+
+            if (api.Side.IsServer()) return modes.ToArray();
+            var capi = (ICoreClientAPI)api;
+
+            foreach (var type in types)
+            {
+                modes[types.IndexOf(type)]
+                .WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/chess-" + type + ".svg"), 48, 48, 5, ColorUtil.WhiteArgb))
+                .TexturePremultipliedAlpha = false;
+            }
+
+            foreach (var color in colors)
+            {
+                modes[colors.IndexOf(color) + types.Count]
+                .WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/palette.svg"), 48, 48, 5, ColorUtil.Hex2Int(hexColors[color])))
+                .TexturePremultipliedAlpha = false;
+            }
+
+            return modes.ToArray();
         }
-
-        public static SkillItem[] GetChessPiecesToolModes(this ICoreAPI api, CollectibleObject collobj) => new SkillItem[]
-        {
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-bishop", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "bishop"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-king", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "king"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-knight", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "knight"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-pawn", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "pawn"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-queen", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "queen"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-rook", Lang.Get("color-white")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "white", "rook"))
-            },
-
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-bishop", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "bishop")),
-                Linebreak = true
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-king", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "king"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-knight", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "knight"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-pawn", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "pawn"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-queen", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "queen"))
-            },
-            new SkillItem
-            {
-                Name = Lang.Get("tabletopgames:item-chesspiece-rook", Lang.Get("color-black")),
-                RenderHandler = collobj.RenderItemWithAttributes(api, string.Format("{{ team: \"{0}\", type: \"{1}\" }}", "black", "rook"))
-            },
-        };
     }
 }

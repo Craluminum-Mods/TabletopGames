@@ -17,6 +17,22 @@
             "translation": { "x": 0, "y": 0.03, "z": 0 },
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.075
+        },
+        "tabletopgames": {
+            "checker": {
+                "_comment": "These values are used for dynamically generated toolMode.",
+                "colors": {
+                    "white": "#ffffff",
+                    "black": "#000000",
+                    "red": "#ff0000",
+                    "green": "#00ff00",
+                    "blue": "#00bfff",
+                    "yellow": "#ffff00",
+                    "orange": "#ffa500",
+                    "pink": "#ffc0cb",
+                    "purple": "#6900C6"
+                }
+            }
         }
     },
     "behaviors": [
@@ -34,8 +50,14 @@
         "crown": { "base": "game:tabletopgames/item/crown" },
         "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
-        "white-crown": { "base": "game:tabletopgames/item/blackcrown" },
-        "white": { "base": "game:block/creative/col75" }
+        "blue": { "base": "game:block/creative/col18" },
+        "green": { "base": "game:block/creative/col10" },
+        "orange": { "base": "game:block/creative/col3" },
+        "pink": { "base": "game:block/creative/col28" },
+        "purple": { "base": "game:block/creative/col24" },
+        "red": { "base": "game:block/creative/col0" },
+        "white": { "base": "game:block/creative/col75" },
+        "yellow": { "base": "game:block/creative/col5" }
     },
     "creativeinventoryStacks": [
         {

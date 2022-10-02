@@ -1,40 +1,37 @@
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Util;
 using TabletopGames.CheckersUtils;
+using System.Linq;
 
 namespace TabletopGames
 {
     class ItemChecker : ItemWithAttributesTemplate
     {
-        public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_Checker_Meshrefs", () => new Dictionary<int, MeshRef>());
+        public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            capi = api as ICoreClientAPI;
             skillItems = api.GetCheckersToolModes(this);
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            switch (toolMode)
-            {
-                case 0: slot.Itemstack.ChangeCheckerAttributes(team: "white", crown: false); break;
-                case 1: slot.Itemstack.ChangeCheckerAttributes(team: "white", crown: true); break;
-                case 2: slot.Itemstack.ChangeCheckerAttributes(team: "black", crown: false); break;
-                case 3: slot.Itemstack.ChangeCheckerAttributes(team: "black", crown: true); break;
-            }
+            var stack = slot.Itemstack;
+            var checkerData = stack.Collectible.Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
+            var colors = checkerData.Colors.Keys.ToList();
+
+            if (toolMode != colors.Count) stack.Attributes.SetString("color", colors[toolMode]);
+            else stack.Attributes.SetBool("crown", !stack.Attributes.GetBool("crown"));
         }
 
         public override string GetHeldItemName(ItemStack itemStack)
         {
-            string team = itemStack.Attributes.GetString("team");
+            string color = itemStack.Attributes.GetString("color");
             bool crown = itemStack.Attributes.GetBool("crown");
 
-            return Lang.GetMatching("tabletopgames:item-checker" + (crown ? "-withcrown" : ""), Lang.Get($"color-{team}"));
+            return Lang.GetMatching("tabletopgames:item-checker" + (crown ? "-withcrown" : ""), Lang.Get($"color-{color}"));
         }
 
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
@@ -42,12 +39,12 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string team = itemstack.Attributes.GetString("team");
+            string color = itemstack.Attributes.GetString("color");
             bool crown = itemstack.Attributes.GetBool("crown");
 
-            tmpTextures["team"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            tmpTextures["team"] = new AssetLocation(Textures[team].Base.Path);
-            if (crown) tmpTextures["crown"] = new AssetLocation(Textures[team + "-crown"].Base.Path);
+            tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+            tmpTextures["color"] = new AssetLocation(Textures[color].Base.Path);
+            if (crown) tmpTextures["crown"] = new AssetLocation(Textures["crown"].Base.Path);
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);
             return mesh;
@@ -55,10 +52,10 @@ namespace TabletopGames
 
         public override string GetMeshCacheKey(ItemStack itemstack)
         {
-            string team = itemstack.Attributes.GetString("team");
+            string color = itemstack.Attributes.GetString("color");
             bool crown = itemstack.Attributes.GetBool("crown");
 
-            return Code.ToShortString() + "-" + team + "-" + crown;
+            return Code.ToShortString() + "-" + color + "-" + crown;
         }
     }
 }
