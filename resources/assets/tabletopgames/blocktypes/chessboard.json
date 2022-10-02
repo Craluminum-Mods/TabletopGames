@@ -29,7 +29,7 @@
     "sideopaque": { "all": false },
     "textures": {
         "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "block/checkerboard-{size}" },
+        "board": { "base": "game:tabletopgames/block/checkerboard-{size}" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "sounds": {

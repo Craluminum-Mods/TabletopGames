@@ -19,7 +19,7 @@
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "textures": {
-        "dominoboard": { "base": "block/dominoboard-{size}" },
+        "dominoboard": { "base": "game:tabletopgames/block/dominoboard-{size}" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "heldTpIdleAnimation": "holdunderarm",
