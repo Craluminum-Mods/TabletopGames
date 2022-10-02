@@ -4,3 +4,14 @@ Some icons are converted from png to svg with https://convertio.co/png-svg/
 
 Unpacking icon: https://icons8.com/icon/t99PIxlAujPN/unpacking
 Packing icon: https://icons8.com/icon/x158grZGmi75/packing
+Rotate 90 left icon: https://www.veryicon.com/icons/miscellaneous/linear-icon-6/icon-rotate-left-90.html
+Rotate 90 right icon: https://www.veryicon.com/icons/miscellaneous/linear-icon-6/icon-rotate-right-90.html
+Chess bishop icon: https://icon-icons.com/icon/chess-bishop/198479
+Chess king icon: https://icon-icons.com/icon/chess-king/198477
+Chess knight icon: https://icon-icons.com/icon/chess-knight/198476
+Chess pawn icon: https://icon-icons.com/icon/chess-pawn/198475
+Chess queen icon: https://icon-icons.com/icon/chess-queen/198474
+Chess rook icon: https://icon-icons.com/icon/chess-rook/198473
+Crown icon: https://www.veryicon.com/icons/system/currency-2/crown-32.html
+Palette icon: https://icon-icons.com/icon/paint-tray-palette-color/175714
+Shuffle icon: https://www.veryicon.com/icons/miscellaneous/standard-general-linear-icon/shuffle-9.html
