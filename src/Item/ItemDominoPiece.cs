@@ -1,23 +1,24 @@
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Util;
 using TabletopGames.DominoUtils;
 using Vintagestory.API.MathTools;
+using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
     class ItemDominoPiece : ItemWithAttributesTemplate
     {
-        public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_DominoPiece_Meshrefs", () => new Dictionary<int, MeshRef>());
+        public string modelPrefix;
+
+        public override string MeshRefName => "tableTopGames_DominoPiece_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            capi = api as ICoreClientAPI;
 
             skillItems = capi.GetDominoPiecesToolModes();
+            modelPrefix = Attributes["modelPrefix"].AsString();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
@@ -42,16 +43,16 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string type = itemstack.Attributes.GetString("type");
             int rotation = itemstack.Attributes.GetInt("rotation");
+            var meshRotationDeg = new Vec3f(0, rotation, 0);
 
-            var meshRotationDeg = new Vec3f(0, rotation is 0 ? 0 : rotation, 0);
+            foreach (var key in Textures)
+            {
+                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+                tmpTextures[key.TryGetColorTextureKey()] = new AssetLocation(Textures[key.TryGetColorName(itemstack)].Base.Path);
+            }
 
-            tmpTextures["col66"] = tmpTextures["col79"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            tmpTextures["col66"] = new AssetLocation(Textures["col66"].Base.Path);
-            tmpTextures["col79"] = new AssetLocation(Textures["col79"].Base.Path);
-
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, "tabletopgames:shapes/item/dominopiece/" + type + ".json");
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json");
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
