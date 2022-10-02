@@ -7,6 +7,6 @@
         },
         "width": 3,
         "height": 3,
-        "output": { "type": "item", "code": "checker", "quantity": 24, "attributes": { "team": "white", "crown": false } }
+        "output": { "type": "item", "code": "checker", "quantity": 24, "attributes": { "color": "white", "crown": false } }
     }
 ]

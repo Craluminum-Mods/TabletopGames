@@ -31,7 +31,7 @@
     ],
     "shape": { "base": "item/chesspiece/pawn" },
     "textures": {
-        "team": { "base": "game:block/transparent" },
+        "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
         "white": { "base": "game:block/creative/col75" }
     },
@@ -39,18 +39,18 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "bishop" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "king" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "knight" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "pawn" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "queen" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "white", "type": "rook" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "bishop" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "king" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "knight" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "pawn" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "queen" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "team": "black", "type": "rook" } }
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "bishop" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "king" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "knight" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "pawn" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "queen" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "rook" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "bishop" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "king" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "knight" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "pawn" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "queen" } },
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "rook" } }
             ]
         }
     ],

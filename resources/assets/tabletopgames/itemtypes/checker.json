@@ -31,9 +31,7 @@
     ],
     "shape": { "base": "item/checker" },
     "textures": {
-        "crown": { "base": "game:block/transparent" },
-        "team": { "base": "game:block/transparent" },
-        "black-crown": { "base": "game:tabletopgames/item/whitecrown" },
+        "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
         "white-crown": { "base": "game:tabletopgames/item/blackcrown" },
         "white": { "base": "game:block/creative/col75" }
@@ -42,10 +40,8 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "checker", "attributes": { "team": "white", "crown": false } },
-                { "type": "item", "code": "checker", "attributes": { "team": "white", "crown": true } },
-                { "type": "item", "code": "checker", "attributes": { "team": "black", "crown": false } },
-                { "type": "item", "code": "checker", "attributes": { "team": "black", "crown": true } }
+                { "type": "item", "code": "checker", "attributes": { "color": "white", "crown": false } },
+                { "type": "item", "code": "checker", "attributes": { "color": "black", "crown": false } }
             ]
         }
     ],
