@@ -2,12 +2,12 @@
     {
         "ingredientPattern": "SB,XX",
         "ingredients": {
-            "X": { "type": "item", "code": "game:plank-*", "quantity": 2 },
+            "X": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 2 },
             "B": { "type": "item", "code": "game:bone" },
             "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
         },
         "width": 2,
         "height": 2,
-        "output": { "type": "block", "code": "dominoboard-8x8" }
+        "output": { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "{wood}" } }
     }
 ]
