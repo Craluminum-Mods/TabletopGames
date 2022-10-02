@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "BBB,BK_,BBB",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:bone", "quantity": 2 },
+            "K": { "type": "item", "code": "game:knife-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "chesspiece", "quantity": 32, "attributes": { "type": "pawn", "color": "white" } }
+    }
+]
