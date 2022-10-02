@@ -12,7 +12,7 @@ namespace TabletopGames.BoxUtils
         {
             var modes = new SkillItem[1]
             {
-                new SkillItem() { Name = Lang.Get(name) }
+                new SkillItem() { Name = Lang.Get($"tabletopgames:{name}") }
             };
 
             if (capi != null)
@@ -37,6 +37,15 @@ namespace TabletopGames.BoxUtils
             {
                 box.Attributes.GetOrAddTreeAttribute("box").GetOrAddTreeAttribute("slots")["slot-" + fromSlotId] = new ItemstackAttribute(fromSlot.Itemstack.Clone());
             }
+        }
+
+        public static void ConvertBlockToItemBox(ItemSlot slot, ItemStack boxStack)
+        {
+            boxStack.Attributes.SetItemstack("chessboard", slot.Itemstack);
+            boxStack.Attributes.SetString("wood", slot.Itemstack.Attributes.GetString("wood"));
+
+            slot.Itemstack.SetFrom(boxStack.Clone());
+            slot.MarkDirty();
         }
     }
 }
