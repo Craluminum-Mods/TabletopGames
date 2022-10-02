@@ -31,6 +31,7 @@
     ],
     "shape": { "base": "item/checker" },
     "textures": {
+        "crown": { "base": "game:tabletopgames/item/crown" },
         "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
         "white-crown": { "base": "game:tabletopgames/item/blackcrown" },
