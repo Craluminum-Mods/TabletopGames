@@ -11,7 +11,7 @@ namespace TabletopGames.ChessUtils
     {
         public static SkillItem[] GetChessPiecesToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
-            var chessData = collobj.Attributes["tabletopgames"]["chess"].AsObject<ChessData>();
+            var chessData = collobj.Attributes["tabletopgames"]["chesspiece"].AsObject<ChessData>();
             var hexColors = chessData.Colors;
             var colors = chessData.Colors.Keys.ToList();
             var types = chessData.Pieces;

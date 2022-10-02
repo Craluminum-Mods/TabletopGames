@@ -23,7 +23,7 @@ namespace TabletopGames
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
             var stack = slot.Itemstack;
-            var chessData = stack.Collectible.Attributes["tabletopgames"]["chess"].AsObject<ChessData>();
+            var chessData = stack.Collectible.Attributes["tabletopgames"]["chesspiece"].AsObject<ChessData>();
             var colors = chessData.Colors.Keys.ToList();
             var types = chessData.Pieces.ToList();
 

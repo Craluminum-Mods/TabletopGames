@@ -20,7 +20,7 @@
         },
         "modelPrefix": "tabletopgames:shapes/item/chesspiece/",
         "tabletopgames": {
-            "chess": {
+            "chesspiece": {
                 "_comment": "These values are used for dynamically generated toolMode.",
                 "pieces": ["bishop", "king", "knight", "pawn", "queen", "rook"],
                 "colors": {
