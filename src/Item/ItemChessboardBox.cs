@@ -1,23 +1,27 @@
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Util;
 using TabletopGames.BoxUtils;
+using TabletopGames.ModUtils;
 using System.Text;
 
 namespace TabletopGames
 {
     class ItemChessboardBox : ItemWithAttributesTemplate
     {
-        public override Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_ChessboardBox_Meshrefs", () => new Dictionary<int, MeshRef>());
+        public string woodTexPrefix;
+
+        public override string MeshRefName => "tableTopGames_ChessboardBox_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            capi = api as ICoreClientAPI;
             skillItems = capi.GetBoxToolModes("unpack");
+
+            woodTexPrefix = GetTextureLocationPrefix("wood");
         }
+
+        public string GetTextureLocationPrefix(string key) => Attributes["texturePrefixes"][key].AsString();
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
@@ -31,6 +35,8 @@ namespace TabletopGames
 
                         if (boardStack?.ResolveBlockOrItem(api.World) != true) break;
 
+                        boardStack.Attributes.SetString("wood", slot.Itemstack.Attributes.GetString("wood", "oak"));
+
                         slot.Itemstack.SetFrom(boardStack);
                         slot.MarkDirty();
                         break;
@@ -42,10 +48,15 @@ namespace TabletopGames
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-            var board = inSlot?.Itemstack?.Attributes?.GetItemstack("chessboard");
+            var board = inSlot.Itemstack.Attributes.GetItemstack("chessboard");
 
-            if (board != null) dsc.AppendLine(Lang.Get("Contents: {0}", board.GetName()));
-            else dsc.AppendLine(Lang.Get("Empty"));
+            if (board.ResolveBlockOrItem(api.World))
+            {
+                dsc.AppendWoodDescription(board);
+
+                if (board != null) dsc.AppendLine(Lang.Get("Contents: {0}", board.GetName()));
+                else dsc.AppendLine(Lang.Get("Empty"));
+            }
         }
 
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
@@ -53,15 +64,20 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            tmpTextures["black"] = tmpTextures["board"] = tmpTextures["wood"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            tmpTextures["black"] = new AssetLocation(Textures["black"].Base.Path);
-            tmpTextures["board"] = new AssetLocation("tabletopgames:textures/block/checkerboard-8x8");
-            tmpTextures["wood"] = new AssetLocation(Textures["wood"].Base.Path);
+            foreach (var key in Textures)
+            {
+                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+                tmpTextures[key.Key] = new AssetLocation(this.TryGetWoodTexturePath(key, woodTexPrefix, itemstack));
+            }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack) => Code.ToShortString();
+        public override string GetMeshCacheKey(ItemStack itemstack)
+        {
+            string wood = itemstack.Attributes.GetString("wood", defaultValue: "oak");
+            return Code.ToShortString() + "-" + wood;
+        }
     }
 }

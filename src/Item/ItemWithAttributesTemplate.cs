@@ -10,12 +10,14 @@ namespace TabletopGames
     class ItemWithAttributesTemplate : Item, ITexPositionSource, IContainedMeshSource
     {
         public Size2i AtlasSize => targetAtlas.Size;
-        public virtual Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, "tableTopGames_ItemWithDynamicModel_Meshrefs", () => new Dictionary<int, MeshRef>());
+        public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());
         public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(tmpTextures[textureCode]);
         public ICoreClientAPI capi;
         public ITextureAtlasAPI targetAtlas;
         public readonly Dictionary<string, AssetLocation> tmpTextures = new();
         public SkillItem[] skillItems;
+
+        public virtual string MeshRefName => "tableTopGames_ItemWithAttributes_Meshrefs";
 
         protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
         {

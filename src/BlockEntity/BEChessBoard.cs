@@ -7,12 +7,10 @@ using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
-    /// <summary>
-    /// Chessboard with 8x8 sections
-    /// </summary>
     public class BEChessBoard : BEBoard
     {
-        Matrixf mat = new();
+        public string woodType;
+
         public override string InventoryClassName => "ttgchessboard";
         public override string AttributeTransformCode => "onTabletopGamesChessBoardTransform";
 
@@ -29,8 +27,23 @@ namespace TabletopGames
             inventory.LateInitialize("ttgchessboard-1", api);
         }
 
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
+        {
+            woodType = tree.GetString("wood");
+            base.FromTreeAttributes(tree, worldAccessForResolve);
+        }
+
+        public override void ToTreeAttributes(ITreeAttribute tree)
+        {
+            base.ToTreeAttributes(tree);
+            tree.SetString("wood", woodType);
+        }
+
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
+            base.GetBlockInfo(forPlayer, dsc);
+            dsc.AppendWoodDescription(wood: woodType);
+
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
             if (selBoxIndex is not 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
         }
@@ -42,28 +55,16 @@ namespace TabletopGames
             mesh.Translate(offset.XYZ);
         }
 
-        // Impossible to fix
         public override void OnBlockPlaced(ItemStack byItemStack = null)
         {
             base.OnBlockPlaced(byItemStack);
 
-            var clonedItemstack = byItemStack.Clone();
-
+            var clonedItemstack = byItemStack?.Clone();
             if (clonedItemstack == null) return;
 
-            ITreeAttribute slotsTree = clonedItemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+            woodType = clonedItemstack.Attributes?.GetString("wood");
 
-            if (slotsTree == null) return;
-
-            foreach (var slot in inventory)
-            {
-                var slotId = inventory.GetSlotId(slot);
-                var itemstack = slotsTree.GetItemstack("slot-" + slotId);
-
-                if (itemstack?.ResolveBlockOrItem(Api.World) == false) continue;
-                inventory[slotId].Itemstack = itemstack;
-                inventory.MarkSlotDirty(slotId);
-            }
+            clonedItemstack?.SaveInventoryToBlock(inventory, Api);
             updateMeshes();
             MarkDirty(true);
         }

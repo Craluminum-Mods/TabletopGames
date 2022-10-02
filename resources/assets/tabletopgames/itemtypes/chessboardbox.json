@@ -7,6 +7,9 @@
         "onmoldrackTransform": {
             "translation": { "x": 0, "y": -0.15, "z": 0 },
             "rotation": { "x": 0, "y": 0, "z": 85 }
+        },
+        "texturePrefixes": {
+            "wood": "game:block/wood/debarked/"
         }
     },
     "behaviors": [

@@ -3,12 +3,14 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using TabletopGames.ModUtils;
+using Vintagestory.API.Datastructures;
 
 namespace TabletopGames
 {
     public class BEDominoBoard : BEBoard
     {
-        Matrixf mat = new();
+        public string woodType;
+
         public override string InventoryClassName => "ttgdominoboard";
         public override string AttributeTransformCode => "onTabletopGamesDominoBoardTransform";
 
@@ -24,8 +26,35 @@ namespace TabletopGames
             inventory.LateInitialize("ttgdominoboard-1", api);
         }
 
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
+        {
+            woodType = tree.GetString("wood");
+            base.FromTreeAttributes(tree, worldAccessForResolve);
+        }
+
+        public override void ToTreeAttributes(ITreeAttribute tree)
+        {
+            base.ToTreeAttributes(tree);
+            tree.SetString("wood", woodType);
+        }
+
+        public override void OnBlockPlaced(ItemStack byItemStack = null)
+        {
+            base.OnBlockPlaced(byItemStack);
+
+            var clonedItemstack = byItemStack.Clone();
+            if (clonedItemstack == null) return;
+
+            woodType = clonedItemstack.Attributes?.GetString("wood");
+
+            MarkDirty(true);
+        }
+
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
+            base.GetBlockInfo(forPlayer, dsc);
+            dsc.AppendWoodDescription(wood: woodType);
+
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
             dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName());
         }

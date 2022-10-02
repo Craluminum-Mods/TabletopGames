@@ -11,6 +11,9 @@
         },
         "tabletopgames": {
             "packTo": "tabletopgames:chessboardbox"
+        },
+        "texturePrefixes": {
+            "wood": "game:block/wood/debarked/"
         }
     },
     "variantGroups": [
@@ -23,7 +26,28 @@
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
     },
     "blockmaterial": "Wood",
-    "creativeinventory": { "tabletopgames": ["*-east"] },
+    "creativeinventoryStacksByType": {
+        "*-east": [
+            {
+                "tabs": ["tabletopgames"],
+                "stacks": [
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "aged" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "birch" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "oak" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "maple" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "pine" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "acacia" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "kapok" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "baldcypress" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "larch" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "redwood" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "ebony" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "walnut" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "purpleheart" } }
+                ]
+            }
+        ]
+    },
     "lightAbsorption": 0,
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },

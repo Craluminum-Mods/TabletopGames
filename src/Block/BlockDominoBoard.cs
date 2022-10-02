@@ -1,14 +1,14 @@
-using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
 namespace TabletopGames
 {
-    public class BlockDominoBoard : Block
+    public class BlockDominoBoard : BlockWithAttributes
     {
-        public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => true;
-
-        public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => new(1, 1, 0, 1); // Yellow
+        public override bool SaveInventory => false;
+        public override bool HasWoodType => true;
+        public override bool CanBePickedUp => false;
+        public override string MeshRefName => "tableTopGames_DominoBoard_Meshrefs";
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
@@ -19,6 +19,13 @@ namespace TabletopGames
             {
                 _ => bedb.TryPut(byPlayer, i) || bedb.TryTake(byPlayer, i)
             };
+        }
+
+        public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
+        {
+            var original = base.OnPickBlock(world, pos);
+            if (world.BlockAccessor.GetBlockEntity(pos) is not BEDominoBoard blockEntity) return original;
+            return OnPickBlock(world, pos, blockEntity.inventory, blockEntity.woodType);
         }
     }
 }

@@ -6,13 +6,10 @@ using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
-    /// <summary>
-    /// Flat board with 8x8 sections and 64 slot inventory
-    /// </summary>
     public class BEBoard : BlockEntityDisplay
     {
         internal InventoryGeneric inventory;
-        Matrixf mat = new();
+        internal Matrixf mat = new();
         public override InventoryBase Inventory => inventory;
         public override string InventoryClassName => "ttgboard";
         public override string AttributeTransformCode => "onTabletopGamesTransform";

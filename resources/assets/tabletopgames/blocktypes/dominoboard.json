@@ -9,12 +9,34 @@
             "translation": { "x": 0, "y": 0.08, "z": 0 },
             "rotation": { "x": 0, "y": 0, "z": 85 },
             "scale": 0.9
+        },
+        "texturePrefixes": {
+            "wood": "game:block/wood/debarked/"
         }
     },
     "variantGroups": [{ "code": "size", "states": ["8x8"] }],
     "shape": { "base": "block/dominoboard-{size}" },
     "blockmaterial": "Wood",
-    "creativeinventory": { "tabletopgames": ["*"] },
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "aged" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "birch" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "oak" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "maple" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "pine" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "acacia" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "kapok" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "baldcypress" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "larch" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "redwood" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "ebony" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "walnut" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "purpleheart" } }
+            ]
+        }
+    ],
     "lightAbsorption": 0,
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
