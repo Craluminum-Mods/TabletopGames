@@ -2,6 +2,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using TabletopGames.ModUtils;
 using TabletopGames.BoxUtils;
+using Vintagestory.API.Util;
 
 namespace TabletopGames
 {
@@ -19,7 +20,8 @@ namespace TabletopGames
             base.OnLoaded(api);
 
             boxItem = api.World.GetItem(new AssetLocation(Attributes["tabletopgames"]?["packTo"].AsString()));
-            skillItems = capi.GetBoxToolModes("pack");
+            skillItems = capi.GetBoxToolModes("pack")
+                .Append(capi.GetDropAllSlotsToolModes());
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
@@ -32,9 +34,12 @@ namespace TabletopGames
                         if (boxStack.ResolveBlockOrItem(api.World))
                         {
                             BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "chessboard");
-                            break;
                         }
-
+                        break;
+                    }
+                case 1:
+                    {
+                        slot.Itemstack.TryDropAllSlots(byPlayer, api);
                         break;
                     }
             }
