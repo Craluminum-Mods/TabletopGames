@@ -8,10 +8,17 @@
     "item-chesspiece-pawn": "Pawn ({0})",
     "item-chesspiece-queen": "Queen ({0})",
     "item-chesspiece-rook": "Rook ({0})",
-    "item-chessboardbox": "Chessboard box",
+    "item-chessboardbox": "Chessboard (Packed)",
+    "item-dominobox": "Domino box (Packed)",
+    "block-dominobox-*": "Domino box",
     "block-chessboard-8x8-*": "Chessboard (8x8)",
     "block-dominoboard-8x8": "Domino board (8x8)",
     "RotateClockwise": "Rotate Clockwise",
     "RotateAntiClockwise": "Rotate Anti-Clockwise",
+    "pack": "Pack",
+    "unpack": "Unpack",
+    "DropAllSlots": "Drop all slots",
+    "ToggleCrownOnChecker": "Toggle crown on checker",
+    "Keep color": "Keep color",
     "game:tabname-tabletopgames": "Tabletop Games"
 }
