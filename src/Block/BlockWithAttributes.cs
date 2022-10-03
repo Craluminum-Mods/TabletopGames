@@ -125,6 +125,7 @@ namespace TabletopGames
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
             dsc.AppendWoodDescription(inSlot.Itemstack);
+            dsc.AppendInventorySlotsDescription(inSlot.Itemstack);
         }
 
         public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

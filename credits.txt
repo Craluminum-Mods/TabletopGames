@@ -15,3 +15,4 @@ Chess rook icon: https://icon-icons.com/icon/chess-rook/198473
 Crown icon: https://www.veryicon.com/icons/system/currency-2/crown-32.html
 Palette icon: https://icon-icons.com/icon/paint-tray-palette-color/175714
 Shuffle icon: https://www.veryicon.com/icons/miscellaneous/standard-general-linear-icon/shuffle-9.html
+Arrow down icon: https://icon-icons.com/icon/arrow-down-essential/183086

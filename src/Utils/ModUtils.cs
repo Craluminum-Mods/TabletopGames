@@ -79,6 +79,18 @@ namespace TabletopGames.ModUtils
             dsc.Append(Lang.Get("Wood")).Append(": ").AppendLine(Lang.Get($"material-{wood}"));
         }
 
+        public static void AppendInventorySlotsDescription(this StringBuilder dsc, ItemStack stack)
+        {
+            var slots = stack.Attributes.GetAsInt("quantitySlots");
+
+            if (slots != 0) dsc.AppendFormat(Lang.Get("Slots") + ": {0}", slots).AppendLine();
+        }
+
+        public static void AppendInventorySlotsDescription(this StringBuilder dsc, int quantitySlots)
+        {
+            if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Slots") + ": {0}", quantitySlots).AppendLine();
+        }
+
         public static void SaveInventoryToBlock(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
         {
             var slotsTree = stack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");

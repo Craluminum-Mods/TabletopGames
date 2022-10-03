@@ -1,0 +1,80 @@
+{
+    "code": "dominobox",
+    "class": "TabletopGames_DominoBox",
+    "entityClass": "TabletopGames_BEDominoBox",
+    "maxStackSize": 1,
+    "attributes": {
+        "tabletopgames": {
+            "packTo": "tabletopgames:dominobox"
+        },
+        "texturePrefixes": {
+            "wood": "game:block/wood/debarked/"
+        },
+        "textureCodeForBlockColor": "wood"
+    },
+    "variantGroups": [{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }],
+    "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }],
+    "shape": {
+        "base": "block/box/dominobox-open",
+        "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
+    },
+    "blockmaterial": "Wood",
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "textures": {
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "black": { "base": "game:block/creative/col64" },
+        "white": { "base": "game:block/creative/col79" },
+        "shuffle_icon": { "base": "game:tabletopgames/icons/shuffle-png" }
+    },
+    "creativeinventoryStacksByType": {
+        "*-east": [
+            {
+                "tabs": ["tabletopgames"],
+                "stacks": [
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "aged" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "birch" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "oak" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "maple" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "pine" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "acacia" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "kapok" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "baldcypress" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "larch" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "redwood" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "ebony" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "walnut" } },
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "purpleheart" } }
+                ]
+            }
+        ]
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "collisionBox": { "x1": 0.0625, "y1": 0, "z1": 0.3125, "x2": 0.9375, "y2": 0.4375, "z2": 0.6875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+    "selectionBoxes": [
+        { "_comment": "Base", "x1": 0.0625, "y1": 0, "z1": 0.3125, "x2": 0.9375, "y2": 0.4375, "z2": 0.6875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+        { "_comment": "ButtonShuffle", "x1": 0.0935, "y1": 0.125, "z1": 0.6875, "x2": 0.2815, "y2": 0.313, "z2": 0.6996, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+        { "_comment": "ButtonOther", "x1": 0.3125, "y1": 0.125, "z1": 0.6875, "x2": 0.5, "y2": 0.313, "z2": 0.6996, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+    ],
+    "guiTransform": {
+        "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
+        "scale": 1.75
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 },
+        "rotation": { "x": 0, "y": 149, "z": 0 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.3, "y": -0.7, "z": -0.4 },
+        "rotation": { "x": 91, "y": 12, "z": -77 },
+        "scale": 0.6
+    }
+}

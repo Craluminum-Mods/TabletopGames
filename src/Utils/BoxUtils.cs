@@ -31,6 +31,21 @@ namespace TabletopGames.BoxUtils
             return modes;
         }
 
+        public static SkillItem[] GetDropAllSlotsToolModes(this ICoreClientAPI capi)
+        {
+            var modes = new SkillItem[1]
+            {
+                new SkillItem() { Name = Lang.Get("tabletopgames:DropAllSlots") }
+            };
+
+            if (capi != null)
+            {
+                modes[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/arrow_down.svg"), 48, 48, 5, ColorUtil.WhiteArgb));
+                modes[0].TexturePremultipliedAlpha = false;
+            }
+            return modes;
+        }
+
         public static void SaveSlotToBox(this ItemSlot fromSlot, ItemStack box, int fromSlotId)
         {
             if (fromSlot?.Itemstack != null)
@@ -39,13 +54,34 @@ namespace TabletopGames.BoxUtils
             }
         }
 
-        public static void ConvertBlockToItemBox(ItemSlot slot, ItemStack boxStack)
+        public static void ConvertBlockToItemBox(ItemSlot slot, ItemStack boxStack, string boxName)
         {
-            boxStack.Attributes.SetItemstack("chessboard", slot.Itemstack);
+            boxStack.Attributes.SetItemstack(boxName, slot.Itemstack);
             boxStack.Attributes.SetString("wood", slot.Itemstack.Attributes.GetString("wood"));
 
             slot.Itemstack.SetFrom(boxStack.Clone());
             slot.MarkDirty();
+        }
+
+        public static void TryDropAllSlots(this ItemStack fromItemstack, IPlayer byPlayer, ICoreAPI api)
+        {
+            var slotsTree = fromItemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+
+            if (slotsTree == null) return;
+
+            var tempInventory = new DummyInventory(api, 500);
+
+            foreach (var slot in tempInventory)
+            {
+                var slotId = tempInventory.GetSlotId(slot);
+                var itemstack = slotsTree.GetItemstack("slot-" + slotId);
+                slotsTree.RemoveAttribute("slot-" + slotId);
+
+                if (itemstack?.ResolveBlockOrItem(api.World) == false) continue;
+                tempInventory[slotId].Itemstack = itemstack;
+            }
+
+            tempInventory.DropAll(byPlayer.Entity.Pos.XYZ);
         }
     }
 }
