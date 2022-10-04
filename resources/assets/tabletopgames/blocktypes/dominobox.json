@@ -25,8 +25,7 @@
     "textures": {
         "wood": { "base": "game:block/wood/debarked/oak" },
         "black": { "base": "game:block/creative/col64" },
-        "white": { "base": "game:block/creative/col79" },
-        "shuffle_icon": { "base": "game:tabletopgames/icons/shuffle-png" }
+        "white": { "base": "game:block/creative/col79" }
     },
     "creativeinventoryStacksByType": {
         "*-east": [

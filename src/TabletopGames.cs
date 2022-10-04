@@ -1,7 +1,7 @@
 using Vintagestory.API.Common;
 
 [assembly: ModInfo("Tabletop Games",
-Authors = new[] { "Unknown" })]
+Authors = new[] { "Craluminum2413" })]
 
 namespace TabletopGames
 {
