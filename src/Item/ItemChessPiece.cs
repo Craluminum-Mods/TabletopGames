@@ -3,6 +3,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using TabletopGames.ChessUtils;
 using System.Linq;
+using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
@@ -44,13 +45,13 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string color = itemstack.Attributes.GetString("color");
-            string type = itemstack.Attributes.GetString("type");
+            foreach (var key in Textures)
+            {
+                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+                tmpTextures[key.Key] = new AssetLocation(Textures[key.TryGetColorName(itemstack)].Base.Path);
+            }
 
-            tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            tmpTextures["color"] = new AssetLocation(Textures[color].Base.Path);
-
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + type + ".json");
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json");
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this);
             return mesh;
