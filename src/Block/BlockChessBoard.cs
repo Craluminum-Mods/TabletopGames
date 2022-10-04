@@ -33,7 +33,7 @@ namespace TabletopGames
                         var boxStack = boxItem?.GenItemstack(api, null);
                         if (boxStack.ResolveBlockOrItem(api.World))
                         {
-                            BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "chessboard");
+                            BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "containedStack");
                         }
                         break;
                     }

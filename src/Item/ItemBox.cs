@@ -7,17 +7,16 @@ using System.Text;
 
 namespace TabletopGames
 {
-    class ItemChessboardBox : ItemWithAttributesTemplate
+    class ItemBox : ItemWithAttributesTemplate
     {
         public string woodTexPrefix;
 
-        public override string MeshRefName => "tableTopGames_ChessboardBox_Meshrefs";
+        public override string MeshRefName => "tableTopGames_ItemBox_Meshrefs" + Code.ToShortString();
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
             skillItems = capi.GetBoxToolModes("unpack");
-
             woodTexPrefix = GetTextureLocationPrefix("wood");
         }
 
@@ -31,7 +30,7 @@ namespace TabletopGames
                     {
                         if (slot == null || slot.Itemstack == null || slot.Itemstack.Attributes == null) break;
 
-                        var boardStack = slot.Itemstack.Attributes.GetItemstack("chessboard");
+                        var boardStack = slot.Itemstack.Attributes.GetItemstack("containedStack");
 
                         if (boardStack?.ResolveBlockOrItem(api.World) != true) break;
 
@@ -48,7 +47,7 @@ namespace TabletopGames
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-            var board = inSlot.Itemstack.Attributes.GetItemstack("chessboard");
+            var board = inSlot.Itemstack.Attributes.GetItemstack("containedStack");
 
             if (board.ResolveBlockOrItem(api.World))
             {

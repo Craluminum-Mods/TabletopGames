@@ -1,13 +1,15 @@
 {
-    "code": "dominobox",
-    "class": "TabletopGames_ItemDominoBox",
+    "code": "chessboardbox",
+    "class": "TabletopGames_ItemBox",
     "maxStackSize": 1,
     "attributes": {
+        "moldrackable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": 0, "y": -0.15, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 }
+        },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
-        },
-        "groundStorageTransform": {
-            "rotation": { "x": 0, "y": 90, "z": 0 }
         }
     },
     "behaviors": [
@@ -20,20 +22,19 @@
             }
         }
     ],
-    "heldTpIdleAnimation": "holdbothhandslarge",
-    "heldTpUseAnimation": "twohandplaceblock",
-    "shape": { "base": "block/box/dominobox-closed" },
+    "heldTpIdleAnimation": "holdunderarm",
+    "shape": { "base": "item/box/chessboardbox-8x8" },
     "textures": {
-        "wood": { "base": "game:block/wood/debarked/oak" },
         "black": { "base": "game:block/creative/col64" },
-        "white": { "base": "game:block/creative/col79" }
+        "board": { "base": "game:tabletopgames/block/checkerboard-8x8" },
+        "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "guiTransform": {
         "rotate": true,
-        "translation": { "x": 3, "y": 0, "z": 0 },
-        "rotation": { "x": -60, "y": 45, "z": 180 },
-        "origin": { "x": 0.5, "y": 0.25, "z": 0.5 },
-        "scale": 1.8
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 145, "y": 30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 2.46
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
@@ -42,12 +43,6 @@
         "scale": 5
     },
     "fpHandTransform": {
-        "rotation": { "x": 45, "y": 90, "z": -30 },
-        "scale": 1.5
-    },
-    "tpHandTransform": {
-        "translation": { "x": -1.3, "y": -0.7, "z": -0.4 },
-        "rotation": { "x": 91, "y": 12, "z": -77 },
-        "scale": 0.6
+        "rotation": { "x": 0, "y": 0, "z": 0 }
     }
 }
