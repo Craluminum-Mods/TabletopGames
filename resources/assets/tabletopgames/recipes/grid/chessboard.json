@@ -1,29 +1,13 @@
 [
     {
-        "ingredientPattern": "HCX,BTX,XXS",
+        "ingredientPattern": "HCX,CTX,XXS",
         "ingredients": {
             "X": { "type": "item", "code": "game:plank-*", "name": "wood" },
-            "B": { "type": "item", "code": "game:stone-basalt", "quantity": 4 },
-            "C": { "type": "item", "code": "game:stone-chalk", "quantity": 4 },
+            "C": { "type": "item", "code": "game:stone-*", "quantity": 4 },
             "T": { "type": "item", "code": "game:chisel-*", "IsTool": true },
             "H": { "type": "item", "code": "game:hammer-*", "IsTool": true },
             "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
         },
-        "width": 3,
-        "height": 3,
-        "output": { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "{wood}" } }
-    },
-    {
-        "ingredientPattern": "HCX,BTX,XXS",
-        "ingredients": {
-            "X": { "type": "item", "code": "game:plank-*", "name": "wood" },
-            "B": { "type": "item", "code": "game:stone-basalt", "quantity": 4 },
-            "C": { "type": "item", "code": "game:stone-limestone", "quantity": 4 },
-            "T": { "type": "item", "code": "game:chisel-*", "IsTool": true },
-            "H": { "type": "item", "code": "game:hammer-*", "IsTool": true },
-            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
-        },
-        "recipeGroup": 1,
         "width": 3,
         "height": 3,
         "output": { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "{wood}" } }
