@@ -7,6 +7,16 @@
         },
         "width": 3,
         "height": 3,
-        "output": { "type": "item", "code": "dominopiece", "quantity": 28, "attributes": { "type": "0_0", "rotation": 0 } }
+        "output": {
+            "type": "item",
+            "code": "dominopiece",
+            "quantity": 28,
+            "attributes": {
+                "color1": "white",
+                "color2": "black",
+                "type": "0_0",
+                "rotation": 0
+            }
+        }
     }
 ]

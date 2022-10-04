@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using TabletopGames.DominoUtils;
 using Vintagestory.API.MathTools;
 using TabletopGames.ModUtils;
+using System.Linq;
 
 namespace TabletopGames
 {
@@ -17,17 +18,22 @@ namespace TabletopGames
         {
             base.OnLoaded(api);
 
-            skillItems = capi.GetDominoPiecesToolModes();
+            skillItems = capi.GetDominoPiecesToolModes(this);
             modelPrefix = Attributes["modelPrefix"].AsString();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            switch (toolMode)
-            {
-                case 0: slot.Itemstack.RotateAntiClockwise(); break;
-                case 1: slot.Itemstack.RotateClockwise(); break;
-            }
+            var stack = slot.Itemstack;
+            var dominoData = stack.Collectible.Attributes["tabletopgames"]["dominopiece"].AsObject<DominoData>();
+            var colors1 = dominoData.Colors1.Keys.ToList();
+            var colors2 = dominoData.Colors2.Keys.ToList();
+
+            if (toolMode == 0) slot.Itemstack.RotateAntiClockwise();
+            if (toolMode == 1) slot.Itemstack.RotateClockwise();
+
+            if (toolMode < colors2.Count + 2) stack.Attributes.SetString("color1", colors2[toolMode - 2]);
+            else stack.Attributes.SetString("color2", colors1[toolMode - colors2.Count - 2]);
         }
 
         public override string GetHeldItemName(ItemStack itemStack)

@@ -15,4 +15,11 @@ namespace TabletopGames
     {
         public Dictionary<string, string> Colors { get; set; }
     }
+
+    [JsonObject]
+    public class DominoData
+    {
+        public Dictionary<string, string> Colors1 { get; set; }
+        public Dictionary<string, string> Colors2 { get; set; }
+    }
 }

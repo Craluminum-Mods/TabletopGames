@@ -19,7 +19,34 @@
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.125
         },
-        "modelPrefix": "tabletopgames:shapes/item/dominopiece/"
+        "modelPrefix": "tabletopgames:shapes/item/dominopiece/",
+        "tabletopgames": {
+            "dominopiece": {
+                "_comment": "These values are used for dynamically generated toolMode.",
+                "colors1": {
+                    "white": "#ffffff",
+                    "black": "#000000",
+                    "red": "#ff0000",
+                    "green": "#00ff00",
+                    "blue": "#00bfff",
+                    "yellow": "#ffff00",
+                    "orange": "#ffa500",
+                    "pink": "#ffc0cb",
+                    "purple": "#6900C6"
+                },
+                "colors2": {
+                    "white": "#ffffff",
+                    "black": "#000000",
+                    "red": "#ff0000",
+                    "green": "#00ff00",
+                    "blue": "#00bfff",
+                    "yellow": "#ffff00",
+                    "orange": "#ffa500",
+                    "pink": "#ffc0cb",
+                    "purple": "#6900C6"
+                }
+            }
+        }
     },
     "behaviors": [
         {
@@ -33,41 +60,50 @@
     ],
     "shape": { "base": "item/dominopiece/0_0" },
     "textures": {
-        "col79": { "base": "game:block/creative/col79" },
-        "col66": { "base": "game:block/creative/col66" }
+        "color1": { "base": "game:block/transparent" },
+        "color2": { "base": "game:block/transparent" },
+        "black": { "base": "game:block/creative/col66" },
+        "blue": { "base": "game:block/creative/col18" },
+        "green": { "base": "game:block/creative/col10" },
+        "orange": { "base": "game:block/creative/col3" },
+        "pink": { "base": "game:block/creative/col28" },
+        "purple": { "base": "game:block/creative/col24" },
+        "red": { "base": "game:block/creative/col0" },
+        "white": { "base": "game:block/creative/col79" },
+        "yellow": { "base": "game:block/creative/col5" }
     },
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "0_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "1_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "1_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_2", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_2", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_3", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_2", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_3", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_4", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_2", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_3", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_4", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_5", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_0", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_1", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_2", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_3", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_4", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_5", "rotation": 0 } },
-                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_6", "rotation": 0 } }
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "0_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "1_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "1_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "2_2", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_2", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "3_3", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_2", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_3", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "4_4", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_2", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_3", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_4", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "5_5", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_0", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_1", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_2", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_3", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_4", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_5", "color1": "white", "color2": "black", "rotation": 0 } },
+                { "type": "item", "code": "dominopiece", "attributes": { "type": "6_6", "color1": "white", "color2": "black", "rotation": 0 } }
             ]
         }
     ],
