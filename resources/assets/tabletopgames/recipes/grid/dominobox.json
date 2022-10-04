@@ -1,0 +1,13 @@
+[
+    {
+        "ingredientPattern": "BS,XX",
+        "ingredients": {
+            "X": { "type": "item", "code": "game:plank-*", "name": "wood" },
+            "B": { "type": "item", "code": "game:bone" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 2,
+        "height": 2,
+        "output": { "type": "block", "code": "dominobox-east", "attributes": { "wood": "{wood}" } }
+    }
+]
