@@ -12,7 +12,8 @@
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
-        }
+        },
+        "handbook": { "groupBy": ["dominoboard-*"] }
     },
     "variantGroups": [{ "code": "size", "states": ["8x8"] }],
     "shape": { "base": "block/dominoboard-{size}" },

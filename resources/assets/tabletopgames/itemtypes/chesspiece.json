@@ -35,6 +35,14 @@
                     "purple": "#6900C6"
                 }
             }
+        },
+        "handbook": {
+            "extraSections": [
+                {
+                    "title": "tabletopgames:handbook-wheretoget-title",
+                    "text": "tabletopgames:handbook-wheretoget-text"
+                }
+            ]
         }
     },
     "behaviors": [

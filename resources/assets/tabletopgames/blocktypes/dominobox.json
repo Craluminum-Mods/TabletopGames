@@ -10,7 +10,8 @@
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
         },
-        "textureCodeForBlockColor": "wood"
+        "textureCodeForBlockColor": "wood",
+        "handbook": { "groupBy": ["dominobox-*"] }
     },
     "variantGroups": [{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }],
     "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }],
@@ -55,7 +56,7 @@
     "selectionBoxes": [
         { "_comment": "Base", "x1": 0.0625, "y1": 0, "z1": 0.3125, "x2": 0.9375, "y2": 0.4375, "z2": 0.6875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
         { "_comment": "ButtonShuffle", "x1": 0.0935, "y1": 0.125, "z1": 0.6875, "x2": 0.2815, "y2": 0.313, "z2": 0.6996, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
-        { "_comment": "ButtonOther", "x1": 0.3125, "y1": 0.125, "z1": 0.6875, "x2": 0.5, "y2": 0.313, "z2": 0.6996, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+        { "_comment": "ButtonTake1", "x1": 0.3125, "y1": 0.125, "z1": 0.6875, "x2": 0.5, "y2": 0.313, "z2": 0.6996, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
     ],
     "guiTransform": {
         "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
