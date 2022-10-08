@@ -17,7 +17,7 @@
         "onTabletopGamesDominoBoardTransform": {
             "translation": { "x": 0, "y": 0.03, "z": 0 },
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.125
+            "scale": 0.12
         },
         "modelPrefix": "tabletopgames:shapes/item/dominopiece/",
         "tabletopgames": {
@@ -143,11 +143,10 @@
         }
     ],
     "guiTransform": {
-        "rotate": true,
-        "translation": { "x": 3, "y": -1.5, "z": 0 },
-        "rotation": { "x": 113, "y": 133, "z": 0 },
-        "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
-        "scale": 0.7
+        "translation": { "x": 0, "y": 0, "z": 100 },
+        "rotation": { "x": 90, "y": -45, "z": -45 },
+        "origin": { "x": 1, "y": 0, "z": -1 },
+        "scale": 0.5
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },

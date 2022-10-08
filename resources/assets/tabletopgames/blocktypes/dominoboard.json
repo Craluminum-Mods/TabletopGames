@@ -47,7 +47,7 @@
     },
     "heldTpIdleAnimation": "holdunderarm",
     "heldTpUseAnimation": "twohandplaceblock",
-    "collisionBox": null,
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.031, "z2": 1 },
     "selectionBoxes": [
         { "_comment": "0", "x1": 0, "y1": 0, "z1": 0.875, "x2": 0.125, "y2": 0.0625, "z2": 1 },
         { "_comment": "1", "x1": 0, "y1": 0, "z1": 0.75, "x2": 0.125, "y2": 0.0625, "z2": 0.875 },
