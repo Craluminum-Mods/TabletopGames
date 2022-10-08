@@ -5,7 +5,10 @@
     "maxStackSize": 1,
     "attributes": {
         "tabletopgames": {
-            "packTo": "tabletopgames:dominobox"
+            "packTo": "tabletopgames:dominobox",
+            "dominobox": {
+                "sets": [28, 55]
+            }
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
@@ -33,6 +36,7 @@
             {
                 "tabs": ["tabletopgames"],
                 "stacks": [
+                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 55, "wood": "aged" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "aged" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "birch" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "oak" } },

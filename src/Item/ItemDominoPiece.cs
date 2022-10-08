@@ -32,8 +32,14 @@ namespace TabletopGames
             if (toolMode == 0) slot.Itemstack.RotateAntiClockwise();
             if (toolMode == 1) slot.Itemstack.RotateClockwise();
 
-            if (toolMode < colors2.Count + 2) stack.Attributes.SetString("color1", colors2[toolMode - 2]);
-            else stack.Attributes.SetString("color2", colors1[toolMode - colors2.Count - 2]);
+            if (toolMode != 0 && toolMode != 1 && toolMode < colors1.Count + 2)
+            {
+                stack.Attributes.SetString("color1", colors1[toolMode - 2]);
+            }
+            else if (toolMode != 0 && toolMode != 1)
+            {
+                stack.Attributes.SetString("color2", colors2[toolMode - colors1.Count - 2]);
+            }
         }
 
         public override string GetHeldItemName(ItemStack itemStack)

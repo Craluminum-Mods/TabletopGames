@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -44,6 +46,20 @@ namespace TabletopGames.BoxUtils
                 modes[0].TexturePremultipliedAlpha = false;
             }
             return modes;
+        }
+
+        public static SkillItem[] GetInventorySlotsToolModes(this ICoreClientAPI capi, CollectibleObject collobj)
+        {
+            var sets = collobj.Attributes["tabletopgames"]["dominobox"]["sets"].AsObject<List<int>>();
+            var modes = new List<SkillItem>();
+
+            modes.AddRange(sets.Select(set => new SkillItem { Name = Lang.Get($"tabletopgames:dominoset-{set}") }));
+
+            if (capi == null) return modes.ToArray();
+
+            foreach (var set in sets) modes[sets.IndexOf(set)].WithLetterIcon(capi, set.ToString());
+
+            return modes.ToArray();
         }
 
         public static void SaveSlotToBox(this ItemSlot fromSlot, ItemStack box, int fromSlotId)

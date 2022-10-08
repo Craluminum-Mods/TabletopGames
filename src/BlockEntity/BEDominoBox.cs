@@ -12,15 +12,20 @@ namespace TabletopGames
     {
         internal InventoryGeneric inventory;
 
-        public int quantitySlots = 28;
+        public int quantitySlots;
         public string woodType;
 
         public override InventoryBase Inventory => inventory;
         public override string InventoryClassName => "ttgdominobox";
 
-        public BEDominoBox()
+        public override void Initialize(ICoreAPI api)
         {
-            inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
+            if (inventory == null || inventory.Count == 0)
+            {
+                inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
+            }
+
+            base.Initialize(api);
         }
 
         public bool TryPutAllDomino(IPlayer byPlayer)
@@ -36,8 +41,9 @@ namespace TabletopGames
 
                     fromSlot.TryPutInto(Api.World, slot);
                     fromSlot.MarkDirty();
-                    slot.MarkDirty();
                 }
+
+                slot.MarkDirty();
             }
 
             MarkDirty(true);
@@ -72,37 +78,27 @@ namespace TabletopGames
 
         public bool MakeDominoTypesUnique()
         {
-            List<string> typeSet = new();
+            if (HasEmptySlots(inventory)) return false;
 
-            if (typeSet != null)
+            var typeSet = new List<string>();
+
+            int n = 0;
+
+            if (quantitySlots is 28) n = 7;
+            if (quantitySlots is 55) n = 10;
+            if (quantitySlots is 91) n = 13;
+            if (quantitySlots is 136) n = 16;
+            if (quantitySlots is 190) n = 19;
+
+            if (n is 0) return false;
+
+            for (int i = 0; i < n; i++)
             {
-                typeSet?.Clear();
-
-                if (quantitySlots == 28)
+                for (int j = 0; j <= i; j++)
                 {
-                    const int n = 7;
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j <= i; j++)
-                        {
-                            typeSet.Add($"{i}_{j}");
-                        }
-                    }
-                }
-                if (quantitySlots == 55)
-                {
-                    const int n = 10;
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j <= i; j++)
-                        {
-                            typeSet.Add($"{i}_{j}");
-                        }
-                    }
+                    typeSet.Add($"{i}_{j}");
                 }
             }
-
-            if (HasEmptySlots(inventory)) return false;
 
             foreach (var slot in inventory)
             {
@@ -118,13 +114,21 @@ namespace TabletopGames
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
+            quantitySlots = tree.GetInt("quantitySlots");
             woodType = tree.GetString("wood");
+
+            if (inventory == null || inventory.Count == 0)
+            {
+                inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
+            }
+
             base.FromTreeAttributes(tree, worldAccessForResolve);
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
             base.ToTreeAttributes(tree);
+            tree.SetInt("quantitySlots", quantitySlots);
             tree.SetString("wood", woodType);
         }
 
@@ -136,8 +140,12 @@ namespace TabletopGames
             if (clonedItemstack == null) return;
 
             woodType = clonedItemstack.Attributes?.GetString("wood");
+            quantitySlots = clonedItemstack.Attributes.GetAsInt("quantitySlots");
 
-            quantitySlots = clonedItemstack.Attributes?.GetAsInt("quantitySlots") ?? quantitySlots;
+            if (inventory == null || inventory.Count == 0)
+            {
+                inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
+            }
 
             clonedItemstack?.SaveInventoryToBlock(inventory, Api);
             MarkDirty(true);
