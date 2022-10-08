@@ -1,10 +1,10 @@
 {
     "item-checker-withcrown": "Checker ({0}) (Crown)",
     "item-dominopiece": "Domino piece ({0}) ({1})",
-    "itemdesc-dominopiece": "Rotate or change colors using tool modes (hit 'F')",
+    "itemdesc-dominopiece": "Rotate or change colors using tool modes (hit <hk>toolmodeselect</hk> )",
     "item-checker": "Checker ({0})",
-    "itemdesc-checker": "Change type or colors using tool modes (hit 'F')",
-    "itemdesc-chesspiece": "Chess piece. \nChange types or colors using tool modes (hit 'F')",
+    "itemdesc-checker": "Change type or colors using tool modes (hit <hk>toolmodeselect</hk> )",
+    "itemdesc-chesspiece": "Chess piece. \nChange types or colors using tool modes (hit <hk>toolmodeselect</hk> )",
     "item-chesspiece-bishop": "Bishop ({0})",
     "item-chesspiece-king": "King ({0})",
     "item-chesspiece-knight": "Knight ({0})",
