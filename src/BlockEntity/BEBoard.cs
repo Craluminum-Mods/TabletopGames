@@ -14,12 +14,6 @@ namespace TabletopGames
         public override string InventoryClassName => "ttgboard";
         public override string AttributeTransformCode => "onTabletopGamesTransform";
 
-        public BEBoard()
-        {
-            inventory = new InventoryGeneric(64, "ttgboard-1", Api);
-            meshes = new MeshData[64];
-        }
-
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
