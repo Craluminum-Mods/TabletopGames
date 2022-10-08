@@ -54,9 +54,7 @@ namespace TabletopGames
         {
             base.GetBlockInfo(forPlayer, dsc);
             dsc.AppendWoodDescription(wood: woodType);
-
-            var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-            dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName());
+            dsc.AppendLine().AppendSelectedSlotText(Block, forPlayer, inventory, withSlotId: false, withStackName: true);
         }
 
         public override void TranslateMesh(MeshData mesh, int index)

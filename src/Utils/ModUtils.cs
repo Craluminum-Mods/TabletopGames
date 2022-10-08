@@ -92,6 +92,19 @@ namespace TabletopGames.ModUtils
             if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Slots") + ": {0}", quantitySlots).AppendLine();
         }
 
+        public static void AppendSelectedSlotText(this StringBuilder dsc, CollectibleObject collobj, IPlayer forPlayer, InventoryBase inventory, bool withSlotId = true, bool withStackName = true)
+        {
+            var ignoreSelBoxIndex = collobj.Attributes?["ignoreSelectionBoxIndex"].AsInt();
+
+            var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+
+            if (selBoxIndex != ignoreSelBoxIndex || ignoreSelBoxIndex == null)
+            {
+                if (withSlotId) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ");
+                if (withStackName) dsc.Append(inventory?[selBoxIndex].GetStackName() ?? Lang.Get("Empty"));
+            }
+        }
+
         public static void SaveInventoryToBlock(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
         {
             var slotsTree = stack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
