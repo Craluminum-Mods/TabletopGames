@@ -26,8 +26,8 @@ namespace TabletopGames
         public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
         {
             var original = base.OnPickBlock(world, pos);
-            if (world.BlockAccessor.GetBlockEntity(pos) is not BEChessBoard blockEntity) return original;
-            return OnPickBlock(world, pos, blockEntity.inventory, blockEntity.woodType);
+            if (world.BlockAccessor.GetBlockEntity(pos) is not BEGoBoard blockEntity) return original;
+            return OnPickBlock(world, pos, blockEntity.inventory, blockEntity.woodType, blockEntity.quantitySlots, true);
         }
     }
 }
