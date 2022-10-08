@@ -1,0 +1,86 @@
+{
+    "code": "stonepiece",
+    "class": "TabletopGames_ItemStonePiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
+        },
+        "groundStorageTransform": {
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
+        },
+        "onTabletopGamesGoBoardTransform": {
+            "translation": { "x": 0, "y": 0.03, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.05
+        },
+        "tabletopgames": {
+            "stonepiece": {
+                "_comment": "These values are used for dynamically generated toolMode.",
+                "colors": {
+                    "white": "#ffffff",
+                    "black": "#000000"
+                }
+            }
+        },
+        "handbook": {
+            "extraSections": [
+                {
+                    "title": "tabletopgames:handbook-wheretoget-title",
+                    "text": "tabletopgames:handbook-wheretoget-text"
+                }
+            ]
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "shape": { "base": "item/stonepiece" },
+    "textures": {
+        "color": { "base": "game:block/transparent" },
+        "black": { "base": "game:block/creative/col68" },
+        "white": { "base": "game:block/creative/col75" }
+    },
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "stonepiece", "attributes": { "color": "white" } },
+                { "type": "item", "code": "stonepiece", "attributes": { "color": "black" } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "rotate": true,
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 155, "y": 45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
+        "scale": 1.2
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.2, "y": -1.9, "z": -2 },
+        "scale": 0.25
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
+        "scale": 0.5
+    }
+}

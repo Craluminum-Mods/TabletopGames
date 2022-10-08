@@ -13,13 +13,16 @@ namespace TabletopGames
             api.RegisterBlockClass("TabletopGames_DominoBox", typeof(BlockDominoBox));
             api.RegisterBlockClass("TabletopGames_ChessBoard", typeof(BlockChessBoard));
             api.RegisterBlockClass("TabletopGames_DominoBoard", typeof(BlockDominoBoard));
+            api.RegisterBlockClass("TabletopGames_GoBoard", typeof(BlockGoBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBox", typeof(BEDominoBox));
             api.RegisterBlockEntityClass("TabletopGames_BEChessBoard", typeof(BEChessBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBoard", typeof(BEDominoBoard));
+            api.RegisterBlockEntityClass("TabletopGames_BEGoBoard", typeof(BEGoBoard));
             api.RegisterItemClass("TabletopGames_ItemChecker", typeof(ItemChecker));
             api.RegisterItemClass("TabletopGames_ItemChessPiece", typeof(ItemChessPiece));
             api.RegisterItemClass("TabletopGames_ItemDominoPiece", typeof(ItemDominoPiece));
             api.RegisterItemClass("TabletopGames_ItemBox", typeof(ItemBox));
+            api.RegisterItemClass("TabletopGames_ItemStonePiece", typeof(ItemStonePiece));
             api.World.Logger.Event("started 'Tabletop Games' mod");
         }
     }
