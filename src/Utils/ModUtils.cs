@@ -94,6 +94,8 @@ namespace TabletopGames.ModUtils
 
         public static void AppendSelectedSlotText(this StringBuilder dsc, CollectibleObject collobj, IPlayer forPlayer, InventoryBase inventory, bool withSlotId = true, bool withStackName = true)
         {
+            if (inventory == null || inventory.Count == 0) return;
+
             var ignoreSelBoxIndex = collobj.Attributes?["ignoreSelectionBoxIndex"].AsInt();
 
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
