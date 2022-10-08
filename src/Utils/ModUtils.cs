@@ -9,6 +9,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
+using System.Linq;
 
 namespace TabletopGames.ModUtils
 {
@@ -119,6 +120,17 @@ namespace TabletopGames.ModUtils
                     slot.SaveSlotToBox(blockStack, slotId);
                 }
             }
+        }
+
+        public static int TryGetFilledSlotsNumber(this InventoryBase inventory)
+        {
+            var filledSlotsNumber = 0;
+
+            if (inventory != null)
+            {
+                filledSlotsNumber += (from slot in inventory where !slot.Empty select slot).Count();
+            }
+            return filledSlotsNumber;
         }
 
         public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)

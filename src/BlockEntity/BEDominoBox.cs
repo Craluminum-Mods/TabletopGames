@@ -5,6 +5,7 @@ using System.Text;
 using TabletopGames.ModUtils;
 using System.Collections.Generic;
 using System.Linq;
+using Vintagestory.API.Config;
 
 namespace TabletopGames
 {
@@ -155,7 +156,7 @@ namespace TabletopGames
         {
             base.GetBlockInfo(forPlayer, dsc);
             dsc.AppendWoodDescription(woodType);
-            dsc.AppendFormat("Slots: {0}", inventory.Count);
+            dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.TryGetFilledSlotsNumber(), inventory.Count)));
         }
     }
 }
