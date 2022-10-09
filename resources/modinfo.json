@@ -2,6 +2,7 @@
     "type": "code",
     "modid": "tabletopgames",
     "name": "Tabletop Games",
+    "description": "Various tabletop games from real world. No rules. No hardcoded game logic",
     "authors": ["Craluminum2413"],
     "version": "1.0.0",
     "dependencies": {
