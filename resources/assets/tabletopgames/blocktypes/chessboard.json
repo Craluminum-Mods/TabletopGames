@@ -30,7 +30,7 @@
         { "code": "size", "states": ["8x8"] },
         { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
     ],
-    "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }],
+    "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
     "shape": {
         "base": "block/chessboard-{size}",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }

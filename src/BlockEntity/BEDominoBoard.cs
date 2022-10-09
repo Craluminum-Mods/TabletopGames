@@ -1,7 +1,6 @@
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.MathTools;
 using TabletopGames.ModUtils;
 using Vintagestory.API.Datastructures;
 
@@ -41,7 +40,7 @@ namespace TabletopGames
         {
             base.OnBlockPlaced(byItemStack);
 
-            var clonedItemstack = byItemStack.Clone();
+            var clonedItemstack = byItemStack?.Clone();
             if (clonedItemstack == null) return;
 
             woodType = clonedItemstack.Attributes?.GetString("wood");

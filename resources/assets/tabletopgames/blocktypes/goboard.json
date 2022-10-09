@@ -72,6 +72,7 @@
         }
     },
     "variantGroups": [{ "code": "size", "states": ["9x9", "14x14", "15x15", "16x16"] }],
+    "behaviors": [{ "name": "UnstableFalling" }],
     "shape": {
         "base": "block/board/go-{size}"
     },
