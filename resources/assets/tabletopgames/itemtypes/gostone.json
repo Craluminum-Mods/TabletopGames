@@ -18,6 +18,11 @@
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.05
         },
+        "onTabletopGames_GoBoard_14x14_Transform": {
+            "translation": { "x": 0, "y": 0.03, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.05
+        },
         "tabletopgames": {
             "gostone": {
                 "_comment": "These values are used for dynamically generated toolMode.",

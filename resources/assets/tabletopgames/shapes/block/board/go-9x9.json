@@ -15,7 +15,7 @@
 			"name": "board",
 			"from": [ 3.0, 0.0, 3.0 ], 
 			"to": [ 13.0, 0.5, 13.0 ], 
-			"rotationOrigin": [ 7.5, 0.0, 7.8 ],
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
 			"faces": {
 				"north": { "texture": "#wood", "uv": [ 0.0, 0.0, 10.0, 0.5 ] },
 				"east": { "texture": "#wood", "uv": [ 0.0, 0.0, 10.0, 0.5 ] },
