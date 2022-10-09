@@ -79,13 +79,13 @@ namespace TabletopGames.BoxUtils
             slot.MarkDirty();
         }
 
-        public static void TryDropAllSlots(this ItemStack fromItemstack, IPlayer byPlayer, ICoreAPI api)
+        public static void TryDropAllSlots(this ItemStack fromItemstack, IPlayer byPlayer, ICoreAPI api, int inventorySize = 500, bool removeBoxAttribute = true)
         {
             var slotsTree = fromItemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
 
             if (slotsTree == null) return;
 
-            var tempInventory = new DummyInventory(api, 500);
+            var tempInventory = new DummyInventory(api, inventorySize);
 
             foreach (var slot in tempInventory)
             {
@@ -96,6 +96,8 @@ namespace TabletopGames.BoxUtils
                 if (itemstack?.ResolveBlockOrItem(api.World) == false) continue;
                 tempInventory[slotId].Itemstack = itemstack;
             }
+
+            if (slotsTree.Count == 0 && removeBoxAttribute) fromItemstack.Attributes?.RemoveAttribute("box");
 
             tempInventory.DropAll(byPlayer.Entity.Pos.XYZ);
         }
