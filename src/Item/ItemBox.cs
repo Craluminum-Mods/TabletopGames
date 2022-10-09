@@ -58,6 +58,18 @@ namespace TabletopGames
             }
         }
 
+        public override string GetHeldItemName(ItemStack itemStack)
+        {
+            var containedStack = itemStack.Attributes.GetItemstack("containedStack");
+
+            if (containedStack.ResolveBlockOrItem(api.World) && containedStack != null)
+            {
+                return Lang.Get("tabletopgames:Packed", containedStack?.GetName());
+            }
+
+            return base.GetHeldItemName(itemStack);
+        }
+
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
