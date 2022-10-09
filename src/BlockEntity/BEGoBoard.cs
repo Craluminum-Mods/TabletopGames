@@ -83,7 +83,7 @@ namespace TabletopGames
                 meshes = new MeshData[quantitySlots];
             }
 
-            // clonedItemstack?.SaveInventoryToBlock(inventory, Api);
+            clonedItemstack?.SaveInventoryToBlock(inventory, Api);
 
             updateMeshes();
             MarkDirty(true);
