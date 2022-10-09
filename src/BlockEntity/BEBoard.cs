@@ -44,7 +44,7 @@ namespace TabletopGames
             fromSlot.TryPutInto(Api.World, toSlot);
             toSlot.MarkDirty();
             fromSlot.MarkDirty();
-            updateMeshes();
+            updateMesh(toSlotId);
             MarkDirty(true);
             return true;
         }
@@ -62,7 +62,7 @@ namespace TabletopGames
             }
 
             fromSlot.MarkDirty();
-            updateMeshes();
+            updateMesh(fromSlotId);
             MarkDirty(true);
             return true;
         }
