@@ -1,7 +1,6 @@
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.MathTools;
 using Vintagestory.API.Datastructures;
 using TabletopGames.ModUtils;
 
@@ -12,7 +11,6 @@ namespace TabletopGames
         public string woodType;
 
         public override string InventoryClassName => "ttgchessboard";
-        public override string AttributeTransformCode => "onTabletopGamesChessBoardTransform";
 
         public BEChessBoard()
         {
@@ -46,13 +44,6 @@ namespace TabletopGames
 
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
             if (selBoxIndex is not 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
-        }
-
-        public override void TranslateMesh(MeshData mesh, int index)
-        {
-            var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .09375f, fromBorderX: .1725f, fromBorderZ: .83f);
-            Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
-            mesh.Translate(offset.XYZ);
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)

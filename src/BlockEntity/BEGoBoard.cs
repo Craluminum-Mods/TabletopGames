@@ -1,7 +1,6 @@
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.MathTools;
 using Vintagestory.API.Datastructures;
 using TabletopGames.ModUtils;
 
@@ -13,7 +12,6 @@ namespace TabletopGames
         public string woodType;
 
         public override string InventoryClassName => "ttggoboard";
-        public override string AttributeTransformCode => "onTabletopGamesGoBoardTransform";
 
         public override void Initialize(ICoreAPI api)
         {
@@ -63,19 +61,6 @@ namespace TabletopGames
             base.GetBlockInfo(forPlayer, dsc);
             dsc.AppendWoodDescription(wood: woodType);
             dsc.AppendLine().AppendSelectedSlotText(Block, forPlayer, inventory, withSlotId: false, withStackName: true);
-        }
-
-        public override void TranslateMesh(MeshData mesh, int index)
-        {
-            var position = new Vec3f();
-
-            if (Block?.Variant["size"] == "9x9")
-            {
-                position = index.GetPositionOnBoard(width: 9, height: 9, distanceBetweenSlots: .0625f, fromBorderX: .25f, fromBorderZ: .75f);
-            }
-
-            Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
-            mesh.Translate(offset.XYZ);
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)

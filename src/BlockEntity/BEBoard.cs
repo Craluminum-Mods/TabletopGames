@@ -12,7 +12,7 @@ namespace TabletopGames
         internal Matrixf mat = new();
         public override InventoryBase Inventory => inventory;
         public override string InventoryClassName => "ttgboard";
-        public override string AttributeTransformCode => "onTabletopGamesTransform";
+        public override string AttributeTransformCode => Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>().AttributeTransformCode;
 
         public override void Initialize(ICoreAPI api)
         {
@@ -22,7 +22,14 @@ namespace TabletopGames
 
         public override void TranslateMesh(MeshData mesh, int index)
         {
-            var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .125f, fromBorderX: .0625f, fromBorderZ: .9375f);
+            var position = new Vec3f();
+
+            if (Block?.Variant["size"] != null)
+            {
+                var boardData = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+                position = index.GetPositionOnBoard(boardData.Width, boardData.Height, boardData.DistanceBetweenSlots, boardData.FromBorderX, boardData.FromBorderZ);
+            }
+
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
         }

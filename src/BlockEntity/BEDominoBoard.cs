@@ -12,7 +12,6 @@ namespace TabletopGames
         public string woodType;
 
         public override string InventoryClassName => "ttgdominoboard";
-        public override string AttributeTransformCode => "onTabletopGamesDominoBoardTransform";
 
         public BEDominoBoard()
         {
@@ -57,11 +56,11 @@ namespace TabletopGames
             dsc.AppendLine().AppendSelectedSlotText(Block, forPlayer, inventory, withSlotId: false, withStackName: true);
         }
 
-        public override void TranslateMesh(MeshData mesh, int index)
-        {
-            var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .125f, fromBorderX: .0625f, fromBorderZ: .9375f);
-            Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
-            mesh.Translate(offset.XYZ);
-        }
+        // public override void TranslateMesh(MeshData mesh, int index)
+        // {
+        //     var position = index.GetPositionOnBoard(width: 8, height: 8, distanceBetweenSlots: .125f, fromBorderX: .0625f, fromBorderZ: .9375f);
+        //     Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
+        //     mesh.Translate(offset.XYZ);
+        // }
     }
 }

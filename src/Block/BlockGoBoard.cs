@@ -5,8 +5,6 @@ namespace TabletopGames
 {
     public class BlockGoBoard : BlockWithAttributes
     {
-        public Item boxItem;
-
         public override bool SaveInventory => false;
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => false;

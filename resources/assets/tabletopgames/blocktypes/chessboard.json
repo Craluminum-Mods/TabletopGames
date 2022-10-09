@@ -10,7 +10,16 @@
             "rotation": { "x": 0, "y": 0, "z": 85 }
         },
         "tabletopgames": {
-            "packTo": "tabletopgames:chessboardbox"
+            "packTo": "tabletopgames:chessboardbox",
+            "board": {
+                "quantitySlots": 64,
+                "width": 8,
+                "height": 8,
+                "distanceBetweenSlots": 0.09375,
+                "fromBorderX": 0.1725,
+                "fromBorderZ": 0.83,
+                "AttributeTransformCode": "onTabletopGamesChessBoardTransform"
+            }
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"

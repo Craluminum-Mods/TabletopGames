@@ -13,7 +13,18 @@
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
         },
-        "handbook": { "groupBy": ["dominoboard-*"] }
+        "handbook": { "groupBy": ["dominoboard-*"] },
+        "tabletopgames": {
+            "board": {
+                "quantitySlots": 64,
+                "width": 8,
+                "height": 8,
+                "distanceBetweenSlots": 0.125,
+                "fromBorderX": 0.0625,
+                "fromBorderZ": 0.9375,
+                "AttributeTransformCode": "onTabletopGamesDominoBoardTransform"
+            }
+        }
     },
     "variantGroups": [{ "code": "size", "states": ["8x8"] }],
     "shape": { "base": "block/dominoboard-{size}" },

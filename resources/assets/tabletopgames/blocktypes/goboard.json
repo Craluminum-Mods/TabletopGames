@@ -10,11 +10,41 @@
             "rotation": { "x": 0, "y": 0, "z": 85 }
         },
         "tabletopgames": {
-            "goboard": {
+            "board": {
                 "quantitySlotsByType": {
                     "*-9x9": 81,
-                    "*-14x14": 81,
-                    "*-19x19": 81
+                    "*-14x14": 196,
+                    "*-19x19": 361
+                },
+                "widthByType": {
+                    "*-9x9": 9,
+                    "*-14x14": 14,
+                    "*-19x19": 19
+                },
+                "heightByType": {
+                    "*-9x9": 9,
+                    "*-14x14": 14,
+                    "*-19x19": 19
+                },
+                "distanceBetweenSlotsByType": {
+                    "*-9x9": 0.0625,
+                    "*-14x14": 0.0625,
+                    "*-19x19": 0.0625
+                },
+                "fromBorderXByType": {
+                    "*-9x9": 0.25,
+                    "*-14x14": 0.25,
+                    "*-19x19": 0.25
+                },
+                "fromBorderZByType": {
+                    "*-9x9": 0.75,
+                    "*-14x14": 0.75,
+                    "*-19x19": 0.75
+                },
+                "AttributeTransformCodeByType": {
+                    "*-9x9": "onTabletopGames_GoBoard_9x9_Transform",
+                    "*-14x14": "onTabletopGames_GoBoard_14x14_Transform",
+                    "*-19x19": "onTabletopGames_GoBoard_19x19_Transform"
                 }
             }
         },
