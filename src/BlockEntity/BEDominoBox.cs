@@ -21,12 +21,16 @@ namespace TabletopGames
 
         public override void Initialize(ICoreAPI api)
         {
+            InitInventory();
+            base.Initialize(api);
+        }
+
+        public void InitInventory()
+        {
             if (inventory == null || inventory.Count == 0)
             {
                 inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
             }
-
-            base.Initialize(api);
         }
 
         public bool TryPutAllDomino(IPlayer byPlayer)
@@ -117,12 +121,7 @@ namespace TabletopGames
         {
             quantitySlots = tree.GetInt("quantitySlots");
             woodType = tree.GetString("wood");
-
-            if (inventory == null || inventory.Count == 0)
-            {
-                inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
-            }
-
+            InitInventory();
             base.FromTreeAttributes(tree, worldAccessForResolve);
         }
 
@@ -143,10 +142,7 @@ namespace TabletopGames
             woodType = clonedItemstack.Attributes?.GetString("wood");
             quantitySlots = clonedItemstack.Attributes.GetAsInt("quantitySlots");
 
-            if (inventory == null || inventory.Count == 0)
-            {
-                inventory = new InventoryGeneric(quantitySlots, "ttgdominobox-1", Api, (f, f2) => new ItemSlotDominoBoard(f2));
-            }
+            InitInventory();
 
             clonedItemstack?.SaveInventoryToBlock(inventory, Api);
             MarkDirty(true);

@@ -15,19 +15,27 @@ namespace TabletopGames
 
         public override void Initialize(ICoreAPI api)
         {
+            InitInventory();
+            InitMeshes();
+            base.Initialize(api);
+            inventory.LateInitialize("ttgboard-1", api);
+        }
+
+        public void InitInventory()
+        {
             if (inventory == null || inventory.Count == 0)
             {
                 inventory = new InventoryGeneric(quantitySlots, "ttggoboard-1", Api, (f, f2) => new ItemSlotGoBoard(f2));
             }
+        }
 
+        public void InitMeshes(bool updateMeshes_ = true)
+        {
             if (meshes == null || meshes.Length == 0 || meshes.Length != quantitySlots)
             {
                 meshes = new MeshData[quantitySlots];
-                updateMeshes();
+                if (updateMeshes_) updateMeshes();
             }
-
-            base.Initialize(api);
-            inventory.LateInitialize("ttgboard-1", api);
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
@@ -35,16 +43,8 @@ namespace TabletopGames
             quantitySlots = tree.GetInt("quantitySlots");
             woodType = tree.GetString("wood");
 
-            if (inventory == null || inventory.Count == 0)
-            {
-                inventory = new InventoryGeneric(quantitySlots, "ttggoboard-1", Api, (f, f2) => new ItemSlotGoBoard(f2));
-            }
-
-            if (meshes == null || meshes.Length == 0 || meshes.Length != quantitySlots)
-            {
-                meshes = new MeshData[quantitySlots];
-                updateMeshes();
-            }
+            InitInventory();
+            InitMeshes();
 
             base.FromTreeAttributes(tree, worldAccessForResolve);
         }
@@ -73,15 +73,8 @@ namespace TabletopGames
             woodType = clonedItemstack.Attributes?.GetString("wood");
             quantitySlots = clonedItemstack.Attributes.GetAsInt("quantitySlots");
 
-            if (inventory == null || inventory.Count == 0)
-            {
-                inventory = new InventoryGeneric(quantitySlots, "ttggoboard-1", Api, (f, f2) => new ItemSlotGoBoard(f2));
-            }
-
-            if (meshes == null || meshes.Length == 0 || meshes.Length != quantitySlots)
-            {
-                meshes = new MeshData[quantitySlots];
-            }
+            InitInventory();
+            InitMeshes(false);
 
             clonedItemstack?.SaveInventoryToBlock(inventory, Api);
 
