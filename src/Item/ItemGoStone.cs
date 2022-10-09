@@ -10,7 +10,7 @@ namespace TabletopGames
     /// <summary>
     /// Play figure for playing Go, Omok, etc.
     /// </summary>
-    class ItemGoStone : ItemWithAttributesTemplate
+    class ItemGoStone : ItemWithAttributes
     {
         public override string MeshRefName => "tableTopGames_GoStone_Meshrefs";
 

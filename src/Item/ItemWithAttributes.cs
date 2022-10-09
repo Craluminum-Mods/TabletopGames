@@ -7,7 +7,7 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames
 {
-    class ItemWithAttributesTemplate : Item, ITexPositionSource, IContainedMeshSource
+    class ItemWithAttributes : Item, ITexPositionSource, IContainedMeshSource
     {
         public Size2i AtlasSize => targetAtlas.Size;
         public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());

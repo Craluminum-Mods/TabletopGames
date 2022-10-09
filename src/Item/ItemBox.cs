@@ -7,7 +7,7 @@ using System.Text;
 
 namespace TabletopGames
 {
-    class ItemBox : ItemWithAttributesTemplate
+    class ItemBox : ItemWithAttributes
     {
         public string woodTexPrefix;
 

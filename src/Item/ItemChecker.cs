@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace TabletopGames
 {
-    class ItemChecker : ItemWithAttributesTemplate
+    class ItemChecker : ItemWithAttributes
     {
         public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
 

@@ -7,7 +7,7 @@ using TabletopGames.ModUtils;
 
 namespace TabletopGames
 {
-    class ItemChessPiece : ItemWithAttributesTemplate
+    class ItemChessPiece : ItemWithAttributes
     {
         public string modelPrefix;
 

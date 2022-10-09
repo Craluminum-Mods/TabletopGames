@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace TabletopGames
 {
-    class ItemDominoPiece : ItemWithAttributesTemplate
+    class ItemDominoPiece : ItemWithAttributes
     {
         public string modelPrefix;
 
