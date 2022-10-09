@@ -64,7 +64,8 @@ namespace TabletopGames
                 tmpTextures[key.Key] = new AssetLocation(Textures[key.TryGetColorName(itemstack)].Base.Path);
             }
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json");
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json")
+                ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
