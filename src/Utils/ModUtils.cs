@@ -150,9 +150,9 @@ namespace TabletopGames.ModUtils
 
         public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)
         {
-            if (key.Key is "color") return stack.Attributes.GetString("color");
-            if (key.Key is "color1") return stack.Attributes.GetString("color1");
-            if (key.Key is "color2") return stack.Attributes.GetString("color2");
+            if (key.Key is "color" && stack.Attributes.HasAttribute("color")) return stack.Attributes.GetString("color");
+            if (key.Key is "color1" && stack.Attributes.HasAttribute("color1")) return stack.Attributes.GetString("color1");
+            if (key.Key is "color2" && stack.Attributes.HasAttribute("color2")) return stack.Attributes.GetString("color2");
             else return key.Key;
         }
 
