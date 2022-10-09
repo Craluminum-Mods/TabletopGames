@@ -84,12 +84,12 @@ namespace TabletopGames.ModUtils
         {
             var slots = stack.Attributes.GetAsInt("quantitySlots");
 
-            if (slots != 0) dsc.AppendFormat(Lang.Get("Slots") + ": {0}", slots).AppendLine();
+            if (slots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", slots)).AppendLine();
         }
 
         public static void AppendInventorySlotsDescription(this StringBuilder dsc, int quantitySlots)
         {
-            if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Slots") + ": {0}", quantitySlots).AppendLine();
+            if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", quantitySlots)).AppendLine();
         }
 
         public static void AppendSelectedSlotText(this StringBuilder dsc, CollectibleObject collobj, IPlayer forPlayer, InventoryBase inventory, bool withSlotId = true, bool withStackName = true)
