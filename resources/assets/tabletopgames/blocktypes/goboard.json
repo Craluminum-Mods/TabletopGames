@@ -56,6 +56,12 @@
                 },
                 "AttributeTransformCodeByType": {
                     "*": "onTabletopGames_GoBoard_9x9_Transform"
+                },
+                "sizes": {
+                    "9x9": 81,
+                    "14x14": 196,
+                    "15x15": 225,
+                    "16x16": 256
                 }
             }
         },

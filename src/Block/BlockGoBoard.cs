@@ -1,7 +1,10 @@
+using System.Linq;
 using TabletopGames.BoxUtils;
+using TabletopGames.GoUtils;
 using TabletopGames.ModUtils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Util;
 
 namespace TabletopGames
 {
@@ -11,6 +14,43 @@ namespace TabletopGames
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
         public override string MeshRefName => "tableTopGames_GoBoard_Meshrefs";
+
+        public override void OnLoaded(ICoreAPI api)
+        {
+            base.OnLoaded(api);
+
+            skillItems = capi.GetDropAllSlotsToolModes()
+                .Append(capi.GetSizeVariantsToolModes(this));
+        }
+
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
+        {
+            var boardData = slot.Itemstack.Collectible.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+            var sizeVariants = boardData.Sizes.Keys.ToList();
+            var sizeQuantitySlots = boardData.Sizes.Values.ToList();
+
+            if (toolMode == 0)
+            {
+                slot.Itemstack.TryDropAllSlots(byPlayer, api);
+            }
+            else
+            {
+                if (Variant?["size"] == null) return;
+
+                slot.Itemstack.TryDropAllSlots(byPlayer, api);
+
+                var clonedAttributes = slot.Itemstack.Attributes.Clone();
+
+                var newStack = new ItemStack(api.World.GetBlock(CodeWithVariant("size", sizeVariants[toolMode - 1])))
+                {
+                    Attributes = clonedAttributes
+                };
+
+                newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[toolMode - 1]);
+
+                slot.Itemstack.SetFrom(newStack);
+            }
+        }
 
         public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
         {

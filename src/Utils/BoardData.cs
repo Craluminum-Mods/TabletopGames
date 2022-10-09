@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace TabletopGames
@@ -12,5 +13,6 @@ namespace TabletopGames
         public float FromBorderX { get; set; }
         public float FromBorderZ { get; set; }
         public string AttributeTransformCode { get; set; }
+        public Dictionary<string, int> Sizes { get; set; }
     }
 }

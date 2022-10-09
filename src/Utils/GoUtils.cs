@@ -30,5 +30,20 @@ namespace TabletopGames.GoUtils
 
             return modes.ToArray();
         }
+
+        public static SkillItem[] GetSizeVariantsToolModes(this ICoreClientAPI capi, CollectibleObject collobj)
+        {
+            var boardData = collobj.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+            var sizeVariants = boardData.Sizes.Keys.ToList();
+            var modes = new List<SkillItem>();
+
+            modes.AddRange(sizeVariants.Select(size => new SkillItem { Name = Lang.Get($"tabletopgames:block-goboard-{size}") }));
+
+            if (capi == null) return modes.ToArray();
+
+            foreach (var variant in sizeVariants) modes[sizeVariants.IndexOf(variant)].WithLetterIcon(capi, variant);
+
+            return modes.ToArray();
+        }
     }
 }
