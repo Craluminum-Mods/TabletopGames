@@ -10,20 +10,20 @@ namespace TabletopGames
     /// <summary>
     /// Play figure for playing Go, Omok, etc.
     /// </summary>
-    class ItemStonePiece : ItemWithAttributesTemplate
+    class ItemGoStone : ItemWithAttributesTemplate
     {
-        public override string MeshRefName => "tableTopGames_StonePiece_Meshrefs";
+        public override string MeshRefName => "tableTopGames_GoStone_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            skillItems = api.GetStonePieceToolModes(this);
+            skillItems = api.GetGoStoneToolModes(this);
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
             var stack = slot.Itemstack;
-            var pieceData = stack.Collectible.Attributes["tabletopgames"]["stonepiece"].AsObject<CheckerData>();
+            var pieceData = stack.Collectible.Attributes["tabletopgames"]["gostone"].AsObject<CheckerData>();
             var colors = pieceData.Colors.Keys.ToList();
 
             stack.Attributes.SetString("color", colors[toolMode]);
@@ -33,7 +33,7 @@ namespace TabletopGames
         {
             string color = itemStack.Attributes.GetString("color");
 
-            return Lang.GetMatching("tabletopgames:item-stonepiece", Lang.Get($"color-{color}"));
+            return Lang.GetMatching("tabletopgames:item-gostone", Lang.Get($"color-{color}"));
         }
 
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)

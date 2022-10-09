@@ -1,6 +1,6 @@
 {
-    "code": "stonepiece",
-    "class": "TabletopGames_ItemStonePiece",
+    "code": "gostone",
+    "class": "TabletopGames_ItemGoStone",
     "maxStackSize": 64,
     "attributes": {
         "shelvable": true,
@@ -19,7 +19,7 @@
             "scale": 0.05
         },
         "tabletopgames": {
-            "stonepiece": {
+            "gostone": {
                 "_comment": "These values are used for dynamically generated toolMode.",
                 "colors": {
                     "white": "#ffffff",
@@ -46,7 +46,7 @@
             }
         }
     ],
-    "shape": { "base": "item/stonepiece" },
+    "shape": { "base": "item/gostone" },
     "textures": {
         "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
@@ -56,8 +56,8 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "stonepiece", "attributes": { "color": "white" } },
-                { "type": "item", "code": "stonepiece", "attributes": { "color": "black" } }
+                { "type": "item", "code": "gostone", "attributes": { "color": "white" } },
+                { "type": "item", "code": "gostone", "attributes": { "color": "black" } }
             ]
         }
     ],
@@ -71,7 +71,8 @@
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
-        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
     },
     "tpHandTransform": {
         "translation": { "x": -2.2, "y": -1.9, "z": -2 },

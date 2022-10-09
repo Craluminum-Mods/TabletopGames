@@ -9,14 +9,14 @@ namespace TabletopGames.GoUtils
 {
     public static class GoUtils
     {
-        public static SkillItem[] GetStonePieceToolModes(this ICoreAPI api, CollectibleObject collobj)
+        public static SkillItem[] GetGoStoneToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
-            var pieceData = collobj.Attributes["tabletopgames"]["stonepiece"].AsObject<CheckerData>();
+            var pieceData = collobj.Attributes["tabletopgames"]["gostone"].AsObject<CheckerData>();
             var hexColors = pieceData.Colors;
             var colors = pieceData.Colors.Keys.ToList();
             var modes = new List<SkillItem>();
 
-            modes.AddRange(colors.Select(color => new SkillItem { Name = Lang.Get("tabletopgames:item-stonepiece", Lang.Get($"color-{color}")) }));
+            modes.AddRange(colors.Select(color => new SkillItem { Name = Lang.Get($"color-{color}") }));
 
             if (api.Side.IsServer()) return modes.ToArray();
             var capi = (ICoreClientAPI)api;

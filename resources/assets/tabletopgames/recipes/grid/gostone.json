@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "BB_,BK_,BBB",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:bone", "quantity": 2 },
+            "K": { "type": "item", "code": "game:knife-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "gostone", "quantity": 81, "attributes": { "color": "white" } }
+    }
+]
