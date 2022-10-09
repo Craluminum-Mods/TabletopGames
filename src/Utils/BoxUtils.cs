@@ -19,12 +19,12 @@ namespace TabletopGames.BoxUtils
 
             if (capi != null)
             {
-                if (name is "pack")
+                if (name == "pack")
                 {
                     modes[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/packing.svg"), 48, 48, 5, ColorUtil.WhiteArgb));
                     modes[0].TexturePremultipliedAlpha = false;
                 }
-                if (name is "unpack")
+                if (name == "unpack")
                 {
                     modes[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/unpacking.svg"), 48, 48, 5, ColorUtil.WhiteArgb));
                     modes[0].TexturePremultipliedAlpha = false;

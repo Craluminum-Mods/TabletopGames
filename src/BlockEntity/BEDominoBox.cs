@@ -89,13 +89,13 @@ namespace TabletopGames
 
             int n = 0;
 
-            if (quantitySlots is 28) n = 7;
-            if (quantitySlots is 55) n = 10;
-            if (quantitySlots is 91) n = 13;
-            if (quantitySlots is 136) n = 16;
-            if (quantitySlots is 190) n = 19;
+            if (quantitySlots == 28) n = 7;
+            if (quantitySlots == 55) n = 10;
+            if (quantitySlots == 91) n = 13;
+            if (quantitySlots == 136) n = 16;
+            if (quantitySlots == 190) n = 19;
 
-            if (n is 0) return false;
+            if (n == 0) return false;
 
             for (int i = 0; i < n; i++)
             {

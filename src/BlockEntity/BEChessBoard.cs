@@ -43,7 +43,7 @@ namespace TabletopGames
             dsc.AppendWoodDescription(wood: woodType);
 
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-            if (selBoxIndex is not 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
+            if (selBoxIndex != 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)

@@ -150,16 +150,16 @@ namespace TabletopGames.ModUtils
 
         public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)
         {
-            if (key.Key is "color" && stack.Attributes.HasAttribute("color")) return stack.Attributes.GetString("color");
-            if (key.Key is "color1" && stack.Attributes.HasAttribute("color1")) return stack.Attributes.GetString("color1");
-            if (key.Key is "color2" && stack.Attributes.HasAttribute("color2")) return stack.Attributes.GetString("color2");
+            if (key.Key == "color" && stack.Attributes.HasAttribute("color")) return stack.Attributes.GetString("color");
+            if (key.Key == "color1" && stack.Attributes.HasAttribute("color1")) return stack.Attributes.GetString("color1");
+            if (key.Key == "color2" && stack.Attributes.HasAttribute("color2")) return stack.Attributes.GetString("color2");
             else return key.Key;
         }
 
         public static string TryGetWoodTexturePath(this CollectibleObject collobj, KeyValuePair<string, CompositeTexture> key, string woodTexPrefix, ItemStack stack)
         {
             var textures = (collobj as Item)?.Textures ?? (collobj as Block)?.Textures;
-            if (key.Key is "wood") return woodTexPrefix + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
+            if (key.Key == "wood") return woodTexPrefix + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
             return textures[key.Key].Base.Path;
         }
 
