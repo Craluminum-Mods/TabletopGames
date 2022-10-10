@@ -21,6 +21,10 @@
     "dominoset-28": "Набор домино «Дубль 6» (28 штук)",
     "dominoset-55": "Набор домино «Дубль 9» (55 штук)",
     "block-chessboard-8x8-*": "Шахматная доска (8x8)",
+    "block-chessboard-10x10-*": "Шахматная доска (10x10)",
+    "block-chessboard-12x12-*": "Шахматная доска (12x12)",
+    "block-chessboard-14x14-*": "Шахматная доска (14x14)",
+    "block-chessboard-16x16-*": "Шахматная доска (16x16)",
     "block-dominoboard-8x8": "Доска для домино (8x8)",
     "RotateClockwise": "Повернуть по часовой стрелке",
     "RotateAntiClockwise": "Повернуть против часовой стрелки",
@@ -40,7 +44,7 @@
     "introduction-text": "<strong>Настольные игры: Введение</strong><br><br>Disclaimer: Практически на все предметы из мода нельзя ссылаться через ссылки из-за ограничений справочника.<br><br><strong>Часто задаваемые вопросы</strong><br>Q: Где я могу получить рецепты шахматных фигур, игральных карт и тому подобного?<br>A: <a href=\"handbook://tabletopgames:crafting\">Здесь</a>",
 
     "crafting-title": "Настольные игры: Изготовление",
-    "crafting-text": "<strong>Настольные игры: Изготовление</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Получение набора костяшек домино</a>.<br>- <font color=\"#ffff00\">Шахматные фигуры</font> (1 набор / 32 штук) <strong>(белая пешка)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набор / 24 штук) <strong>(белая шашка)</strong>.<br>- <font color=\"#ffff00\">Костяшки домино</font> (1 набор / 28 штук) <strong>(костяшка домино с типом 0_0)</strong>.<br>- <font color=\"#ffff00\">Камни</font> (81 штук) <strong>(белый камень)</strong>.<br>- <font color=\"#ffff00\">Доски для Го</font> <strong>(Доска для Го (9x9))</strong>",
+    "crafting-text": "<strong>Настольные игры: Изготовление</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Получение набора костяшек домино</a>.<br>- <font color=\"#ffff00\">Шахматные фигуры</font> (1 набор / 32 штук) <strong>(белая пешка)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набор / 24 штук) <strong>(белая шашка)</strong>.<br>- <font color=\"#ffff00\">Костяшки домино</font> (1 набор / 28 штук) <strong>(костяшка домино с типом 0_0)</strong>.<br>- <font color=\"#ffff00\">Камни</font> (81 штук) <strong>(белый камень)</strong>.<br>- <font color=\"#ffff00\">Доски для Го</font> <strong>(Доска для Го (9x9))</strong>.<br>- <font color=\"#ffff00\">Шахматные доски</font> <strong>(Шахматная доска (8x8))</strong>",
 
     "dominopieces-title": "Настольные игры: Костяшки домино",
     "dominopieces-text": "<strong>Получение набора костяшек домино</strong><br><br>1. Заполните <strong>ящик для домино</strong> любыми костяшками домино. Инвентарь коробки должен быть полон.<br>2. Получите полный набор нажав на кнопку <strong>\"Перемешать\"</strong>.<br>3. Вытащите одну костяшку домино нажав на кнопку <strong>\"-1\"</strong>.<br><br><i>Обратите внимение, что тип набора напрямую зависит от кол-во слотов в инвентаре коробки</i><br><br><strong>Доступные наборы</strong><br>\tТип набора\t\t\tШтук\t\t\tТочек<br>\tДубль 6\t\t\t28\t\t\t168<br>\tДубль 9\t\t\t55\t\t\t495"
