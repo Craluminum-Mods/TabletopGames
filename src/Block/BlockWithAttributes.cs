@@ -6,6 +6,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using TabletopGames.ModUtils;
+using TabletopGames.BoxUtils;
 
 namespace TabletopGames
 {
@@ -73,11 +74,11 @@ namespace TabletopGames
             if (skillItems == null) return base.GetHeldInteractionHelp(inSlot);
 
             return base.GetHeldInteractionHelp(inSlot).Append(new WorldInteraction
-                {
-                    ActionLangCode = "heldhelp-settoolmode",
-                    HotKeyCode = "toolmodeselect",
-                    MouseButton = EnumMouseButton.None
-                });
+            {
+                ActionLangCode = "heldhelp-settoolmode",
+                HotKeyCode = "toolmodeselect",
+                MouseButton = EnumMouseButton.None
+            });
         }
 
         public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => skillItems;
@@ -150,6 +151,21 @@ namespace TabletopGames
             string wood = itemstack.Attributes.GetString("wood", defaultValue: "oak");
             if (wood != null) return Code.ToShortString() + "-" + wood;
             else return Code.ToShortString();
+        }
+
+        public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
+        {
+            var slotsTree = byItemStack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+            var quantitySlots = byItemStack.Attributes?.GetAsInt("quantitySlots");
+
+            if (slotsTree == null || !byItemStack.Attributes.HasAttribute("quantitySlots")) return base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
+
+            if (quantitySlots < slotsTree.Count)
+            {
+                byItemStack.TryDropAllSlots(byPlayer, world.Api);
+            }
+
+            return base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
         }
     }
 }

@@ -48,21 +48,6 @@ namespace TabletopGames
             }
         }
 
-        public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
-        {
-            var slotsTree = byItemStack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
-            var quantitySlots = byItemStack.Attributes?.GetAsInt("quantitySlots");
-
-            if (slotsTree == null) return base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-
-            if (quantitySlots < slotsTree.Count)
-            {
-                byItemStack.TryDropAllSlots(byPlayer, world.Api);
-            }
-
-            return base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-        }
-
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BEDominoBox bedb) return false;
