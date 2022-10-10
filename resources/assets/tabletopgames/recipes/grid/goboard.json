@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "BB_,BS_,BBB",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:plank-*", "name": "wood" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "block", "code": "goboard-9x9", "attributes": { "wood": "{wood}", "quantitySlots": 81 } }
+    }
+]

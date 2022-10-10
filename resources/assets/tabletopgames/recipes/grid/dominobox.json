@@ -8,6 +8,6 @@
         },
         "width": 2,
         "height": 2,
-        "output": { "type": "block", "code": "dominobox-east", "attributes": { "wood": "{wood}" } }
+        "output": { "type": "block", "code": "dominobox-east", "attributes": { "wood": "{wood}", "quantitySlots": 28 } }
     }
 ]
