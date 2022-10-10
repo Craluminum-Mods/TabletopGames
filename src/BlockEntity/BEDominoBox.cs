@@ -144,15 +144,15 @@ namespace TabletopGames
 
             InitInventory();
 
-            clonedItemstack?.SaveInventoryToBlock(inventory, Api);
+            clonedItemstack?.TransferInventory(inventory, Api);
             MarkDirty(true);
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             base.GetBlockInfo(forPlayer, dsc);
-            dsc.AppendWoodDescription(woodType);
-            dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.TryGetFilledSlotsNumber(), inventory.Count)));
+            dsc.AppendWoodText(woodType);
+            dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.GetNonEmptySlotsCount(), inventory.Count)));
         }
     }
 }

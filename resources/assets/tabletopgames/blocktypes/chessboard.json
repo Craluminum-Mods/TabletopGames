@@ -32,7 +32,7 @@
     ],
     "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
     "shape": {
-        "base": "block/chessboard-{size}",
+        "base": "block/board/chess-{size}",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
     },
     "blockmaterial": "Wood",

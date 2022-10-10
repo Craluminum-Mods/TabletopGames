@@ -105,7 +105,7 @@ namespace TabletopGames
             else blockStack = new ItemStack(this);
 
             if (isInvSizeDynamic && quantitySlots != 0) blockStack.Attributes.SetInt("quantitySlots", quantitySlots);
-            if (SaveInventory) blockStack.SaveInventoryToItemstack(inventory);
+            if (SaveInventory) blockStack.TransferInventory(inventory);
             if (HasWoodType) blockStack.Attributes.SetString("wood", woodType);
 
             return blockStack;
@@ -124,8 +124,8 @@ namespace TabletopGames
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-            dsc.AppendWoodDescription(inSlot.Itemstack);
-            dsc.AppendInventorySlotsDescription(inSlot.Itemstack);
+            dsc.AppendWoodText(inSlot.Itemstack);
+            dsc.AppendInventorySlotsText(inSlot.Itemstack);
         }
 
         public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

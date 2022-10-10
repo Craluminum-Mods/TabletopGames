@@ -68,26 +68,26 @@ namespace TabletopGames.ModUtils
             return new Vec3f((float)(fromBorderX + (distanceBetweenSlots * dX)), 0f, fromBorderZ - (distanceBetweenSlots * dZ));
         }
 
-        public static void AppendWoodDescription(this StringBuilder dsc, ItemStack stack)
+        public static void AppendWoodText(this StringBuilder dsc, ItemStack stack)
         {
             var woodType = stack.Attributes.GetString("wood");
 
             if (woodType != null) dsc.Append(Lang.Get("Wood")).Append(": ").AppendLine(Lang.Get($"material-{woodType}"));
         }
 
-        public static void AppendWoodDescription(this StringBuilder dsc, string wood)
+        public static void AppendWoodText(this StringBuilder dsc, string wood)
         {
             dsc.Append(Lang.Get("Wood")).Append(": ").AppendLine(Lang.Get($"material-{wood}"));
         }
 
-        public static void AppendInventorySlotsDescription(this StringBuilder dsc, ItemStack stack)
+        public static void AppendInventorySlotsText(this StringBuilder dsc, ItemStack stack)
         {
             var slots = stack.Attributes.GetAsInt("quantitySlots");
 
             if (slots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", slots)).AppendLine();
         }
 
-        public static void AppendInventorySlotsDescription(this StringBuilder dsc, int quantitySlots)
+        public static void AppendInventorySlotsText(this StringBuilder dsc, int quantitySlots)
         {
             if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", quantitySlots)).AppendLine();
         }
@@ -107,7 +107,7 @@ namespace TabletopGames.ModUtils
             }
         }
 
-        public static void SaveInventoryToBlock(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
+        public static void TransferInventory(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
         {
             var slotsTree = stack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
 
@@ -124,7 +124,7 @@ namespace TabletopGames.ModUtils
             }
         }
 
-        public static void SaveInventoryToItemstack(this ItemStack blockStack, InventoryBase inventory)
+        public static void TransferInventory(this ItemStack blockStack, InventoryBase inventory)
         {
             if (inventory != null)
             {
@@ -137,15 +137,15 @@ namespace TabletopGames.ModUtils
             }
         }
 
-        public static int TryGetFilledSlotsNumber(this InventoryBase inventory)
+        public static int GetNonEmptySlotsCount(this InventoryBase inventory)
         {
-            var filledSlotsNumber = 0;
+            var nonEmptySlotsCount = 0;
 
             if (inventory != null)
             {
-                filledSlotsNumber += (from slot in inventory where !slot.Empty select slot).Count();
+                nonEmptySlotsCount += (from slot in inventory where !slot.Empty select slot).Count();
             }
-            return filledSlotsNumber;
+            return nonEmptySlotsCount;
         }
 
         public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)

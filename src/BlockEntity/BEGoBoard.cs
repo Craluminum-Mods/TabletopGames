@@ -59,7 +59,7 @@ namespace TabletopGames
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             base.GetBlockInfo(forPlayer, dsc);
-            dsc.AppendWoodDescription(wood: woodType);
+            dsc.AppendWoodText(wood: woodType);
             dsc.AppendLine().AppendSelectedSlotText(Block, forPlayer, inventory, withSlotId: false, withStackName: true);
         }
 
@@ -76,7 +76,7 @@ namespace TabletopGames
             InitInventory();
             InitMeshes(false);
 
-            clonedItemstack?.SaveInventoryToBlock(inventory, Api);
+            clonedItemstack?.TransferInventory(inventory, Api);
 
             updateMeshes();
             MarkDirty(true);

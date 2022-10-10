@@ -51,7 +51,7 @@ namespace TabletopGames
 
             if (board.ResolveBlockOrItem(api.World))
             {
-                dsc.AppendWoodDescription(board);
+                dsc.AppendWoodText(board);
 
                 if (board != null) dsc.AppendLine(Lang.Get("Contents: {0}", board.GetName()));
                 else dsc.AppendLine(Lang.Get("Empty"));

@@ -40,7 +40,7 @@ namespace TabletopGames
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             base.GetBlockInfo(forPlayer, dsc);
-            dsc.AppendWoodDescription(wood: woodType);
+            dsc.AppendWoodText(wood: woodType);
 
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
             if (selBoxIndex != 64) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ").Append(inventory?[selBoxIndex].GetStackName() ?? "");
@@ -55,7 +55,7 @@ namespace TabletopGames
 
             woodType = clonedItemstack.Attributes?.GetString("wood");
 
-            clonedItemstack?.SaveInventoryToBlock(inventory, Api);
+            clonedItemstack?.TransferInventory(inventory, Api);
             updateMeshes();
             MarkDirty(true);
         }

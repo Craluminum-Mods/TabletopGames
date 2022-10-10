@@ -22,7 +22,7 @@
     ],
     "heldTpIdleAnimation": "holdbothhandslarge",
     "heldTpUseAnimation": "twohandplaceblock",
-    "shape": { "base": "block/box/dominobox-closed" },
+    "shape": { "base": "block/box/domino-closed" },
     "textures": {
         "wood": { "base": "game:block/wood/debarked/oak" },
         "black": { "base": "game:block/creative/col64" },
