@@ -3,6 +3,8 @@ using Vintagestory.API.MathTools;
 using TabletopGames.ModUtils;
 using TabletopGames.BoxUtils;
 using Vintagestory.API.Util;
+using TabletopGames.GoUtils;
+using System.Linq;
 
 namespace TabletopGames
 {
@@ -21,27 +23,44 @@ namespace TabletopGames
 
             boxItem = api.World.GetItem(new AssetLocation(Attributes["tabletopgames"]?["packTo"].AsString()));
             skillItems = capi.GetBoxToolModes("pack")
-                .Append(capi.GetDropAllSlotsToolModes());
+                .Append(capi.GetDropAllSlotsToolModes())
+                .Append(capi.GetSizeVariantsToolModes(this));
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            switch (toolMode)
+            var boardData = slot.Itemstack.Collectible.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+            var sizeVariants = boardData.Sizes.Keys.ToList();
+            var sizeQuantitySlots = boardData.Sizes.Values.ToList();
+
+            if (toolMode == 0)
             {
-                case 0:
-                    {
-                        var boxStack = boxItem?.GenItemstack(api, null);
-                        if (boxStack.ResolveBlockOrItem(api.World))
-                        {
-                            BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "containedStack");
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        slot.Itemstack.TryDropAllSlots(byPlayer, api);
-                        break;
-                    }
+                var boxStack = boxItem?.GenItemstack(api, null);
+                if (boxStack.ResolveBlockOrItem(api.World))
+                {
+                    BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "containedStack");
+                }
+            }
+            else if (toolMode == 1)
+            {
+                slot.Itemstack.TryDropAllSlots(byPlayer, api);
+            }
+            else
+            {
+                if (Variant?["size"] == null) return;
+
+                slot.Itemstack.TryDropAllSlots(byPlayer, api);
+
+                var clonedAttributes = slot.Itemstack.Attributes.Clone();
+
+                var newStack = new ItemStack(api.World.GetBlock(CodeWithVariant("size", sizeVariants[toolMode - 2])))
+                {
+                    Attributes = clonedAttributes
+                };
+
+                newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[toolMode - 2]);
+
+                slot.Itemstack.SetFrom(newStack);
             }
         }
 

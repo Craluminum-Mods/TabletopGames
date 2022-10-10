@@ -37,7 +37,7 @@ namespace TabletopGames.GoUtils
             var sizeVariants = boardData.Sizes.Keys.ToList();
             var modes = new List<SkillItem>();
 
-            modes.AddRange(sizeVariants.Select(size => new SkillItem { Name = Lang.Get($"tabletopgames:block-goboard-{size}") }));
+            modes.AddRange(sizeVariants.Select(size => new SkillItem { Name = Lang.GetMatching(collobj.CodeWithVariant("size", size).WithPathPrefix("block-").ToString()) }));
 
             if (capi == null) return modes.ToArray();
 
