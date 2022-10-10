@@ -54,13 +54,14 @@ namespace TabletopGames
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BEGoBoard begb) return false;
-
-            int ignoredSelBoxIndex = Attributes["ignoreSelectionBoxIndex"].AsInt();
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BEGoBoard blockEntity) return false;
 
             var i = blockSel.SelectionBoxIndex;
-            if (i == ignoredSelBoxIndex) return this.TryPickup(begb, world, byPlayer) || base.OnBlockInteractStart(world, byPlayer, blockSel);
-            else return this.TryPickup(begb, world, byPlayer) || begb.TryPut(byPlayer, i) || begb.TryTake(byPlayer, i);
+            return (this.GetIgnoredSelectionBoxIndexes()?.Contains(i)) switch
+            {
+                true => this.TryPickup(blockEntity, world, byPlayer) || base.OnBlockInteractStart(world, byPlayer, blockSel),
+                _ => this.TryPickup(blockEntity, world, byPlayer) || blockEntity.TryPut(byPlayer, i) || blockEntity.TryTake(byPlayer, i),
+            };
         }
 
         public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)

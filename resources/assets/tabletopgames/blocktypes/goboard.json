@@ -69,7 +69,9 @@
                 "*-14x14": [196],
                 "*-15x15": [225],
                 "*-16x16": [256]
-            }
+            },
+            "displaySelectedSlotId": false,
+            "displaySelectedSlotStack": true
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"

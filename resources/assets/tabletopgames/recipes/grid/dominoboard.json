@@ -8,6 +8,6 @@
         },
         "width": 2,
         "height": 2,
-        "output": { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "{wood}" } }
+        "output": { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "{wood}", "quantitySlots": 64 } }
     }
 ]

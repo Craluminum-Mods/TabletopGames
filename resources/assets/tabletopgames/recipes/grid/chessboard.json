@@ -10,6 +10,6 @@
         },
         "width": 3,
         "height": 3,
-        "output": { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "{wood}" } }
+        "output": { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "{wood}", "quantitySlots": 64 } }
     }
 ]

@@ -23,7 +23,9 @@
                 "fromBorderX": 0.0625,
                 "fromBorderZ": 0.9375,
                 "AttributeTransformCode": "onTabletopGamesDominoBoardTransform"
-            }
+            },
+            "displaySelectedSlotId": false,
+            "displaySelectedSlotStack": true
         }
     },
     "variantGroups": [{ "code": "size", "states": ["8x8"] }],
@@ -34,19 +36,19 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "aged" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "birch" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "oak" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "maple" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "pine" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "acacia" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "kapok" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "baldcypress" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "larch" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "redwood" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "ebony" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "walnut" } },
-                { "type": "block", "code": "dominoboard-8x8", "attributes": { "wood": "purpleheart" } }
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "aged" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "birch" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "oak" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "maple" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "pine" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "acacia" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "kapok" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "baldcypress" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "larch" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "redwood" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "ebony" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "walnut" } },
+                { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "purpleheart" } }
             ]
         }
     ],

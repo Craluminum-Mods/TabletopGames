@@ -20,7 +20,9 @@
                 "fromBorderZ": 0.83,
                 "AttributeTransformCode": "onTabletopGamesChessBoardTransform"
             },
-            "ignoreSelectionBoxIndexes": [64]
+            "ignoreSelectionBoxIndexes": [64],
+            "displaySelectedSlotId": false,
+            "displaySelectedSlotStack": true
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
@@ -42,19 +44,19 @@
             {
                 "tabs": ["tabletopgames"],
                 "stacks": [
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "aged" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "birch" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "oak" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "maple" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "pine" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "acacia" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "kapok" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "baldcypress" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "larch" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "redwood" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "ebony" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "walnut" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "wood": "purpleheart" } }
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "aged" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "birch" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "oak" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "maple" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "pine" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "acacia" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "kapok" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "baldcypress" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "larch" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "redwood" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "ebony" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "walnut" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "purpleheart" } }
                 ]
             }
         ]
