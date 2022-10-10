@@ -11,8 +11,12 @@
     "item-chesspiece-pawn": "Pawn ({0})",
     "item-chesspiece-queen": "Queen ({0})",
     "item-chesspiece-rook": "Rook ({0})",
-    "item-chessboardbox": "Chessboard (Packed)",
-    "item-dominobox": "Domino box (Packed)",
+    "Packed": "Packed: {0}",
+    "item-gostone": "Go stone ({0})",
+    "block-goboard-9x9": "Go board (9x9)",
+    "block-goboard-14x14": "Go board (14x14)",
+    "block-goboard-15x15": "Go board (15x15)",
+    "block-goboard-16x16": "Go board (16x16)",
     "block-dominobox-*": "Domino box",
     "dominoset-28": "Domino set 'Double-Sixes' (28 tiles)",
     "dominoset-55": "Domino set 'Double-Nines' (55 tiles)",
@@ -36,7 +40,7 @@
     "introduction-text": "<strong>Tabletop Games: Introduction</strong><br><br>Disclaimer: Practically all items from the mod cannot be referenced via links due to handbook limitations.<br><br><strong>Frequently Asked Questions</strong><br>Q: Where I can find recipes for chess pieces, playing cards and the like?<br>A: <a href=\"handbook://tabletopgames:crafting\">Here</a>",
 
     "crafting-title": "Tabletop Games: Crafting",
-    "crafting-text": "<strong>Tabletop Games: Crafting</strong><br><br>- <font color=\"#ffff00\">Chess pieces</font> (1 set / 32 pieces) <strong>(white pawn)</strong>.<br>- <font color=\"#ffff00\">Checkers</font> (1 set / 24 pieces) <strong>(white checker)</strong>.<br>- <font color=\"#ffff00\">Domino pieces</font> (1 set / 28 pieces) <strong>(domino piece with 0_0 type)</strong>.<a href=\"handbook://tabletopgames:dominopieces\">Getting set of domino pieces</a>",
+    "crafting-text": "<strong>Tabletop Games: Crafting</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Getting set of domino pieces</a>.<br>- <font color=\"#ffff00\">Chess pieces</font> (1 set / 32 pieces) <strong>(white pawn)</strong>.<br>- <font color=\"#ffff00\">Checkers</font> (1 set / 24 pieces) <strong>(white checker)</strong>.<br>- <font color=\"#ffff00\">Domino pieces</font> (1 set / 28 pieces) <strong>(domino piece with 0_0 type)</strong>.<br>- <font color=\"#ffff00\">Go stones</font> (81 pieces) <strong>(white Go stone)</strong>.<br>- <font color=\"#ffff00\">Go boards</font> <strong>(9x9 Go board)</strong>",
 
     "dominopieces-title": "Tabletop Games: Domino pieces",
     "dominopieces-text": "<strong>Getting set of domino pieces</strong><br><br>1. Fill <strong>domino box</strong> with any domino pieces. Box's inventory should be full.<br>2. Get a full set by pressing <strong>\"Shuffle\"</strong> button.<br>3. Take out one random domino piece by pressing <strong>\"-1\"</strong> button.<br><br><i>Note that set type directly depends on amount of slots in box's inventory</i><br><br><strong>Available sets</strong><br>\tSet Type\t\t\tTile №\t\t\tSpots №<br>\tDouble-Sixes\t\t\t28\t\t\t168<br>\tDouble-Nines\t\t\t55\t\t\t495"

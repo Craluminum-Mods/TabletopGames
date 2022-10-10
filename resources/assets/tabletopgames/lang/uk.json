@@ -11,8 +11,12 @@
     "item-chesspiece-pawn": "Пішак  ({0})",
     "item-chesspiece-queen": "Ферзь ({0})",
     "item-chesspiece-rook": "Тура ({0})",
-    "item-chessboardbox": "Шахівниця (Запаковано)",
-    "item-dominobox": "Коробка для доміно (Запаковано)",
+    "Packed": "Запаковано: {0}",
+    "item-gostone": "Камень ({0})",
+    "block-goboard-9x9": "Дошка для Ґо (9x9)",
+    "block-goboard-14x14": "Дошка для Ґо (14x14)",
+    "block-goboard-15x15": "Дошка для Ґо (15x15)",
+    "block-goboard-16x16": "Дошка для Ґо (16x16)",
     "block-dominobox-*": "Коробка для доміно",
     "dominoset-28": "Набір доміно «Дубль 6» (28 штук)",
     "dominoset-55": "Набір доміно «Дубль 9» (55 штук)",
@@ -36,7 +40,7 @@
     "introduction-text": "<strong>Настільні ігри: Введение</strong><br><br>Disclaimer: Практично на всі предмети з мода не можна посилатися через посилання через обмеження посібника.<br><br><strong>Поширені запитання</strong><br>Q: Де я можу отримати рецепти шахових фігур, гральних карт тощо?<br>A: <a href=\"handbook://tabletopgames:crafting\">Тут</a>",
 
     "crafting-title": "Настільні ігри: Виготовлення",
-    "crafting-text": "<strong>Настільні ігри: Виготовлення</strong><br><br>- <font color=\"#ffff00\"Шахові фігури</font> (1 набір / 32 штук) <strong>(білий пішак)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набір / 24 штук) <strong>(біла шашка)</strong>.<br>- <font color=\"#ffff00\">Кісточки доміно</font> (1 набір / 28 штук) <strong>(кісточка доміно з типом 0_0)</strong>.<a href=\"handbook://tabletopgames:dominopieces\">Отримання набору кісточок доміно</a>",
+    "crafting-text": "<strong>Настільні ігри: Виготовлення</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Отримання набору кісточок доміно</a>.<br>- <font color=\"#ffff00\"Шахові фігури</font> (1 набір / 32 штук) <strong>(білий пішак)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набір / 24 штук) <strong>(біла шашка)</strong>.<br>- <font color=\"#ffff00\">Кісточки доміно</font> (1 набір / 28 штук) <strong>(кісточка доміно з типом 0_0)</strong>.<br>- <font color=\"#ffff00\">Камені</font> (81 штук) <strong>(білий камень)</strong>.<br>- <font color=\"#ffff00\">Дошки для Ґо</font> <strong>(Дошка для Ґо (9x9))</strong>",
 
     "dominopieces-title": "Настільні ігри: Кісточки доміно",
     "dominopieces-text": "<strong>Отримання набору кісточок доміно</strong><br><br>1. Заповніть <strong>ящик для доміно</strong> будь-якими кісточками доміно. Інвентар коробки має бути повний. <br>2. Отримайте повний набір натиснувши на кнопку <strong>\"Перемішати\"</strong>.<br>3. Витягніть одну кісточку доміно натиснувши на кнопку <strong>\"-1\"</strong>.<br><br><i>Зверніть увагу, що тип набору безпосередньо залежить від кількості слотів в інвентарі коробки</i><br><br><strong>Доступні набори</strong><br>\tТип набору\t\t\tШтук\t\t\tТочок<br>\tДубль 6\t\t\t28\t\t\t168<br>\tДубль 9\t\t\t55\t\t\t495"
