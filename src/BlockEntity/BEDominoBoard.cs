@@ -45,6 +45,8 @@ namespace TabletopGames
 
             woodType = clonedItemstack.Attributes?.GetString("wood");
 
+            clonedItemstack?.TransferInventory(inventory, Api);
+
             MarkDirty(true);
         }
 

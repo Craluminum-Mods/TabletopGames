@@ -1,3 +1,4 @@
+using TabletopGames.ModUtils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
@@ -5,9 +6,9 @@ namespace TabletopGames
 {
     public class BlockDominoBoard : BlockWithAttributes
     {
-        public override bool SaveInventory => false;
+        public override bool SaveInventory => true;
         public override bool HasWoodType => true;
-        public override bool CanBePickedUp => false;
+        public override bool CanBePickedUp => true;
         public override string MeshRefName => "tableTopGames_DominoBoard_Meshrefs";
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -17,7 +18,7 @@ namespace TabletopGames
             var i = blockSel.SelectionBoxIndex;
             return i switch
             {
-                _ => bedb.TryPut(byPlayer, i) || bedb.TryTake(byPlayer, i)
+                _ => this.TryPickup(bedb, world, byPlayer) || bedb.TryPut(byPlayer, i) || bedb.TryTake(byPlayer, i)
             };
         }
 
