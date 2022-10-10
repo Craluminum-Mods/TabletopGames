@@ -1,3 +1,4 @@
+using TabletopGames.BoxUtils;
 using TabletopGames.ModUtils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -10,6 +11,17 @@ namespace TabletopGames
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
         public override string MeshRefName => "tableTopGames_DominoBoard_Meshrefs";
+
+        public override void OnLoaded(ICoreAPI api)
+        {
+            base.OnLoaded(api);
+            skillItems = capi.GetDropAllSlotsToolModes();
+        }
+
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
+        {
+            if (toolMode == 0) slot.Itemstack.TryDropAllSlots(byPlayer, api);
+        }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
