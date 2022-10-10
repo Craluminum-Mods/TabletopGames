@@ -19,7 +19,8 @@
                 "fromBorderX": 0.1725,
                 "fromBorderZ": 0.83,
                 "AttributeTransformCode": "onTabletopGamesChessBoardTransform"
-            }
+            },
+            "ignoreSelectionBoxIndexes": [64]
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"

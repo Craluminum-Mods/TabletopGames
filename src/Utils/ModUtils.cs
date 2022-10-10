@@ -96,16 +96,15 @@ namespace TabletopGames.ModUtils
         {
             if (inventory == null || inventory.Count == 0) return;
 
-            var ignoreSelBoxIndex = collobj.Attributes?["ignoreSelectionBoxIndex"].AsInt();
-
             var selBoxIndex = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
 
-            if (selBoxIndex != ignoreSelBoxIndex || ignoreSelBoxIndex == null)
-            {
-                if (withSlotId) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ");
-                if (withStackName) dsc.Append(inventory?[selBoxIndex].GetStackName() ?? Lang.Get("Empty"));
-            }
+            if (collobj.GetIgnoredSelectionBoxIndexes()?.Contains(selBoxIndex) == true) return;
+
+            if (withSlotId) dsc.AppendFormat($"[{inventory.GetSlotId(inventory?[selBoxIndex])}] ");
+            if (withStackName) dsc.Append(inventory?[selBoxIndex].GetStackName() ?? Lang.Get("Empty"));
         }
+
+        public static int[] GetIgnoredSelectionBoxIndexes(this CollectibleObject collobj) => collobj.Attributes?["tabletopgames"]["ignoreSelectionBoxIndexes"].AsArray<int>();
 
         public static void TransferInventory(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
         {

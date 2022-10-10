@@ -63,13 +63,13 @@
                     "15x15": 225,
                     "16x16": 256
                 }
+            },
+            "ignoreSelectionBoxIndexesByType": {
+                "*-9x9": [81],
+                "*-14x14": [196],
+                "*-15x15": [225],
+                "*-16x16": [256]
             }
-        },
-        "ignoreSelectionBoxIndexByType": {
-            "*-9x9": 81,
-            "*-14x14": 196,
-            "*-15x15": 225,
-            "*-16x16": 256
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/"
