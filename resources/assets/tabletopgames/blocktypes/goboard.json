@@ -17,51 +17,62 @@
             }
         },
         "tabletopgames": {
-            "board": {
-                "quantitySlotsByType": {
-                    "*-9x9": 81,
-                    "*-14x14": 196,
-                    "*-15x15": 225,
-                    "*-16x16": 256
+            "boardByType": {
+                "*-9x9": {
+                    "quantitySlots": 81,
+                    "width": 9,
+                    "height": 9,
+                    "distanceBetweenSlots": 0.0625,
+                    "fromBorderX": 0.25,
+                    "fromBorderZ": 0.75,
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "14x14": 196,
+                        "15x15": 225,
+                        "16x16": 256
+                    }
                 },
-                "widthByType": {
-                    "*-9x9": 9,
-                    "*-14x14": 14,
-                    "*-15x15": 15,
-                    "*-16x16": 16
+                "*-14x14": {
+                    "quantitySlots": 196,
+                    "width": 14,
+                    "height": 14,
+                    "distanceBetweenSlots": 0.0625,
+                    "fromBorderX": 0.09375,
+                    "fromBorderZ": 0.90625,
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "9x9": 81,
+                        "15x15": 225,
+                        "16x16": 256
+                    }
                 },
-                "heightByType": {
-                    "*-9x9": 9,
-                    "*-14x14": 14,
-                    "*-15x15": 15,
-                    "*-16x16": 16
+                "*-15x15": {
+                    "quantitySlots": 225,
+                    "width": 15,
+                    "height": 15,
+                    "distanceBetweenSlots": 0.0625,
+                    "fromBorderX": 0.0625,
+                    "fromBorderZ": 0.9375,
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "9x9": 81,
+                        "14x14": 196,
+                        "16x16": 256
+                    }
                 },
-                "distanceBetweenSlotsByType": {
-                    "*-9x9": 0.0625,
-                    "*-14x14": 0.0625,
-                    "*-15x15": 0.0625,
-                    "*-16x16": 0.0625
-                },
-                "fromBorderXByType": {
-                    "*-9x9": 0.25,
-                    "*-14x14": 0.09375,
-                    "*-15x15": 0.0625,
-                    "*-16x16": 0.03125
-                },
-                "fromBorderZByType": {
-                    "*-9x9": 0.75,
-                    "*-14x14": 0.90625,
-                    "*-15x15": 0.9375,
-                    "*-16x16": 0.96875
-                },
-                "AttributeTransformCodeByType": {
-                    "*": "onTabletopGames_GoBoard_9x9_Transform"
-                },
-                "sizes": {
-                    "9x9": 81,
-                    "14x14": 196,
-                    "15x15": 225,
-                    "16x16": 256
+                "*-16x16": {
+                    "quantitySlots": 256,
+                    "width": 15,
+                    "height": 15,
+                    "distanceBetweenSlots": 0.0625,
+                    "fromBorderX": 0.03125,
+                    "fromBorderZ": 0.96875,
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "9x9": 81,
+                        "14x14": 196,
+                        "15x15": 225
+                    }
                 }
             },
             "ignoreSelectionBoxIndexesByType": {
