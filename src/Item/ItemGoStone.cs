@@ -27,6 +27,7 @@ namespace TabletopGames
             var colors = pieceData.Colors.Keys.ToList();
 
             stack.Attributes.SetString("color", colors[toolMode]);
+            slot.MarkDirty();
         }
 
         public override string GetHeldItemName(ItemStack itemStack)

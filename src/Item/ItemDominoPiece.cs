@@ -40,6 +40,7 @@ namespace TabletopGames
             {
                 stack.Attributes.SetString("color2", colors2[toolMode - colors1.Count - 2]);
             }
+            slot.MarkDirty();
         }
 
         public override string GetHeldItemName(ItemStack itemStack)

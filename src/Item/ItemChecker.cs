@@ -24,6 +24,7 @@ namespace TabletopGames
 
             if (toolMode != colors.Count) stack.Attributes.SetString("color", colors[toolMode]);
             else stack.Attributes.SetBool("crown", !stack.Attributes.GetBool("crown"));
+            slot.MarkDirty();
         }
 
         public override string GetHeldItemName(ItemStack itemStack)

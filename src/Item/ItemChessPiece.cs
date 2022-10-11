@@ -30,6 +30,7 @@ namespace TabletopGames
 
             if (toolMode < types.Count) stack.Attributes.SetString("type", types[toolMode]);
             else stack.Attributes.SetString("color", colors[toolMode - types.Count]);
+            slot.MarkDirty();
         }
 
         public override string GetHeldItemName(ItemStack itemStack)
