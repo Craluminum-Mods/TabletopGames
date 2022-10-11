@@ -17,6 +17,8 @@ namespace TabletopGames
         public readonly Dictionary<string, AssetLocation> tmpTextures = new();
         public SkillItem[] skillItems;
 
+        protected int dynamicMeshRefid;
+
         public virtual string MeshRefName => "tableTopGames_ItemWithAttributes_Meshrefs";
 
         protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
@@ -58,9 +60,12 @@ namespace TabletopGames
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            var meshrefid = itemstack.TempAttributes.GetInt("meshRefId", 0);
-            if (meshrefid == 0 || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
+            // dynamicMeshRefid is completely temporary
+            // worst attempt to fix model not updating when needed
+            var meshrefid = itemstack.TempAttributes.GetInt("meshRefId", dynamicMeshRefid);
+            if (meshrefid == dynamicMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
+                dynamicMeshRefid++;
                 var num = Meshrefs.Count + 1;
                 var value = capi.Render.UploadMesh(GenMesh(itemstack, capi.ItemTextureAtlas));
                 renderinfo.ModelRef = Meshrefs[num] = value;
