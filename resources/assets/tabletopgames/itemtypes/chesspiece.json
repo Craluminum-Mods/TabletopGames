@@ -33,6 +33,55 @@
                     "orange": "#ffa500",
                     "pink": "#ffc0cb",
                     "purple": "#6900C6"
+                },
+                "modelTransform": {
+                    "bishop": {
+                        "guiTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
+                            "scale": 1.2
+                        }
+                    },
+                    "king": {
+                        "guiTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.9, "z": 0.5 }
+                        }
+                    },
+                    "knight": {
+                        "guiTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+                            "scale": 1.5
+                        }
+                    },
+                    "pawn": {
+                        "guiTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+                            "scale": 1.9
+                        }
+                    },
+                    "queen": {
+                        "guiTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
+                            "scale": 1.2
+                        }
+                    },
+                    "rook": {
+                        "guiTransform": {
+                            "translation": { "x": 3, "y": 0, "z": 0 },
+                            "rotation": { "x": 155, "y": 45, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+                            "scale": 1.7
+                        }
+                    }
                 }
             }
         },

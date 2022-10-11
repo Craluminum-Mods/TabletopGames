@@ -60,6 +60,20 @@ namespace TabletopGames
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
+            if (target is EnumItemRenderTarget.Gui)
+            {
+                if (itemstack.Collectible is ItemChessPiece)
+                {
+                    var currentType = itemstack.Attributes.GetString("type");
+                    if (!string.IsNullOrEmpty(currentType))
+                    {
+                        var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["chesspiece"]["modelTransform"];
+
+                        renderinfo.Transform = modelTransform[currentType]?["guiTransform"].AsObject<ModelTransform>() ?? GuiTransform;
+                    }
+                }
+            }
+
             var meshrefid = itemstack.Attributes.GetInt("meshRefId");
             if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
