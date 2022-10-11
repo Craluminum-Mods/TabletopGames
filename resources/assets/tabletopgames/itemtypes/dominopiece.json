@@ -10,9 +10,10 @@
             "scale": 0.25
         },
         "groundStorageTransform": {
+            "translation": { "x": 0, "y": 0, "z": 0.15 },
             "rotation": { "x": 0, "y": 22, "z": 0 },
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.2
+            "scale": 0.1
         },
         "onTabletopGamesDominoBoardTransform": {
             "translation": { "x": 0, "y": 0.03, "z": 0 },

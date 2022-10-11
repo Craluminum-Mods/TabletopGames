@@ -22,7 +22,7 @@
             }
         }
     ],
-    "heldTpIdleAnimation": "holdunderarm",
+    "heldTpIdleAnimation": "holdbothhandslarge",
     "shape": { "base": "item/box/chessboard-8x8" },
     "textures": {
         "black": { "base": "game:block/creative/col64" },
@@ -44,5 +44,11 @@
     },
     "fpHandTransform": {
         "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -0.7, "y": 0.1, "z": -0.4 },
+        "rotation": { "x": -165, "y": -10, "z": -100 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.8
     }
 }
