@@ -62,8 +62,8 @@
                 },
                 "*-16x16": {
                     "quantitySlots": 256,
-                    "width": 15,
-                    "height": 15,
+                    "width": 16,
+                    "height": 16,
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.03125,
                     "fromBorderZ": 0.96875,
