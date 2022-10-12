@@ -60,16 +60,35 @@ namespace TabletopGames
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            if (target is EnumItemRenderTarget.Gui)
+            if (itemstack.Collectible is ItemChessPiece)
             {
-                if (itemstack.Collectible is ItemChessPiece)
+                if (itemstack.Attributes.HasAttribute("type"))
                 {
                     var currentType = itemstack.Attributes.GetString("type");
-                    if (!string.IsNullOrEmpty(currentType))
-                    {
-                        var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["chesspiece"]["modelTransform"];
+                    var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["chesspiece"]["modelTransform"];
+                    var guiTransform = modelTransform[currentType]?["guiTransform"].AsObject<ModelTransform>();
 
-                        renderinfo.Transform = modelTransform[currentType]?["guiTransform"].AsObject<ModelTransform>() ?? GuiTransform;
+                    if (target is EnumItemRenderTarget.Gui)
+                    {
+                        renderinfo.Transform = guiTransform ?? GuiTransform;
+                    }
+                }
+            }
+            if (itemstack.Collectible is ItemDominoPiece)
+            {
+                if (itemstack.Attributes.HasAttribute("rotation"))
+                {
+                    var currentRotation = itemstack.Attributes.GetAsInt("rotation");
+                    var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["dominopiece"]["modelTransformByRotation"];
+
+                    if (target is EnumItemRenderTarget.Gui)
+                    {
+                        renderinfo.Transform = modelTransform[currentRotation.ToString()]?["guiTransform"].AsObject<ModelTransform>() ?? GuiTransform;
+                    }
+
+                    if (target is EnumItemRenderTarget.HandFp)
+                    {
+                        renderinfo.Transform = modelTransform[currentRotation.ToString()]?["fpHandTransform"].AsObject<ModelTransform>() ?? FpHandTransform;
                     }
                 }
             }

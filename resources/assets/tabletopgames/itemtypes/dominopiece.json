@@ -45,6 +45,50 @@
                     "orange": "#ffa500",
                     "pink": "#ffc0cb",
                     "purple": "#6900C6"
+                },
+                "modelTransformByRotation": {
+                    "90": {
+                        "guiTransform": {
+                            "rotate": false,
+                            "translation": { "x": 4, "y": 0, "z": 50 },
+                            "rotation": { "x": 90, "y": -45, "z": -10 },
+                            "origin": { "x": -1, "y": 0, "z": 0 },
+                            "scale": 0.4
+                        },
+                        "fpHandTransform": {
+                            "translation": { "x": 0, "y": 0.6, "z": 0 },
+                            "rotation": { "x": 0, "y": 60, "z": 35 },
+                            "scale": 0.5
+                        }
+                    },
+                    "180": {
+                        "guiTransform": {
+                            "rotate": false,
+                            "translation": { "x": 4, "y": 0, "z": 0 },
+                            "rotation": { "x": 100, "y": -135, "z": 0 },
+                            "origin": { "x": 0, "y": 0, "z": 2 },
+                            "scale": 0.4
+                        },
+                        "fpHandTransform": {
+                            "translation": { "x": -0.6, "y": 0.4, "z": 0 },
+                            "rotation": { "x": 0, "y": 60, "z": 35 },
+                            "scale": 0.5
+                        }
+                    },
+                    "270": {
+                        "guiTransform": {
+                            "rotate": false,
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 110, "y": 135, "z": 0 },
+                            "origin": { "x": 2, "y": 0, "z": 1 },
+                            "scale": 0.4
+                        },
+                        "fpHandTransform": {
+                            "translation": { "x": 0, "y": 0, "z": 0 },
+                            "rotation": { "x": 0, "y": 60, "z": 35 },
+                            "scale": 0.5
+                        }
+                    }
                 }
             }
         },
@@ -144,10 +188,10 @@
         }
     ],
     "guiTransform": {
-        "translation": { "x": 0, "y": 0, "z": 100 },
-        "rotation": { "x": 90, "y": -45, "z": -45 },
+        "translation": { "x": 0, "y": 0, "z": 50 },
+        "rotation": { "x": 100, "y": 45, "z": 0 },
         "origin": { "x": 1, "y": 0, "z": -1 },
-        "scale": 0.5
+        "scale": 0.4
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
