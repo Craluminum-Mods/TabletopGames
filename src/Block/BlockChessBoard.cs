@@ -72,7 +72,7 @@ namespace TabletopGames
             return (this.GetIgnoredSelectionBoxIndexes()?.Contains(i)) switch
             {
                 true => this.TryPickup(blockEntity, world, byPlayer) || base.OnBlockInteractStart(world, byPlayer, blockSel),
-                _ => this.TryPickup(blockEntity, world, byPlayer) || blockEntity.TryPut(byPlayer, i) || blockEntity.TryTake(byPlayer, i),
+                _ => this.TryPickup(blockEntity, world, byPlayer) || blockEntity.TryPut(byPlayer, i, true) || blockEntity.TryTake(byPlayer, i),
             };
         }
 

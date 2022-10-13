@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using TabletopGames.ChessUtils;
 using System.Linq;
 using TabletopGames.ModUtils;
+using Vintagestory.API.MathTools;
 
 namespace TabletopGames
 {
@@ -46,6 +47,9 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
+            int rotation = itemstack.Attributes.GetInt("rotation");
+            var meshRotationDeg = new Vec3f(0, rotation, 0);
+
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
@@ -55,7 +59,7 @@ namespace TabletopGames
             var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json")
                 ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
-            capi.Tesselator.TesselateShape("", shape, out var mesh, this);
+            capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
         }
 
