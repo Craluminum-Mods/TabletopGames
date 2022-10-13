@@ -4,7 +4,7 @@
     "name": "Tabletop Games",
     "description": "Various tabletop games from real world. No rules. No hardcoded game logic",
     "authors": ["Craluminum2413"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "dependencies": {
         "game": "1.17.0"
     }
