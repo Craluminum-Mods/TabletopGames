@@ -62,7 +62,7 @@ namespace TabletopGames
         {
             if (ignoreAttributeSubTrees != null)
             {
-                ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("meshRefId");
+                ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("meshRefId", "rotation");
             }
 
             return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
