@@ -108,8 +108,6 @@ namespace TabletopGames
             if (fromSlot.Itemstack == null || toSlot.StackSize > 0) return false;
 
             fromSlot.TryPutInto(Api.World, toSlot);
-            toSlot.MarkDirty();
-            fromSlot.MarkDirty();
             updateMesh(toSlotId);
             MarkDirty(true);
             return true;
@@ -127,7 +125,8 @@ namespace TabletopGames
                 Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
             }
 
-            fromSlot.MarkDirty();
+
+
             updateMesh(fromSlotId);
             MarkDirty(true);
             return true;
