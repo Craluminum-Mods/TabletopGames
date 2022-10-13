@@ -184,5 +184,32 @@ namespace TabletopGames.ModUtils
             world.BlockAccessor.SetBlock(0, blockEntity.Pos);
             return true;
         }
+
+        public static void ApplyStackRotation(this ITreeAttribute stackAttributes, IPlayer byPlayer, Block block)
+        {
+            var facing = BlockFacing.HorizontalFromAngle(GameMath.Mod(byPlayer.Entity.Pos.Yaw, (float)Math.PI * 2f));
+            var side = block?.Variant?["side"];
+
+            stackAttributes.RemoveAttribute("rotation");
+            if (side == "east" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 180);
+            if (side == "east" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 270);
+            if (side == "east" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 0);
+            if (side == "east" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 90);
+
+            if (side == "north" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 90);
+            if (side == "north" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 180);
+            if (side == "north" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 270);
+            if (side == "north" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 0);
+
+            if (side == "west" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 0);
+            if (side == "west" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 90);
+            if (side == "west" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 180);
+            if (side == "west" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 270);
+
+            if (side == "south" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 270);
+            if (side == "south" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
+            if (side == "south" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
+            if (side == "south" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+        }
     }
 }

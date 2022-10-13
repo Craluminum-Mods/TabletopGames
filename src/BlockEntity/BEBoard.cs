@@ -100,14 +100,17 @@ namespace TabletopGames
             mesh.Translate(offset.XYZ);
         }
 
-        public bool TryPut(IPlayer byPlayer, int toSlotId)
+        public bool TryPut(IPlayer byPlayer, int toSlotId, bool shouldRotate = false)
         {
             var toSlot = inventory[toSlotId];
             var fromSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
             if (fromSlot.Itemstack == null || toSlot.StackSize > 0) return false;
 
+            if (shouldRotate) fromSlot.Itemstack.Attributes.ApplyStackRotation(byPlayer, Block);
+
             fromSlot.TryPutInto(Api.World, toSlot);
+            fromSlot?.Itemstack?.Attributes?.RemoveAttribute("rotation");
             updateMesh(toSlotId);
             MarkDirty(true);
             return true;
@@ -124,8 +127,6 @@ namespace TabletopGames
             {
                 Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
             }
-
-
 
             updateMesh(fromSlotId);
             MarkDirty(true);
