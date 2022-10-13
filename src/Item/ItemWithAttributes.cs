@@ -58,6 +58,16 @@ namespace TabletopGames
 
         public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => skillItems;
 
+        public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
+        {
+            if (ignoreAttributeSubTrees != null)
+            {
+                ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("meshRefId");
+            }
+
+            return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
+        }
+
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
             if (itemstack.Collectible is ItemChessPiece)
