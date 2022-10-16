@@ -12,6 +12,7 @@ namespace TabletopGames
         public float DistanceBetweenSlots { get; set; }
         public float FromBorderX { get; set; }
         public float FromBorderZ { get; set; }
+        public float RotateRadY { get; set; }
         public string AttributeTransformCode { get; set; }
         public Dictionary<string, int> Sizes { get; set; }
     }

@@ -4,6 +4,8 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using TabletopGames.ModUtils;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
+using System.Collections.Generic;
 
 namespace TabletopGames
 {
@@ -11,6 +13,9 @@ namespace TabletopGames
     {
         public int quantitySlots;
         public string woodType;
+
+        public virtual string MeshesKey => InventoryClassName + "BlockMeshes";
+        public virtual string MeshCacheKey => "";
 
         public bool DisplaySelectedSlotId => Block?.Attributes?["tabletopgames"]?["displaySelectedSlotId"].AsBool() == true;
         public bool DisplaySelectedSlotStack => Block?.Attributes?["tabletopgames"]?["displaySelectedSlotStack"].AsBool() == true;
@@ -98,6 +103,39 @@ namespace TabletopGames
 
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
+        }
+
+        private MeshData GetMesh(ITesselatorAPI tesselator)
+        {
+            var chessBoardMeshes = ObjectCacheUtil.GetOrCreate(Api, MeshesKey, () => new Dictionary<string, MeshData>());
+
+            if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockWithAttributes block) return null;
+
+            var stack = block.OnPickBlock(Api.World, Pos).Clone();
+
+            if (chessBoardMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
+
+            return chessBoardMeshes[MeshCacheKey] = block.GenMesh(stack, capi.BlockTextureAtlas, null);
+        }
+
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
+        {
+            var ownMesh = GetMesh(tesselator);
+            if (ownMesh == null) return false;
+
+            float rotateRadY = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>().RotateRadY;
+
+            ownMesh = ownMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, GameMath.DEG2RAD * rotateRadY, 0);
+
+            mesher.AddMeshData(ownMesh);
+
+            for (int i = 0; i < meshes.Length; i++)
+            {
+                if (meshes[i] == null) continue;
+                mesher.AddMeshData(meshes[i]);
+            }
+
+            return true;
         }
 
         public bool TryPut(IPlayer byPlayer, int toSlotId, bool shouldRotate = false)

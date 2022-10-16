@@ -131,7 +131,7 @@ namespace TabletopGames
 
         public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
         {
-            this.targetAtlas = targetAtlas;
+            this.targetAtlas = targetAtlas ?? capi.BlockTextureAtlas;
             tmpTextures.Clear();
 
             foreach (var key in Textures)

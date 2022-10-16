@@ -11,6 +11,17 @@ namespace TabletopGames
 
         public override NewSlotDelegate OnNewSlot() => (f, f2) => new ItemSlotDominoBoard(f2);
 
+        public override string MeshesKey => "ttg_dominoBoardBlockMeshes";
+
+        public override string MeshCacheKey
+        {
+            get
+            {
+                string size = Block?.VariantStrict?["size"];
+                return size + "-" + woodType;
+            }
+        }
+
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             base.GetBlockInfo(forPlayer, dsc);

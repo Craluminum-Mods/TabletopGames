@@ -7,7 +7,14 @@
         "tabletopgames": {
             "packTo": "tabletopgames:dominobox",
             "dominobox": {
-                "sets": [28, 55]
+                "sets": [28, 55],
+                "rotateRadYByType":
+                {
+                    "*-east": 270,
+                    "*-west": 90,
+                    "*-south": 180,
+                    "*-north": 0
+                }
             }
         },
         "texturePrefixes": {
