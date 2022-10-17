@@ -9,18 +9,13 @@ namespace TabletopGames
 {
     class ItemBox : ItemWithAttributes
     {
-        public string woodTexPrefix;
-
         public override string MeshRefName => "tableTopGames_ItemBox_Meshrefs" + Code.ToShortString();
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
             skillItems = capi.GetBoxToolModes("unpack");
-            woodTexPrefix = GetTextureLocationPrefix("wood");
         }
-
-        public string GetTextureLocationPrefix(string key) => Attributes["texturePrefixes"][key].AsString();
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
@@ -78,7 +73,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = new AssetLocation(this.TryGetWoodTexturePath(key, woodTexPrefix, itemstack));
+                tmpTextures[key.Key] = new AssetLocation(this.TryGetWoodTexturePath(key, itemstack));
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);

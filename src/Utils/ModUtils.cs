@@ -155,10 +155,12 @@ namespace TabletopGames.ModUtils
             else return key.Key;
         }
 
-        public static string TryGetWoodTexturePath(this CollectibleObject collobj, KeyValuePair<string, CompositeTexture> key, string woodTexPrefix, ItemStack stack)
+        public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
+
+        public static string TryGetWoodTexturePath(this CollectibleObject collobj, KeyValuePair<string, CompositeTexture> key, ItemStack stack)
         {
             var textures = (collobj as Item)?.Textures ?? (collobj as Block)?.Textures;
-            if (key.Key == "wood") return woodTexPrefix + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
+            if (key.Key == "wood") return collobj.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
             return textures[key.Key].Base.Path;
         }
 

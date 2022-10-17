@@ -12,7 +12,6 @@ namespace TabletopGames
 {
     public class BlockWithAttributes : Block, ITexPositionSource, IContainedMeshSource
     {
-        public string woodTexPrefix;
         public SkillItem[] skillItems;
 
         public ICoreClientAPI capi;
@@ -22,8 +21,6 @@ namespace TabletopGames
         public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());
         public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(tmpTextures[textureCode]);
         public readonly Dictionary<string, AssetLocation> tmpTextures = new();
-
-        public string GetTextureLocationPrefix(string key) => Attributes["texturePrefixes"][key].AsString();
 
         public virtual bool SaveInventory => false;
         public virtual bool HasWoodType => false;
@@ -57,8 +54,6 @@ namespace TabletopGames
         {
             base.OnLoaded(api);
             capi = api as ICoreClientAPI;
-
-            woodTexPrefix = GetTextureLocationPrefix("wood");
         }
 
         public override void OnUnloaded(ICoreAPI api)
@@ -137,7 +132,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = new AssetLocation(this.TryGetWoodTexturePath(key, woodTexPrefix, itemstack));
+                tmpTextures[key.Key] = new AssetLocation(this.TryGetWoodTexturePath(key, itemstack));
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
