@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using System.Collections.Generic;
 using Vintagestory.API.MathTools;
 using System.Linq;
+using TabletopGames.SkillItemUtils;
 
 namespace TabletopGames.GoUtils
 {
@@ -41,7 +42,7 @@ namespace TabletopGames.GoUtils
 
             if (capi == null) return modes.ToArray();
 
-            foreach (var variant in sizeVariants) modes[sizeVariants.IndexOf(variant)].WithLetterIcon(capi, variant);
+            foreach (var variant in sizeVariants) modes[sizeVariants.IndexOf(variant)].WithSmallLetterIcon(capi, variant);
 
             return modes.ToArray();
         }
