@@ -26,13 +26,18 @@
                         "14x14": 196,
                         "16x16": 256
                     },
-                    "rotateRadYByType":
-                    {
+                    "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    }
+                    },
+                    "darkVariants": {
+                        "black": "#000000",
+                        "blue": "#4B7399",
+                        "purple": "#8877B7"
+                    },
+                    "lightVariants": { "white": "#ffffff" }
                 },
                 "*-10x10-*": {
                     "quantitySlots": 100,
@@ -48,13 +53,18 @@
                         "14x14": 196,
                         "16x16": 256
                     },
-                    "rotateRadYByType":
-                    {
+                    "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    }
+                    },
+                    "darkVariants": {
+                        "black": "#000000",
+                        "blue": "#4B7399",
+                        "purple": "#8877B7"
+                    },
+                    "lightVariants": { "white": "#ffffff" }
                 },
                 "*-12x12-*": {
                     "quantitySlots": 144,
@@ -70,13 +80,18 @@
                         "14x14": 196,
                         "16x16": 256
                     },
-                    "rotateRadYByType":
-                    {
+                    "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    }
+                    },
+                    "darkVariants": {
+                        "black": "#000000",
+                        "blue": "#4B7399",
+                        "purple": "#8877B7"
+                    },
+                    "lightVariants": { "white": "#ffffff" }
                 },
                 "*-14x14-*": {
                     "quantitySlots": 196,
@@ -92,13 +107,18 @@
                         "12x12": 144,
                         "16x16": 256
                     },
-                    "rotateRadYByType":
-                    {
+                    "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    }
+                    },
+                    "darkVariants": {
+                        "black": "#000000",
+                        "blue": "#4B7399",
+                        "purple": "#8877B7"
+                    },
+                    "lightVariants": { "white": "#ffffff" }
                 },
                 "*-16x16-*": {
                     "quantitySlots": 256,
@@ -114,13 +134,18 @@
                         "12x12": 144,
                         "14x14": 196
                     },
-                    "rotateRadYByType":
-                    {
+                    "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    }
+                    },
+                    "darkVariants": {
+                        "black": "#000000",
+                        "blue": "#4B7399",
+                        "purple": "#8877B7"
+                    },
+                    "lightVariants": { "white": "#ffffff" }
                 }
             },
             "ignoreSelectionBoxIndexesByType": {
@@ -134,7 +159,9 @@
             "displaySelectedSlotStack": true
         },
         "texturePrefixes": {
-            "wood": "game:block/wood/debarked/"
+            "wood": "game:block/wood/debarked/",
+            "dark": "game:tabletopgames/block/checkerboard/dark/{size}-",
+            "light": "game:tabletopgames/block/checkerboard/light/{size}-"
         },
         "handbook": { "groupBy": ["chessboard-*"] }
     },
@@ -153,26 +180,22 @@
             {
                 "tabs": ["tabletopgames"],
                 "stacks": [
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "aged" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "birch" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "oak" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "maple" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "pine" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "acacia" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "kapok" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "baldcypress" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "larch" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "redwood" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "ebony" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "walnut" } },
-                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "purpleheart" } }
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "aged", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "birch", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "oak", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "maple", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "pine", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "acacia", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "kapok", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "baldcypress", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "larch", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "redwood", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "ebony", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "walnut", "dark": "black", "light": "white" } },
+                    { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "purpleheart", "dark": "black", "light": "white" } }
                 ]
             }
-        ],
-        "*-10x10-east": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "chessboard-10x10-east", "attributes": { "quantitySlots": 100, "wood": "aged" } }] }],
-        "*-12x12-east": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "chessboard-12x12-east", "attributes": { "quantitySlots": 144, "wood": "aged" } }] }],
-        "*-14x14-east": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "chessboard-14x14-east", "attributes": { "quantitySlots": 196, "wood": "aged" } }] }],
-        "*-16x16-east": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "chessboard-16x16-east", "attributes": { "quantitySlots": 256, "wood": "aged" } }] }]
+        ]
     },
     "lightAbsorption": 0,
     "sidesolid": { "all": false },
@@ -180,6 +203,8 @@
     "textures": {
         "black": { "base": "game:block/creative/col64" },
         "board": { "base": "game:tabletopgames/block/checkerboard-{size}" },
+        "dark": { "base": "game:tabletopgames/block/checkerboard/dark/{size}-black" },
+        "light": { "base": "game:tabletopgames/block/checkerboard/light/{size}-white" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "sounds": {

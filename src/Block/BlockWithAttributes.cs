@@ -24,6 +24,7 @@ namespace TabletopGames
 
         public virtual bool SaveInventory => false;
         public virtual bool HasWoodType => false;
+        public virtual bool HasCheckerboardTypes => false;
         public virtual bool CanBePickedUp => false;
         public virtual string MeshRefName => "tableTopGames_BlockWithAttributes_Meshrefs";
 
@@ -94,7 +95,7 @@ namespace TabletopGames
             });
         }
 
-        public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false)
+        public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false, string darkType = "", string lightType = "")
         {
             ItemStack blockStack;
             if (Variant?["side"] != null) blockStack = new ItemStack(world.GetBlock(CodeWithVariant("side", "east")));
@@ -103,6 +104,8 @@ namespace TabletopGames
             if (isInvSizeDynamic && quantitySlots != 0) blockStack.Attributes.SetInt("quantitySlots", quantitySlots);
             if (SaveInventory) blockStack.TransferInventory(inventory);
             if (HasWoodType) blockStack.Attributes.SetString("wood", woodType);
+            if (HasCheckerboardTypes) blockStack.Attributes.SetString("dark", darkType);
+            if (HasCheckerboardTypes) blockStack.Attributes.SetString("light", lightType);
 
             return blockStack;
         }
@@ -148,6 +151,7 @@ namespace TabletopGames
             else return Code.ToShortString();
         }
 
+        // Move to BlockBehavior
         public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
         {
             var slotsTree = byItemStack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");

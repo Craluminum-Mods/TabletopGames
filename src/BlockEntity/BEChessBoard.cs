@@ -8,6 +8,7 @@ namespace TabletopGames
     {
         public override string InventoryClassName => "ttgchessboard";
         public override bool HasWoodType => true;
+        public override bool HasCheckerboardTypes => true;
 
         public override NewSlotDelegate OnNewSlot() => (f, f2) => new ItemSlotChessBoard(f2);
 
@@ -19,7 +20,7 @@ namespace TabletopGames
             {
                 string size = Block?.VariantStrict?["size"];
                 string side = Block?.VariantStrict?["side"];
-                return size + "-" + side + "-" + woodType;
+                return size + "-" + side + "-" + woodType + "-" + darkType + "-" + lightType;
             }
         }
 

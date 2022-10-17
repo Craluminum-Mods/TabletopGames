@@ -15,5 +15,7 @@ namespace TabletopGames
         public float RotateRadY { get; set; }
         public string AttributeTransformCode { get; set; }
         public Dictionary<string, int> Sizes { get; set; }
+        public Dictionary<string, string> DarkVariants { get; set; }
+        public Dictionary<string, string> LightVariants { get; set; }
     }
 }

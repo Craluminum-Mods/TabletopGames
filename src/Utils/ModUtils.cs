@@ -161,6 +161,8 @@ namespace TabletopGames.ModUtils
         {
             var textures = (collobj as Item)?.Textures ?? (collobj as Block)?.Textures;
             if (key.Key == "wood") return collobj.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
+            if (key.Key == "dark") return collobj.GetTextureLocationPrefix("dark") + stack.Attributes.GetString("dark", defaultValue: "black") + ".png";
+            if (key.Key == "light") return collobj.GetTextureLocationPrefix("light") + stack.Attributes.GetString("light", defaultValue: "white") + ".png";
             return textures[key.Key].Base.Path;
         }
 

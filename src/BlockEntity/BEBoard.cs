@@ -13,6 +13,8 @@ namespace TabletopGames
     {
         public int quantitySlots;
         public string woodType;
+        public string darkType;
+        public string lightType;
 
         public virtual string MeshesKey => InventoryClassName + "BlockMeshes";
         public virtual string MeshCacheKey => "";
@@ -26,6 +28,7 @@ namespace TabletopGames
         public override string InventoryClassName => "ttgboard";
         public override string AttributeTransformCode => Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>().AttributeTransformCode;
         public virtual bool HasWoodType => false;
+        public virtual bool HasCheckerboardTypes => false;
 
         public virtual NewSlotDelegate OnNewSlot() => (f, f2) => new ItemSlot(f2);
 
@@ -59,6 +62,8 @@ namespace TabletopGames
         {
             quantitySlots = tree.GetInt("quantitySlots");
             if (HasWoodType) woodType = tree.GetString("wood");
+            if (HasCheckerboardTypes) darkType = tree.GetString("dark", defaultValue: "black");
+            if (HasCheckerboardTypes) lightType = tree.GetString("light", defaultValue: "white");
 
             InitInventory();
             InitMeshes();
@@ -71,6 +76,8 @@ namespace TabletopGames
             base.ToTreeAttributes(tree);
             tree.SetInt("quantitySlots", quantitySlots);
             if (HasWoodType) tree.SetString("wood", woodType);
+            if (HasCheckerboardTypes) tree.SetString("dark", darkType);
+            if (HasCheckerboardTypes) tree.SetString("light", lightType);
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -81,6 +88,8 @@ namespace TabletopGames
             if (clonedItemstack == null) return;
 
             if (HasWoodType) woodType = clonedItemstack.Attributes?.GetString("wood");
+            if (HasCheckerboardTypes) darkType = clonedItemstack.Attributes?.GetString("dark");
+            if (HasCheckerboardTypes) lightType = clonedItemstack.Attributes?.GetString("light");
             quantitySlots = clonedItemstack.Attributes.GetAsInt("quantitySlots");
 
             InitInventory();
