@@ -1,0 +1,110 @@
+{
+    "code": "playingcard",
+    "class": "TabletopGames_ItemPlayingCard",
+    "maxStackSize": 64,
+    "attributes": {
+        "shelvable": true,
+        "displaycaseable": true,
+        "tabletopgames": {
+            "playingcard": {
+                "_comment": "These values are used for dynamically generated toolMode.",
+                "sets": { "55": ["placedholder", { "placedholder": "" }] }
+            }
+        },
+        "texturePrefixes": {
+            "back": "game:tabletopgames/item/playingcard/back/",
+            "face": "game:tabletopgames/item/playingcard/face/",
+            "rank": "game:tabletopgames/item/playingcard/rank/",
+            "suit": "game:tabletopgames/item/playingcard/suit/"
+        }
+    },
+    "shape": { "base": "item/playingcard" },
+    "textures": {
+        "back": { "base": "game:block/transparent" },
+        "face": { "base": "game:block/transparent" },
+        "rank": { "base": "game:block/transparent" },
+        "suit": { "base": "game:block/transparent" },
+        "white": { "base": "game:block/creative/col75" }
+    },
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "bell", "rank": "a-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "bell", "rank": "a-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "bell", "rank": "a-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "bell", "rank": "a-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fish", "rank": "2-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fish", "rank": "2-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fish", "rank": "2-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fish", "rank": "2-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hare", "rank": "3-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hare", "rank": "3-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hare", "rank": "3-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hare", "rank": "3-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "raccoon", "rank": "4-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "raccoon", "rank": "4-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "raccoon", "rank": "4-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "raccoon", "rank": "4-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fox", "rank": "5-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fox", "rank": "5-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fox", "rank": "5-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "fox", "rank": "5-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "drifter", "rank": "6-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "drifter", "rank": "6-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "drifter", "rank": "6-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "drifter", "rank": "6-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pig", "rank": "7-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pig", "rank": "7-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pig", "rank": "7-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pig", "rank": "7-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "rooster", "rank": "8-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "rooster", "rank": "8-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "rooster", "rank": "8-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "rooster", "rank": "8-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "locust", "rank": "9-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "locust", "rank": "9-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "locust", "rank": "9-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "locust", "rank": "9-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hyena", "rank": "10-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hyena", "rank": "10-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hyena", "rank": "10-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "hyena", "rank": "10-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "wolf", "rank": "j-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "wolf", "rank": "j-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "wolf", "rank": "j-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "wolf", "rank": "j-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "sheep", "rank": "q-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "sheep", "rank": "q-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "sheep", "rank": "q-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "sheep", "rank": "q-red", "suit": "heart" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pandabear", "rank": "k-black", "suit": "club" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pandabear", "rank": "k-black", "suit": "spade" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pandabear", "rank": "k-red", "suit": "diamond" } },
+                { "type": "item", "code": "playingcard", "attributes": { "back": "default", "face": "pandabear", "rank": "k-red", "suit": "heart" } }
+            ]
+        }
+    ],
+    "fpHandTransform": {
+        "translation": { "x": 0.05, "y": 0.7, "z": 0 },
+        "rotation": { "x": 65, "y": 0, "z": 15 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 },
+        "scale": 1.5
+    },
+    "guiTransform": {
+        "rotation": { "x": 115, "y": -165, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 },
+        "scale": 1.65
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.3, "y": 0, "z": -1.525 },
+        "rotation": { "x": 0, "y": -90, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 2
+    }
+}

@@ -155,6 +155,18 @@ namespace TabletopGames.ModUtils
             else return key.Key;
         }
 
+        public static string TryGetPlayingCardTexture(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
+        {
+            var collobj = stack.Collectible;
+            var stackAttr = stack.Attributes;
+            var textures = (collobj as Item)?.Textures;
+            if (key.Key == "back" && stack.Attributes.HasAttribute("back")) return collobj.GetTextureLocationPrefix("back") + stackAttr.GetString("back") + ".png";
+            if (key.Key == "face" && stack.Attributes.HasAttribute("face")) return collobj.GetTextureLocationPrefix("face") + stackAttr.GetString("face") + ".png";
+            if (key.Key == "rank" && stack.Attributes.HasAttribute("rank")) return collobj.GetTextureLocationPrefix("rank") + stackAttr.GetString("rank") + ".png";
+            if (key.Key == "suit" && stack.Attributes.HasAttribute("suit")) return collobj.GetTextureLocationPrefix("suit") + stackAttr.GetString("suit") + ".png";
+            return textures[key.Key].Base.Path;
+        }
+
         public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
 
         public static string TryGetWoodTexturePath(this CollectibleObject collobj, KeyValuePair<string, CompositeTexture> key, ItemStack stack)
