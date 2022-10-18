@@ -5,6 +5,11 @@
     "attributes": {
         "shelvable": true,
         "displaycaseable": true,
+        "onTabletopGamesDominoBoardTransform": {
+            "translation": { "x": 0, "y": 0.03, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.5
+        },
         "tabletopgames": {
             "playingcard": {
                 "_comment": "These values are used for dynamically generated toolMode.",
