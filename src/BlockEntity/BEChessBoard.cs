@@ -1,6 +1,6 @@
 using System.Text;
 using Vintagestory.API.Common;
-using TabletopGames.ModUtils;
+using TabletopGames.Utils;
 
 namespace TabletopGames
 {

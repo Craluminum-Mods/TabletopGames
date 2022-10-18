@@ -2,7 +2,7 @@ using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using Vintagestory.API.Datastructures;
 using System.Text;
-using TabletopGames.ModUtils;
+using TabletopGames.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Config;

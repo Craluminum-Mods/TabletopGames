@@ -1,13 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using System.Collections.Generic;
 using Vintagestory.API.MathTools;
-using System.Linq;
 
-namespace TabletopGames.CheckersUtils
+namespace TabletopGames.Utils
 {
-    public static class CheckersUtils
+    public static class Checkers
     {
         public static SkillItem[] GetCheckersToolModes(this ICoreAPI api, CollectibleObject collobj)
         {

@@ -5,8 +5,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using TabletopGames.ModUtils;
-using TabletopGames.BoxUtils;
+using TabletopGames.Utils;
 
 namespace TabletopGames
 {

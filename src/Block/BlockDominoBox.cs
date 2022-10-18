@@ -1,7 +1,6 @@
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
-using TabletopGames.ModUtils;
-using TabletopGames.BoxUtils;
+using TabletopGames.Utils;
 using Vintagestory.API.Util;
 using System.Collections.Generic;
 
@@ -35,7 +34,7 @@ namespace TabletopGames
                 var boxStack = boxItem?.GenItemstack(api, null);
                 if (boxStack.ResolveBlockOrItem(api.World))
                 {
-                    BoxUtils.BoxUtils.ConvertBlockToItemBox(slot, boxStack, "containedStack");
+                    slot.ConvertBlockToItemBox(boxStack, "containedStack");
                 }
             }
             else if (toolMode == 1)

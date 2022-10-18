@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Linq;
-using TabletopGames.BoxUtils;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -11,27 +10,10 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using System.Linq;
 
-namespace TabletopGames.ModUtils
+namespace TabletopGames.Utils
 {
     public static class ModUtils
     {
-        public static RenderSkillItemDelegate RenderItemWithAttributes(this CollectibleObject collobj, ICoreAPI api, string json)
-        {
-            return (AssetLocation code, float dt, double posX, double posY) =>
-            {
-                var size = GuiElementPassiveItemSlot.unscaledSlotSize + GuiElementItemSlotGridBase.unscaledSlotPadding;
-                var scsize = GuiElement.scaled(size - 5);
-
-                (api as ICoreClientAPI)?.Render.RenderItemstackToGui(
-                    new DummySlot(GenItemstack(collobj, api, json)),
-                    posX + (scsize / 2),
-                    posY + (scsize / 2),
-                    100,
-                    (float)GuiElement.scaled(GuiElementPassiveItemSlot.unscaledItemSize),
-                    ColorUtil.WhiteArgb);
-            };
-        }
-
         public static ItemStack GenItemstack(this CollectibleObject collobj, ICoreAPI api, string json)
         {
             var jstack = new JsonItemStack();
@@ -105,47 +87,6 @@ namespace TabletopGames.ModUtils
         }
 
         public static int[] GetIgnoredSelectionBoxIndexes(this CollectibleObject collobj) => collobj.Attributes?["tabletopgames"]["ignoreSelectionBoxIndexes"].AsArray<int>();
-
-        public static void TransferInventory(this ItemStack stack, InventoryBase inventory, ICoreAPI api)
-        {
-            var slotsTree = stack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
-
-            if (slotsTree == null) return;
-
-            foreach (var slot in inventory)
-            {
-                var slotId = inventory.GetSlotId(slot);
-                var itemstack = slotsTree.GetItemstack("slot-" + slotId);
-
-                if (itemstack?.ResolveBlockOrItem(api.World) == false) continue;
-                inventory[slotId].Itemstack = itemstack;
-                inventory.MarkSlotDirty(slotId);
-            }
-        }
-
-        public static void TransferInventory(this ItemStack blockStack, InventoryBase inventory)
-        {
-            if (inventory != null)
-            {
-                foreach (var slot in inventory)
-                {
-                    if (slot.Itemstack == null) continue;
-                    var slotId = inventory.GetSlotId(slot);
-                    slot.SaveSlotToBox(blockStack, slotId);
-                }
-            }
-        }
-
-        public static int GetNonEmptySlotsCount(this InventoryBase inventory)
-        {
-            var nonEmptySlotsCount = 0;
-
-            if (inventory != null)
-            {
-                nonEmptySlotsCount += (from slot in inventory where !slot.Empty select slot).Count();
-            }
-            return nonEmptySlotsCount;
-        }
 
         public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)
         {
@@ -226,6 +167,24 @@ namespace TabletopGames.ModUtils
             if (side == "south" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
             if (side == "south" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
             if (side == "south" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+        }
+
+        public static void RotateClockwise(this ItemStack itemstack)
+        {
+            var rotation = itemstack.Attributes.GetInt("rotation");
+            rotation += 90;
+            if (rotation == 360) rotation = 0;
+
+            itemstack.Attributes.SetInt("rotation", rotation);
+        }
+
+        public static void RotateAntiClockwise(this ItemStack itemstack)
+        {
+            var rotation = itemstack.Attributes.GetInt("rotation");
+            rotation -= 90;
+            if (rotation < 0) rotation = 270;
+
+            itemstack.Attributes.SetInt("rotation", rotation);
         }
     }
 }

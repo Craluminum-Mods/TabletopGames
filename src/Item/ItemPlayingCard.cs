@@ -2,7 +2,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using TabletopGames.ModUtils;
+using TabletopGames.Utils;
 
 namespace TabletopGames
 {

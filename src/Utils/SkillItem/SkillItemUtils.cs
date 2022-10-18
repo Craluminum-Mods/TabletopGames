@@ -1,7 +1,7 @@
 using Cairo;
 using Vintagestory.API.Client;
 
-namespace TabletopGames.SkillItemUtils
+namespace TabletopGames.Utils
 {
     public static class SkillItemUtils
     {

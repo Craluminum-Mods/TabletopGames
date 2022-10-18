@@ -1,9 +1,8 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using TabletopGames.DominoUtils;
+using TabletopGames.Utils;
 using Vintagestory.API.MathTools;
-using TabletopGames.ModUtils;
 using System.Linq;
 
 namespace TabletopGames

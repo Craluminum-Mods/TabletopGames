@@ -1,7 +1,5 @@
 using System.Linq;
-using TabletopGames.BoxUtils;
-using TabletopGames.GoUtils;
-using TabletopGames.ModUtils;
+using TabletopGames.Utils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;

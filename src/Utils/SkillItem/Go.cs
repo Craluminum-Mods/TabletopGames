@@ -4,11 +4,10 @@ using Vintagestory.API.Config;
 using System.Collections.Generic;
 using Vintagestory.API.MathTools;
 using System.Linq;
-using TabletopGames.SkillItemUtils;
 
-namespace TabletopGames.GoUtils
+namespace TabletopGames.Utils
 {
-    public static class GoUtils
+    public static class Go
     {
         public static SkillItem[] GetGoStoneToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
@@ -28,21 +27,6 @@ namespace TabletopGames.GoUtils
                 .WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("tabletopgames:textures/icons/palette.svg"), 48, 48, 5, ColorUtil.Hex2Int(hexColors[color])))
                 .TexturePremultipliedAlpha = false;
             }
-
-            return modes.ToArray();
-        }
-
-        public static SkillItem[] GetSizeVariantsToolModes(this ICoreClientAPI capi, CollectibleObject collobj)
-        {
-            var boardData = collobj.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-            var sizeVariants = boardData.Sizes.Keys.ToList();
-            var modes = new List<SkillItem>();
-
-            modes.AddRange(sizeVariants.Select(size => new SkillItem { Name = Lang.GetMatching(collobj.CodeWithVariant("size", size).WithPathPrefix("block-").ToString()) }));
-
-            if (capi == null) return modes.ToArray();
-
-            foreach (var variant in sizeVariants) modes[sizeVariants.IndexOf(variant)].WithSmallLetterIcon(capi, variant);
 
             return modes.ToArray();
         }

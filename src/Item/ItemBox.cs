@@ -1,8 +1,7 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using TabletopGames.BoxUtils;
-using TabletopGames.ModUtils;
+using TabletopGames.Utils;
 using System.Text;
 
 namespace TabletopGames
