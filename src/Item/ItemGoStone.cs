@@ -44,7 +44,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = new AssetLocation(Textures[key.TryGetColorName(itemstack)].Base.Path);
+                tmpTextures[key.Key] = itemstack.TryGetColorName(key);
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);

@@ -210,8 +210,8 @@
         },
         "texturePrefixes": {
             "wood": "game:block/wood/debarked/",
-            "dark": "game:tabletopgames/block/checkerboard/dark/{size}-",
-            "light": "game:tabletopgames/block/checkerboard/light/{size}-"
+            "dark": "tabletopgames:block/checkerboard/dark/{size}-",
+            "light": "tabletopgames:block/checkerboard/light/{size}-"
         },
         "handbook": { "groupBy": ["chessboard-*"] }
     },
@@ -252,9 +252,9 @@
     "sideopaque": { "all": false },
     "textures": {
         "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "game:tabletopgames/block/checkerboard-{size}" },
-        "dark": { "base": "game:tabletopgames/block/checkerboard/dark/{size}-black" },
-        "light": { "base": "game:tabletopgames/block/checkerboard/light/{size}-white" },
+        "board": { "base": "tabletopgames:block/checkerboard-{size}" },
+        "dark": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "light": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "sounds": {

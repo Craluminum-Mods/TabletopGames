@@ -17,10 +17,10 @@
             }
         },
         "texturePrefixes": {
-            "back": "game:tabletopgames/item/playingcard/back/",
-            "face": "game:tabletopgames/item/playingcard/face/",
-            "rank": "game:tabletopgames/item/playingcard/rank/",
-            "suit": "game:tabletopgames/item/playingcard/suit/"
+            "back": "tabletopgames:item/playingcard/back/",
+            "face": "tabletopgames:item/playingcard/face/",
+            "rank": "tabletopgames:item/playingcard/rank/",
+            "suit": "tabletopgames:item/playingcard/suit/"
         }
     },
     "shape": { "base": "item/playingcard" },

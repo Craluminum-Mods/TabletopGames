@@ -44,8 +44,8 @@ namespace TabletopGames
             bool crown = itemstack.Attributes.GetBool("crown");
 
             tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            if (color != null) tmpTextures["color"] = new AssetLocation(Textures[color].Base.Path);
-            if (crown) tmpTextures["crown"] = new AssetLocation(Textures["crown"].Base.Path);
+            if (color != null) tmpTextures["color"] = Textures[color].Base;
+            if (crown) tmpTextures["crown"] = Textures["crown"].Base;
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);
             return mesh;

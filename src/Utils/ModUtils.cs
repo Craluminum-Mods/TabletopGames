@@ -88,35 +88,36 @@ namespace TabletopGames.Utils
 
         public static int[] GetIgnoredSelectionBoxIndexes(this CollectibleObject collobj) => collobj.Attributes?["tabletopgames"]["ignoreSelectionBoxIndexes"].AsArray<int>();
 
-        public static string TryGetColorName(this KeyValuePair<string, CompositeTexture> key, ItemStack stack)
+        public static AssetLocation TryGetColorName(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
         {
-            if (key.Key == "color" && stack.Attributes.HasAttribute("color")) return stack.Attributes.GetString("color");
-            if (key.Key == "color1" && stack.Attributes.HasAttribute("color1")) return stack.Attributes.GetString("color1");
-            if (key.Key == "color2" && stack.Attributes.HasAttribute("color2")) return stack.Attributes.GetString("color2");
-            else return key.Key;
+            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
+            if (stack.HasKeyAsAttribute(key, "color")) return textures[stack.Attributes.GetString("color")].Base;
+            if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
+            if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
+            return textures[key.Key].Base;
         }
 
-        public static string TryGetPlayingCardTexture(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
+        public static AssetLocation TryGetTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
         {
-            var collobj = stack.Collectible;
-            var stackAttr = stack.Attributes;
-            var textures = (collobj as Item)?.Textures;
-            if (key.Key == "back" && stack.Attributes.HasAttribute("back")) return collobj.GetTextureLocationPrefix("back") + stackAttr.GetString("back") + ".png";
-            if (key.Key == "face" && stack.Attributes.HasAttribute("face")) return collobj.GetTextureLocationPrefix("face") + stackAttr.GetString("face") + ".png";
-            if (key.Key == "rank" && stack.Attributes.HasAttribute("rank")) return collobj.GetTextureLocationPrefix("rank") + stackAttr.GetString("rank") + ".png";
-            if (key.Key == "suit" && stack.Attributes.HasAttribute("suit")) return collobj.GetTextureLocationPrefix("suit") + stackAttr.GetString("suit") + ".png";
-            return textures[key.Key].Base.Path;
+            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
+
+            if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("back") + stack.Attributes.GetString("back") + ".png");
+            if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("face") + stack.Attributes.GetString("face") + ".png");
+            if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("rank") + stack.Attributes.GetString("rank") + ".png");
+            if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("suit") + stack.Attributes.GetString("suit") + ".png");
+
+            if (stack.HasKeyAsAttribute(key, "wood")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png");
+            if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("dark") + stack.Attributes.GetString("dark", defaultValue: "black") + ".png");
+            if (stack.HasKeyAsAttribute(key, "light")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("light") + stack.Attributes.GetString("light", defaultValue: "white") + ".png");
+
+            return textures[key.Key].Base;
         }
 
         public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
 
-        public static string TryGetWoodTexturePath(this CollectibleObject collobj, KeyValuePair<string, CompositeTexture> key, ItemStack stack)
+        private static bool HasKeyAsAttribute(this ItemStack stack, KeyValuePair<string, CompositeTexture> key, string compare)
         {
-            var textures = (collobj as Item)?.Textures ?? (collobj as Block)?.Textures;
-            if (key.Key == "wood") return collobj.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png";
-            if (key.Key == "dark") return collobj.GetTextureLocationPrefix("dark") + stack.Attributes.GetString("dark", defaultValue: "black") + ".png";
-            if (key.Key == "light") return collobj.GetTextureLocationPrefix("light") + stack.Attributes.GetString("light", defaultValue: "white") + ".png";
-            return textures[key.Key].Base.Path;
+            return key.Key == compare && stack.Attributes.HasAttribute(compare);
         }
 
         public static AssetLocation GetShapePath(this CollectibleObject collobj)

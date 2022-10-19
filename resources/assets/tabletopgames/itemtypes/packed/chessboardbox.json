@@ -26,7 +26,7 @@
     "shape": { "base": "item/box/chessboard-8x8" },
     "textures": {
         "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "game:tabletopgames/block/checkerboard-8x8" },
+        "board": { "base": "tabletopgames:block/checkerboard-8x8" },
         "wood": { "base": "game:block/wood/debarked/oak" }
     },
     "guiTransform": {
