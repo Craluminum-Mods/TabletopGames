@@ -22,6 +22,16 @@ namespace TabletopGames
             };
         }
 
+        public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
+        {
+            var original = base.OnPickBlock(world, pos);
+            if (world.BlockAccessor.GetBlockEntity(pos) is not BEPlayingSurface blockEntity) return original;
+
+            var blockStack = new ItemStack(this);
+            blockStack.Attributes.SetInt("quantitySlots", blockEntity.quantitySlots);
+            return blockStack;
+        }
+
         // public bool CreateSurface(IWorldAccessor world, BlockSelection blockSel, IPlayer player)
         // {
         //     if (!world.Claims.TryAccess(player, blockSel.Position, EnumBlockAccessFlags.BuildOrBreak))
