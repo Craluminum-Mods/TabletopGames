@@ -168,6 +168,13 @@ namespace TabletopGames.Utils
             if (side == "south" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
             if (side == "south" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
             if (side == "south" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+
+
+            if (side == null && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 270);
+            if (side == null && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
+            if (side == null && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
+            if (side == null && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+
         }
 
         public static void RotateClockwise(this ItemStack itemstack)
