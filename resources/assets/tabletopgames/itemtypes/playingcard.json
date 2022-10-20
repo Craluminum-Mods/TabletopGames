@@ -5,10 +5,9 @@
     "attributes": {
         "shelvable": true,
         "displaycaseable": true,
-        "onTabletopGamesDominoBoardTransform": {
-            "translation": { "x": 0, "y": 0.03, "z": 0 },
+        "onTabletopGames_PlayingSurface_Transform": {
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.5
+            "scale": 0.23
         },
         "tabletopgames": {
             "playingcard": {
