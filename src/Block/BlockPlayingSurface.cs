@@ -18,7 +18,7 @@ namespace TabletopGames
             var i = blockSel.SelectionBoxIndex;
             return i switch
             {
-                _ => blockEntity.TryPut(byPlayer, i) || blockEntity.TryTake(byPlayer, i),
+                _ => blockEntity.TryPut(byPlayer, i, true) || blockEntity.TryTake(byPlayer, i),
             };
         }
 
