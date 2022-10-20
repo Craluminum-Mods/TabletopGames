@@ -102,13 +102,10 @@ namespace TabletopGames
 
         public override void TranslateMesh(MeshData mesh, int index)
         {
-            var position = new Vec3f();
+            Vec3f position;
 
-            if (Block?.Variant["size"] != null)
-            {
-                var boardData = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-                position = index.GetPositionOnBoard(boardData.Width, boardData.Height, boardData.DistanceBetweenSlots, boardData.FromBorderX, boardData.FromBorderZ);
-            }
+            var boardData = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+            position = index.GetPositionOnBoard(boardData.Width, boardData.Height, boardData.DistanceBetweenSlots, boardData.FromBorderX, boardData.FromBorderZ);
 
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
