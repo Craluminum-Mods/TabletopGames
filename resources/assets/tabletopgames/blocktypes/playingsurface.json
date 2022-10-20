@@ -18,7 +18,8 @@
             "displaySelectedSlotStack": true
         }
     },
-    "shape": { "base": "game:block/basic/invisible" },
+    "shape": { "base": "block/flat" },
+    "textures": { "all": { "base": "block/placeholder-overlay" } },
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "faceCullMode": "NeverCull",
