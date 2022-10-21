@@ -33,19 +33,19 @@ namespace TabletopGames
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
                 tmpTextures[key.Key] = stack.TryGetTexturePath(key);
 
-                if (key.Key is "back-0" or "face-0" or "rank-0" or "suit-0" && amount is >= 1) tmpTextures[key.Key] = tempInventory[0].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-1" or "face-1" or "rank-1" or "suit-1" && amount is >= 2) tmpTextures[key.Key] = tempInventory[1].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-2" or "face-2" or "rank-2" or "suit-2" && amount is >= 3) tmpTextures[key.Key] = tempInventory[2].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-3" or "face-3" or "rank-3" or "suit-3" && amount is >= 4) tmpTextures[key.Key] = tempInventory[3].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-4" or "face-4" or "rank-4" or "suit-4" && amount is >= 5) tmpTextures[key.Key] = tempInventory[4].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-5" or "face-5" or "rank-5" or "suit-5" && amount is >= 6) tmpTextures[key.Key] = tempInventory[5].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-6" or "face-6" or "rank-6" or "suit-6" && amount is >= 7) tmpTextures[key.Key] = tempInventory[6].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-7" or "face-7" or "rank-7" or "suit-7" && amount is >= 8) tmpTextures[key.Key] = tempInventory[7].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-8" or "face-8" or "rank-8" or "suit-8" && amount is >= 9) tmpTextures[key.Key] = tempInventory[8].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-9" or "face-9" or "rank-9" or "suit-9" && amount is >= 10) tmpTextures[key.Key] = tempInventory[9].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-10" or "face-10" or "rank-10" or "suit-10" && amount is >= 11) tmpTextures[key.Key] = tempInventory[10].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-11" or "face-11" or "rank-11" or "suit-11" && amount is >= 12) tmpTextures[key.Key] = tempInventory[11].Itemstack.TryGetCardsTexturePath(key);
-                if (key.Key is "back-12" or "face-12" or "rank-12" or "suit-12" && amount is >= 13) tmpTextures[key.Key] = tempInventory[12].Itemstack.TryGetCardsTexturePath(key);
+                if (key.Key is "back-0" or "face-0" or "rank-0" or "suit-0" && amount is >= 1) tmpTextures[key.Key] = tempInventory[0].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-1" or "face-1" or "rank-1" or "suit-1" && amount is >= 2) tmpTextures[key.Key] = tempInventory[1].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-2" or "face-2" or "rank-2" or "suit-2" && amount is >= 3) tmpTextures[key.Key] = tempInventory[2].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-3" or "face-3" or "rank-3" or "suit-3" && amount is >= 4) tmpTextures[key.Key] = tempInventory[3].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-4" or "face-4" or "rank-4" or "suit-4" && amount is >= 5) tmpTextures[key.Key] = tempInventory[4].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-5" or "face-5" or "rank-5" or "suit-5" && amount is >= 6) tmpTextures[key.Key] = tempInventory[5].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-6" or "face-6" or "rank-6" or "suit-6" && amount is >= 7) tmpTextures[key.Key] = tempInventory[6].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-7" or "face-7" or "rank-7" or "suit-7" && amount is >= 8) tmpTextures[key.Key] = tempInventory[7].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-8" or "face-8" or "rank-8" or "suit-8" && amount is >= 9) tmpTextures[key.Key] = tempInventory[8].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-9" or "face-9" or "rank-9" or "suit-9" && amount is >= 10) tmpTextures[key.Key] = tempInventory[9].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-10" or "face-10" or "rank-10" or "suit-10" && amount is >= 11) tmpTextures[key.Key] = tempInventory[10].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-11" or "face-11" or "rank-11" or "suit-11" && amount is >= 12) tmpTextures[key.Key] = tempInventory[11].Itemstack.TryGetTexturePath(key);
+                if (key.Key is "back-12" or "face-12" or "rank-12" or "suit-12" && amount is >= 13) tmpTextures[key.Key] = tempInventory[12].Itemstack.TryGetTexturePath(key);
             }
 
             var modelPrefix = Attributes["modelPrefix"].AsString();

@@ -88,18 +88,13 @@ namespace TabletopGames.Utils
 
         public static int[] GetIgnoredSelectionBoxIndexes(this CollectibleObject collobj) => collobj.Attributes?["tabletopgames"]["ignoreSelectionBoxIndexes"].AsArray<int>();
 
-        public static AssetLocation TryGetColorName(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
-        {
-            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
-            if (stack.HasKeyAsAttribute(key, "color")) return textures[stack.Attributes.GetString("color")].Base;
-            if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
-            if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
-            return textures[key.Key].Base;
-        }
-
         public static AssetLocation TryGetTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
         {
             var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
+
+            if (stack.HasKeyAsAttribute(key, "color")) return textures[stack.Attributes.GetString("color")].Base;
+            if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
+            if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
 
             if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
             if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
@@ -110,25 +105,19 @@ namespace TabletopGames.Utils
             if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.GetTexturePath(key.Key, "black") + ".png");
             if (stack.HasKeyAsAttribute(key, "light")) return new AssetLocation(stack.GetTexturePath(key.Key, "white") + ".png");
 
+            if (stack.Collectible?.Attributes?["tabletopgames"]?["playingcard"]?.AsObject<PlayingCardData>() is PlayingCardData cardData and not null)
+            {
+                if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
+                if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
+                if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
+                if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
+            }
+
             return textures[key.Key].Base;
         }
 
         private static string GetTexturePath(this ItemStack stack, string key) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key);
         private static string GetTexturePath(this ItemStack stack, string key, string defaultKey) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key, defaultKey);
-
-        public static AssetLocation TryGetCardsTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
-        {
-            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
-
-            var cardData = stack.Collectible.Attributes["tabletopgames"]["playingcard"].AsObject<PlayingCardData>();
-
-            if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
-            if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
-            if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
-            if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
-
-            return textures[key.Key].Base;
-        }
 
         public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
 
