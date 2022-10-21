@@ -11,8 +11,10 @@
         },
         "tabletopgames": {
             "playingcard": {
-                "_comment": "These values are used for dynamically generated toolMode.",
-                "sets": { "55": ["placedholder", { "placedholder": "" }] }
+                "backs": ["back-0", "back-1", "back-2", "back-3", "back-4", "back-5", "back-6", "back-7", "back-8", "back-9", "back-10", "back-11", "back-12"],
+                "faces": ["face-0", "face-1", "face-2", "face-3", "face-4", "face-5", "face-6", "face-7", "face-8", "face-9", "face-10", "face-11", "face-12"],
+                "ranks": ["rank-0", "rank-1", "rank-2", "rank-3", "rank-4", "rank-5", "rank-6", "rank-7", "rank-8", "rank-9", "rank-10", "rank-11", "rank-12"],
+                "suits": ["suit-0", "suit-1", "suit-2", "suit-3", "suit-4", "suit-5", "suit-6", "suit-7", "suit-8", "suit-9", "suit-10", "suit-11", "suit-12"]
             }
         },
         "texturePrefixes": {

@@ -28,6 +28,7 @@ namespace TabletopGames
             api.RegisterItemClass("TabletopGames_ItemDominoPiece", typeof(ItemDominoPiece));
             api.RegisterItemClass("TabletopGames_ItemGoStone", typeof(ItemGoStone));
             api.RegisterItemClass("TabletopGames_ItemPlayingCard", typeof(ItemPlayingCard));
+            api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
 
             api.World.Logger.Event("started 'Tabletop Games' mod");
         }

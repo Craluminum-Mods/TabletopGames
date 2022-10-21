@@ -22,4 +22,13 @@ namespace TabletopGames
         public Dictionary<string, string> Colors1 { get; set; }
         public Dictionary<string, string> Colors2 { get; set; }
     }
+
+    [JsonObject]
+    public class PlayingCardData
+    {
+        public string[] Backs { get; set; }
+        public string[] Faces { get; set; }
+        public string[] Ranks { get; set; }
+        public string[] Suits { get; set; }
+    }
 }

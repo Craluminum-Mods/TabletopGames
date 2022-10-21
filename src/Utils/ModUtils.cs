@@ -116,9 +116,16 @@ namespace TabletopGames.Utils
         private static string GetTexturePath(this ItemStack stack, string key) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key);
         private static string GetTexturePath(this ItemStack stack, string key, string defaultKey) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key, defaultKey);
 
-            if (stack.HasKeyAsAttribute(key, "wood")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png");
-            if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("dark") + stack.Attributes.GetString("dark", defaultValue: "black") + ".png");
-            if (stack.HasKeyAsAttribute(key, "light")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("light") + stack.Attributes.GetString("light", defaultValue: "white") + ".png");
+        public static AssetLocation TryGetCardsTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
+        {
+            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
+
+            var cardData = stack.Collectible.Attributes["tabletopgames"]["playingcard"].AsObject<PlayingCardData>();
+
+            if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
+            if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
+            if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
+            if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
 
             return textures[key.Key].Base;
         }

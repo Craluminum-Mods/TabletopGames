@@ -16,10 +16,20 @@ namespace TabletopGames
             if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BEPlayingSurface blockEntity) return false;
 
             var i = blockSel.SelectionBoxIndex;
-            return i switch
-            {
-                _ => blockEntity.TryPut(byPlayer, i, true) || blockEntity.TryTake(byPlayer, i),
-            };
+            var targetSlot = blockEntity.inventory[i];
+            var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+
+            if (playerSlot.Empty) return blockEntity.TryTake(byPlayer, i);
+
+            if (targetSlot.Empty) return blockEntity.TryPut(byPlayer, i, true);
+
+            if (targetSlot.Itemstack.Collectible is ItemPlayingCard && playerSlot.Itemstack.Collectible is ItemPlayingCard)
+                return blockEntity.TryCreate(byPlayer, i);
+
+            if (targetSlot.Itemstack.Collectible is ItemPlayingCards && playerSlot.Itemstack.Collectible is ItemPlayingCard)
+                return blockEntity.TryMerge(byPlayer, i);
+
+            return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
 
         public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)

@@ -1,0 +1,91 @@
+{
+    "code": "playingcards",
+    "class": "TabletopGames_ItemPlayingCards",
+    "maxStackSize": 1,
+    "attributes": {
+        "onTabletopGames_PlayingSurface_Transform": {
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.23
+        },
+        "modelPrefix": "tabletopgames:shapes/item/playingcards/"
+    },
+    "shape": { "base": "game:block/basic/invisible" },
+    "textures": {
+        "all": { "base": "game:block/transparent" },
+        "white": { "base": "game:block/creative/col75" },
+        "back-0": { "base": "game:block/transparent" },
+        "face-0": { "base": "game:block/transparent" },
+        "rank-0": { "base": "game:block/transparent" },
+        "suit-0": { "base": "game:block/transparent" },
+        "back-1": { "base": "game:block/transparent" },
+        "face-1": { "base": "game:block/transparent" },
+        "rank-1": { "base": "game:block/transparent" },
+        "suit-1": { "base": "game:block/transparent" },
+        "back-2": { "base": "game:block/transparent" },
+        "face-2": { "base": "game:block/transparent" },
+        "rank-2": { "base": "game:block/transparent" },
+        "suit-2": { "base": "game:block/transparent" },
+        "back-3": { "base": "game:block/transparent" },
+        "face-3": { "base": "game:block/transparent" },
+        "rank-3": { "base": "game:block/transparent" },
+        "suit-3": { "base": "game:block/transparent" },
+        "back-4": { "base": "game:block/transparent" },
+        "face-4": { "base": "game:block/transparent" },
+        "rank-4": { "base": "game:block/transparent" },
+        "suit-4": { "base": "game:block/transparent" },
+        "back-5": { "base": "game:block/transparent" },
+        "face-5": { "base": "game:block/transparent" },
+        "rank-5": { "base": "game:block/transparent" },
+        "suit-5": { "base": "game:block/transparent" },
+        "back-6": { "base": "game:block/transparent" },
+        "face-6": { "base": "game:block/transparent" },
+        "rank-6": { "base": "game:block/transparent" },
+        "suit-6": { "base": "game:block/transparent" },
+        "back-7": { "base": "game:block/transparent" },
+        "face-7": { "base": "game:block/transparent" },
+        "rank-7": { "base": "game:block/transparent" },
+        "suit-7": { "base": "game:block/transparent" },
+        "back-8": { "base": "game:block/transparent" },
+        "face-8": { "base": "game:block/transparent" },
+        "rank-8": { "base": "game:block/transparent" },
+        "suit-8": { "base": "game:block/transparent" },
+        "back-9": { "base": "game:block/transparent" },
+        "face-9": { "base": "game:block/transparent" },
+        "rank-9": { "base": "game:block/transparent" },
+        "suit-9": { "base": "game:block/transparent" },
+        "back-10": { "base": "game:block/transparent" },
+        "face-10": { "base": "game:block/transparent" },
+        "rank-10": { "base": "game:block/transparent" },
+        "suit-10": { "base": "game:block/transparent" },
+        "back-11": { "base": "game:block/transparent" },
+        "face-11": { "base": "game:block/transparent" },
+        "rank-11": { "base": "game:block/transparent" },
+        "suit-11": { "base": "game:block/transparent" },
+        "back-12": { "base": "game:block/transparent" },
+        "face-12": { "base": "game:block/transparent" },
+        "rank-12": { "base": "game:block/transparent" },
+        "suit-12": { "base": "game:block/transparent" }
+    },
+    "fpHandTransform": {
+        "translation": { "x": -0.15, "y": 0.7, "z": 0 },
+        "rotation": { "x": 65, "y": 0, "z": 15 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 },
+        "scale": 1.5
+    },
+    "guiTransform": {
+        "rotation": { "x": 115, "y": -165, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 },
+        "scale": 1.65
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.3, "y": 0, "z": -1.525 },
+        "rotation": { "x": 0, "y": -90, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 2
+    }
+}
