@@ -167,6 +167,7 @@ namespace TabletopGames
             if (fromSlot.Itemstack == null || fromSlot.StackSize < 0) return false;
 
             ItemStack stack = fromSlot.TakeOut(1);
+            stack?.Attributes?.RemoveAttribute("rotation");
             if (!byPlayer.InventoryManager.TryGiveItemstack(stack, true))
             {
                 Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
