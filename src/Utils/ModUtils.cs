@@ -101,10 +101,20 @@ namespace TabletopGames.Utils
         {
             var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
 
-            if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("back") + stack.Attributes.GetString("back") + ".png");
-            if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("face") + stack.Attributes.GetString("face") + ".png");
-            if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("rank") + stack.Attributes.GetString("rank") + ".png");
-            if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("suit") + stack.Attributes.GetString("suit") + ".png");
+            if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+
+            if (stack.HasKeyAsAttribute(key, "wood")) return new AssetLocation(stack.GetTexturePath(key.Key, "oak") + ".png");
+            if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.GetTexturePath(key.Key, "black") + ".png");
+            if (stack.HasKeyAsAttribute(key, "light")) return new AssetLocation(stack.GetTexturePath(key.Key, "white") + ".png");
+
+            return textures[key.Key].Base;
+        }
+
+        private static string GetTexturePath(this ItemStack stack, string key) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key);
+        private static string GetTexturePath(this ItemStack stack, string key, string defaultKey) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key, defaultKey);
 
             if (stack.HasKeyAsAttribute(key, "wood")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("wood") + stack.Attributes.GetString("wood", defaultValue: "oak") + ".png");
             if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.Collectible.GetTextureLocationPrefix("dark") + stack.Attributes.GetString("dark", defaultValue: "black") + ".png");
