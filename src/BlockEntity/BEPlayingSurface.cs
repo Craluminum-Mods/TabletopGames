@@ -35,14 +35,14 @@ namespace TabletopGames
             return true;
         }
 
-        new public bool TryTake(IPlayer byPlayer, int fromSlotId)
+        new public bool TryTake(IPlayer byPlayer, int fromSlotId, bool removeRotation = true)
         {
             var fromSlot = inventory[fromSlotId];
 
             if (fromSlot.Itemstack == null || fromSlot.StackSize < 0) return false;
 
             ItemStack stack = fromSlot.TakeOut(1);
-            stack.Attributes?.RemoveAttribute("rotation");
+            if (removeRotation) stack?.Attributes?.RemoveAttribute("rotation");
 
             if (stack.Collectible is ItemPlayingCards) stack.Attributes?.SetString("shapeType", "hand");
 
