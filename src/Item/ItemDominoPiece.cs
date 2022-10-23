@@ -9,7 +9,9 @@ namespace TabletopGames
 {
     class ItemDominoPiece : ItemWithAttributes
     {
-        public string modelPrefix;
+        public DominoData DominoData => Attributes["tabletopgames"]["dominopiece"].AsObject<DominoData>();
+
+        public string ModelPrefix => Attributes["modelPrefix"].AsString();
 
         public override string MeshRefName => "tableTopGames_DominoPiece_Meshrefs";
 
@@ -18,15 +20,13 @@ namespace TabletopGames
             base.OnLoaded(api);
 
             skillItems = capi.GetDominoPiecesToolModes(this);
-            modelPrefix = Attributes["modelPrefix"].AsString();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
             var stack = slot.Itemstack;
-            var dominoData = stack.Collectible.Attributes["tabletopgames"]["dominopiece"].AsObject<DominoData>();
-            var colors1 = dominoData.Colors1.Keys.ToList();
-            var colors2 = dominoData.Colors2.Keys.ToList();
+            var colors1 = DominoData.Colors1.Keys.ToList();
+            var colors2 = DominoData.Colors2.Keys.ToList();
 
             if (toolMode == 0) slot.Itemstack.RotateAntiClockwise();
             if (toolMode == 1) slot.Itemstack.RotateClockwise();
@@ -64,7 +64,7 @@ namespace TabletopGames
                 tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
             }
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json")
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, ModelPrefix + itemstack.Attributes.GetString("type") + ".json")
                 ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);

@@ -2,12 +2,13 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using TabletopGames.Utils;
-using System.Text;
 
 namespace TabletopGames
 {
     class ItemPlayingCards : ItemWithAttributes
     {
+        public string ModelPrefix => Attributes["modelPrefix"].AsString();
+
         public override string MeshRefName => "tableTopGames_PlayingCards_Meshrefs";
 
         public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
@@ -48,9 +49,7 @@ namespace TabletopGames
                 if (key.Key is "back-12" or "face-12" or "rank-12" or "suit-12" && amount is >= 13) tmpTextures[key.Key] = tempInventory[12].Itemstack.TryGetTexturePath(key);
             }
 
-            var modelPrefix = Attributes["modelPrefix"].AsString();
-
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + shapeType + "-" + cardsAmount + ".json")
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, ModelPrefix + shapeType + "-" + cardsAmount + ".json")
                 ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);

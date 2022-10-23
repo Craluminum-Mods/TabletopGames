@@ -4,13 +4,18 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using TabletopGames.Utils;
 using Vintagestory.API.Datastructures;
-using Vintagestory.API.Util;
-using System.Collections.Generic;
 
 namespace TabletopGames
 {
     public class BEBoard : BlockEntityDisplay
     {
+        public BoardData BoardData => Block?.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+        public int Width => BoardData.Width;
+        public int Height => BoardData.Height;
+        public float DistanceBetweenSlots => BoardData.DistanceBetweenSlots;
+        public float FromBorderX => BoardData.FromBorderX;
+        public float FromBorderZ => BoardData.FromBorderZ;
+
         public int quantitySlots;
         public string woodType;
         public string darkType;
@@ -26,7 +31,7 @@ namespace TabletopGames
         internal Matrixf mat = new();
         public override InventoryBase Inventory => inventory;
         public override string InventoryClassName => "ttgboard";
-        public override string AttributeTransformCode => Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>().AttributeTransformCode;
+        public override string AttributeTransformCode => BoardData.AttributeTransformCode;
         public virtual bool HasWoodType => false;
         public virtual bool HasCheckerboardTypes => false;
 
@@ -102,11 +107,7 @@ namespace TabletopGames
 
         public override void TranslateMesh(MeshData mesh, int index)
         {
-            Vec3f position;
-
-            var boardData = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-            position = index.GetPositionOnBoard(boardData.Width, boardData.Height, boardData.DistanceBetweenSlots, boardData.FromBorderX, boardData.FromBorderZ);
-
+            Vec3f position = index.GetPositionOnBoard(Width, Height, DistanceBetweenSlots, FromBorderX, FromBorderZ);
             Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
             mesh.Translate(offset.XYZ);
         }

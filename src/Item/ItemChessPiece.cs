@@ -4,11 +4,16 @@ using Vintagestory.API.Config;
 using TabletopGames.Utils;
 using System.Linq;
 using Vintagestory.API.MathTools;
+using System.Collections.Generic;
 
 namespace TabletopGames
 {
     class ItemChessPiece : ItemWithAttributes
     {
+        ChessData ChessData => Attributes["tabletopgames"]["chesspiece"].AsObject<ChessData>();
+        List<string> Colors => ChessData.Colors.Keys.ToList();
+        List<string> Pieces => ChessData.Pieces.ToList();
+
         public string modelPrefix;
 
         public override string MeshRefName => "tableTopGames_ChessPiece_Meshrefs";
@@ -23,13 +28,15 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            var stack = slot.Itemstack;
-            var chessData = stack.Collectible.Attributes["tabletopgames"]["chesspiece"].AsObject<ChessData>();
-            var colors = chessData.Colors.Keys.ToList();
-            var types = chessData.Pieces.ToList();
+            if (toolMode < Pieces.Count)
+            {
+                slot.Itemstack.Attributes.SetString("type", Pieces[toolMode]);
+            }
+            else
+            {
+                slot.Itemstack.Attributes.SetString("color", Colors[toolMode - Pieces.Count]);
+            }
 
-            if (toolMode < types.Count) stack.Attributes.SetString("type", types[toolMode]);
-            else stack.Attributes.SetString("color", colors[toolMode - types.Count]);
             slot.MarkDirty();
         }
 

@@ -8,6 +8,8 @@ namespace TabletopGames
 {
     public class BlockGoBoard : BlockWithAttributes
     {
+        public BoardData BoardData => Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+
         public override bool SaveInventory => true;
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
@@ -23,9 +25,8 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            var boardData = slot.Itemstack.Collectible.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-            var sizeVariants = boardData.Sizes.Keys.ToList();
-            var sizeQuantitySlots = boardData.Sizes.Values.ToList();
+            var sizeVariants = BoardData.Sizes.Keys.ToList();
+            var sizeQuantitySlots = BoardData.Sizes.Values.ToList();
 
             if (toolMode == 0)
             {

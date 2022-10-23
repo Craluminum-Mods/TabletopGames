@@ -8,6 +8,8 @@ namespace TabletopGames
 {
     class ItemChecker : ItemWithAttributes
     {
+        public CheckerData CheckerData => Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
+
         public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
 
         public override void OnLoaded(ICoreAPI api)
@@ -18,12 +20,17 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            var stack = slot.Itemstack;
-            var checkerData = stack.Collectible.Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
-            var colors = checkerData.Colors.Keys.ToList();
+            var colors = CheckerData.Colors.Keys.ToList();
 
-            if (toolMode != colors.Count) stack.Attributes.SetString("color", colors[toolMode]);
-            else stack.Attributes.SetBool("crown", !stack.Attributes.GetBool("crown"));
+            if (toolMode != colors.Count)
+            {
+                slot.Itemstack.Attributes.SetString("color", colors[toolMode]);
+            }
+            else
+            {
+                slot.Itemstack.Attributes.SetBool("crown", !slot.Itemstack.Attributes.GetBool("crown"));
+            }
+
             slot.MarkDirty();
         }
 

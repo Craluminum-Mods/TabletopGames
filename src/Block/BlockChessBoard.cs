@@ -10,6 +10,7 @@ namespace TabletopGames
     public class BlockChessBoard : BlockWithAttributes
     {
         public Item boxItem;
+        public BoardData BoardData => Attributes["tabletopgames"]["board"].AsObject<BoardData>();
 
         public override bool SaveInventory => true;
         public override bool HasWoodType => true;
@@ -33,12 +34,11 @@ namespace TabletopGames
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
             var stack = slot.Itemstack;
-            var boardData = slot.Itemstack.Collectible.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-            var sizeVariants = boardData.Sizes.Keys.ToList();
-            var sizeQuantitySlots = boardData.Sizes.Values.ToList();
+            var sizeVariants = BoardData.Sizes.Keys.ToList();
+            var sizeQuantitySlots = BoardData.Sizes.Values.ToList();
 
-            var colors1 = boardData.DarkVariants.Keys.ToList();
-            var colors2 = boardData.LightVariants.Keys.ToList();
+            var colors1 = BoardData.DarkVariants.Keys.ToList();
+            var colors2 = BoardData.LightVariants.Keys.ToList();
 
             if (toolMode == 0)
             {

@@ -9,6 +9,7 @@ namespace TabletopGames
     public class BlockDominoBox : BlockWithAttributes
     {
         public Item boxItem;
+        public List<int> Sets => Attributes["tabletopgames"]["dominobox"]["sets"].AsObject<List<int>>();
 
         public override bool SaveInventory => true;
         public override bool HasWoodType => true;
@@ -27,7 +28,6 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            var sets = slot.Itemstack.Collectible.Attributes["tabletopgames"]["dominobox"]["sets"].AsObject<List<int>>();
 
             if (toolMode == 0)
             {
@@ -43,7 +43,7 @@ namespace TabletopGames
             }
             else if (toolMode is not 0 and not 1)
             {
-                slot.Itemstack.Attributes.SetInt("quantitySlots", sets[toolMode - 2]);
+                slot.Itemstack.Attributes.SetInt("quantitySlots", Sets[toolMode - 2]);
             }
         }
 

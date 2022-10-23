@@ -24,6 +24,22 @@ namespace TabletopGames
             return Lang.GetMatching("tabletopgames:item-playingcard", keyBack, keyFace, keyRank, keySuit);
         }
 
+        // public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+        // {
+        //     base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+
+        //     var back = inSlot.Itemstack.Attributes.GetString("back");
+        //     var face = inSlot.Itemstack.Attributes.GetString("face");
+        //     var rank = inSlot.Itemstack.Attributes.GetString("rank");
+        //     var suit = inSlot.Itemstack.Attributes.GetString("suit");
+        //     string keyBack = Lang.Get("tabletopgames:playingcard-back-" + back);
+        //     string keyFace = Lang.Get("tabletopgames:playingcard-face-" + face);
+        //     string keyRank = Lang.Get("tabletopgames:playingcard-rank-" + rank);
+        //     string keySuit = Lang.Get("tabletopgames:playingcard-suit-" + suit);
+
+        //     dsc.Append(Lang.GetMatching("tabletopgames:item-playingcard", keyBack, keyFace, keyRank, keySuit));
+        // }
+
         public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
