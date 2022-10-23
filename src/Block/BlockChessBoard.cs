@@ -108,23 +108,23 @@ namespace TabletopGames
                 blockEntity.lightType);
         }
 
-        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
+        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            var meshrefid = itemstack.Attributes.GetInt("meshRefId");
+            var meshrefid = stack.Attributes.GetInt("meshRefId");
             if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
                 var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(itemstack, capi.BlockTextureAtlas, null));
+                var value = capi.Render.UploadMesh(GenMesh(stack, capi.BlockTextureAtlas, null));
                 renderinfo.ModelRef = Meshrefs[num] = value;
-                itemstack.Attributes.SetInt("meshRefId", num);
+                stack.Attributes.SetInt("meshRefId", num);
             }
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string wood = itemstack.Attributes.GetString("wood", defaultValue: "oak");
-            string dark = itemstack.Attributes.GetString("dark", defaultValue: "black");
-            string light = itemstack.Attributes.GetString("light", defaultValue: "white");
+            string wood = stack.Attributes.GetString("wood", defaultValue: "oak");
+            string dark = stack.Attributes.GetString("dark", defaultValue: "black");
+            string light = stack.Attributes.GetString("light", defaultValue: "white");
 
             string size = VariantStrict?["size"];
             string side = VariantStrict?["side"];

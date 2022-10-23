@@ -29,14 +29,14 @@ namespace TabletopGames
             slot.MarkDirty();
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            string color = itemStack.Attributes.GetString("color");
+            string color = stack.Attributes.GetString("color");
 
             return Lang.GetMatching("tabletopgames:item-gostone", Lang.Get($"color-{color}"));
         }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
@@ -44,16 +44,16 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string color = itemstack.Attributes.GetString("color");
+            string color = stack.Attributes.GetString("color");
 
             return Code.ToShortString() + "-" + color;
         }

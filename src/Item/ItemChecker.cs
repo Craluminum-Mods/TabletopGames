@@ -34,21 +34,21 @@ namespace TabletopGames
             slot.MarkDirty();
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            string color = itemStack.Attributes.GetString("color");
-            bool crown = itemStack.Attributes.GetBool("crown");
+            string color = stack.Attributes.GetString("color");
+            bool crown = stack.Attributes.GetBool("crown");
 
             return Lang.GetMatching("tabletopgames:item-checker" + (crown ? "-withcrown" : ""), Lang.Get($"color-{color}"));
         }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string color = itemstack.Attributes.GetString("color");
-            bool crown = itemstack.Attributes.GetBool("crown");
+            string color = stack.Attributes.GetString("color");
+            bool crown = stack.Attributes.GetBool("crown");
 
             tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
             if (color != null) tmpTextures["color"] = Textures[color].Base;
@@ -58,10 +58,10 @@ namespace TabletopGames
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string color = itemstack.Attributes.GetString("color");
-            bool crown = itemstack.Attributes.GetBool("crown");
+            string color = stack.Attributes.GetString("color");
+            bool crown = stack.Attributes.GetBool("crown");
 
             return Code.ToShortString() + "-" + color + "-" + crown;
         }

@@ -56,11 +56,11 @@ namespace TabletopGames
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
             var shortCode = Code.ToShortString();
-            var slotsTree = itemstack.Attributes.GetTreeAttribute("box").GetTreeAttribute("slots");
-            var rotation = itemstack.Attributes.GetInt("rotation");
+            var slotsTree = stack.Attributes.GetTreeAttribute("box").GetTreeAttribute("slots");
+            var rotation = stack.Attributes.GetInt("rotation");
 
             return $"{shortCode}-{slotsTree}-{rotation}";
         }

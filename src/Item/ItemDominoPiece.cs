@@ -42,39 +42,39 @@ namespace TabletopGames
             slot.MarkDirty();
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            string type = itemStack.Attributes.GetString("type");
-            int rotation = itemStack.Attributes.GetInt("rotation");
+            string type = stack.Attributes.GetString("type");
+            int rotation = stack.Attributes.GetInt("rotation");
 
             return Lang.GetMatching("tabletopgames:item-dominopiece", type, rotation);
         }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            int rotation = itemstack.Attributes.GetInt("rotation");
+            int rotation = stack.Attributes.GetInt("rotation");
             var meshRotationDeg = new Vec3f(0, rotation, 0);
 
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, ModelPrefix + itemstack.Attributes.GetString("type") + ".json")
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, ModelPrefix + stack.Attributes.GetString("type") + ".json")
                 ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string type = itemstack.Attributes.GetString("type");
-            int rotation = itemstack.Attributes.GetInt("rotation");
+            string type = stack.Attributes.GetString("type");
+            int rotation = stack.Attributes.GetInt("rotation");
 
             return Code.ToShortString() + "-" + type + "-" + rotation;
         }

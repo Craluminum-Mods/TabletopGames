@@ -10,12 +10,12 @@ namespace TabletopGames
     {
         public override string MeshRefName => "tableTopGames_PlayingCard_Meshrefs";
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            var back = itemStack.Attributes.GetString("back");
-            var face = itemStack.Attributes.GetString("face");
-            var rank = itemStack.Attributes.GetString("rank");
-            var suit = itemStack.Attributes.GetString("suit");
+            var back = stack.Attributes.GetString("back");
+            var face = stack.Attributes.GetString("face");
+            var rank = stack.Attributes.GetString("rank");
+            var suit = stack.Attributes.GetString("suit");
             string keyBack = Lang.Get("tabletopgames:playingcard-back-" + back);
             string keyFace = Lang.Get("tabletopgames:playingcard-face-" + face);
             string keyRank = Lang.Get("tabletopgames:playingcard-rank-" + rank);
@@ -40,18 +40,18 @@ namespace TabletopGames
         //     dsc.Append(Lang.GetMatching("tabletopgames:item-playingcard", keyBack, keyFace, keyRank, keySuit));
         // }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            int rotation = itemstack.Attributes.GetInt("rotation");
+            int rotation = stack.Attributes.GetInt("rotation");
             var meshRotationDeg = new Vec3f(0, rotation, 0);
 
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
@@ -60,13 +60,13 @@ namespace TabletopGames
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            var rotation = itemstack.Attributes.GetInt("rotation");
-            var back = itemstack.Attributes.GetString("back");
-            var face = itemstack.Attributes.GetString("face");
-            var suit = itemstack.Attributes.GetString("suit");
-            var rank = itemstack.Attributes.GetString("rank");
+            var rotation = stack.Attributes.GetInt("rotation");
+            var back = stack.Attributes.GetString("back");
+            var face = stack.Attributes.GetString("face");
+            var suit = stack.Attributes.GetString("suit");
+            var rank = stack.Attributes.GetString("rank");
             var shortCode = Code.ToShortString();
 
             return $"{shortCode}-{rotation}-{back}-{face}-{suit}-{rank}";

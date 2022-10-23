@@ -52,19 +52,19 @@ namespace TabletopGames
             }
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            var containedStack = itemStack.Attributes.GetItemstack("containedStack");
+            var containedStack = stack.Attributes.GetItemstack("containedStack");
 
             if (containedStack.ResolveBlockOrItem(api.World) && containedStack != null)
             {
                 return Lang.Get("tabletopgames:Packed", containedStack?.GetName());
             }
 
-            return base.GetHeldItemName(itemStack);
+            return base.GetHeldItemName(stack);
         }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
@@ -72,16 +72,16 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string wood = itemstack.Attributes.GetString("wood", defaultValue: "oak");
+            string wood = stack.Attributes.GetString("wood", defaultValue: "oak");
             return Code.ToShortString() + "-" + wood;
         }
     }

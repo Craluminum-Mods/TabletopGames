@@ -183,22 +183,22 @@ namespace TabletopGames.Utils
 
         }
 
-        public static void RotateClockwise(this ItemStack itemstack)
+        public static void RotateClockwise(this ItemStack stack)
         {
-            var rotation = itemstack.Attributes.GetInt("rotation");
+            var rotation = stack.Attributes.GetInt("rotation");
             rotation += 90;
             if (rotation == 360) rotation = 0;
 
-            itemstack.Attributes.SetInt("rotation", rotation);
+            stack.Attributes.SetInt("rotation", rotation);
         }
 
-        public static void RotateAntiClockwise(this ItemStack itemstack)
+        public static void RotateAntiClockwise(this ItemStack stack)
         {
-            var rotation = itemstack.Attributes.GetInt("rotation");
+            var rotation = stack.Attributes.GetInt("rotation");
             rotation -= 90;
             if (rotation < 0) rotation = 270;
 
-            itemstack.Attributes.SetInt("rotation", rotation);
+            stack.Attributes.SetInt("rotation", rotation);
         }
     }
 }

@@ -40,39 +40,39 @@ namespace TabletopGames
             slot.MarkDirty();
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
+        public override string GetHeldItemName(ItemStack stack)
         {
-            string color = itemStack.Attributes.GetString("color");
-            string type = itemStack.Attributes.GetString("type");
+            string color = stack.Attributes.GetString("color");
+            string type = stack.Attributes.GetString("type");
 
             return Lang.GetMatching($"tabletopgames:item-chesspiece-{type}", Lang.Get($"color-{color}"));
         }
 
-        public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            int rotation = itemstack.Attributes.GetInt("rotation");
+            int rotation = stack.Attributes.GetInt("rotation");
             var meshRotationDeg = new Vec3f(0, rotation, 0);
 
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + itemstack.Attributes.GetString("type") + ".json")
+            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + stack.Attributes.GetString("type") + ".json")
                 ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
         }
 
-        public override string GetMeshCacheKey(ItemStack itemstack)
+        public override string GetMeshCacheKey(ItemStack stack)
         {
-            string color = itemstack.Attributes.GetString("color");
-            string type = itemstack.Attributes.GetString("type");
+            string color = stack.Attributes.GetString("color");
+            string type = stack.Attributes.GetString("type");
 
             return Code.ToShortString() + "-" + color + "-" + type;
         }

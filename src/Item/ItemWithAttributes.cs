@@ -68,14 +68,14 @@ namespace TabletopGames
             return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
         }
 
-        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
+        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            if (itemstack.Collectible is ItemChessPiece)
+            if (stack.Collectible is ItemChessPiece)
             {
-                if (itemstack.Attributes.HasAttribute("type"))
+                if (stack.Attributes.HasAttribute("type"))
                 {
-                    var currentType = itemstack.Attributes.GetString("type");
-                    var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["chesspiece"]["modelTransform"];
+                    var currentType = stack.Attributes.GetString("type");
+                    var modelTransform = stack.Collectible.Attributes["tabletopgames"]["chesspiece"]["modelTransform"];
                     var guiTransform = modelTransform[currentType]?["guiTransform"].AsObject<ModelTransform>();
 
                     if (target is EnumItemRenderTarget.Gui)
@@ -84,12 +84,12 @@ namespace TabletopGames
                     }
                 }
             }
-            if (itemstack.Collectible is ItemDominoPiece)
+            if (stack.Collectible is ItemDominoPiece)
             {
-                if (itemstack.Attributes.HasAttribute("rotation"))
+                if (stack.Attributes.HasAttribute("rotation"))
                 {
-                    var currentRotation = itemstack.Attributes.GetAsInt("rotation");
-                    var modelTransform = itemstack.Collectible.Attributes["tabletopgames"]["dominopiece"]["modelTransformByRotation"];
+                    var currentRotation = stack.Attributes.GetAsInt("rotation");
+                    var modelTransform = stack.Collectible.Attributes["tabletopgames"]["dominopiece"]["modelTransformByRotation"];
 
                     if (target is EnumItemRenderTarget.Gui)
                     {
@@ -103,15 +103,15 @@ namespace TabletopGames
                 }
             }
 
-            var meshrefid = itemstack.Attributes.GetInt("meshRefId");
+            var meshrefid = stack.Attributes.GetInt("meshRefId");
             if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
                 var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(itemstack, capi.ItemTextureAtlas));
+                var value = capi.Render.UploadMesh(GenMesh(stack, capi.ItemTextureAtlas));
                 renderinfo.ModelRef = Meshrefs[num] = value;
-                itemstack.Attributes.SetInt("meshRefId", num);
+                stack.Attributes.SetInt("meshRefId", num);
             }
-            base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
+            base.OnBeforeRender(capi, stack, target, ref renderinfo);
         }
 
         public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)

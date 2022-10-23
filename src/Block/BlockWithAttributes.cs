@@ -38,15 +38,15 @@ namespace TabletopGames
             return texPos;
         }
 
-        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
+        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            var meshrefid = itemstack.TempAttributes.GetInt("meshRefId", 0);
+            var meshrefid = stack.TempAttributes.GetInt("meshRefId", 0);
             if (meshrefid == 0 || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
                 var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(itemstack, capi.BlockTextureAtlas, null));
+                var value = capi.Render.UploadMesh(GenMesh(stack, capi.BlockTextureAtlas, null));
                 renderinfo.ModelRef = Meshrefs[num] = value;
-                itemstack.TempAttributes.SetInt("meshRefId", num);
+                stack.TempAttributes.SetInt("meshRefId", num);
             }
         }
 
@@ -126,7 +126,7 @@ namespace TabletopGames
             dsc.AppendInventorySlotsText(inSlot.Itemstack);
         }
 
-        public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+        public virtual MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
         {
             this.targetAtlas = targetAtlas ?? capi.BlockTextureAtlas;
             tmpTextures.Clear();
@@ -134,7 +134,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = itemstack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
@@ -143,9 +143,9 @@ namespace TabletopGames
             return mesh;
         }
 
-        public virtual string GetMeshCacheKey(ItemStack itemstack)
+        public virtual string GetMeshCacheKey(ItemStack stack)
         {
-            string wood = itemstack.Attributes.GetString("wood", defaultValue: "oak");
+            string wood = stack.Attributes.GetString("wood", defaultValue: "oak");
             if (wood != null) return Code.ToShortString() + "-" + wood;
             else return Code.ToShortString();
         }
