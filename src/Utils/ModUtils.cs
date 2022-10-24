@@ -200,5 +200,26 @@ namespace TabletopGames.Utils
 
             stack.Attributes.SetInt("rotation", rotation);
         }
+
+        public static void TryChangeSizeVariant(this ItemStack stack, IPlayer byPlayer, int index, Dictionary<string, int> sizes)
+        {
+            var api = byPlayer.Entity.Api;
+            if (stack.Collectible.Variant?["size"] == null) return;
+            var sizeVariants = sizes.Keys.ToList();
+            var sizeQuantitySlots = sizes.Values.ToList();
+
+            stack.TryDropAllSlots(byPlayer, api);
+
+            var clonedAttributes = stack.Attributes.Clone();
+
+            var newStack = new ItemStack(api.World.GetBlock(stack.Collectible.CodeWithVariant("size", sizeVariants[index])))
+            {
+                Attributes = clonedAttributes
+            };
+
+            newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[index]);
+
+            stack.SetFrom(newStack);
+        }
     }
 }

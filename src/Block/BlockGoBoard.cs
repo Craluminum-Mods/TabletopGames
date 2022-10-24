@@ -25,30 +25,10 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-            var sizeVariants = BoardData.Sizes.Keys.ToList();
-            var sizeQuantitySlots = BoardData.Sizes.Values.ToList();
+            var stack = slot.Itemstack;
 
-            if (toolMode == 0)
-            {
-                slot.Itemstack.TryDropAllSlots(byPlayer, api);
-            }
-            else
-            {
-                if (Variant?["size"] == null) return;
-
-                slot.Itemstack.TryDropAllSlots(byPlayer, api);
-
-                var clonedAttributes = slot.Itemstack.Attributes.Clone();
-
-                var newStack = new ItemStack(api.World.GetBlock(CodeWithVariant("size", sizeVariants[toolMode - 1])))
-                {
-                    Attributes = clonedAttributes
-                };
-
-                newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[toolMode - 1]);
-
-                slot.Itemstack.SetFrom(newStack);
-            }
+            if (toolMode == 0) stack.TryDropAllSlots(byPlayer, api);
+            else stack.TryChangeSizeVariant(byPlayer, toolMode - 1, BoardData.Sizes);
         }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)

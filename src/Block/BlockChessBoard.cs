@@ -54,20 +54,7 @@ namespace TabletopGames
             }
             else if (toolMode <= sizeVariants.Count + 1)
             {
-                if (Variant?["size"] == null) return;
-
-                stack.TryDropAllSlots(byPlayer, api);
-
-                var clonedAttributes = stack.Attributes.Clone();
-
-                var newStack = new ItemStack(api.World.GetBlock(CodeWithVariant("size", sizeVariants[toolMode - 2])))
-                {
-                    Attributes = clonedAttributes
-                };
-
-                newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[toolMode - 2]);
-
-                stack.SetFrom(newStack);
+                stack.TryChangeSizeVariant(byPlayer, toolMode - 2, BoardData.Sizes);
             }
             else if (toolMode <= sizeVariants.Count + colors1.Count + 1)
             {
