@@ -94,16 +94,8 @@ namespace TabletopGames
 
             var slotsTree = toSlot.Itemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
 
-            if (slotsTree == null) return false;
-
-            if (slotsTree.Count is > 1 and < 13)
-            {
-                new DummySlot { Itemstack = fromSlot.TakeOut(1) }.SaveSlotToBox(toSlot.Itemstack, slotsTree.Count);
-            }
-            else
-            {
-                return false;
-            }
+            if (slotsTree?.Count is < 2 or > 12) return false;
+            new DummySlot { Itemstack = fromSlot.TakeOut(1) }.SaveSlotToBox(toSlot.Itemstack, slotsTree.Count);
 
             toSlot.MarkDirty();
             fromSlot.MarkDirty();
