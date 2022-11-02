@@ -1,18 +1,18 @@
 {
     "item-checker-withcrown": "Шашка ({0}) (Дамка)",
-    "item-dominopiece": "Кісточка доміно  ({0}) ({1})",
-    "itemdesc-dominopiece": "Обертання і зміна кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk> )",
+    "item-dominopiece": "Кісточка доміно ({0}) ({1})",
+    "itemdesc-dominopiece": "Обертання і зміна кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
     "item-checker": "Шашка ({0})",
-    "itemdesc-checker": "Зміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk> )",
-    "itemdesc-chesspiece": "Шахова фігура. \tЗміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk> )",
+    "itemdesc-checker": "Зміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
+    "itemdesc-chesspiece": "Шахова фігура. \nЗміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
     "item-chesspiece-bishop": "Слон ({0})",
     "item-chesspiece-king": "Король ({0})",
     "item-chesspiece-knight": "Кінь ({0})",
-    "item-chesspiece-pawn": "Пішак  ({0})",
+    "item-chesspiece-pawn": "Пішак ({0})",
     "item-chesspiece-queen": "Ферзь ({0})",
     "item-chesspiece-rook": "Тура ({0})",
     "Packed": "Запаковано: {0}",
-    "item-gostone": "Камень ({0})",
+    "item-gostone": "Камінь ({0})",
     "block-goboard-9x9": "Дошка для Ґо (9x9)",
     "block-goboard-14x14": "Дошка для Ґо (14x14)",
     "block-goboard-15x15": "Дошка для Ґо (15x15)",
@@ -40,12 +40,12 @@
     "handbook-wheretoget-title": "Де отримати",
     "handbook-wheretoget-text": "• <a href=\"handbook://tabletopgames:crafting\">Тут</a>",
 
-    "introduction-title": "Настільні ігри: Введение",
-    "introduction-text": "<strong>Настільні ігри: Введение</strong><br><br>Disclaimer: Практично на всі предмети з мода не можна посилатися через посилання через обмеження посібника.<br><br><strong>Поширені запитання</strong><br>Q: Де я можу отримати рецепти шахових фігур, гральних карт тощо?<br>A: <a href=\"handbook://tabletopgames:crafting\">Тут</a>",
+    "introduction-title": "Настільні ігри: Введення",
+    "introduction-text": "<strong>Настільні ігри: Введення</strong><br><br>Disclaimer: Практично на всі предмети з модифікації не можна посилатися через посилання через обмеження посібника.<br><br><strong>Поширені запитання</strong><br>Q: Де я можу отримати рецепти шахових фігур, гральних карт тощо?<br>A: <a href=\"handbook://tabletopgames:crafting\">Тут</a>",
 
     "crafting-title": "Настільні ігри: Виготовлення",
-    "crafting-text": "<strong>Настільні ігри: Виготовлення</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Отримання набору кісточок доміно</a>.<br>- <font color=\"#ffff00\"Шахові фігури</font> (1 набір / 32 штук) <strong>(білий пішак)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набір / 24 штук) <strong>(біла шашка)</strong>.<br>- <font color=\"#ffff00\">Кісточки доміно</font> (1 набір / 28 штук) <strong>(кісточка доміно з типом 0_0)</strong>.<br>- <font color=\"#ffff00\">Камені</font> (81 штук) <strong>(білий камень)</strong>.<br>- <font color=\"#ffff00\">Дошки для Ґо</font> <strong>(Дошка для Ґо (9x9))</strong>.<br>- <font color=\"#ffff00\">Шахівниці</font> <strong>(Шахівниця (8x8))</strong>",
+    "crafting-text": "<strong>Настільні ігри: Виготовлення</strong><br><br><a href=\"handbook://tabletopgames:dominopieces\">Отримання набору кісточок доміно</a>.<br>- <font color=\"#ffff00\"Шахові фігури</font> (1 набір / 32 штук) <strong>(білий пішак)</strong>.<br>- <font color=\"#ffff00\">Шашки</font> (1 набір / 24 штук) <strong>(біла шашка)</strong>.<br>- <font color=\"#ffff00\">Кісточки доміно</font> (1 набір / 28 штук) <strong>(кісточка доміно з типом 0_0)</strong>.<br>- <font color=\"#ffff00\">Камені</font> (81 штук) <strong>(білий камінь)</strong>.<br>- <font color=\"#ffff00\">Дошки для Ґо</font> <strong>(Дошка для Ґо (9x9))</strong>.<br>- <font color=\"#ffff00\">Шахівниці</font> <strong>(Шахівниця (8x8))</strong>",
 
     "dominopieces-title": "Настільні ігри: Кісточки доміно",
-    "dominopieces-text": "<strong>Отримання набору кісточок доміно</strong><br><br>1. Заповніть <strong>ящик для доміно</strong> будь-якими кісточками доміно. Інвентар коробки має бути повний. <br>2. Отримайте повний набір натиснувши на кнопку <strong>\"Перемішати\"</strong>.<br>3. Витягніть одну кісточку доміно натиснувши на кнопку <strong>\"-1\"</strong>.<br><br><i>Зверніть увагу, що тип набору безпосередньо залежить від кількості слотів в інвентарі коробки</i><br><br><strong>Доступні набори</strong><br>\tТип набору\t\t\tШтук\t\t\tТочок<br>\tДубль 6\t\t\t28\t\t\t168<br>\tДубль 9\t\t\t55\t\t\t495"
+    "dominopieces-text": "<strong>Отримання набору кісточок доміно</strong><br><br>1. Заповніть <strong>ящик для доміно</strong> будь-якими кісточками доміно. Інвентар коробки має бути повний.<br>2. Отримайте повний набір натиснувши на кнопку <strong>\"Перемішати\"</strong>.<br>3. Витягніть одну кісточку доміно натиснувши на кнопку <strong>\"-1\"</strong>.<br><br><i>Зверніть увагу, що тип набору безпосередньо залежить від кількості слотів в інвентарі коробки</i><br><br><strong>Доступні набори</strong><br>\tТип набору\t\t\tШтук\t\t\tТочок<br>\tДубль 6\t\t\t28\t\t\t168<br>\tДубль 9\t\t\t55\t\t\t495"
 }
