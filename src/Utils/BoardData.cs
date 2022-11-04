@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Vintagestory.API.MathTools;
 
 namespace TabletopGames
 {
     [JsonObject]
     public class BoardData
     {
+        public Vec3f[] OverridePositions { get; set; }
         public int QuantitySlots { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

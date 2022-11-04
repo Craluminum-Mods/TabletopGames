@@ -10,6 +10,7 @@ namespace TabletopGames
     public class BEBoard : BlockEntityDisplay
     {
         public BoardData BoardData => Block?.Attributes["tabletopgames"]["board"].AsObject<BoardData>();
+        public Vec3f[] OverridePositions => BoardData.OverridePositions;
         public int Width => BoardData.Width;
         public int Height => BoardData.Height;
         public float DistanceBetweenSlots => BoardData.DistanceBetweenSlots;
@@ -107,9 +108,25 @@ namespace TabletopGames
 
         public override void TranslateMesh(MeshData mesh, int index)
         {
-            Vec3f position = index.GetPositionOnBoard(Width, Height, DistanceBetweenSlots, FromBorderX, FromBorderZ);
-            Vec4f offset = mat.TransformVector(new Vec4f(position.X - 0.5f, position.Y, position.Z - 0.5f, 0));
-            mesh.Translate(offset.XYZ);
+            if (OverridePositions == null)
+            {
+                Vec3f position = index.GetPositionOnBoard(Width, Height, DistanceBetweenSlots, FromBorderX, FromBorderZ);
+                Vec4f offset = mat.TransformVector(new Vec4f(
+                    position.X - 0.5f,
+                    position.Y,
+                    position.Z - 0.5f,
+                    0));
+                mesh.Translate(offset.XYZ);
+            }
+            else
+            {
+                Vec4f offset = mat.TransformVector(new Vec4f(
+                    OverridePositions[index].X - 0.5f,
+                    OverridePositions[index].Y,
+                    OverridePositions[index].Z - 0.5f,
+                    0));
+                mesh.Translate(offset.XYZ);
+            }
         }
 
         // private MeshData GetMesh(ITesselatorAPI tesselator)
