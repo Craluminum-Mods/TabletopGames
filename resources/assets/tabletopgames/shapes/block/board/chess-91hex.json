@@ -1,0 +1,55 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+	},
+	"elements": [
+		{
+			"name": "wood",
+			"from": [ 0.0, 0.0, 0.0 ], 
+			"to": [ 16.0, 0.5, 16.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"east": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"south": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"west": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"up": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"down": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+			}
+		},
+		{
+			"name": "field",
+			"from": [ 1.0, 0.51, 1.0 ], 
+			"to": [ 15.0, 0.51, 15.0 ], 
+			"rotationOrigin": [ 8.0, 0.51, 8.0 ],
+			"faces": {
+				"north": { "texture": "#3hex", "uv": [ 0.0, 0.0, 14.0, 0.0909 ], "enabled": false },
+				"east": { "texture": "#3hex", "uv": [ 0.0, 0.0, 14.0, 0.0909 ], "enabled": false },
+				"south": { "texture": "#3hex", "uv": [ 0.0, 0.0, 14.0, 0.0909 ], "enabled": false },
+				"west": { "texture": "#3hex", "uv": [ 0.0, 0.0, 14.0, 0.0909 ], "enabled": false },
+				"up": { "texture": "#3hex", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false },
+				"down": { "texture": "#3hex", "uv": [ 0.0, 0.0, 14.0, 14.0 ], "enabled": false }
+			}
+		},
+		{
+			"name": "numbers",
+			"from": [ 0.0, 0.52, 0.0 ], 
+			"to": [ 16.0, 0.52, 16.0 ], 
+			"rotationOrigin": [ 8.0, 0.52, 8.0 ],
+			"faces": {
+				"north": { "texture": "#numbers", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"east": { "texture": "#numbers", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"south": { "texture": "#numbers", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"west": { "texture": "#numbers", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+				"up": { "texture": "#numbers", "uv": [ 1.9, 0.0, 14.2, 16.0 ], "autoUv": false },
+				"down": { "texture": "#numbers", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "enabled": false }
+			}
+		}
+	]}

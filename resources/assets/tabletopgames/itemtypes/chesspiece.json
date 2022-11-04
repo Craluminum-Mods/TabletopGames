@@ -18,6 +18,7 @@
         "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
         "onTabletopGamesChessBoard14x14Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
         "onTabletopGamesChessBoard16x16Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0875 },
+        "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
         "modelPrefix": "tabletopgames:shapes/item/chesspiece/",
         "tabletopgames": {
             "chesspiece": {
