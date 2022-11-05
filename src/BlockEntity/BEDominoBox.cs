@@ -14,6 +14,9 @@ namespace TabletopGames
 {
     public class BEDominoBox : BlockEntityContainer
     {
+        public BoardData BoardData => Block?.Attributes["tabletopgames"]["dominobox"].AsObject<BoardData>();
+        public float RotateRadY => BoardData.RotateRadY;
+
         internal InventoryGeneric inventory;
 
         public int quantitySlots;
@@ -169,31 +172,28 @@ namespace TabletopGames
             dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.GetNonEmptySlotsCount(), inventory.Count)));
         }
 
-        // private MeshData GetMesh(ITesselatorAPI tesselator)
-        // {
-        //     var chessBoardMeshes = ObjectCacheUtil.GetOrCreate(Api, MeshesKey, () => new Dictionary<string, MeshData>());
+        private MeshData GetMesh(ITesselatorAPI tesselator)
+        {
+            var dominoBoxMeshes = ObjectCacheUtil.GetOrCreate(Api, MeshesKey, () => new Dictionary<string, MeshData>());
 
-        //     if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockWithAttributes block) return null;
+            if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockWithAttributes block) return null;
 
-        //     var stack = block.OnPickBlock(Api.World, Pos).Clone();
+            var stack = block.OnPickBlock(Api.World, Pos).Clone();
 
-        //     if (chessBoardMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
+            if (dominoBoxMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
 
-        //     return chessBoardMeshes[MeshCacheKey] = block.GenMesh(stack, null, null);
-        // }
+            return dominoBoxMeshes[MeshCacheKey] = block.GenMesh(stack, block.capi.BlockTextureAtlas, null);
+        }
 
-        // public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
-        // {
-        //     var ownMesh = GetMesh(tesselator);
-        //     if (ownMesh == null) return false;
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
+        {
+            var ownMesh = GetMesh(tesselator);
+            if (ownMesh == null) return false;
 
-        //     float rotateRadY = Block.Attributes["tabletopgames"]["dominobox"].AsObject<BoardData>().RotateRadY;
+            ownMesh = ownMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, GameMath.DEG2RAD * RotateRadY, 0);
 
-        //     ownMesh = ownMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, GameMath.DEG2RAD * rotateRadY, 0);
-
-        //     mesher.AddMeshData(ownMesh);
-
-        //     return true;
-        // }
+            mesher.AddMeshData(ownMesh);
+            return true;
+        }
     }
 }
