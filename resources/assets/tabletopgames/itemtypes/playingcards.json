@@ -80,7 +80,8 @@
     "tpHandTransform": {
         "translation": { "x": -2.3, "y": 0, "z": -1.525 },
         "rotation": { "x": 0, "y": -90, "z": 0 },
-        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 }
+        "origin": { "x": 0.5, "y": 0.025, "z": 0.5 },
+        "scale": 0.001
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
