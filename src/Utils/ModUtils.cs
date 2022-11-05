@@ -101,9 +101,9 @@ namespace TabletopGames.Utils
             if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
             if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
 
-            if (stack.HasKeyAsAttribute(key, "wood")) return new AssetLocation(stack.GetTexturePath(key.Key, "oak") + ".png");
-            if (stack.HasKeyAsAttribute(key, "dark")) return new AssetLocation(stack.GetTexturePath(key.Key, "black") + ".png");
-            if (stack.HasKeyAsAttribute(key, "light")) return new AssetLocation(stack.GetTexturePath(key.Key, "white") + ".png");
+            if (stack.HasKeyAsAttribute(key, "wood")) return textures["wood-" + stack.Attributes.GetString("wood")].Base;
+            if (stack.HasKeyAsAttribute(key, "dark")) return textures["dark-" + stack.Attributes.GetString("dark")].Base;
+            if (stack.HasKeyAsAttribute(key, "light")) return textures["light-" + stack.Attributes.GetString("light")].Base;
 
             if (stack.Collectible?.Attributes?["tabletopgames"]?["playingcard"]?.AsObject<PlayingCardData>() is PlayingCardData cardData and not null)
             {

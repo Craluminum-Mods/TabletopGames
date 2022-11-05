@@ -10,9 +10,6 @@
             "rotation": { "x": 0, "y": 0, "z": 85 },
             "scale": 0.9
         },
-        "texturePrefixes": {
-            "wood": "game:block/wood/debarked/"
-        },
         "handbook": { "groupBy": ["dominoboard-*"] },
         "tabletopgames": {
             "board": {
@@ -57,7 +54,23 @@
     "sideopaque": { "all": false },
     "textures": {
         "dominoboard": { "base": "tabletopgames:block/dominoboard-{size}" },
-        "wood": { "base": "game:block/wood/debarked/oak" }
+
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "wood-": { "base": "game:block/wood/debarked/oak" },
+        "wood-default": { "base": "game:block/wood/debarked/oak" },
+        "wood-aged": { "base": "game:block/wood/debarked/aged" },
+        "wood-birch": { "base": "game:block/wood/debarked/birch" },
+        "wood-oak": { "base": "game:block/wood/debarked/oak" },
+        "wood-maple": { "base": "game:block/wood/debarked/maple" },
+        "wood-pine": { "base": "game:block/wood/debarked/pine" },
+        "wood-acacia": { "base": "game:block/wood/debarked/acacia" },
+        "wood-kapok": { "base": "game:block/wood/debarked/kapok" },
+        "wood-baldcypress": { "base": "game:block/wood/debarked/baldcypress" },
+        "wood-larch": { "base": "game:block/wood/debarked/larch" },
+        "wood-redwood": { "base": "game:block/wood/debarked/redwood" },
+        "wood-ebony": { "base": "game:block/wood/debarked/ebony" },
+        "wood-walnut": { "base": "game:block/wood/debarked/walnut" },
+        "wood-purpleheart": { "base": "game:block/wood/debarked/purpleheart" }
     },
     "heldTpIdleAnimation": "holdbothhandslarge",
     "heldTpUseAnimation": "twohandplaceblock",

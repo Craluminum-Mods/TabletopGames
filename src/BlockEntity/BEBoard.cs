@@ -4,6 +4,8 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using TabletopGames.Utils;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
+using System.Collections.Generic;
 
 namespace TabletopGames
 {
@@ -16,6 +18,7 @@ namespace TabletopGames
         public float DistanceBetweenSlots => BoardData.DistanceBetweenSlots;
         public float FromBorderX => BoardData.FromBorderX;
         public float FromBorderZ => BoardData.FromBorderZ;
+        public float RotateRadY => BoardData.RotateRadY;
 
         public int quantitySlots;
         public string woodType;
@@ -27,6 +30,7 @@ namespace TabletopGames
 
         public bool DisplaySelectedSlotId => Block?.Attributes?["tabletopgames"]?["displaySelectedSlotId"].AsBool() == true;
         public bool DisplaySelectedSlotStack => Block?.Attributes?["tabletopgames"]?["displaySelectedSlotStack"].AsBool() == true;
+        public bool RenderDefaultMesh => Block?.Attributes?["tabletopgames"]?["renderDefaultMesh"].AsBool() == true;
 
         internal InventoryGeneric inventory;
         internal Matrixf mat = new();
@@ -129,38 +133,38 @@ namespace TabletopGames
             }
         }
 
-        // private MeshData GetMesh(ITesselatorAPI tesselator)
-        // {
-        //     var chessBoardMeshes = ObjectCacheUtil.GetOrCreate(Api, MeshesKey, () => new Dictionary<string, MeshData>());
+        private MeshData GetMesh(ITesselatorAPI tesselator)
+        {
+            var boardMeshes = ObjectCacheUtil.GetOrCreate(Api, MeshesKey, () => new Dictionary<string, MeshData>());
 
-        //     if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockWithAttributes block) return null;
+            if (Api.World.BlockAccessor.GetBlock(Pos) is not BlockWithAttributes block) return null;
 
-        //     var stack = block.OnPickBlock(Api.World, Pos).Clone();
+            var stack = block.OnPickBlock(Api.World, Pos).Clone();
 
-        //     if (chessBoardMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
+            if (boardMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
 
-        //     return chessBoardMeshes[MeshCacheKey] = block.GenMesh(stack, capi.BlockTextureAtlas, null);
-        // }
+            return boardMeshes[MeshCacheKey] = block.GenMesh(stack, capi.BlockTextureAtlas, null);
+        }
 
-        // public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
-        // {
-        //     var ownMesh = GetMesh(tesselator);
-        //     if (ownMesh == null) return false;
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
+        {
+            if (RenderDefaultMesh) return base.OnTesselation(mesher, tesselator);
 
-        //     float rotateRadY = Block.Attributes["tabletopgames"]["board"].AsObject<BoardData>().RotateRadY;
+            var ownMesh = GetMesh(tesselator);
+            if (ownMesh == null) return false;
 
-        //     ownMesh = ownMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, GameMath.DEG2RAD * rotateRadY, 0);
+            ownMesh = ownMesh.Clone().Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, GameMath.DEG2RAD * RotateRadY, 0);
 
-        //     mesher.AddMeshData(ownMesh);
+            mesher.AddMeshData(ownMesh);
 
-        //     for (int i = 0; i < meshes.Length; i++)
-        //     {
-        //         if (meshes[i] == null) continue;
-        //         mesher.AddMeshData(meshes[i]);
-        //     }
+            for (int i = 0; i < meshes.Length; i++)
+            {
+                if (meshes[i] == null) continue;
+                mesher.AddMeshData(meshes[i]);
+            }
 
-        //     return true;
-        // }
+            return true;
+        }
 
         public bool TryPut(IPlayer byPlayer, int toSlotId, bool shouldRotate = false)
         {

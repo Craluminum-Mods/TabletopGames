@@ -17,9 +17,6 @@
                 }
             }
         },
-        "texturePrefixes": {
-            "wood": "game:block/wood/debarked/"
-        },
         "textureCodeForBlockColor": "wood",
         "handbook": { "groupBy": ["dominobox-*"] }
     },
@@ -34,9 +31,25 @@
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "textures": {
-        "wood": { "base": "game:block/wood/debarked/oak" },
         "black": { "base": "game:block/creative/col64" },
-        "white": { "base": "game:block/creative/col79" }
+        "white": { "base": "game:block/creative/col79" },
+
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "wood-": { "base": "game:block/wood/debarked/oak" },
+        "wood-default": { "base": "game:block/wood/debarked/oak" },
+        "wood-aged": { "base": "game:block/wood/debarked/aged" },
+        "wood-birch": { "base": "game:block/wood/debarked/birch" },
+        "wood-oak": { "base": "game:block/wood/debarked/oak" },
+        "wood-maple": { "base": "game:block/wood/debarked/maple" },
+        "wood-pine": { "base": "game:block/wood/debarked/pine" },
+        "wood-acacia": { "base": "game:block/wood/debarked/acacia" },
+        "wood-kapok": { "base": "game:block/wood/debarked/kapok" },
+        "wood-baldcypress": { "base": "game:block/wood/debarked/baldcypress" },
+        "wood-larch": { "base": "game:block/wood/debarked/larch" },
+        "wood-redwood": { "base": "game:block/wood/debarked/redwood" },
+        "wood-ebony": { "base": "game:block/wood/debarked/ebony" },
+        "wood-walnut": { "base": "game:block/wood/debarked/walnut" },
+        "wood-purpleheart": { "base": "game:block/wood/debarked/purpleheart" }
     },
     "creativeinventoryStacksByType": {
         "*-east": [

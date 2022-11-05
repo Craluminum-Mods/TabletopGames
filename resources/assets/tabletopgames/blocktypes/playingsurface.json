@@ -15,7 +15,8 @@
                 "AttributeTransformCode": "onTabletopGames_PlayingSurface_Transform"
             },
             "displaySelectedSlotId": true,
-            "displaySelectedSlotStack": true
+            "displaySelectedSlotStack": true,
+            "renderDefaultMesh": true
         }
     },
     "shape": { "base": "block/flat" },

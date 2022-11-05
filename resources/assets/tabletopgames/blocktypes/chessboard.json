@@ -336,11 +336,6 @@
             "displaySelectedSlotId": false,
             "displaySelectedSlotStack": true
         },
-        "texturePrefixes": {
-            "wood": "game:block/wood/debarked/",
-            "dark": "tabletopgames:block/checkerboard/dark/{size}-",
-            "light": "tabletopgames:block/checkerboard/light/{size}-"
-        },
         "handbook": { "groupBy": ["chessboard-*"] }
     },
     "variantGroups": [
@@ -381,11 +376,47 @@
     "textures": {
         "black": { "base": "game:block/creative/col64" },
         "board": { "base": "tabletopgames:block/checkerboard-{size}" },
-        "dark": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
-        "light": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
-        "wood": { "base": "game:block/wood/debarked/oak" },
         "3hex": { "base": "tabletopgames:block/hexboard-{size}" },
-        "numbers": { "base": "tabletopgames:block/hexboard-{size}-numbers" }
+        "numbers": { "base": "tabletopgames:block/hexboard-{size}-numbers" },
+
+        "dark": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "dark-": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "dark-default": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "dark-black": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "dark-blue": { "base": "tabletopgames:block/checkerboard/dark/{size}-blue" },
+        "dark-brown": { "base": "tabletopgames:block/checkerboard/dark/{size}-brown" },
+        "dark-dark-green": { "base": "tabletopgames:block/checkerboard/dark/{size}-dark-green" },
+        "dark-gray": { "base": "tabletopgames:block/checkerboard/dark/{size}-gray" },
+        "dark-green": { "base": "tabletopgames:block/checkerboard/dark/{size}-green" },
+        "dark-lightblue": { "base": "tabletopgames:block/checkerboard/dark/{size}-lightblue" },
+        "dark-lightgray": { "base": "tabletopgames:block/checkerboard/dark/{size}-lightgray" },
+        "dark-orange": { "base": "tabletopgames:block/checkerboard/dark/{size}-orange" },
+        "dark-pink": { "base": "tabletopgames:block/checkerboard/dark/{size}-pink" },
+        "dark-purple": { "base": "tabletopgames:block/checkerboard/dark/{size}-purple" },
+        "dark-red": { "base": "tabletopgames:block/checkerboard/dark/{size}-red" },
+        "dark-tan": { "base": "tabletopgames:block/checkerboard/dark/{size}-tan" },
+
+        "light": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
+        "light-": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
+        "light-default": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
+        "light-white": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
+
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "wood-": { "base": "game:block/wood/debarked/oak" },
+        "wood-default": { "base": "game:block/wood/debarked/oak" },
+        "wood-aged": { "base": "game:block/wood/debarked/aged" },
+        "wood-birch": { "base": "game:block/wood/debarked/birch" },
+        "wood-oak": { "base": "game:block/wood/debarked/oak" },
+        "wood-maple": { "base": "game:block/wood/debarked/maple" },
+        "wood-pine": { "base": "game:block/wood/debarked/pine" },
+        "wood-acacia": { "base": "game:block/wood/debarked/acacia" },
+        "wood-kapok": { "base": "game:block/wood/debarked/kapok" },
+        "wood-baldcypress": { "base": "game:block/wood/debarked/baldcypress" },
+        "wood-larch": { "base": "game:block/wood/debarked/larch" },
+        "wood-redwood": { "base": "game:block/wood/debarked/redwood" },
+        "wood-ebony": { "base": "game:block/wood/debarked/ebony" },
+        "wood-walnut": { "base": "game:block/wood/debarked/walnut" },
+        "wood-purpleheart": { "base": "game:block/wood/debarked/purpleheart" }
     },
     "sounds": {
         "place": "game:block/planks",
