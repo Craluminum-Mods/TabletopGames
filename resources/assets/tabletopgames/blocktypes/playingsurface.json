@@ -14,7 +14,7 @@
                 "fromBorderZ": 0.875,
                 "AttributeTransformCode": "onTabletopGames_PlayingSurface_Transform"
             },
-            "displaySelectedSlotId": true,
+            "displaySelectedSlotId": false,
             "displaySelectedSlotStack": true,
             "renderDefaultMesh": true
         }
