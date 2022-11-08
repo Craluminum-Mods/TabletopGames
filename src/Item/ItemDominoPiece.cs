@@ -74,9 +74,11 @@ namespace TabletopGames
         public override string GetMeshCacheKey(ItemStack stack)
         {
             string type = stack.Attributes.GetString("type");
+            string color1 = stack.Attributes.GetString("color1");
+            string color2 = stack.Attributes.GetString("color2");
             int rotation = stack.Attributes.GetInt("rotation");
 
-            return Code.ToShortString() + "-" + type + "-" + rotation;
+            return Code.ToShortString() + "-" + type + "-" + color1 + "-" + color2 + "-" + rotation;
         }
     }
 }
