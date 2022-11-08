@@ -11,6 +11,27 @@ namespace TabletopGames
 
         public override string MeshRefName => "tableTopGames_PlayingCards_Meshrefs";
 
+        public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
+        {
+            base.OnHeldIdle(slot, byEntity);
+
+            if (slot.Itemstack.Attributes.GetString("shapeType") == "pile")
+            {
+                slot.Itemstack.Attributes.SetString("shapeType", "hand");
+                slot.MarkDirty();
+            }
+        }
+
+        public override void OnGroundIdle(EntityItem entityItem)
+        {
+            base.OnGroundIdle(entityItem);
+
+            if (entityItem.Itemstack.Attributes.GetString("shapeType") == "pile")
+            {
+                entityItem.Itemstack.Attributes.SetString("shapeType", "hand");
+            }
+        }
+
         public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
         {
             this.targetAtlas = targetAtlas;

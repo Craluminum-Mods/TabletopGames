@@ -44,8 +44,6 @@ namespace TabletopGames
             ItemStack stack = fromSlot.TakeOut(1);
             if (removeRotation) stack?.Attributes?.RemoveAttribute("rotation");
 
-            if (stack.Collectible is ItemPlayingCards) stack.Attributes?.SetString("shapeType", "hand");
-
             if (!byPlayer.InventoryManager.TryGiveItemstack(stack, true))
             {
                 Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
