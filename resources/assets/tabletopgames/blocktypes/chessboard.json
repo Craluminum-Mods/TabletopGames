@@ -377,7 +377,14 @@
         "black": { "base": "game:block/creative/col64" },
         "board": { "base": "tabletopgames:block/checkerboard-{size}" },
         "3hex": { "base": "tabletopgames:block/hexboard-{size}" },
-        "numbers": { "base": "tabletopgames:block/hexboard-{size}-numbers" },
+        "numbersByType": {
+            "*hex*": {
+                "base": "tabletopgames:block/hexboard-{size}-numbers"
+            },
+            "*": {
+                "base": "tabletopgames:block/checkerboard-{size}-numbers"
+            }
+        },
 
         "dark": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
         "dark-": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
@@ -501,7 +508,7 @@
             { "_cmt": "7H", "x1": 0.7815, "y1": 0, "z1": 0.2185, "x2": 0.875, "y2": 0.0345, "z2": 0.3125, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
             { "_cmt": "8H", "x1": 0.7815, "y1": 0, "z1": 0.125, "x2": 0.875, "y2": 0.0345, "z2": 0.2185, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
 
-            { "_cmt": "Base", "x1": 0.0625, "y1": 0, "z1": 0.0625, "x2": 0.9375, "y2": 0.031, "z2": 0.9375, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+            { "_cmt": "Base", "x1": 0.03125, "y1": 0, "z1": 0.03125, "x2": 0.96875, "y2": 0.031, "z2": 0.96875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
         ],
         "*-10x10-*": [
             { "_cmt": "1A", "x1": 0.125, "y1": 0, "z1": 0.8, "x2": 0.2, "y2": 0.0345, "z2": 0.875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
@@ -614,7 +621,7 @@
             { "_cmt": "9J", "x1": 0.8, "y1": 0, "z1": 0.2, "x2": 0.875, "y2": 0.0345, "z2": 0.275, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
             { "_cmt": "10J", "x1": 0.8, "y1": 0, "z1": 0.125, "x2": 0.875, "y2": 0.0345, "z2": 0.2, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
 
-            { "_cmt": "Base", "x1": 0.0625, "y1": 0, "z1": 0.0625, "x2": 0.9375, "y2": 0.031, "z2": 0.9375, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+            { "_cmt": "Base", "x1": 0.05, "y1": 0, "z1": 0.05, "x2": 0.95, "y2": 0.031, "z2": 0.95, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
         ],
         "*-12x12-*": [
             { "_cmt": "1A", "x1": 0.125, "y1": 0, "z1": 0.8125, "x2": 0.1875, "y2": 0.0345, "z2": 0.875, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
@@ -1261,7 +1268,7 @@
             { "_cmt": "15P", "x1": 0.8835, "y1": 0, "z1": 0.11725, "x2": 0.93825, "y2": 0.0345, "z2": 0.1715, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
             { "_cmt": "16P", "x1": 0.8835, "y1": 0, "z1": 0.0625, "x2": 0.93825, "y2": 0.0345, "z2": 0.11725, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
 
-            { "_cmt": "Base", "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.031, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+            { "_cmt": "Base", "x1": 0.0063, "y1": 0, "z1": 0.0063, "x2": 0.9937, "y2": 0.031, "z2": 0.9937, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
         ],
         "*-91hex-*": [
             // x1: ADD 0.0775
