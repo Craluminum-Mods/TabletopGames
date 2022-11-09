@@ -117,7 +117,6 @@ namespace TabletopGames.Utils
         }
 
         private static string GetTexturePath(this ItemStack stack, string key) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key);
-        private static string GetTexturePath(this ItemStack stack, string key, string defaultKey) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key, defaultKey);
 
         public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
 
@@ -175,12 +174,10 @@ namespace TabletopGames.Utils
             if (side == "south" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
             if (side == "south" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
 
-
             if (side == null && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 270);
             if (side == null && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
             if (side == null && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
             if (side == null && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
-
         }
 
         public static void RotateClockwise(this ItemStack stack)

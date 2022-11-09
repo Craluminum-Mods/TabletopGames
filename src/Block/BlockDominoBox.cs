@@ -28,7 +28,6 @@ namespace TabletopGames
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
         {
-
             if (toolMode == 0)
             {
                 var boxStack = boxItem?.GenItemstack(api, null);

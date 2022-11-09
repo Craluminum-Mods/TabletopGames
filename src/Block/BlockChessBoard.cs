@@ -35,7 +35,6 @@ namespace TabletopGames
         {
             var stack = slot.Itemstack;
             var sizeVariants = BoardData.Sizes.Keys.ToList();
-            var sizeQuantitySlots = BoardData.Sizes.Values.ToList();
 
             var colors1 = BoardData.DarkVariants.Keys.ToList();
             var colors2 = BoardData.LightVariants.Keys.ToList();
