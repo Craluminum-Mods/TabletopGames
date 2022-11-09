@@ -100,7 +100,7 @@
         "base": "block/board/go-{size}"
     },
     "textures": {
-        "black": { "base": "game:block/creative/col64" },
+        "lines": { "base": "tabletopgames:block/goboard/{size}" },
 
         "wood": { "base": "game:block/wood/debarked/oak" },
         "wood-": { "base": "game:block/wood/debarked/oak" },
