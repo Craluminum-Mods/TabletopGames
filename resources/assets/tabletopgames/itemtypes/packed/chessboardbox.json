@@ -22,8 +22,9 @@
     "heldTpIdleAnimation": "holdbothhandslarge",
     "shape": { "base": "item/box/chessboard-8x8" },
     "textures": {
-        "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "tabletopgames:block/checkerboard-8x8" },
+        "numbers": { "base": "tabletopgames:block/checkerboard-8x8-numbers" },
+        "dark": { "base": "tabletopgames:block/checkerboard/dark/8x8-black" },
+        "light": { "base": "tabletopgames:block/checkerboard/light/8x8-white" },
 
         "wood": { "base": "game:block/wood/debarked/oak" },
         "wood-": { "base": "game:block/wood/debarked/oak" },

@@ -374,8 +374,6 @@
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "textures": {
-        "black": { "base": "game:block/creative/col64" },
-        "board": { "base": "tabletopgames:block/checkerboard-{size}" },
         "3hex": { "base": "tabletopgames:block/hexboard-{size}" },
         "numbersByType": {
             "*hex*": {
