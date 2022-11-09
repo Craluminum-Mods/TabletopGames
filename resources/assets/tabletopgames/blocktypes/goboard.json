@@ -140,10 +140,7 @@
                     { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "purpleheart" } }
                 ]
             }
-        ],
-        "*-14x14": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "goboard-14x14", "attributes": { "quantitySlots": 196, "wood": "aged" } }] }],
-        "*-15x15": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "goboard-15x15", "attributes": { "quantitySlots": 225, "wood": "aged" } }] }],
-        "*-16x16": [{ "tabs": ["tabletopgames"], "stacks": [{ "type": "block", "code": "goboard-16x16", "attributes": { "quantitySlots": 256, "wood": "aged" } }] }]
+        ]
     },
     "lightAbsorption": 0,
     "sidesolid": { "all": false },
