@@ -1,0 +1,44 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"wood": "block/wood/debarked/oak"
+	},
+	"elements": [
+		{
+			"name": "wood",
+			"from": [ 0.0, 0.0, 0.0 ], 
+			"to": [ 16.0, 0.5, 16.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"east": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"south": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"west": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+				"up": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"down": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+			},
+			"children": [
+				{
+					"name": "lines",
+					"from": [ 0.2, 0.51, 0.2 ], 
+					"to": [ 15.8, 0.51, 15.8 ], 
+					"rotationOrigin": [ 7.8, 0.51, 7.8 ],
+					"faces": {
+						"north": { "texture": "#lines", "uv": [ 0.0, 0.0, 16.0, 0.5 ], "enabled": false },
+						"east": { "texture": "#lines", "uv": [ 0.0, 0.0, 15.5652, 0.0435 ], "enabled": false },
+						"south": { "texture": "#lines", "uv": [ 0.0, 0.0, 15.5652, 0.0435 ], "enabled": false },
+						"west": { "texture": "#lines", "uv": [ 0.0, 0.0, 15.5652, 0.0435 ], "enabled": false },
+						"up": { "texture": "#lines", "uv": [ 0.1, 0.1, 15.9, 15.9 ], "autoUv": false },
+						"down": { "texture": "#lines", "uv": [ 0.0, 0.0, 15.5652, 15.5652 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}
