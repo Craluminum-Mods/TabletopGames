@@ -8,7 +8,7 @@ namespace TabletopGames
 {
     class ItemChecker : ItemWithAttributes
     {
-        public CheckerData CheckerData => Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
+        public CheckerData CheckerData => Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
 
         public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
 

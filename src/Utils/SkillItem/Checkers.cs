@@ -11,7 +11,7 @@ namespace TabletopGames.Utils
     {
         public static SkillItem[] GetCheckersToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
-            var checkerData = collobj.Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
+            var checkerData = collobj.Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
             var hexColors = checkerData.Colors;
             var colors = checkerData.Colors.Keys.ToList();
             var modes = new List<SkillItem>();

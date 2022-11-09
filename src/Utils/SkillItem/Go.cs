@@ -11,7 +11,7 @@ namespace TabletopGames.Utils
     {
         public static SkillItem[] GetGoStoneToolModes(this ICoreAPI api, CollectibleObject collobj)
         {
-            var pieceData = collobj.Attributes["tabletopgames"]["gostone"].AsObject<CheckerData>();
+            var pieceData = collobj.Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
             var hexColors = pieceData.Colors;
             var colors = pieceData.Colors.Keys.ToList();
             var modes = new List<SkillItem>();

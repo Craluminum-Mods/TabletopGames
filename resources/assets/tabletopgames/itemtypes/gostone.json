@@ -19,7 +19,7 @@
             "scale": 0.05
         },
         "tabletopgames": {
-            "gostone": {
+            "piece": {
                 "_comment": "These values are used for dynamically generated toolMode.",
                 "colors": {
                     "white": "#ffffff",

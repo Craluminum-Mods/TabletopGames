@@ -12,7 +12,7 @@ namespace TabletopGames
     /// </summary>
     class ItemGoStone : ItemWithAttributes
     {
-        public CheckerData CheckerData => Attributes["tabletopgames"]["checker"].AsObject<CheckerData>();
+        public CheckerData CheckerData => Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
         List<string> Colors => CheckerData.Colors.Keys.ToList();
 
         public override string MeshRefName => "tableTopGames_GoStone_Meshrefs";
