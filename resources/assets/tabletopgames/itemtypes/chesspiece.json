@@ -13,6 +13,7 @@
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.5
         },
+        "onTabletopGamesChessBoard5x5Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.2 },
         "onTabletopGamesChessBoard8x8Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.15 },
         "onTabletopGamesChessBoard10x10Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1375 },
         "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },

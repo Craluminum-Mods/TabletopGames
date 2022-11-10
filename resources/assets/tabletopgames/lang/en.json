@@ -21,6 +21,7 @@
     "block-dominobox-*": "Domino box",
     "dominoset-28": "Domino set 'Double-Sixes' (28 tiles)",
     "dominoset-55": "Domino set 'Double-Nines' (55 tiles)",
+    "block-chessboard-5x5-*": "Chessboard (5x5)",
     "block-chessboard-8x8-*": "Chessboard (8x8)",
     "block-chessboard-10x10-*": "Chessboard (10x10)",
     "block-chessboard-12x12-*": "Chessboard (12x12)",
