@@ -1,10 +1,9 @@
 {
+    "description-toolmode": "Type, colors, rotation etc. can be changed using tool modes (hit <hk>toolmodeselect</hk> ).",
+    "chesspiece": "Шахова фігура.",
     "item-checker-withcrown": "Шашка ({0}) (Дамка)",
     "item-dominopiece": "Кісточка доміно ({0}) ({1})",
-    "itemdesc-dominopiece": "Обертання і зміна кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
     "item-checker": "Шашка ({0})",
-    "itemdesc-checker": "Зміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
-    "itemdesc-chesspiece": "Шахова фігура. \nЗміна типу і кольору здійснюється за допомогою режимів інструменту (натисніть <hk>toolmodeselect</hk>)",
     "item-chesspiece-bishop": "Слон ({0})",
     "item-chesspiece-king": "Король ({0})",
     "item-chesspiece-knight": "Кінь ({0})",

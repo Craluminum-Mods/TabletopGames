@@ -388,7 +388,19 @@
         { "code": "size", "states": ["5x5", "8x8", "10x10", "12x12", "14x14", "16x16", "91hex"] },
         { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
     ],
-    "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
+    "behaviors": [
+        {
+            "name": "HorizontalOrientable",
+            "properties": { "dropBlockFace": "east" }
+        },
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:description-toolmode"]
+            }
+        }
+    ],
     "shape": {
         "base": "block/board/chess/{size}",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }

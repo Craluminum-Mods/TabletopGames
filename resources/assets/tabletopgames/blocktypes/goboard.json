@@ -114,7 +114,15 @@
         }
     },
     "variantGroups": [{ "code": "size", "states": ["9x9", "14x14", "15x15", "16x16", "19x19"] }],
-    "behaviors": [{ "name": "UnstableFalling" }],
+    "behaviors": [
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:description-toolmode"]
+            }
+        }
+    ],
     "shape": {
         "base": "block/board/go/{size}"
     },

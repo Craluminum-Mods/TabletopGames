@@ -8,8 +8,7 @@
             "packTo": "tabletopgames:dominobox",
             "dominobox": {
                 "sets": [28, 55],
-                "rotateRadYByType":
-                {
+                "rotateRadYByType": {
                     "*-east": 270,
                     "*-west": 90,
                     "*-south": 180,
@@ -21,7 +20,16 @@
         "handbook": { "groupBy": ["dominobox-*"] }
     },
     "variantGroups": [{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }],
-    "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
+    "behaviors": [
+        { "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } },
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:description-toolmode"]
+            }
+        }
+    ],
     "shape": {
         "base": "block/box/dominobox-open",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
