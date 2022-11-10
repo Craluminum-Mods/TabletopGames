@@ -344,7 +344,7 @@
     ],
     "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
     "shape": {
-        "base": "block/board/chess-{size}",
+        "base": "block/board/chess/{size}",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
     },
     "blockmaterial": "Wood",
@@ -374,13 +374,13 @@
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },
     "textures": {
-        "3hex": { "base": "tabletopgames:block/hexboard-{size}" },
+        "3hex": { "base": "tabletopgames:block/hexboard/{size}" },
         "numbersByType": {
             "*hex*": {
-                "base": "tabletopgames:block/hexboard-{size}-numbers"
+                "base": "tabletopgames:block/hexboard/numbers/{size}"
             },
             "*": {
-                "base": "tabletopgames:block/checkerboard-{size}-numbers"
+                "base": "tabletopgames:block/checkerboard/numbers/{size}"
             }
         },
 

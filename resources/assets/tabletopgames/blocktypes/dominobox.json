@@ -23,7 +23,7 @@
     "variantGroups": [{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }],
     "behaviors": [{ "name": "HorizontalOrientable", "properties": { "dropBlockFace": "east" } }, { "name": "UnstableFalling" }],
     "shape": {
-        "base": "block/box/domino-open",
+        "base": "block/box/dominobox-open",
         "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
     },
     "blockmaterial": "Wood",

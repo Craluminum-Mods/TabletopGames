@@ -116,7 +116,7 @@
     "variantGroups": [{ "code": "size", "states": ["9x9", "14x14", "15x15", "16x16", "19x19"] }],
     "behaviors": [{ "name": "UnstableFalling" }],
     "shape": {
-        "base": "block/board/go-{size}"
+        "base": "block/board/go/{size}"
     },
     "textures": {
         "lines": { "base": "tabletopgames:block/goboard/{size}" },

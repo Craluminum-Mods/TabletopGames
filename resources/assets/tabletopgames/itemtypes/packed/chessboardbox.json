@@ -20,9 +20,9 @@
         }
     ],
     "heldTpIdleAnimation": "holdbothhandslarge",
-    "shape": { "base": "item/box/chessboard-8x8" },
+    "shape": { "base": "item/box/chessboardbox" },
     "textures": {
-        "numbers": { "base": "tabletopgames:block/checkerboard-8x8-numbers" },
+        "numbers": { "base": "tabletopgames:block/checkerboard/numbers/8x8" },
         "dark": { "base": "tabletopgames:block/checkerboard/dark/8x8-black" },
         "light": { "base": "tabletopgames:block/checkerboard/light/8x8-white" },
 
