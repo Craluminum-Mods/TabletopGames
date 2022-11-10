@@ -13,16 +13,14 @@
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.25
         },
-        "onTabletopGames_GoBoard_9x9_Transform": {
-            "translation": { "x": 0, "y": 0.03, "z": 0 },
-            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.05
-        },
-        "onTabletopGames_GoBoard_19x19_Transform": {
-            "translation": { "x": 0, "y": 0.03, "z": 0 },
-            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.0375
-        },
+        "onTabletopGamesChessBoard8x8Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.075 },
+        "onTabletopGamesChessBoard10x10Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0625 },
+        "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard14x14Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard16x16Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0475 },
+        "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGames_GoBoard_9x9_Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGames_GoBoard_19x19_Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0375 },
         "tabletopgames": {
             "piece": {
                 "_comment": "These values are used for dynamically generated toolMode.",
