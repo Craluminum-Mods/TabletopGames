@@ -26,7 +26,7 @@
 			},
 			"children": [
 				{
-					"name": "numbers",
+					"name": "lines",
 					"from": [ 0.95, 0.52, 0.95 ], 
 					"to": [ 15.05, 0.52, 15.05 ], 
 					"rotationOrigin": [ 8.0, 0.52, 8.0 ],
