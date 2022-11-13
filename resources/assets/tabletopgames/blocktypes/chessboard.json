@@ -21,7 +21,7 @@
                     "fromBorderZ": 0.78571428573,
                     "AttributeTransformCode": "onTabletopGamesChessBoard5x5Transform",
                     "sizes": {
-                        "5x5": 100,
+                        "8x8": 64,
                         "10x10": 100,
                         "12x12": 144,
                         "14x14": 196,
