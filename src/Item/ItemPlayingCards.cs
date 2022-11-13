@@ -5,6 +5,9 @@ using TabletopGames.Utils;
 
 namespace TabletopGames
 {
+    /// <summary>
+    /// A hand of cards
+    /// </summary>
     class ItemPlayingCards : ItemWithAttributes
     {
         public string ModelPrefix => Attributes["modelPrefix"].AsString();
