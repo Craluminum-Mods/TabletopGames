@@ -15,12 +15,14 @@ namespace TabletopGames
             api.RegisterBlockClass("TabletopGames_DominoBox", typeof(BlockDominoBox));
             api.RegisterBlockClass("TabletopGames_GoBoard", typeof(BlockGoBoard));
             api.RegisterBlockClass("TabletopGames_PlayingSurface", typeof(BlockPlayingSurface));
+            api.RegisterBlockClass("TabletopGames_MorrisBoard", typeof(BlockMorrisBoard));
 
             api.RegisterBlockEntityClass("TabletopGames_BEChessBoard", typeof(BEChessBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBoard", typeof(BEDominoBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBox", typeof(BEDominoBox));
             api.RegisterBlockEntityClass("TabletopGames_BEGoBoard", typeof(BEGoBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEPlayingSurface", typeof(BEPlayingSurface));
+            api.RegisterBlockEntityClass("TabletopGames_BEMorrisBoard", typeof(BEMorrisBoard));
 
             api.RegisterItemClass("TabletopGames_ItemBox", typeof(ItemBox));
             api.RegisterItemClass("TabletopGames_ItemChecker", typeof(ItemChecker));

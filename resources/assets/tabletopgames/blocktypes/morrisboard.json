@@ -1,0 +1,293 @@
+{
+    "code": "morrisboard",
+    "class": "TabletopGames_MorrisBoard",
+    "entityClass": "TabletopGames_BEMorrisBoard",
+    "maxStackSize": 1,
+    "attributes": {
+        "moldrackable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": -0.04, "y": 0.07, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 }
+        },
+        "tabletopgames": {
+            "boardByType": {
+                "*-3": {
+                    "quantitySlots": 9,
+                    "width": 3,
+                    "height": 3,
+                    "distanceBetweenSlots": 0.1875,
+                    "fromBorderX": 0.3125,
+                    "fromBorderZ": 0.6875,
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "6": 16,
+                        "9": 24,
+                        "12": 24
+                    }
+                },
+                "*-6": {
+                    "quantitySlots": 16,
+                    "overridePositions": [
+                        { "_cmt": "0", "x": 0.3125, "y": 0, "z": 0.6875 },
+                        { "_cmt": "1", "x": 0.3125, "y": 0, "z": 0.5 },
+                        { "_cmt": "2", "x": 0.3125, "y": 0, "z": 0.3125 },
+
+                        { "_cmt": "3", "x": 0.40625, "y": 0, "z": 0.59375 },
+                        { "_cmt": "4", "x": 0.40625, "y": 0, "z": 0.5 },
+                        { "_cmt": "5", "x": 0.40625, "y": 0, "z": 0.40625 },
+
+                        { "_cmt": "6", "x": 0.5, "y": 0, "z": 0.6875 },
+                        { "_cmt": "7", "x": 0.5, "y": 0, "z": 0.59375 },
+                        { "_cmt": "8", "x": 0.5, "y": 0, "z": 0.40625 },
+                        { "_cmt": "9", "x": 0.5, "y": 0, "z": 0.3125 },
+
+                        { "_cmt": "10", "x": 0.59375, "y": 0, "z": 0.59375 },
+                        { "_cmt": "11", "x": 0.59375, "y": 0, "z": 0.5 },
+                        { "_cmt": "12", "x": 0.59375, "y": 0, "z": 0.40625 },
+
+                        { "_cmt": "13", "x": 0.6875, "y": 0, "z": 0.6875 },
+                        { "_cmt": "14", "x": 0.6875, "y": 0, "z": 0.5 },
+                        { "_cmt": "15", "x": 0.6875, "y": 0, "z": 0.3125 }
+                    ],
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizes": {
+                        "3": 9,
+                        "9": 24,
+                        "12": 24
+                    }
+                },
+                "@.*-(9|12)": {
+                    "quantitySlots": 24,
+                    "overridePositions": [
+                        { "_cmt": "0", "x": 0.3125, "y": 0, "z": 0.6875 },
+                        { "_cmt": "1", "x": 0.3125, "y": 0, "z": 0.5 },
+                        { "_cmt": "2", "x": 0.3125, "y": 0, "z": 0.3125 },
+
+                        { "_cmt": "3", "x": 0.375, "y": 0, "z": 0.625 },
+                        { "_cmt": "4", "x": 0.375, "y": 0, "z": 0.5 },
+                        { "_cmt": "5", "x": 0.375, "y": 0, "z": 0.375 },
+
+                        { "_cmt": "6", "x": 0.4375, "y": 0, "z": 0.5625 },
+                        { "_cmt": "7", "x": 0.4375, "y": 0, "z": 0.5 },
+                        { "_cmt": "8", "x": 0.4375, "y": 0, "z": 0.4375 },
+
+                        { "_cmt": "9", "x": 0.5, "y": 0, "z": 0.6875 },
+                        { "_cmt": "10", "x": 0.5, "y": 0, "z": 0.625 },
+                        { "_cmt": "11", "x": 0.5, "y": 0, "z": 0.5625 },
+                        { "_cmt": "12", "x": 0.5, "y": 0, "z": 0.4375 },
+                        { "_cmt": "13", "x": 0.5, "y": 0, "z": 0.375 },
+                        { "_cmt": "14", "x": 0.5, "y": 0, "z": 0.3125 },
+
+                        { "_cmt": "15", "x": 0.5625, "y": 0, "z": 0.5625 },
+                        { "_cmt": "17", "x": 0.5625, "y": 0, "z": 0.5 },
+                        { "_cmt": "16", "x": 0.5625, "y": 0, "z": 0.4375 },
+
+                        { "_cmt": "3", "x": 0.625, "y": 0, "z": 0.625 },
+                        { "_cmt": "4", "x": 0.625, "y": 0, "z": 0.5 },
+                        { "_cmt": "5", "x": 0.625, "y": 0, "z": 0.375 },
+
+                        { "_cmt": "0", "x": 0.6875, "y": 0, "z": 0.6875 },
+                        { "_cmt": "1", "x": 0.6875, "y": 0, "z": 0.5 },
+                        { "_cmt": "2", "x": 0.6875, "y": 0, "z": 0.3125 }
+                    ],
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
+                    "sizesByType": {
+                        "*-9": {
+                            "3": 9,
+                            "6": 16,
+                            "12": 24
+                        },
+                        "*-12": {
+                            "3": 9,
+                            "6": 16,
+                            "9": 24
+                        }
+                    }
+                }
+            },
+            "ignoreSelectionBoxIndexesByType": {
+                "*-3": [9],
+                "*-6": [16],
+                "*-9": [24],
+                "*-12": [24]
+            },
+            "displaySelectedSlotId": false,
+            "displaySelectedSlotStack": true
+        },
+        "handbook": {
+            "groupBy": ["morrisboard-*"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:handbook-wheretoget-title",
+                    "text": "tabletopgames:handbook-wheretoget-text"
+                }
+            ]
+        }
+    },
+    "variantGroups": [{ "code": "size", "states": ["3", "6", "9", "12"] }],
+    "behaviors": [
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:description-toolmode"]
+            }
+        }
+    ],
+    "shape": {
+        "baseByType": {
+            "@.*-(3|6)": "block/board/morris/3and6",
+            "@.*-(9|12)": "block/board/morris/9and12"
+        }
+    },
+    "textures": {
+        "lines": { "base": "tabletopgames:block/morrisboard/{size}" },
+
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "wood-": { "base": "game:block/wood/debarked/oak" },
+        "wood-default": { "base": "game:block/wood/debarked/oak" },
+        "wood-aged": { "base": "game:block/wood/debarked/aged" },
+        "wood-birch": { "base": "game:block/wood/debarked/birch" },
+        "wood-oak": { "base": "game:block/wood/debarked/oak" },
+        "wood-maple": { "base": "game:block/wood/debarked/maple" },
+        "wood-pine": { "base": "game:block/wood/debarked/pine" },
+        "wood-acacia": { "base": "game:block/wood/debarked/acacia" },
+        "wood-kapok": { "base": "game:block/wood/debarked/kapok" },
+        "wood-baldcypress": { "base": "game:block/wood/debarked/baldcypress" },
+        "wood-larch": { "base": "game:block/wood/debarked/larch" },
+        "wood-redwood": { "base": "game:block/wood/debarked/redwood" },
+        "wood-ebony": { "base": "game:block/wood/debarked/ebony" },
+        "wood-walnut": { "base": "game:block/wood/debarked/walnut" },
+        "wood-purpleheart": { "base": "game:block/wood/debarked/purpleheart" }
+    },
+    "blockmaterial": "Wood",
+    "creativeinventoryStacksByType": {
+        "*-9": [
+            {
+                "tabs": ["tabletopgames"],
+                "stacks": [
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "aged" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "birch" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "oak" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "maple" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "pine" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "acacia" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "kapok" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "baldcypress" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "larch" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "redwood" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "ebony" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "walnut" } },
+                    { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "purpleheart" } }
+                ]
+            }
+        ]
+    },
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 },
+    "selectionBoxesByType": {
+        "*-3": [
+            { "_cmt": "0", "x1": 0.2815, "y1": 0, "z1": 0.6565, "x2": 0.3435, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "1", "x1": 0.2815, "y1": 0, "z1": 0.4685, "x2": 0.3435, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "2", "x1": 0.2815, "y1": 0, "z1": 0.2815, "x2": 0.3435, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "3", "x1": 0.46875, "y1": 0, "z1": 0.7185, "x2": 0.5315, "y2": 0.0313, "z2": 0.6565 },
+            { "_cmt": "4", "x1": 0.46875, "y1": 0, "z1": 0.46875, "x2": 0.5315, "y2": 0.0313, "z2": 0.531 },
+            { "_cmt": "5", "x1": 0.46875, "y1": 0, "z1": 0.3435, "x2": 0.5315, "y2": 0.0313, "z2": 0.281 },
+
+            { "_cmt": "6", "x1": 0.7185, "y1": 0, "z1": 0.7185, "x2": 0.6565, "y2": 0.0313, "z2": 0.6565 },
+            { "_cmt": "7", "x1": 0.7185, "y1": 0, "z1": 0.46875, "x2": 0.6565, "y2": 0.0313, "z2": 0.531 },
+            { "_cmt": "8", "x1": 0.7185, "y1": 0, "z1": 0.3435, "x2": 0.6565, "y2": 0.0313, "z2": 0.281 },
+
+            { "_cmt": "Base", "x1": 0.25, "y1": 0, "z1": 0.25, "x2": 0.75, "y2": 0.03125, "z2": 0.75 }
+        ],
+        "*-6": [
+            { "_cmt": "0", "x1": 0.2815, "y1": 0, "z1": 0.6565, "x2": 0.3435, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "1", "x1": 0.2815, "y1": 0, "z1": 0.4685, "x2": 0.3435, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "2", "x1": 0.2815, "y1": 0, "z1": 0.2815, "x2": 0.3435, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "3", "x1": 0.375, "y1": 0, "z1": 0.5625, "x2": 0.4375, "y2": 0.0313, "z2": 0.625 },
+            { "_cmt": "4", "x1": 0.375, "y1": 0, "z1": 0.4685, "x2": 0.4375, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "5", "x1": 0.375, "y1": 0, "z1": 0.375, "x2": 0.4375, "y2": 0.0313, "z2": 0.4375 },
+
+            { "_cmt": "6", "x1": 0.4685, "y1": 0, "z1": 0.6565, "x2": 0.5315, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "7", "x1": 0.4685, "y1": 0, "z1": 0.5625, "x2": 0.5315, "y2": 0.0313, "z2": 0.625 },
+            { "_cmt": "8", "x1": 0.4685, "y1": 0, "z1": 0.375, "x2": 0.5315, "y2": 0.0313, "z2": 0.4375 },
+            { "_cmt": "9", "x1": 0.4685, "y1": 0, "z1": 0.2815, "x2": 0.5315, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "10", "x1": 0.5625, "y1": 0, "z1": 0.5625, "x2": 0.625, "y2": 0.0313, "z2": 0.625 },
+            { "_cmt": "11", "x1": 0.5625, "y1": 0, "z1": 0.4685, "x2": 0.625, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "12", "x1": 0.5625, "y1": 0, "z1": 0.375, "x2": 0.625, "y2": 0.0313, "z2": 0.4375 },
+
+            { "_cmt": "13", "x1": 0.6565, "y1": 0, "z1": 0.6565, "x2": 0.7185, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "14", "x1": 0.6565, "y1": 0, "z1": 0.4685, "x2": 0.7185, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "15", "x1": 0.6565, "y1": 0, "z1": 0.2815, "x2": 0.7185, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "Base", "x1": 0.25, "y1": 0, "z1": 0.25, "x2": 0.75, "y2": 0.03125, "z2": 0.75 }
+        ],
+        "@.*-(9|12)": [
+            { "_cmt": "0", "x1": 0.2815, "y1": 0, "z1": 0.6565, "x2": 0.3435, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "1", "x1": 0.2815, "y1": 0, "z1": 0.4685, "x2": 0.3435, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "2", "x1": 0.2815, "y1": 0, "z1": 0.2815, "x2": 0.3435, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "3", "x1": 0.3435, "y1": 0, "z1": 0.59375, "x2": 0.40625, "y2": 0.0313, "z2": 0.6565 },
+            { "_cmt": "4", "x1": 0.3435, "y1": 0, "z1": 0.4685, "x2": 0.40625, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "5", "x1": 0.3435, "y1": 0, "z1": 0.3435, "x2": 0.40625, "y2": 0.0313, "z2": 0.40625 },
+
+            { "_cmt": "6", "x1": 0.40625, "y1": 0, "z1": 0.5315, "x2": 0.4685, "y2": 0.0313, "z2": 0.59375 },
+            { "_cmt": "7", "x1": 0.40625, "y1": 0, "z1": 0.4685, "x2": 0.4685, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "8", "x1": 0.40625, "y1": 0, "z1": 0.40625, "x2": 0.4685, "y2": 0.0313, "z2": 0.4685 },
+
+            { "_cmt": "9", "x1": 0.4685, "y1": 0, "z1": 0.6565, "x2": 0.5315, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "10", "x1": 0.4685, "y1": 0, "z1": 0.59375, "x2": 0.5315, "y2": 0.0313, "z2": 0.6565 },
+            { "_cmt": "11", "x1": 0.4685, "y1": 0, "z1": 0.5315, "x2": 0.5315, "y2": 0.0313, "z2": 0.59375 },
+            { "_cmt": "12", "x1": 0.4685, "y1": 0, "z1": 0.40625, "x2": 0.5315, "y2": 0.0313, "z2": 0.4685 },
+            { "_cmt": "13", "x1": 0.4685, "y1": 0, "z1": 0.3435, "x2": 0.5315, "y2": 0.0313, "z2": 0.40625 },
+            { "_cmt": "14", "x1": 0.4685, "y1": 0, "z1": 0.2815, "x2": 0.5315, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "15", "x1": 0.5315, "y1": 0, "z1": 0.5315, "x2": 0.59375, "y2": 0.0313, "z2": 0.59375 },
+            { "_cmt": "16", "x1": 0.5315, "y1": 0, "z1": 0.4685, "x2": 0.59375, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "17", "x1": 0.5315, "y1": 0, "z1": 0.40625, "x2": 0.59375, "y2": 0.0313, "z2": 0.4685 },
+
+            { "_cmt": "18", "x1": 0.59375, "y1": 0, "z1": 0.59375, "x2": 0.6565, "y2": 0.0313, "z2": 0.6565 },
+            { "_cmt": "19", "x1": 0.59375, "y1": 0, "z1": 0.4685, "x2": 0.6565, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "20", "x1": 0.59375, "y1": 0, "z1": 0.3435, "x2": 0.6565, "y2": 0.0313, "z2": 0.40625 },
+
+            { "_cmt": "21", "x1": 0.6565, "y1": 0, "z1": 0.6565, "x2": 0.7185, "y2": 0.0313, "z2": 0.7185 },
+            { "_cmt": "22", "x1": 0.6565, "y1": 0, "z1": 0.4685, "x2": 0.7185, "y2": 0.0313, "z2": 0.5315 },
+            { "_cmt": "23", "x1": 0.6565, "y1": 0, "z1": 0.2815, "x2": 0.7185, "y2": 0.0313, "z2": 0.3435 },
+
+            { "_cmt": "Base", "x1": 0.25, "y1": 0, "z1": 0.25, "x2": 0.75, "y2": 0.03125, "z2": 0.75 }
+        ]
+    },
+    "guiTransform": {
+        "rotation": { "x": -45, "y": -5, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 2.45
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": -80, "y": 0, "z": -100 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    }
+}
