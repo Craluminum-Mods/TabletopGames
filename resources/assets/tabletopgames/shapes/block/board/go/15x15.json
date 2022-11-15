@@ -35,7 +35,7 @@
 						"east": { "texture": "#lines", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
 						"south": { "texture": "#lines", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
 						"west": { "texture": "#lines", "uv": [ 0.0, 0.0, 14.0, 0.5 ], "enabled": false },
-						"up": { "texture": "#lines", "uv": [ 0.2, 0.2, 15.7, 15.7 ], "autoUv": false },
+						"up": { "texture": "#lines", "uv": [ 0.165, 0.165, 15.835, 15.835 ], "autoUv": false },
 						"down": { "texture": "#lines", "uv": [ 0.0, 0.0, 14.0, 14.0 ], "enabled": false }
 					}
 				}
