@@ -85,7 +85,6 @@
             {
                 "tabs": ["tabletopgames"],
                 "stacks": [
-                    { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 55, "wood": "aged" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "aged" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "birch" } },
                     { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "oak" } },

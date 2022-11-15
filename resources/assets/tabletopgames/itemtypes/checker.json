@@ -90,8 +90,7 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "checker", "attributes": { "color": "white", "crown": false } },
-                { "type": "item", "code": "checker", "attributes": { "color": "black", "crown": false } }
+                { "type": "item", "code": "checker", "attributes": { "color": "white", "crown": false } }
             ]
         }
     ],

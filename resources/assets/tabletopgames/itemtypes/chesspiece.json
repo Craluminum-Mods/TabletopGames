@@ -143,13 +143,7 @@
                 { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "knight" } },
                 { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "pawn" } },
                 { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "queen" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "rook" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "bishop" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "king" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "knight" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "pawn" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "queen" } },
-                { "type": "item", "code": "chesspiece", "attributes": { "color": "black", "type": "rook" } }
+                { "type": "item", "code": "chesspiece", "attributes": { "color": "white", "type": "rook" } }
             ]
         }
     ],

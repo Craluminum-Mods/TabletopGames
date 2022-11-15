@@ -80,8 +80,7 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "gostone", "attributes": { "color": "white" } },
-                { "type": "item", "code": "gostone", "attributes": { "color": "black" } }
+                { "type": "item", "code": "gostone", "attributes": { "color": "white" } }
             ]
         }
     ],
