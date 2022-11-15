@@ -23,19 +23,6 @@
         "modelPrefix": "tabletopgames:shapes/item/chesspiece/",
         "tabletopgames": {
             "chesspiece": {
-                "_comment": "These values are used for dynamically generated toolMode.",
-                "pieces": ["bishop", "king", "knight", "pawn", "queen", "rook"],
-                "colors": {
-                    "white": "#ffffff",
-                    "black": "#000000",
-                    "red": "#ff0000",
-                    "green": "#00ff00",
-                    "blue": "#00bfff",
-                    "yellow": "#ffff00",
-                    "orange": "#ffa500",
-                    "pink": "#ffc0cb",
-                    "purple": "#6900C6"
-                },
                 "modelTransform": {
                     "bishop": {
                         "guiTransform": {
@@ -108,7 +95,29 @@
         {
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
-                "keys": ["tabletopgames:chesspiece","tabletopgames:description-toolmode"]
+                "keys": ["tabletopgames:chesspiece", "tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "tabletopgames:chesspiece-bishop", "iconPath": "tabletopgames:textures/icons/chess-bishop.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "bishop" }] } },
+                    { "name": "tabletopgames:chesspiece-king", "iconPath": "tabletopgames:textures/icons/chess-king.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "king" }] } },
+                    { "name": "tabletopgames:chesspiece-knight", "iconPath": "tabletopgames:textures/icons/chess-knight.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "knight" }] } },
+                    { "name": "tabletopgames:chesspiece-pawn", "iconPath": "tabletopgames:textures/icons/chess-pawn.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "pawn" }] }, "linebreak": true },
+                    { "name": "tabletopgames:chesspiece-queen", "iconPath": "tabletopgames:textures/icons/chess-queen.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "queen" }] } },
+                    { "name": "tabletopgames:chesspiece-rook", "iconPath": "tabletopgames:textures/icons/chess-rook.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "type", "value": "rook" }] } },
+                    { "name": "color-white", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "color", "value": "white" }] }, "linebreak": true },
+                    { "name": "color-black", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "color", "value": "black" }] } },
+                    { "name": "color-red", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ff0000", "setAttributes": { "string": [{ "key": "color", "value": "red" }] } },
+                    { "name": "color-green", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#00ff00", "setAttributes": { "string": [{ "key": "color", "value": "green" }] }, "linebreak": true },
+                    { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#00bfff", "setAttributes": { "string": [{ "key": "color", "value": "blue" }] } },
+                    { "name": "color-yellow", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffff00", "setAttributes": { "string": [{ "key": "color", "value": "yellow" }] } },
+                    { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffa500", "setAttributes": { "string": [{ "key": "color", "value": "orange" }] }, "linebreak": true },
+                    { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffc0cb", "setAttributes": { "string": [{ "key": "color", "value": "pink" }] } },
+                    { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#6900C6", "setAttributes": { "string": [{ "key": "color", "value": "purple" }] } }
+                ]
             }
         }
     ],

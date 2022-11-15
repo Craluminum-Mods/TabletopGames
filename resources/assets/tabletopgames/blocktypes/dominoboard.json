@@ -26,7 +26,15 @@
         }
     },
     "variantGroups": [{ "code": "size", "states": ["8x8"] }],
-    "behaviors": [{ "name": "UnstableFalling" }],
+    "behaviors": [
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [{ "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] }]
+            }
+        }
+    ],
     "shape": { "base": "block/board/domino-{size}" },
     "blockmaterial": "Wood",
     "creativeinventoryStacks": [

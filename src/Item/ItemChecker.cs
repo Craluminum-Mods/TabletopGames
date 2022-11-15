@@ -2,37 +2,12 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using TabletopGames.Utils;
-using System.Linq;
 
 namespace TabletopGames
 {
     class ItemChecker : ItemWithAttributes
     {
-        public CheckerData CheckerData => Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
-
         public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
-
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-            skillItems = api.GetCheckersToolModes(this);
-        }
-
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            var colors = CheckerData.Colors.Keys.ToList();
-
-            if (toolMode != colors.Count)
-            {
-                slot.Itemstack.Attributes.SetString("color", colors[toolMode]);
-            }
-            else
-            {
-                slot.Itemstack.Attributes.SetBool("crown", !slot.Itemstack.Attributes.GetBool("crown"));
-            }
-
-            slot.MarkDirty();
-        }
 
         public override string GetHeldItemName(ItemStack stack)
         {

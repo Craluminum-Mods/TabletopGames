@@ -10,33 +10,6 @@ namespace TabletopGames
     {
         public override string MeshRefName => "tableTopGames_ItemBox_Meshrefs" + Code.ToShortString();
 
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-            skillItems = capi.GetBoxToolModes("unpack");
-        }
-
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            switch (toolMode)
-            {
-                case 0:
-                    {
-                        if (slot == null || slot.Itemstack == null || slot.Itemstack.Attributes == null) break;
-
-                        var boardStack = slot.Itemstack.Attributes.GetItemstack("containedStack");
-
-                        if (boardStack?.ResolveBlockOrItem(api.World) != true) break;
-
-                        boardStack.Attributes.SetString("wood", slot.Itemstack.Attributes.GetString("wood", "oak"));
-
-                        slot.Itemstack.SetFrom(boardStack);
-                        slot.MarkDirty();
-                        break;
-                    }
-            }
-        }
-
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);

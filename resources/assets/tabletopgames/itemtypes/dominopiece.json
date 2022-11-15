@@ -23,29 +23,6 @@
         "modelPrefix": "tabletopgames:shapes/item/dominopiece/",
         "tabletopgames": {
             "dominopiece": {
-                "_comment": "These values are used for dynamically generated toolMode.",
-                "colors1": {
-                    "white": "#ffffff",
-                    "black": "#000000",
-                    "red": "#ff0000",
-                    "green": "#00ff00",
-                    "blue": "#00bfff",
-                    "yellow": "#ffff00",
-                    "orange": "#ffa500",
-                    "pink": "#ffc0cb",
-                    "purple": "#6900C6"
-                },
-                "colors2": {
-                    "white": "#ffffff",
-                    "black": "#000000",
-                    "red": "#ff0000",
-                    "green": "#00ff00",
-                    "blue": "#00bfff",
-                    "yellow": "#ffff00",
-                    "orange": "#ffa500",
-                    "pink": "#ffc0cb",
-                    "purple": "#6900C6"
-                },
                 "modelTransformByRotation": {
                     "90": {
                         "guiTransform": {
@@ -114,6 +91,57 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    {
+                        "name": "tabletopgames:RotateAntiClockwise",
+                        "iconPath": "tabletopgames:textures/icons/icon-rotate-left-90.svg",
+                        "hexColor": "#ffffff",
+                        "setAttributes": {
+                            "int": [
+                                { "key": "rotation", "value": 270, "condition": { "int": { "key": "rotation", "value": 0 } } },
+                                { "key": "rotation", "value": 180, "condition": { "int": { "key": "rotation", "value": 270 } } },
+                                { "key": "rotation", "value": 90, "condition": { "int": { "key": "rotation", "value": 180 } } },
+                                { "key": "rotation", "value": 0, "condition": { "int": { "key": "rotation", "value": 90 } } }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tabletopgames:RotateClockwise",
+                        "iconPath": "tabletopgames:textures/icons/icon-rotate-right-90.svg",
+                        "hexColor": "#ffffff",
+                        "setAttributes": {
+                            "int": [
+                                { "key": "rotation", "value": 90, "condition": { "int": { "key": "rotation", "value": 0 } } },
+                                { "key": "rotation", "value": 180, "condition": { "int": { "key": "rotation", "value": 90 } } },
+                                { "key": "rotation", "value": 270, "condition": { "int": { "key": "rotation", "value": 180 } } },
+                                { "key": "rotation", "value": 0, "condition": { "int": { "key": "rotation", "value": 270 } } }
+                            ]
+                        }
+                    },
+                    { "name": "color-white", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "color1", "value": "white" }] } },
+                    { "name": "color-black", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "color1", "value": "black" }] } },
+                    { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#00bfff", "setAttributes": { "string": [{ "key": "color1", "value": "blue" }] } },
+                    { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#6900C6", "setAttributes": { "string": [{ "key": "color1", "value": "purple" }] } },
+                    { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#ffc0cb", "setAttributes": { "string": [{ "key": "color1", "value": "pink" }] } },
+                    { "name": "color-red", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#ff0000", "setAttributes": { "string": [{ "key": "color1", "value": "red" }] } },
+                    { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#ffa500", "setAttributes": { "string": [{ "key": "color1", "value": "orange" }] } },
+                    { "name": "color-yellow", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#ffff00", "setAttributes": { "string": [{ "key": "color1", "value": "yellow" }] } },
+                    { "name": "color-green", "iconPath": "tabletopgames:textures/icons/domino-glyph.svg", "hexColor": "#00ff00", "setAttributes": { "string": [{ "key": "color1", "value": "green" }] } },
+                    { "name": "color-white", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "color2", "value": "white" }] }, "linebreak": true },
+                    { "name": "color-black", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "color2", "value": "black" }] } },
+                    { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#00bfff", "setAttributes": { "string": [{ "key": "color2", "value": "blue" }] } },
+                    { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#6900C6", "setAttributes": { "string": [{ "key": "color2", "value": "purple" }] } },
+                    { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#ffc0cb", "setAttributes": { "string": [{ "key": "color2", "value": "pink" }] } },
+                    { "name": "color-red", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#ff0000", "setAttributes": { "string": [{ "key": "color2", "value": "red" }] } },
+                    { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#ffa500", "setAttributes": { "string": [{ "key": "color2", "value": "orange" }] } },
+                    { "name": "color-yellow", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#ffff00", "setAttributes": { "string": [{ "key": "color2", "value": "yellow" }] } },
+                    { "name": "color-green", "iconPath": "tabletopgames:textures/icons/domino-outline.svg", "hexColor": "#00ff00", "setAttributes": { "string": [{ "key": "color2", "value": "green" }] } }
+                ]
             }
         }
     ],

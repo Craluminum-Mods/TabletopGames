@@ -11,10 +11,7 @@ namespace TabletopGames
 {
     public class BlockWithAttributes : Block, ITexPositionSource, IContainedMeshSource
     {
-        public SkillItem[] skillItems;
-
         public ICoreClientAPI capi;
-
         public ITextureAtlasAPI targetAtlas;
         public Size2i AtlasSize => targetAtlas.Size;
         public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());
@@ -55,28 +52,6 @@ namespace TabletopGames
             base.OnLoaded(api);
             capi = api as ICoreClientAPI;
         }
-
-        public override void OnUnloaded(ICoreAPI api)
-        {
-            for (int i = 0; skillItems != null && i < skillItems.Length; i++)
-            {
-                skillItems[i]?.Dispose();
-            }
-        }
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            if (skillItems == null) return base.GetHeldInteractionHelp(inSlot);
-
-            return base.GetHeldInteractionHelp(inSlot).Append(new WorldInteraction
-            {
-                ActionLangCode = "heldhelp-settoolmode",
-                HotKeyCode = "toolmodeselect",
-                MouseButton = EnumMouseButton.None
-            });
-        }
-
-        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => skillItems;
 
         public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => true;
 

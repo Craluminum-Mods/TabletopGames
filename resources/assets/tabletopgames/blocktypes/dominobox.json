@@ -7,7 +7,6 @@
         "tabletopgames": {
             "packTo": "tabletopgames:dominobox",
             "dominobox": {
-                "sets": [28, 55],
                 "rotateRadYByType": {
                     "*-east": 270,
                     "*-west": 90,
@@ -27,6 +26,28 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "tabletopgames:pack", "iconPath": "tabletopgames:textures/icons/packing.svg", "hexColor": "#FFFFFF", "pushEvents": ["PackToBox"] },
+                    { "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] },
+                    {
+                        "name": "tabletopgames:dominoset-28",
+                        "textIcon": "28",
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 28 }] },
+                        "pushEvents": ["DropAllSlots"],
+                        "linebreak": true
+                    },
+                    {
+                        "name": "tabletopgames:dominoset-55",
+                        "textIcon": "55",
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 55 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    }
+                ]
             }
         }
     ],

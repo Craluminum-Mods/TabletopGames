@@ -22,22 +22,6 @@
         "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
         "onTabletopGames_GoBoard_9x9_Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
         "onTabletopGames_GoBoard_19x19_Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0375 },
-        "tabletopgames": {
-            "piece": {
-                "_comment": "These values are used for dynamically generated toolMode.",
-                "colors": {
-                    "white": "#ffffff",
-                    "black": "#000000",
-                    "red": "#ff0000",
-                    "green": "#00ff00",
-                    "blue": "#00bfff",
-                    "yellow": "#ffff00",
-                    "orange": "#ffa500",
-                    "pink": "#ffc0cb",
-                    "purple": "#6900C6"
-                }
-            }
-        },
         "handbook": {
             "extraSections": [
                 {
@@ -60,6 +44,22 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "color-white", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffffff", "setAttributes": { "string": [{ "key": "color", "value": "white" }] } },
+                    { "name": "color-black", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "color", "value": "black" }] } },
+                    { "name": "color-red", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ff0000", "setAttributes": { "string": [{ "key": "color", "value": "red" }] } },
+                    { "name": "color-green", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#00ff00", "setAttributes": { "string": [{ "key": "color", "value": "green" }] }, "linebreak": true },
+                    { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#00bfff", "setAttributes": { "string": [{ "key": "color", "value": "blue" }] } },
+                    { "name": "color-yellow", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffff00", "setAttributes": { "string": [{ "key": "color", "value": "yellow" }] } },
+                    { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffa500", "setAttributes": { "string": [{ "key": "color", "value": "orange" }] }, "linebreak": true },
+                    { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#ffc0cb", "setAttributes": { "string": [{ "key": "color", "value": "pink" }] } },
+                    { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/palette.svg", "hexColor": "#6900C6", "setAttributes": { "string": [{ "key": "color", "value": "purple" }] } }
+                ]
             }
         }
     ],

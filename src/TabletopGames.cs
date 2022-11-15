@@ -33,6 +33,7 @@ namespace TabletopGames
             api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
 
             api.RegisterCollectibleBehaviorClass("TabletopGames_AppendTextToHeldInfo", typeof(CollectibleBehaviorAppendTextToHeldInfo));
+            api.RegisterCollectibleBehaviorClass("TabletopGames_CustomToolModes", typeof(CollectibleBehaviorCustomToolModes));
 
             api.World.Logger.Event("started 'Tabletop Games' mod");
         }

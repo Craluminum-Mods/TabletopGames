@@ -218,5 +218,28 @@ namespace TabletopGames.Utils
 
             stack.SetFrom(newStack);
         }
+
+        public static void TryChangeVariant(this ItemStack stack, ICoreAPI api, string variantName, string variantValue, bool saveAttributes = true)
+        {
+            if (stack.Collectible.Variant?[variantName] == null) return;
+
+            var clonedAttributes = stack.Attributes.Clone();
+
+            var newStack = new ItemStack();
+
+            if (stack.Collectible.ItemClass == EnumItemClass.Block)
+            {
+                newStack = new ItemStack(api.World.GetBlock(stack.Collectible.CodeWithVariant(variantName, variantValue)));
+            }
+
+            if (stack.Collectible.ItemClass == EnumItemClass.Item)
+            {
+                newStack = new ItemStack(api.World.GetItem(stack.Collectible.CodeWithVariant(variantName, variantValue)));
+            }
+
+            if (saveAttributes) newStack.Attributes = clonedAttributes;
+
+            stack.SetFrom(newStack);
+        }
     }
 }

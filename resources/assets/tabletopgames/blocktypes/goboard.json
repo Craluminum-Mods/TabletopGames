@@ -25,16 +25,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.25,
                     "fromBorderZ": 0.75,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "11x11": 121,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "16x16": 256,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-11x11": {
                     "quantitySlots": 121,
@@ -43,16 +34,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.1875,
                     "fromBorderZ": 0.8125,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "16x16": 256,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-13x13": {
                     "quantitySlots": 169,
@@ -61,16 +43,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.125,
                     "fromBorderZ": 0.875,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "16x16": 256,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-14x14": {
                     "quantitySlots": 196,
@@ -79,16 +52,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.09375,
                     "fromBorderZ": 0.90625,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "13x13": 169,
-                        "15x15": 225,
-                        "16x16": 256,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-15x15": {
                     "quantitySlots": 225,
@@ -97,16 +61,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.0625,
                     "fromBorderZ": 0.9375,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "16x16": 256,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-16x16": {
                     "quantitySlots": 256,
@@ -115,16 +70,7 @@
                     "distanceBetweenSlots": 0.0625,
                     "fromBorderX": 0.03125,
                     "fromBorderZ": 0.96875,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "17x17": 289,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-17x17": {
                     "quantitySlots": 289,
@@ -133,16 +79,7 @@
                     "distanceBetweenSlots": 0.0586,
                     "fromBorderX": 0.0315,
                     "fromBorderZ": 0.9685,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "16x16": 256,
-                        "19x19": 361
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-19x19": {
                     "quantitySlots": 361,
@@ -151,16 +88,7 @@
                     "distanceBetweenSlots": 0.0537,
                     "fromBorderX": 0.017,
                     "fromBorderZ": 0.983,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_19x19_Transform",
-                    "sizes": {
-                        "9x9": 81,
-                        "11x11": 121,
-                        "13x13": 169,
-                        "14x14": 196,
-                        "15x15": 225,
-                        "16x16": 361,
-                        "17x17": 289
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_19x19_Transform"
                 }
             },
             "ignoreSelectionBoxIndexesByType": {
@@ -192,6 +120,72 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] },
+                    {
+                        "name": "tabletopgames:block-goboard-9x9",
+                        "textIcon": "9x9",
+                        "changeVariant": { "key": "size", "value": "9x9" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 81 }] },
+                        "pushEvents": ["DropAllSlots"],
+                        "linebreak": true
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-11x11",
+                        "textIcon": "11x11",
+                        "changeVariant": { "key": "size", "value": "11x11" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 121 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-13x13",
+                        "textIcon": "13x13",
+                        "changeVariant": { "key": "size", "value": "13x13" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 169 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-14x14",
+                        "textIcon": "14x14",
+                        "changeVariant": { "key": "size", "value": "14x14" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 196 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-15x15",
+                        "textIcon": "15x15",
+                        "changeVariant": { "key": "size", "value": "15x15" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 225 }] },
+                        "pushEvents": ["DropAllSlots"],
+                        "linebreak": true
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-16x16",
+                        "textIcon": "16x16",
+                        "changeVariant": { "key": "size", "value": "16x16" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 256 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-17x17",
+                        "textIcon": "17x17",
+                        "changeVariant": { "key": "size", "value": "17x17" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 289 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-goboard-19x19",
+                        "textIcon": "19x19",
+                        "changeVariant": { "key": "size", "value": "19x19" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 361 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    }
+                ]
             }
         }
     ],

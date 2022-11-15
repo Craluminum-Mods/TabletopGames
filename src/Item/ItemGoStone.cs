@@ -1,9 +1,7 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using System.Linq;
 using TabletopGames.Utils;
-using System.Collections.Generic;
 
 namespace TabletopGames
 {
@@ -12,22 +10,7 @@ namespace TabletopGames
     /// </summary>
     class ItemGoStone : ItemWithAttributes
     {
-        public CheckerData CheckerData => Attributes["tabletopgames"]["piece"].AsObject<CheckerData>();
-        List<string> Colors => CheckerData.Colors.Keys.ToList();
-
         public override string MeshRefName => "tableTopGames_GoStone_Meshrefs";
-
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-            skillItems = api.GetGoStoneToolModes(this);
-        }
-
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            slot.Itemstack.Attributes.SetString("color", Colors[toolMode]);
-            slot.MarkDirty();
-        }
 
         public override string GetHeldItemName(ItemStack stack)
         {

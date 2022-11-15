@@ -18,12 +18,7 @@
                     "distanceBetweenSlots": 0.1875,
                     "fromBorderX": 0.3125,
                     "fromBorderZ": 0.6875,
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "6": 16,
-                        "9": 24,
-                        "12": 24
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "*-6": {
                     "quantitySlots": 16,
@@ -49,12 +44,7 @@
                         { "_cmt": "14", "x": 0.6875, "y": 0, "z": 0.5 },
                         { "_cmt": "15", "x": 0.6875, "y": 0, "z": 0.3125 }
                     ],
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizes": {
-                        "3": 9,
-                        "9": 24,
-                        "12": 24
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 },
                 "@.*-(9|12)": {
                     "quantitySlots": 24,
@@ -90,19 +80,7 @@
                         { "_cmt": "1", "x": 0.6875, "y": 0, "z": 0.5 },
                         { "_cmt": "2", "x": 0.6875, "y": 0, "z": 0.3125 }
                     ],
-                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform",
-                    "sizesByType": {
-                        "*-9": {
-                            "3": 9,
-                            "6": 16,
-                            "12": 24
-                        },
-                        "*-12": {
-                            "3": 9,
-                            "6": 16,
-                            "9": 24
-                        }
-                    }
+                    "AttributeTransformCode": "onTabletopGames_GoBoard_9x9_Transform"
                 }
             },
             "ignoreSelectionBoxIndexesByType": {
@@ -131,6 +109,44 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] },
+                    {
+                        "name": "tabletopgames:block-morrisboard-3",
+                        "textIcon": "3",
+                        "changeVariant": { "key": "size", "value": "3" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 9 }] },
+                        "pushEvents": ["DropAllSlots"],
+                        "linebreak": true
+                    },
+                    {
+                        "name": "tabletopgames:block-morrisboard-6",
+                        "textIcon": "6",
+                        "changeVariant": { "key": "size", "value": "6" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 16 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    },
+                    {
+                        "name": "tabletopgames:block-morrisboard-9",
+                        "textIcon": "9",
+                        "changeVariant": { "key": "size", "value": "9" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 24 }] },
+                        "pushEvents": ["DropAllSlots"],
+                        "linebreak": true
+                    },
+                    {
+                        "name": "tabletopgames:block-morrisboard-12",
+                        "textIcon": "12",
+                        "changeVariant": { "key": "size", "value": "12" },
+                        "setAttributes": { "int": [{ "key": "quantitySlots", "value": 24 }] },
+                        "pushEvents": ["DropAllSlots"]
+                    }
+                ]
             }
         }
     ],

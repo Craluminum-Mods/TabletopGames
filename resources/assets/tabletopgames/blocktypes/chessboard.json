@@ -20,36 +20,12 @@
                     "fromBorderX": 0.21428571427,
                     "fromBorderZ": 0.78571428573,
                     "AttributeTransformCode": "onTabletopGamesChessBoard5x5Transform",
-                    "sizes": {
-                        "8x8": 64,
-                        "10x10": 100,
-                        "12x12": 144,
-                        "14x14": 196,
-                        "16x16": 256,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-8x8-*": {
                     "quantitySlots": 64,
@@ -59,36 +35,12 @@
                     "fromBorderX": 0.1725,
                     "fromBorderZ": 0.8275,
                     "AttributeTransformCode": "onTabletopGamesChessBoard8x8Transform",
-                    "sizes": {
-                        "5x5": 25,
-                        "10x10": 100,
-                        "12x12": 144,
-                        "14x14": 196,
-                        "16x16": 256,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-10x10-*": {
                     "quantitySlots": 100,
@@ -98,36 +50,12 @@
                     "fromBorderX": 0.163125,
                     "fromBorderZ": 0.836875,
                     "AttributeTransformCode": "onTabletopGamesChessBoard10x10Transform",
-                    "sizes": {
-                        "5x5": 25,
-                        "8x8": 64,
-                        "12x12": 144,
-                        "14x14": 196,
-                        "16x16": 256,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-12x12-*": {
                     "quantitySlots": 144,
@@ -137,36 +65,12 @@
                     "fromBorderX": 0.156875,
                     "fromBorderZ": 0.843125,
                     "AttributeTransformCode": "onTabletopGamesChessBoard12x12Transform",
-                    "sizes": {
-                        "5x5": 25,
-                        "8x8": 64,
-                        "10x10": 100,
-                        "14x14": 196,
-                        "16x16": 256,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-14x14-*": {
                     "quantitySlots": 196,
@@ -176,36 +80,12 @@
                     "fromBorderX": 0.09375,
                     "fromBorderZ": 0.90625,
                     "AttributeTransformCode": "onTabletopGamesChessBoard14x14Transform",
-                    "sizes": {
-                        "5x5": 25,
-                        "8x8": 64,
-                        "10x10": 100,
-                        "12x12": 144,
-                        "16x16": 256,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-16x16-*": {
                     "quantitySlots": 256,
@@ -215,40 +95,16 @@
                     "fromBorderX": 0.0890625,
                     "fromBorderZ": 0.9109375,
                     "AttributeTransformCode": "onTabletopGamesChessBoard16x16Transform",
-                    "sizes": {
-                        "5x5": 25,
-                        "8x8": 64,
-                        "10x10": 100,
-                        "12x12": 144,
-                        "14x14": 196,
-                        "91hex": 91
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": {
-                        "black": "#000000",
-                        "blue": "#4B7399",
-                        "brown": "#B58863",
-                        "darkgreen": "#32674B",
-                        "gray": "#ABABAB",
-                        "green": "#769656",
-                        "lightblue": "#C2D7E2",
-                        "lightgray": "#D5D5D5",
-                        "orange": "#D08B18",
-                        "pink": "#FCD8DD",
-                        "purple": "#8877B7",
-                        "red": "#BA5546",
-                        "tan": "#D3A36A"
-                    },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 },
                 "*-91hex-*": {
-                    "AttributeTransformCode": "onTabletopGamesChessBoard91hexTransform",
                     "quantitySlots": 91,
+                    "AttributeTransformCode": "onTabletopGamesChessBoard91hexTransform",
                     "overridePositions": [
                         { "_cmt": "1A", "x": 0.1138, "y": 0, "z": 0.699 },
                         { "_cmt": "2A", "x": 0.1138, "y": 0, "z": 0.6195 },
@@ -352,22 +208,12 @@
                         { "_cmt": "5L", "x": 0.8848, "y": 0, "z": 0.381 },
                         { "_cmt": "6L", "x": 0.8848, "y": 0, "z": 0.3015 }
                     ],
-                    "sizes": {
-                        "5x5": 25,
-                        "8x8": 64,
-                        "10x10": 100,
-                        "12x12": 144,
-                        "14x14": 196,
-                        "16x16": 256
-                    },
                     "rotateRadYByType": {
                         "*-east": 270,
                         "*-west": 90,
                         "*-south": 180,
                         "*-north": 0
-                    },
-                    "darkVariants": { "black": "#000000" },
-                    "lightVariants": { "white": "#ffffff" }
+                    }
                 }
             },
             "ignoreSelectionBoxIndexesByType": {
@@ -398,6 +244,49 @@
             "name": "TabletopGames_AppendTextToHeldInfo",
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModesByType": {
+                    "*hex*": [
+                        { "name": "tabletopgames:pack", "iconPath": "tabletopgames:textures/icons/packing.svg", "hexColor": "#FFFFFF", "pushEvents": ["PackToBox"] },
+                        { "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-5x5-east", "textIcon": "5x5", "changeVariant": { "key": "size", "value": "5x5" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 25 }] }, "pushEvents": ["DropAllSlots"], "linebreak": true },
+                        { "name": "tabletopgames:block-chessboard-8x8-east", "textIcon": "8x8", "changeVariant": { "key": "size", "value": "8x8" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 64 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-10x10-east", "textIcon": "10x10", "changeVariant": { "key": "size", "value": "10x10" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 100 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-12x12-east", "textIcon": "12x12", "changeVariant": { "key": "size", "value": "12x12" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 144 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-14x14-east", "textIcon": "14x14", "changeVariant": { "key": "size", "value": "14x14" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 196 }] }, "pushEvents": ["DropAllSlots"], "linebreak": true },
+                        { "name": "tabletopgames:block-chessboard-16x16-east", "textIcon": "16x16", "changeVariant": { "key": "size", "value": "16x16" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 256 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-91hex-east", "textIcon": "91hex", "changeVariant": { "key": "size", "value": "91hex" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 91 }] }, "pushEvents": ["DropAllSlots"] }
+                    ],
+                    "*": [
+                        { "name": "tabletopgames:pack", "iconPath": "tabletopgames:textures/icons/packing.svg", "hexColor": "#FFFFFF", "pushEvents": ["PackToBox"] },
+                        { "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-5x5-east", "textIcon": "5x5", "changeVariant": { "key": "size", "value": "5x5" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 25 }] }, "pushEvents": ["DropAllSlots"], "linebreak": true },
+                        { "name": "tabletopgames:block-chessboard-8x8-east", "textIcon": "8x8", "changeVariant": { "key": "size", "value": "8x8" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 64 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-10x10-east", "textIcon": "10x10", "changeVariant": { "key": "size", "value": "10x10" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 100 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-12x12-east", "textIcon": "12x12", "changeVariant": { "key": "size", "value": "12x12" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 144 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-14x14-east", "textIcon": "14x14", "changeVariant": { "key": "size", "value": "14x14" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 196 }] }, "pushEvents": ["DropAllSlots"], "linebreak": true },
+                        { "name": "tabletopgames:block-chessboard-16x16-east", "textIcon": "16x16", "changeVariant": { "key": "size", "value": "16x16" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 256 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "tabletopgames:block-chessboard-91hex-east", "textIcon": "91hex", "changeVariant": { "key": "size", "value": "91hex" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 91 }] }, "pushEvents": ["DropAllSlots"] },
+                        { "name": "color-black", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "dark", "value": "black" }] }, "linebreak": true },
+                        { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#4B7399", "setAttributes": { "string": [{ "key": "dark", "value": "blue" }] } },
+                        { "name": "color-brown", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#B58863", "setAttributes": { "string": [{ "key": "dark", "value": "brown" }] } },
+                        { "name": "color-dark-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#32674B", "setAttributes": { "string": [{ "key": "dark", "value": "darkgreen" }] } },
+                        { "name": "color-gray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#ABABAB", "setAttributes": { "string": [{ "key": "dark", "value": "gray" }] } },
+                        { "name": "color-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#769656", "setAttributes": { "string": [{ "key": "dark", "value": "green" }] }, "linebreak": true },
+                        { "name": "color-lightblue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#C2D7E2", "setAttributes": { "string": [{ "key": "dark", "value": "lightblue" }] } },
+                        { "name": "color-lightgray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D5D5D5", "setAttributes": { "string": [{ "key": "dark", "value": "lightgray" }] } },
+                        { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D08B18", "setAttributes": { "string": [{ "key": "dark", "value": "orange" }] } },
+                        { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#FCD8DD", "setAttributes": { "string": [{ "key": "dark", "value": "pink" }] } },
+                        { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#8877B7", "setAttributes": { "string": [{ "key": "dark", "value": "purple" }] }, "linebreak": true },
+                        { "name": "color-red", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#BA5546", "setAttributes": { "string": [{ "key": "dark", "value": "red" }] } },
+                        { "name": "color-tan", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D3A36A", "setAttributes": { "string": [{ "key": "dark", "value": "tan" }] } },
+                        { "name": "color-white", "iconPath": "tabletopgames:textures/icons/checkerboard-light.svg", "hexColor": "#FFFFFF", "setAttributes": { "string": [{ "key": "light", "value": "white" }] }, "linebreak": true }
+                    ]
+                }
             }
         }
     ],

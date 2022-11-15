@@ -23,6 +23,14 @@
             "properties": {
                 "keys": ["tabletopgames:description-toolmode"]
             }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    { "name": "tabletopgames:unpack", "iconPath": "tabletopgames:textures/icons/unpacking.svg", "hexColor": "#FFFFFF", "pushEvents": ["Unpack"] }
+                ]
+            }
         }
     ],
     "heldTpIdleAnimation": "holdbothhandslarge",

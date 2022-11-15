@@ -2,18 +2,12 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using TabletopGames.Utils;
-using System.Linq;
 using Vintagestory.API.MathTools;
-using System.Collections.Generic;
 
 namespace TabletopGames
 {
     class ItemChessPiece : ItemWithAttributes
     {
-        ChessData ChessData => Attributes["tabletopgames"]["chesspiece"].AsObject<ChessData>();
-        List<string> Colors => ChessData.Colors.Keys.ToList();
-        List<string> Pieces => ChessData.Pieces.ToList();
-
         public string modelPrefix;
 
         public override string MeshRefName => "tableTopGames_ChessPiece_Meshrefs";
@@ -21,23 +15,7 @@ namespace TabletopGames
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-
-            skillItems = api.GetChessPiecesToolModes(this);
             modelPrefix = Attributes["modelPrefix"].AsString();
-        }
-
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            if (toolMode < Pieces.Count)
-            {
-                slot.Itemstack.Attributes.SetString("type", Pieces[toolMode]);
-            }
-            else
-            {
-                slot.Itemstack.Attributes.SetString("color", Colors[toolMode - Pieces.Count]);
-            }
-
-            slot.MarkDirty();
         }
 
         public override string GetHeldItemName(ItemStack stack)

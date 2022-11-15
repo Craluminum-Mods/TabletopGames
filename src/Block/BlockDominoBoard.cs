@@ -15,13 +15,13 @@ namespace TabletopGames
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            skillItems = capi.GetDropAllSlotsToolModes();
+            // skillItems = capi.GetDropAllSlotsToolModes();
         }
 
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            if (toolMode == 0) slot.Itemstack.TryDropAllSlots(byPlayer, api);
-        }
+        // public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
+        // {
+        //     if (toolMode == 0) slot.Itemstack.TryDropAllSlots(byPlayer, api);
+        // }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {

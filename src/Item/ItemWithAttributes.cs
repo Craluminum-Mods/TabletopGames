@@ -15,7 +15,6 @@ namespace TabletopGames
         public ICoreClientAPI capi;
         public ITextureAtlasAPI targetAtlas;
         public readonly Dictionary<string, AssetLocation> tmpTextures = new();
-        public SkillItem[] skillItems;
 
         public int CurrentMeshRefid => Clone().GetHashCode();
 
@@ -37,26 +36,6 @@ namespace TabletopGames
             base.OnLoaded(api);
             capi = api as ICoreClientAPI;
         }
-
-        public override void OnUnloaded(ICoreAPI api)
-        {
-            for (int i = 0; skillItems != null && i < skillItems.Length; i++)
-            {
-                skillItems[i]?.Dispose();
-            }
-        }
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            return base.GetHeldInteractionHelp(inSlot).Append(new WorldInteraction
-            {
-                ActionLangCode = "heldhelp-settoolmode",
-                HotKeyCode = "toolmodeselect",
-                MouseButton = EnumMouseButton.None
-            });
-        }
-
-        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => skillItems;
 
         public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
         {

@@ -9,38 +9,38 @@ namespace TabletopGames
 {
     class ItemDominoPiece : ItemWithAttributes
     {
-        public DominoData DominoData => Attributes["tabletopgames"]["dominopiece"].AsObject<DominoData>();
+        // public DominoData DominoData => Attributes["tabletopgames"]["dominopiece"].AsObject<DominoData>();
 
         public string ModelPrefix => Attributes["modelPrefix"].AsString();
 
         public override string MeshRefName => "tableTopGames_DominoPiece_Meshrefs";
 
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
+        // public override void OnLoaded(ICoreAPI api)
+        // {
+        //     base.OnLoaded(api);
 
-            skillItems = capi.GetDominoPiecesToolModes(this);
-        }
+        //     skillItems = capi.GetDominoPiecesToolModes(this);
+        // }
 
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            var stack = slot.Itemstack;
-            var colors1 = DominoData.Colors1.Keys.ToList();
-            var colors2 = DominoData.Colors2.Keys.ToList();
+        // public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
+        // {
+        //     var stack = slot.Itemstack;
+        //     var colors1 = DominoData.Colors1.Keys.ToList();
+        //     var colors2 = DominoData.Colors2.Keys.ToList();
 
-            if (toolMode == 0) slot.Itemstack.RotateAntiClockwise();
-            if (toolMode == 1) slot.Itemstack.RotateClockwise();
+        //     if (toolMode == 0) slot.Itemstack.RotateAntiClockwise();
+        //     if (toolMode == 1) slot.Itemstack.RotateClockwise();
 
-            if (toolMode != 0 && toolMode != 1 && toolMode < colors1.Count + 2)
-            {
-                stack.Attributes.SetString("color1", colors1[toolMode - 2]);
-            }
-            else if (toolMode != 0 && toolMode != 1)
-            {
-                stack.Attributes.SetString("color2", colors2[toolMode - colors1.Count - 2]);
-            }
-            slot.MarkDirty();
-        }
+        //     if (toolMode != 0 && toolMode != 1 && toolMode < colors1.Count + 2)
+        //     {
+        //         stack.Attributes.SetString("color1", colors1[toolMode - 2]);
+        //     }
+        //     else if (toolMode != 0 && toolMode != 1)
+        //     {
+        //         stack.Attributes.SetString("color2", colors2[toolMode - colors1.Count - 2]);
+        //     }
+        //     slot.MarkDirty();
+        // }
 
         public override string GetHeldItemName(ItemStack stack)
         {

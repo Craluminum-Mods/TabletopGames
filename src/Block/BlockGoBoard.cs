@@ -8,28 +8,10 @@ namespace TabletopGames
 {
     public class BlockGoBoard : BlockWithAttributes
     {
-        public BoardData BoardData => Attributes["tabletopgames"]["board"].AsObject<BoardData>();
-
         public override bool SaveInventory => true;
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
         public override string MeshRefName => "tableTopGames_GoBoard_Meshrefs";
-
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-
-            skillItems = capi.GetDropAllSlotsToolModes()
-                .Append(capi.GetSizeVariantsToolModes(this));
-        }
-
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
-        {
-            var stack = slot.Itemstack;
-
-            if (toolMode == 0) stack.TryDropAllSlots(byPlayer, api);
-            else stack.TryChangeSizeVariant(byPlayer, toolMode - 1, BoardData.Sizes);
-        }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
