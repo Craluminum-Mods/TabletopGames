@@ -80,8 +80,9 @@
     "unpack": "Unpack",
     "DropAllSlots": "Drop all slots",
     "ToggleCrownOnChecker": "Toggle crown on checker",
+    "transparent": "Transparent",
     "game:tabname-tabletopgames": "Tabletop Games",
-
+    
     "handbook-wheretoget-title": "Where to get",
     "handbook-wheretoget-text": "• <a href=\"handbook://tabletopgames:crafting\">Here</a>",
 

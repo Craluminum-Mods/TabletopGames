@@ -271,20 +271,22 @@
                         { "name": "tabletopgames:block-chessboard-14x14-east", "textIcon": "14x14", "changeVariant": { "key": "size", "value": "14x14" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 196 }] }, "pushEvents": ["DropAllSlots"], "linebreak": true },
                         { "name": "tabletopgames:block-chessboard-16x16-east", "textIcon": "16x16", "changeVariant": { "key": "size", "value": "16x16" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 256 }] }, "pushEvents": ["DropAllSlots"] },
                         { "name": "tabletopgames:block-chessboard-91hex-east", "textIcon": "91hex", "changeVariant": { "key": "size", "value": "91hex" }, "setAttributes": { "int": [{ "key": "quantitySlots", "value": 91 }] }, "pushEvents": ["DropAllSlots"] },
-                        { "name": "color-black", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "dark", "value": "black" }] }, "linebreak": true },
+                        { "name": "tabletopgames:transparent", "textIcon": "T", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "dark", "value": "transparent" }] }, "linebreak": true },
+                        { "name": "color-black", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "dark", "value": "black" }] } },
                         { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#4B7399", "setAttributes": { "string": [{ "key": "dark", "value": "blue" }] } },
                         { "name": "color-brown", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#B58863", "setAttributes": { "string": [{ "key": "dark", "value": "brown" }] } },
                         { "name": "color-dark-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#32674B", "setAttributes": { "string": [{ "key": "dark", "value": "darkgreen" }] } },
-                        { "name": "color-gray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#ABABAB", "setAttributes": { "string": [{ "key": "dark", "value": "gray" }] } },
-                        { "name": "color-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#769656", "setAttributes": { "string": [{ "key": "dark", "value": "green" }] }, "linebreak": true },
+                        { "name": "color-gray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#ABABAB", "setAttributes": { "string": [{ "key": "dark", "value": "gray" }] }, "linebreak": true  },
+                        { "name": "color-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#769656", "setAttributes": { "string": [{ "key": "dark", "value": "green" }] }},
                         { "name": "color-lightblue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#C2D7E2", "setAttributes": { "string": [{ "key": "dark", "value": "lightblue" }] } },
                         { "name": "color-lightgray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D5D5D5", "setAttributes": { "string": [{ "key": "dark", "value": "lightgray" }] } },
                         { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D08B18", "setAttributes": { "string": [{ "key": "dark", "value": "orange" }] } },
-                        { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#FCD8DD", "setAttributes": { "string": [{ "key": "dark", "value": "pink" }] } },
-                        { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#8877B7", "setAttributes": { "string": [{ "key": "dark", "value": "purple" }] }, "linebreak": true },
+                        { "name": "color-pink", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#FCD8DD", "setAttributes": { "string": [{ "key": "dark", "value": "pink" }] }, "linebreak": true },
+                        { "name": "color-purple", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#8877B7", "setAttributes": { "string": [{ "key": "dark", "value": "purple" }] } },
                         { "name": "color-red", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#BA5546", "setAttributes": { "string": [{ "key": "dark", "value": "red" }] } },
                         { "name": "color-tan", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D3A36A", "setAttributes": { "string": [{ "key": "dark", "value": "tan" }] } },
-                        { "name": "color-white", "iconPath": "tabletopgames:textures/icons/checkerboard-light.svg", "hexColor": "#FFFFFF", "setAttributes": { "string": [{ "key": "light", "value": "white" }] }, "linebreak": true }
+                        { "name": "tabletopgames:transparent", "textIcon": "T", "hexColor": "#000000", "setAttributes": { "string": [{ "key": "light", "value": "transparent" }] }, "linebreak": true },
+                        { "name": "color-white", "iconPath": "tabletopgames:textures/icons/checkerboard-light.svg", "hexColor": "#FFFFFF", "setAttributes": { "string": [{ "key": "light", "value": "white" }] } }
                     ]
                 }
             }
@@ -334,6 +336,7 @@
         "dark": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
         "dark-": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
         "dark-default": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
+        "dark-transparent": { "base": "game:block/transparent" },
         "dark-black": { "base": "tabletopgames:block/checkerboard/dark/{size}-black" },
         "dark-blue": { "base": "tabletopgames:block/checkerboard/dark/{size}-blue" },
         "dark-brown": { "base": "tabletopgames:block/checkerboard/dark/{size}-brown" },
@@ -347,10 +350,11 @@
         "dark-purple": { "base": "tabletopgames:block/checkerboard/dark/{size}-purple" },
         "dark-red": { "base": "tabletopgames:block/checkerboard/dark/{size}-red" },
         "dark-tan": { "base": "tabletopgames:block/checkerboard/dark/{size}-tan" },
-
+        
         "light": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
         "light-": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
         "light-default": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
+        "light-transparent": { "base": "game:block/transparent" },
         "light-white": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
 
         "wood": { "base": "game:block/wood/debarked/oak" },
