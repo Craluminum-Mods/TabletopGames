@@ -16,6 +16,9 @@ namespace TabletopGames
             var i = blockSel.SelectionBoxIndex;
             var targetSlot = blockEntity.inventory[i];
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            var ctrl = byPlayer.Entity.Controls.CtrlKey;
+            if (playerSlot.Empty && ctrl && targetSlot.Itemstack.Collectible is ItemPlayingCards)
+                return blockEntity.TryTakeFrom(byPlayer, i);
 
             if (playerSlot.Empty) return blockEntity.TryTake(byPlayer, i);
 

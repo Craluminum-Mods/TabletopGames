@@ -54,6 +54,33 @@ namespace TabletopGames
             return true;
         }
 
+        public bool TryTakeFrom(IPlayer byPlayer, int fromSlotId)
+        {
+            var fromSlot = inventory[fromSlotId];
+
+            if (fromSlot.Itemstack.Collectible is not ItemPlayingCards) return false;
+            if (fromSlot.Itemstack == null || fromSlot.StackSize < 0) return false;
+
+            var slotsTree = fromSlot.Itemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+            var lastIndex = slotsTree.Values.Length - 1;
+
+            var stackFromTree = slotsTree.GetItemstack("slot-" + lastIndex);
+            if (!stackFromTree.ResolveBlockOrItem(byPlayer.Entity.World)) return false;
+            var stack = stackFromTree;
+
+            if (!byPlayer.InventoryManager.TryGiveItemstack(stack, true))
+            {
+                Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
+            }
+
+            slotsTree.RemoveAttribute("slot-" + lastIndex);
+            if (slotsTree.Count == 0) fromSlot.Itemstack = null;
+
+            updateMesh(fromSlotId);
+            MarkDirty(true);
+            return true;
+        }
+
         public bool TryCreate(IPlayer byPlayer, int toSlotId)
         {
             var toSlot = inventory[toSlotId];
