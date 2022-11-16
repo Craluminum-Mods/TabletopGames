@@ -66,14 +66,23 @@ namespace TabletopGames
 
             var stackFromTree = slotsTree.GetItemstack("slot-" + lastIndex);
             if (!stackFromTree.ResolveBlockOrItem(byPlayer.Entity.World)) return false;
-            var stack = stackFromTree;
 
-            if (!byPlayer.InventoryManager.TryGiveItemstack(stack, true))
+            if (!byPlayer.InventoryManager.TryGiveItemstack(stackFromTree, true))
             {
-                Api.World.SpawnItemEntity(stack, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
+                Api.World.SpawnItemEntity(stackFromTree, byPlayer.Entity.BlockSelection.Position.ToVec3d().Add(0.5, 0.5, 0.5));
             }
 
             slotsTree.RemoveAttribute("slot-" + lastIndex);
+
+            if (!slotsTree.HasAttribute("slot-1"))
+            {
+                var stackFirstSlot = slotsTree.GetItemstack("slot-0");
+                if (stackFirstSlot.ResolveBlockOrItem(byPlayer.Entity.World))
+                {
+                    fromSlot.Itemstack.SetFrom(stackFirstSlot);
+                }
+            }
+
             if (slotsTree.Count == 0) fromSlot.Itemstack = null;
 
             updateMesh(fromSlotId);
