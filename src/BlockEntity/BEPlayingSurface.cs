@@ -1,6 +1,8 @@
 using System.Text;
 using Vintagestory.API.Common;
 using TabletopGames.Utils;
+using Vintagestory.API.Util;
+using System.Linq;
 
 namespace TabletopGames
 {
@@ -130,6 +132,35 @@ namespace TabletopGames
 
             if (slotsTree?.Count is < 2 or > 12) return false;
             new DummySlot { Itemstack = fromSlot.TakeOut(1) }.SaveSlotToBox(toSlot.Itemstack, slotsTree.Count);
+
+            toSlot.MarkDirty();
+            fromSlot.MarkDirty();
+            updateMesh(toSlotId);
+            MarkDirty(true);
+            return true;
+        }
+
+        public bool TryMergeMultiple(IPlayer byPlayer, int toSlotId)
+        {
+            var toSlot = inventory[toSlotId];
+            var fromSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+
+            var toSlotsTree = toSlot.Itemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+            var fromSlotsTree = fromSlot.Itemstack.Attributes?.GetTreeAttribute("box")?.GetTreeAttribute("slots");
+
+            if (toSlotsTree?.Count + fromSlotsTree?.Count is < 2 or > 12) return false;
+
+            var toDummyInv = new DummyInventory(Api, toSlotsTree.Count);
+            toSlot.Itemstack.Clone().TransferInventory(toDummyInv, Api);
+
+            var fromDummyInv = new DummyInventory(Api, fromSlotsTree.Count);
+            fromSlot.Itemstack.Clone().TransferInventory(fromDummyInv, Api);
+
+            var dummySlots = toDummyInv.Slots.Append(fromDummyInv.Slots).ToArray();
+            for (int i = 0; i < dummySlots.Length; i++)
+            {
+                dummySlots[i].SaveSlotToBox(toSlot.Itemstack, i);
+            }
 
             toSlot.MarkDirty();
             fromSlot.MarkDirty();

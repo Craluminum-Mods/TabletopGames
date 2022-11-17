@@ -17,18 +17,27 @@ namespace TabletopGames
             var targetSlot = blockEntity.inventory[i];
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             var ctrl = byPlayer.Entity.Controls.CtrlKey;
-            if (playerSlot.Empty && ctrl && targetSlot.Itemstack.Collectible is ItemPlayingCards)
-                return blockEntity.TryTakeFrom(byPlayer, i);
+
+            if (playerSlot.Empty && ctrl && targetSlot?.Itemstack?.Collectible is ItemPlayingCards) return blockEntity.TryTakeFrom(byPlayer, i);
 
             if (playerSlot.Empty) return blockEntity.TryTake(byPlayer, i);
 
             if (targetSlot.Empty) return blockEntity.TryPut(byPlayer, i, true);
 
-            if (targetSlot.Itemstack.Collectible is ItemPlayingCard && playerSlot.Itemstack.Collectible is ItemPlayingCard)
+            if (targetSlot?.Itemstack?.Collectible is ItemPlayingCard && playerSlot?.Itemstack?.Collectible is ItemPlayingCard)
+            {
                 return blockEntity.TryCreate(byPlayer, i);
+            }
 
-            if (targetSlot.Itemstack.Collectible is ItemPlayingCards && playerSlot.Itemstack.Collectible is ItemPlayingCard)
+            if (targetSlot?.Itemstack?.Collectible is ItemPlayingCards && playerSlot?.Itemstack?.Collectible is ItemPlayingCard)
+            {
                 return blockEntity.TryMerge(byPlayer, i);
+            }
+
+            if (targetSlot?.Itemstack?.Collectible is ItemPlayingCards && playerSlot?.Itemstack?.Collectible is ItemPlayingCards)
+            {
+                return blockEntity.TryMergeMultiple(byPlayer, i);
+            }
 
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
