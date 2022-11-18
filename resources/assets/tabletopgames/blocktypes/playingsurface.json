@@ -1,4 +1,5 @@
 {
+    "enabled": false,
     "code": "playingsurface",
     "class": "TabletopGames_PlayingSurface",
     "entityClass": "TabletopGames_BEPlayingSurface",

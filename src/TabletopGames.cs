@@ -14,14 +14,14 @@ namespace TabletopGames
             api.RegisterBlockClass("TabletopGames_DominoBoard", typeof(BlockDominoBoard));
             api.RegisterBlockClass("TabletopGames_DominoBox", typeof(BlockDominoBox));
             api.RegisterBlockClass("TabletopGames_GoBoard", typeof(BlockGoBoard));
-            api.RegisterBlockClass("TabletopGames_PlayingSurface", typeof(BlockPlayingSurface));
+            // api.RegisterBlockClass("TabletopGames_PlayingSurface", typeof(BlockPlayingSurface));
             api.RegisterBlockClass("TabletopGames_MorrisBoard", typeof(BlockMorrisBoard));
 
             api.RegisterBlockEntityClass("TabletopGames_BEChessBoard", typeof(BEChessBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBoard", typeof(BEDominoBoard));
             api.RegisterBlockEntityClass("TabletopGames_BEDominoBox", typeof(BEDominoBox));
             api.RegisterBlockEntityClass("TabletopGames_BEGoBoard", typeof(BEGoBoard));
-            api.RegisterBlockEntityClass("TabletopGames_BEPlayingSurface", typeof(BEPlayingSurface));
+            // api.RegisterBlockEntityClass("TabletopGames_BEPlayingSurface", typeof(BEPlayingSurface));
             api.RegisterBlockEntityClass("TabletopGames_BEMorrisBoard", typeof(BEMorrisBoard));
 
             api.RegisterItemClass("TabletopGames_ItemBox", typeof(ItemBox));
@@ -29,8 +29,8 @@ namespace TabletopGames
             api.RegisterItemClass("TabletopGames_ItemChessPiece", typeof(ItemChessPiece));
             api.RegisterItemClass("TabletopGames_ItemDominoPiece", typeof(ItemDominoPiece));
             api.RegisterItemClass("TabletopGames_ItemGoStone", typeof(ItemGoStone));
-            api.RegisterItemClass("TabletopGames_ItemPlayingCard", typeof(ItemPlayingCard));
-            api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
+            // api.RegisterItemClass("TabletopGames_ItemPlayingCard", typeof(ItemPlayingCard));
+            // api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
 
             api.RegisterCollectibleBehaviorClass("TabletopGames_AppendTextToHeldInfo", typeof(CollectibleBehaviorAppendTextToHeldInfo));
             api.RegisterCollectibleBehaviorClass("TabletopGames_CustomToolModes", typeof(CollectibleBehaviorCustomToolModes));

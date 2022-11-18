@@ -1,4 +1,5 @@
 {
+    "enabled": false,
     "code": "playingcard",
     "class": "TabletopGames_ItemPlayingCard",
     "maxStackSize": 64,

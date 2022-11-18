@@ -96,22 +96,22 @@ namespace TabletopGames.Utils
             if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
             if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
 
-            if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            // if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            // if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            // if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
+            // if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
 
             if (stack.HasKeyAsAttribute(key, "wood")) return textures["wood-" + stack.Attributes.GetString("wood")].Base;
             if (stack.HasKeyAsAttribute(key, "dark")) return textures["dark-" + stack.Attributes.GetString("dark")].Base;
             if (stack.HasKeyAsAttribute(key, "light")) return textures["light-" + stack.Attributes.GetString("light")].Base;
 
-            if (stack.Collectible?.Attributes?["tabletopgames"]?["playingcard"]?.AsObject<PlayingCardData>() is PlayingCardData cardData and not null)
-            {
-                if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
-                if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
-                if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
-                if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
-            }
+            // if (stack.Collectible?.Attributes?["tabletopgames"]?["playingcard"]?.AsObject<PlayingCardData>() is PlayingCardData cardData and not null)
+            // {
+            //     if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
+            //     if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
+            //     if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
+            //     if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
+            // }
 
             return textures[key.Key].Base;
         }

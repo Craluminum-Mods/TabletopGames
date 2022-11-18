@@ -12,12 +12,12 @@ namespace TabletopGames
 
         public override bool CanTakeFrom(ItemSlot sourceSlot, EnumMergePriority priority = EnumMergePriority.AutoMerge)
         {
-            return sourceSlot.Itemstack.Collectible is ItemDominoPiece or ItemPlayingCard;
+            return sourceSlot.Itemstack.Collectible is ItemDominoPiece;
         }
 
         public override bool CanHold(ItemSlot sourceSlot)
         {
-            return sourceSlot.Itemstack.Collectible is ItemDominoPiece or ItemPlayingCard;
+            return sourceSlot.Itemstack.Collectible is ItemDominoPiece;
         }
     }
 }
