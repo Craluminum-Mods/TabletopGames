@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "BB_,BSB,_BB",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:plank-*", "name": "wood" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "block", "code": "morrisboard-9", "attributes": { "wood": "{wood}", "quantitySlots": 24 } }
+    }
+]
