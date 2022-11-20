@@ -247,6 +247,26 @@
             }
         },
         {
+            "name": "TabletopGames_CustomPlacedWorldInteractions",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-behavior-rightclickpickup",
+                        "HotKeyCodes": ["shift", "ctrl"],
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-add",
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-remove",
+                        "MouseButton": "Right"
+                    }
+                ]
+            }
+        },
+        {
             "name": "TabletopGames_CustomToolModes",
             "properties": {
                 "toolModesByType": {
@@ -276,8 +296,8 @@
                         { "name": "color-blue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#4B7399", "setAttributes": { "string": [{ "key": "dark", "value": "blue" }] } },
                         { "name": "color-brown", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#B58863", "setAttributes": { "string": [{ "key": "dark", "value": "brown" }] } },
                         { "name": "color-dark-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#32674B", "setAttributes": { "string": [{ "key": "dark", "value": "darkgreen" }] } },
-                        { "name": "color-gray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#ABABAB", "setAttributes": { "string": [{ "key": "dark", "value": "gray" }] }, "linebreak": true  },
-                        { "name": "color-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#769656", "setAttributes": { "string": [{ "key": "dark", "value": "green" }] }},
+                        { "name": "color-gray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#ABABAB", "setAttributes": { "string": [{ "key": "dark", "value": "gray" }] }, "linebreak": true },
+                        { "name": "color-green", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#769656", "setAttributes": { "string": [{ "key": "dark", "value": "green" }] } },
                         { "name": "color-lightblue", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#C2D7E2", "setAttributes": { "string": [{ "key": "dark", "value": "lightblue" }] } },
                         { "name": "color-lightgray", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D5D5D5", "setAttributes": { "string": [{ "key": "dark", "value": "lightgray" }] } },
                         { "name": "color-orange", "iconPath": "tabletopgames:textures/icons/checkerboard-dark.svg", "hexColor": "#D08B18", "setAttributes": { "string": [{ "key": "dark", "value": "orange" }] } },
@@ -350,7 +370,7 @@
         "dark-purple": { "base": "tabletopgames:block/checkerboard/dark/{size}-purple" },
         "dark-red": { "base": "tabletopgames:block/checkerboard/dark/{size}-red" },
         "dark-tan": { "base": "tabletopgames:block/checkerboard/dark/{size}-tan" },
-        
+
         "light": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
         "light-": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },
         "light-default": { "base": "tabletopgames:block/checkerboard/light/{size}-white" },

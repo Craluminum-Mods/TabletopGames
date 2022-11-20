@@ -32,6 +32,8 @@ namespace TabletopGames
             // api.RegisterItemClass("TabletopGames_ItemPlayingCard", typeof(ItemPlayingCard));
             // api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
 
+            api.RegisterBlockBehaviorClass("TabletopGames_CustomPlacedWorldInteractions", typeof(BlockBehaviorCustomPlacedWorldInteractions));
+
             api.RegisterCollectibleBehaviorClass("TabletopGames_AppendTextToHeldInfo", typeof(CollectibleBehaviorAppendTextToHeldInfo));
             api.RegisterCollectibleBehaviorClass("TabletopGames_CustomToolModes", typeof(CollectibleBehaviorCustomToolModes));
 

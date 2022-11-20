@@ -148,6 +148,26 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "TabletopGames_CustomPlacedWorldInteractions",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-behavior-rightclickpickup",
+                        "HotKeyCodes": ["shift", "ctrl"],
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-add",
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-remove",
+                        "MouseButton": "Right"
+                    }
+                ]
+            }
         }
     ],
     "shape": {

@@ -57,18 +57,6 @@ namespace TabletopGames
 
         public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => new(1, 1, 0, 1); // Yellow
 
-        public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
-        {
-            if (!CanBePickedUp) return base.GetPlacedBlockInteractionHelp(world, selection, forPlayer);
-
-            return base.GetPlacedBlockInteractionHelp(world, selection, forPlayer).Append(new WorldInteraction
-            {
-                ActionLangCode = "blockhelp-behavior-rightclickpickup",
-                HotKeyCodes = new string[] { "shift", "ctrl" },
-                MouseButton = EnumMouseButton.Right
-            });
-        }
-
         public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false, string darkType = "", string lightType = "")
         {
             ItemStack blockStack;

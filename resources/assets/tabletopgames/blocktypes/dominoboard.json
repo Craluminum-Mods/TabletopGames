@@ -33,6 +33,26 @@
             "properties": {
                 "toolModes": [{ "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] }]
             }
+        },
+        {
+            "name": "TabletopGames_CustomPlacedWorldInteractions",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-behavior-rightclickpickup",
+                        "HotKeyCodes": ["shift", "ctrl"],
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-add",
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-remove",
+                        "MouseButton": "Right"
+                    }
+                ]
+            }
         }
     ],
     "shape": { "base": "block/board/domino-{size}" },

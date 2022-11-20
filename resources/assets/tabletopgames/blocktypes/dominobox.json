@@ -49,6 +49,18 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "TabletopGames_CustomPlacedWorldInteractions",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-behavior-rightclickpickup",
+                        "HotKeyCodes": ["shift", "ctrl"],
+                        "MouseButton": "Right"
+                    }
+                ]
+            }
         }
     ],
     "shape": {
