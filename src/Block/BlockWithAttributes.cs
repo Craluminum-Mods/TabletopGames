@@ -18,7 +18,6 @@ namespace TabletopGames
         public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(tmpTextures[textureCode]);
         public readonly Dictionary<string, AssetLocation> tmpTextures = new();
 
-        public virtual bool SaveInventory => false;
         public virtual bool HasWoodType => false;
         public virtual bool HasCheckerboardTypes => false;
         public virtual bool CanBePickedUp => false;
@@ -57,14 +56,13 @@ namespace TabletopGames
 
         public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => new(1, 1, 0, 1); // Yellow
 
-        public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false, string darkType = "", string lightType = "")
+        public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false, string darkType = "", string lightType = "", bool saveInventory = false)
         {
             ItemStack blockStack;
             if (Variant?["side"] != null) blockStack = new ItemStack(world.GetBlock(CodeWithVariant("side", "east")));
             else blockStack = new ItemStack(this);
 
             if (isInvSizeDynamic && quantitySlots != 0) blockStack.Attributes.SetInt("quantitySlots", quantitySlots);
-            if (SaveInventory) blockStack.TransferInventory(inventory);
             if (HasWoodType) blockStack.Attributes.SetString("wood", woodType);
             if (HasCheckerboardTypes) blockStack.Attributes.SetString("dark", darkType);
             if (HasCheckerboardTypes) blockStack.Attributes.SetString("light", lightType);

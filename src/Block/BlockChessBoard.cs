@@ -9,7 +9,6 @@ namespace TabletopGames
 {
     public class BlockChessBoard : BlockWithAttributes
     {
-        public override bool SaveInventory => true;
         public override bool HasWoodType => true;
         public override bool HasCheckerboardTypes => true;
         public override bool CanBePickedUp => true;

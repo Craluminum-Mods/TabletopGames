@@ -6,7 +6,6 @@ namespace TabletopGames
 {
     public class BlockDominoBox : BlockWithAttributes
     {
-        public override bool SaveInventory => true;
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
         public override string MeshRefName => "tableTopGames_BlockDominoBox_Meshrefs";

@@ -131,13 +131,15 @@ namespace TabletopGames.Utils
             return new(shapeBase.Domain, "shapes/" + shapeBase.Path + ".json");
         }
 
-        public static bool TryPickup(this Block block, BlockEntityContainer blockEntity, IWorldAccessor world, IPlayer byPlayer)
+        public static bool TryPickup(this Block block, BlockEntityContainer blockEntity, IWorldAccessor world, IPlayer byPlayer, bool saveInventory = true)
         {
             if (blockEntity.Inventory == null) return false;
             if (!byPlayer.Entity.Controls.ShiftKey) return false;
             if (!byPlayer.Entity.Controls.CtrlKey) return false;
 
             var blockStack = block.OnPickBlock(world, blockEntity.Pos);
+
+            if (saveInventory) blockStack.TransferInventory(blockEntity.Inventory);
 
             if (!byPlayer.InventoryManager.TryGiveItemstack(blockStack, true))
             {
