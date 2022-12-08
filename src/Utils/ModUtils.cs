@@ -156,30 +156,30 @@ namespace TabletopGames.Utils
             var side = block?.Variant?["side"];
 
             stackAttributes.RemoveAttribute("rotation");
-            if (side == "east" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 180);
-            if (side == "east" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 270);
-            if (side == "east" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 0);
-            if (side == "east" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 90);
+            stackAttributes.SetInt("rotation", GetRotationBySideAndFacing(side, facing));
+        }
 
-            if (side == "north" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 90);
-            if (side == "north" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 180);
-            if (side == "north" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 270);
-            if (side == "north" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 0);
+        public static int GetRotationBySideAndFacing(string side, BlockFacing facing)
+        {
+            if (side == null && facing == BlockFacing.EAST) return 270;
+            if (side == null && facing == BlockFacing.NORTH) return 0;
+            if (side == null && facing == BlockFacing.WEST) return 90;
+            if (side == null && facing == BlockFacing.SOUTH) return 180;
 
-            if (side == "west" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 0);
-            if (side == "west" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 90);
-            if (side == "west" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 180);
-            if (side == "west" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 270);
+            if (side == facing.ToString().ToLower()) return 180;
+            if (side == facing.Opposite.ToString().ToLower()) return 0;
 
-            if (side == "south" && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 270);
-            if (side == "south" && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
-            if (side == "south" && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
-            if (side == "south" && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+            if (side == "east" && facing == BlockFacing.SOUTH) return 90;
+            if (side == "north" && facing == BlockFacing.EAST) return 90;
+            if (side == "south" && facing == BlockFacing.WEST) return 90;
+            if (side == "west" && facing == BlockFacing.NORTH) return 90;
 
-            if (side == null && facing == BlockFacing.EAST) stackAttributes.SetInt("rotation", 270);
-            if (side == null && facing == BlockFacing.NORTH) stackAttributes.SetInt("rotation", 0);
-            if (side == null && facing == BlockFacing.WEST) stackAttributes.SetInt("rotation", 90);
-            if (side == null && facing == BlockFacing.SOUTH) stackAttributes.SetInt("rotation", 180);
+            if (side == "east" && facing == BlockFacing.NORTH) return 270;
+            if (side == "north" && facing == BlockFacing.WEST) return 270;
+            if (side == "south" && facing == BlockFacing.EAST) return 270;
+            if (side == "west" && facing == BlockFacing.SOUTH) return 270;
+
+            return 0;
         }
 
         public static void RotateClockwise(this ItemStack stack)
