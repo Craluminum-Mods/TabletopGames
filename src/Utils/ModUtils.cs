@@ -96,29 +96,12 @@ namespace TabletopGames.Utils
             if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
             if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
 
-            // if (stack.HasKeyAsAttribute(key, "back")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            // if (stack.HasKeyAsAttribute(key, "face")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            // if (stack.HasKeyAsAttribute(key, "rank")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-            // if (stack.HasKeyAsAttribute(key, "suit")) return new AssetLocation(stack.GetTexturePath(key.Key) + ".png");
-
             if (stack.HasKeyAsAttribute(key, "wood")) return textures["wood-" + stack.Attributes.GetString("wood")].Base;
             if (stack.HasKeyAsAttribute(key, "dark")) return textures["dark-" + stack.Attributes.GetString("dark")].Base;
             if (stack.HasKeyAsAttribute(key, "light")) return textures["light-" + stack.Attributes.GetString("light")].Base;
 
-            // if (stack.Collectible?.Attributes?["tabletopgames"]?["playingcard"]?.AsObject<PlayingCardData>() is PlayingCardData cardData and not null)
-            // {
-            //     if (cardData.Backs.Contains(key.Key) && stack.Attributes.HasAttribute("back")) return new AssetLocation(stack.GetTexturePath("back") + ".png");
-            //     if (cardData.Faces.Contains(key.Key) && stack.Attributes.HasAttribute("face")) return new AssetLocation(stack.GetTexturePath("face") + ".png");
-            //     if (cardData.Ranks.Contains(key.Key) && stack.Attributes.HasAttribute("rank")) return new AssetLocation(stack.GetTexturePath("rank") + ".png");
-            //     if (cardData.Suits.Contains(key.Key) && stack.Attributes.HasAttribute("suit")) return new AssetLocation(stack.GetTexturePath("suit") + ".png");
-            // }
-
             return textures[key.Key].Base;
         }
-
-        private static string GetTexturePath(this ItemStack stack, string key) => stack.Collectible.GetTextureLocationPrefix(key) + stack.Attributes.GetString(key);
-
-        public static string GetTextureLocationPrefix(this CollectibleObject collobj, string key) => collobj.Attributes["texturePrefixes"][key].AsString();
 
         private static bool HasKeyAsAttribute(this ItemStack stack, KeyValuePair<string, CompositeTexture> key, string compare)
         {
@@ -180,45 +163,6 @@ namespace TabletopGames.Utils
             if (side == "west" && facing == BlockFacing.SOUTH) return 270;
 
             return 0;
-        }
-
-        public static void RotateClockwise(this ItemStack stack)
-        {
-            var rotation = stack.Attributes.GetInt("rotation");
-            rotation += 90;
-            if (rotation == 360) rotation = 0;
-
-            stack.Attributes.SetInt("rotation", rotation);
-        }
-
-        public static void RotateAntiClockwise(this ItemStack stack)
-        {
-            var rotation = stack.Attributes.GetInt("rotation");
-            rotation -= 90;
-            if (rotation < 0) rotation = 270;
-
-            stack.Attributes.SetInt("rotation", rotation);
-        }
-
-        public static void TryChangeSizeVariant(this ItemStack stack, IPlayer byPlayer, int index, Dictionary<string, int> sizes)
-        {
-            var api = byPlayer.Entity.Api;
-            if (stack.Collectible.Variant?["size"] == null) return;
-            var sizeVariants = sizes.Keys.ToList();
-            var sizeQuantitySlots = sizes.Values.ToList();
-
-            stack.TryDropAllSlots(byPlayer, api);
-
-            var clonedAttributes = stack.Attributes.Clone();
-
-            var newStack = new ItemStack(api.World.GetBlock(stack.Collectible.CodeWithVariant("size", sizeVariants[index])))
-            {
-                Attributes = clonedAttributes
-            };
-
-            newStack.Attributes.SetInt("quantitySlots", sizeQuantitySlots[index]);
-
-            stack.SetFrom(newStack);
         }
 
         public static void TryChangeVariant(this ItemStack stack, ICoreAPI api, string variantName, string variantValue, bool saveAttributes = true)
