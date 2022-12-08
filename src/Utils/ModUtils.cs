@@ -229,14 +229,15 @@ namespace TabletopGames.Utils
 
             var newStack = new ItemStack();
 
-            if (stack.Collectible.ItemClass == EnumItemClass.Block)
+            switch (stack.Collectible.ItemClass)
             {
-                newStack = new ItemStack(api.World.GetBlock(stack.Collectible.CodeWithVariant(variantName, variantValue)));
-            }
+                case EnumItemClass.Block:
+                    newStack = new ItemStack(api.World.GetBlock(stack.Collectible.CodeWithVariant(variantName, variantValue)));
+                    break;
 
-            if (stack.Collectible.ItemClass == EnumItemClass.Item)
-            {
-                newStack = new ItemStack(api.World.GetItem(stack.Collectible.CodeWithVariant(variantName, variantValue)));
+                case EnumItemClass.Item:
+                    newStack = new ItemStack(api.World.GetItem(stack.Collectible.CodeWithVariant(variantName, variantValue)));
+                    break;
             }
 
             if (saveAttributes) newStack.Attributes = clonedAttributes;
