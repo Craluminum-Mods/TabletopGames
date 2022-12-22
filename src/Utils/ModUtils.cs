@@ -88,24 +88,21 @@ namespace TabletopGames.Utils
 
         public static int[] GetIgnoredSelectionBoxIndexes(this CollectibleObject collobj) => collobj.Attributes?["tabletopgames"]["ignoreSelectionBoxIndexes"].AsArray<int>();
 
-        public static AssetLocation TryGetTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
+        public static AssetLocation GetTexturePath(this ItemStack stack, KeyValuePair<string, CompositeTexture> key)
         {
-            var textures = (stack.Collectible as Item)?.Textures ?? (stack.Collectible as Block)?.Textures;
+            var textures = stack?.Item?.Textures ?? stack?.Block?.Textures;
 
-            if (stack.HasKeyAsAttribute(key, "color")) return textures[stack.Attributes.GetString("color")].Base;
-            if (stack.HasKeyAsAttribute(key, "color1")) return textures[stack.Attributes.GetString("color1")].Base;
-            if (stack.HasKeyAsAttribute(key, "color2")) return textures[stack.Attributes.GetString("color2")].Base;
+            if (stack?.Attributes?.HasAttribute(key.Key) == true)
+            {
+                var keyOnly = key.Key;
+                var valueOnly = stack?.Attributes?.GetAsString(keyOnly);
+                var keyValue = $"{keyOnly}-{valueOnly}";
 
-            if (stack.HasKeyAsAttribute(key, "wood")) return textures["wood-" + stack.Attributes.GetString("wood")].Base;
-            if (stack.HasKeyAsAttribute(key, "dark")) return textures["dark-" + stack.Attributes.GetString("dark")].Base;
-            if (stack.HasKeyAsAttribute(key, "light")) return textures["light-" + stack.Attributes.GetString("light")].Base;
-
+                if (textures.ContainsKey(keyValue)) return textures?[keyValue]?.Base;
+                if (textures.ContainsKey(valueOnly)) return textures?[valueOnly]?.Base;
+                if (textures.ContainsKey(keyOnly)) return textures[keyOnly].Base;
+            }
             return textures[key.Key].Base;
-        }
-
-        private static bool HasKeyAsAttribute(this ItemStack stack, KeyValuePair<string, CompositeTexture> key, string compare)
-        {
-            return key.Key == compare && stack.Attributes.HasAttribute(compare);
         }
 
         public static AssetLocation GetShapePath(this CollectibleObject collobj)
