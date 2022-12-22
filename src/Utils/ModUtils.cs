@@ -111,6 +111,16 @@ namespace TabletopGames.Utils
             return new(shapeBase.Domain, "shapes/" + shapeBase.Path + ".json");
         }
 
+        public static Shape GetShapeFromAttributes(this ICoreAPI api, ItemStack stack)
+        {
+            return Shape.TryGet(api, stack.Collectible.Attributes["shape"].AsString());
+        }
+
+        public static Shape GetShapeFromAttributesByKey(this ICoreAPI api, ItemStack stack, string key)
+        {
+            return Shape.TryGet(api, stack.Collectible.Attributes["shapes"][key].AsString());
+        }
+
         public static bool TryPickup(this Block block, BlockEntityContainer blockEntity, IWorldAccessor world, IPlayer byPlayer, bool saveInventory = true)
         {
             if (blockEntity.Inventory == null) return false;
