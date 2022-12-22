@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "douglasfir" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "willow" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "honeylocust" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "bearnut" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "blackpoplar" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "pyramidalpoplar" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "catalpa" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "mahogany" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "sal" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "saxaul" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "spruce" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "sycamore" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "elm" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "beech" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "eucalyptus" } },
+            { "type": "block", "code": "dominoboard-8x8", "attributes": { "quantitySlots": 64, "wood": "cedar" } }
+        ],
+        "file": "blocktypes/dominoboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]

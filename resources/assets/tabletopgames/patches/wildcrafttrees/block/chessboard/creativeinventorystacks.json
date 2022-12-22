@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacksByType/*-8x8-east/0/stacks/-",
+        "value": [
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "douglasfir", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "willow", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "honeylocust", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "bearnut", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "blackpoplar", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "pyramidalpoplar", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "catalpa", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "mahogany", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "sal", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "saxaul", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "spruce", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "sycamore", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "elm", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "beech", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "eucalyptus", "dark": "black", "light": "white" } },
+            { "type": "block", "code": "chessboard-8x8-east", "attributes": { "quantitySlots": 64, "wood": "cedar", "dark": "black", "light": "white" } }
+        ],
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]

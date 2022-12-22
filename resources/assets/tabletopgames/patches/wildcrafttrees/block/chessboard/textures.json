@@ -1,0 +1,130 @@
+[
+    {
+        "op": "add",
+        "path": "/textures/wood-douglasfir",
+        "value": { "base": "game:block/wood/debarked/douglasfir" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-willow",
+        "value": { "base": "game:block/wood/debarked/willow" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-honeylocust",
+        "value": { "base": "game:block/wood/debarked/honeylocust" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-bearnut",
+        "value": { "base": "game:block/wood/debarked/bearnut" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-blackpoplar",
+        "value": { "base": "game:block/wood/debarked/blackpoplar" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-pyramidalpoplar",
+        "value": { "base": "game:block/wood/debarked/pyramidalpoplar" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-catalpa",
+        "value": { "base": "game:block/wood/debarked/catalpa" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-mahogany",
+        "value": { "base": "game:block/wood/debarked/mahogany" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-sal",
+        "value": { "base": "game:block/wood/debarked/sal" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-saxaul",
+        "value": { "base": "game:block/wood/debarked/saxaul" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-spruce",
+        "value": { "base": "game:block/wood/debarked/spruce" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-sycamore",
+        "value": { "base": "game:block/wood/debarked/sycamore" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-elm",
+        "value": { "base": "game:block/wood/debarked/elm" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-beech",
+        "value": { "base": "game:block/wood/debarked/beech" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-eucalyptus",
+        "value": { "base": "game:block/wood/debarked/eucalyptus" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    },
+    {
+        "op": "add",
+        "path": "/textures/wood-cedar",
+        "value": { "base": "game:block/wood/debarked/cedar" },
+        "file": "blocktypes/chessboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]

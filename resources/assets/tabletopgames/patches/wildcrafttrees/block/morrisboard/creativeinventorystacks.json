@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacksByType/*-9/0/stacks/-",
+        "value": [
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "douglasfir" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "willow" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "honeylocust" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "bearnut" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "blackpoplar" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "pyramidalpoplar" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "catalpa" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "mahogany" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "sal" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "saxaul" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "spruce" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "sycamore" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "elm" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "beech" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "eucalyptus" } },
+            { "type": "block", "code": "morrisboard-9", "attributes": { "quantitySlots": 24, "wood": "cedar" } }
+        ],
+        "file": "blocktypes/morrisboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]

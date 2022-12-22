@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacksByType/*-9x9/0/stacks/-",
+        "value": [
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "douglasfir" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "willow" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "honeylocust" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "bearnut" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "blackpoplar" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "pyramidalpoplar" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "catalpa" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "mahogany" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "sal" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "saxaul" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "spruce" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "sycamore" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "elm" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "beech" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "eucalyptus" } },
+            { "type": "block", "code": "goboard-9x9", "attributes": { "quantitySlots": 81, "wood": "cedar" } }
+        ],
+        "file": "blocktypes/goboard.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]

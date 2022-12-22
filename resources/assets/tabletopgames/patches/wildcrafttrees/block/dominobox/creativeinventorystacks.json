@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacksByType/*-east/0/stacks/-",
+        "value": [
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "douglasfir" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "willow" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "honeylocust" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "bearnut" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "blackpoplar" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "pyramidalpoplar" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "catalpa" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "mahogany" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "sal" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "saxaul" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "spruce" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "sycamore" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "elm" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "beech" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "eucalyptus" } },
+            { "type": "block", "code": "dominobox-east", "attributes": { "quantitySlots": 28, "wood": "cedar" } }
+        ],
+        "file": "blocktypes/dominobox.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]
