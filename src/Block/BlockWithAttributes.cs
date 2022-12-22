@@ -58,9 +58,7 @@ namespace TabletopGames
 
         public ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos, InventoryBase inventory, string woodType, int quantitySlots = 0, bool isInvSizeDynamic = false, string darkType = "", string lightType = "", bool saveInventory = false)
         {
-            ItemStack blockStack;
-            if (Variant?["side"] != null) blockStack = new ItemStack(world.GetBlock(CodeWithVariant("side", "east")));
-            else blockStack = new ItemStack(this);
+            var blockStack = base.OnPickBlock(world, pos);
 
             if (isInvSizeDynamic && quantitySlots != 0) blockStack.Attributes.SetInt("quantitySlots", quantitySlots);
             if (HasWoodType) blockStack.Attributes.SetString("wood", woodType);
