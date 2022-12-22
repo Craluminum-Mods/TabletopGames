@@ -18,7 +18,7 @@ namespace TabletopGames
 
         public int CurrentMeshRefid => Clone().GetHashCode();
 
-        public virtual string MeshRefName => "tableTopGames_ItemWithAttributes_Meshrefs";
+        public virtual string MeshRefName => $"tableTopGames_{this}_Meshrefs";
 
         protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
         {

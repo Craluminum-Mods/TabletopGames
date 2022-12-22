@@ -8,7 +8,7 @@ namespace TabletopGames
 {
     class ItemBox : ItemWithAttributes
     {
-        public override string MeshRefName => "tableTopGames_ItemBox_Meshrefs" + Code.ToShortString();
+        public override string MeshRefName => base.MeshRefName + Code.ToShortString();
 
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
@@ -45,7 +45,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);

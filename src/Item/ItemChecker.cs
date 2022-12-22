@@ -7,8 +7,6 @@ namespace TabletopGames
 {
     class ItemChecker : ItemWithAttributes
     {
-        public override string MeshRefName => "tableTopGames_Checker_Meshrefs";
-
         public override string GetHeldItemName(ItemStack stack)
         {
             string color = stack.Attributes.GetString("color");

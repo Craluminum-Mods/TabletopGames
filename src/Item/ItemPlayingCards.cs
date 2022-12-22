@@ -12,8 +12,6 @@
 //     {
 //         public string ModelPrefix => Attributes["modelPrefix"].AsString();
 
-//         public override string MeshRefName => "tableTopGames_PlayingCards_Meshrefs";
-
 //         public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
 //         {
 //             base.OnHeldIdle(slot, byEntity);

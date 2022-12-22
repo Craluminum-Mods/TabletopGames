@@ -10,8 +10,6 @@ namespace TabletopGames
     {
         public string modelPrefix;
 
-        public override string MeshRefName => "tableTopGames_ChessPiece_Meshrefs";
-
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
@@ -37,7 +35,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + stack.Attributes.GetString("type") + ".json")

@@ -8,8 +8,6 @@
 // {
 //     class ItemPlayingCard : ItemWithAttributes
 //     {
-//         public override string MeshRefName => "tableTopGames_PlayingCard_Meshrefs";
-
 //         public override string GetHeldItemName(ItemStack stack)
 //         {
 //             var back = stack.Attributes.GetString("back");

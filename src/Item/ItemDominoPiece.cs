@@ -11,8 +11,6 @@ namespace TabletopGames
     {
         public string ModelPrefix => Attributes["modelPrefix"].AsString();
 
-        public override string MeshRefName => "tableTopGames_DominoPiece_Meshrefs";
-
         public override string GetHeldItemName(ItemStack stack)
         {
             string type = stack.Attributes.GetString("type");
@@ -32,7 +30,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, ModelPrefix + stack.Attributes.GetString("type") + ".json")

@@ -10,7 +10,6 @@ namespace TabletopGames
     {
         public override bool HasWoodType => true;
         public override bool CanBePickedUp => true;
-        public override string MeshRefName => "tableTopGames_MorrisBoard_Meshrefs";
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {

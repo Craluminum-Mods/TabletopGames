@@ -10,8 +10,6 @@ namespace TabletopGames
     /// </summary>
     class ItemGoStone : ItemWithAttributes
     {
-        public override string MeshRefName => "tableTopGames_GoStone_Meshrefs";
-
         public override string GetHeldItemName(ItemStack stack)
         {
             string color = stack.Attributes.GetString("color");
@@ -27,7 +25,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
             capi.Tesselator.TesselateItem(this, out var mesh, this);

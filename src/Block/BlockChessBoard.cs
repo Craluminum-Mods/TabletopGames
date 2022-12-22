@@ -12,7 +12,6 @@ namespace TabletopGames
         public override bool HasWoodType => true;
         public override bool HasCheckerboardTypes => true;
         public override bool CanBePickedUp => true;
-        public override string MeshRefName => "tableTopGames_ChessBoard_Meshrefs";
 
         public int CurrentMeshRefid => GetHashCode();
 

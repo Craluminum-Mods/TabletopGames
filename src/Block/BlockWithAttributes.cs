@@ -21,7 +21,7 @@ namespace TabletopGames
         public virtual bool HasWoodType => false;
         public virtual bool HasCheckerboardTypes => false;
         public virtual bool CanBePickedUp => false;
-        public virtual string MeshRefName => "tableTopGames_BlockWithAttributes_Meshrefs";
+        public virtual string MeshRefName => $"tableTopGames_{this}_Meshrefs";
 
         protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
         {
@@ -95,7 +95,7 @@ namespace TabletopGames
             foreach (var key in Textures)
             {
                 tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.TryGetTexturePath(key);
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
             var shape = Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
