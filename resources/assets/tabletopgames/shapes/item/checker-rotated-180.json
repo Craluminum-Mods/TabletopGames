@@ -15,6 +15,7 @@
 			"from": [ 8.0, 2.5, 8.0 ], 
 			"to": [ 8.0, 2.5, 8.0 ], 
 			"rotationOrigin": [ 8.0, 2.5, 8.0 ],
+			"rotationX": -180.0,
 			"faces": {
 				"north": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "reflectiveMode": 3, "enabled": false },
 				"east": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "reflectiveMode": 3, "enabled": false },

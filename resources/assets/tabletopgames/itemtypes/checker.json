@@ -3,23 +3,29 @@
     "class": "TabletopGames_ItemChecker",
     "maxStackSize": 64,
     "attributes": {
+        "shapes": {
+            "crown-false": "tabletopgames:shapes/item/checker.json",
+            "crown-true": "tabletopgames:shapes/item/checker-rotated-180.json"
+        },
         "shelvable": true,
         "displaycaseable": true,
         "onDisplayTransform": {
-            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.25
+            "translation": { "x": 0, "y": 0, "z": -0.15 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "scale": 0.5
         },
         "groundStorageTransform": {
-            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-            "scale": 0.25
+            "translation": { "x": 0, "y": 0, "z": -0.15 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "scale": 0.5
         },
-        "onTabletopGamesChessBoard5x5Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
-        "onTabletopGamesChessBoard8x8Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.075 },
-        "onTabletopGamesChessBoard10x10Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0625 },
-        "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
-        "onTabletopGamesChessBoard14x14Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
-        "onTabletopGamesChessBoard16x16Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0475 },
-        "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard5x5Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.15 }, "scale": 0.3 },
+        "onTabletopGamesChessBoard8x8Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.1 }, "scale": 0.2 },
+        "onTabletopGamesChessBoard10x10Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.1 }, "scale": 0.1875 },
+        "onTabletopGamesChessBoard12x12Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
+        "onTabletopGamesChessBoard14x14Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
+        "onTabletopGamesChessBoard16x16Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.075 }, "scale": 0.1425 },
+        "onTabletopGamesChessBoard91hexTransform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
         "handbook": {
             "extraSections": [
                 {
@@ -49,7 +55,7 @@
             "properties": {
                 "toolModes": [
                     {
-                        "name": "tabletopgames:ToggleCrownOnChecker",
+                        "name": "Flip",
                         "iconPath": "tabletopgames:textures/icons/crown.svg",
                         "hexColor": "#ffffff",
                         "setAttributes": {
@@ -72,9 +78,7 @@
             }
         }
     ],
-    "shape": { "base": "item/checker" },
     "textures": {
-        "crown": { "base": "tabletopgames:item/crown" },
         "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
         "blue": { "base": "game:block/creative/col18" },
@@ -89,9 +93,7 @@
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],
-            "stacks": [
-                { "type": "item", "code": "checker", "attributes": { "color": "white", "crown": false } }
-            ]
+            "stacks": [{ "type": "item", "code": "checker", "attributes": { "color": "white", "crown": false } }]
         }
     ],
     "guiTransform": {
@@ -104,7 +106,8 @@
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
-        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+        "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+        "scale": 0.75
     },
     "tpHandTransform": {
         "translation": { "x": -2.2, "y": -1.9, "z": -2 },
