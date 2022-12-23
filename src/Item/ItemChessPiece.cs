@@ -18,8 +18,8 @@ namespace TabletopGames
 
         public override string GetHeldItemName(ItemStack stack)
         {
-            string color = stack.Attributes.GetString("color");
-            string type = stack.Attributes.GetString("type");
+            var color = stack.Attributes.GetString("color");
+            var type = stack.Attributes.GetString("type");
 
             return Lang.GetMatching($"tabletopgames:item-chesspiece-{type}", Lang.Get($"color-{color}"));
         }
