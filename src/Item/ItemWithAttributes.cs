@@ -49,6 +49,8 @@ namespace TabletopGames
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
+            renderinfo.NormalShaded = true;
+
             if (stack.Collectible is ItemChessPiece)
             {
                 if (stack.Attributes.HasAttribute("type"))

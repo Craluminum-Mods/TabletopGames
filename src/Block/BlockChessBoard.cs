@@ -44,6 +44,8 @@ namespace TabletopGames
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
+            renderinfo.NormalShaded = true;
+
             var meshrefid = stack.Attributes.GetInt("meshRefId");
             if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
             {
