@@ -10,10 +10,13 @@ namespace TabletopGames
     {
         public override string GetHeldItemName(ItemStack stack)
         {
-            var color = stack.Attributes.GetString("color");
             var type = stack.Attributes.GetString("type");
+            var color = stack.Attributes.GetString("color");
 
-            return Lang.GetMatching($"tabletopgames:item-chesspiece-{type}", Lang.Get($"color-{color}"));
+            var typeKey = Lang.Get($"tabletopgames:chesspiece-{type}");
+            var colorKey = Lang.Get($"color-{color}");
+
+            return Lang.GetMatching("tabletopgames:item-chesspiece", typeKey, colorKey);
         }
 
         public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
