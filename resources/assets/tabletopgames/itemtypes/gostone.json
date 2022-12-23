@@ -66,22 +66,20 @@
     "shape": { "base": "item/gostone" },
     "textures": {
         "color": { "base": "game:block/transparent" },
-        "black": { "base": "game:block/creative/col68" },
-        "blue": { "base": "game:block/creative/col18" },
-        "green": { "base": "game:block/creative/col10" },
-        "orange": { "base": "game:block/creative/col3" },
-        "pink": { "base": "game:block/creative/col28" },
-        "purple": { "base": "game:block/creative/col24" },
-        "red": { "base": "game:block/creative/col0" },
-        "white": { "base": "game:block/creative/col75" },
-        "yellow": { "base": "game:block/creative/col5" }
+        "color-black": { "base": "game:block/creative/col68" },
+        "color-blue": { "base": "game:block/creative/col18" },
+        "color-green": { "base": "game:block/creative/col10" },
+        "color-orange": { "base": "game:block/creative/col3" },
+        "color-pink": { "base": "game:block/creative/col28" },
+        "color-purple": { "base": "game:block/creative/col24" },
+        "color-red": { "base": "game:block/creative/col0" },
+        "color-white": { "base": "game:block/creative/col75" },
+        "color-yellow": { "base": "game:block/creative/col5" }
     },
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],
-            "stacks": [
-                { "type": "item", "code": "gostone", "attributes": { "color": "white" } }
-            ]
+            "stacks": [{ "type": "item", "code": "gostone", "attributes": { "color": "white" } }]
         }
     ],
     "guiTransform": {
