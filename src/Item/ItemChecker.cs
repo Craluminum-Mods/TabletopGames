@@ -12,7 +12,14 @@ namespace TabletopGames
             string color = stack.Attributes.GetString("color");
             bool crown = stack.Attributes.GetBool("crown");
 
-            return Lang.GetMatching("tabletopgames:item-checker" + (crown ? "-withcrown" : ""), Lang.Get($"color-{color}"));
+            if (crown)
+            {
+                return Lang.GetMatching("tabletopgames:item-checker-withcrown", Lang.Get($"color-{color}"));
+            }
+            else
+            {
+                return Lang.GetMatching("tabletopgames:item-checker", Lang.Get($"color-{color}"));
+            }
         }
 
         public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
