@@ -10,22 +10,21 @@
         "shelvable": true,
         "displaycaseable": true,
         "onDisplayTransform": {
-            "translation": { "x": 0, "y": 0, "z": -0.15 },
-            "rotation": { "x": -90, "y": 0, "z": 0 },
-            "scale": 0.5
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
         },
         "groundStorageTransform": {
-            "translation": { "x": 0, "y": 0, "z": -0.15 },
-            "rotation": { "x": -90, "y": 0, "z": 0 },
-            "scale": 0.5
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
         },
-        "onTabletopGamesChessBoard5x5Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.15 }, "scale": 0.3 },
-        "onTabletopGamesChessBoard8x8Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.1 }, "scale": 0.2 },
-        "onTabletopGamesChessBoard10x10Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.1 }, "scale": 0.1875 },
-        "onTabletopGamesChessBoard12x12Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
-        "onTabletopGamesChessBoard14x14Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
-        "onTabletopGamesChessBoard16x16Transform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.075 }, "scale": 0.1425 },
-        "onTabletopGamesChessBoard91hexTransform": { "rotation": { "x": -90, "y": 0, "z": 0 },"translation": { "x": 0, "y": 0, "z": -0.08 }, "scale": 0.15 },
+
+        "onTabletopGamesChessBoard5x5Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
+        "onTabletopGamesChessBoard8x8Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.075 },
+        "onTabletopGamesChessBoard10x10Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0625 },
+        "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard14x14Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard16x16Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.0475 },
+        "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
         "handbook": {
             "extraSections": [
                 {
@@ -78,6 +77,7 @@
             }
         }
     ],
+    "shape": { "base": "item/checker" },
     "textures": {
         "color": { "base": "game:block/transparent" },
         "black": { "base": "game:block/creative/col68" },
