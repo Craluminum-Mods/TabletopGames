@@ -8,14 +8,6 @@ namespace TabletopGames
 {
     class ItemChessPiece : ItemWithAttributes
     {
-        public string modelPrefix;
-
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-            modelPrefix = Attributes["modelPrefix"].AsString();
-        }
-
         public override string GetHeldItemName(ItemStack stack)
         {
             var color = stack.Attributes.GetString("color");
@@ -38,8 +30,8 @@ namespace TabletopGames
                 tmpTextures[key.Key] = stack.GetTexturePath(key);
             }
 
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, modelPrefix + stack.Attributes.GetString("type") + ".json")
-                ?? Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
+            var chessType = stack.Attributes.GetString("type");
+            var shape = api.GetShapeFromAttributesByKey(stack, key: chessType);
 
             capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
             return mesh;
