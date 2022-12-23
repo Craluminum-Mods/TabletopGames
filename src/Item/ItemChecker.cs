@@ -20,14 +20,16 @@ namespace TabletopGames
             this.targetAtlas = targetAtlas;
             tmpTextures.Clear();
 
-            string color = stack.Attributes.GetString("color");
-            bool crown = stack.Attributes.GetBool("crown");
+            foreach (var key in Textures)
+            {
+                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+                tmpTextures[key.Key] = stack.GetTexturePath(key);
+            }
 
-            tmpTextures["color"] = tmpTextures["crown"] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-            if (color != null) tmpTextures["color"] = Textures[color].Base;
-            if (crown) tmpTextures["crown"] = Textures["crown"].Base;
+            var trueOrFalse = stack.Attributes.GetBool("crown").ToString().ToLower();
+            var shape = api.GetShapeFromAttributesByKey(stack, key: $"crown-{trueOrFalse}");
 
-            capi.Tesselator.TesselateItem(this, out var mesh, this);
+            capi.Tesselator.TesselateShape("", shape, out var mesh, this);
             return mesh;
         }
 
