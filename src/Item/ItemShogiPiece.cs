@@ -3,6 +3,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using TabletopGames.Utils;
 using Vintagestory.API.MathTools;
+using System.Text;
 
 namespace TabletopGames
 {
@@ -14,6 +15,23 @@ namespace TabletopGames
             var typeKey = Lang.Get($"tabletopgames:shogipiece-{type}");
 
             return Lang.GetMatching("tabletopgames:item-shogipiece", typeKey);
+        }
+
+        public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+        {
+            base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+
+            if (inSlot.Itemstack.Attributes.HasAttribute("material")
+                && inSlot.Itemstack.Attributes.GetString("material").Contains("wood-"))
+            {
+                dsc.AppendWoodText(wood: inSlot.Itemstack.Attributes.GetString("material").Replace("wood-", ""));
+            }
+            else if (inSlot.Itemstack.Attributes.GetString("material") == "bone")
+            {
+                var textPart = Lang.Get("Material: {0}", Lang.Get("item-bone"));
+                var textFormat = Lang.Get("tabletopgames:format-pastelbrown", textPart);
+                dsc.AppendLine(textFormat);
+            }
         }
 
         public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
