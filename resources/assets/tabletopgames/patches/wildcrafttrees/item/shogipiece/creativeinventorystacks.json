@@ -1,0 +1,27 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-douglasfir" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-willow" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-honeylocust" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-bearnut" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-blackpoplar" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-pyramidalpoplar" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-catalpa" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-mahogany" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-sal" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-saxaul" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-spruce" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-sycamore" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-elm" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-beech" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-eucalyptus" } },
+            { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo", "material": "wood-cedar" } }
+        ],
+        "file": "itemtypes/shogipiece.json",
+        "dependsOn": [{ "modid": "wildcrafttrees" }],
+        "side": "server"
+    }
+]
