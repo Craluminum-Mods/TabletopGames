@@ -1,0 +1,155 @@
+{
+    "code": "shogipiece",
+    "class": "TabletopGames_ItemShogiPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "shape": "tabletopgames:shapes/item/shogipiece.json",
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "rotation": { "x": 0, "y": -180, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.35
+        },
+        "groundStorageTransform": {
+            "rotation": { "x": 0, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.35
+        },
+        "onTabletopGamesShogiBoard9x9Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
+        "onTabletopGamesChessBoard5x5Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.1 },
+        "onTabletopGamesChessBoard8x8Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.075 },
+        "onTabletopGamesChessBoard10x10Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.06875 },
+        "onTabletopGamesChessBoard12x12Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard14x14Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "onTabletopGamesChessBoard16x16Transform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.04375 },
+        "onTabletopGamesChessBoard91hexTransform": { "translation": { "x": 0, "y": 0.03, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.05 },
+        "handbook": {
+            "extraSections": [
+                {
+                    "title": "tabletopgames:handbook-wheretoget-title",
+                    "text": "tabletopgames:handbook-wheretoget-text"
+                }
+            ]
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:shogipiece", "tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [
+                    // king (high)
+                    { "name": "tabletopgames:shogipiece-osho", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-osho.svg", "setAttributes": { "string": [{ "key": "type", "value": "osho" }] } },
+                    // king (low)
+                    { "name": "tabletopgames:shogipiece-gyokusho", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-gyokusho.svg", "setAttributes": { "string": [{ "key": "type", "value": "gyokusho" }] } },
+                    // gold general
+                    { "name": "tabletopgames:shogipiece-kinsho", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-kinsho.svg", "setAttributes": { "string": [{ "key": "type", "value": "kinsho" }] } },
+                    // silver general
+                    // promoted silver
+                    { "name": "tabletopgames:shogipiece-ginsho", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-ginsho.svg", "setAttributes": { "string": [{ "key": "type", "value": "ginsho" }] } },
+                    { "name": "tabletopgames:shogipiece-narigin", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-narigin.svg", "setAttributes": { "string": [{ "key": "type", "value": "narigin" }] } },
+                    // pawn
+                    // promoted pawn
+                    { "name": "tabletopgames:shogipiece-fuhyo", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-fuhyo.svg", "setAttributes": { "string": [{ "key": "type", "value": "fuhyo" }] } },
+                    { "name": "tabletopgames:shogipiece-tokin", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-tokin.svg", "setAttributes": { "string": [{ "key": "type", "value": "tokin" }] } },
+                    // rook
+                    // promoted rook
+                    { "name": "tabletopgames:shogipiece-hisha", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-hisha.svg", "setAttributes": { "string": [{ "key": "type", "value": "hisha" }] } },
+                    { "name": "tabletopgames:shogipiece-ryuo", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-ryuo.svg", "setAttributes": { "string": [{ "key": "type", "value": "ryuo" }] } },
+                    // bishop
+                    // promoted bishop
+                    { "name": "tabletopgames:shogipiece-kakugyo", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-kakugyo.svg", "setAttributes": { "string": [{ "key": "type", "value": "kakugyo" }] } },
+                    { "name": "tabletopgames:shogipiece-ryuma", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-ryuma.svg", "setAttributes": { "string": [{ "key": "type", "value": "ryuma" }] } },
+                    // knight
+                    // promoted knight
+                    { "name": "tabletopgames:shogipiece-keima", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-keima.svg", "setAttributes": { "string": [{ "key": "type", "value": "keima" }] } },
+                    { "name": "tabletopgames:shogipiece-narikei", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-narikei.svg", "setAttributes": { "string": [{ "key": "type", "value": "narikei" }] } },
+                    // lance
+                    // promoted lance
+                    { "name": "tabletopgames:shogipiece-kyosha", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-kyosha.svg", "setAttributes": { "string": [{ "key": "type", "value": "kyosha" }] } },
+                    { "name": "tabletopgames:shogipiece-narikyo", "noColor": true, "iconPath": "tabletopgames:textures/icons/shogi-narikyo.svg", "setAttributes": { "string": [{ "key": "type", "value": "narikyo" }] } }
+                ]
+            }
+        }
+    ],
+    "shape": { "base": "item/shogipiece" },
+    "textures": {
+        "material": { "base": "game:block/bone" },
+
+        "type": { "base": "game:block/transparent" },
+        "type-fuhyo": { "base": "item/shogi/shogi-fuhyo" },
+        "type-ginsho": { "base": "item/shogi/shogi-ginsho" },
+        "type-gyokusho": { "base": "item/shogi/shogi-gyokusho" },
+        "type-hisha": { "base": "item/shogi/shogi-hisha" },
+        "type-kakugyo": { "base": "item/shogi/shogi-kakugyo" },
+        "type-keima": { "base": "item/shogi/shogi-keima" },
+        "type-kinsho": { "base": "item/shogi/shogi-kinsho" },
+        "type-kyosha": { "base": "item/shogi/shogi-kyosha" },
+        "type-narigin": { "base": "item/shogi/shogi-narigin" },
+        "type-narikei": { "base": "item/shogi/shogi-narikei" },
+        "type-narikyo": { "base": "item/shogi/shogi-narikyo" },
+        "type-osho": { "base": "item/shogi/shogi-osho" },
+        "type-ryuma": { "base": "item/shogi/shogi-ryuma" },
+        "type-ryuo": { "base": "item/shogi/shogi-ryuo" },
+        "type-tokin": { "base": "item/shogi/shogi-tokin" }
+    },
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "fuhyo" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "ginsho" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "gyokusho" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "hisha" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "kakugyo" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "keima" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "kinsho" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "kyosha" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "narigin" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "narikei" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "narikyo" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "osho" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "ryuma" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "ryuo" } },
+                { "type": "item", "code": "shogipiece", "attributes": { "type": "tokin" } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        // "rotate": true,
+        "rotation": { "x": 105, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.65
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.5, "z": 0 },
+        "rotation": { "x": 22, "y": 180, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.9
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2, "y": -0.5, "z": -2 },
+        "rotation": { "x": -90, "y": 0, "z": -63 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.25
+    }
+}
