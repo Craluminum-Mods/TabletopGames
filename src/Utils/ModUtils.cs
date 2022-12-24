@@ -107,11 +107,11 @@ namespace TabletopGames.Utils
             if (stack?.Attributes?.HasAttribute(key.Key) == true)
             {
                 var keyOnly = key.Key;
-                var valueOnly = stack?.Attributes?.GetAsString(keyOnly);
+                var valueOnly = stack?.Attributes?.GetString(keyOnly);
                 var keyValue = $"{keyOnly}-{valueOnly}";
 
                 if (textures.ContainsKey(keyValue)) return textures?[keyValue]?.Base;
-                if (textures.ContainsKey(valueOnly)) return textures?[valueOnly]?.Base;
+                if (valueOnly != null && textures.ContainsKey(valueOnly)) return textures?[valueOnly]?.Base;
                 if (textures.ContainsKey(keyOnly)) return textures[keyOnly].Base;
             }
             return textures[key.Key].Base;
