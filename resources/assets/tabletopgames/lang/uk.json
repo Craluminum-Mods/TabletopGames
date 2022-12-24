@@ -2,8 +2,8 @@
     "description-toolmode": "Type, colors, rotation etc. can be changed using tool modes (hit <hk>toolmodeselect</hk> ).",
     "chesspiece": "<font weight=\"bold\" color=\"#e7e79f\">Шахова фігура.</font>", // pastel yellow
     "shogipiece": "<font weight=\"bold\" color=\"#e7e79f\">Фігура сьоги.</font>", // pastel yellow
-    "format-quantitySlots": "<font weight=\"bold\" color=\"#b4ecb4\">{0}</font>", // pastel green
-    "format-wood": "<font weight=\"bold\" color=\"#ddaa77\">{0}</font>", // pastel brown
+    "format-pastelgreen": "<font weight=\"bold\" color=\"#b4ecb4\">{0}</font>", // pastel green
+    "format-pastelbrown": "<font weight=\"bold\" color=\"#ddaa77\">{0}</font>", // pastel brown
 
     "item-checker": "Шашка ({0})",
     "item-checker-withcrown": "Шашка ({0}) (Дамка)",

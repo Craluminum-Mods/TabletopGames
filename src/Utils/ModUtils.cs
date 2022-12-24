@@ -56,15 +56,15 @@ namespace TabletopGames.Utils
             if (wood == null) return;
 
             var textPart = string.Format("{0}: {1}", Lang.Get("Wood"), Lang.Get($"material-{wood}"));
-            var woodFormat = Lang.Get("tabletopgames:format-wood", textPart);
-            dsc.AppendLine(woodFormat);
+            var textFormat = Lang.Get("tabletopgames:format-pastelbrown", textPart);
+            dsc.AppendLine(textFormat);
         }
 
         public static void AppendWoodText(this StringBuilder dsc, string wood)
         {
             var textPart = string.Format("{0}: {1}", Lang.Get("Wood"), Lang.Get($"material-{wood}"));
-            var woodFormat = Lang.Get("tabletopgames:format-wood", textPart);
-            dsc.AppendLine(woodFormat);
+            var textFormat = Lang.Get("tabletopgames:format-pastelbrown", textPart);
+            dsc.AppendLine(textFormat);
         }
 
         public static void AppendInventorySlotsText(this StringBuilder dsc, ItemStack stack)
@@ -73,8 +73,8 @@ namespace TabletopGames.Utils
             if (quantitySlots == 0) return;
 
             var textPart = Lang.Get("Quantity Slots: {0}", quantitySlots);
-            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
-            dsc.AppendLine(quantitySlotsFormat);
+            var textFormat = Lang.Get("tabletopgames:format-pastelgreen", textPart);
+            dsc.AppendLine(textFormat);
         }
 
         public static void AppendInventorySlotsText(this StringBuilder dsc, int quantitySlots)
@@ -82,8 +82,8 @@ namespace TabletopGames.Utils
             if (quantitySlots == 0) return;
 
             var textPart = Lang.Get("Quantity Slots: {0}", quantitySlots);
-            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
-            dsc.AppendLine(quantitySlotsFormat);
+            var textFormat = Lang.Get("tabletopgames:format-pastelgreen", textPart);
+            dsc.AppendLine(textFormat);
         }
 
         public static void AppendSelectedSlotText(this StringBuilder dsc, CollectibleObject collobj, IPlayer forPlayer, InventoryBase inventory, bool withSlotId = true, bool withStackName = true)

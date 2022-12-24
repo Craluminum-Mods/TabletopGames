@@ -171,7 +171,7 @@ namespace TabletopGames
             dsc.AppendWoodText(woodType);
 
             var textPart = Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.GetNonEmptySlotsCount(), inventory.Count));
-            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
+            var quantitySlotsFormat = Lang.Get("tabletopgames:format-pastelgreen", textPart);
             dsc.AppendFormat(quantitySlotsFormat);
         }
 
