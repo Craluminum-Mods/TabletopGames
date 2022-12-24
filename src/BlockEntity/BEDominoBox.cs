@@ -169,7 +169,10 @@ namespace TabletopGames
         {
             base.GetBlockInfo(forPlayer, dsc);
             dsc.AppendWoodText(woodType);
-            dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.GetNonEmptySlotsCount(), inventory.Count)));
+
+            var textPart = Lang.Get("Quantity Slots: {0}", string.Format("{0} / {1}", inventory.GetNonEmptySlotsCount(), inventory.Count));
+            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
+            dsc.AppendFormat(quantitySlotsFormat);
         }
 
         private MeshData GetMesh(ITesselatorAPI tesselator)

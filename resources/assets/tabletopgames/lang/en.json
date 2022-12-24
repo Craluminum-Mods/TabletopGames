@@ -1,6 +1,9 @@
 {
     "description-toolmode": "Type, colors, rotation etc. can be changed using tool modes (hit <hk>toolmodeselect</hk> ).",
-    "chesspiece": "Chess piece.",
+    "chesspiece": "<font weight=\"bold\" color=\"#e7e79f\">Chess piece.</font>", // pastel yellow
+    "shogipiece": "<font weight=\"bold\" color=\"#e7e79f\">Shogi piece.</font>", // pastel yellow
+    "format-quantitySlots": "<font weight=\"bold\" color=\"#b4ecb4\">{0}</font>", // pastel green
+    "format-wood": "<font weight=\"bold\" color=\"#ddaa77\">{0}</font>", // pastel brown
 
     "item-checker": "Checker ({0})",
     "item-checker-withcrown": "Checker ({0}) (Crown)",

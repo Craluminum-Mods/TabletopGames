@@ -52,26 +52,38 @@ namespace TabletopGames.Utils
 
         public static void AppendWoodText(this StringBuilder dsc, ItemStack stack)
         {
-            var woodType = stack.Attributes.GetString("wood");
+            var wood = stack.Attributes.GetString("wood");
+            if (wood == null) return;
 
-            if (woodType != null) dsc.Append(Lang.Get("Wood")).Append(": ").AppendLine(Lang.Get($"material-{woodType}"));
+            var textPart = string.Format("{0}: {1}", Lang.Get("Wood"), Lang.Get($"material-{wood}"));
+            var woodFormat = Lang.Get("tabletopgames:format-wood", textPart);
+            dsc.AppendLine(woodFormat);
         }
 
         public static void AppendWoodText(this StringBuilder dsc, string wood)
         {
-            dsc.Append(Lang.Get("Wood")).Append(": ").AppendLine(Lang.Get($"material-{wood}"));
+            var textPart = string.Format("{0}: {1}", Lang.Get("Wood"), Lang.Get($"material-{wood}"));
+            var woodFormat = Lang.Get("tabletopgames:format-wood", textPart);
+            dsc.AppendLine(woodFormat);
         }
 
         public static void AppendInventorySlotsText(this StringBuilder dsc, ItemStack stack)
         {
-            var slots = stack.Attributes.GetAsInt("quantitySlots");
+            var quantitySlots = stack.Attributes.GetAsInt("quantitySlots");
+            if (quantitySlots == 0) return;
 
-            if (slots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", slots)).AppendLine();
+            var textPart = Lang.Get("Quantity Slots: {0}", quantitySlots);
+            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
+            dsc.AppendLine(quantitySlotsFormat);
         }
 
         public static void AppendInventorySlotsText(this StringBuilder dsc, int quantitySlots)
         {
-            if (quantitySlots != 0) dsc.AppendFormat(Lang.Get("Quantity Slots: {0}", quantitySlots)).AppendLine();
+            if (quantitySlots == 0) return;
+
+            var textPart = Lang.Get("Quantity Slots: {0}", quantitySlots);
+            var quantitySlotsFormat = Lang.Get("tabletopgames:format-quantitySlots", textPart);
+            dsc.AppendLine(quantitySlotsFormat);
         }
 
         public static void AppendSelectedSlotText(this StringBuilder dsc, CollectibleObject collobj, IPlayer forPlayer, InventoryBase inventory, bool withSlotId = true, bool withStackName = true)
