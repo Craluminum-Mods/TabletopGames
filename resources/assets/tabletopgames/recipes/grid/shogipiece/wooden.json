@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "X_X,XTX,XX_",
+        "ingredients": {
+            "X": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 2 },
+            "T": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "shogipiece", "quantity": 32, "attributes": { "material": "wood-{wood}", "type": "fuhyo" } }
+    }
+]

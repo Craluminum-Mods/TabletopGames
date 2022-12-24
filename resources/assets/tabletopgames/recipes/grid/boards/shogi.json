@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "B_B,BSB,_BB",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:plank-*", "name": "wood" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "wood": "{wood}", "quantitySlots": 81 } }
+    }
+]

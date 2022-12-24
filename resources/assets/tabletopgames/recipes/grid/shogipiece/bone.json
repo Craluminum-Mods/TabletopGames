@@ -1,0 +1,12 @@
+[
+    {
+        "ingredientPattern": "B_B,BTB,BB_",
+        "ingredients": {
+            "B": { "type": "item", "code": "game:bone", "quantity": 2 },
+            "T": { "type": "item", "code": "game:knife-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 3,
+        "output": { "type": "item", "code": "shogipiece", "quantity": 32, "attributes": { "material": "bone", "type": "fuhyo" } }
+    }
+]
