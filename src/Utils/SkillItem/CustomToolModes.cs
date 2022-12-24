@@ -36,7 +36,7 @@ namespace TabletopGames.Utils
                 else
                 {
                     modes[i]
-                    .WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation(mode.IconPath), 48, 48, 5, ColorUtil.Hex2Int(mode.HexColor)))
+                    .WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation(mode.IconPath), 48, 48, 5, mode.HexColor != null ? ColorUtil.Hex2Int(mode.HexColor) : null))
                     .TexturePremultipliedAlpha = false;
                 }
             }
