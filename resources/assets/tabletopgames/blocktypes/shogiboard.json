@@ -1,0 +1,248 @@
+{
+    "code": "shogiboard",
+    "class": "TabletopGames_ChessBoard",
+    "entityClass": "TabletopGames_BEChessBoard",
+    "maxStackSize": 1,
+    "attributes": {
+        "moldrackable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": -0.04, "y": 0.07, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 }
+        },
+        "tabletopgames": {
+            "boardByType": {
+                "*-9x9-*": {
+                    "quantitySlots": 81,
+                    "width": 9,
+                    "height": 9,
+                    "distanceBetweenSlots": 0.11111111111,
+                    "fromBorderX": 0.05625,
+                    "fromBorderZ": 0.94375,
+                    "AttributeTransformCode": "onTabletopGamesShogiBoard9x9Transform",
+                    "rotateRadYByType": {
+                        "*-east": 270,
+                        "*-west": 90,
+                        "*-south": 180,
+                        "*-north": 0
+                    }
+                }
+            },
+            "displaySelectedSlotId": false,
+            "displaySelectedSlotStack": true
+        },
+        "handbook": { "groupBy": ["shogiboard-*"] }
+    },
+    "variantGroups": [
+        { "code": "size", "states": ["9x9"] },
+        { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
+    ],
+    "behaviors": [
+        {
+            "name": "HorizontalOrientable",
+            "properties": { "dropBlockFace": "east" }
+        },
+        { "name": "UnstableFalling" },
+        {
+            "name": "TabletopGames_AppendTextToHeldInfo",
+            "properties": {
+                "keys": ["tabletopgames:description-toolmode"]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomPlacedWorldInteractions",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-behavior-rightclickpickup",
+                        "HotKeyCodes": ["shift", "ctrl"],
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-add",
+                        "MouseButton": "Right"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-remove",
+                        "MouseButton": "Right"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "TabletopGames_CustomToolModes",
+            "properties": {
+                "toolModes": [{ "name": "tabletopgames:DropAllSlots", "iconPath": "tabletopgames:textures/icons/arrow_down.svg", "hexColor": "#FFFFFF", "pushEvents": ["DropAllSlots"] }]
+            }
+        }
+    ],
+    "shape": {
+        "base": "block/board/shogi/{size}",
+        "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 }
+    },
+    "blockmaterial": "Wood",
+    "creativeinventoryStacksByType": {
+        "*-9x9-east": [
+            {
+                "tabs": ["tabletopgames"],
+                "stacks": [
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "aged" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "birch" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "oak" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "maple" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "pine" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "acacia" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "kapok" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "baldcypress" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "larch" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "redwood" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "ebony" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "walnut" } },
+                    { "type": "block", "code": "shogiboard-9x9-east", "attributes": { "quantitySlots": 81, "wood": "purpleheart" } }
+                ]
+            }
+        ]
+    },
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "textures": {
+        "lines": { "base": "tabletopgames:block/shogiboard/{size}" },
+
+        "wood": { "base": "game:block/wood/debarked/oak" },
+        "wood-aged": { "base": "game:block/wood/debarked/aged" },
+        "wood-birch": { "base": "game:block/wood/debarked/birch" },
+        "wood-oak": { "base": "game:block/wood/debarked/oak" },
+        "wood-maple": { "base": "game:block/wood/debarked/maple" },
+        "wood-pine": { "base": "game:block/wood/debarked/pine" },
+        "wood-acacia": { "base": "game:block/wood/debarked/acacia" },
+        "wood-kapok": { "base": "game:block/wood/debarked/kapok" },
+        "wood-baldcypress": { "base": "game:block/wood/debarked/baldcypress" },
+        "wood-larch": { "base": "game:block/wood/debarked/larch" },
+        "wood-redwood": { "base": "game:block/wood/debarked/redwood" },
+        "wood-ebony": { "base": "game:block/wood/debarked/ebony" },
+        "wood-walnut": { "base": "game:block/wood/debarked/walnut" },
+        "wood-purpleheart": { "base": "game:block/wood/debarked/purpleheart" }
+    },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 },
+    "selectionBoxesByType": {
+        "*-9x9-*": [
+            { "_cmt": "0", "x1": 0, "y1": 0, "z1": 0.8889, "x2": 0.1111, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "1", "x1": 0, "y1": 0, "z1": 0.7778, "x2": 0.1111, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "2", "x1": 0, "y1": 0, "z1": 0.6667, "x2": 0.1111, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "3", "x1": 0, "y1": 0, "z1": 0.5556, "x2": 0.1111, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "4", "x1": 0, "y1": 0, "z1": 0.4444, "x2": 0.1111, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "5", "x1": 0, "y1": 0, "z1": 0.3333, "x2": 0.1111, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "6", "x1": 0, "y1": 0, "z1": 0.2222, "x2": 0.1111, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "7", "x1": 0, "y1": 0, "z1": 0.1111, "x2": 0.1111, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "8", "x1": 0, "y1": 0, "z1": 0, "x2": 0.1111, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "9", "x1": 0.1111, "y1": 0, "z1": 0.8889, "x2": 0.2222, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "10", "x1": 0.1111, "y1": 0, "z1": 0.7778, "x2": 0.2222, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "11", "x1": 0.1111, "y1": 0, "z1": 0.6667, "x2": 0.2222, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "12", "x1": 0.1111, "y1": 0, "z1": 0.5556, "x2": 0.2222, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "13", "x1": 0.1111, "y1": 0, "z1": 0.4444, "x2": 0.2222, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "14", "x1": 0.1111, "y1": 0, "z1": 0.3333, "x2": 0.2222, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "15", "x1": 0.1111, "y1": 0, "z1": 0.2222, "x2": 0.2222, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "16", "x1": 0.1111, "y1": 0, "z1": 0.1111, "x2": 0.2222, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "17", "x1": 0.1111, "y1": 0, "z1": 0, "x2": 0.2222, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "18", "x1": 0.2222, "y1": 0, "z1": 0.8889, "x2": 0.3333, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "19", "x1": 0.2222, "y1": 0, "z1": 0.7778, "x2": 0.3333, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "20", "x1": 0.2222, "y1": 0, "z1": 0.6667, "x2": 0.3333, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "21", "x1": 0.2222, "y1": 0, "z1": 0.5556, "x2": 0.3333, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "22", "x1": 0.2222, "y1": 0, "z1": 0.4444, "x2": 0.3333, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "23", "x1": 0.2222, "y1": 0, "z1": 0.3333, "x2": 0.3333, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "24", "x1": 0.2222, "y1": 0, "z1": 0.2222, "x2": 0.3333, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "25", "x1": 0.2222, "y1": 0, "z1": 0.1111, "x2": 0.3333, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "26", "x1": 0.2222, "y1": 0, "z1": 0, "x2": 0.3333, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "27", "x1": 0.3333, "y1": 0, "z1": 0.8889, "x2": 0.4444, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "28", "x1": 0.3333, "y1": 0, "z1": 0.7778, "x2": 0.4444, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "29", "x1": 0.3333, "y1": 0, "z1": 0.6667, "x2": 0.4444, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "30", "x1": 0.3333, "y1": 0, "z1": 0.5556, "x2": 0.4444, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "31", "x1": 0.3333, "y1": 0, "z1": 0.4444, "x2": 0.4444, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "32", "x1": 0.3333, "y1": 0, "z1": 0.3333, "x2": 0.4444, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "33", "x1": 0.3333, "y1": 0, "z1": 0.2222, "x2": 0.4444, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "34", "x1": 0.3333, "y1": 0, "z1": 0.1111, "x2": 0.4444, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "35", "x1": 0.3333, "y1": 0, "z1": 0, "x2": 0.4444, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "36", "x1": 0.4444, "y1": 0, "z1": 0.8889, "x2": 0.5556, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "37", "x1": 0.4444, "y1": 0, "z1": 0.7778, "x2": 0.5556, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "38", "x1": 0.4444, "y1": 0, "z1": 0.6667, "x2": 0.5556, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "39", "x1": 0.4444, "y1": 0, "z1": 0.5556, "x2": 0.5556, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "40", "x1": 0.4444, "y1": 0, "z1": 0.4444, "x2": 0.5556, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "41", "x1": 0.4444, "y1": 0, "z1": 0.3333, "x2": 0.5556, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "42", "x1": 0.4444, "y1": 0, "z1": 0.2222, "x2": 0.5556, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "43", "x1": 0.4444, "y1": 0, "z1": 0.1111, "x2": 0.5556, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "44", "x1": 0.4444, "y1": 0, "z1": 0, "x2": 0.5556, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "45", "x1": 0.5556, "y1": 0, "z1": 0.8889, "x2": 0.6667, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "46", "x1": 0.5556, "y1": 0, "z1": 0.7778, "x2": 0.6667, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "47", "x1": 0.5556, "y1": 0, "z1": 0.6667, "x2": 0.6667, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "48", "x1": 0.5556, "y1": 0, "z1": 0.5556, "x2": 0.6667, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "49", "x1": 0.5556, "y1": 0, "z1": 0.4444, "x2": 0.6667, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "50", "x1": 0.5556, "y1": 0, "z1": 0.3333, "x2": 0.6667, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "51", "x1": 0.5556, "y1": 0, "z1": 0.2222, "x2": 0.6667, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "52", "x1": 0.5556, "y1": 0, "z1": 0.1111, "x2": 0.6667, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "53", "x1": 0.5556, "y1": 0, "z1": 0, "x2": 0.6667, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "54", "x1": 0.6667, "y1": 0, "z1": 0.8889, "x2": 0.7778, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "55", "x1": 0.6667, "y1": 0, "z1": 0.7778, "x2": 0.7778, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "56", "x1": 0.6667, "y1": 0, "z1": 0.6667, "x2": 0.7778, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "57", "x1": 0.6667, "y1": 0, "z1": 0.5556, "x2": 0.7778, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "58", "x1": 0.6667, "y1": 0, "z1": 0.4444, "x2": 0.7778, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "59", "x1": 0.6667, "y1": 0, "z1": 0.3333, "x2": 0.7778, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "60", "x1": 0.6667, "y1": 0, "z1": 0.2222, "x2": 0.7778, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "61", "x1": 0.6667, "y1": 0, "z1": 0.1111, "x2": 0.7778, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "62", "x1": 0.6667, "y1": 0, "z1": 0, "x2": 0.7778, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "63", "x1": 0.7778, "y1": 0, "z1": 0.8889, "x2": 0.8889, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "64", "x1": 0.7778, "y1": 0, "z1": 0.7778, "x2": 0.8889, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "65", "x1": 0.7778, "y1": 0, "z1": 0.6667, "x2": 0.8889, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "66", "x1": 0.7778, "y1": 0, "z1": 0.5556, "x2": 0.8889, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "67", "x1": 0.7778, "y1": 0, "z1": 0.4444, "x2": 0.8889, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "68", "x1": 0.7778, "y1": 0, "z1": 0.3333, "x2": 0.8889, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "69", "x1": 0.7778, "y1": 0, "z1": 0.2222, "x2": 0.8889, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "70", "x1": 0.7778, "y1": 0, "z1": 0.1111, "x2": 0.8889, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "71", "x1": 0.7778, "y1": 0, "z1": 0, "x2": 0.8889, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+
+            { "_cmt": "72", "x1": 0.8889, "y1": 0, "z1": 0.8889, "x2": 1, "y2": 0.0625, "z2": 1, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "73", "x1": 0.8889, "y1": 0, "z1": 0.7778, "x2": 1, "y2": 0.0625, "z2": 0.8889, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "74", "x1": 0.8889, "y1": 0, "z1": 0.6667, "x2": 1, "y2": 0.0625, "z2": 0.7778, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "75", "x1": 0.8889, "y1": 0, "z1": 0.5556, "x2": 1, "y2": 0.0625, "z2": 0.6667, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "76", "x1": 0.8889, "y1": 0, "z1": 0.4444, "x2": 1, "y2": 0.0625, "z2": 0.5556, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "77", "x1": 0.8889, "y1": 0, "z1": 0.3333, "x2": 1, "y2": 0.0625, "z2": 0.4444, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "78", "x1": 0.8889, "y1": 0, "z1": 0.2222, "x2": 1, "y2": 0.0625, "z2": 0.3333, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "79", "x1": 0.8889, "y1": 0, "z1": 0.1111, "x2": 1, "y2": 0.0625, "z2": 0.2222, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } },
+            { "_cmt": "80", "x1": 0.8889, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 0.1111, "rotateYByType": { "*-east": 270, "*-west": 90, "*-south": 180 } }
+        ]
+    },
+    "guiTransform": {
+        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": -80, "y": 0, "z": -100 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    }
+}
