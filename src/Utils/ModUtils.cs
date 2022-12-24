@@ -118,6 +118,7 @@ namespace TabletopGames.Utils
 
         public static Shape GetShapeFromAttributesByKey(this ICoreAPI api, ItemStack stack, string key)
         {
+            if (key == null) return Shape.TryGet(api, stack.Collectible.GetShapePath());
             return Shape.TryGet(api, stack.Collectible.Attributes["shapes"][key].AsString());
         }
 
