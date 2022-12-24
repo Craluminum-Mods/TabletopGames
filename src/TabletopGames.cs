@@ -29,6 +29,7 @@ namespace TabletopGames
             api.RegisterItemClass("TabletopGames_ItemChessPiece", typeof(ItemChessPiece));
             api.RegisterItemClass("TabletopGames_ItemDominoPiece", typeof(ItemDominoPiece));
             api.RegisterItemClass("TabletopGames_ItemGoStone", typeof(ItemGoStone));
+            api.RegisterItemClass("TabletopGames_ItemShogiPiece", typeof(ItemShogiPiece));
             // api.RegisterItemClass("TabletopGames_ItemPlayingCard", typeof(ItemPlayingCard));
             // api.RegisterItemClass("TabletopGames_ItemPlayingCards", typeof(ItemPlayingCards));
 
