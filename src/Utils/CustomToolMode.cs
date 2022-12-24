@@ -14,6 +14,7 @@ namespace TabletopGames
         public SetAttributes SetAttributes { get; set; }
         public List<string> PushEvents { get; set; }
         public string TextIcon { get; set; }
+        public bool NoColor { get; set; }
         public bool Linebreak { get; set; }
     }
 
