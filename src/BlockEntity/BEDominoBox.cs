@@ -185,7 +185,7 @@ namespace TabletopGames
 
             if (dominoBoxMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
 
-            return dominoBoxMeshes[MeshCacheKey] = block.GenMesh(stack, block.capi.BlockTextureAtlas, null);
+            return dominoBoxMeshes[MeshCacheKey] = block.GetOrCreateMesh(stack);
         }
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)

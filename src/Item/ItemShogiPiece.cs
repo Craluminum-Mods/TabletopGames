@@ -34,32 +34,30 @@ namespace TabletopGames
             }
         }
 
-        public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
-        {
-            this.targetAtlas = targetAtlas;
-            tmpTextures.Clear();
+        // public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
+        // {
+        //     var meshRotationDeg = new Vec3f(0, rotation, 0);
 
-            int rotation = stack.Attributes.GetInt("rotation");
-            var meshRotationDeg = new Vec3f(0, rotation, 0);
+        //     foreach (var key in Textures)
+        //     {
+        //         tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
+        //         tmpTextures[key.Key] = stack.GetTexturePath(key);
+        //     }
 
-            foreach (var key in Textures)
-            {
-                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.GetTexturePath(key);
-            }
+        //     var shape = api.GetShapeFromAttributes(stack);
 
-            var shape = api.GetShapeFromAttributes(stack);
-
-            capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
-            return mesh;
-        }
+        //     capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
+        //     return mesh;
+        // }
 
         public override string GetMeshCacheKey(ItemStack stack)
         {
+            string _base = base.GetMeshCacheKey(stack);
             var material = stack.Attributes.GetString("material");
             var type = stack.Attributes.GetString("type");
+            var rotation = stack.Attributes.GetInt("rotation");
 
-            return Code.ToShortString() + "-" + material + "-" + type;
+            return $"{_base}-{material}-{type}-{rotation}";
         }
     }
 }

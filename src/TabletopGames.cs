@@ -1,4 +1,7 @@
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
+using Vintagestory.Client.NoObf;
 
 [assembly: ModInfo("Tabletop Games",
 Authors = new[] { "Craluminum2413" })]
@@ -39,6 +42,19 @@ namespace TabletopGames
             api.RegisterCollectibleBehaviorClass("TabletopGames_CustomToolModes", typeof(CollectibleBehaviorCustomToolModes));
 
             api.World.Logger.Event("started 'Tabletop Games' mod");
+        }
+
+        public override void StartClientSide(ICoreClientAPI api)
+        {
+            base.StartClientSide(api);
+
+            foreach (TransformConfig config in  Constants.TransformConfigs)
+            {
+                if (!GuiDialogTransformEditor.extraTransforms.Contains(config))
+                {
+                    GuiDialogTransformEditor.extraTransforms.Add(config);
+                }
+            }
         }
     }
 }

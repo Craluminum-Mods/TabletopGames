@@ -3,7 +3,6 @@ using Vintagestory.API.MathTools;
 using TabletopGames.Utils;
 using Vintagestory.API.Util;
 using System.Linq;
-using Vintagestory.API.Client;
 
 namespace TabletopGames
 {
@@ -12,8 +11,6 @@ namespace TabletopGames
         public override bool HasWoodType => true;
         public override bool HasCheckerboardTypes => true;
         public override bool CanBePickedUp => true;
-
-        public int CurrentMeshRefid => GetHashCode();
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
@@ -40,20 +37,6 @@ namespace TabletopGames
                 true,
                 blockEntity.darkType,
                 blockEntity.lightType);
-        }
-
-        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
-        {
-            renderinfo.NormalShaded = true;
-
-            var meshrefid = stack.Attributes.GetInt("meshRefId");
-            if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
-            {
-                var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(stack, capi.BlockTextureAtlas, null));
-                renderinfo.ModelRef = Meshrefs[num] = value;
-                stack.Attributes.SetInt("meshRefId", num);
-            }
         }
 
         public override string GetMeshCacheKey(ItemStack stack)

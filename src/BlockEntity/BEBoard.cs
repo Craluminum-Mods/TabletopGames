@@ -45,7 +45,7 @@ namespace TabletopGames
         public override void Initialize(ICoreAPI api)
         {
             InitInventory();
-            InitMeshes();
+            updateMeshes();
             mat.RotateYDeg(Block.Shape.rotateY);
             base.Initialize(api);
             inventory.LateInitialize($"{InventoryClassName}-1", api);
@@ -59,15 +59,6 @@ namespace TabletopGames
             }
         }
 
-        public void InitMeshes(bool updateMeshes_ = true)
-        {
-            if (meshes == null || meshes.Length == 0 || meshes.Length != quantitySlots)
-            {
-                meshes = new MeshData[quantitySlots];
-                if (updateMeshes_) updateMeshes();
-            }
-        }
-
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
             quantitySlots = tree.GetInt("quantitySlots");
@@ -76,7 +67,7 @@ namespace TabletopGames
             if (HasCheckerboardTypes) lightType = tree.GetString("light", defaultValue: "white");
 
             InitInventory();
-            InitMeshes();
+            updateMeshes();
 
             base.FromTreeAttributes(tree, worldAccessForResolve);
         }
@@ -103,34 +94,44 @@ namespace TabletopGames
             quantitySlots = clonedItemstack.Attributes.GetAsInt("quantitySlots");
 
             InitInventory();
-            InitMeshes(false);
+            updateMeshes();
 
             clonedItemstack?.TransferInventory(inventory, Api);
             updateMeshes();
             MarkDirty(true);
         }
 
-        public override void TranslateMesh(MeshData mesh, int index)
+        protected override float[][] genTransformationMatrices()
         {
+            float[][] tfMatrices = new float[quantitySlots][];
+
             if (OverridePositions == null)
             {
-                Vec3f position = index.GetPositionOnBoard(Width, Height, DistanceBetweenSlots, FromBorderX, FromBorderZ);
-                Vec4f offset = mat.TransformVector(new Vec4f(
-                    position.X - 0.5f,
-                    position.Y,
-                    position.Z - 0.5f,
-                    0));
-                mesh.Translate(offset.XYZ);
+                for (int index = 0; index < quantitySlots; index++)
+                {
+                    Vec3f position = index.GetPositionOnBoard(Width, Height, DistanceBetweenSlots, FromBorderX, FromBorderZ);
+                    Vec4f offset = mat.TransformVector(new Vec4f(
+                        position.X - 0.5f,
+                        position.Y,
+                        position.Z - 0.5f,
+                        0));
+                    tfMatrices[index] = mat.Translate(offset.X, offset.Y, offset.X).Values;
+                }
             }
             else
             {
-                Vec4f offset = mat.TransformVector(new Vec4f(
-                    OverridePositions[index].X - 0.5f,
-                    OverridePositions[index].Y,
-                    OverridePositions[index].Z - 0.5f,
-                    0));
-                mesh.Translate(offset.XYZ);
+                for (int index = 0; index < quantitySlots; index++)
+                {
+                    Vec4f offset = mat.TransformVector(new Vec4f(
+                        OverridePositions[index].X - 0.5f,
+                        OverridePositions[index].Y,
+                        OverridePositions[index].Z - 0.5f,
+                        0));
+                    tfMatrices[index] = mat.Translate(offset.X, offset.Y, offset.X).Values;
+                }
             }
+
+            return tfMatrices;
         }
 
         private MeshData GetMesh(ITesselatorAPI tesselator)
@@ -143,7 +144,7 @@ namespace TabletopGames
 
             if (boardMeshes.TryGetValue(MeshCacheKey, out var mesh)) return mesh;
 
-            return boardMeshes[MeshCacheKey] = block.GenMesh(stack, capi.BlockTextureAtlas, null);
+            return boardMeshes[MeshCacheKey] = block.GetOrCreateMesh(stack);
         }
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
@@ -157,13 +158,7 @@ namespace TabletopGames
 
             mesher.AddMeshData(ownMesh);
 
-            for (int i = 0; i < meshes.Length; i++)
-            {
-                if (meshes[i] == null) continue;
-                mesher.AddMeshData(meshes[i]);
-            }
-
-            return true;
+            return base.OnTesselation(mesher, tesselator);
         }
 
         public bool TryPut(IPlayer byPlayer, int toSlotId, bool shouldRotate = false)

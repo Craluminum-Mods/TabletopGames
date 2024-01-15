@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TabletopGames.Utils;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -7,29 +8,12 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames
 {
-    class ItemWithAttributes : Item, ITexPositionSource, IContainedMeshSource
+    class ItemWithAttributes : Item
     {
-        public Size2i AtlasSize => targetAtlas.Size;
-        public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());
-        public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(tmpTextures[textureCode]);
         public ICoreClientAPI capi;
-        public ITextureAtlasAPI targetAtlas;
-        public readonly Dictionary<string, AssetLocation> tmpTextures = new();
 
-        public int CurrentMeshRefid => Clone().GetHashCode();
-
+        public virtual string MeshName => $"tableTopGames_{this}_Meshes";
         public virtual string MeshRefName => $"tableTopGames_{this}_Meshrefs";
-
-        protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
-        {
-            var texAsset = capi.Assets.TryGet(texturePath.Clone().WithPathPrefixOnce("textures/").WithPathAppendixOnce(".png"));
-            var texPos = targetAtlas[texturePath];
-
-            if (texPos != null) return texPos;
-            if (texAsset != null) targetAtlas.GetOrInsertTexture(texturePath, out var _, out texPos, () => texAsset.ToBitmap(capi));
-
-            return texPos;
-        }
 
         public override void OnLoaded(ICoreAPI api)
         {
@@ -84,24 +68,63 @@ namespace TabletopGames
                 }
             }
 
-            var meshrefid = stack.Attributes.GetInt("meshRefId");
-            if (meshrefid == CurrentMeshRefid || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
+            Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, MeshRefName, () => new Dictionary<string, MultiTextureMeshRef>());
+
+            var key = GetMeshCacheKey(stack);
+            if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshRef))
             {
-                var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(stack, capi.ItemTextureAtlas));
-                renderinfo.ModelRef = Meshrefs[num] = value;
-                stack.Attributes.SetInt("meshRefId", num);
+                MeshData mesh = GetOrCreateMesh(stack);
+                meshRef = meshRefs[key] = capi.Render.UploadMultiTextureMesh(mesh);
             }
             base.OnBeforeRender(capi, stack, target, ref renderinfo);
         }
 
-        public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+        public virtual MeshData GetOrCreateMesh(ItemStack stack)
         {
-            capi.Tesselator.TesselateItem(this, out var mesh, this);
+            Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, MeshName, () => new Dictionary<string, MeshData>());
+            ICoreClientAPI capi = base.api as ICoreClientAPI;
+            string key = GetMeshCacheKey(stack);
+            if (!cMeshes.TryGetValue(key, out var mesh))
+            {
+                mesh = new MeshData(4, 3);
+                CompositeShape rcshape = Shape.Clone();
+
+                int rotation = stack.Attributes.GetInt("rotation");
+                var meshRotationDeg = new Vec3f(0, rotation, 0);
+
+                // Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+                Shape shape = api.GetShapeFromAttributes(stack);
+                ITexPositionSource texSource = null;
+                if (texSource == null)
+                {
+                    ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+                    texSource = stexSource;
+                    foreach (KeyValuePair<string, CompositeTexture> val in this.Textures)
+                    {
+                        CompositeTexture ctex = val.Value.Clone();
+                        ctex.Base.Path = stack.GetTexturePath(val).ToString();
+                        ctex.Bake(capi.Assets);
+                        stexSource.textures[val.Key] = ctex;
+                    }
+                }
+                if (shape == null)
+                {
+                    return mesh;
+                }
+                capi.Tesselator.TesselateShape(this + " item", shape, out mesh, texSource, meshRotationDeg);
+            }
             return mesh;
+
+
+            // capi.Tesselator.TesselateItem(this, out MeshData mesh);
+            // return mesh;
         }
 
-        public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos) => GenMesh(itemstack, targetAtlas);
-        public virtual string GetMeshCacheKey(ItemStack itemstack) => Code.ToShortString();
+        public virtual string GetMeshCacheKey(ItemStack stack)
+        {
+            // int rotation = stack.Attributes.GetInt("rotation");
+            // var meshRotationDeg = new Vec3f(0, rotation, 0);
+            return Code.ToShortString();
+        }
     }
 }

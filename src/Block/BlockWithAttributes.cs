@@ -4,47 +4,33 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
-using Vintagestory.GameContent;
 using TabletopGames.Utils;
+using Vintagestory.GameContent;
 
 namespace TabletopGames
 {
-    public class BlockWithAttributes : Block, ITexPositionSource, IContainedMeshSource
+    public class BlockWithAttributes : Block
     {
         public ICoreClientAPI capi;
-        public ITextureAtlasAPI targetAtlas;
-        public Size2i AtlasSize => targetAtlas.Size;
-        public Dictionary<int, MeshRef> Meshrefs => ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<int, MeshRef>());
-        public TextureAtlasPosition this[string textureCode] => GetOrCreateTexPos(tmpTextures[textureCode]);
-        public readonly Dictionary<string, AssetLocation> tmpTextures = new();
 
         public virtual bool HasWoodType => false;
         public virtual bool HasCheckerboardTypes => false;
         public virtual bool CanBePickedUp => false;
         public virtual string MeshRefName => $"tableTopGames_{this}_Meshrefs";
-
-        protected TextureAtlasPosition GetOrCreateTexPos(AssetLocation texturePath)
-        {
-            var texAsset = capi.Assets.TryGet(texturePath.Clone().WithPathPrefixOnce("textures/").WithPathAppendixOnce(".png"));
-            var texPos = targetAtlas[texturePath];
-
-            if (texPos != null) return texPos;
-            if (texAsset != null) targetAtlas.GetOrInsertTexture(texturePath, out var _, out texPos, () => texAsset.ToBitmap(capi));
-
-            return texPos;
-        }
+        public virtual string MeshName => $"tableTopGames_{this}_Meshes";
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
+            base.OnBeforeRender(capi, stack, target, ref renderinfo);
+            Dictionary<string, MultiTextureMeshRef> Meshrefs = ObjectCacheUtil.GetOrCreate(api, MeshRefName, () => new Dictionary<string, MultiTextureMeshRef>());
+
             renderinfo.NormalShaded = true;
 
-            var meshrefid = stack.TempAttributes.GetInt("meshRefId", 0);
-            if (meshrefid == 0 || !Meshrefs.TryGetValue(meshrefid, out renderinfo.ModelRef))
+            var key = GetMeshCacheKey(stack);
+            if (!Meshrefs.TryGetValue(key, out MultiTextureMeshRef meshRef))
             {
-                var num = Meshrefs.Count + 1;
-                var value = capi.Render.UploadMesh(GenMesh(stack, capi.BlockTextureAtlas, null));
-                renderinfo.ModelRef = Meshrefs[num] = value;
-                stack.TempAttributes.SetInt("meshRefId", num);
+                MeshData mesh = GetOrCreateMesh(stack);
+                meshRef = Meshrefs[key] = capi.Render.UploadMultiTextureMesh(mesh);
             }
         }
 
@@ -87,20 +73,36 @@ namespace TabletopGames
             dsc.AppendInventorySlotsText(inSlot.Itemstack);
         }
 
-        public virtual MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+        public virtual MeshData GetOrCreateMesh(ItemStack stack)
         {
-            this.targetAtlas = targetAtlas ?? capi.BlockTextureAtlas;
-            tmpTextures.Clear();
-
-            foreach (var key in Textures)
+            Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, MeshName, () => new Dictionary<string, MeshData>());
+            ICoreClientAPI capi = base.api as ICoreClientAPI;
+            string key = GetMeshCacheKey(stack);
+            if (!cMeshes.TryGetValue(key, out var mesh))
             {
-                tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-                tmpTextures[key.Key] = stack.GetTexturePath(key);
+                mesh = new MeshData(4, 3);
+                CompositeShape rcshape = Shape.Clone();
+
+                Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+                ITexPositionSource texSource = null;
+                if (texSource == null)
+                {
+                    ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+                    texSource = stexSource;
+                    foreach (KeyValuePair<string, CompositeTexture> val in this.Textures)
+                    {
+                        CompositeTexture ctex = val.Value.Clone();
+                        ctex.Base.Path = stack.GetTexturePath(val).ToString();
+                        ctex.Bake(capi.Assets);
+                        stexSource.textures[val.Key] = ctex;
+                    }
+                }
+                if (shape == null)
+                {
+                    return mesh;
+                }
+                capi.Tesselator.TesselateShape(this + " block", shape, out mesh, texSource, null, 0, 0, 0);
             }
-
-            var shape = Vintagestory.API.Common.Shape.TryGet(api, this.GetShapePath());
-
-            capi.Tesselator.TesselateShape("", shape, out var mesh, this);
             return mesh;
         }
 

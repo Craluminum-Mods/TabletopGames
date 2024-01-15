@@ -1,19 +1,48 @@
 {
 	"version": "0.2.0",
 	"configurations": [
-	{
-		"name": "Launch Client (.NET)",
-		"type": "clr",
-		"request": "launch",
-		"preLaunchTask": "Build (Debug)",
-		"program": "${env:VINTAGE_STORY}/Vintagestory.exe",
-		"args": [
-			"--playStyle" , "preset-surviveandbuild",
-			"--openWorld" , "modding test world",
-			"--addModPath", "${workspaceFolder}/bin/Debug/net461",
-			"--addOrigin" , "${workspaceFolder}/resources/assets",
-		],
-		"console": "internalConsole",
-		"internalConsoleOptions": "openOnSessionStart",
-	}]
+        {
+            "name": "Launch Client (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${env:VINTAGE_STORY}/Vintagestory.exe",
+            "linux": {
+                "program": "${env:VINTAGE_STORY}/Vintagestory"
+            },
+            "osx": {
+                "program": "${env:VINTAGE_STORY}/Vintagestory"
+            },
+            "preLaunchTask": "Build",
+            "args": [
+                "--playStyle" , "preset-surviveandbuild",
+                "--openWorld" , "modding test world",
+                "--tracelog",
+                "--addModPath", "${workspaceFolder}/bin/Debug/net7",
+                "--addOrigin" , "${workspaceFolder}/resources/assets"
+            ],
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch Server",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${env:VINTAGE_STORY}/VintagestoryServer.exe",
+            "linux": {
+                "program": "${env:VINTAGE_STORY}/VintagestoryServer"
+            },
+            "osx": {
+                "program": "${env:VINTAGE_STORY}/VintagestoryServer"
+            },
+            "preLaunchTask": "Build",
+            "args": [
+                "--playStyle" , "preset-surviveandbuild",
+                "--openWorld" , "modding test world",
+                "--tracelog",
+                "--addModPath", "${workspaceFolder}/bin/Debug/net7",
+                "--addOrigin" , "${workspaceFolder}/resources/assets"
+            ],
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }]
 }

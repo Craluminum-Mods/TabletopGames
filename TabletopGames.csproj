@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net461</TargetFramework>
-		<LangVersion>9</LangVersion>
+		<TargetFramework>net7</TargetFramework>
+		<LangVersion>11</LangVersion>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -13,8 +13,16 @@
             <HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
             <Private>false</Private>
         </Reference>
+        <Reference Include="VintagestoryLib">
+            <HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
         <Reference Include="VSSurvivalMod">
             <HintPath>$(VINTAGE_STORY)\Mods\VSSurvivalMod.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="VSEssentials">
+            <HintPath>$(VINTAGE_STORY)\Mods\VSEssentials.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Newtonsoft.Json">
@@ -25,10 +33,14 @@
             <HintPath>$(VINTAGE_STORY)\Lib\cairo-sharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)' == 'ReleaseToMods'">
-		<None Include="LICENSE" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="*ICENSE" CopyToOutputDirectory="PreserveNewest" />
 		<None Include="resources/**">
 			<Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -36,6 +48,6 @@
 	</ItemGroup>
 	
 	<Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'ReleaseToMods'">
-		<ZipDirectory DestinationFile="$(VINTAGE_STORY_DATA)/Mods/$(TargetName)-v1.2.0.zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
+		<ZipDirectory DestinationFile="$(VINTAGE_STORY_DATA)/Mods/$(TargetName)-v1.3.0.zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
 	</Target>
 </Project>

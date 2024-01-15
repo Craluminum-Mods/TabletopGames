@@ -1,38 +1,27 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "Build (Debug)",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"presentation": {
-				"reveal": "silent"
-			},
-			"problemMatcher": "$msCompile",
-			"type": "process",
-			"command": "dotnet",
-			"args": [
-				"build",
-				"-c",
-				"Debug"
-			]
-		},
-		{
-			"label": "Build (ReleaseToMods)",
-			"group": "build",
-			"presentation": {
-				"reveal": "silent"
-			},
-			"problemMatcher": "$msCompile",
-			"type": "process",
-			"command": "dotnet",
-			"args": [
-				"build",
-				"-c",
-				"ReleaseToMods"
-			]
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "group": "build",
+            "type": "process",
+            "command": "dotnet",
+            "args": ["build", "-c", "Debug"],
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Release",
+            "group": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": ["build", "-c", "ReleaseToMods"],
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
 }
