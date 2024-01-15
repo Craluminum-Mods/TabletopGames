@@ -34,22 +34,6 @@ namespace TabletopGames
             }
         }
 
-        // public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
-        // {
-        //     var meshRotationDeg = new Vec3f(0, rotation, 0);
-
-        //     foreach (var key in Textures)
-        //     {
-        //         tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-        //         tmpTextures[key.Key] = stack.GetTexturePath(key);
-        //     }
-
-        //     var shape = api.GetShapeFromAttributes(stack);
-
-        //     capi.Tesselator.TesselateShape("", shape, out var mesh, this, meshRotationDeg);
-        //     return mesh;
-        // }
-
         public override string GetMeshCacheKey(ItemStack stack)
         {
             string _base = base.GetMeshCacheKey(stack);

@@ -93,7 +93,8 @@ namespace TabletopGames
                 var meshRotationDeg = new Vec3f(0, rotation, 0);
 
                 // Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
-                Shape shape = api.GetShapeFromAttributes(stack);
+                Shape shape = GetShape(stack);
+
                 ITexPositionSource texSource = null;
                 if (texSource == null)
                 {
@@ -114,10 +115,11 @@ namespace TabletopGames
                 capi.Tesselator.TesselateShape(this + " item", shape, out mesh, texSource, meshRotationDeg);
             }
             return mesh;
+        }
 
-
-            // capi.Tesselator.TesselateItem(this, out MeshData mesh);
-            // return mesh;
+        public virtual Shape GetShape(ItemStack stack)
+        {
+            return api.GetShapeFromAttributes(stack);
         }
 
         public virtual string GetMeshCacheKey(ItemStack stack)

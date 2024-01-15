@@ -3,8 +3,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.Client.NoObf;
 
-[assembly: ModInfo("Tabletop Games",
-Authors = new[] { "Craluminum2413" })]
+[assembly: ModInfo(name: "Tabletop Games", modID: "tabletopgames")]
 
 namespace TabletopGames
 {

@@ -22,23 +22,12 @@ namespace TabletopGames
             }
         }
 
-        // public override MeshData GenMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
-        // {
-        //     this.targetAtlas = targetAtlas;
-        //     tmpTextures.Clear();
-
-        //     foreach (var key in Textures)
-        //     {
-        //         tmpTextures[key.Key] = new AssetLocation("block/transparent.png"); // Needed to avoid constant crashes
-        //         tmpTextures[key.Key] = stack.GetTexturePath(key);
-        //     }
-
-        //     var trueOrFalse = stack.Attributes.GetBool("crown").ToString().ToLower();
-        //     var shape = api.GetShapeFromAttributesByKey(stack, key: $"crown-{trueOrFalse}");
-
-        //     capi.Tesselator.TesselateShape("", shape, out var mesh, this);
-        //     return mesh;
-        // }
+        public override Shape GetShape(ItemStack stack)
+        {
+            var trueOrFalse = stack.Attributes.GetBool("crown").ToString().ToLower();
+            var shape = api.GetShapeFromAttributesByKey(stack, key: $"crown-{trueOrFalse}");
+            return shape ?? base.GetShape(stack);
+        }
 
         public override string GetMeshCacheKey(ItemStack stack)
         {
