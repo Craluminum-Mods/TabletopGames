@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "Client": {
+      "commandName": "Executable",
+      "executablePath": "$(VINTAGE_STORY)/Vintagestory.exe",
+      "commandLineArgs": "--playStyle \"preset-surviveandbuild\" --openWorld \"normal test world\" --tracelog --addModPath \"$(ProjectDir)/bin/$(Configuration)/Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    },
+    "Server": {
+      "commandName": "Executable",
+      "executablePath": "$(VINTAGE_STORY)/VintagestoryServer.exe",
+      "commandLineArgs": "--playStyle \"preset-surviveandbuild\" --openWorld \"normal test world\" --tracelog --addModPath \"$(ProjectDir)/bin/$(Configuration)/Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    },
+    "Client-Flat": {
+      "commandName": "Executable",
+      "executablePath": "$(VINTAGE_STORY)/Vintagestory.exe",
+      "commandLineArgs": "--openWorld \"test world\" --tracelog --addModPath \"$(ProjectDir)/bin/$(Configuration)/Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    },
+    "Server-Flat": {
+      "commandName": "Executable",
+      "executablePath": "$(VINTAGE_STORY)/VintagestoryServer.exe",
+      "commandLineArgs": "--openWorld \"test world\" --tracelog --addModPath \"$(ProjectDir)/bin/$(Configuration)/Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    }
+  }
+}
