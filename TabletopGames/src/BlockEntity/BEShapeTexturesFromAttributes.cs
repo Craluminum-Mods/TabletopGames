@@ -55,10 +55,12 @@ public class BEShapeTexturesFromAttributes : BlockEntity
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
         Materials.ToTreeAttribute(tree);
+        base.ToTreeAttributes(tree);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
     {
+        base.FromTreeAttributes(tree, worldAccessForResolve);
         Materials = Materials.FromTreeAttribute(tree);
         Init();
     }
@@ -72,6 +74,7 @@ public class BEShapeTexturesFromAttributes : BlockEntity
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
+        base.GetBlockInfo(forPlayer, dsc);
         Materials.GetDescription(dsc, OwnBlock?.LangKeys, withDebugInfo: true);
     }
 }

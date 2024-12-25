@@ -58,26 +58,25 @@ public class Materials
     public static Materials FromTreeAttribute(ITreeAttribute rootTree)
     {
         Materials materials = new Materials();
-        if (!rootTree.HasAttribute(AttributeName) || !rootTree.GetTreeAttribute(AttributeName).Any())
+        if (!rootTree.HasAttribute(AttributeName))
         {
             return materials;
         }
 
         ITreeAttribute typesTree = rootTree.GetTreeAttribute(AttributeName);
-
         foreach (string key in typesTree.Select(x => x.Key).Where(key => !materials.Elements.ContainsKey(key)))
         {
             materials.Elements.Add(key, typesTree.GetString(key));
         }
-
         return materials;
     }
 
     public void ToTreeAttribute(ITreeAttribute rootTree)
     {
+        ITreeAttribute typesTree = rootTree.GetOrAddTreeAttribute(AttributeName);
         foreach ((string key, string val) in Elements)
         {
-            rootTree.GetOrAddTreeAttribute(AttributeName).SetString(key, val);
+            typesTree.SetString(key, val);
         }
     }
 
