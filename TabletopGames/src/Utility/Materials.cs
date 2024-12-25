@@ -35,22 +35,22 @@ public class Materials
             foreach (string langKey in langKeys)
             {
                 string newLangKey = ReplacePlaceholders(langKey);
-                dsc.AppendLine(Lang.GetMatching(newLangKey));
+                dsc.Append(Lang.GetMatching(newLangKey));
             }
+            dsc.AppendLine();
         }
-
-        //dsc.AppendLine(Lang.GetMatching(material.ToString()));
 
         if (!withDebugInfo)
         {
             return;
         }
 
+        dsc.AppendLine();
         foreach (KeyValuePair<string, string> material in Elements)
         {
             if (withDebugInfo)
             {
-                dsc.AppendLine($"({material.Key}-{material.Value})");
+                dsc.AppendLine($"{material.Key}-{material.Value}");
             }
         }
     }
