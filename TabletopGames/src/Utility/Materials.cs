@@ -37,7 +37,6 @@ public class Materials
                 string newLangKey = ReplacePlaceholders(langKey);
                 dsc.Append(Lang.GetMatching(newLangKey));
             }
-            dsc.AppendLine();
         }
 
         if (!withDebugInfo)
@@ -45,7 +44,6 @@ public class Materials
             return;
         }
 
-        dsc.AppendLine();
         foreach (KeyValuePair<string, string> material in Elements)
         {
             if (withDebugInfo)
