@@ -7,6 +7,12 @@ using Vintagestory.API.MathTools;
 
 namespace TabletopGames;
 
+/// <summary>
+/// <para> Block Entity that renders shape and textures using attribute based type system. </para>
+/// <para> Used for blocks that have no inventory. </para>
+/// <para> Has rotation. </para>
+/// <para> Has "automatic" localization. </para>
+/// </summary>
 public class BEShapeTexturesFromAttributes : BlockEntity
 {
     public BlockShapeTexturesFromAttributes OwnBlock => Block as BlockShapeTexturesFromAttributes;

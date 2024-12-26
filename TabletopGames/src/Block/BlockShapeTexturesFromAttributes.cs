@@ -10,6 +10,12 @@ using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
+/// <summary>
+/// <para> Block that renders shape and textures using attribute based type system. </para>
+/// <para> Used for blocks that have no inventory. </para>
+/// <para> Has rotation. </para>
+/// <para> Has "automatic" localization. </para>
+/// </summary>
 public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 {
     public List<string> LangKeys { get; protected set; } = new List<string>();
