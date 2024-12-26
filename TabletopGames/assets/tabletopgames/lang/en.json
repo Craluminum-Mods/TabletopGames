@@ -1,3 +1,12 @@
 {
-    "game:tabname-tabletopgames": "Tabletop Games"
+    "game:tabname-tabletopgames": "Tabletop Games",
+
+    "block-chessboard": "Chessboard",
+
+    "Dimensions": "Dimensions",
+    "dimension-5x5": "5 X 5",
+    "dimension-8x8": "8 X 8",
+
+    "Primary": "Primary",
+    "Secondary": "Secondary",
 }
