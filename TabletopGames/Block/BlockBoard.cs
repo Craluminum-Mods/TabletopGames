@@ -155,6 +155,7 @@ public class BlockBoard : Block, IContainedMeshSource
         }
 
         renderinfo.ModelRef = meshref;
+        base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
