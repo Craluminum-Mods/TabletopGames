@@ -32,14 +32,14 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_pieceMeshRefs");
+        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
         if (meshRefs?.Count > 0)
         {
             foreach (var (_, meshRef) in meshRefs)
             {
                 meshRef.Dispose();
             }
-            ObjectCacheUtil.Delete(api, "TabletopGames_pieceMeshRefs");
+            ObjectCacheUtil.Delete(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
         }
     }
 
@@ -101,7 +101,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_pieceMeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Materials materials = Materials.FromStack(itemstack);
         string key = $"{itemstack.Collectible.Code}-{materials}";
