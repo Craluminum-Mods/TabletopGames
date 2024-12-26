@@ -55,9 +55,22 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
         if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BEShapeTexturesFromAttributes blockEntiy)
         {
+            RotateBy90();
             blockEntiy.OnBlockPlaced(byItemStack);
         }
         return ok;
+
+        void RotateBy90()
+        {
+            BlockPos targetPos = blockSel.DidOffset ? blockSel.Position.AddCopy(blockSel.Face.Opposite) : blockSel.Position;
+            double dx = byPlayer.Entity.Pos.X - (targetPos.X + blockSel.HitPosition.X);
+            double dz = (float)byPlayer.Entity.Pos.Z - (targetPos.Z + blockSel.HitPosition.Z);
+            float angleHor = (float)Math.Atan2(dx, dz);
+
+            float intervalRad = GameMath.PIHALF;
+            float roundRad = ((int)Math.Round(angleHor / intervalRad)) * intervalRad;
+            blockEntiy.MeshAngleRad = roundRad;
+        }
     }
 
     public MeshData GetOrCreateMesh(Materials materials, ITexPositionSource overrideTexturesource = null)
@@ -104,8 +117,9 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BEShapeTexturesFromAttributes blockEntiy)
         {
-            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, overrideTexturesource: decalTexSource);
-            MeshData blockMesh = GetOrCreateMesh(blockEntiy.Materials);
+            float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntiy.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
+            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
+            MeshData blockMesh = GetOrCreateMesh(blockEntiy.Materials).Clone().MatrixTransform(mat);
             decalModelData = decalMesh;
             blockModelData = blockMesh;
             return;
