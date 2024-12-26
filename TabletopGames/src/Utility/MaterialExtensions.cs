@@ -16,7 +16,7 @@ public static class MaterialExtensions
         {
             List<string> types = new();
 
-            if (variantGroup?.States?.Any() == true)
+            if (variantGroup?.States != null && variantGroup.States.Any())
             {
                 types = types.Concat(variantGroup.States).ToList();
             }

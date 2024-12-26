@@ -8,12 +8,12 @@ public static class TabletopExtensions
 {
     public static bool AreStorageAttributesCompatible(this List<string> boardStorageAttributes, List<string> stackStorageAttributes)
     {
-        if (boardStorageAttributes?.Any() == false)
+        if (boardStorageAttributes == null || !boardStorageAttributes.Any())
         {
             return true;
         }
 
-        if (stackStorageAttributes?.Any() == false)
+        if (stackStorageAttributes == null || !stackStorageAttributes.Any())
         {
             return false;
         }
@@ -24,13 +24,13 @@ public static class TabletopExtensions
     public static bool AreStorageAttributesCompatible(this BlockBoard board, ItemStack stack)
     {
         List<string> boardStorageAttributes = board.StorageAttributes;
-        if (boardStorageAttributes?.Any() == false)
+        if (boardStorageAttributes == null || !boardStorageAttributes.Any())
         {
             return true;
         }
 
         List<string> stackStorageAttributes = stack?.Collectible?.Attributes?["storageAttributes"]?.AsObject<List<string>>();
-        if (stackStorageAttributes?.Any() == false)
+        if (stackStorageAttributes == null || !stackStorageAttributes.Any())
         {
             return false;
         }
