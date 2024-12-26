@@ -6,35 +6,32 @@ namespace TabletopGames;
 
 public static class TabletopExtensions
 {
-    public static bool AreStorageAttributesCompatible(this List<string> boardStorageAttributes, List<string> stackStorageAttributes)
+    public static bool AreTagsCompatible(this List<string> boardTags, List<string> boardTagsIgnored, ItemStack stack)
     {
-        if (boardStorageAttributes == null || !boardStorageAttributes.Any())
+        if (!boardTags?.Any() ?? true)
         {
             return true;
         }
 
-        if (stackStorageAttributes == null || !stackStorageAttributes.Any())
+        List<string> stackTags = stack?.ItemAttributes?["tabletopTags"]?.AsObject<List<string>>();
+        if (!stackTags?.Any() ?? true)
         {
             return false;
         }
 
-        return boardStorageAttributes.Any(stackStorageAttributes.Contains);
+        List<string> tags = boardTags.ToList();
+        if (boardTagsIgnored?.Any() ?? true)
+        {
+            tags.RemoveAll(x => !boardTagsIgnored.Contains(x));
+        }
+
+        return !stackTags.Any(tags.Contains);
     }
 
-    public static bool AreStorageAttributesCompatible(this BlockBoard board, ItemStack stack)
+    public static bool AreTagsCompatible(this BlockBoard board, ItemStack stack)
     {
-        List<string> boardStorageAttributes = board.StorageAttributes;
-        if (boardStorageAttributes == null || !boardStorageAttributes.Any())
-        {
-            return true;
-        }
-
-        List<string> stackStorageAttributes = stack?.Collectible?.Attributes?["storageAttributes"]?.AsObject<List<string>>();
-        if (stackStorageAttributes == null || !stackStorageAttributes.Any())
-        {
-            return false;
-        }
-
-        return boardStorageAttributes.Any(stackStorageAttributes.Contains);
+        List<string> boardTags = board.TabletopTags;
+        List<string> boardTagsIgnored = board.TabletopTagsIgnored;
+        return boardTags.AreTagsCompatible(boardTagsIgnored, stack);
     }
 }

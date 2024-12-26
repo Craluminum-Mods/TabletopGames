@@ -64,7 +64,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public virtual ItemSlot OnNewSlot(int slotId, InventoryGeneric self)
     {
-        return new ItemSlotTabletop(self, OwnBlock.StorageAttributes);
+        return new ItemSlotTabletop(self, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
     }
 
     public void ReplaceProperties(Materials materials)
@@ -112,7 +112,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
         mesher.AddMeshData(Mesh, mat);
-        base.OnTesselation(mesher, tesselator);
+        //base.OnTesselation(mesher, tesselator);
         return true;
     }
 
@@ -140,7 +140,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-        bool placeable = OwnBlock.AreStorageAttributesCompatible(slot.Itemstack);
+        bool placeable = OwnBlock.AreTagsCompatible(slot.Itemstack);
 
         if (slot.Empty || !placeable)
         {

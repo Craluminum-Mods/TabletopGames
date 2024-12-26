@@ -19,7 +19,8 @@ namespace TabletopGames;
 /// </summary>
 public class BlockBoard : Block, IContainedMeshSource
 {
-    public List<string> StorageAttributes { get; protected set; }
+    public List<string> TabletopTags { get; protected set; }
+    public List<string> TabletopTagsIgnored { get; protected set; }
     public List<string> LangKeys { get; protected set; } = new List<string>();
 
     private CompositeShape cshape;
@@ -48,7 +49,8 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (Attributes != null)
         {
-            StorageAttributes = Attributes["storableAttributes"].AsObject<List<string>>();
+            TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
+            TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
@@ -206,7 +208,8 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos)
     {
-        return true;
+        //return true;
+        return false;
     }
 
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -216,5 +219,69 @@ public class BlockBoard : Block, IContainedMeshSource
             return blockEntity.OnInteract(byPlayer, blockSel);
         }
         return base.OnBlockInteractStart(world, byPlayer, blockSel);
+    }
+
+    public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
+    {
+        if (blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
+        {
+            //return base.GetSelectionBoxes(blockAccessor, pos);
+
+            //int size = 15;
+            //Cuboidf[] seleBoxes = new Cuboidf[size * size];
+
+            //for (int dx = 0; dx < 8; dx++)
+            //{
+            //    for (int dz = 0; dz < 8; dz++)
+            //    {
+            //        seleBoxes[dz * size + dx] = new Cuboidf()
+            //        {
+            //            X1 = (0.5f + dx) / 16f,
+            //            Y1 = 1 / 16f,
+            //            Z1 = (0.5f + dz) / 16f,
+            //            X2 = (1.5f + dx) / 16f,
+            //            Y2 = 2 / 16f,
+            //            Z2 = (1.5f + dz) / 16f,
+            //        };
+            //    }
+            //}
+
+            //return seleBoxes;
+        //}
+
+
+
+
+
+
+
+        //var boxes = Array.Empty<Cuboidf>();
+        //    for (int i = 0; i < blockEntity.Inventory.Count; i++)
+        //    {
+        //        //if (UsableSlots.Contains<int>(i)) continue;
+        //        ItemSlot slot = blockEntity.Inventory[i];
+        //        if (slot.Empty) continue;
+
+        //        // Drop contents which can no longer be held if neighbour removed
+        //        Vec3d vec = pos.ToVec3d();
+        //        vec.Add(0.5 - GameMath.Cos(blockEntity.MeshAngleRad) * 0.6, 0.15, 0.5 + GameMath.Sin(blockEntity.MeshAngleRad) * 0.6);  // Add appropriate offset for the removed side, depending on orientation
+        //        api.World.SpawnItemEntity(slot.Itemstack, vec);
+        //        //slot.Itemstack = null;
+        //    }
+
+
+
+
+
+
+
+            //return new Cuboidf[] { };
+        }
+        return base.GetSelectionBoxes(blockAccessor, pos);
+    }
+
+    public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos)
+    {
+        return new Vec4f(0, 1, 1, 1); // Cyan color
     }
 }
