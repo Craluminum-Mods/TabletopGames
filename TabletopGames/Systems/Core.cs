@@ -12,6 +12,8 @@ public class Core : ModSystem
         api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
         api.RegisterBlockEntityClass("TabletopGames.BEBoard", typeof(BlockEntityBoard));
 
+        api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
+
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 }
