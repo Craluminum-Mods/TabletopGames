@@ -54,8 +54,8 @@ public class BEShapeTexturesFromAttributes : BlockEntity
 
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
-        Materials.ToTreeAttribute(tree);
         base.ToTreeAttributes(tree);
+        Materials.ToTreeAttribute(tree);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
