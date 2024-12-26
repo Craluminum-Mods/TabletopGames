@@ -5,6 +5,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
 
 namespace TabletopGames;
@@ -15,7 +16,7 @@ namespace TabletopGames;
 /// <para> Optional rotation. </para>
 /// <para> Has "automatic" localization. </para>
 /// </summary>
-public class ItemShapeTexturesFromAttributes : Item
+public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 {
     public List<string> StorageAttributes { get; protected set; }
     public List<string> LangKeys { get; protected set; } = new List<string>();
