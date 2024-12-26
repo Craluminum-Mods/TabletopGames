@@ -13,7 +13,7 @@ namespace TabletopGames;
 /// <para> Has rotation. </para>
 /// <para> Has "automatic" localization. </para>
 /// </summary>
-public class BEShapeTexturesFromAttributes : BlockEntity
+public class BEShapeTexturesFromAttributes : BlockEntity, IRotatable
 {
     public BlockShapeTexturesFromAttributes OwnBlock => Block as BlockShapeTexturesFromAttributes;
     public Materials Materials { get; protected set; } = new Materials();
@@ -62,7 +62,7 @@ public class BEShapeTexturesFromAttributes : BlockEntity
         base.OnBlockPlaced(byItemStack);
         if (byItemStack != null)
         {
-            Materials = Materials.FromTreeAttribute(byItemStack.Attributes);
+            Materials = Materials.FromStack(byItemStack);
         }
         Init();
     }
