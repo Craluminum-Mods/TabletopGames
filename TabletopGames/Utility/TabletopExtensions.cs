@@ -19,12 +19,7 @@ public static class TabletopExtensions
             return false;
         }
 
-        List<string> tags = boardTags.ToList();
-        if (boardTagsIgnored?.Any() ?? true)
-        {
-            tags.RemoveAll(x => !boardTagsIgnored.Contains(x));
-        }
-
+        HashSet<string> tags = new HashSet<string>(boardTags.Intersect(boardTagsIgnored ??= new List<string>()));
         return !stackTags.Any(tags.Contains);
     }
 
