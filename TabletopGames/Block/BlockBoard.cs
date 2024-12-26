@@ -33,14 +33,14 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_Board_MeshesInventory");
+        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
         if (meshRefs?.Count > 0)
         {
             foreach (var (_, meshRef) in meshRefs)
             {
                 meshRef.Dispose();
             }
-            ObjectCacheUtil.Delete(api, "TabletopGames_Board_MeshesInventory");
+            ObjectCacheUtil.Delete(api, "TabletopGames_boardMeshRefs");
         }
     }
 
@@ -53,11 +53,10 @@ public class BlockBoard : Block, IContainedMeshSource
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
 
-            RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
-            Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-
             if (Attributes["fillCreativeInventory"].AsBool())
             {
+                RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
+                Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
                 this.FillCreativeInventory(api, resolvedMaterials, Constants.ModID);
             }
         }
@@ -143,7 +142,7 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_Board_MeshesInventory", () => new Dictionary<string, MultiTextureMeshRef>());
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_boardMeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Materials materials = Materials.FromStack(itemstack);
         string key = $"{itemstack.Collectible.Code}-{materials}";
