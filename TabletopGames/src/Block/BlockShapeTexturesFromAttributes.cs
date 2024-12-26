@@ -62,49 +62,41 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public MeshData GetOrCreateMesh(Materials materials, ITexPositionSource overrideTexturesource = null)
     {
-        Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_ShapeTexturesFromAttributes_Meshes", () => new Dictionary<string, MeshData>());
         ICoreClientAPI capi = api as ICoreClientAPI;
+        MeshData mesh = new MeshData(4, 3);
 
-        string key = $"{Code}-{materials}";
-        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData mesh))
+        CompositeShape rcshape = cshape.Clone();
+        rcshape.Base.Path = materials.ReplacePlaceholders(rcshape.Base.Path);
+        rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
+
+        Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+
+        ITexPositionSource texSource = null;
+        if (overrideTexturesource != null)
         {
-            mesh = new MeshData(4, 3);
-
-            CompositeShape rcshape = cshape.Clone();
-            rcshape.Base.Path = materials.ReplacePlaceholders(rcshape.Base.Path);
-            rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
-
-            Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
-
-            ITexPositionSource texSource = overrideTexturesource;
-            if (texSource == null)
+            texSource = overrideTexturesource;
+        }
+        if (texSource == null)
+        {
+            ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+            texSource = stexSource;
+            foreach (KeyValuePair<string, CompositeTexture> val in textures)
             {
-                ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
-                texSource = stexSource;
-                foreach (KeyValuePair<string, CompositeTexture> val in textures)
+                CompositeTexture ctex = val.Value.Clone();
+                ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);
+                if (ctex.BlendedOverlays != null)
                 {
-                    CompositeTexture ctex = val.Value.Clone();
-                    ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);
-                    if (ctex.BlendedOverlays != null)
+                    foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
                     {
-                        foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
-                        {
-                            overlayCtex.Base.Path = materials.ReplacePlaceholders(overlayCtex.Base.Path);
-                        }
+                        overlayCtex.Base.Path = materials.ReplacePlaceholders(overlayCtex.Base.Path);
                     }
-                    ctex.Bake(capi.Assets);
-                    stexSource.textures[val.Key] = ctex;
                 }
-            }
-            if (shape == null) return mesh;
-
-            capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
-
-            if (overrideTexturesource == null)
-            {
-                cMeshes[key] = mesh;
+                ctex.Bake(capi.Assets);
+                stexSource.textures[val.Key] = ctex;
             }
         }
+        if (shape == null) return mesh;
+        capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
         return mesh;
     }
 
@@ -112,15 +104,14 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BEShapeTexturesFromAttributes blockEntiy)
         {
-            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, decalTexSource);
+            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, overrideTexturesource: decalTexSource);
             MeshData blockMesh = GetOrCreateMesh(blockEntiy.Materials);
             decalModelData = decalMesh;
             blockModelData = blockMesh;
+            return;
         }
-        else
-        {
-            base.GetDecal(world, pos, decalTexSource, ref decalModelData, ref blockModelData);
-        }
+
+        base.GetDecal(world, pos, decalTexSource, ref decalModelData, ref blockModelData);
     }
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -128,7 +119,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Materials materials = Materials.FromStack(itemstack);
-        string key = $"{Code}-{materials}";
+        string key = $"{itemstack.Collectible.Code}-{materials}";
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
@@ -173,15 +164,15 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
         Materials.FromStack(inSlot.Itemstack).GetDescription(dsc, LangKeys, withDebugInfo);
     }
 
-    MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         Materials materials = Materials.FromStack(itemstack);
         return GetOrCreateMesh(materials);
     }
 
-    string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)
+    public string GetMeshCacheKey(ItemStack itemstack)
     {
         Materials materials = Materials.FromStack(itemstack);
-        return $"{Code}-{materials}";
+        return $"{itemstack.Collectible.Code}-{materials}";
     }
 }
