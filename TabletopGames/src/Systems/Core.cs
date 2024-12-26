@@ -8,6 +8,10 @@ public class Core : ModSystem
     {
         api.RegisterBlockClass("TabletopGames.BlockShapeTexturesFromAttributes", typeof(BlockShapeTexturesFromAttributes));
         api.RegisterBlockEntityClass("TabletopGames.BEShapeTexturesFromAttributes", typeof(BEShapeTexturesFromAttributes));
+
+        api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
+        api.RegisterBlockEntityClass("TabletopGames.BEBoard", typeof(BlockEntityBoard));
+
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 }
