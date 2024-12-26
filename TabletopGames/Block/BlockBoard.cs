@@ -12,12 +12,14 @@ namespace TabletopGames;
 
 /// <summary>
 /// <para> Renders shape and textures using attribute based type system. </para>
-/// <para> Used for blocks that have no inventory. </para>
+/// <para> Used for boards. </para>
 /// <para> Has rotation. </para>
 /// <para> Has "automatic" localization. </para>
+/// <para> Has inventory and displays stored items. </para>
 /// </summary>
-public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
+public class BlockBoard : Block, IContainedMeshSource
 {
+    public List<string> StorageAttributes { get; protected set; }
     public List<string> LangKeys { get; protected set; } = new List<string>();
 
     private CompositeShape cshape;
@@ -31,14 +33,14 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory");
+        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_Board_MeshesInventory");
         if (meshRefs?.Count > 0)
         {
             foreach (var (_, meshRef) in meshRefs)
             {
                 meshRef.Dispose();
             }
-            ObjectCacheUtil.Delete(api, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory");
+            ObjectCacheUtil.Delete(api, "TabletopGames_Board_MeshesInventory");
         }
     }
 
@@ -46,20 +48,25 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     {
         if (Attributes != null)
         {
+            StorageAttributes = Attributes["storableAttributes"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
 
             RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
             Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-            this.FillCreativeInventory(api, resolvedMaterials, Constants.ModID);
+
+            if (Attributes["fillCreativeInventory"].AsBool())
+            {
+                this.FillCreativeInventory(api, resolvedMaterials, Constants.ModID);
+            }
         }
     }
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
     {
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BEShapeTexturesFromAttributes blockEntiy)
+        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntiy)
         {
             RotateBy90();
             blockEntiy.OnBlockPlaced(byItemStack);
@@ -74,7 +81,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
             float angleHor = (float)Math.Atan2(dx, dz);
 
             float intervalRad = GameMath.PIHALF;
-            float roundRad = ((int)Math.Round(angleHor / intervalRad)) * intervalRad;
+            float roundRad = (int)Math.Round(angleHor / intervalRad) * intervalRad;
             blockEntiy.MeshAngleRad = roundRad;
         }
     }
@@ -121,7 +128,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public override void GetDecal(IWorldAccessor world, BlockPos pos, ITexPositionSource decalTexSource, ref MeshData decalModelData, ref MeshData blockModelData)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BEShapeTexturesFromAttributes blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
             float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntiy.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
             MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
@@ -136,7 +143,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory", () => new Dictionary<string, MultiTextureMeshRef>());
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_Board_MeshesInventory", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Materials materials = Materials.FromStack(itemstack);
         string key = $"{itemstack.Collectible.Code}-{materials}";
@@ -153,7 +160,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BEShapeTexturesFromAttributes blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
             return new ItemStack[1] { OnPickBlock(world, pos) };
         }
@@ -171,8 +178,9 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
     {
         ItemStack stack = base.OnPickBlock(world, pos);
-        if (world.BlockAccessor.GetBlockEntity(pos) is BEShapeTexturesFromAttributes blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
+            stack.Attributes.SetInt("quantitySlots", blockEntiy.quantitySlots);
             blockEntiy.Materials.ToStack(stack);
         }
         return stack;
@@ -194,5 +202,19 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     {
         Materials materials = Materials.FromStack(itemstack);
         return $"{itemstack.Collectible.Code}-{materials}";
+    }
+
+    public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos)
+    {
+        return true;
+    }
+
+    public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+    {
+        if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity)
+        {
+            return blockEntity.OnInteract(byPlayer, blockSel);
+        }
+        return base.OnBlockInteractStart(world, byPlayer, blockSel);
     }
 }

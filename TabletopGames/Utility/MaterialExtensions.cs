@@ -26,7 +26,7 @@ public static class MaterialExtensions
                 IAsset asset = api.Assets.TryGet(variantGroup.LoadFromProperties.WithPathPrefixOnce("worldproperties/").WithPathAppendixOnce(".json"));
                 if (asset != null)
                 {
-                    IEnumerable<string> _types = (asset?.ToObject<StandardWorldProperty>()).Variants.Select((WorldPropertyVariant p) => p.Code.Path);
+                    IEnumerable<string> _types = (asset?.ToObject<StandardWorldProperty>()).Variants.Select((p) => p.Code.Path);
                     types = types.Concat(_types).ToList();
                 }
             }
@@ -75,7 +75,7 @@ public static class MaterialExtensions
 
     public static List<Dictionary<string, string>> GetCombinationsContainingAllKeys(this Dictionary<string, List<string>> materials)
     {
-        List<List<string>> combinations = GenerateCombinations(materials);
+        List<List<string>> combinations = materials.GenerateCombinations();
         List<Dictionary<string, string>> finalResult = new List<Dictionary<string, string>>();
 
         foreach (List<string> result in combinations)
