@@ -112,7 +112,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
         mesher.AddMeshData(Mesh, mat);
-        //base.OnTesselation(mesher, tesselator);
+        base.OnTesselation(mesher, tesselator);
         return true;
     }
 
