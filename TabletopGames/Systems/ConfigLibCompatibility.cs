@@ -22,6 +22,7 @@ public class ConfigLibCompatibility
     private void Edit(ICoreAPI api, string id)
     {
         ImGui.TextWrapped("DEBUG");
+        ImGui.Checkbox("Toggle materials debug info" + $"##DEBUG-MaterialsDebugInfo-{id}", ref TabletopDebug.MaterialsDebugInfo);
         ImGui.Checkbox("Toggle board particle selection" + $"##DEBUG-BoardParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
         ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
     }

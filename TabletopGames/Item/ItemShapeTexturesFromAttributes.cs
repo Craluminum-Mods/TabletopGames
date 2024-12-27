@@ -120,6 +120,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         }
 
         renderinfo.ModelRef = meshref;
+        renderinfo.NormalShaded = true;
 
         if (materials.FindByMaterial(attribute: $"{target}TransformBy", itemstack, out ModelTransform transform))
         {

@@ -199,6 +199,7 @@ public class BlockBoard : Block, IContainedMeshSource
         }
 
         renderinfo.ModelRef = meshref;
+        renderinfo.NormalShaded = true;
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 
