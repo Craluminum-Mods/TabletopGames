@@ -133,8 +133,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        Materials materials = Materials.FromStack(inSlot.Itemstack);
 
+        Materials materials = Materials.FromStack(inSlot.Itemstack);
         List<string> _langKeys = new();
         if (!materials.FindByMaterial(LangKeysBy, out _langKeys))
         {

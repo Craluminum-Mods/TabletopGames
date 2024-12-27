@@ -191,14 +191,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             ItemSlot slot = inventory[i];
             dsc.AppendLine(string.Format(i + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
         }
-
-        List<string> _langKeys = new();
-        if (!Materials.FindByMaterial(OwnBlock?.LangKeysBy, out _langKeys))
-        {
-            _langKeys = OwnBlock?.LangKeys;
-        }
-        Materials.GetDescription(dsc, _langKeys);
-        BoardData.GetDescription(dsc);
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,

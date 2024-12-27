@@ -45,7 +45,7 @@ public class Materials
             dsc.AppendLine();
             foreach (KeyValuePair<string, string> material in Elements)
             {
-                dsc.AppendLine($"{material.Key}-{material.Value}");
+                dsc.AppendLine($"DEBUG::{material.Key}-{material.Value}");
             }
         }
     }
