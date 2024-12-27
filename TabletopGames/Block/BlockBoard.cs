@@ -59,7 +59,7 @@ public class BlockBoard : Block, IContainedMeshSource
             {
                 RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
                 Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, Constants.ModID);
+                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
             }
         }
     }
@@ -204,12 +204,6 @@ public class BlockBoard : Block, IContainedMeshSource
         return $"{itemstack.Collectible.Code}-{materials}";
     }
 
-    public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos)
-    {
-        //return true;
-        return false;
-    }
-
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity
@@ -276,8 +270,6 @@ public class BlockBoard : Block, IContainedMeshSource
         return base.GetSelectionBoxes(blockAccessor, pos);
     }
 
-    public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos)
-    {
-        return new Vec4f(0, 1, 1, 1); // Cyan color
-    }
+    public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
+    public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardColor;
 }

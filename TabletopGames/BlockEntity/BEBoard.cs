@@ -20,7 +20,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
     public override InventoryBase Inventory => inventory;
-    public override string InventoryClassName => Constants.boardInvClassName;
+    public override string InventoryClassName => TabletopConstants.boardInvClassName;
 
     public Materials Materials { get; protected set; } = new Materials();
     public float MeshAngleRad { get; set; }

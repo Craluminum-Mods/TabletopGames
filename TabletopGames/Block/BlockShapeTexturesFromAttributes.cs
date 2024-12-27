@@ -52,7 +52,7 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
             RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
             Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-            this.AddAllTypesToCreativeInventory(api, resolvedMaterials, Constants.ModID);
+            this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
         }
     }
 

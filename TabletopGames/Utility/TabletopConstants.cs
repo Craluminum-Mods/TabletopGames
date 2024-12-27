@@ -1,6 +1,6 @@
 ﻿namespace TabletopGames;
 
-public static class Constants
+public static class TabletopConstants
 {
     public const string ModID = "tabletopgames";
 
