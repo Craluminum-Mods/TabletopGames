@@ -1,0 +1,9 @@
+[
+    {
+        "op": "addmerge",
+        "path": "/attributes/tabletopTags",
+        "value": ["omok", "omokpiece"],
+        "file": "game:itemtypes/omokpiece.json",
+        "side": "Server"
+    }
+]
