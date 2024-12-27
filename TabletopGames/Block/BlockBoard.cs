@@ -231,7 +231,7 @@ public class BlockBoard : Block, IContainedMeshSource
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        Materials.FromStack(inSlot.Itemstack).GetDescription(dsc, LangKeys, withDebugInfo);
+        Materials.FromStack(inSlot.Itemstack).GetDescription(dsc, LangKeys);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

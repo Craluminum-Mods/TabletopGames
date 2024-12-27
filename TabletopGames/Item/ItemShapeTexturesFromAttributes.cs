@@ -139,7 +139,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         {
             _langKeys = LangKeys;
         }
-        materials.GetDescription(dsc, _langKeys, withDebugInfo);
+        materials.GetDescription(dsc, _langKeys);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

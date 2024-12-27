@@ -23,14 +23,14 @@ public class Materials
             .OrderBy(x => x.Key);
     }
 
-    public void GetDescription(StringBuilder dsc, List<string> langKeys, bool withDebugInfo = false)
+    public void GetDescription(StringBuilder dsc, List<string> langKeys)
     {
         if (!Elements.Any())
         {
             return;
         }
 
-        if (langKeys != null)
+        if (langKeys != null && langKeys.Any())
         {
             foreach (string langKey in langKeys)
             {
@@ -40,15 +40,10 @@ public class Materials
             dsc.AppendLine();
         }
 
-        if (!withDebugInfo)
+        if (TabletopDebug.MaterialsDebugInfo)
         {
-            return;
-        }
-
-        dsc.AppendLine();
-        foreach (KeyValuePair<string, string> material in Elements)
-        {
-            if (withDebugInfo)
+            dsc.AppendLine();
+            foreach (KeyValuePair<string, string> material in Elements)
             {
                 dsc.AppendLine($"{material.Key}-{material.Value}");
             }

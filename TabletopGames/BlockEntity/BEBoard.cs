@@ -201,7 +201,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             _langKeys = OwnBlock?.LangKeys;
         }
-        Materials.GetDescription(dsc, _langKeys, withDebugInfo: true);
+        Materials.GetDescription(dsc, _langKeys);
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
