@@ -21,10 +21,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public BlockBoard OwnBlock => Block as BlockBoard;
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => Constants.boardInvClassName;
+
     public Materials Materials { get; protected set; } = new Materials();
     public MeshData Mesh { get; protected set; }
     public float MeshAngleRad { get; set; }
-    public int quantitySlots;
+    public int QuantitySlots { get; protected set; }
 
     private InventoryBase inventory;
     private float[] mat;
@@ -58,7 +59,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         if (inventory == null || inventory.Count == 0)
         {
-            inventory = new InventoryGeneric(quantitySlots, $"{InventoryClassName}-0", null, Api, OnNewSlot);
+            inventory = new InventoryGeneric(QuantitySlots, $"{InventoryClassName}-0", null, Api, OnNewSlot);
         }
     }
 
@@ -85,7 +86,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (byItemStack != null)
         {
             Materials = Materials.FromStack(byItemStack);
-            quantitySlots = byItemStack.Attributes.GetAsInt("quantitySlots");
+            QuantitySlots = byItemStack.Attributes.GetAsInt("quantitySlots");
         }
         Init();
         MarkDirty(redrawOnClient: true);
@@ -93,7 +94,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
-        tree.SetInt("quantitySlots", quantitySlots);
+        tree.SetInt("quantitySlots", QuantitySlots);
         Materials.ToTreeAttribute(tree);
         tree.SetFloat("meshAngleRad", MeshAngleRad);
         base.ToTreeAttributes(tree);
@@ -101,7 +102,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
     {
-        quantitySlots = tree.GetInt("quantitySlots");
+        QuantitySlots = tree.GetInt("quantitySlots");
         Materials = Materials.FromTreeAttribute(tree);
         MeshAngleRad = tree.GetFloat("meshAngleRad");
         InitInventory();
@@ -120,7 +121,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         base.GetBlockInfo(forPlayer, dsc);
         Materials.GetDescription(dsc, OwnBlock?.LangKeys, withDebugInfo: true);
-        dsc.AppendLine(Lang.Get("Quantity slots: {0}", quantitySlots));
+        dsc.AppendLine(Lang.Get("Quantity slots: {0}", QuantitySlots));
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,

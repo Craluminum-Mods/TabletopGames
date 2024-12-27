@@ -162,12 +162,10 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
-        {
-            return new ItemStack[1] { OnPickBlock(world, pos) };
+        return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy
+            ? (new ItemStack[1] { OnPickBlock(world, pos) })
+            : base.GetDrops(world, pos, byPlayer, dropQuantityMultiplier);
         }
-        return base.GetDrops(world, pos, byPlayer, dropQuantityMultiplier);
-    }
 
     public override BlockDropItemStack[] GetDropsForHandbook(ItemStack handbookStack, IPlayer forPlayer)
     {
@@ -182,7 +180,7 @@ public class BlockBoard : Block, IContainedMeshSource
         ItemStack stack = base.OnPickBlock(world, pos);
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
-            stack.Attributes.SetInt("quantitySlots", blockEntiy.quantitySlots);
+            stack.Attributes.SetInt("quantitySlots", blockEntiy.QuantitySlots);
             blockEntiy.Materials.ToStack(stack);
         }
         return stack;
@@ -214,12 +212,10 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity)
-        {
-            return blockEntity.OnInteract(byPlayer, blockSel);
+        return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity
+            ? blockEntity.OnInteract(byPlayer, blockSel)
+            : base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
-        return base.OnBlockInteractStart(world, byPlayer, blockSel);
-    }
 
     public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
