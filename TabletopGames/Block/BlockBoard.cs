@@ -80,7 +80,7 @@ public class BlockBoard : Block, IContainedMeshSource
         if (!string.IsNullOrEmpty(AttributeTransformCode) && GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == AttributeTransformCode))
         {
             GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(AttributeTransformCode), AttributeName = AttributeTransformCode });
-    }
+        }
 
         foreach ((string _, string code) in AttributeTransformCodeByType)
         {
@@ -207,7 +207,7 @@ public class BlockBoard : Block, IContainedMeshSource
         return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy
             ? (new ItemStack[1] { OnPickBlock(world, pos) })
             : base.GetDrops(world, pos, byPlayer, dropQuantityMultiplier);
-        }
+    }
 
     public override BlockDropItemStack[] GetDropsForHandbook(ItemStack handbookStack, IPlayer forPlayer)
     {
@@ -251,67 +251,15 @@ public class BlockBoard : Block, IContainedMeshSource
         return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity
             ? blockEntity.OnInteract(byPlayer, blockSel)
             : base.OnBlockInteractStart(world, byPlayer, blockSel);
-        }
+    }
 
     public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
-        if (blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
-        {
-            //return base.GetSelectionBoxes(blockAccessor, pos);
-
-            //int size = 15;
-            //Cuboidf[] seleBoxes = new Cuboidf[size * size];
-
-            //for (int dx = 0; dx < 8; dx++)
-            //{
-            //    for (int dz = 0; dz < 8; dz++)
-            //    {
-            //        seleBoxes[dz * size + dx] = new Cuboidf()
-            //        {
-            //            X1 = (0.5f + dx) / 16f,
-            //            Y1 = 1 / 16f,
-            //            Z1 = (0.5f + dz) / 16f,
-            //            X2 = (1.5f + dx) / 16f,
-            //            Y2 = 2 / 16f,
-            //            Z2 = (1.5f + dz) / 16f,
-            //        };
-            //    }
-            //}
-
-            //return seleBoxes;
-        //}
-
-
-
-
-
-
-
-        //var boxes = Array.Empty<Cuboidf>();
-        //    for (int i = 0; i < blockEntity.Inventory.Count; i++)
-        //    {
-        //        //if (UsableSlots.Contains<int>(i)) continue;
-        //        ItemSlot slot = blockEntity.Inventory[i];
-        //        if (slot.Empty) continue;
-
-        //        // Drop contents which can no longer be held if neighbour removed
-        //        Vec3d vec = pos.ToVec3d();
-        //        vec.Add(0.5 - GameMath.Cos(blockEntity.MeshAngleRad) * 0.6, 0.15, 0.5 + GameMath.Sin(blockEntity.MeshAngleRad) * 0.6);  // Add appropriate offset for the removed side, depending on orientation
-        //        api.World.SpawnItemEntity(slot.Itemstack, vec);
-        //        //slot.Itemstack = null;
-        //    }
-
-
-
-
-
-
-
-            //return new Cuboidf[] { };
-        }
-        return base.GetSelectionBoxes(blockAccessor, pos);
+        return blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity
+            ? blockEntity.GetOrCreateSelectionBoxes()
+            : base.GetSelectionBoxes(blockAccessor, pos);
     }
-
+    
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
     public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardSelectionColor;
 }

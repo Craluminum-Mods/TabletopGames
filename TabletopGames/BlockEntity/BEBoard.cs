@@ -31,6 +31,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     private float[] mat;
     private InventoryBase inventory;
 
+    private Cuboidf[] selectionBoxes;
     public override void Initialize(ICoreAPI api)
     {
         InitInventory();
@@ -39,7 +40,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             Init();
         }
-        inventory.LateInitialize($"{InventoryClassName}-0", api);
     }
 
     protected void Init()
@@ -51,6 +51,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
         if (Api.Side == EnumAppSide.Client)
         {
+            GetOrCreateSelectionBoxes(forceNew: true);
             mesh = OwnBlock.GetOrCreateMesh(Materials);
             mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
         }
@@ -71,11 +72,13 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         base.OnBlockUnloaded();
         mesh?.Dispose();
+        selectionBoxes = null;
     }
 
     public override void OnBlockRemoved()
     {
         base.OnBlockRemoved();
+        selectionBoxes = null;
     }
 
     public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -111,8 +114,75 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
         mesher.AddMeshData(mesh, mat);
-        base.OnTesselation(mesher, tesselator);
+
+        float[][] _tfMatrices = genTransformationMatrices();
+
+        for (int i = 0; i < DisplayedItems; i++)
+        {
+            ItemSlot itemSlot = Inventory[i];
+            if (!itemSlot.Empty && _tfMatrices != null)
+            {
+                mesher.AddMeshData(getMesh(itemSlot.Itemstack), _tfMatrices[i]);
+            }
+        }
+
         return true;
+    }
+
+    public override void updateMeshes()
+    {
+        for (int i = 0; i < DisplayedItems; i++)
+        {
+            updateMesh(i);
+        }
+    }
+
+    protected override float[][] genTransformationMatrices()
+    {
+        Cuboidf[] _selBoxes = GetOrCreateSelectionBoxes();
+        float[][] _tfMatrices = new float[DisplayedItems][];
+
+        for (int i = 0; i < DisplayedItems; i++)
+        {
+            Cuboidf hitbox = _selBoxes[i];
+            float x = hitbox.MidX;
+            float y = hitbox.MinY;
+            float z = hitbox.MidZ;
+            _tfMatrices[i] = new Matrixf() .Translate(new Vec3f(x, y, z)).Values;
+        }
+        return _tfMatrices;
+    }
+
+    public Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
+    {
+        if (forceNew || selectionBoxes == null)
+        {
+            float width = (float)OwnBlock.Attributes["width"].AsInt(8);
+            float height = (float)OwnBlock.Attributes["height"].AsInt(8);
+
+            selectionBoxes = new Cuboidf[(int)(width * height)];
+
+            for (int dx = 0; dx < width; dx++)
+            {
+                for (int dz = 0; dz < height; dz++)
+                {
+                    int num = (dz * (int)height) + dx;
+
+                    Cuboidf newCuboid = new Cuboidf()
+                    {
+                        X1 = dx / width,
+                        Y1 = 0 / 16f,
+                        Z1 = dz / height,
+                        X2 = (1 + dx) / width,
+                        Y2 = 1 / 16f,
+                        Z2 = (1 + dz) / height,
+                    };
+
+                    selectionBoxes[num] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+                }
+            }
+        }
+        return selectionBoxes;
     }
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
@@ -140,11 +210,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         MeshAngleRad = tree.GetFloat("meshAngleRad");
         MeshAngleRad -= degreeRotation * GameMath.DEG2RAD;
         tree.SetFloat("meshAngleRad", MeshAngleRad);
-    }
-
-    protected override float[][] genTransformationMatrices()
-    {
-        return System.Array.Empty<float[]>();
     }
 
     public virtual bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
