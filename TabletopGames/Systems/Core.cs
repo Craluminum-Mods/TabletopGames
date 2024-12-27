@@ -4,6 +4,14 @@ namespace TabletopGames;
 
 public class Core : ModSystem
 {
+    public override void StartPre(ICoreAPI api)
+    {
+        if (api.ModLoader.IsModEnabled("configlib"))
+        {
+            _ = new ConfigLibCompatibility(api);
+        }
+    }
+
     public override void Start(ICoreAPI api)
     {
         api.RegisterBlockClass("TabletopGames.BlockShapeTexturesFromAttributes", typeof(BlockShapeTexturesFromAttributes));
