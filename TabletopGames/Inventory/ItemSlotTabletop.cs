@@ -14,6 +14,8 @@ public class ItemSlotTabletop : ItemSlot
         TabletopTagsIgnored = tabletopTagsIgnored;
     }
 
+    public override int MaxSlotStackSize => 1;
+
     public override bool CanHold(ItemSlot sourceSlot)
     {
         return TabletopTags.AreTagsCompatible(TabletopTagsIgnored, stack: sourceSlot?.Itemstack) || base.CanHold(sourceSlot);
