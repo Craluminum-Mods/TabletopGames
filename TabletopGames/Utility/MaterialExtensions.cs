@@ -9,27 +9,34 @@ namespace TabletopGames;
 
 public static class MaterialExtensions
 {
-    public static bool FindByMaterial<T>(this Materials materials, string attribute, CollectibleObject collObj, out T result)
+    public static bool FindByMaterial<T>(this Materials materials, Dictionary<string, T> inDictionary, out T result)
     {
-        if (collObj.Attributes.KeyExists(attribute))
+        if (!inDictionary?.Any() ?? false)
         {
-            Dictionary<string, T> transforms = collObj.Attributes[attribute].AsObject(new Dictionary<string, T>());
+            result = default;
+            return false;
+        }
 
-            foreach (Material material in materials.GetOrdered())
+        foreach (Material material in materials.GetOrdered())
+        {
+            foreach ((string key, T value) in inDictionary)
             {
-                foreach ((string key, T value) in transforms)
+                if (material.ToString() == key || (key.StartsWith(material.Key) && key.EndsWith("-*")))
                 {
-                    if (material.ToString() == key || (key.StartsWith(material.Key) && key.EndsWith("-*")))
-                    {
-                        result = value;
-                        return true;
-                    }
+                    result = value;
+                    return true;
                 }
             }
         }
 
         result = default;
         return false;
+    }
+
+    public static bool FindByMaterial<T>(this Materials materials, string attribute, CollectibleObject collObj, out T result)
+    {
+        Dictionary<string, T> dict = collObj?.Attributes?[attribute]?.AsObject(new Dictionary<string, T>());
+        return materials.FindByMaterial(dict, out result);
     }
 
     public static bool FindByMaterial<T>(this Materials materials, string attribute, ItemStack stack, out T result)

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
 
@@ -19,9 +22,11 @@ namespace TabletopGames;
 /// </summary>
 public class BlockBoard : Block, IContainedMeshSource
 {
-    public List<string> TabletopTags { get; protected set; }
-    public List<string> TabletopTagsIgnored { get; protected set; }
-    public List<string> LangKeys { get; protected set; } = new List<string>();
+    public List<string> TabletopTags { get; protected set; } = new();
+    public List<string> TabletopTagsIgnored { get; protected set; } = new();
+    public List<string> LangKeys { get; protected set; } = new();
+    public string AttributeTransformCode { get; protected set; }
+    public Dictionary<string, string> AttributeTransformCodeByType { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, CompositeTexture> textures;
@@ -55,6 +60,9 @@ public class BlockBoard : Block, IContainedMeshSource
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
 
+            AttributeTransformCode = Attributes["attributeTransformCode"].AsString();
+            AttributeTransformCodeByType = Attributes["attributeTransformCodeBy"].AsObject(defaultValue: new Dictionary<string, string>());
+
             if (Attributes["fillCreativeInventory"].AsBool())
             {
                 RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
@@ -62,6 +70,28 @@ public class BlockBoard : Block, IContainedMeshSource
                 this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
             }
         }
+
+        if (!string.IsNullOrEmpty(AttributeTransformCode) && GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == AttributeTransformCode))
+        {
+            GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(AttributeTransformCode), AttributeName = AttributeTransformCode });
+    }
+
+        foreach ((string _, string code) in AttributeTransformCodeByType)
+        {
+            if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == code))
+            {
+                GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(code), AttributeName = code });
+            }
+        }
+    }
+
+    public virtual string GetAttributeTransformCode(BlockEntityBoard board)
+    {
+        if (board.Materials.FindByMaterial(AttributeTransformCodeByType, out string _attributeTransformCode))
+        {
+            return _attributeTransformCode;
+        }
+        return AttributeTransformCode;
     }
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)

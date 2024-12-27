@@ -23,6 +23,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
     private CompositeShape cshape;
     private Dictionary<string, CompositeTexture> textures;
+    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -49,7 +50,10 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         {
             StorageAttributes = Attributes["storableAttributes"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
+
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
+            texturesByType = Attributes["texturesBy"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
@@ -72,8 +76,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        Dictionary<string, CompositeTexture> _textures = null;
-        if (!materials.FindByMaterial(attribute: "texturesBy", this, out _textures))
+        Dictionary<string, CompositeTexture> _textures = new();
+        if (!materials.FindByMaterial(texturesByType, out _textures))
         {
             _textures = textures;
         }

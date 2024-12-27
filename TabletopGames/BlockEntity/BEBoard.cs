@@ -21,6 +21,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public BlockBoard OwnBlock => Block as BlockBoard;
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
+    public override string AttributeTransformCode => OwnBlock.GetAttributeTransformCode(this) ?? base.AttributeTransformCode;
 
     public Materials Materials { get; protected set; } = new Materials();
     public float MeshAngleRad { get; set; }
@@ -97,14 +98,14 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         base.ToTreeAttributes(tree);
     }
 
-    public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
+    public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
     {
         QuantitySlots = tree.GetInt("quantitySlots");
         Materials = Materials.FromTreeAttribute(tree);
         MeshAngleRad = tree.GetFloat("meshAngleRad");
         InitInventory();
-        base.FromTreeAttributes(tree, worldAccessForResolve);
-        RedrawAfterReceivingTreeAttributes(worldAccessForResolve);
+        base.FromTreeAttributes(tree, worldForResolving);
+        RedrawAfterReceivingTreeAttributes(worldForResolving);
     }
 
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
@@ -168,7 +169,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (inventory[index].Empty)
         {
             int moved = slot.TryPutInto(Api.World, inventory[index]);
-            MarkDirty();
+            MarkDirty(redrawOnClient: true);
             return moved > 0;
         }
 
@@ -194,7 +195,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                 Api.World.SpawnItemEntity(stack, Pos);
             }
 
-            MarkDirty();
+            MarkDirty(redrawOnClient: true);
             return true;
         }
 
