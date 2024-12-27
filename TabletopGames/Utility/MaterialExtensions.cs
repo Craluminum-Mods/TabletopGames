@@ -71,7 +71,7 @@ public static class MaterialExtensions
         return resolvedTypes;
     }
 
-    public static void FillCreativeInventory(this CollectibleObject obj, ICoreAPI api, Dictionary<string, List<string>> materials, params string[] tabs)
+    public static void AddAllTypesToCreativeInventory(this CollectibleObject obj, ICoreAPI api, Dictionary<string, List<string>> materials, params string[] tabs)
     {
         List<JsonItemStack> _stacks = new List<JsonItemStack>();
 

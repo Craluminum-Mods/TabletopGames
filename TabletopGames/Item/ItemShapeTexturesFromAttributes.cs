@@ -56,7 +56,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
             {
                 RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
                 Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-                this.FillCreativeInventory(api, resolvedMaterials, Constants.ModID);
+                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, Constants.ModID);
             }
         }
     }
