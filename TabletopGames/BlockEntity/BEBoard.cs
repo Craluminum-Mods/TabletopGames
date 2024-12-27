@@ -19,19 +19,20 @@ namespace TabletopGames;
 public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
+    public BoardData BoardData => Materials.FindByMaterial(OwnBlock?.BoardData, out BoardData value) ? value : new BoardData();
+
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
-    public override string AttributeTransformCode => OwnBlock.GetAttributeTransformCode(this) ?? base.AttributeTransformCode;
+    public override string AttributeTransformCode => BoardData.AttributeTransformCode ?? base.AttributeTransformCode;
 
     public Materials Materials { get; protected set; } = new Materials();
     public float MeshAngleRad { get; set; }
-    public int QuantitySlots { get; protected set; }
 
     private MeshData mesh;
     private float[] mat;
     private InventoryBase inventory;
-
     private Cuboidf[] selectionBoxes;
+
     public override void Initialize(ICoreAPI api)
     {
         InitInventory();
@@ -44,7 +45,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     protected void Init()
     {
-        if (Api == null || OwnBlock == null)
+        if (Api == null || OwnBlock == null || BoardData.Size == null)
         {
             return;
         }
@@ -61,7 +62,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         if (inventory == null || inventory.Count == 0)
         {
-            inventory = new InventoryGeneric(QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
+            inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
             {
                 return new ItemSlotTabletop(_inv, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
             });
@@ -87,7 +88,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (byItemStack != null)
         {
             Materials = Materials.FromStack(byItemStack);
-            QuantitySlots = byItemStack.Attributes.GetAsInt("quantitySlots");
         }
         Init();
         MarkDirty(redrawOnClient: true);
@@ -95,7 +95,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
-        tree.SetInt("quantitySlots", QuantitySlots);
         Materials.ToTreeAttribute(tree);
         tree.SetFloat("meshAngleRad", MeshAngleRad);
         base.ToTreeAttributes(tree);
@@ -103,7 +102,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
     {
-        QuantitySlots = tree.GetInt("quantitySlots");
         Materials = Materials.FromTreeAttribute(tree);
         MeshAngleRad = tree.GetFloat("meshAngleRad");
         InitInventory();
@@ -155,27 +153,27 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
     {
-        if (forceNew || selectionBoxes == null)
+        if ((forceNew || selectionBoxes == null) && BoardData.Size != null)
         {
-            float width = (float)OwnBlock.Attributes["width"].AsInt(8);
-            float height = (float)OwnBlock.Attributes["height"].AsInt(8);
+            float sizeX = BoardData.Size.X;
+            float sizeY = BoardData.Size.Y;
 
-            selectionBoxes = new Cuboidf[(int)(width * height)];
+            selectionBoxes = new Cuboidf[(int)(sizeX * sizeY)];
 
-            for (int dx = 0; dx < width; dx++)
+            for (int dx = 0; dx < sizeX; dx++)
             {
-                for (int dz = 0; dz < height; dz++)
+                for (int dz = 0; dz < sizeY; dz++)
                 {
-                    int num = (dz * (int)height) + dx;
+                    int num = (dz * (int)sizeY) + dx;
 
                     Cuboidf newCuboid = new Cuboidf()
                     {
-                        X1 = dx / width,
+                        X1 = dx / sizeX,
                         Y1 = 0 / 16f,
-                        Z1 = dz / height,
-                        X2 = (1 + dx) / width,
+                        Z1 = dz / sizeY,
+                        X2 = (1 + dx) / sizeX,
                         Y2 = 1 / 16f,
-                        Z2 = (1 + dz) / height,
+                        Z2 = (1 + dz) / sizeY,
                     };
 
                     selectionBoxes[num] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
@@ -194,14 +192,13 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             dsc.AppendLine(string.Format(i + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
         }
 
-        dsc.AppendLine(Lang.Get("Quantity slots: {0}", QuantitySlots));
-
         List<string> _langKeys = new();
         if (!Materials.FindByMaterial(OwnBlock?.LangKeysBy, out _langKeys))
         {
             _langKeys = OwnBlock?.LangKeys;
         }
         Materials.GetDescription(dsc, _langKeys);
+        BoardData.GetDescription(dsc);
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,

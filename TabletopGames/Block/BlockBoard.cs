@@ -22,12 +22,12 @@ namespace TabletopGames;
 /// </summary>
 public class BlockBoard : Block, IContainedMeshSource
 {
+    public Dictionary<string, BoardData> BoardData { get; protected set; } = new();
+
     public List<string> TabletopTags { get; protected set; } = new();
     public List<string> TabletopTagsIgnored { get; protected set; } = new();
     public List<string> LangKeys { get; protected set; } = new();
     public Dictionary<string, List<string>> LangKeysBy { get; protected set; } = new();
-    public string AttributeTransformCode { get; protected set; }
-    public Dictionary<string, string> AttributeTransformCodeByType { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, CompositeTexture> textures;
@@ -56,6 +56,8 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (Attributes != null)
         {
+            BoardData = Attributes["boardData"].AsObject<Dictionary<string, BoardData>>();
+
             TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
             TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
@@ -66,9 +68,6 @@ public class BlockBoard : Block, IContainedMeshSource
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
             LangKeysBy = Attributes["langKeysBy"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
-            AttributeTransformCode = Attributes["attributeTransformCode"].AsString();
-            AttributeTransformCodeByType = Attributes["attributeTransformCodeBy"].AsObject(defaultValue: new Dictionary<string, string>());
-
             if (Attributes["fillCreativeInventory"].AsBool())
             {
                 RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
@@ -77,27 +76,13 @@ public class BlockBoard : Block, IContainedMeshSource
             }
         }
 
-        if (!string.IsNullOrEmpty(AttributeTransformCode) && GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == AttributeTransformCode))
+        foreach ((string _, BoardData boardData) in BoardData)
         {
-            GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(AttributeTransformCode), AttributeName = AttributeTransformCode });
-        }
-
-        foreach ((string _, string code) in AttributeTransformCodeByType)
-        {
-            if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == code))
+            if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == boardData.AttributeTransformCode))
             {
-                GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(code), AttributeName = code });
+                GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(boardData.AttributeTransformCode), AttributeName = boardData.AttributeTransformCode });
             }
         }
-    }
-
-    public virtual string GetAttributeTransformCode(BlockEntityBoard board)
-    {
-        if (board.Materials.FindByMaterial(AttributeTransformCodeByType, out string _attributeTransformCode))
-        {
-            return _attributeTransformCode;
-        }
-        return AttributeTransformCode;
     }
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
@@ -223,7 +208,6 @@ public class BlockBoard : Block, IContainedMeshSource
         ItemStack stack = base.OnPickBlock(world, pos);
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
-            stack.Attributes.SetInt("quantitySlots", blockEntiy.QuantitySlots);
             blockEntiy.Materials.ToStack(stack);
         }
         return stack;

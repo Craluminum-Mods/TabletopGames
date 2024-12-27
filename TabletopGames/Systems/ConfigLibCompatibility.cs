@@ -23,6 +23,7 @@ public class ConfigLibCompatibility
     {
         ImGui.TextWrapped("DEBUG");
         ImGui.Checkbox("Toggle materials debug info" + $"##DEBUG-MaterialsDebugInfo-{id}", ref TabletopDebug.MaterialsDebugInfo);
+        ImGui.Checkbox("Toggle board data debug info" + $"##DEBUG-BoardDataDebugInfo-{id}", ref TabletopDebug.BoardDataDebugInfo);
         ImGui.Checkbox("Toggle board particle selection" + $"##DEBUG-BoardParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
         ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
     }
