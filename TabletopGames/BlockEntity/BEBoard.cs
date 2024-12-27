@@ -117,9 +117,21 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
-        base.GetBlockInfo(forPlayer, dsc);
-        Materials.GetDescription(dsc, OwnBlock?.LangKeys, withDebugInfo: true);
+        int i = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+        if (inventory.Count >= i)
+        {
+            ItemSlot slot = inventory[i];
+            dsc.AppendLine(string.Format(i + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+        }
+
         dsc.AppendLine(Lang.Get("Quantity slots: {0}", QuantitySlots));
+
+        List<string> _langKeys = new();
+        if (!Materials.FindByMaterial(OwnBlock?.LangKeysBy, out _langKeys))
+        {
+            _langKeys = OwnBlock?.LangKeys;
+        }
+        Materials.GetDescription(dsc, _langKeys, withDebugInfo: true);
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
