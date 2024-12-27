@@ -23,18 +23,18 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override string InventoryClassName => Constants.boardInvClassName;
 
     public Materials Materials { get; protected set; } = new Materials();
-    public MeshData Mesh { get; protected set; }
     public float MeshAngleRad { get; set; }
     public int QuantitySlots { get; protected set; }
 
-    private InventoryBase inventory;
+    private MeshData mesh;
     private float[] mat;
+    private InventoryBase inventory;
 
     public override void Initialize(ICoreAPI api)
     {
         InitInventory();
         base.Initialize(api);
-        if (Mesh == null)
+        if (mesh == null)
         {
             Init();
         }
@@ -50,7 +50,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
         if (Api.Side == EnumAppSide.Client)
         {
-            Mesh = OwnBlock.GetOrCreateMesh(Materials);
+            mesh = OwnBlock.GetOrCreateMesh(Materials);
             mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
         }
     }
@@ -68,16 +68,15 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return new ItemSlotTabletop(self, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
     }
 
-    public void ReplaceProperties(Materials materials)
-    {
-        Materials = materials;
-        MarkDirty(redrawOnClient: true);
-    }
-
     public override void OnBlockUnloaded()
     {
         base.OnBlockUnloaded();
-        Mesh?.Dispose();
+        mesh?.Dispose();
+    }
+
+    public override void OnBlockRemoved()
+    {
+        base.OnBlockRemoved();
     }
 
     public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -112,7 +111,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
-        mesher.AddMeshData(Mesh, mat);
+        mesher.AddMeshData(mesh, mat);
         base.OnTesselation(mesher, tesselator);
         return true;
     }
