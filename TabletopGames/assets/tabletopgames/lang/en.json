@@ -4,9 +4,17 @@
     "block-chessboard": "Chessboard",
 
     "Dimensions": "Dimensions",
-    "dimension-5x5": "5 X 5",
-    "dimension-8x8": "8 X 8",
+    "dimension-5x5": "5 × 5",
+    "dimension-8x8": "8 × 8",
 
     "Primary": "Primary",
     "Secondary": "Secondary",
+
+    "item-chesspiece": "Chesspiece",
+    "chesspiece-bishop": "Bishop",
+    "chesspiece-king": "King",
+    "chesspiece-knight": "Knight",
+    "chesspiece-pawn": "Pawn",
+    "chesspiece-queen": "Queen",
+    "chesspiece-rook": "Rook"
 }

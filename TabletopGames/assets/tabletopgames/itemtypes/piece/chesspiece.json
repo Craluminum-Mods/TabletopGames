@@ -1,0 +1,275 @@
+{
+    "code": "chesspiece",
+    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
+    "maxStackSize": 64,
+    "attributes": {
+        "handbook": { "groupBy": ["chesspiece-*"] },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.13, "z": 0.5 },
+            "scale": 0.75
+        },
+        "onshelfTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+            "scale": 0.6
+        },
+        "groundStorageTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.13, "z": 0.5 },
+            "scale": 0.75
+        },
+        "onChessboard8x8Transform": {
+            "translation": { "x": -1.52, "y": -1.02, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.75
+        },
+        // "types": [ // WIP!!! Types are used for creative inventory only!!
+        //     { "code": "type", "states": ["bishop", "king", "knight", "pawn", "queen", "rook"] },
+        //     { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
+        //     { "code": "stone", "states": ["basalt", "chalk"] },
+        //     { "code": "stone1", "states": ["chalk"] },
+        //     { "code": "stone2", "states": ["basalt"] }
+        // ],
+        // "fillCreativeInventory": true,
+        "langKeys": [],
+        "langKeysBy": {
+            "stone-*": [
+                //
+                "tabletopgames:chesspiece-{type}", "\n",
+                "blockmaterial-Stone", ": ", "rock-{stone}", "\n"
+            ],
+            "wood-*": [
+                //
+                "tabletopgames:chesspiece-{type}", "\n",
+                "blockmaterial-Wood", ": ", "material-{wood}", "\n"
+            ]
+        },
+        "tabletopTags": ["chess"],
+        "shape": { "base": "tabletopgames:item/piece/chesspiece/{type}" },
+        "textures": {},
+        "texturesBy": {
+            "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+        },
+        "GuiTransformBy": {
+            "type-bishop": {
+                "translation": { "x": 0, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
+                "scale": 1.2
+            },
+            "type-king": {
+                "translation": { "x": 0, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.9, "z": 0.5 }
+            },
+            "type-knight": {
+                "translation": { "x": 0, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+                "scale": 1.5
+            },
+            "type-pawn": {
+                "translation": { "x": 0, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+                "scale": 1.9
+            },
+            "type-queen": {
+                "translation": { "x": 0, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
+                "scale": 1.2
+            },
+            "type-rook": {
+                "translation": { "x": 3, "y": 0, "z": 0 },
+                "rotation": { "x": 155, "y": 45, "z": 0 },
+                "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+                "scale": 1.7
+            }
+        },
+        "rotateWhenPlacedOnBoard": true
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                // Stone
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "basalt" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "basalt" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "basalt" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "basalt" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "basalt" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "basalt" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "chalk" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "chalk" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "chalk" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "chalk" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "chalk" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "chalk" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "andesite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "andesite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "andesite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "andesite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "andesite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "andesite" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "chert" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "chert" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "chert" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "chert" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "chert" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "chert" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "bauxite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "bauxite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "bauxite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "bauxite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "bauxite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "bauxite" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "granite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "granite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "granite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "granite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "granite" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "peridotite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "peridotite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "peridotite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "peridotite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "peridotite" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "peridotite" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "sandstone" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "sandstone" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "stone": "sandstone" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "sandstone" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "sandstone" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "sandstone" } } },
+
+                // Wooden
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "ebony" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "ebony" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "ebony" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "ebony" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "ebony" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "ebony" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "baldcypress" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "baldcypress" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "baldcypress" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "baldcypress" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "baldcypress" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "baldcypress" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "pine" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "pine" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "pine" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "pine" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "pine" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "pine" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "birch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "birch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "birch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "birch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "birch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "birch" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "purpleheart" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "purpleheart" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "purpleheart" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "purpleheart" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "purpleheart" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "purpleheart" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "acacia" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "acacia" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "acacia" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "acacia" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "acacia" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "acacia" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "redwood" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "redwood" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "redwood" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "redwood" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "redwood" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "redwood" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "larch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "larch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "larch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "larch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "larch" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "larch" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "maple" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "maple" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "maple" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "maple" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "maple" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "maple" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "walnut" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "walnut" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "walnut" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "walnut" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "walnut" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "walnut" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "kapok" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "kapok" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "kapok" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "kapok" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "kapok" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "kapok" } } },
+
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "oak" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "oak" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "oak" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "oak" } } },
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "oak" } } },
+
+            ]
+        }
+    ],
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
+        "scale": 0.9
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.7, "y": -1.7, "z": -2 },
+        "rotation": { "x": 0, "y": 0, "z": -65 },
+        "scale": 0.25
+    }
+}
