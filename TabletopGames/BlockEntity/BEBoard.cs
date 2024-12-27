@@ -59,13 +59,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         if (inventory == null || inventory.Count == 0)
         {
-            inventory = new InventoryGeneric(QuantitySlots, $"{InventoryClassName}-0", null, Api, OnNewSlot);
+            inventory = new InventoryGeneric(QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
+            {
+                return new ItemSlotTabletop(_inv, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
+            });
         }
-    }
-
-    public virtual ItemSlot OnNewSlot(int slotId, InventoryGeneric self)
-    {
-        return new ItemSlotTabletop(self, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
     }
 
     public override void OnBlockUnloaded()
