@@ -25,11 +25,13 @@ public class BlockBoard : Block, IContainedMeshSource
     public List<string> TabletopTags { get; protected set; } = new();
     public List<string> TabletopTagsIgnored { get; protected set; } = new();
     public List<string> LangKeys { get; protected set; } = new();
+    public Dictionary<string, List<string>> LangKeysBy { get; protected set; } = new();
     public string AttributeTransformCode { get; protected set; }
     public Dictionary<string, string> AttributeTransformCodeByType { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, CompositeTexture> textures;
+    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -57,8 +59,12 @@ public class BlockBoard : Block, IContainedMeshSource
             TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
             TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
+            
             textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
+            texturesByType = Attributes["texturesBy"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
+            LangKeysBy = Attributes["langKeysBy"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             AttributeTransformCode = Attributes["attributeTransformCode"].AsString();
             AttributeTransformCodeByType = Attributes["attributeTransformCodeBy"].AsObject(defaultValue: new Dictionary<string, string>());
@@ -135,9 +141,15 @@ public class BlockBoard : Block, IContainedMeshSource
         }
         if (texSource == null)
         {
+            Dictionary<string, CompositeTexture> _textures = new();
+            if (!materials.FindByMaterial(texturesByType, out _textures))
+            {
+                _textures = textures;
+            }
+
             ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
             texSource = stexSource;
-            foreach (KeyValuePair<string, CompositeTexture> val in textures)
+            foreach (KeyValuePair<string, CompositeTexture> val in _textures)
             {
                 CompositeTexture ctex = val.Value.Clone();
                 ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);

@@ -20,6 +20,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 {
     public List<string> StorageAttributes { get; protected set; }
     public List<string> LangKeys { get; protected set; } = new List<string>();
+    public Dictionary<string, List<string>> LangKeysBy { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, CompositeTexture> textures;
@@ -55,6 +56,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
             texturesByType = Attributes["texturesBy"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
 
             LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
+            LangKeysBy = Attributes["langKeysBy"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
             {
@@ -130,7 +132,14 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        Materials.FromStack(inSlot.Itemstack).GetDescription(dsc, LangKeys, withDebugInfo);
+        Materials materials = Materials.FromStack(inSlot.Itemstack);
+
+        List<string> _langKeys = new();
+        if (!materials.FindByMaterial(LangKeysBy, out _langKeys))
+        {
+            _langKeys = LangKeys;
+        }
+        materials.GetDescription(dsc, _langKeys, withDebugInfo);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
