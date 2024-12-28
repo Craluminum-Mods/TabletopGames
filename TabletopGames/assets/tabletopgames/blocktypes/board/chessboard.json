@@ -88,41 +88,42 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
+                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
+                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } }
+
                 // Wooden
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "baldcypress" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "baldcypress" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "baldcypress" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "baldcypress" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "baldcypress" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "baldcypress" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "baldcypress" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "baldcypress" } } },
 
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "larch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "larch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "larch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "larch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "larch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "larch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "larch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "larch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "larch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "larch" } } },
 
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "birch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "birch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "birch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "birch" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "birch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "ebony", "secondarywood": "birch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "maple", "secondarywood": "birch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "pine", "secondarywood": "birch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "acacia", "secondarywood": "birch" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "mainwood": "oak", "primarywood": "purpleheart", "secondarywood": "birch" } } },
 
                 // Stone
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "andesite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "bauxite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "chert", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "claystone", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "conglomerate", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "granite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "kimberlite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "obsidian", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "peridotite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "phyllite", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "sandstone", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "shale", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "slate", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "suevite", "secondarystone": "chalk" } } }
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "andesite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "bauxite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "chert", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "claystone", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "conglomerate", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "granite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "kimberlite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "obsidian", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "peridotite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "phyllite", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "sandstone", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "shale", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "slate", "secondarystone": "chalk" } } },
+                // { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "suevite", "secondarystone": "chalk" } } }
             ]
         }
     ],
