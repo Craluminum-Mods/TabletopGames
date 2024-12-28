@@ -1,6 +1,6 @@
 {
     "code": "chesspiece",
-    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
+    "class": "TabletopGames.ItemBoardPiece",
     "maxStackSize": 64,
     "attributes": {
         "handbook": { "groupBy": ["chesspiece-*"] },

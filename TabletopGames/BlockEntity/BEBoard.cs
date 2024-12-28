@@ -235,40 +235,36 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public virtual bool TryPut(ItemSlot slot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (index < 0 || index >= inventory.Count) return false;
-
-        if (inventory[index].Empty)
+        if (index < 0 || index >= inventory.Count || !inventory[index].Empty)
         {
-            int moved = slot.TryPutInto(Api.World, inventory[index]);
-            MarkDirty();
-            return moved > 0;
+            return false;
         }
 
-        return false;
+        int moved = slot.TryPutInto(Api.World, inventory[index]);
+        MarkDirty();
+        return moved > 0;
     }
 
     public virtual bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (index < 0 || index >= inventory.Count) return false;
-
-        if (!inventory[index].Empty)
+        if (index < 0 || index >= inventory.Count || inventory[index].Empty)
         {
-            ItemStack stack = inventory[index].TakeOut(1);
-            if (byPlayer.InventoryManager.TryGiveItemstack(stack))
-            {
-                AssetLocation sound = stack.Block?.Sounds?.Place;
-                Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
-            }
-
-            if (stack.StackSize > 0)
-            {
-                Api.World.SpawnItemEntity(stack, Pos);
-            }
-            MarkDirty();
-            return true;
+            return false;
         }
 
-        return false;
+        ItemStack stack = inventory[index].TakeOut(1);
+        if (byPlayer.InventoryManager.TryGiveItemstack(stack))
+        {
+            AssetLocation sound = stack.Block?.Sounds?.Place;
+            Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+        }
+
+        if (stack.StackSize > 0)
+        {
+            Api.World.SpawnItemEntity(stack, Pos);
+        }
+        MarkDirty();
+        return true;
     }
 }
