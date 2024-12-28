@@ -37,11 +37,11 @@
         "textures": {
             "stone-*": {
                 "material": { "base": "game:block/stone/rock/{stone}1" },
-                "overlay": { "base": "tabletopgames:block/board/morris/{type}", "blendedOverlays": [{ "base": "tabletopgames:block/board/carbonblack", "blendMode": "OverlayCutout" }] }
+                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{type}-r", "blendMode": "OverlayCutout" }] }
             },
             "wood-*": {
                 "material": { "base": "game:block/wood/debarked/{wood}" },
-                "overlay": { "base": "tabletopgames:block/board/morris/{type}", "blendedOverlays": [{ "base": "tabletopgames:block/board/carbonblack", "blendMode": "OverlayCutout" }] }
+                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{type}-r", "blendMode": "OverlayCutout" }] }
             }
         },
         "boardData": {
@@ -131,15 +131,16 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "wood": "oak" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "wood": "oak" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "wood": "oak" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "wood": "oak" } } },
-                
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "stone": "granite" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "stone": "granite" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "stone": "granite" } } }
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "stone": "granite", "color": "carbonblack" } } },
+
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "cinnabar" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite", "color": "cokeblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "ultramarine" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "verdigris" } } }
             ]
         }
     ],
