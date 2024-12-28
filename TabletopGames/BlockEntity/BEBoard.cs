@@ -174,10 +174,10 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                     Cuboidf newCuboid = new Cuboidf()
                     {
                         X1 = dx / sizeX,
-                        Y1 = 0 / 16f,
+                        Y1 = BoardData.SlotMinY,
                         Z1 = dz / sizeY,
                         X2 = (1 + dx) / sizeX,
-                        Y2 = 1 / 16f,
+                        Y2 = BoardData.SlotMaxY,
                         Z2 = (1 + dz) / sizeY,
                     };
 
