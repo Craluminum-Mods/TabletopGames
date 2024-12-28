@@ -37,6 +37,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         InitInventory();
         base.Initialize(api);
+        inventory.LateInitialize($"{InventoryClassName}-1", api);
         if (mesh == null)
         {
             Init();
@@ -89,22 +90,26 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             Materials = Materials.FromStack(byItemStack);
         }
+
+        InitInventory();
         Init();
         MarkDirty(redrawOnClient: true);
     }
 
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
+        base.ToTreeAttributes(tree);
         Materials.ToTreeAttribute(tree);
         tree.SetFloat("meshAngleRad", MeshAngleRad);
-        base.ToTreeAttributes(tree);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
     {
         Materials = Materials.FromTreeAttribute(tree);
         MeshAngleRad = tree.GetFloat("meshAngleRad");
+
         InitInventory();
+
         base.FromTreeAttributes(tree, worldForResolving);
         RedrawAfterReceivingTreeAttributes(worldForResolving);
     }
@@ -235,7 +240,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (inventory[index].Empty)
         {
             int moved = slot.TryPutInto(Api.World, inventory[index]);
-            MarkDirty(redrawOnClient: true);
+            MarkDirty();
             return moved > 0;
         }
 
@@ -260,8 +265,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             {
                 Api.World.SpawnItemEntity(stack, Pos);
             }
-
-            MarkDirty(redrawOnClient: true);
+            MarkDirty();
             return true;
         }
 
