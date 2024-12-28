@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -151,15 +152,24 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             float x = hitbox.MidX;
             float y = hitbox.MinY;
             float z = hitbox.MidZ;
-            _tfMatrices[i] = new Matrixf() .Translate(new Vec3f(x, y, z)).Values;
+            _tfMatrices[i] = new Matrixf().Translate(new Vec3f(x, y, z)).Values;
         }
         return _tfMatrices;
     }
 
     public Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
     {
-        if ((forceNew || selectionBoxes == null) && BoardData.Size != null)
+        if (forceNew || selectionBoxes == null)
         {
+            if (BoardData.SlotsHitboxes.Any())
+            {
+                return BoardData.SlotsHitboxes;
+            }
+            if (BoardData.Size == null)
+            {
+                return selectionBoxes;
+            }
+
             float sizeX = BoardData.Size.X;
             float sizeY = BoardData.Size.Y;
 

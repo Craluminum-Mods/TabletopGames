@@ -9,6 +9,7 @@ public class BoardData
     public Vec2f SlotYRange { get; set; } = new Vec2f(0, 1);
     public int QuantitySlots { get; set; }
     public string AttributeTransformCode { get; set; }
+    public Cuboidf[] SlotsHitboxes { get; set; } = System.Array.Empty<Cuboidf>();
 
     public float SlotMinY => SlotYRange.A / 16f;
     public float SlotMaxY => SlotYRange.B / 16f;
