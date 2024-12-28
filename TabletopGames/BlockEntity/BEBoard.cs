@@ -163,7 +163,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             if (BoardData.SlotsHitboxes.Any())
             {
-                return BoardData.SlotsHitboxes;
+                return selectionBoxes = BoardData.SlotsHitboxes.Select(x => x.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5))).ToArray();
             }
             if (BoardData.Size == null)
             {
