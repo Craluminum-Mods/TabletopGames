@@ -52,27 +52,27 @@
         },
         "textures": {
             "wood-*": {
-                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "material": { "base": "game:block/wood/debarked/{wood}" },
                 "primary": {
                     "base": "game:block/stone/rock/{primarystone}1",
                     "rotation": 90,
-                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/overlay-{size}", "blendMode": "OverlayCutout" }]
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }]
                 },
                 "secondary": {
                     "base": "game:block/stone/rock/{secondarystone}1",
-                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/overlay-{size}", "blendMode": "OverlayCutout" }]
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }]
                 }
             },
             "mainwood-*": {
-                "wood": { "base": "game:block/wood/debarked/{mainwood}" },
+                "material": { "base": "game:block/wood/debarked/{mainwood}" },
                 "primary": {
                     "base": "game:block/wood/debarked/{primarywood}",
                     "rotation": 90,
-                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/overlay-{size}", "blendMode": "OverlayCutout" }]
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }]
                 },
                 "secondary": {
                     "base": "game:block/wood/debarked/{secondarywood}",
-                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/overlay-{size}", "blendMode": "OverlayCutout" }]
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }]
                 }
             }
         },

@@ -40,7 +40,7 @@
 					"to": [ 8.0, 0.501, 8.0 ],
 					"rotationOrigin": [ -8.0, 0.0, -8.0 ],
 					"faces": {
-						"up": { "texture": "#primary", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+						"up": { "texture": "#overlay", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
 					}
 				}
 			]
