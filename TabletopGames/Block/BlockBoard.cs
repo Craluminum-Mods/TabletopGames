@@ -218,7 +218,7 @@ public class BlockBoard : Block, IContainedMeshSource
         Materials materials =  Materials.FromStack(itemStack);
         materials.FindByMaterial(NameByType, out List<string> name);
         return (name?.Any() ?? false)
-            ? name.ToString()
+            ? string.Join("", name.Select(x => Lang.Get(materials.ReplacePlaceholders(x))))
             : base.GetHeldItemName(itemStack);
     }
 
@@ -228,7 +228,7 @@ public class BlockBoard : Block, IContainedMeshSource
         {
             blockEntity.Materials.FindByMaterial(NameByType, out List<string> name);
             return (name?.Any() ?? false)
-                ? name.ToString()
+                ? string.Join("",name.Select(x => Lang.Get(blockEntity.Materials.ReplacePlaceholders(x))))
                 : base.GetPlacedBlockName(world, pos);
         }
         return base.GetPlacedBlockName(world, pos);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -133,7 +134,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         Materials materials = Materials.FromStack(itemStack);
         materials.FindByMaterial(NameByType, out List<string> name);
         return (name?.Any() ?? false)
-            ? name.ToString()
+            ? string.Join("", name.Select(x => Lang.Get(materials.ReplacePlaceholders(x))))
             : base.GetHeldItemName(itemStack);
     }
 
