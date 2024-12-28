@@ -59,7 +59,7 @@ public class BlockBoard : Block, IContainedMeshSource
 
             TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
             TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
-            
+
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());

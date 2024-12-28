@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
 using Vintagestory.ServerMods;
 
 namespace TabletopGames;
@@ -21,7 +22,7 @@ public static class MaterialExtensions
         {
             foreach ((string key, T value) in inDictionary)
             {
-                if (material.ToString() == key || (key.StartsWith(material.Key) && key.EndsWith("-*")))
+                if (WildcardUtil.Match(key, material.ToString()))
                 {
                     result = value;
                     return true;
