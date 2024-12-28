@@ -47,7 +47,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     protected void Init()
     {
-        if (Api == null || OwnBlock == null || BoardData.Size == null)
+        if (Api == null || OwnBlock == null)
         {
             return;
         }
