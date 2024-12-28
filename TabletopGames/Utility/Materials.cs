@@ -30,7 +30,7 @@ public class Materials
             return;
         }
 
-        if (langKeys != null && langKeys.Any())
+        if (langKeys?.Any() ?? false)
         {
             foreach (string langKey in langKeys)
             {

@@ -38,7 +38,7 @@
         //     { "code": "stone2", "states": ["basalt"] }
         // ],
         // "fillCreativeInventory": true,
-        "langKeys": {
+        "description": {
             "stone-*": [
                 //
                 "tabletopgames:chesspiece-{type}", "\n",

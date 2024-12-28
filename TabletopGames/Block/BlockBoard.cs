@@ -26,7 +26,8 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public List<string> TabletopTags { get; protected set; } = new();
     public List<string> TabletopTagsIgnored { get; protected set; } = new();
-    public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
+    public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
+    public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
@@ -61,7 +62,8 @@ public class BlockBoard : Block, IContainedMeshSource
             cshape = Attributes["shape"].AsObject<CompositeShape>();
             
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
             {
@@ -205,14 +207,35 @@ public class BlockBoard : Block, IContainedMeshSource
         return stack;
     }
 
+    public override string GetHeldItemName(ItemStack itemStack)
+    {
+        Materials materials =  Materials.FromStack(itemStack);
+        materials.FindByMaterial(NameByType, out List<string> name);
+        return (name?.Any() ?? false)
+            ? name.ToString()
+            : base.GetHeldItemName(itemStack);
+    }
+
+    public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
+    {
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
+        {
+            blockEntity.Materials.FindByMaterial(NameByType, out List<string> name);
+            return (name?.Any() ?? false)
+                ? name.ToString()
+                : base.GetPlacedBlockName(world, pos);
+        }
+        return base.GetPlacedBlockName(world, pos);
+    }
+
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Materials materials =  Materials.FromStack(inSlot.Itemstack);
-        materials.FindByMaterial(LangKeysByType, out List<string> _langKeys);
-        _langKeys ??= new List<string>();
-        materials.GetDescription(dsc, _langKeys);
+        materials.FindByMaterial(DescriptionByType, out List<string> description);
+        description ??= new List<string>();
+        materials.GetDescription(dsc, description);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

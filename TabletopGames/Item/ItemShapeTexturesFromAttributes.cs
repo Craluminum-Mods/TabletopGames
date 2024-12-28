@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -18,7 +19,8 @@ namespace TabletopGames;
 /// </summary>
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 {
-    public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
+    public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
+    public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
 
     private CompositeShape cshape;
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
@@ -49,7 +51,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
             cshape = Attributes["shape"].AsObject<CompositeShape>();
 
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
             {
@@ -120,12 +123,21 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 
+    public override string GetHeldItemName(ItemStack itemStack)
+    {
+        Materials materials = Materials.FromStack(itemStack);
+        materials.FindByMaterial(NameByType, out List<string> name);
+        return (name?.Any() ?? false)
+            ? name.ToString()
+            : base.GetHeldItemName(itemStack);
+    }
+
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Materials materials = Materials.FromStack(inSlot.Itemstack);
-        materials.FindByMaterial(LangKeysByType, out List<string> _langKeys);
+        materials.FindByMaterial(DescriptionByType, out List<string> _langKeys);
         _langKeys ??= new List<string>();
         materials.GetDescription(dsc, _langKeys);
     }
