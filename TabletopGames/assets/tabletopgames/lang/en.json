@@ -2,6 +2,10 @@
     "game:tabname-tabletopgames": "Tabletop Games",
 
     "block-chessboard": "Chessboard",
+    "block-morrisboard-three": "Three men's morris",
+    "block-morrisboard-six": "Six men's morris",
+    "block-morrisboard-nine": "Nine men's morris",
+    "block-morrisboard-twelve": "Twelve men's morris",
 
     "Dimensions": "Dimensions",
     "dimension-5x5": "5 × 5",

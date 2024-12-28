@@ -1,0 +1,179 @@
+{
+    "code": "morrisboard",
+    "class": "TabletopGames.BlockBoard",
+    "entityClass": "TabletopGames.Board",
+    "maxStackSize": 1,
+    "attributes": {
+        "handbook": { "groupBy": ["morrisboard-*"] },
+        "moldrackable": true,
+        "shelvable": true,
+        "antlermountable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": 0, "y": 0.1, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 },
+            "scale": 0.9
+        },
+        "onshelfTransform": {
+            "rotation": { "x": 0, "y": 18, "z": 0 },
+            "origin": { "x": 0.5, "y": -0, "z": 0.5 },
+            "scale": 0.3
+        },
+        "onAntlerMountTransform": {
+            "translation": { "x": 0.1, "y": 0, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": -90 }
+        },
+        "name": {
+            "*": ["tabletopgames:block-morrisboard-{type}"]
+        },
+        "description": {
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": ["tabletopBoard", "morris", "omok"],
+        "tabletopTagsIgnored": ["tabletopBoard"],
+        "shape": {
+            "*": { "base": "tabletopgames:block/board/16x16-overlay" }
+        },
+        "textures": {
+            "stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "overlay": { "base": "tabletopgames:block/board/morris/{type}", "blendedOverlays": [{ "base": "tabletopgames:block/board/carbonblack", "blendMode": "OverlayCutout" }] }
+            },
+            "wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "overlay": { "base": "tabletopgames:block/board/morris/{type}", "blendedOverlays": [{ "base": "tabletopgames:block/board/carbonblack", "blendMode": "OverlayCutout" }] }
+            }
+        },
+        "boardData": {
+            "type-three": {
+                "quantitySlots": 9,
+                "attributeTransformCode": "onMorrisTransform",
+                "slotsHitBoxes": [
+                    { "_comment": "0", "x1": 0, "y1": 0, "z1": 0, "x2": 0.14285715, "y2": 0.03125, "z2": 0.14285715 },
+                    { "_comment": "1", "x1": 0.42857143, "y1": 0, "z1": 0, "x2": 0.5714286, "y2": 0.03125, "z2": 0.14285715 },
+                    { "_comment": "2", "x1": 0.85714287, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 0.14285715 },
+
+                    { "_comment": "3", "x1": 0, "y1": 0, "z1": 0.42857143, "x2": 0.14285715, "y2": 0.03125, "z2": 0.5714286 },
+                    { "_comment": "4", "x1": 0.42857143, "y1": 0, "z1": 0.42857143, "x2": 0.5714286, "y2": 0.03125, "z2": 0.5714286 },
+                    { "_comment": "5", "x1": 0.85714287, "y1": 0, "z1": 0.42857143, "x2": 1, "y2": 0.03125, "z2": 0.5714286 },
+
+                    { "_comment": "6", "x1": 0, "y1": 0, "z1": 0.85714287, "x2": 0.14285715, "y2": 0.03125, "z2": 1 },
+                    { "_comment": "7", "x1": 0.42857143, "y1": 0, "z1": 0.85714287, "x2": 0.5714286, "y2": 0.03125, "z2": 1 },
+                    { "_comment": "8", "x1": 0.85714287, "y1": 0, "z1": 0.85714287, "x2": 1, "y2": 0.03125, "z2": 1 }
+                ]
+            },
+            "type-six": {
+                "quantitySlots": 16,
+                "attributeTransformCode": "onMorrisTransform",
+                "slotsHitBoxes": [
+                    { "_comment": "0", "x1": 0, "y1": 0, "z1": 0, "x2": 0.11111111, "y2": 0.03125, "z2": 0.11111111 },
+                    { "_comment": "1", "x1": 0.44444445, "y1": 0, "z1": 0, "x2": 0.5555556, "y2": 0.03125, "z2": 0.11111111 },
+                    { "_comment": "2", "x1": 0.8888889, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 0.11111111 },
+
+                    { "_comment": "3", "x1": 0.22222222, "y1": 0, "z1": 0.22222222, "x2": 0.33333334, "y2": 0.03125, "z2": 0.33333334 },
+                    { "_comment": "4", "x1": 0.44444445, "y1": 0, "z1": 0.22222222, "x2": 0.5555556, "y2": 0.03125, "z2": 0.33333334 },
+                    { "_comment": "5", "x1": 0.6666667, "y1": 0, "z1": 0.22222222, "x2": 0.7777778, "y2": 0.03125, "z2": 0.33333334 },
+
+                    { "_comment": "6", "x1": 0, "y1": 0, "z1": 0.44444445, "x2": 0.11111111, "y2": 0.03125, "z2": 0.5555556 },
+                    { "_comment": "7", "x1": 0.22222222, "y1": 0, "z1": 0.44444445, "x2": 0.33333334, "y2": 0.03125, "z2": 0.5555556 },
+                    { "_comment": "8", "x1": 0.6666667, "y1": 0, "z1": 0.44444445, "x2": 0.7777778, "y2": 0.03125, "z2": 0.5555556 },
+                    { "_comment": "9", "x1": 0.8888889, "y1": 0, "z1": 0.44444445, "x2": 1, "y2": 0.03125, "z2": 0.5555556 },
+
+                    { "_comment": "10", "x1": 0.22222222, "y1": 0, "z1": 0.6666667, "x2": 0.33333334, "y2": 0.03125, "z2": 0.7777778 },
+                    { "_comment": "11", "x1": 0.44444445, "y1": 0, "z1": 0.6666667, "x2": 0.5555556, "y2": 0.03125, "z2": 0.7777778 },
+                    { "_comment": "12", "x1": 0.6666667, "y1": 0, "z1": 0.6666667, "x2": 0.7777778, "y2": 0.03125, "z2": 0.7777778 },
+
+                    { "_comment": "13", "x1": 0, "y1": 0, "z1": 0.8888889, "x2": 0.11111111, "y2": 0.03125, "z2": 1 },
+                    { "_comment": "14", "x1": 0.44444445, "y1": 0, "z1": 0.8888889, "x2": 0.5555556, "y2": 0.03125, "z2": 1 },
+                    { "_comment": "15", "x1": 0.8888889, "y1": 0, "z1": 0.8888889, "x2": 1, "y2": 0.03125, "z2": 1 }
+                ]
+            },
+            "@(type-nine|type-twelve)": {
+                "quantitySlots": 24,
+                "attributeTransformCode": "onMorrisTransform",
+                "slotsHitBoxes": [
+                    { "_comment": "0", "x1": 0, "y1": 0, "z1": 0, "x2": 0.07692308, "y2": 0.0625, "z2": 0.07692308 },
+                    { "_comment": "1", "x1": 0.46153846, "y1": 0, "z1": 0, "x2": 0.53846157, "y2": 0.0625, "z2": 0.07692308 },
+                    { "_comment": "2", "x1": 0.9230769, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 0.07692308 },
+
+                    { "_comment": "3", "x1": 0.15384616, "y1": 0, "z1": 0.15384616, "x2": 0.23076923, "y2": 0.0625, "z2": 0.23076923 },
+                    { "_comment": "4", "x1": 0.46153846, "y1": 0, "z1": 0.15384616, "x2": 0.53846157, "y2": 0.0625, "z2": 0.23076923 },
+                    { "_comment": "5", "x1": 0.7692308, "y1": 0, "z1": 0.15384616, "x2": 0.84615386, "y2": 0.0625, "z2": 0.23076923 },
+
+                    { "_comment": "6", "x1": 0.30769232, "y1": 0, "z1": 0.30769232, "x2": 0.3846154, "y2": 0.0625, "z2": 0.3846154 },
+                    { "_comment": "7", "x1": 0.46153846, "y1": 0, "z1": 0.30769232, "x2": 0.53846157, "y2": 0.0625, "z2": 0.3846154 },
+                    { "_comment": "8", "x1": 0.61538464, "y1": 0, "z1": 0.30769232, "x2": 0.6923077, "y2": 0.0625, "z2": 0.3846154 },
+
+                    { "_comment": "9", "x1": 0, "y1": 0, "z1": 0.46153846, "x2": 0.07692308, "y2": 0.0625, "z2": 0.53846157 },
+                    { "_comment": "10", "x1": 0.15384616, "y1": 0, "z1": 0.46153846, "x2": 0.23076923, "y2": 0.0625, "z2": 0.53846157 },
+                    { "_comment": "11", "x1": 0.30769232, "y1": 0, "z1": 0.46153846, "x2": 0.3846154, "y2": 0.0625, "z2": 0.53846157 },
+                    { "_comment": "12", "x1": 0.61538464, "y1": 0, "z1": 0.46153846, "x2": 0.6923077, "y2": 0.0625, "z2": 0.53846157 },
+                    { "_comment": "13", "x1": 0.7692308, "y1": 0, "z1": 0.46153846, "x2": 0.84615386, "y2": 0.0625, "z2": 0.53846157 },
+                    { "_comment": "14", "x1": 0.9230769, "y1": 0, "z1": 0.46153846, "x2": 1, "y2": 0.0625, "z2": 0.53846157 },
+
+                    { "_comment": "15", "x1": 0.30769232, "y1": 0, "z1": 0.61538464, "x2": 0.3846154, "y2": 0.0625, "z2": 0.6923077 },
+                    { "_comment": "16", "x1": 0.46153846, "y1": 0, "z1": 0.61538464, "x2": 0.53846157, "y2": 0.0625, "z2": 0.6923077 },
+                    { "_comment": "17", "x1": 0.61538464, "y1": 0, "z1": 0.61538464, "x2": 0.6923077, "y2": 0.0625, "z2": 0.6923077 },
+
+                    { "_comment": "18", "x1": 0.15384616, "y1": 0, "z1": 0.7692308, "x2": 0.23076923, "y2": 0.0625, "z2": 0.84615386 },
+                    { "_comment": "19", "x1": 0.46153846, "y1": 0, "z1": 0.7692308, "x2": 0.53846157, "y2": 0.0625, "z2": 0.84615386 },
+                    { "_comment": "20", "x1": 0.7692308, "y1": 0, "z1": 0.7692308, "x2": 0.84615386, "y2": 0.0625, "z2": 0.84615386 },
+
+                    { "_comment": "21", "x1": 0, "y1": 0, "z1": 0.9230769, "x2": 0.07692308, "y2": 0.0625, "z2": 1 },
+                    { "_comment": "22", "x1": 0.46153846, "y1": 0, "z1": 0.9230769, "x2": 0.53846157, "y2": 0.0625, "z2": 1 },
+                    { "_comment": "23", "x1": 0.9230769, "y1": 0, "z1": 0.9230769, "x2": 1, "y2": 0.0625, "z2": 1 }
+                ]
+            }
+        }
+    },
+    "behaviors": [{ "name": "Unstable" }],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "wood": "oak" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "wood": "oak" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "wood": "oak" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "wood": "oak" } } },
+                
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "stone": "granite" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "stone": "granite" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "stone": "granite" } } }
+            ]
+        }
+    ],
+    "blockmaterial": "Wood",
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": -80, "y": 0, "z": -100 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    },
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 }
+}

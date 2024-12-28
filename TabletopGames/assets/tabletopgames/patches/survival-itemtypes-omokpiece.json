@@ -2,8 +2,17 @@
     {
         "op": "addmerge",
         "path": "/attributes/tabletopTags",
-        "value": ["omok", "omokpiece"],
-        "file": "game:itemtypes/omokpiece.json",
-        "side": "Server"
+        "value": ["omok", "omokpiece", "morris"],
+        "file": "game:itemtypes/omokpiece.json"
+    },
+    {
+        "op": "addmerge",
+        "path": "/attributes/onMorrisTransform",
+        "value": {
+            "translation": { "x": 0.215, "y": -0.07, "z": 0.215 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 1.5
+        },
+        "file": "game:itemtypes/omokpiece.json"
     }
 ]
