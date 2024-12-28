@@ -30,7 +30,6 @@
 						"east": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
 						"south": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
 						"west": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
-						"up": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
 						"down": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
 					}
 				},
