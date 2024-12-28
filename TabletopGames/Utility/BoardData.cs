@@ -23,7 +23,7 @@ public class BoardData
         dsc.AppendLine(string.Format("DEBUG::Board Dimensions: X: {0}, Y: {1}", Size.X, Size.Y));
         dsc.AppendLine(string.Format("DEBUG::Quantity Slots: {0}", QuantitySlots));
         dsc.AppendLine(string.Format("DEBUG::Slot MinY: {0}", SlotMinY));
-        dsc.AppendLine(string.Format("DEBUG::Slot MaxY: {1}", SlotMaxY));
+        dsc.AppendLine(string.Format("DEBUG::Slot MaxY: {0}", SlotMaxY));
         dsc.AppendLine(string.Format("DEBUG::Transform Code: {0}", AttributeTransformCode));
     }
 }
