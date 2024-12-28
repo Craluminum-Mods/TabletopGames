@@ -9,7 +9,7 @@
 		"oak": [16,16]
 	},
 	"textures": {
-		"wood": "block/wood/debarked/oak"
+		"material": "block/wood/debarked/oak"
 	},
 	"elements": [
 		{
@@ -26,11 +26,11 @@
 					"to": [ 8.0, 0.5, 8.0 ],
 					"rotationOrigin": [ -8.0, 0.0, -8.0 ],
 					"faces": {
-						"north": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
-						"east": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
-						"south": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
-						"west": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
-						"down": { "texture": "#wood", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"south": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"west": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"down": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
 					}
 				},
 				{

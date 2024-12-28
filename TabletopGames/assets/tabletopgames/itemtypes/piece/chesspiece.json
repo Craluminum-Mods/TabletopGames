@@ -51,7 +51,9 @@
             ]
         },
         "tabletopTags": ["chess"],
-        "shape": { "base": "tabletopgames:item/piece/chesspiece/{type}" },
+        "shape": {
+            "*": { "base": "tabletopgames:item/piece/chesspiece/{type}" }
+        },
         "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }

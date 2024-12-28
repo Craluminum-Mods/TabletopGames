@@ -22,8 +22,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
 
-    private CompositeShape cshape;
-    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
+    private Dictionary<string, CompositeShape> shapeByType = new();
+    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -48,8 +48,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
     {
         if (Attributes != null)
         {
-            cshape = Attributes["shape"].AsObject<CompositeShape>();
-
+            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
@@ -68,7 +67,13 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
-        CompositeShape rcshape = cshape.Clone();
+        materials.FindByMaterial(shapeByType, out CompositeShape _shape);
+        if (_shape == null)
+        {
+            return mesh;
+        }
+
+        CompositeShape rcshape = _shape.Clone();
         rcshape.Base.Path = materials.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 

@@ -47,7 +47,9 @@
         },
         "tabletopTags": ["tabletopBoard", "chess"],
         "tabletopTagsIgnored": ["tabletopBoard"],
-        "shape": { "base": "tabletopgames:block/board/chess/{size}" },
+        "shape": {
+            "*": { "base": "tabletopgames:block/board/{size}-overlay2" }
+        },
         "textures": {
             "wood-*": {
                 "wood": { "base": "game:block/wood/debarked/{wood}" },
