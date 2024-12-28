@@ -1,7 +1,7 @@
 {
     "code": "chessboard",
     "class": "TabletopGames.BlockBoard",
-    "entityClass": "TabletopGames.BEBoard",
+    "entityClass": "TabletopGames.Board",
     "maxStackSize": 1,
     "attributes": {
         "handbook": { "groupBy": ["chessboard-*"] },

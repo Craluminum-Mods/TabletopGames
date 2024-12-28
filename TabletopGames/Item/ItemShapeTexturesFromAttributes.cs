@@ -18,7 +18,6 @@ namespace TabletopGames;
 /// </summary>
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 {
-    public List<string> StorageAttributes { get; protected set; }
     public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
 
     private CompositeShape cshape;
@@ -47,7 +46,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
     {
         if (Attributes != null)
         {
-            StorageAttributes = Attributes["storableAttributes"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
 
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());

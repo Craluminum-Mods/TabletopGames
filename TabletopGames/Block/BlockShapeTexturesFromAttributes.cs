@@ -31,10 +31,10 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory");
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ShapeTexturesFromAttributes_MeshesInventory");
         if (meshRefs?.Count > 0)
         {
-            foreach (var (_, meshRef) in meshRefs)
+            foreach ((string _, MultiTextureMeshRef meshRef) in meshRefs)
             {
                 meshRef.Dispose();
             }

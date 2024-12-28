@@ -39,10 +39,10 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
         if (meshRefs?.Count > 0)
         {
-            foreach (var (_, meshRef) in meshRefs)
+            foreach ((string _, MultiTextureMeshRef meshRef) in meshRefs)
             {
                 meshRef.Dispose();
             }
