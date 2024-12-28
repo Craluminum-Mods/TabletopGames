@@ -22,15 +22,13 @@ namespace TabletopGames;
 /// </summary>
 public class BlockBoard : Block, IContainedMeshSource
 {
-    public Dictionary<string, BoardData> BoardData { get; protected set; } = new();
+    public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
 
     public List<string> TabletopTags { get; protected set; } = new();
     public List<string> TabletopTagsIgnored { get; protected set; } = new();
-    public List<string> LangKeys { get; protected set; } = new();
-    public Dictionary<string, List<string>> LangKeysBy { get; protected set; } = new();
+    public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
 
     private CompositeShape cshape;
-    private Dictionary<string, CompositeTexture> textures;
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
 
     public override void OnLoaded(ICoreAPI api)
@@ -56,17 +54,14 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (Attributes != null)
         {
-            BoardData = Attributes["boardData"].AsObject<Dictionary<string, BoardData>>();
+            BoardDataByType = Attributes["boardData"].AsObject<Dictionary<string, BoardData>>();
 
             TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
             TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
             
-            textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
-            texturesByType = Attributes["texturesBy"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            
-            LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
-            LangKeysBy = Attributes["langKeysBy"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
             {
@@ -76,7 +71,7 @@ public class BlockBoard : Block, IContainedMeshSource
             }
         }
 
-        foreach ((string _, BoardData boardData) in BoardData)
+        foreach ((string _, BoardData boardData) in BoardDataByType)
         {
             if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == boardData.AttributeTransformCode))
             {
@@ -126,11 +121,8 @@ public class BlockBoard : Block, IContainedMeshSource
         }
         if (texSource == null)
         {
-            Dictionary<string, CompositeTexture> _textures = new();
-            if (!materials.FindByMaterial(texturesByType, out _textures))
-            {
-                _textures = textures;
-            }
+            materials.FindByMaterial(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+            _textures ??= new Dictionary<string, CompositeTexture>();
 
             ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
             texSource = stexSource;
@@ -218,11 +210,8 @@ public class BlockBoard : Block, IContainedMeshSource
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Materials materials =  Materials.FromStack(inSlot.Itemstack);
-        List<string> _langKeys = new();
-        if (!materials.FindByMaterial(LangKeysBy, out _langKeys))
-        {
-            _langKeys = LangKeys;
-        }
+        materials.FindByMaterial(LangKeysByType, out List<string> _langKeys);
+        _langKeys ??= new List<string>();
         materials.GetDescription(dsc, _langKeys);
     }
 

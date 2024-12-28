@@ -92,7 +92,10 @@ public class BEShapeTexturesFromAttributes : BlockEntity, IRotatable
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
         base.GetBlockInfo(forPlayer, dsc);
-        Materials.GetDescription(dsc, OwnBlock?.LangKeys);
+
+        Materials.FindByMaterial(OwnBlock?.LangKeysByType, out List<string> _langKeys);
+        _langKeys ??= new List<string>();
+        Materials.GetDescription(dsc, _langKeys);
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,

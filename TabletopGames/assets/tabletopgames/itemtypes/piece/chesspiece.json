@@ -38,8 +38,7 @@
         //     { "code": "stone2", "states": ["basalt"] }
         // ],
         // "fillCreativeInventory": true,
-        "langKeys": [],
-        "langKeysBy": {
+        "langKeys": {
             "stone-*": [
                 //
                 "tabletopgames:chesspiece-{type}", "\n",
@@ -53,8 +52,7 @@
         },
         "tabletopTags": ["chess"],
         "shape": { "base": "tabletopgames:item/piece/chesspiece/{type}" },
-        "textures": {},
-        "texturesBy": {
+        "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
         },

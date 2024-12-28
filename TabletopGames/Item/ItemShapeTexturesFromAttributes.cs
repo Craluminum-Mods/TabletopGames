@@ -19,11 +19,9 @@ namespace TabletopGames;
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 {
     public List<string> StorageAttributes { get; protected set; }
-    public List<string> LangKeys { get; protected set; } = new List<string>();
-    public Dictionary<string, List<string>> LangKeysBy { get; protected set; } = new();
+    public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
 
     private CompositeShape cshape;
-    private Dictionary<string, CompositeTexture> textures;
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType;
 
     public override void OnLoaded(ICoreAPI api)
@@ -52,11 +50,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
             StorageAttributes = Attributes["storableAttributes"].AsObject<List<string>>();
             cshape = Attributes["shape"].AsObject<CompositeShape>();
 
-            textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
-            texturesByType = Attributes["texturesBy"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-
-            LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
-            LangKeysBy = Attributes["langKeysBy"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             if (Attributes["fillCreativeInventory"].AsBool())
             {
@@ -78,11 +73,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        Dictionary<string, CompositeTexture> _textures = new();
-        if (!materials.FindByMaterial(texturesByType, out _textures))
-        {
-            _textures = textures;
-        }
+        materials.FindByMaterial(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        _textures ??= new Dictionary<string, CompositeTexture>();
 
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
 
@@ -135,11 +127,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Materials materials = Materials.FromStack(inSlot.Itemstack);
-        List<string> _langKeys = new();
-        if (!materials.FindByMaterial(LangKeysBy, out _langKeys))
-        {
-            _langKeys = LangKeys;
-        }
+        materials.FindByMaterial(LangKeysByType, out List<string> _langKeys);
+        _langKeys ??= new List<string>();
         materials.GetDescription(dsc, _langKeys);
     }
 

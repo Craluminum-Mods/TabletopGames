@@ -18,10 +18,10 @@ namespace TabletopGames;
 /// </summary>
 public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 {
-    public List<string> LangKeys { get; protected set; } = new List<string>();
+    public Dictionary<string, List<string>> LangKeysByType { get; protected set; } = new();
 
     private CompositeShape cshape;
-    private Dictionary<string, CompositeTexture> textures;
+    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -47,8 +47,8 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
         if (Attributes != null)
         {
             cshape = Attributes["shape"].AsObject<CompositeShape>();
-            textures = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
-            LangKeys = Attributes["langKeys"].AsObject(defaultValue: new List<string>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
             RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
             Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
@@ -97,9 +97,12 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
         }
         if (texSource == null)
         {
+            materials.FindByMaterial(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+            _textures ??= new Dictionary<string, CompositeTexture>();
+
             ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
             texSource = stexSource;
-            foreach (KeyValuePair<string, CompositeTexture> val in textures)
+            foreach (KeyValuePair<string, CompositeTexture> val in _textures)
             {
                 CompositeTexture ctex = val.Value.Clone();
                 ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);
@@ -181,7 +184,11 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        Materials.FromStack(inSlot.Itemstack).GetDescription(dsc, LangKeys);
+
+        Materials materials = Materials.FromStack(inSlot.Itemstack);
+        materials.FindByMaterial(LangKeysByType, out List<string> _langKeys);
+        _langKeys ??= new List<string>();
+        materials.GetDescription(dsc, _langKeys);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

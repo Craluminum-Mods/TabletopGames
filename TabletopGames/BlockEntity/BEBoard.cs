@@ -19,7 +19,7 @@ namespace TabletopGames;
 public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
-    public BoardData BoardData => Materials.FindByMaterial(OwnBlock?.BoardData, out BoardData value) ? value : new BoardData();
+    public BoardData BoardData => Materials.FindByMaterial(OwnBlock?.BoardDataByType, out BoardData value) ? value : new BoardData();
 
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;

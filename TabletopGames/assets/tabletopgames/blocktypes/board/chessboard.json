@@ -29,8 +29,7 @@
         //     { "code": "secondarystone", "states": ["basalt"] }
         // ],
         // "fillCreativeInventory": true,
-        "langKeys": [],
-        "langKeysBy": {
+        "langKeys": {
             "wood-*": [
                 //
                 "tabletopgames:Dimensions", ": ", "tabletopgames:dimension-{size}", "\n",
@@ -49,8 +48,7 @@
         "tabletopTags": ["tabletopBoard", "chess"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": { "base": "tabletopgames:block/board/chess/{size}" },
-        "textures": {},
-        "texturesBy": {
+        "textures": {
             "wood-*": {
                 "wood": { "base": "game:block/wood/debarked/{wood}" },
                 "primary": {
