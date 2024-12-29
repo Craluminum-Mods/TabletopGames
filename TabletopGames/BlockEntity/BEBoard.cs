@@ -148,7 +148,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
         for (int i = 0; i < DisplayedItems; i++)
         {
-            Cuboidf hitbox = _selBoxes[i];
+            Cuboidf hitbox = _selBoxes[i] ??= new Cuboidf();
             float x = hitbox.MidX;
             float y = hitbox.MinY;
             float z = hitbox.MidZ;
