@@ -126,7 +126,9 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && _tfMatrices != null)
             {
-                mesher.AddMeshData(getMesh(itemSlot.Itemstack), _tfMatrices[i]);
+                MeshData stackMesh = getMesh(itemSlot.Itemstack);
+                ApplyPieceMeshRotation(itemSlot, ref stackMesh);
+                mesher.AddMeshData(stackMesh, _tfMatrices[i]);
             }
         }
 
@@ -232,7 +234,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (placeable)
         {
             AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
-            if (TryPut(slot, blockSel))
+            if (TryPut(byPlayer, slot, blockSel))
             {
                 Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
                 return true;
@@ -244,16 +246,17 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return false;
     }
 
-    public virtual bool TryPut(ItemSlot slot, BlockSelection blockSel)
+    public virtual bool TryPut(IPlayer byPlayer, ItemSlot slot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
         if (index < 0 || index >= inventory.Count || !inventory[index].Empty)
         {
             return false;
         }
-
+        SetPieceRotation(slot, byPlayer);
         int moved = slot.TryPutInto(Api.World, inventory[index]);
         MarkDirty();
+        RemovePieceRotation(slot);
         return moved > 0;
     }
 
@@ -278,5 +281,28 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
         MarkDirty();
         return true;
+    }
+
+    private void SetPieceRotation(ItemSlot slot, IPlayer player)
+    {
+        if (slot.Itemstack.ItemAttributes.KeyExists("rotateWhenPlacedOnBoard"))
+        {
+            float rotateYaw = player.Entity.Pos.Yaw;
+            slot.Itemstack.Attributes.SetFloat("rotateYaw", rotateYaw);
+        }
+    }
+    
+    private void RemovePieceRotation(ItemSlot slot)
+    {
+        slot?.Itemstack?.Attributes?.RemoveAttribute("rotateYaw");
+    }
+
+    private void ApplyPieceMeshRotation(ItemSlot slot, ref MeshData stackMesh)
+    {
+        if (slot.Itemstack.Attributes.HasAttribute("rotateYaw"))
+        {
+            float rotateYaw = slot.Itemstack.Attributes.GetFloat("rotateYaw");
+            stackMesh = stackMesh.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
+        }
     }
 }

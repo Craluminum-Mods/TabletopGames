@@ -54,6 +54,13 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         }
     }
 
+    public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
+    {
+        ignoreAttributeSubTrees ??= System.Array.Empty<string>();
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
+        return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
+    }
+
     public MeshData GetOrCreateMesh(Materials materials, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
@@ -100,7 +107,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Materials materials = Materials.FromStack(itemstack);
-        string key = $"{itemstack.Collectible.Code}-{materials}";
+        string key = GetMeshCacheKey(itemstack);
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
