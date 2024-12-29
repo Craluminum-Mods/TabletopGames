@@ -204,7 +204,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (inventory.Count >= i)
         {
             ItemSlot slot = inventory[i];
-            dsc.AppendLine(string.Format(i + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+            dsc.AppendLine(string.Format(i + 1 + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
         }
 
         BoardData.GetDescription(dsc);
