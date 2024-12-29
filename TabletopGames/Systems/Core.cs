@@ -19,6 +19,7 @@ public class Core : ModSystem
         this.api = api;
         RegisterBlocks();
         RegisterItems();
+        RegisterBehaviors();
         RegisterBlockEntities();
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
@@ -29,15 +30,20 @@ public class Core : ModSystem
         api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
     }
 
-    private void RegisterBlockEntities()
-    {
-        api.RegisterBlockEntityClass("TabletopGames.ShapeTexturesFromAttributes", typeof(BEShapeTexturesFromAttributes));
-        api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
-    }
-
     private void RegisterItems()
     {
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
         api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
+    }
+
+    private void RegisterBehaviors()
+    {
+        api.RegisterCollectibleBehaviorClass("TabletopGames.BoardPieceToolModes", typeof(CollectibleBehaviorBoardPieceToolModes));
+    }
+
+    private void RegisterBlockEntities()
+    {
+        api.RegisterBlockEntityClass("TabletopGames.ShapeTexturesFromAttributes", typeof(BEShapeTexturesFromAttributes));
+        api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
     }
 }

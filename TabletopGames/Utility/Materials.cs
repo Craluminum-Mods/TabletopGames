@@ -30,6 +30,16 @@ public class Materials
             .Order();
     }
 
+    public void SetValue(string key, string value)
+    {
+        if (Elements.ContainsKey(key))
+        {
+            Elements[key] = value;
+            return;
+        }
+        Elements.TryAdd(key, value);
+    }
+
     public void GetDescription(StringBuilder dsc, List<string> langKeys)
     {
         if (!Elements.Any())
@@ -109,6 +119,14 @@ public class Materials
             result.Append(string.Join('-', Elements.Select(x => $"{x.Key}-{x.Value}")));
         }
         return result.ToString();
+    }
+
+    public Materials Clone()
+    {
+        return new Materials()
+        {
+            Elements = Elements
+        };
     }
 }
 
