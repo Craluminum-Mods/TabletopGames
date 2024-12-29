@@ -34,8 +34,8 @@
             "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:chesspiece-{type}", ")"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}", "\n"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}", "\n"]
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": ["chess"],
         "shape": {
