@@ -201,7 +201,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
         int i = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-        if (inventory.Count >= i)
+        if (inventory.Count > i)
         {
             ItemSlot slot = inventory[i];
             dsc.AppendLine(string.Format(i + 1 + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));

@@ -27,6 +27,7 @@ public class BlockBoard : Block, IContainedMeshSource
     public List<string> TabletopTagsIgnored { get; protected set; } = new();
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
+    public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -63,6 +64,7 @@ public class BlockBoard : Block, IContainedMeshSource
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
         }
 
         foreach ((string _, BoardData boardData) in BoardDataByType)
@@ -261,9 +263,16 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
-        return blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity
-            ? blockEntity.GetOrCreateSelectionBoxes()
-            : base.GetSelectionBoxes(blockAccessor, pos);
+        if (blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
+        {
+            blockEntity.Materials.FindByMaterial(ExtraSelectionBoxesByType, out Cuboidf[] boxes);
+            boxes ??= Array.Empty<Cuboidf>();
+            return blockEntity.GetOrCreateSelectionBoxes().Append(boxes);
+        }
+        else
+        {
+            return base.GetSelectionBoxes(blockAccessor, pos);
+        }
     }
     
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
