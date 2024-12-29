@@ -99,31 +99,31 @@
                 "size": { "x": 5, "y": 5 },
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 25,
-                "attributeTransformCode": "onChessboard8x8Transform"
+                "attributeTransformCode": "onChessboardTransform"
             },
             "size-6x6": {
                 "size": { "x": 6, "y": 6 },
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 36,
-                "attributeTransformCode": "onChessboard8x8Transform"
+                "attributeTransformCode": "onChessboardTransform"
             },
             "size-7x7": {
                 "size": { "x": 7, "y": 7 },
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 49,
-                "attributeTransformCode": "onChessboard8x8Transform"
+                "attributeTransformCode": "onChessboardTransform"
             },
             "size-8x8": {
                 "size": { "x": 8, "y": 8 },
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 64,
-                "attributeTransformCode": "onChessboard8x8Transform"
+                "attributeTransformCode": "onChessboardTransform"
             },
             "size-10x10": {
                 "size": { "x": 10, "y": 10 },
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 100,
-                "attributeTransformCode": "onChessboard10x10Transform"
+                "attributeTransformCode": "onChessboardTransform"
             }
         }
     },
