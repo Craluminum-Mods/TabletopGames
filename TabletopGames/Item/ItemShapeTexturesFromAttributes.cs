@@ -32,6 +32,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
+        base.OnUnloaded(api);
         var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
         if (meshRefs?.Count > 0)
         {

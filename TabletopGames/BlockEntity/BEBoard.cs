@@ -132,6 +132,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             }
         }
 
+        foreach (BlockEntityBehavior behavior in Behaviors)
+        {
+            behavior.OnTesselation(mesher, tesselator);
+        }
+
         return true;
     }
 
@@ -210,6 +215,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
 
         BoardData.GetDescription(dsc);
+
+        foreach (BlockEntityBehavior behavior in Behaviors)
+        {
+            behavior.GetBlockInfo(forPlayer, dsc);
+        }
     }
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,

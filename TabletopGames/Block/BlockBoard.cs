@@ -257,7 +257,7 @@ public class BlockBoard : Block, IContainedMeshSource
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity
-            ? blockEntity.OnInteract(byPlayer, blockSel)
+            ? blockEntity.OnInteract(byPlayer, blockSel) || base.OnBlockInteractStart(world, byPlayer, blockSel)
             : base.OnBlockInteractStart(world, byPlayer, blockSel);
     }
 
@@ -269,10 +269,7 @@ public class BlockBoard : Block, IContainedMeshSource
             boxes ??= Array.Empty<Cuboidf>();
             return blockEntity.GetOrCreateSelectionBoxes().Append(boxes);
         }
-        else
-        {
-            return base.GetSelectionBoxes(blockAccessor, pos);
-        }
+        return base.GetSelectionBoxes(blockAccessor, pos);
     }
     
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
