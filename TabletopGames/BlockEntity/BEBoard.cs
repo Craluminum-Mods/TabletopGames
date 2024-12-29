@@ -20,11 +20,11 @@ namespace TabletopGames;
 public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
-    public BoardData BoardData => Materials.FindByMaterial(OwnBlock?.BoardDataByType, out BoardData value) ? value : new BoardData();
+    public BoardData BoardData => OwnBlock?.GetBoardData(Materials);
 
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
-    public override string AttributeTransformCode => BoardData.AttributeTransformCode ?? base.AttributeTransformCode;
+    public override string AttributeTransformCode => BoardData.AttributeTransformCode;
 
     public Materials Materials { get; protected set; } = new Materials();
     public float MeshAngleRad { get; set; }

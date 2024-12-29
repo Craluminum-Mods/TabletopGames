@@ -74,6 +74,11 @@ public class BlockBoard : Block, IContainedMeshSource
         }
     }
 
+    public BoardData GetBoardData(Materials materials)
+    {
+        return materials.FindByMaterial(BoardDataByType, out BoardData value) ? value : new BoardData();
+    }
+
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
     {
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
@@ -165,11 +170,10 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_boardMeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        Materials materials = Materials.FromStack(itemstack);
-        string key = $"{itemstack.Collectible.Code}-{materials}";
-
+        string key = GetMeshCacheKey(itemstack);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
+            Materials materials = Materials.FromStack(itemstack);
             MeshData mesh = GetOrCreateMesh(materials);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
