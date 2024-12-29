@@ -40,6 +40,7 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override void OnUnloaded(ICoreAPI api)
     {
+        base.OnUnloaded(api);
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
         if (meshRefs?.Count > 0)
         {

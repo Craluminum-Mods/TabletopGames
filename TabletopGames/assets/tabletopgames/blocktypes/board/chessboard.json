@@ -28,12 +28,14 @@
         "description": {
             "primarystone-*": [
                 //
+                "trivia-chessboard", "\n",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Primary", "): ", "rock-{primarystone}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Secondary", "): ", "rock-{secondarystone}"
             ],
             "primarywood-*": [
                 //
+                "trivia-chessboard", "\n",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Primary", "): ", "material-{primarywood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Secondary", "): ", "material-{secondarywood}"

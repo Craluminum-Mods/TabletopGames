@@ -327,7 +327,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (slot.Itemstack.Attributes.HasAttribute("rotateYaw"))
         {
             float rotateYaw = slot.Itemstack.Attributes.GetFloat("rotateYaw");
-            stackMesh = stackMesh.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
+            stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
         }
     }
 }

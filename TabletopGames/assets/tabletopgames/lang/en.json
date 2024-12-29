@@ -14,10 +14,12 @@
     "dimension-8x8": "8 x 8",
     "dimension-10x10": "10 x 10",
 
+    "trivia-chessboard": "Can also be used as checkerboard",
+
     "Primary": "Primary",
     "Secondary": "Secondary",
 
-    "item-chesspiece": "Chesspiece",
+    "item-chesspiece": "Chess piece",
     "chesspiece-bishop": "Bishop",
     "chesspiece-king": "King",
     "chesspiece-knight": "Knight",
