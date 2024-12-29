@@ -8,19 +8,24 @@ public static class TabletopExtensions
 {
     public static bool AreTagsCompatible(this List<string> boardTags, List<string> boardTagsIgnored, ItemStack stack)
     {
-        if (!boardTags?.Any() ?? true)
-        {
-            return true;
-        }
-
         List<string> stackTags = stack?.ItemAttributes?["tabletopTags"]?.AsObject<List<string>>();
-        if (!stackTags?.Any() ?? true)
+        stackTags ??= new();
+        boardTags ??= new();
+        boardTagsIgnored ??= new();
+
+        if (stackTags.Count == 0)
         {
             return false;
         }
-
-        HashSet<string> tags = new HashSet<string>(boardTags.Intersect(boardTagsIgnored ??= new List<string>()));
-        return !stackTags.Any(tags.Contains);
+        if (stackTags.Any(tag => boardTagsIgnored.Contains(tag)))
+        {
+            return false;
+        }
+        if (stackTags.Any(tag => boardTags.Contains(tag)))
+        {
+            return true;
+        }
+        return false;
     }
 
     public static bool AreTagsCompatible(this BlockBoard board, ItemStack stack)
