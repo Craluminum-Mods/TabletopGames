@@ -30,17 +30,12 @@
             "origin": { "x": 0.5, "y": 0, "z": 0.5 },
             "scale": 0.6
         },
+        "name": {
+            "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:chesspiece-{type}", ")"]
+        },
         "description": {
-            "stone-*": [
-                //
-                "tabletopgames:chesspiece-{type}", "\n",
-                "blockmaterial-Stone", ": ", "rock-{stone}", "\n"
-            ],
-            "wood-*": [
-                //
-                "tabletopgames:chesspiece-{type}", "\n",
-                "blockmaterial-Wood", ": ", "material-{wood}", "\n"
-            ]
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}", "\n"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}", "\n"]
         },
         "tabletopTags": ["chess"],
         "shape": {

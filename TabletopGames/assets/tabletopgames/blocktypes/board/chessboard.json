@@ -23,19 +23,17 @@
             "rotation": { "x": 0, "y": 0, "z": -90 }
         },
         "name": {
-            "*": ["tabletopgames:block-chessboard", "tabletopgames:dimension-{size}"]
+            "*": ["tabletopgames:block-chessboard", " (", "tabletopgames:dimension-{size}", ")"]
         },
         "description": {
             "primarystone-*": [
                 //
-                "tabletopgames:Dimensions", ": ", "tabletopgames:dimension-{size}", "\n",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Primary", "): ", "rock-{primarystone}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Secondary", "): ", "rock-{secondarystone}"
             ],
             "primarywood-*": [
                 //
-                "tabletopgames:Dimensions", ": ", "tabletopgames:dimension-{size}", "\n",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Primary", "): ", "material-{primarywood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Secondary", "): ", "material-{secondarywood}"
