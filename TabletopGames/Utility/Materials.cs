@@ -16,11 +16,18 @@ public class Materials
     public int Count => Elements.Count;
     public bool Any => Elements.Any();
 
-    public IOrderedEnumerable<Material> GetOrdered(string textureCode = null)
+    public IOrderedEnumerable<Material> GetOrdered()
     {
         return Elements
             .Select(x => new Material(x.Key, x.Value))
             .OrderBy(x => x.Key);
+    }
+
+    public IOrderedEnumerable<string> GetOrderedStringArray()
+    {
+        return Elements
+            .Select(x => new Material(x.Key, x.Value).ToString())
+            .Order();
     }
 
     public void GetDescription(StringBuilder dsc, List<string> langKeys)

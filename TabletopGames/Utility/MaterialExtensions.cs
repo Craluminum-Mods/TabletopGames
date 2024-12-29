@@ -12,49 +12,24 @@ public static class MaterialExtensions
 {
     public static bool FindByMaterial<T>(this Materials materials, Dictionary<string, T> inDictionary, out T result)
     {
-        if (!inDictionary?.Any() ?? false)
+        result = default;
+
+        if (inDictionary == null || !inDictionary.Any())
         {
-            result = default;
             return false;
         }
 
-        IOrderedEnumerable<Material> materialsOrdered = materials.GetOrdered();
-
+        IOrderedEnumerable<string> _materials = materials.GetOrderedStringArray();
         foreach ((string key, T value) in inDictionary)
         {
-            if (key.Contains("::"))
+            string[] keys = key.Contains("::") ? key.Split("::") : new[] { key };
+            if (keys.All(k => _materials.Any(m => WildcardUtil.Match(k, m))))
             {
-                string[] keyList = key.Split("::");
-                List<bool> foundAll = new List<bool>();
-                foreach (string _key in keyList)
-                {
-                    foreach (Material material in materialsOrdered)
-                    {
-                        if (WildcardUtil.Match(_key, material.ToString()))
-                        {
-                            foundAll.Add(true);
-                        }
-                    }
-                }
-                if (foundAll.Count == keyList.Length)
-                {
-                    result = value;
-                    return true;
-                }
-                continue;
-            }
-
-            foreach (Material material in materialsOrdered)
-            {
-                if (WildcardUtil.Match(key, material.ToString()))
-                {
-                    result = value;
-                    return true;
-                }
+                result = value;
+                return true;
             }
         }
 
-        result = default;
         return false;
     }
 
