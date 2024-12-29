@@ -18,9 +18,33 @@ public static class MaterialExtensions
             return false;
         }
 
-        foreach (Material material in materials.GetOrdered())
+        IOrderedEnumerable<Material> materialsOrdered = materials.GetOrdered();
+
+        foreach ((string key, T value) in inDictionary)
         {
-            foreach ((string key, T value) in inDictionary)
+            if (key.Contains("::"))
+            {
+                string[] keyList = key.Split("::");
+                List<bool> foundAll = new List<bool>();
+                foreach (string _key in keyList)
+                {
+                    foreach (Material material in materialsOrdered)
+                    {
+                        if (WildcardUtil.Match(_key, material.ToString()))
+                        {
+                            foundAll.Add(true);
+                        }
+                    }
+                }
+                if (foundAll.Count == keyList.Length)
+                {
+                    result = value;
+                    return true;
+                }
+                continue;
+            }
+
+            foreach (Material material in materialsOrdered)
             {
                 if (WildcardUtil.Match(key, material.ToString()))
                 {
