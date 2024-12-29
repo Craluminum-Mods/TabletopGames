@@ -182,28 +182,38 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                 return selectionBoxes;
             }
 
-            float sizeX = BoardData.Size.X;
-            float sizeY = BoardData.Size.Y;
+            float width = BoardData.Size.X;
+            float depth = BoardData.Size.Y;
 
-            selectionBoxes = new Cuboidf[(int)(sizeX * sizeY)];
+            selectionBoxes = new Cuboidf[(int)(width * depth)];
 
-            for (int dx = 0; dx < sizeX; dx++)
+            float paddingWidth = BoardData.Padding.X;
+            float paddingDepth = BoardData.Padding.Y;
+
+            float slotWidth = (1 - (2 * paddingWidth)) / width;
+            float slotDepth = (1 - (2 * paddingDepth)) / depth;
+
+            for (int dx = 0; dx < width; dx++)
             {
-                for (int dz = 0; dz < sizeY; dz++)
+                for (int dz = 0; dz < depth; dz++)
                 {
-                    int num = (dz * (int)sizeY) + dx;
+                    float x1 = paddingWidth + dx * slotWidth;
+                    float z1 = paddingDepth + dz * slotDepth;
+                    float x2 = x1 + slotWidth;
+                    float z2 = z1 + slotDepth;
 
                     Cuboidf newCuboid = new Cuboidf()
                     {
-                        X1 = dx / sizeX,
+                        X1 = x1,
                         Y1 = BoardData.SlotMinY,
-                        Z1 = dz / sizeY,
-                        X2 = (1 + dx) / sizeX,
+                        Z1 = z1,
+                        X2 = x2,
                         Y2 = BoardData.SlotMaxY,
-                        Z2 = (1 + dz) / sizeY,
+                        Z2 = z2,
                     };
 
-                    selectionBoxes[num] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+                    int index = (dz * (int)depth) + dx;
+                    selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
                 }
             }
         }
