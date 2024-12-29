@@ -22,13 +22,9 @@
             "translation": { "x": 0.1, "y": 0, "z": 0 },
             "rotation": { "x": 0, "y": 0, "z": -90 }
         },
-        // "types": [ // WIP!!! Types are used for creative inventory only!!
-        //     { "code": "size", "states": ["8x8"] },
-        //     { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
-        //     { "code": "primarystone", "states": ["chalk"] },
-        //     { "code": "secondarystone", "states": ["basalt"] }
-        // ],
-        // "fillCreativeInventory": true,
+        "name": {
+            "*": ["tabletopgames:block-chessboard", "tabletopgames:dimension-{size}"]
+        },
         "description": {
             "primarystone-*": [
                 //
@@ -122,6 +118,12 @@
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "quantitySlots": 64,
                 "attributeTransformCode": "onChessboard8x8Transform"
+            },
+            "size-10x10": {
+                "size": { "x": 10, "y": 10 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "quantitySlots": 100,
+                "attributeTransformCode": "onChessboard10x10Transform"
             }
         }
     },
@@ -140,7 +142,10 @@
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "7x7", "wood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } },
 
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
-                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } }
+                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } },
+
+                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "10x10", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
+                { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "10x10", "wood": "oak", "primarywood": "ebony", "secondarywood": "baldcypress" } } }
             ]
         }
     ],
