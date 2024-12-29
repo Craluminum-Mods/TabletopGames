@@ -1,0 +1,101 @@
+{
+    "code": "checkerpiece",
+    "class": "TabletopGames.ItemBoardPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "handbook": { "groupBy": ["checkerpiece-*"] },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.06, "z": 0.5 },
+            "scale": 1.5
+        },
+        "onshelfTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.06, "z": 0.5 },
+            "scale": 1.5
+        },
+        "groundStorageTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.07, "z": 0.5 },
+            "scale": 1.5
+        },
+        "onChessboardTransform": {
+            "translation": { "x": -1.52, "y": -1.02, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.6
+        },
+        "name": {
+            "*": ["tabletopgames:item-checkerpiece", " (", "tabletopgames:checkerpiece-{type}", ")"]
+        },
+        "description": {
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": ["chess"],
+        "shape": {
+            "*": { "base": "tabletopgames:item/piece/checkerpiece-{type}" }
+        },
+        "textures": {
+            "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.BoardPieceToolModes",
+            "properties": {
+                "setAttributes": {
+                    "type-king": [{ "type": "pawn" }],
+                    "type-pawn": [{ "type": "king" }]
+                }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "basalt" } } },
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "chalk" } } },
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "ebony" } } },
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "baldcypress" } } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 150, "y": 30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+        "scale": 3
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+        "scale": 0.75
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.2, "y": -1.9, "z": -2 },
+        "scale": 0.25
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
+        "scale": 0.5
+    }
+}

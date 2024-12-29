@@ -25,5 +25,9 @@
     "chesspiece-knight": "Knight",
     "chesspiece-pawn": "Pawn",
     "chesspiece-queen": "Queen",
-    "chesspiece-rook": "Rook"
+    "chesspiece-rook": "Rook",
+
+    "item-checkerpiece": "Checker piece",
+    "checkerpiece-pawn": "Pawn",
+    "checkerpiece-king": "King"
 }
