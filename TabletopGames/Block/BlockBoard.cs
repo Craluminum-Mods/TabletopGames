@@ -9,7 +9,6 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
-using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
@@ -64,13 +63,6 @@ public class BlockBoard : Block, IContainedMeshSource
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-
-            if (Attributes["fillCreativeInventory"].AsBool())
-            {
-                RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
-                Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
-            }
         }
 
         foreach ((string _, BoardData boardData) in BoardDataByType)

@@ -50,9 +50,12 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
 
-            RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
-            Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-            this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
+            if (Attributes["fillCreativeInventory"].AsBool())
+            {
+                RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
+                Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
+                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
+            }
         }
     }
 

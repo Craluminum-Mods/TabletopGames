@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
@@ -8,7 +7,6 @@ using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
@@ -53,13 +51,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-
-            if (Attributes["fillCreativeInventory"].AsBool())
-            {
-                RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
-                Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
-            }
         }
     }
 
