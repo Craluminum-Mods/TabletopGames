@@ -148,6 +148,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
 
+    protected override string getMeshCacheKey(ItemStack stack)
+    {
+        return $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
+    }
+
     protected override float[][] genTransformationMatrices()
     {
         Cuboidf[] _selBoxes = GetOrCreateSelectionBoxes();
