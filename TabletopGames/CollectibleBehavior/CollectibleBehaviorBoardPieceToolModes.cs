@@ -10,7 +10,6 @@ namespace TabletopGames;
 
 public class CollectibleBehaviorBoardPieceToolModes : CollectibleBehavior
 {
-    private SkillItem[] toolModes;
     private Dictionary<string, List<Dictionary<string, string>>> setAttributesByType;
 
     public CollectibleBehaviorBoardPieceToolModes(CollectibleObject collObj) : base(collObj) { }
@@ -21,34 +20,32 @@ public class CollectibleBehaviorBoardPieceToolModes : CollectibleBehavior
         setAttributesByType = properties["setAttributes"].AsObject(defaultValue: new Dictionary<string, List<Dictionary<string, string>>>());
     }
 
-    public override void OnUnloaded(ICoreAPI api)
-    {
-        if (toolModes != null && toolModes.Any())
-        {
-            for (int i = 0; i < toolModes.Length; i++)
-            {
-                toolModes[i]?.Dispose();
-            }
-        }
-        toolModes = null;
-    }
-
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
     {
-        if (slot.Empty || toolModes == null || toolModes.Length <= toolMode)
+        if (slot.Empty)
         {
             return;
         }
 
-        Dictionary<string, string> attributes = toolModes[toolMode].Data as Dictionary<string, string>;
-        attributes ??= new Dictionary<string, string>();
         Materials materials = Materials.FromStack(slot.Itemstack);
+        if (!materials.FindByMaterial(setAttributesByType, out List<Dictionary<string, string>> setAttributes) || setAttributes == null || !setAttributes.Any())
+        {
+            return;
+        }
 
-        foreach ((string key, string value) in attributes)
+        if (setAttributes.Count <= toolMode || setAttributes[toolMode] == null)
+        {
+            return;
+        }
+
+        ItemStack newStack = slot.Itemstack.Clone();
+        foreach ((string key, string value) in setAttributes[toolMode])
         {
             materials.SetValue(key, value);
         }
-        materials.ToStack(slot.Itemstack);
+
+        materials.ToStack(newStack);
+        slot.Itemstack.SetFrom(newStack);
         slot.MarkDirty();
     }
 
@@ -60,19 +57,19 @@ public class CollectibleBehaviorBoardPieceToolModes : CollectibleBehavior
         }
 
         Materials materials = Materials.FromStack(slot.Itemstack);
-        if (!materials.FindByMaterial(setAttributesByType, out List<Dictionary<string, string>> setAttributes))
+        if (!materials.FindByMaterial(setAttributesByType, out List<Dictionary<string, string>> setAttributes) || setAttributes == null || !setAttributes.Any())
         {
             return null;
         }
         
         SkillItem[] _toolModes = Array.Empty<SkillItem>();
 
-        foreach (Dictionary<string, string> attributes in setAttributes)
+        for (int i = 0; i < setAttributes.Count; i++)
         {
             ItemStack newStack = slot.Itemstack.Clone();
             Materials _materials = materials.Clone();
 
-            foreach ((string key, string value) in attributes)
+            foreach ((string key, string value) in setAttributes[i])
             {
                 _materials.SetValue(key, value);
             }
@@ -82,12 +79,11 @@ public class CollectibleBehaviorBoardPieceToolModes : CollectibleBehavior
             SkillItem toolMode = new()
             {
                 Name = newStack.GetName(),
-                RenderHandler = newStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false),
-                Data = attributes
+                RenderHandler = newStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false)
             };
+
             _toolModes = _toolModes.Append(toolMode);
         }
-        toolModes = _toolModes;
-        return toolModes;
+        return _toolModes;
     }
 }
