@@ -45,6 +45,34 @@
             }
         },
         "boardData": {
+            "size-9x9": {
+                "size": { "x": 9, "y": 9 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "padding": { "x": 0.125, "y": 0.125 },
+                "quantitySlots": 81,
+                "attributeTransformCode": "onGoboard9x9Transform"
+            },
+            "size-13x13": {
+                "size": { "x": 13, "y": 13 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "padding": { "x": 0.075, "y": 0.075 },
+                "quantitySlots": 169,
+                "attributeTransformCode": "onGoboard13x13Transform"
+            },
+            "size-15x15": {
+                "size": { "x": 15, "y": 15 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "padding": { "x": 0.0125, "y": 0.0125 },
+                "quantitySlots": 225,
+                "attributeTransformCode": "onGoboard19x19Transform"
+            },
+            "size-17x17": {
+                "size": { "x": 17, "y": 17 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "padding": { "x": 0.0125, "y": 0.0125 },
+                "quantitySlots": 289,
+                "attributeTransformCode": "onGoboard19x19Transform"
+            },
             "size-19x19": {
                 "size": { "x": 19, "y": 19 },
                 "slotYRange": { "x": 0, "y": 0.5 },
@@ -59,8 +87,17 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } }
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "9x9", "wood": "birch", "color": "carbonblack" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "13x13", "wood": "birch", "color": "carbonblack" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "15x15", "wood": "birch", "color": "carbonblack" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "17x17", "wood": "birch", "color": "carbonblack" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } },
+
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "9x9", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "13x13", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "15x15", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "17x17", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "stone": "basalt", "color": "chalkwhite" } } }
             ]
         }
     ],

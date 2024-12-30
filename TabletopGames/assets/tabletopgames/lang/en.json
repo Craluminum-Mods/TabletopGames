@@ -13,7 +13,11 @@
     "dimension-6x6": "6 x 6",
     "dimension-7x7": "7 x 7",
     "dimension-8x8": "8 x 8",
+    "dimension-9x9": "9 x 9",
     "dimension-10x10": "10 x 10",
+    "dimension-13x13": "13 x 13",
+    "dimension-15x15": "15 x 15",
+    "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
 
     "trivia-chessboard": "Can also be used as checkerboard",
