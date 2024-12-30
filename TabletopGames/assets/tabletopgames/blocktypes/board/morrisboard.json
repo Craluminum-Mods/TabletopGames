@@ -29,7 +29,7 @@
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["tabletopBoard", "morris", "omok"],
+        "tabletopTags": ["tabletopBoard", "morris", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": {
             "*": { "base": "tabletopgames:block/board/16x16-overlay" }

@@ -2,7 +2,7 @@
     {
         "op": "addmerge",
         "path": "/attributes/tabletopTags",
-        "value": ["omok", "omokpiece", "morris"],
+        "value": ["omok", "morris", "go"],
         "file": "game:itemtypes/omokpiece.json"
     },
     {
