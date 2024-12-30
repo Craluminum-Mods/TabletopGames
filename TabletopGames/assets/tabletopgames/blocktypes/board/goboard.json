@@ -48,7 +48,7 @@
             "size-19x19": {
                 "size": { "x": 19, "y": 19 },
                 "slotYRange": { "x": 0, "y": 0.5 },
-                "padding": { "x": 0.01, "y": 0.01 },
+                "padding": { "x": 0.0125, "y": 0.0125 },
                 "quantitySlots": 361,
                 "attributeTransformCode": "onGoboard19x19Transform"
             }
