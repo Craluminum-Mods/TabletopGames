@@ -1,0 +1,65 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ],
+			"to": [ 8.0, 0.0, 8.0 ],
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+			},
+			"children": [
+				{
+					"name": "Cube2",
+					"from": [ -3.0, 0.0, -3.0 ],
+					"to": [ 3.0, 4.0, 3.0 ],
+					"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+					"faces": {
+						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 4.0 ] },
+						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 4.0 ] },
+						"south": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 4.0 ] },
+						"west": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 4.0 ] },
+						"up": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 6.0 ] },
+						"down": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 6.0 ] }
+					}
+				},
+				{
+					"name": "Cube3",
+					"from": [ -4.0, 1.0, -3.0 ],
+					"to": [ 4.0, 3.0, 3.0 ],
+					"rotationOrigin": [ -4.0, 1.0, -3.0 ],
+					"faces": {
+						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+						"south": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+						"west": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+						"up": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 6.0 ] },
+						"down": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 6.0 ] }
+					}
+				},
+				{
+					"name": "Cube4",
+					"from": [ -3.0, 1.0, -4.0 ],
+					"to": [ 3.0, 3.0, 4.0 ],
+					"rotationOrigin": [ -3.0, 1.0, -4.0 ],
+					"faces": {
+						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+						"south": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+						"west": { "texture": "#material", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+						"up": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 8.0 ] },
+						"down": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 8.0 ] }
+					}
+				}
+			]
+		}
+	]}

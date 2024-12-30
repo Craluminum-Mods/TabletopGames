@@ -1,0 +1,92 @@
+{
+    "code": "gostone",
+    "class": "TabletopGames.ItemBoardPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "handbook": { "groupBy": ["gostone-*"] },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.13, "z": 0.5 },
+            "scale": 0.75
+        },
+        "onshelfTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+            "scale": 0.6
+        },
+        "groundStorageTransform": {
+            "translation": { "x": 0, "y": 0.4, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.13, "z": 0.5 },
+            "scale": 0.75
+        },
+        "onGoboard19x19Transform": {
+            "translation": { "x": -1.52, "y": -1.02, "z": 0 },
+            "rotation": { "x": -90, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+            "scale": 0.25
+        },
+        "name": {
+            "*": ["tabletopgames:item-gostone"]
+        },
+        "description": {
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": ["go", "omok"],
+        "shape": {
+            "*": { "base": "tabletopgames:item/piece/gostone" }
+        },
+        "textures": {
+            "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "gostone", "attributes": { "types": { "stone": "basalt" } } },
+                { "type": "item", "code": "gostone", "attributes": { "types": { "stone": "chalk" } } },
+                { "type": "item", "code": "gostone", "attributes": { "types": { "wood": "ebony" } } },
+                { "type": "item", "code": "gostone", "attributes": { "types": { "wood": "baldcypress" } } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 150, "y": 30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+        "scale": 2.5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.3, "z": 0.5 },
+        "scale": 0.9
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.7, "y": -1.7, "z": -2 },
+        "rotation": { "x": 0, "y": 0, "z": -65 },
+        "scale": 0.25
+    }
+}

@@ -31,5 +31,7 @@
 
     "item-checkerpiece": "Checker piece",
     "checkerpiece-pawn": "Pawn",
-    "checkerpiece-king": "King"
+    "checkerpiece-king": "King",
+
+    "item-gostone": "Go stone"
 }
