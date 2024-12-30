@@ -7,7 +7,7 @@ public class BoardData
 {
     public Vec2i Size { get; set; }
     public Vec2f SlotYRange { get; set; } = new Vec2f(0, 1);
-    public Vec2f Padding { get; set; } = Vec2f.Zero;
+    public Vec2f Padding { get; set; }
     public int QuantitySlots { get; set; }
     public string AttributeTransformCode { get; set; }
     public Cuboidf[] SlotsHitboxes { get; set; } = System.Array.Empty<Cuboidf>();
@@ -26,7 +26,10 @@ public class BoardData
         {
             dsc.AppendLine(string.Format("DEBUG::Board Dimensions: X: {0}, Y: {1}", Size.X, Size.Y));
         }
-        dsc.AppendLine(string.Format("DEBUG::Padding: X: {0}, Y: {1}", Padding.X, Padding.Y));
+        if (Padding != null)
+        {
+            dsc.AppendLine(string.Format("DEBUG::Padding: X: {0}, Y: {1}", Padding.X, Padding.Y));
+        }
         dsc.AppendLine(string.Format("DEBUG::Quantity Slots: {0}", QuantitySlots));
         dsc.AppendLine(string.Format("DEBUG::Slot MinY: {0}", SlotMinY));
         dsc.AppendLine(string.Format("DEBUG::Slot MaxY: {0}", SlotMaxY));

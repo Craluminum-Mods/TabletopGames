@@ -182,42 +182,79 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                 return selectionBoxes;
             }
 
-            float width = BoardData.Size.X;
-            float depth = BoardData.Size.Y;
-
-            selectionBoxes = new Cuboidf[(int)(width * depth)];
-
-            float paddingWidth = BoardData.Padding.X;
-            float paddingDepth = BoardData.Padding.Y;
-
-            float slotWidth = (1 - (2 * paddingWidth)) / width;
-            float slotDepth = (1 - (2 * paddingDepth)) / depth;
-
-            for (int dx = 0; dx < width; dx++)
+            bool hasPadding = BoardData.Padding != null;
+            switch (hasPadding)
             {
-                for (int dz = 0; dz < depth; dz++)
-                {
-                    float x1 = paddingWidth + dx * slotWidth;
-                    float z1 = paddingDepth + dz * slotDepth;
-                    float x2 = x1 + slotWidth;
-                    float z2 = z1 + slotDepth;
-
-                    Cuboidf newCuboid = new Cuboidf()
-                    {
-                        X1 = x1,
-                        Y1 = BoardData.SlotMinY,
-                        Z1 = z1,
-                        X2 = x2,
-                        Y2 = BoardData.SlotMaxY,
-                        Z2 = z2,
-                    };
-
-                    int index = (dz * (int)depth) + dx;
-                    selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
-                }
+                case true: GenerateSelectionWithPadding(); break;
+                default: GenerateSelectionWithoutPadding(); break;
             }
         }
         return selectionBoxes;
+    }
+
+    private void GenerateSelectionWithoutPadding()
+    {
+        float width = BoardData.Size.X;
+        float depth = BoardData.Size.Y;
+
+        selectionBoxes = new Cuboidf[(int)(width * depth)];
+
+        for (int dx = 0; dx < width; dx++)
+        {
+            for (int dz = 0; dz < depth; dz++)
+            {
+                Cuboidf newCuboid = new Cuboidf()
+                {
+                    X1 = dx / width,
+                    Y1 = BoardData.SlotMinY,
+                    Z1 = dz / depth,
+                    X2 = (1 + dx) / width,
+                    Y2 = BoardData.SlotMaxY,
+                    Z2 = (1 + dz) / depth,
+                };
+
+                int index = (dz * (int)depth) + dx;
+                selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+            }
+        }
+    }
+    
+    private void GenerateSelectionWithPadding()
+    {
+        float width = BoardData.Size.X;
+        float depth = BoardData.Size.Y;
+
+        selectionBoxes = new Cuboidf[(int)(width * depth)];
+
+        float paddingWidth = BoardData.Padding.X;
+        float paddingDepth = BoardData.Padding.Y;
+
+        float slotWidth = (1 - (2 * paddingWidth)) / width;
+        float slotDepth = (1 - (2 * paddingDepth)) / depth;
+
+        for (int dx = 0; dx < width; dx++)
+        {
+            for (int dz = 0; dz < depth; dz++)
+            {
+                float x1 = paddingWidth + dx * slotWidth;
+                float z1 = paddingDepth + dz * slotDepth;
+                float x2 = x1 + slotWidth;
+                float z2 = z1 + slotDepth;
+
+                Cuboidf newCuboid = new Cuboidf()
+                {
+                    X1 = x1,
+                    Y1 = BoardData.SlotMinY,
+                    Z1 = z1,
+                    X2 = x2,
+                    Y2 = BoardData.SlotMaxY,
+                    Z2 = z2,
+                };
+
+                int index = (dz * (int)depth) + dx;
+                selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+            }
+        }
     }
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
