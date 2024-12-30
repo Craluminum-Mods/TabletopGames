@@ -2,23 +2,31 @@
     "game:tabname-tabletopgames": "Tabletop Games",
 
     "block-chessboard": "Chessboard",
+    "item-chesspiece": "Chess piece",
+    "chesspiece-bishop": "Bishop",
+    "chesspiece-king": "King",
+    "chesspiece-knight": "Knight",
+    "chesspiece-pawn": "Pawn",
+    "chesspiece-queen": "Queen",
+    "chesspiece-rook": "Rook",
+
+    "item-checkerpiece": "Checker piece",
+    "checkerpiece-pawn": "Pawn",
+    "checkerpiece-king": "King",
+
     "block-morrisboard-three": "Three men's morris board",
     "block-morrisboard-six": "Six men's morris board",
     "block-morrisboard-nine": "Nine men's morris board",
     "block-morrisboard-twelve": "Twelve men's morris board",
-    "block-goboard": "Go board",
 
-    "Dimensions": "Dimensions",
-    "dimension-5x5": "5 x 5",
-    "dimension-6x6": "6 x 6",
-    "dimension-7x7": "7 x 7",
-    "dimension-8x8": "8 x 8",
-    "dimension-9x9": "9 x 9",
-    "dimension-10x10": "10 x 10",
-    "dimension-13x13": "13 x 13",
-    "dimension-15x15": "15 x 15",
-    "dimension-17x17": "17 x 17",
-    "dimension-19x19": "19 x 19",
+    "block-goboard": "Go board",
+    "item-gostone": "Go stone",
+
+    "game:onMorrisTransform": "On Morris board",
+    "game:onChessboardTransform": "On chessboard",
+    "game:onGoboard9x9Transform": "On 9x9 Go board",
+    "game:onGoboard13x13Transform": "On 13x13 Go board",
+    "game:onGoboard19x19Transform": "On 19x19 Go board",
 
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
@@ -40,20 +48,18 @@
     "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>The classic Nine Men's Morris game.</i></font><br>",
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Can also used for eleven men's morris.</i></font><br>",
 
+    "dimension-5x5": "5 x 5",
+    "dimension-6x6": "6 x 6",
+    "dimension-7x7": "7 x 7",
+    "dimension-8x8": "8 x 8",
+    "dimension-9x9": "9 x 9",
+    "dimension-10x10": "10 x 10",
+    "dimension-13x13": "13 x 13",
+    "dimension-15x15": "15 x 15",
+    "dimension-17x17": "17 x 17",
+    "dimension-19x19": "19 x 19",
+
+    "Dimensions": "Dimensions",
     "Primary": "Primary",
-    "Secondary": "Secondary",
-
-    "item-chesspiece": "Chess piece",
-    "chesspiece-bishop": "Bishop",
-    "chesspiece-king": "King",
-    "chesspiece-knight": "Knight",
-    "chesspiece-pawn": "Pawn",
-    "chesspiece-queen": "Queen",
-    "chesspiece-rook": "Rook",
-
-    "item-checkerpiece": "Checker piece",
-    "checkerpiece-pawn": "Pawn",
-    "checkerpiece-king": "King",
-
-    "item-gostone": "Go stone"
+    "Secondary": "Secondary"
 }
