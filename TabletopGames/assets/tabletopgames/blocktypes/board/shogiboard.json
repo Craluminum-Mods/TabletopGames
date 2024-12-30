@@ -15,8 +15,8 @@
             "*": ["tabletopgames:block-shogiboard", " (", "tabletopgames:dimension-{size}", ")"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": ["tabletopBoard", "shogi"],
         "tabletopTagsIgnored": ["tabletopBoard"],
@@ -39,7 +39,7 @@
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "padding": { "x": 0.0125, "y": 0.0125 },
                 "quantitySlots": 81,
-                "attributeTransformCode": "onChessboardTransform"
+                "attributeTransformCode": "onShogiTransform"
             }
         }
     },

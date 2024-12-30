@@ -23,12 +23,30 @@
     "item-gostone": "Go stone",
 
     "block-shogiboard": "Shogi board",
+    "item-shogipiece": "Shogi piece",
+
+    "shogipiece-fuhyo": "Pawn (Fuhyo)",
+    "shogipiece-ginsho": "Silver general (Ginsho)",
+    "shogipiece-gyokusho": "King (Gyokusho)",
+    "shogipiece-hisha": "Rook (Hisha)",
+    "shogipiece-kakugyo": "Bishop (Kakugyo)",
+    "shogipiece-keima": "Knight (Keima)",
+    "shogipiece-kinsho": "Gold general (Kinsho)",
+    "shogipiece-kyosha": "Lance (Kyosha)",
+    "shogipiece-narigin": "Promoted silver (Narigin)",
+    "shogipiece-narikei": "Promoted knight (Narikei)",
+    "shogipiece-narikyo": "Promoted lance (Narikyo)",
+    "shogipiece-osho": "King (Osho)",
+    "shogipiece-ryuma": "Promoted bishop (Ryuma)",
+    "shogipiece-ryuo": "Promoted rook (Ryuo)",
+    "shogipiece-tokin": "Promoted pawn (Tokin)",
 
     "game:onMorrisTransform": "On Morris board",
     "game:onChessboardTransform": "On chessboard",
     "game:onGoboard9x9Transform": "On 9x9 Go board",
     "game:onGoboard13x13Transform": "On 13x13 Go board",
     "game:onGoboard19x19Transform": "On 19x19 Go board",
+    "game:onShogiTransform": "On shogi board",
 
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
@@ -49,6 +67,9 @@
     "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Can also used for five men's morris.</i></font><br>",
     "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>The classic Nine Men's Morris game.</i></font><br>",
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Can also used for eleven men's morris.</i></font><br>",
+
+    "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Used to play shogi, also known as Japanese chess.</i></font><br>",
+    "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Used as the board for shogi, also known as Japanese chess.</i></font><br>",
 
     "dimension-5x5": "5 x 5",
     "dimension-6x6": "6 x 6",

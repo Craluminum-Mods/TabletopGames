@@ -1,0 +1,91 @@
+{
+    "code": "shogipiece",
+    "class": "TabletopGames.ItemBoardPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "handbook": { "groupBy": ["shogipiece-*"] },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.13, "z": 0.5 }, "scale": 0.75 },
+        "onshelfTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.1, "z": 0.5 }, "scale": 0.6 },
+        "groundStorageTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.13, "z": 0.5 }, "scale": 0.75 },
+        "onShogiTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.3 },
+        "name": {
+            "*": ["tabletopgames:item-shogipiece", " (", "tabletopgames:shogipiece-{type}", ")"]
+        },
+        "description": {
+            "stone-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": ["shogi"],
+        "shape": {
+            "*": { "base": "tabletopgames:item/piece/shogipiece" }
+        },
+        // using KaiTi font and Kanji for shogi textures
+        "textures": {
+            "wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            },
+            "stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            }
+        },
+        "rotateWhenPlacedOnBoard": true
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ginsho", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "gyokusho", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "hisha", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kakugyo", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "keima", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kinsho", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kyosha", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narigin", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikei", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikyo", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "osho", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuma", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuo", "wood": "birch" } } },
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "tokin", "wood": "birch" } } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "rotation": { "x": 105, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.65
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.5, "z": 0 },
+        "rotation": { "x": 22, "y": 180, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.9
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2, "y": -0.5, "z": -2 },
+        "rotation": { "x": -90, "y": 0, "z": -63 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.25
+    }
+}
