@@ -1,0 +1,100 @@
+{
+    "code": "goboard",
+    "class": "TabletopGames.BlockBoard",
+    "entityClass": "TabletopGames.Board",
+    "maxStackSize": 1,
+    "attributes": {
+        "handbook": { "groupBy": ["goboard-*"] },
+        "moldrackable": true,
+        "shelvable": true,
+        "antlermountable": true,
+        "onmoldrackTransform": {
+            "translation": { "x": 0, "y": 0.1, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": 85 },
+            "scale": 0.9
+        },
+        "onshelfTransform": {
+            "rotation": { "x": 0, "y": 18, "z": 0 },
+            "origin": { "x": 0.5, "y": -0, "z": 0.5 },
+            "scale": 0.3
+        },
+        "onAntlerMountTransform": {
+            "translation": { "x": 0.1, "y": 0, "z": 0 },
+            "rotation": { "x": 0, "y": 0, "z": -90 }
+        },
+        "name": {
+            "*": ["tabletopgames:block-goboard", " (", "tabletopgames:dimension-{size}", ")"]
+        },
+        "description": {
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": ["tabletopBoard", "go", "omok"],
+        "tabletopTagsIgnored": ["tabletopBoard"],
+        "shape": {
+            "*": { "base": "tabletopgames:block/board/go/{size}" }
+        },
+        "textures": {
+            "stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "overlay": { "base": "tabletopgames:block/board/go/{size}-{color}" }
+            },
+            "wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "overlay": { "base": "tabletopgames:block/board/go/{size}-{color}" }
+            }
+        },
+        "boardData": {
+            "size-19x19": {
+                "size": { "x": 19, "y": 19 },
+                "slotYRange": { "x": 0, "y": 0.5 },
+                "padding": { "x": 0.01, "y": 0.01 },
+                "quantitySlots": 361,
+                "attributeTransformCode": "onGoboard19x19Transform"
+            }
+        }
+    },
+    "behaviors": [{ "name": "Unstable" }],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } }
+            ]
+        }
+    ],
+    "blockmaterial": "Wood",
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "fpHandTransform": {
+        "translation": { "x": 0, "y": 0.25, "z": 0.5 }
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": -80, "y": 0, "z": -100 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    },
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 }
+}
