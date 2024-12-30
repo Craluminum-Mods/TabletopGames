@@ -8,20 +8,9 @@
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
-        "onmoldrackTransform": {
-            "translation": { "x": 0, "y": 0.1, "z": 0 },
-            "rotation": { "x": 0, "y": 0, "z": 85 },
-            "scale": 0.9
-        },
-        "onshelfTransform": {
-            "rotation": { "x": 0, "y": 18, "z": 0 },
-            "origin": { "x": 0.5, "y": -0, "z": 0.5 },
-            "scale": 0.3
-        },
-        "onAntlerMountTransform": {
-            "translation": { "x": 0.1, "y": 0, "z": 0 },
-            "rotation": { "x": 0, "y": 0, "z": -90 }
-        },
+        "onmoldrackTransform": { "translation": { "x": 0, "y": 0.1, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
+        "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
+        "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "name": {
             "*": ["tabletopgames:block-morrisboard-{type}"]
         },
