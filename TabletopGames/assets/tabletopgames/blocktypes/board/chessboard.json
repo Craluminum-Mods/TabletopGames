@@ -30,7 +30,7 @@
                 "blockmaterial-Wood", " (", "tabletopgames:Secondary", "): ", "material-{secondarywood}"
             ]
         },
-        "tabletopTags": ["tabletopBoard", "chess"],
+        "tabletopTags": ["tabletopBoard", "chess", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": {
             "*": { "base": "tabletopgames:block/board/16x16-overlay2" }

@@ -13,6 +13,7 @@
         "onGoboard13x13Transform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.3 },
         "onGoboard9x9Transform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.35 },
         "onMorrisTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
+        "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
         "name": {
             "*": ["tabletopgames:item-gostone"]
         },
