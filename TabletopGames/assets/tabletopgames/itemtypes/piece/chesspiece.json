@@ -14,8 +14,8 @@
             "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:chesspiece-{type}", ")"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": ["chess"],
         "shape": {

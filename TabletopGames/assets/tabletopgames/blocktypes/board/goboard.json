@@ -15,8 +15,8 @@
             "*": ["tabletopgames:block-goboard", " (", "tabletopgames:dimension-{size}", ")"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-goboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-goboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": ["tabletopBoard", "go", "omok"],
         "tabletopTagsIgnored": ["tabletopBoard"],

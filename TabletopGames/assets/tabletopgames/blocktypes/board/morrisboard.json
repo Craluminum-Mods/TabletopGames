@@ -15,8 +15,8 @@
             "*": ["tabletopgames:block-morrisboard-{type}"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-morrisboard-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-morrisboard-{type}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": ["tabletopBoard", "morris", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],

@@ -2,10 +2,10 @@
     "game:tabname-tabletopgames": "Tabletop Games",
 
     "block-chessboard": "Chessboard",
-    "block-morrisboard-three": "Three men's morris",
-    "block-morrisboard-six": "Six men's morris",
-    "block-morrisboard-nine": "Nine men's morris",
-    "block-morrisboard-twelve": "Twelve men's morris",
+    "block-morrisboard-three": "Three men's morris board",
+    "block-morrisboard-six": "Six men's morris board",
+    "block-morrisboard-nine": "Nine men's morris board",
+    "block-morrisboard-twelve": "Twelve men's morris board",
     "block-goboard": "Go board",
 
     "Dimensions": "Dimensions",
@@ -20,7 +20,25 @@
     "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
 
-    "trivia-chessboard": "Can also be used as checkerboard",
+    "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
+    "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
+    "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>The most important piece; protect it at all costs.</i></font><br>",
+    "trivia-chesspiece-knight": "<font color=\"#99c9f9\"><i>Has unique movement in an 'L' shape.</i></font><br>",
+    "trivia-chesspiece-pawn": "<font color=\"#99c9f9\"><i>The pawns are the soul of chess.</i></font><br>",
+    "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>The most powerful piece, combining rook and bishop movements.</i></font><br>",
+    "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Moves in straight lines horizontally or vertically.</i></font><br>",
+    "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Can be flipped to switch between pawn and king.</i></font><br>",
+
+    "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Ideal for beginners to learn Go.</i></font><br>",
+    "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Well-suited for intermediate players.</i></font><br>",
+    "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Primarily used to play gomoku.</i></font><br>",
+    "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Historically used before the 19x19 board became the standard.</i></font><br>",
+    "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>The standard board for playing Go.</i></font><br>",
+
+    "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>A simplified version of Morris, great for quick games.</i></font><br>",
+    "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Can also used for five men's morris.</i></font><br>",
+    "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>The classic Nine Men's Morris game.</i></font><br>",
+    "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Can also used for eleven men's morris.</i></font><br>",
 
     "Primary": "Primary",
     "Secondary": "Secondary",
