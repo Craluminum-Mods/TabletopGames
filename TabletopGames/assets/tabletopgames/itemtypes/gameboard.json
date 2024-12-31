@@ -42,8 +42,33 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "birch" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "oak" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "maple" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "pine" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "acacia" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "kapok" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "baldcypress" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "larch" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "redwood" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "ebony" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "walnut" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "purpleheart" } } },
+
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "andesite" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "chalk" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "chert" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "conglomerate" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "limestone" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "claystone" } } },
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "granite" } } },
-                { "type": "item", "code": "gameboard", "attributes": { "types": { "wood": "oak" } } }
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "sandstone" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "shale" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "basalt" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "peridotite" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "phyllite" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "slate" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "stone": "bauxite" } } }
             ]
         }
     ],
