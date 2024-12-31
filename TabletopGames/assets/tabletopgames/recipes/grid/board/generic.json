@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Generic board from wood",
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "game:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "copyAttributesFrom": "O",
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "wood": "{wood}" } } }
+    },
+    {
+        "name": "Generic board from stone",
+        "ingredientPattern": "OOC,OOH",
+        "ingredients": {
+            "O": { "type": "item", "code": "game:stone-*", "name": "stone" },
+            "C": { "type": "item", "code": "game:chisel-*", "IsTool": true },
+            "H": { "type": "item", "code": "game:hammer-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "copyAttributesFrom": "O",
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "stone": "{stone}" } } }
+    }
+]
