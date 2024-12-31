@@ -28,6 +28,9 @@
                 "blockmaterial-Wood", " (", "tabletopgames:Secondary", "): ", "material-{secondarywood}"
             ]
         },
+        "redirectTo": {
+            "*": { "type": "block", "code": "tabletopgames:chessboard", "attributes": { "types": { "size": "8x8", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } }
+        },
         "tabletopTags": ["tabletopBoard", "chess", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": {

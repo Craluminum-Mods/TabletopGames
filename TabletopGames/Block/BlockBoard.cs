@@ -19,7 +19,7 @@ namespace TabletopGames;
 /// <para> Has "automatic" localization. </para>
 /// <para> Has inventory and displays stored items. </para>
 /// </summary>
-public class BlockBoard : Block, IContainedMeshSource
+public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
 
@@ -28,6 +28,7 @@ public class BlockBoard : Block, IContainedMeshSource
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
+    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; } = new();
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -66,6 +67,7 @@ public class BlockBoard : Block, IContainedMeshSource
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
+            RedirectToByType = Attributes["redirectTo"].AsObject(defaultValue: new Dictionary<string, JsonItemStack>());
         }
 
         foreach ((string _, BoardData boardData) in BoardDataByType)
@@ -243,18 +245,6 @@ public class BlockBoard : Block, IContainedMeshSource
         materials.GetDescription(dsc, description);
     }
 
-    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
-    {
-        Materials materials = Materials.FromStack(itemstack);
-        return GetOrCreateMesh(materials);
-    }
-
-    public string GetMeshCacheKey(ItemStack itemstack)
-    {
-        Materials materials = Materials.FromStack(itemstack);
-        return $"{itemstack.Collectible.Code}-{materials}";
-    }
-
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntity
@@ -272,7 +262,36 @@ public class BlockBoard : Block, IContainedMeshSource
         }
         return base.GetSelectionBoxes(blockAccessor, pos);
     }
-    
+
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
     public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardSelectionColor;
+
+    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    {
+        Materials materials = Materials.FromStack(itemstack);
+        return GetOrCreateMesh(materials);
+    }
+
+    public string GetMeshCacheKey(ItemStack itemstack)
+    {
+        Materials materials = Materials.FromStack(itemstack);
+        return $"{itemstack.Collectible.Code}-{materials}";
+    }
+
+    bool IHandbookTweaks.CanRedirect(ItemStack stack, out ItemStack newStack)
+    {
+        newStack = null;
+        Materials materials = Materials.FromStack(stack);
+        if (!materials.FindByMaterial(RedirectToByType, out JsonItemStack jstack) || jstack == null)
+        {
+            return false;
+        }
+        JsonItemStack _jstack = jstack.Clone();
+        if (!_jstack.Resolve(api.World, "handbook tweaks redirect"))
+        {
+            return false;
+        }
+        newStack = _jstack.ResolvedItemstack;
+        return newStack != null;
+    }
 }

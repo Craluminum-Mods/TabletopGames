@@ -1,3 +1,4 @@
+using HarmonyLib;
 using Vintagestory.API.Common;
 
 namespace TabletopGames;
@@ -5,9 +6,14 @@ namespace TabletopGames;
 public class Core : ModSystem
 {
     private ICoreAPI api;
+    public static ICoreAPI apiForHarmony;
+    private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
 
     public override void StartPre(ICoreAPI api)
     {
+        HarmonyInstance.PatchAll();
+        apiForHarmony = api;
+
         if (api.ModLoader.IsModEnabled("configlib"))
         {
             _ = new ConfigLibCompatibility(api);
@@ -22,6 +28,11 @@ public class Core : ModSystem
         RegisterBehaviors();
         RegisterBlockEntities();
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
+    }
+
+    public override void Dispose()
+    {
+        HarmonyInstance.UnpatchAll(HarmonyInstance.Id);
     }
 
     private void RegisterBlocks()
