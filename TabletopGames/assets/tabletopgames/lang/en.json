@@ -1,7 +1,7 @@
 {
     "game:tabname-tabletopgames": "Tabletop Games",
 
-    "item-gameboard": "Generic game board",
+    "item-gameboard": "Generic game board (Not functional)",
 
     "block-chessboard": "Chessboard",
     "item-chesspiece": "Chess piece",
