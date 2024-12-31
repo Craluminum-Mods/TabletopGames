@@ -15,23 +15,9 @@ public static class PageCodeForStackPatch
     [HarmonyPostfix]
     public static void Postfix(ref string __result, ItemStack stack)
     {
-        GuiDialogHandbook dialog = null;
-        try
+        if (stack?.Collectible?.GetCollectibleInterface<IHandbookTweaks>() is IHandbookTweaks handbookTweaks && handbookTweaks.CanRedirect(stack.Clone(), out ItemStack newStack))
         {
-            if (Core.apiForHarmony == null)
-            {
-                return;
-            }
-            dialog = Core.apiForHarmony.ModLoader.GetModSystem<ModSystemSurvivalHandbook>().GetField<GuiDialogHandbook>("dialog");
-        }
-        catch
-        {
-            return;
-        }
-
-        if (stack?.Collectible?.GetCollectibleInterface<IHandbookTweaks>() is IHandbookTweaks handbookTweaks && handbookTweaks.CanRedirect(stack, out ItemStack newStack))
-        {
-            __result = Base(newStack);
+            __result = Base(newStack.Clone());
         }
     }
 }

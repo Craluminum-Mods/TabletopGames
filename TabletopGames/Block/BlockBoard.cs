@@ -5,10 +5,12 @@ using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
+using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
@@ -28,7 +30,7 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
-    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; } = new();
+    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; }
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -67,7 +69,7 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
-            RedirectToByType = Attributes["redirectTo"].AsObject(defaultValue: new Dictionary<string, JsonItemStack>());
+            RedirectToByType = Attributes["redirectTo"].AsObject<Dictionary<string, JsonItemStack>>();
         }
 
         foreach ((string _, BoardData boardData) in BoardDataByType)
@@ -206,7 +208,7 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
 
     public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
     {
-        ItemStack stack = base.OnPickBlock(world, pos);
+        ItemStack stack = base.OnPickBlock(world, pos).Clone();
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
             blockEntiy.Materials.ToStack(stack);
@@ -280,15 +282,16 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
 
     bool IHandbookTweaks.CanRedirect(ItemStack stack, out ItemStack newStack)
     {
-        newStack = null;
         Materials materials = Materials.FromStack(stack);
         if (!materials.FindByMaterial(RedirectToByType, out JsonItemStack jstack) || jstack == null)
         {
+            newStack = null;
             return false;
         }
         JsonItemStack _jstack = jstack.Clone();
         if (!_jstack.Resolve(api.World, "handbook tweaks redirect"))
         {
+            newStack = null;
             return false;
         }
         newStack = _jstack.ResolvedItemstack;

@@ -20,7 +20,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
 {
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
-    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; } = new();
+    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; }
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -53,7 +53,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-            RedirectToByType = Attributes["redirectTo"].AsObject(defaultValue: new Dictionary<string, JsonItemStack>());
+            RedirectToByType = Attributes["redirectTo"].AsObject<Dictionary<string, JsonItemStack>>();
         }
     }
 
@@ -163,15 +163,16 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
 
     bool IHandbookTweaks.CanRedirect(ItemStack stack, out ItemStack newStack)
     {
-        newStack = null;
         Materials materials = Materials.FromStack(stack);
         if (!materials.FindByMaterial(RedirectToByType, out JsonItemStack jstack) || jstack == null)
         {
+            newStack = null;
             return false;
         }
         JsonItemStack _jstack = jstack.Clone();
         if (!_jstack.Resolve(api.World, "handbook tweaks redirect"))
         {
+            newStack = null;
             return false;
         }
         newStack = _jstack.ResolvedItemstack;
