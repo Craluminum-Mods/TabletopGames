@@ -121,7 +121,17 @@
             "*": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03, "z2": 1 }]
         }
     },
-    "behaviors": [{ "name": "Unstable" }],
+    "behaviors": [
+        { "name": "Unstable" },
+        {
+            "name": "TabletopGames.BoardPieceToolModes",
+            "properties": {
+                "setAttributes": {
+                    "*": [{ "type": "three" }, { "type": "six" }, { "type": "nine" }, { "type": "twelve" }]
+                }
+            }
+        }
+    ],
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],

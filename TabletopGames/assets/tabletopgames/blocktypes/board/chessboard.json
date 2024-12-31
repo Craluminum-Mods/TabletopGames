@@ -117,7 +117,17 @@
             }
         }
     },
-    "behaviors": [{ "name": "Unstable" }],
+    "behaviors": [
+        { "name": "Unstable" },
+        {
+            "name": "TabletopGames.BoardPieceToolModes",
+            "properties": {
+                "setAttributes": {
+                    "*": [{ "size": "5x5" }, { "size": "6x6" }, { "size": "7x7" }, { "size": "8x8" }, { "size": "10x10" }]
+                }
+            }
+        }
+    ],
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],
