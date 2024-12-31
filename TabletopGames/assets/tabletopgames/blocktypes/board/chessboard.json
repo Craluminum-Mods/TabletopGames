@@ -29,13 +29,13 @@
             ],
             "stone-*::primarystone-*": [
                 "tabletopgames:trivia-chessboard",
-                "blockmaterial-Wood", ": ", "material-{wood}", "\n",
+                "blockmaterial-Stone", ": ", "rock-{stone}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Primary", "): ", "rock-{primarystone}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Secondary", "): ", "rock-{secondarystone}"
             ],
             "stone-*::primarywood-*": [
                 "tabletopgames:trivia-chessboard",
-                "blockmaterial-Wood", ": ", "material-{wood}", "\n",
+                "blockmaterial-Stone", ": ", "rock-{stone}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Primary", "): ", "material-{primarywood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Secondary", "): ", "material-{secondarywood}"
             ]
