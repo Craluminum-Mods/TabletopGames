@@ -1,6 +1,8 @@
 {
     "game:tabname-tabletopgames": "Tabletop Games",
 
+    "item-gameboard": "Generic game board",
+
     "block-chessboard": "Chessboard",
     "item-chesspiece": "Chess piece",
     "chesspiece-bishop": "Bishop",
