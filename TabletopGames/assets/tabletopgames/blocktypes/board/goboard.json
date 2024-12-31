@@ -4,7 +4,7 @@
     "entityClass": "TabletopGames.Board",
     "maxStackSize": 1,
     "attributes": {
-        "handbook": { "groupBy": ["goboard-*"] },
+        "handbook": { "groupBy": ["tabletopgames:goboard"] },
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,

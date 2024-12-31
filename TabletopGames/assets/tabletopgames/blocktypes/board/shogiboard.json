@@ -4,7 +4,7 @@
     "entityClass": "TabletopGames.Board",
     "maxStackSize": 1,
     "attributes": {
-        "handbook": { "groupBy": ["shogiboard-*"] },
+        "handbook": { "groupBy": ["tabletopgames:shogiboard"] },
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,

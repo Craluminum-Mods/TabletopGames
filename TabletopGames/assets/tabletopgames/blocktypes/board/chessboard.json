@@ -4,7 +4,7 @@
     "entityClass": "TabletopGames.Board",
     "maxStackSize": 1,
     "attributes": {
-        "handbook": { "groupBy": ["chessboard-*"] },
+        "handbook": { "groupBy": ["tabletopgames:chessboard"] },
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
@@ -16,14 +16,12 @@
         },
         "description": {
             "primarystone-*": [
-                //
                 "tabletopgames:trivia-chessboard",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Primary", "): ", "rock-{primarystone}", "\n",
                 "blockmaterial-Stone", " (", "tabletopgames:Secondary", "): ", "rock-{secondarystone}"
             ],
             "primarywood-*": [
-                //
                 "tabletopgames:trivia-chessboard",
                 "blockmaterial-Wood", ": ", "material-{wood}", "\n",
                 "blockmaterial-Wood", " (", "tabletopgames:Primary", "): ", "material-{primarywood}", "\n",

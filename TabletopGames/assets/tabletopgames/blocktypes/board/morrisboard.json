@@ -4,7 +4,7 @@
     "entityClass": "TabletopGames.Board",
     "maxStackSize": 1,
     "attributes": {
-        "handbook": { "groupBy": ["morrisboard-*"] },
+        "handbook": { "groupBy": ["tabletopgames:morrisboard"] },
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
