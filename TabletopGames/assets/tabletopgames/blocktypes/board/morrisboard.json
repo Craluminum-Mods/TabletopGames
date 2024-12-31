@@ -124,9 +124,9 @@
     "behaviors": [
         { "name": "Unstable" },
         {
-            "name": "TabletopGames.BoardPieceToolModes",
+            "name": "TabletopGames.AdvancedToolModes",
             "properties": {
-                "setAttributes": {
+                "setStackMaterials": {
                     "*": [{ "type": "three" }, { "type": "six" }, { "type": "nine" }, { "type": "twelve" }]
                 }
             }

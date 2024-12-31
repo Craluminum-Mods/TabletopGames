@@ -49,7 +49,7 @@ public class Core : ModSystem
 
     private void RegisterBehaviors()
     {
-        api.RegisterCollectibleBehaviorClass("TabletopGames.BoardPieceToolModes", typeof(CollectibleBehaviorBoardPieceToolModes));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.AdvancedToolModes", typeof(CollectibleBehaviorAdvancedToolModes));
     }
 
     private void RegisterBlockEntities()
