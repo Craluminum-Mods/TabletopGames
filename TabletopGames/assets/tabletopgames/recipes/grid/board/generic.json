@@ -16,7 +16,7 @@
         "name": "Generic board from stone",
         "ingredientPattern": "OOC,OOH",
         "ingredients": {
-            "O": { "type": "item", "code": "game:stone-*", "name": "stone" },
+            "O": { "type": "item", "code": "game:stone-*", "name": "stone", "skipVariants": ["meteorite-iron"] },
             "C": { "type": "item", "code": "game:chisel-*", "IsTool": true },
             "H": { "type": "item", "code": "game:hammer-*", "IsTool": true }
         },
