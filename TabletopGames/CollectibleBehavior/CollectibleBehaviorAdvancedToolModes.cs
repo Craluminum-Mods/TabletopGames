@@ -38,7 +38,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             return;
         }
 
-        SetStackMaterials(slot.Itemstack.Clone(), materials.Clone(), newAttributes[toolMode], out ItemStack newStack);
+        SetStackMaterials(slot.Itemstack, materials, newAttributes[toolMode], out ItemStack newStack);
         slot.Itemstack.SetFrom(newStack);
         slot.MarkDirty();
     }
@@ -57,7 +57,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         {
             for (int i = 0; i < newAttributes.Count; i++)
             {
-                SetStackMaterials(slot.Itemstack.Clone(), materials.Clone(), newAttributes[i], out ItemStack newStack);
+                SetStackMaterials(slot.Itemstack, materials, newAttributes[i], out ItemStack newStack);
 
                 SkillItem toolMode = new()
                 {
@@ -72,10 +72,10 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return _toolModes;
     }
 
-    private void SetStackMaterials(ItemStack oldStack, Materials materials, Dictionary<string, string> attributes, out ItemStack newStack)
+    public static void SetStackMaterials(ItemStack oldStack, Materials materials, Dictionary<string, string> attributes, out ItemStack newStack)
     {
-        Materials newMaterials = materials.Clone();
         newStack = oldStack.Clone();
+        Materials newMaterials = materials.Clone();
 
         foreach ((string key, string value) in attributes)
         {
