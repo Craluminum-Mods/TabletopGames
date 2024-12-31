@@ -93,13 +93,7 @@
                 { "type": "block", "code": "goboard", "attributes": { "types": { "size": "13x13", "wood": "birch", "color": "carbonblack" } } },
                 { "type": "block", "code": "goboard", "attributes": { "types": { "size": "15x15", "wood": "birch", "color": "carbonblack" } } },
                 { "type": "block", "code": "goboard", "attributes": { "types": { "size": "17x17", "wood": "birch", "color": "carbonblack" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } },
-
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "9x9", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "13x13", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "15x15", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "17x17", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "stone": "basalt", "color": "chalkwhite" } } }
+                { "type": "block", "code": "goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } }
             ]
         }
     ],
