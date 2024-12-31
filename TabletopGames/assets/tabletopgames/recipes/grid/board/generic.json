@@ -9,8 +9,7 @@
         },
         "width": 3,
         "height": 2,
-        "copyAttributesFrom": "O",
-        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "wood": "{wood}" } } }
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
     },
     {
         "name": "Generic board from stone",
@@ -22,7 +21,6 @@
         },
         "width": 3,
         "height": 2,
-        "copyAttributesFrom": "O",
-        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "stone": "{stone}" } } }
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "{stone}" } } }
     }
 ]
