@@ -16,12 +16,11 @@ namespace TabletopGames;
 /// <para> Optional rotation. </para>
 /// <para> Has "automatic" localization. </para>
 /// </summary>
-public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHandbookTweaks, IContainedCustomName
+public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
 {
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, List<string>> ContainedDescriptionByType { get; protected set; } = new();
-    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; }
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -55,7 +54,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-            RedirectToByType = Attributes["redirectTo"].AsObject<Dictionary<string, JsonItemStack>>();
         }
     }
 
@@ -161,24 +159,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
     {
         Materials materials = Materials.FromStack(itemstack);
         return $"{itemstack.Collectible.Code}-{materials}";
-    }
-
-    bool IHandbookTweaks.CanRedirect(ItemStack stack, out ItemStack newStack)
-    {
-        Materials materials = Materials.FromStack(stack);
-        if (!materials.FindByMaterial(RedirectToByType, out JsonItemStack jstack) || jstack == null)
-        {
-            newStack = null;
-            return false;
-        }
-        JsonItemStack _jstack = jstack.Clone();
-        if (!_jstack.Resolve(api.World, "handbook tweaks redirect"))
-        {
-            newStack = null;
-            return false;
-        }
-        newStack = _jstack.ResolvedItemstack;
-        return newStack != null;
     }
 
     public string GetContainedInfo(ItemSlot inSlot)

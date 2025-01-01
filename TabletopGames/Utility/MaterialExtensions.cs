@@ -1,10 +1,7 @@
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Common;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
-using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
@@ -44,112 +41,49 @@ public static class MaterialExtensions
         return FindByMaterial(materials, attribute, stack.Collectible, out result);
     }
 
-    public static Dictionary<string, List<string>> GatherMaterials(this ICoreAPI api, RegistryObjectVariantGroup[] variantGroups)
+    /// <summary>
+    /// Updates the materials of the input <see cref="ItemStack"/> based on the specified parameters.
+    /// If the <paramref name="materials"/> argument is null, the materials from the <paramref name="oldStack"/> are cloned and used.
+    /// </summary>
+    /// <param name="oldStack">
+    /// The original <see cref="ItemStack"/> whose materials are used as the base if <paramref name="materials"/> is null.
+    /// </param>
+    /// <param name="newStack">
+    /// An output parameter that returns the modified <see cref="ItemStack"/> with updated materials.
+    /// </param>
+    /// <param name="setAttributes">
+    /// A dictionary of attribute key-value pairs to add or update in the materials.
+    /// If null, no attributes are added.
+    /// </param>
+    /// <param name="removeAttributes">
+    /// A list of attribute keys to remove from the materials.
+    /// If null, no attributes are removed.
+    /// </param>
+    /// <param name="materials">
+    /// (Optional) A <see cref="Materials"/> object to use for the new stack. 
+    /// If null, the materials from <paramref name="oldStack"/> are cloned and used.
+    /// </param>
+    /// <remarks>
+    /// The method ensures that the original materials and stack remain unmodified by cloning them before applying changes.
+    /// </remarks>
+    public static void SetStackMaterials(this ItemStack oldStack, out ItemStack newStack, Dictionary<string, string> setAttributes = null, List<string> removeAttributes = null, Materials materials = null)
     {
-        Dictionary<string, List<string>> resolvedTypes = new();
-        foreach (RegistryObjectVariantGroup variantGroup in variantGroups)
+        Materials newMaterials = materials?.Clone() ?? Materials.FromStack(oldStack.Clone())?.Clone();
+
+        setAttributes ??= new();
+        removeAttributes ??= new();
+
+        foreach ((string key, string value) in setAttributes)
         {
-            List<string> types = new();
-
-            if (variantGroup?.States != null && variantGroup.States.Any())
-            {
-                types = types.Concat(variantGroup.States).ToList();
-            }
-
-            if (variantGroup?.LoadFromProperties != null)
-            {
-                IAsset asset = api.Assets.TryGet(variantGroup.LoadFromProperties.WithPathPrefixOnce("worldproperties/").WithPathAppendixOnce(".json"));
-                if (asset != null)
-                {
-                    IEnumerable<string> _types = (asset?.ToObject<StandardWorldProperty>()).Variants.Select((p) => p.Code.Path);
-                    types = types.Concat(_types).ToList();
-                }
-            }
-
-            if (!resolvedTypes.TryGetValue(variantGroup.Code, out List<string> _resolvedTypes))
-            {
-                resolvedTypes.Add(variantGroup.Code, types);
-            }
-            else
-            {
-                resolvedTypes[variantGroup.Code] = _resolvedTypes.Concat(types).ToList();
-            }
-        }
-        return resolvedTypes;
-    }
-
-    public static void AddAllTypesToCreativeInventory(this CollectibleObject obj, ICoreAPI api, Dictionary<string, List<string>> materials, params string[] tabs)
-    {
-        List<JsonItemStack> _stacks = new List<JsonItemStack>();
-
-        foreach (Dictionary<string, string> pairs in materials.GetCombinationsContainingAllKeys())
-        {
-            JsonObject _attributes = new JsonObject(new JObject());
-            _attributes.Token[Materials.AttributeName] = JToken.FromObject(new object());
-
-            foreach (KeyValuePair<string, string> pair in pairs)
-            {
-                _attributes.Token[Materials.AttributeName][pair.Key] = JToken.FromObject(pair.Value);
-            }
-
-            JsonItemStack _jstack = new JsonItemStack()
-            {
-                Code = obj.Code,
-                Type = obj.ItemClass,
-                Attributes = _attributes
-            };
-            _jstack.Resolve(api.World, obj.Code + " type");
-            _stacks.Add(_jstack);
+            newMaterials.SetValue(key, value);
         }
 
-        obj.CreativeInventoryStacks = new CreativeTabAndStackList[]
+        foreach (string key in removeAttributes)
         {
-            new CreativeTabAndStackList() { Stacks = _stacks.ToArray(), Tabs = tabs }
-        };
-    }
-
-    public static List<Dictionary<string, string>> GetCombinationsContainingAllKeys(this Dictionary<string, List<string>> materials)
-    {
-        List<List<string>> combinations = materials.GenerateCombinations();
-        List<Dictionary<string, string>> finalResult = new List<Dictionary<string, string>>();
-
-        foreach (List<string> result in combinations)
-        {
-            finalResult.Add(new());
-
-            int materialIndex = 0;
-
-            foreach ((string material, _) in materials)
-            {
-                finalResult.Last().Add(material, result[materialIndex]);
-                materialIndex++;
-            }
+            newMaterials.RemoveKey(key);
         }
 
-        return finalResult;
-    }
-
-    public static List<List<string>> GenerateCombinations(this Dictionary<string, List<string>> materials)
-    {
-        List<List<string>> results = new List<List<string>>();
-        CombineMaterials(materials, new List<string>(), new List<string>(materials.Keys), 0, results);
-        return results;
-    }
-
-    public static void CombineMaterials(Dictionary<string, List<string>> materials, List<string> current, List<string> keys, int index, List<List<string>> results)
-    {
-        if (index == keys.Count)
-        {
-            results.Add(new List<string>(current));
-            return;
-        }
-
-        string key = keys[index];
-        foreach (string item in materials[key])
-        {
-            current.Add(item);
-            CombineMaterials(materials, current, keys, index + 1, results);
-            current.RemoveAt(current.Count - 1);
-        }
+        newStack = oldStack.Clone();
+        newMaterials.ToStack(newStack);
     }
 }

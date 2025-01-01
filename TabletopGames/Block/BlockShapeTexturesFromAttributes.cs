@@ -6,7 +6,6 @@ using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using Vintagestory.ServerMods;
 
 namespace TabletopGames;
 
@@ -49,13 +48,6 @@ public class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
             cshape = Attributes["shape"].AsObject<CompositeShape>();
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             LangKeysByType = Attributes["langKeys"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-
-            if (Attributes["fillCreativeInventory"].AsBool())
-            {
-                RegistryObjectVariantGroup[] unresolvedMaterials = Attributes["types"].AsObject(defaultValue: Array.Empty<RegistryObjectVariantGroup>());
-                Dictionary<string, List<string>> resolvedMaterials = api.GatherMaterials(unresolvedMaterials);
-                this.AddAllTypesToCreativeInventory(api, resolvedMaterials, TabletopConstants.ModID);
-            }
         }
     }
 

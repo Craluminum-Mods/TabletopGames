@@ -19,7 +19,7 @@ namespace TabletopGames;
 /// <para> Has "automatic" localization. </para>
 /// <para> Has inventory and displays stored items. </para>
 /// </summary>
-public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
+public class BlockBoard : Block, IContainedMeshSource
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
 
@@ -28,7 +28,6 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
-    public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; }
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -67,7 +66,6 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
-            RedirectToByType = Attributes["redirectTo"].AsObject<Dictionary<string, JsonItemStack>>();
         }
 
         foreach ((string _, BoardData boardData) in BoardDataByType)
@@ -276,23 +274,5 @@ public class BlockBoard : Block, IContainedMeshSource, IHandbookTweaks
     {
         Materials materials = Materials.FromStack(itemstack);
         return $"{itemstack.Collectible.Code}-{materials}";
-    }
-
-    bool IHandbookTweaks.CanRedirect(ItemStack stack, out ItemStack newStack)
-    {
-        Materials materials = Materials.FromStack(stack);
-        if (!materials.FindByMaterial(RedirectToByType, out JsonItemStack jstack) || jstack == null)
-        {
-            newStack = null;
-            return false;
-        }
-        JsonItemStack _jstack = jstack.Clone();
-        if (!_jstack.Resolve(api.World, "handbook tweaks redirect"))
-        {
-            newStack = null;
-            return false;
-        }
-        newStack = _jstack.ResolvedItemstack;
-        return newStack != null;
     }
 }

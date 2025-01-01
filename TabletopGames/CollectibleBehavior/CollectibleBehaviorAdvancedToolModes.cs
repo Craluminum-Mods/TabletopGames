@@ -58,9 +58,9 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
         if (advMode.IsSinkSlot && !mouseslot.Empty)
         {
-            if (!ItemIntermediate.HandleGiveStack(byPlayer, mouseslot, materials, advMode.SlotParams))
+            if (!byPlayer.HandleGiveStack(mouseslot, materials, advMode.SlotParams))
             {
-                ItemIntermediate.HandleInWorldCrafting(slot, byPlayer, mouseslot, materials, advMode.SlotParams);
+                slot.HandleInWorldCrafting(byPlayer, mouseslot, materials, advMode.SlotParams);
             }
 
             byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
@@ -70,7 +70,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         JsonItemStack output = advMode.ConvertTo?.Clone();
         output?.Resolve(byPlayer.Entity.World, "");
 
-        SetStackMaterials(slot.Itemstack, out ItemStack finalStack, setAttributes: advMode.SetStackMaterials, removeAttributes: advMode.RemoveStackMaterials, materials: materials);
+        slot.Itemstack.SetStackMaterials(out ItemStack finalStack, setAttributes: advMode.SetStackMaterials, removeAttributes: advMode.RemoveStackMaterials, materials: materials);
 
         if (output != null && output.ResolvedItemstack != null)
         {
@@ -122,7 +122,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
 
-            SetStackMaterials(slot.Itemstack, out ItemStack finalStack, advMode.SetStackMaterials, materials: materials);
+            slot.Itemstack.SetStackMaterials(out ItemStack finalStack, advMode.SetStackMaterials, materials: materials);
 
             if (output != null && output.ResolvedItemstack != null)
             {
@@ -146,52 +146,6 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         return _toolModes;
     }
-
-    /// <summary>
-    /// Updates the materials of the input <see cref="ItemStack"/> based on the specified parameters.
-    /// If the <paramref name="materials"/> argument is null, the materials from the <paramref name="oldStack"/> are cloned and used.
-    /// </summary>
-    /// <param name="oldStack">
-    /// The original <see cref="ItemStack"/> whose materials are used as the base if <paramref name="materials"/> is null.
-    /// </param>
-    /// <param name="newStack">
-    /// An output parameter that returns the modified <see cref="ItemStack"/> with updated materials.
-    /// </param>
-    /// <param name="setAttributes">
-    /// A dictionary of attribute key-value pairs to add or update in the materials.
-    /// If null, no attributes are added.
-    /// </param>
-    /// <param name="removeAttributes">
-    /// A list of attribute keys to remove from the materials.
-    /// If null, no attributes are removed.
-    /// </param>
-    /// <param name="materials">
-    /// (Optional) A <see cref="Materials"/> object to use for the new stack. 
-    /// If null, the materials from <paramref name="oldStack"/> are cloned and used.
-    /// </param>
-    /// <remarks>
-    /// The method ensures that the original materials and stack remain unmodified by cloning them before applying changes.
-    /// </remarks>
-    public static void SetStackMaterials(ItemStack oldStack, out ItemStack newStack, Dictionary<string, string> setAttributes = null, List<string> removeAttributes = null, Materials materials = null)
-    {
-        Materials newMaterials = materials?.Clone() ?? Materials.FromStack(oldStack.Clone())?.Clone();
-
-        setAttributes ??= new();
-        removeAttributes ??= new();
-
-        foreach ((string key, string value) in setAttributes)
-        {
-            newMaterials.SetValue(key, value);
-        }
-
-        foreach (string key in removeAttributes)
-        {
-            newMaterials.RemoveKey(key);
-        }
-
-        newStack = oldStack.Clone();
-        newMaterials.ToStack(newStack);
-    }
 }
 
 public class AdvancedToolMode
@@ -203,7 +157,7 @@ public class AdvancedToolMode
     public bool CopyAttributes { get; set; }
 
     public bool IsSinkSlot { get; set; }
-    public List<InWorldCraftingStep> SlotParams { get; set; } = new();
+    public List<CraftingStep> SlotParams { get; set; } = new();
 
     public string Name { get; set; }
     public bool Linebreak { get; set; }
