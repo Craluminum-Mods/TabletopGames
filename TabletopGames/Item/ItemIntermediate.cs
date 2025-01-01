@@ -84,7 +84,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
                 case true:
                     inputSlot.Itemstack.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, inputSlot, ingred.ToolDurabilityCost);
                     break;
-                case false when !step.ConsumeIngredient:
+                case false when step.ConsumeIngredient:
                     inputSlot.TakeOut(ingred.Quantity);
                     break;
             }
@@ -109,5 +109,5 @@ public class InWorldCraftingStep
 
     public JsonItemStack ConvertTo { get; set; }
     public bool CopyAttributes { get; set; }
-    public bool ConsumeIngredient { get; set; }
+    public bool ConsumeIngredient { get; set; } = true;
 }
