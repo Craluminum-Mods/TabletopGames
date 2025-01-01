@@ -112,9 +112,9 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
                 SkillItem _mode = new()
                 {
                     Name = Lang.Get(advMode.Name),
-                    Linebreak = advMode.Linebreak
+                    Linebreak = advMode.Linebreak, 
+                    Texture = sinkSlotTexture
                 };
-                _mode.WithIcon(forPlayer.Entity.Api as ICoreClientAPI, "plus");
                 _toolModes = _toolModes.Append(_mode);
                 continue;
             }
