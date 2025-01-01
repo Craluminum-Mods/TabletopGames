@@ -50,6 +50,8 @@
     "game:onGoboard19x19Transform": "On 19x19 Go board",
     "game:onShogiTransform": "On shogi board",
 
+    "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
+
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
     "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>The most important piece; protect it at all costs.</i></font><br>",

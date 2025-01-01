@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 
@@ -11,6 +12,7 @@ namespace TabletopGames;
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
+    private LoadedTexture sinkSlotTexture;
 
     public CollectibleBehaviorAdvancedToolModes(CollectibleObject collObj) : base(collObj) { }
 
@@ -18,6 +20,19 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     {
         base.Initialize(properties);
         toolModesByType = properties["toolModes"].AsObject(defaultValue: new Dictionary<string, List<AdvancedToolMode>>());
+    }
+
+    public override void OnLoaded(ICoreAPI api)
+    {
+        if (api is ICoreClientAPI capi)
+        {
+            sinkSlotTexture = new SkillItem().WithIcon(capi, "plus").Texture;
+        }
+    }
+
+    public override void OnUnloaded(ICoreAPI api)
+    {
+        sinkSlotTexture?.Dispose();
     }
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int index)
@@ -39,6 +54,15 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         }
 
         AdvancedToolMode advMode = toolModes[index];
+
+        ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
+        if (advMode.IsSinkSlot && !mouseslot.Empty)
+        {
+            ItemIntermediate.HandleInWorldCrafting(slot, byPlayer, mouseslot, materials, advMode.SlotParams);
+            byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
+            return;
+        }
+
         JsonItemStack output = advMode.ConvertTo?.Clone();
         output?.Resolve(byPlayer.Entity.World, "");
 
@@ -79,6 +103,18 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         foreach (AdvancedToolMode advMode in toolModes)
         {
+            if (advMode.IsSinkSlot)
+            {
+                SkillItem _mode = new()
+                {
+                    Name = Lang.Get(advMode.Name),
+                    Linebreak = advMode.Linebreak
+                };
+                _mode.WithIcon(forPlayer.Entity.Api as ICoreClientAPI, "plus");
+                _toolModes = _toolModes.Append(_mode);
+                continue;
+            }
+
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
 
@@ -162,5 +198,9 @@ public class AdvancedToolMode
     public JsonItemStack ConvertTo { get; set; }
     public bool CopyAttributes { get; set; }
 
+    public bool IsSinkSlot { get; set; }
+    public List<InWorldCraftingStep> SlotParams { get; set; } = new();
+
+    public string Name { get; set; }
     public bool Linebreak { get; set; }
 }

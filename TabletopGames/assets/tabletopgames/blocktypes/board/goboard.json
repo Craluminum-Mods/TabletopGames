@@ -89,8 +89,22 @@
             "properties": {
                 "toolModes": {
                     "*": [
-                        //
-                        { "setStackMaterials": { "size": "9x9" } },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-changeboardlinescolor",
+                            "isSinkSlot": true,
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setStackMaterials": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setStackMaterials": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setStackMaterials": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setStackMaterials": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setStackMaterials": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setStackMaterials": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+
+                        { "setStackMaterials": { "size": "9x9" }, "linebreak": true },
                         { "setStackMaterials": { "size": "13x13" } },
                         { "setStackMaterials": { "size": "15x15" } },
                         { "setStackMaterials": { "size": "17x17" } },
