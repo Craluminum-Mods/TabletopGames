@@ -5,8 +5,9 @@ namespace TabletopGames;
 
 public class Core : ModSystem
 {
-    private ICoreAPI api;
     public static ICoreAPI apiForHarmony;
+
+    private ICoreAPI api;
     private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
 
     public override void StartPre(ICoreAPI api)

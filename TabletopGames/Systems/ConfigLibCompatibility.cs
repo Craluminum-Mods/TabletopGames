@@ -28,7 +28,7 @@ public class ConfigLibCompatibility
         ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
     }
 
-    public void ColorPicker4VS(string label, ref Vec4f vec)
+    private void ColorPicker4VS(string label, ref Vec4f vec)
     {
         Vector4 vector4 = new Vector4(vec.X, vec.Y, vec.Z, vec.W);
         ImGui.SetNextItemWidth(200);
