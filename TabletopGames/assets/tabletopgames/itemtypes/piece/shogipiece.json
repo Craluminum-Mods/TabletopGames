@@ -42,27 +42,55 @@
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
+        },
+        {
+            "name": "TabletopGames.AdvancedToolModes",
+            "properties": {
+                "toolModes": {
+                    "*": [
+                        { "setStackMaterials": { "type": "gyokusho" } }, //                     King (gyokusho)
+                        { "setStackMaterials": { "type": "osho" } }, //                         King (osho)
+                        { "setStackMaterials": { "type": "kinsho" } }, //                       Gold general (kinsho)
+
+                        { "setStackMaterials": { "type": "ginsho" }, "linebreak": true }, //    Silver general (ginsho)
+                        { "setStackMaterials": { "type": "kyosha" } }, //                       Lance (kyosha)
+                        { "setStackMaterials": { "type": "keima" } }, //                        Knight (keima)
+                        { "setStackMaterials": { "type": "kakugyo" } }, //                      Bishop (kakugyo)
+                        { "setStackMaterials": { "type": "hisha" } }, //                        Rook (hisha)
+                        { "setStackMaterials": { "type": "fuhyo" } }, //                        Pawn (fuhyo)
+
+                        { "setStackMaterials": { "type": "narigin" }, "linebreak": true }, //   Promoted silver (narigin)
+                        { "setStackMaterials": { "type": "narikyo" } }, //                      Promoted lance (narikyo)
+                        { "setStackMaterials": { "type": "narikei" } }, //                      Promoted knight (narikei
+                        { "setStackMaterials": { "type": "ryuma" } }, //                        Promoted bishop (ryuma)
+                        { "setStackMaterials": { "type": "ryuo" } }, //                         Promoted rook (ryuo)
+                        { "setStackMaterials": { "type": "tokin" } } //                         Promoted pawn (tokin)
+                    ]
+                }
+            }
         }
     ],
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ginsho", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "gyokusho", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "hisha", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kakugyo", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "keima", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kinsho", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kyosha", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narigin", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikei", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikyo", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "osho", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuma", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuo", "wood": "birch" } } },
-                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "tokin", "wood": "birch" } } }
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "gyokusho", "wood": "birch" } } }, //    King (gyokusho)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "osho", "wood": "birch" } } }, //        King (osho)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kinsho", "wood": "birch" } } }, //      Gold general (kinsho)
+
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ginsho", "wood": "birch" } } }, //      Silver general (ginsho)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kyosha", "wood": "birch" } } }, //      Lance (kyosha)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "keima", "wood": "birch" } } }, //       Knight (keima)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "kakugyo", "wood": "birch" } } }, //     Bishop (kakugyo)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "hisha", "wood": "birch" } } }, //       Rook (hisha)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "birch" } } }, //       Pawn (fuhyo)
+
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narigin", "wood": "birch" } } }, //     Promoted silver (narigin)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikyo", "wood": "birch" } } }, //     Promoted lance (narikyo)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "narikei", "wood": "birch" } } }, //     Promoted knight (narikei)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuma", "wood": "birch" } } }, //       Promoted bishop (ryuma)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "ryuo", "wood": "birch" } } }, //        Promoted rook (ryuo)
+                { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "tokin", "wood": "birch" } } } //        Promoted pawn (tokin)
             ]
         }
     ],
