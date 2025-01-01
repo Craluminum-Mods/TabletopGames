@@ -12,14 +12,14 @@
         "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
         "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "name": {
-            "*": ["tabletopgames:block-morrisboard-{type}"]
+            "*": ["tabletopgames:block-morrisboard-{size}"]
         },
         "description": {
-            "stone-*": ["tabletopgames:trivia-morrisboard-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-morrisboard-{type}", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         // "redirectTo": {
-        //     "*": { "type": "block", "code": "tabletopgames:morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite", "color": "carbonblack" } } }
+        //     "*": { "type": "block", "code": "tabletopgames:morrisboard", "attributes": { "types": { "size": "nine", "stone": "granite", "color": "carbonblack" } } }
         // },
         "tabletopTags": ["tabletopBoard", "morris", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
@@ -29,15 +29,15 @@
         "textures": {
             "stone-*": {
                 "material": { "base": "game:block/stone/rock/{stone}1" },
-                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{type}-r", "blendMode": "OverlayCutout" }] }
+                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{size}-r", "blendMode": "OverlayCutout" }] }
             },
             "wood-*": {
                 "material": { "base": "game:block/wood/debarked/{wood}" },
-                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{type}-r", "blendMode": "OverlayCutout" }] }
+                "overlay": { "base": "tabletopgames:block/board/{color}128", "blendedOverlays": [{ "base": "tabletopgames:block/board/morris/{size}-r", "blendMode": "OverlayCutout" }] }
             }
         },
         "boardData": {
-            "type-three": {
+            "size-three": {
                 "quantitySlots": 9,
                 "attributeTransformCode": "onMorrisTransform",
                 "slotsHitBoxes": [
@@ -54,7 +54,7 @@
                     { "_comment": "8", "x1": 0.85714287, "y1": 0, "z1": 0.85714287, "x2": 1, "y2": 0.03125, "z2": 1 }
                 ]
             },
-            "type-six": {
+            "size-six": {
                 "quantitySlots": 16,
                 "attributeTransformCode": "onMorrisTransform",
                 "slotsHitBoxes": [
@@ -80,7 +80,7 @@
                     { "_comment": "15", "x1": 0.8888889, "y1": 0, "z1": 0.8888889, "x2": 1, "y2": 0.03125, "z2": 1 }
                 ]
             },
-            "@(type-nine|type-twelve)": {
+            "@(size-nine|size-twelve)": {
                 "quantitySlots": 24,
                 "attributeTransformCode": "onMorrisTransform",
                 "slotsHitBoxes": [
@@ -127,7 +127,7 @@
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
                 "setStackMaterials": {
-                    "*": [{ "type": "three" }, { "type": "six" }, { "type": "nine" }, { "type": "twelve" }]
+                    "*": [{ "size": "three" }, { "size": "six" }, { "size": "nine" }, { "size": "twelve" }]
                 }
             }
         }
@@ -136,16 +136,15 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "three", "stone": "granite", "color": "carbonblack" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "six", "stone": "granite", "color": "carbonblack" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite", "color": "carbonblack" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "twelve", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "three", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "six", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "nine", "stone": "granite", "color": "carbonblack" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "twelve", "stone": "granite", "color": "carbonblack" } } },
 
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "chalkwhite" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "cinnabar" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "granite", "color": "cokeblack" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "ultramarine" } } },
-                { "type": "block", "code": "morrisboard", "attributes": { "types": { "type": "nine", "stone": "basalt", "color": "verdigris" } } }
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "nine", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "nine", "stone": "basalt", "color": "cinnabar" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "nine", "stone": "basalt", "color": "ultramarine" } } },
+                { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "nine", "stone": "basalt", "color": "verdigris" } } }
             ]
         }
     ],
