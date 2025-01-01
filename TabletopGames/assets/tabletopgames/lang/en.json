@@ -50,14 +50,16 @@
     "game:onGoboard19x19Transform": "On 19x19 Go board",
     "game:onShogiTransform": "On shogi board",
 
-    "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
+    "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the plank",
 
-    "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard construction 1/3",
-    "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard construction 2/3",
-    
-    "inworldcraftingdesc-item-gameboard-generic": "\nTo start chessboard construction:\n• Add any board or stone using <hk>rightmouse</hk> to create dark tiles",
-    "inworldcraftingdesc-item-gameboard-chessboard_step1": "\nAdd any board or stone using <hk>rightmouse</hk> to create light tiles",
-    "inworldcraftingdesc-item-gameboard-chessboard_step2": "\nConvert to functional chessboard using chisel",
+    "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
+    "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",
+
+    "inworldcraftingdesc-chessboardinfo": "Start constructing a chessboard by adding any plank or stone. Use <hk>rightmouse</hk> to create dark tiles.",
+    "inworldcraftingdesc-goboardinfo": "Begin crafting a Go Board by using any pigment with <hk>rightmouse</hk> to draw lines.",
+
+    "inworldcraftingdesc-item-gameboard-chessboard_step1": "Add any plank or stone with <hk>rightmouse</hk> to create light tiles.",
+    "inworldcraftingdesc-item-gameboard-chessboard_step2": "Use a chisel to make it functional.",
 
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",

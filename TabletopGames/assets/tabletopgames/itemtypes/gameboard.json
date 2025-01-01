@@ -22,6 +22,22 @@
             "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "containedDescription": {
+            "type-generic": [
+                "<br>",
+                "tabletopgames:inworldcraftingdesc-chessboardinfo",
+                "<br>",
+                "<br>",
+                "tabletopgames:inworldcraftingdesc-goboardinfo",
+                "\t",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"charcoal\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"ore-bituminouscoal\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"coke\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"stone-chalk\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"stone-limestone\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"nugget-malachite\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"ore-lapislazuli\"></itemstack></font>",
+                "<font size=\"24\"><itemstack type=\"item\" code=\"ore-cinnabar\"></itemstack></font>"
+            ],
             "type-*": ["tabletopgames:inworldcraftingdesc-item-gameboard-{type}"]
         },
         // "redirectTo": {
