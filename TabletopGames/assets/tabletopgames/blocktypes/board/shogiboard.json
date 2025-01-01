@@ -48,8 +48,8 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } },
-                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "cokeblack" } } }
+                //
+                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } }
             ]
         }
     ],
