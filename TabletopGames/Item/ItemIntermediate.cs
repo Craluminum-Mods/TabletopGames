@@ -104,6 +104,6 @@ public class InWorldCraftingStep
     public List<string> RemoveStackMaterials { get; set; } = new();
 
     public JsonItemStack ConvertTo { get; set; }
-    public bool CopyAttributes { get; set; } = false;
-    public bool ConsumeIngredient { get; set; } = false;
+    public bool CopyAttributes { get; set; }
+    public bool ConsumeIngredient { get; set; }
 }

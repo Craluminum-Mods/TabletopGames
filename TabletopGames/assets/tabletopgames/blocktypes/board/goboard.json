@@ -29,11 +29,11 @@
         "textures": {
             "stone-*": {
                 "material": { "base": "game:block/stone/rock/{stone}1" },
-                "overlay": { "base": "tabletopgames:block/board/go/{size}-{color}" }
+                "overlay": { "base": "tabletopgames:block/board/go/{size}/{size}-{color}" }
             },
             "wood-*": {
                 "material": { "base": "game:block/wood/debarked/{wood}" },
-                "overlay": { "base": "tabletopgames:block/board/go/{size}-{color}" }
+                "overlay": { "base": "tabletopgames:block/board/go/{size}/{size}-{color}" }
             }
         },
         "boardData": {
@@ -94,7 +94,14 @@
                         { "setStackMaterials": { "size": "13x13" } },
                         { "setStackMaterials": { "size": "15x15" } },
                         { "setStackMaterials": { "size": "17x17" } },
-                        { "setStackMaterials": { "size": "19x19" } }
+                        { "setStackMaterials": { "size": "19x19" } },
+
+                        { "setStackMaterials": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setStackMaterials": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+
+                        { "setStackMaterials": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
             }

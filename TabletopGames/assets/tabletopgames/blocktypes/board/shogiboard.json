@@ -52,6 +52,26 @@
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
+        },
+        {
+            "name": "TabletopGames.AdvancedToolModes",
+            "properties": {
+                "toolModes": {
+                    "*": [
+                        //
+                        { "setStackMaterials": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "13x13" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "15x15" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "17x17" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "19x19" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+
+                        { "setStackMaterials": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setStackMaterials": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setStackMaterials": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true }
+                    ]
+                }
+            }
         }
     ],
     "creativeinventoryStacks": [

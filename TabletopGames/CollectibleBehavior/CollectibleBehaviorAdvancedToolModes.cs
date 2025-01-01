@@ -97,7 +97,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             SkillItem mode = new()
             {
                 Name = finalStack.GetName(),
-                RenderHandler = finalStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false)
+                RenderHandler = finalStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false),
+                Linebreak = advMode.Linebreak
             };
 
             _toolModes = _toolModes.Append(mode);
@@ -159,5 +160,7 @@ public class AdvancedToolMode
     public List<string> RemoveStackMaterials { get; set; } = new();
 
     public JsonItemStack ConvertTo { get; set; }
-    public bool CopyAttributes { get; set; } = false;
+    public bool CopyAttributes { get; set; }
+
+    public bool Linebreak { get; set; }
 }
