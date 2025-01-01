@@ -16,10 +16,11 @@ namespace TabletopGames;
 /// <para> Optional rotation. </para>
 /// <para> Has "automatic" localization. </para>
 /// </summary>
-public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHandbookTweaks
+public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHandbookTweaks, IContainedCustomName
 {
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
+    public Dictionary<string, List<string>> ContainedDescriptionByType { get; protected set; } = new();
     public Dictionary<string, JsonItemStack> RedirectToByType { get; protected set; }
 
     private Dictionary<string, CompositeShape> shapeByType = new();
@@ -53,6 +54,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<string>>());
             RedirectToByType = Attributes["redirectTo"].AsObject<Dictionary<string, JsonItemStack>>();
         }
     }
@@ -177,5 +179,20 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
         }
         newStack = _jstack.ResolvedItemstack;
         return newStack != null;
+    }
+
+    public string GetContainedInfo(ItemSlot inSlot)
+    {
+        StringBuilder dsc = new();
+        Materials materials = Materials.FromStack(inSlot.Itemstack);
+        materials.FindByMaterial(ContainedDescriptionByType, out List<string> _langKeys);
+        _langKeys ??= new List<string>();
+        materials.GetDescription(dsc, _langKeys);
+        return dsc.ToString();
+    }
+
+    public string GetContainedName(ItemSlot inSlot, int quantity)
+    {
+        return GetHeldItemName(inSlot.Itemstack);
     }
 }

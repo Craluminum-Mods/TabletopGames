@@ -52,6 +52,13 @@
 
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
 
+    "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard construction 1/3",
+    "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard construction 2/3",
+    
+    "inworldcraftingdesc-item-gameboard-generic": "\nTo start chessboard construction:\n• Add any board or stone using <hk>rightmouse</hk> to create dark tiles",
+    "inworldcraftingdesc-item-gameboard-chessboard_step1": "\nAdd any board or stone using <hk>rightmouse</hk> to create light tiles",
+    "inworldcraftingdesc-item-gameboard-chessboard_step2": "\nConvert to functional chessboard using chisel",
+
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
     "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>The most important piece; protect it at all costs.</i></font><br>",
