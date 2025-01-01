@@ -98,12 +98,12 @@
         },
         "inWorldCraftingProps": {
             "type-generic": [
-                // {
-                //     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                //     "setStackMaterials": { "type": "chessboard_step1", "primarystone": "{stone}" }
-                // },
                 {
-                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood" },
+                    "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
+                    "setStackMaterials": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
+                },
+                {
+                    "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
                     "setStackMaterials": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" }
                 },
 
@@ -176,12 +176,12 @@
 
             // chessboard
             "type-chessboard_step1": [
-                // {
-                //     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                //     "setStackMaterials": { "type": "chessboard_step2", "secondarystone": "{stone}", "size": "8x8" }
-                // },
                 {
-                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood" },
+                    "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
+                    "setStackMaterials": { "type": "chessboard_step2", "secondarystone": "{stone}" }
+                },
+                {
+                    "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
                     "setStackMaterials": { "type": "chessboard_step2", "secondarywood": "{wood}" }
                 }
             ],
