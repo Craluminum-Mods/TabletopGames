@@ -9,7 +9,7 @@ namespace TabletopGames;
 
 public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInteractable
 {
-    public Dictionary<string, InWorldCraftingStep[]> MultiStepCraftingByType { get; set; } = new();
+    public Dictionary<string, List<InWorldCraftingStep>> InWorldCraftingPropsByType { get; set; } = new();
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -17,7 +17,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
 
         if (Attributes != null)
         {
-            MultiStepCraftingByType = Attributes["multiStepCrafting"].AsObject(defaultValue: new Dictionary<string, InWorldCraftingStep[]>());
+            InWorldCraftingPropsByType = Attributes["inWorldCraftingProps"].AsObject(defaultValue: new Dictionary<string, List<InWorldCraftingStep>>());
         }
     }
 
@@ -30,24 +30,28 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
         }
 
         Materials materials = Materials.FromStack(slot.Itemstack);
-        if (!materials.FindByMaterial(MultiStepCraftingByType, out InWorldCraftingStep[] steps) || steps == null || !steps.Any())
+        if (!materials.FindByMaterial(InWorldCraftingPropsByType, out List<InWorldCraftingStep> steps) || steps == null || !steps.Any())
         {
             return false;
         }
+        return HandleInWorldCrafting(slot, byPlayer, activeSlot, materials, steps);
+    }
 
-        foreach (var step in steps)
+    public static bool HandleInWorldCrafting(ItemSlot targetSlot, IPlayer byPlayer, ItemSlot inputSlot, Materials targetMaterials, List<InWorldCraftingStep> steps)
+    {
+        foreach (InWorldCraftingStep step in steps)
         {
             CraftingRecipeIngredient ingred = step.TriggerBy.Clone();
             JsonItemStack output = step.ConvertTo?.Clone();
-            ingred?.Resolve(api.World, "");
-            output?.Resolve(api.World, "");
+            ingred?.Resolve(byPlayer.Entity.World, "");
+            output?.Resolve(byPlayer.Entity.World, "");
 
-            if (!ingred.SatisfiesAsIngredient(activeSlot.Itemstack))
+            if (!ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
             {
                 continue;
             }
 
-            if (ingred.IsTool && ingred.ToolDurabilityCost > activeSlot.Itemstack.Collectible.GetRemainingDurability(activeSlot.Itemstack))
+            if (ingred.IsTool && ingred.ToolDurabilityCost > inputSlot.Itemstack.Collectible.GetRemainingDurability(inputSlot.Itemstack))
             {
                 return false;
             }
@@ -55,11 +59,11 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
             Dictionary<string, string> setStackMaterials = step.SetStackMaterials.ShallowClone();
             if (!string.IsNullOrEmpty(ingred.Name) && ingred.IsWildCard)
             {
-                string value = WildcardUtil.GetWildcardValue(ingred.Code, activeSlot.Itemstack.Collectible.Code);
+                string value = WildcardUtil.GetWildcardValue(ingred.Code, inputSlot.Itemstack.Collectible.Code);
                 setStackMaterials = setStackMaterials.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
             }
 
-            CollectibleBehaviorAdvancedToolModes.SetStackMaterials(slot.Itemstack, out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, materials);
+            CollectibleBehaviorAdvancedToolModes.SetStackMaterials(targetSlot.Itemstack, out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, targetMaterials);
 
             if (output != null && output.ResolvedItemstack != null)
             {
@@ -68,25 +72,25 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
                     output.ResolvedItemstack.Attributes = finalStack.Attributes.Clone();
                 }
 
-                slot.Itemstack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
+                targetSlot.Itemstack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
             }
             else
             {
-                slot.Itemstack.SetFrom(finalStack);
+                targetSlot.Itemstack.SetFrom(finalStack);
             }
 
             switch (ingred.IsTool)
             {
                 case true:
-                    activeSlot.Itemstack.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, activeSlot, ingred.ToolDurabilityCost);
+                    inputSlot.Itemstack.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, inputSlot, ingred.ToolDurabilityCost);
                     break;
                 case false when !step.ConsumeIngredient:
-                    activeSlot.TakeOut(ingred.Quantity);
+                    inputSlot.TakeOut(ingred.Quantity);
                     break;
             }
 
-            slot.MarkDirty();
-            activeSlot.MarkDirty();
+            targetSlot.MarkDirty();
+            inputSlot.MarkDirty();
             byPlayer.InventoryManager.BroadcastHotbarSlot();
             return true;
         }

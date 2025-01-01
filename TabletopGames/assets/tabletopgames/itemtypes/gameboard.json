@@ -77,7 +77,7 @@
                 "secondary": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] }
             }
         },
-        "multiStepCrafting": {
+        "inWorldCraftingProps": {
             "type-generic": [
                 // {
                 //     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
