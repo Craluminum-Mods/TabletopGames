@@ -70,14 +70,10 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
                 }
 
                 slot.Itemstack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
-                slot.MarkDirty();
-                activeSlot.MarkDirty();
             }
             else
             {
                 slot.Itemstack.SetFrom(finalStack);
-                slot.MarkDirty();
-                activeSlot.MarkDirty();
             }
 
             switch (ingred.IsTool)
@@ -85,7 +81,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
                 case true:
                     activeSlot.Itemstack.Collectible.DamageItem(byPlayer.Entity.World, byPlayer.Entity, activeSlot, ingred.ToolDurabilityCost);
                     break;
-                case false:
+                case false when !step.ConsumeIngredient:
                     activeSlot.TakeOut(ingred.Quantity);
                     break;
             }
