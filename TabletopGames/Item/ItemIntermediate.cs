@@ -62,7 +62,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
             CollectibleBehaviorAdvancedToolModes.SetStackMaterials(slot.Itemstack, materials, setStackMaterials, out ItemStack intermediateStack);
             CollectibleBehaviorAdvancedToolModes.RemoveStackMaterials(intermediateStack, Materials.FromStack(intermediateStack), step.RemoveStackMaterials, out ItemStack finalStack);
 
-            if (output != null)
+            if (output != null && output.ResolvedItemstack != null)
             {
                 if (step.CopyAttributes && finalStack.Attributes != null)
                 {

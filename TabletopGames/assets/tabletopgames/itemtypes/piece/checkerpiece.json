@@ -38,9 +38,9 @@
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
-                "setStackMaterials": {
-                    "type-king": [{ "type": "pawn" }],
-                    "type-pawn": [{ "type": "king" }]
+                "toolModes": {
+                    "type-king": [{ "setStackMaterials": { "type": "pawn" } }],
+                    "type-pawn": [{ "setStackMaterials": { "type": "king" } }]
                 }
             }
         }

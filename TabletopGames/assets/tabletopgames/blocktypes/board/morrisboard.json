@@ -126,8 +126,14 @@
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
-                "setStackMaterials": {
-                    "*": [{ "size": "three" }, { "size": "six" }, { "size": "nine" }, { "size": "twelve" }]
+                "toolModes": {
+                    "*": [
+                        //
+                        { "setStackMaterials": { "size": "three" } },
+                        { "setStackMaterials": { "size": "six" } },
+                        { "setStackMaterials": { "size": "nine" } },
+                        { "setStackMaterials": { "size": "twelve" } }
+                    ]
                 }
             }
         }
