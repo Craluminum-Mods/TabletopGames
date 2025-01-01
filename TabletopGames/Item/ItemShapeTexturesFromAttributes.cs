@@ -186,6 +186,12 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IHand
         StringBuilder dsc = new();
         Materials materials = Materials.FromStack(inSlot.Itemstack);
         materials.FindByMaterial(ContainedDescriptionByType, out List<string> _langKeys);
+        
+        if (_langKeys == null || !_langKeys.Any())
+        {
+            return GetHeldItemName(inSlot.Itemstack);
+        }
+
         _langKeys ??= new List<string>();
         materials.GetDescription(dsc, _langKeys);
         return dsc.ToString();
