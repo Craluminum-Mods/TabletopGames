@@ -39,6 +39,11 @@ public class Materials
         }
         Elements.TryAdd(key, value);
     }
+    
+    public void RemoveKey(string key)
+    {
+        Elements.Remove(key);
+    }
 
     public void GetDescription(StringBuilder dsc, List<string> langKeys)
     {
@@ -83,8 +88,12 @@ public class Materials
         return materials;
     }
 
+    /// <summary>
+    /// Overwrites tree
+    /// </summary>
     public void ToTreeAttribute(ITreeAttribute rootTree)
     {
+        rootTree.RemoveAttribute(AttributeName);
         ITreeAttribute typesTree = rootTree.GetOrAddTreeAttribute(AttributeName);
         foreach ((string key, string val) in Elements)
         {
@@ -97,6 +106,9 @@ public class Materials
         return FromTreeAttribute(stack.Attributes);
     }
 
+    /// <summary>
+    /// Overwrites tree
+    /// </summary>
     public void ToStack(ItemStack stack)
     {
         ToTreeAttribute(stack.Attributes);

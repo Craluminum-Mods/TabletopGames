@@ -1,0 +1,57 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+		"oak": [16,16]
+	},
+	"textures": {
+		"material": "block/wood/debarked/oak"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ],
+			"to": [ 8.0, 0.0, 8.0 ],
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+			},
+			"children": [
+				{
+					"name": "flat",
+					"from": [ -8.0, 0.0, -8.0 ],
+					"to": [ 8.0, 0.5, 8.0 ],
+					"rotationOrigin": [ -8.0, 0.0, -8.0 ],
+					"faces": {
+						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"south": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"west": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 0.5 ] },
+						"up": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+						"down": { "texture": "#material", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+					}
+				},
+				{
+					"name": "primaryOverlay",
+					"from": [ -8.0, 0.501, -8.0 ],
+					"to": [ 8.0, 0.501, 8.0 ],
+					"rotationOrigin": [ -8.0, 0.0, -8.0 ],
+					"faces": {
+						"up": { "texture": "#primary", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "windMode": [-1,-1,-1,-1] }
+					}
+				},
+				{
+					"name": "secondaryOverlay",
+					"from": [ -8.0, 0.502, -8.0 ],
+					"to": [ 8.0, 0.502, 8.0 ],
+					"rotationOrigin": [ -8.0, 0.0, -8.0 ],
+					"faces": {
+						"up": { "texture": "#secondary", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "windMode": [-1,-1,-1,-1] }
+					}
+				}
+			]
+		}
+	]}

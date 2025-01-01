@@ -74,7 +74,6 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
     public static void SetStackMaterials(ItemStack oldStack, Materials materials, Dictionary<string, string> attributes, out ItemStack newStack)
     {
-        newStack = oldStack.Clone();
         Materials newMaterials = materials.Clone();
 
         foreach ((string key, string value) in attributes)
@@ -82,6 +81,20 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             newMaterials.SetValue(key, value);
         }
 
+        newStack = oldStack.Clone();
+        newMaterials.ToStack(newStack);
+    }
+
+    public static void RemoveStackMaterials(ItemStack oldStack, Materials materials, List<string> attributes, out ItemStack newStack)
+    {
+        Materials newMaterials = materials.Clone();
+
+        foreach (string key in attributes)
+        {
+            newMaterials.RemoveKey(key);
+        }
+
+        newStack = oldStack.Clone();
         newMaterials.ToStack(newStack);
     }
 }
