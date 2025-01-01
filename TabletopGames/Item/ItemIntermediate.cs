@@ -59,8 +59,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
                 setStackMaterials = setStackMaterials.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
             }
 
-            CollectibleBehaviorAdvancedToolModes.SetStackMaterials(slot.Itemstack, materials, setStackMaterials, out ItemStack intermediateStack);
-            CollectibleBehaviorAdvancedToolModes.RemoveStackMaterials(intermediateStack, Materials.FromStack(intermediateStack), step.RemoveStackMaterials, out ItemStack finalStack);
+            CollectibleBehaviorAdvancedToolModes.SetStackMaterials(slot.Itemstack, out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, materials);
 
             if (output != null && output.ResolvedItemstack != null)
             {

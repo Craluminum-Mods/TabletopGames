@@ -42,27 +42,24 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         JsonItemStack output = advMode.ConvertTo?.Clone();
         output?.Resolve(byPlayer.Entity.World, "");
 
-        SetStackMaterials(slot.Itemstack, materials, advMode.SetStackMaterials, out ItemStack firstStack);
-        RemoveStackMaterials(firstStack, Materials.FromStack(firstStack), advMode.RemoveStackMaterials, out ItemStack secondStack);
-
-        ItemStack finalStack = secondStack.Clone();
+        SetStackMaterials(slot.Itemstack, out ItemStack finalStack, setAttributes: advMode.SetStackMaterials, removeAttributes: advMode.RemoveStackMaterials, materials: materials);
 
         if (output != null && output.ResolvedItemstack != null)
         {
-            if (advMode.CopyAttributes && secondStack.Attributes != null)
+            if (advMode.CopyAttributes && finalStack.Attributes != null)
             {
-                output.ResolvedItemstack.Attributes = secondStack.Attributes.Clone();
+                output.ResolvedItemstack.Attributes = finalStack.Attributes.Clone();
             }
 
-            finalStack.SetFrom(output.ResolvedItemstack?.Clone() ?? secondStack);
+            slot.Itemstack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
         }
         else
         {
-            finalStack.SetFrom(secondStack);
+            slot.Itemstack.SetFrom(finalStack);
         }
 
-        slot.Itemstack.SetFrom(finalStack);
         slot.MarkDirty();
+        byPlayer.InventoryManager.BroadcastHotbarSlot();
     }
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
@@ -85,23 +82,16 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
 
-            SetStackMaterials(slot.Itemstack, materials, advMode.SetStackMaterials, out ItemStack firstStack);
-            RemoveStackMaterials(firstStack, Materials.FromStack(firstStack), advMode.RemoveStackMaterials, out ItemStack secondStack);
-
-            ItemStack finalStack = secondStack.Clone();
+            SetStackMaterials(slot.Itemstack, out ItemStack finalStack, advMode.SetStackMaterials, materials: materials);
 
             if (output != null && output.ResolvedItemstack != null)
             {
-                if (advMode.CopyAttributes && secondStack.Attributes != null)
+                if (advMode.CopyAttributes && finalStack.Attributes != null)
                 {
-                    output.ResolvedItemstack.Attributes = secondStack.Attributes.Clone();
+                    output.ResolvedItemstack.Attributes = finalStack.Attributes.Clone();
                 }
 
-                finalStack.SetFrom(output.ResolvedItemstack?.Clone() ?? secondStack);
-            }
-            else
-            {
-                finalStack.SetFrom(secondStack);
+                finalStack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
             }
 
             SkillItem mode = new()
@@ -116,24 +106,44 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return _toolModes;
     }
 
-    public static void SetStackMaterials(ItemStack oldStack, Materials materials, Dictionary<string, string> attributes, out ItemStack newStack)
+    /// <summary>
+    /// Updates the materials of the input <see cref="ItemStack"/> based on the specified parameters.
+    /// If the <paramref name="materials"/> argument is null, the materials from the <paramref name="oldStack"/> are cloned and used.
+    /// </summary>
+    /// <param name="oldStack">
+    /// The original <see cref="ItemStack"/> whose materials are used as the base if <paramref name="materials"/> is null.
+    /// </param>
+    /// <param name="newStack">
+    /// An output parameter that returns the modified <see cref="ItemStack"/> with updated materials.
+    /// </param>
+    /// <param name="setAttributes">
+    /// A dictionary of attribute key-value pairs to add or update in the materials.
+    /// If null, no attributes are added.
+    /// </param>
+    /// <param name="removeAttributes">
+    /// A list of attribute keys to remove from the materials.
+    /// If null, no attributes are removed.
+    /// </param>
+    /// <param name="materials">
+    /// (Optional) A <see cref="Materials"/> object to use for the new stack. 
+    /// If null, the materials from <paramref name="oldStack"/> are cloned and used.
+    /// </param>
+    /// <remarks>
+    /// The method ensures that the original materials and stack remain unmodified by cloning them before applying changes.
+    /// </remarks>
+    public static void SetStackMaterials(ItemStack oldStack, out ItemStack newStack, Dictionary<string, string> setAttributes = null, List<string> removeAttributes = null, Materials materials = null)
     {
-        Materials newMaterials = materials.Clone();
+        Materials newMaterials = materials?.Clone() ?? Materials.FromStack(oldStack.Clone())?.Clone();
 
-        foreach ((string key, string value) in attributes)
+        setAttributes ??= new();
+        removeAttributes ??= new();
+
+        foreach ((string key, string value) in setAttributes)
         {
             newMaterials.SetValue(key, value);
         }
 
-        newStack = oldStack.Clone();
-        newMaterials.ToStack(newStack);
-    }
-
-    public static void RemoveStackMaterials(ItemStack oldStack, Materials materials, List<string> attributes, out ItemStack newStack)
-    {
-        Materials newMaterials = materials.Clone();
-
-        foreach (string key in attributes)
+        foreach (string key in removeAttributes)
         {
             newMaterials.RemoveKey(key);
         }
