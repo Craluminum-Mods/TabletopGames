@@ -97,6 +97,46 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
         return false;
     }
 
+    public static bool HandleGiveStack(IPlayer byPlayer, ItemSlot inputSlot, Materials targetMaterials, List<InWorldCraftingStep> steps)
+    {
+        foreach (InWorldCraftingStep step in steps)
+        {
+            CraftingRecipeIngredient ingred = step.TriggerBy.Clone();
+            JsonItemStack output = step.GiveStack?.Clone();
+            ingred?.Resolve(byPlayer.Entity.World, "");
+            output?.Resolve(byPlayer.Entity.World, "");
+
+            if (output == null || output.ResolvedItemstack == null || !ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
+            {
+                continue;
+            }
+
+            Dictionary<string, string> setStackMaterials = step.SetStackMaterials.ShallowClone();
+            if (!string.IsNullOrEmpty(ingred.Name) && ingred.IsWildCard)
+            {
+                string value = WildcardUtil.GetWildcardValue(ingred.Code, inputSlot.Itemstack.Collectible.Code);
+                setStackMaterials = setStackMaterials.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
+            }
+
+            CollectibleBehaviorAdvancedToolModes.SetStackMaterials(output.ResolvedItemstack, out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, targetMaterials);
+
+            if (!byPlayer.InventoryManager.TryGiveItemstack(finalStack))
+            {
+                byPlayer.Entity.World.SpawnItemEntity(finalStack, byPlayer.Entity.SidedPos.AsBlockPos);
+            }
+
+            if (step.ConsumeIngredient)
+            {
+                inputSlot.TakeOut(ingred.Quantity);
+            }
+
+            inputSlot.MarkDirty();
+            byPlayer.InventoryManager.BroadcastHotbarSlot();
+            return true;
+        }
+        return false;
+    }
+
     public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
     public void OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
 }
@@ -110,4 +150,6 @@ public class InWorldCraftingStep
     public JsonItemStack ConvertTo { get; set; }
     public bool CopyAttributes { get; set; }
     public bool ConsumeIngredient { get; set; } = true;
+
+    public JsonItemStack GiveStack { get; set; }
 }

@@ -58,7 +58,11 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
         if (advMode.IsSinkSlot && !mouseslot.Empty)
         {
-            ItemIntermediate.HandleInWorldCrafting(slot, byPlayer, mouseslot, materials, advMode.SlotParams);
+            if (!ItemIntermediate.HandleGiveStack(byPlayer, mouseslot, materials, advMode.SlotParams))
+            {
+                ItemIntermediate.HandleInWorldCrafting(slot, byPlayer, mouseslot, materials, advMode.SlotParams);
+            }
+
             byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
             return;
         }
