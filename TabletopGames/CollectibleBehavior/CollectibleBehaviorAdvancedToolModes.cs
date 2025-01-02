@@ -12,7 +12,13 @@ namespace TabletopGames;
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
-    private LoadedTexture sinkSlotTexture;
+    //private LoadedTexture sinkSlotTexture;
+    //sinkSlotTexture = new SkillItem().WithIcon(capi, "plus").Texture;
+    //sinkSlotTexture?.Dispose();
+    //Texture = sinkSlotTexture
+
+    private Dictionary<string, LoadedTexture> texturesByKeyResolved = new();
+    private Dictionary<string, string> texturesByKey = new();
 
     public CollectibleBehaviorAdvancedToolModes(CollectibleObject collObj) : base(collObj) { }
 
@@ -20,19 +26,36 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     {
         base.Initialize(properties);
         toolModesByType = properties["toolModes"].AsObject(defaultValue: new Dictionary<string, List<AdvancedToolMode>>());
+        texturesByKey = properties["textures"].AsObject(defaultValue: new Dictionary<string, string>());
     }
 
     public override void OnLoaded(ICoreAPI api)
     {
-        if (api is ICoreClientAPI capi)
+        if (api is not ICoreClientAPI capi)
         {
-            sinkSlotTexture = new SkillItem().WithIcon(capi, "plus").Texture;
+            return;
+        }
+
+        foreach ((string key, string path) in texturesByKey)
+        {
+            if (!texturesByKeyResolved.ContainsKey(key))
+            {
+                LoadedTexture _texture = new SkillItem().WithIcon(capi, path).Texture;
+                if (_texture != null)
+                {
+                    texturesByKeyResolved.Add(key, _texture);
+                }
+
+            }
         }
     }
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        sinkSlotTexture?.Dispose();
+        foreach ((_, LoadedTexture val) in texturesByKeyResolved)
+        {
+            val?.Dispose();
+        }
     }
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int index)
@@ -55,17 +78,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         AdvancedToolMode advMode = toolModes[index];
 
-        ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
-        if (advMode.IsSinkSlot && !mouseslot.Empty)
-        {
-            if (!byPlayer.HandleGiveStack(mouseslot, materials, advMode.SlotParams))
-            {
-                slot.HandleInWorldCrafting(byPlayer, mouseslot, materials, advMode.SlotParams);
-            }
-
-            byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
-            return;
-        }
+        if (TryProcessSinkSlot(advMode, slot, byPlayer, materials)) return;
 
         JsonItemStack output = advMode.ConvertTo?.Clone();
         output?.Resolve(byPlayer.Entity.World, "");
@@ -107,17 +120,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         foreach (AdvancedToolMode advMode in toolModes)
         {
-            if (advMode.IsSinkSlot)
-            {
-                SkillItem _mode = new()
-                {
-                    Name = Lang.Get(advMode.Name),
-                    Linebreak = advMode.Linebreak, 
-                    Texture = sinkSlotTexture
-                };
-                _toolModes = _toolModes.Append(_mode);
-                continue;
-            }
+            if (TryAddSinkSlot(forPlayer, advMode, ref _toolModes)) continue;
 
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
@@ -147,6 +150,50 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return _toolModes;
     }
 
+    private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Materials materials)
+    {
+        ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
+        if (advMode.IsSinkSlot && !mouseslot.Empty)
+        {
+            if (!byPlayer.HandleGiveStack(mouseslot, materials, advMode.SlotParams))
+            {
+                slot.HandleInWorldCrafting(byPlayer, mouseslot, materials, advMode.SlotParams);
+            }
+
+            byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
+            return true;
+        }
+        return false;
+    }
+
+    private bool TryAddSinkSlot(IClientPlayer forPlayer, AdvancedToolMode advMode, ref SkillItem[] _toolModes)
+    {
+        if (!advMode.IsSinkSlot)
+        {
+            return false;
+        }
+
+        SkillItem _mode = new()
+        {
+            Name = Lang.Get(advMode.Name),
+            Linebreak = advMode.Linebreak
+        };
+
+        JsonItemStack iconStack = advMode.IconStack?.Clone();
+        iconStack?.Resolve(forPlayer.Entity.World, "");
+        if (iconStack?.ResolvedItemstack != null)
+        {
+            _mode.RenderHandler = iconStack.ResolvedItemstack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false);
+        }
+        else if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
+        {
+            _mode.Texture = _texture;
+        }
+
+        _toolModes = _toolModes.Append(_mode);
+        return true;
+    }
+
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
     {
         handling = EnumHandling.PassThrough;
@@ -168,6 +215,9 @@ public class AdvancedToolMode
 
     public bool IsSinkSlot { get; set; }
     public List<CraftingStep> SlotParams { get; set; } = new();
+
+    public string IconTexture { get; set; } = "";
+    public JsonItemStack IconStack { get; set; }
 
     public string Name { get; set; }
     public bool Linebreak { get; set; }

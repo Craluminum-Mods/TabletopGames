@@ -1,1 +1,8 @@
-Used KaiTi font for shogi pieces
+Fonts
+==============
+Used KaiTi font for shogi pieces.
+
+Icons
+==============
+tabletopgames\textures\icons\palette.svg: https://icon-icons.com/icon/paint-tray-palette-color/175714
+tabletopgames\textures\icons\paintbrush.svg: https://www.svgrepo.com/svg/164230/paintbrush

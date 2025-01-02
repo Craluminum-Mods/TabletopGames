@@ -30,6 +30,7 @@
                         {
                             "name": "tabletopgames:toolmode-sinkslot-material-createpiece-chesspiece",
                             "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "stone": "basalt" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
@@ -46,6 +47,7 @@
                         {
                             "name": "tabletopgames:toolmode-sinkslot-material-createpiece-checkerpiece",
                             "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "andesite" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 12 },
@@ -62,6 +64,7 @@
                         {
                             "name": "tabletopgames:toolmode-sinkslot-material-createpiece-gostone",
                             "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "limestone" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
@@ -80,6 +83,7 @@
                         {
                             "name": "tabletopgames:toolmode-sinkslot-material-createpiece-shogipiece",
                             "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "stone": "claystone" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 20 },
