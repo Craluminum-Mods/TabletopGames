@@ -146,6 +146,16 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         return _toolModes;
     }
+
+    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
+    {
+        handling = EnumHandling.PassThrough;
+        return base.GetHeldInteractionHelp(inSlot, ref handling).Append(new WorldInteraction
+        {
+            ActionLangCode = "heldhelp-settoolmode",
+            HotKeyCode = "toolmodeselect"
+        });
+    }
 }
 
 public class AdvancedToolMode
