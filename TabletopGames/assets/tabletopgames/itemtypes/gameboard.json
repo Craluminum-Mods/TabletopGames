@@ -18,8 +18,8 @@
         "description": {
             "type-generic::stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
             "type-generic::wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:itemdesc-gameboard", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:itemdesc-gameboard", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "containedDescription": {
             "type-generic": [

@@ -2,6 +2,7 @@
     "game:tabname-tabletopgames": "Tabletop Games",
 
     "item-gameboard": "Generic game board (Not functional)",
+    "itemdesc-gameboard": "Place on the ground to make all possible boards",
 
     "block-chessboard": "Chessboard",
     "item-chesspiece": "Chess piece",
@@ -44,7 +45,7 @@
     "shogipiece-tokin": "Promoted pawn (Tokin)",
 
     "item-schematic-generic_piece": "Tabletop pieces Schematic",
-    "itemdesc-schematic-generic_piece": "Used to create all possible pieces",
+    "itemdesc-schematic-generic_piece": "Used for creating all possible pieces",
 
     "game:onMorrisTransform": "On Morris board",
     "game:onChessboardTransform": "On chessboard",
@@ -53,11 +54,11 @@
     "game:onGoboard19x19Transform": "On 19x19 Go board",
     "game:onShogiTransform": "On shogi board",
 
-    "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the plank",
-    "toolmode-sinkslot-material-createpiece-chesspiece": "(Make a set of Chess pieces) Drag and drop any plank or stone here",
-    "toolmode-sinkslot-material-createpiece-checkerpiece": "(Make a set of Checkers) Drag and drop any plank or stone here",
-    "toolmode-sinkslot-material-createpiece-gostone": "(Make a set of Go stones) Drag and drop any plank or stone here",
-    "toolmode-sinkslot-material-createpiece-shogipiece": "(Make a set of Shogi pieces) Drag and drop any plank or stone here",
+    "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
+    "toolmode-sinkslot-material-createpiece-chesspiece": "(Make a set of 16 Chess pieces) Drag and drop material here",
+    "toolmode-sinkslot-material-createpiece-checkerpiece": "(Make a set of 12 Checker pieces) Drag and drop material here",
+    "toolmode-sinkslot-material-createpiece-gostone": "(Make a set of 64 Go stones) Drag and drop material here",
+    "toolmode-sinkslot-material-createpiece-shogipiece": "(Make a set of 20 Shogi pieces) Drag and drop material here",
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",
