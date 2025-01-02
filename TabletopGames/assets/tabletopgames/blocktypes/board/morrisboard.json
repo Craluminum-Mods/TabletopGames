@@ -18,9 +18,6 @@
             "stone-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        // "redirectTo": {
-        //     "*": { "type": "block", "code": "tabletopgames:morrisboard", "attributes": { "types": { "size": "nine", "stone": "granite", "color": "carbonblack" } } }
-        // },
         "tabletopTags": ["tabletopBoard", "morris", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": {

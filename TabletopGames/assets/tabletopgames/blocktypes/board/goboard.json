@@ -18,9 +18,6 @@
             "stone-*": ["tabletopgames:trivia-goboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-goboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        // "redirectTo": {
-        //     "*": { "type": "block", "code": "tabletopgames:goboard", "attributes": { "types": { "size": "19x19", "wood": "birch", "color": "carbonblack" } } }
-        // },
         "tabletopTags": ["tabletopBoard", "go", "omok"],
         "tabletopTagsIgnored": ["tabletopBoard"],
         "shape": {

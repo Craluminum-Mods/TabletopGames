@@ -40,11 +40,6 @@
             ],
             "type-*": ["tabletopgames:inworldcraftingdesc-item-gameboard-{type}"]
         },
-        // "redirectTo": {
-        //     "stone-*": { "type": "block", "code": "tabletopgames:gameboard", "attributes": { "types": { "stone": "granite" } } },
-        //     "wood-*": { "type": "block", "code": "tabletopgames:gameboard", "attributes": { "types": { "wood": "oak" } } },
-        //     "*": { "type": "block", "code": "tabletopgames:gameboard", "attributes": { "types": { "wood": "oak" } } }
-        // },
         "shape": {
             "type-generic": { "base": "tabletopgames:block/board/16x16" },
             "type-chessboard_step*": { "base": "tabletopgames:block/board/16x16-withtopface-overlay2" }

@@ -158,7 +158,6 @@ public class Material
         string[] list = keyVal.Split('-');
         if (list.Length != 2)
         {
-            // TODO throw errow
             return null;
         }
         return new Material(list[0], list[1]);
