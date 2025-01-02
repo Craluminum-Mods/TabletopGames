@@ -66,12 +66,14 @@
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
-                                    "setStackMaterials": { "type": "pawn", "wood": "{wood}" }
+                                    "setStackMaterials": { "wood": "{wood}" },
+                                    "removeStackMaterials": ["type"]
                                 },
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
-                                    "setStackMaterials": { "type": "pawn", "stone": "{stone}" }
+                                    "setStackMaterials": { "stone": "{stone}" },
+                                    "removeStackMaterials": ["type"]
                                 }
                             ]
                         },
@@ -82,12 +84,12 @@
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 20 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
-                                    "setStackMaterials": { "type": "pawn", "wood": "{wood}" }
+                                    "setStackMaterials": { "type": "fuhyo", "wood": "{wood}" }
                                 },
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 20 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
-                                    "setStackMaterials": { "type": "pawn", "stone": "{stone}" }
+                                    "setStackMaterials": { "type": "fuhyo", "stone": "{stone}" }
                                 }
                             ]
                         }
