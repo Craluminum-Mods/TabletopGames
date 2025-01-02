@@ -38,7 +38,6 @@ public class Core : ModSystem
 
     private void RegisterBlocks()
     {
-        api.RegisterBlockClass("TabletopGames.BlockShapeTexturesFromAttributes", typeof(BlockShapeTexturesFromAttributes));
         api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
     }
 
@@ -56,7 +55,6 @@ public class Core : ModSystem
 
     private void RegisterBlockEntities()
     {
-        api.RegisterBlockEntityClass("TabletopGames.ShapeTexturesFromAttributes", typeof(BEShapeTexturesFromAttributes));
         api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
     }
 }
