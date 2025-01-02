@@ -1,5 +1,7 @@
 ﻿
 using HarmonyLib;
+using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
@@ -26,20 +28,31 @@ public static class GroundStorageInteractionFix
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (hotbarSlot.Empty
-            || targetSlot.Empty
-            || hotbarSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>()
-            || targetSlot?.Itemstack?.Collectible is not ItemIntermediate itemIntermediate)
+        if (hotbarSlot.Empty || targetSlot.Empty)
         {
             return true;
         }
 
-        if (itemIntermediate.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel))
+        if (!hotbarSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>()
+            && targetSlot?.Itemstack?.Collectible is ItemIntermediate itemIntermediate
+            && itemIntermediate.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel))
         {
             begs.MarkDirty(true);
             __result = true;
             return false;
         }
+
+        if (targetSlot?.Itemstack?.ItemAttributes != null && targetSlot.Itemstack.ItemAttributes.KeyExists("tabletopGames.inWorldCraftingProps"))
+        {
+            List<CraftingStep> steps = targetSlot.Itemstack.ItemAttributes["tabletopGames.inWorldCraftingProps"].AsObject(defaultValue: new List<CraftingStep>());
+            if (steps.Any() && targetSlot.HandleInWorldCrafting(byPlayer, hotbarSlot, null, steps))
+            {
+                begs.MarkDirty(true);
+                __result = true;
+                return false;
+            }
+        }
+
         return true;
     }
 }

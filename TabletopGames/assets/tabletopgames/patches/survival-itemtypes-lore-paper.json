@@ -1,0 +1,20 @@
+[
+    {
+        "op": "addmerge",
+        "path": "/attributes/tabletopGames.inWorldCraftingPropsByType",
+        "value": {
+            "*-parchment": [
+                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:coke" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } }
+            ]
+        },
+        "file": "game:itemtypes/lore/paper.json",
+        "side": "Server"
+    }
+]
