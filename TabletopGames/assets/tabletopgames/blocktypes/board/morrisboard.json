@@ -5,6 +5,7 @@
     "maxStackSize": 1,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:morrisboard"] },
+        "canChisel": false,
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,

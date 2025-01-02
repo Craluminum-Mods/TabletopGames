@@ -5,6 +5,7 @@
     "maxStackSize": 1,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:chessboard"] },
+        "canChisel": false,
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
