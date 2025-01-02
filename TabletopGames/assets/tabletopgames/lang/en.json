@@ -111,5 +111,8 @@
 
     "Dimensions": "Dimensions",
     "Primary": "Primary",
-    "Secondary": "Secondary"
+    "Secondary": "Secondary",
+
+    "craftinginfo-starterguide-title": "Tabletop Games 101 - Starter Guide",
+    "craftinginfo-starterguide-text": "<strong>Tabletop Games Starter Guide</strong>     <br><br><strong>Create generic board</strong>      <br>Once you create <a href=\"handbooksearch://generic game board\">Generic board</a>, place it on the ground and follow instructions in tooltip.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Create schematic</a></strong>       <br>Made by interacting with any pigment on parchment placed on the ground.     <br><br><strong>Create pieces</strong>       <br>With schematic in active hand, press <hk>toolmodeselect</hk> key (Tool Mode) to open menu for creating pieces."
 }
