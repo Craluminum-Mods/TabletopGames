@@ -134,11 +134,15 @@
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
+                "textures": {
+                    "paintbrush": "paintbrush"
+                },
                 "toolModes": {
                     "*": [
                         {
                             "name": "tabletopgames:toolmode-sinkslot-pigment-changeboardlinescolor",
                             "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
                             "slotParams": [
                                 { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },
                                 { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },

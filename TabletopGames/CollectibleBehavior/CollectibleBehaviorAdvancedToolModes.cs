@@ -12,11 +12,6 @@ namespace TabletopGames;
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
-    //private LoadedTexture sinkSlotTexture;
-    //sinkSlotTexture = new SkillItem().WithIcon(capi, "plus").Texture;
-    //sinkSlotTexture?.Dispose();
-    //Texture = sinkSlotTexture
-
     private Dictionary<string, LoadedTexture> texturesByKeyResolved = new();
     private Dictionary<string, string> texturesByKey = new();
 
