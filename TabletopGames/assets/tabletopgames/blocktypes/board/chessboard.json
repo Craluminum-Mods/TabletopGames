@@ -16,15 +16,15 @@
             "*": ["tabletopgames:block-chessboard", " (", "tabletopgames:dimension-{size}", ")"]
         },
         "description": {
-            "wood-*::primarywood-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Wood", "material-{primarywood}", "\n", "blockmaterial-Wood", "material-{secondarywood}"],
-            "wood-*::primarystone-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Stone", "rock-{primarystone}", "\n", "blockmaterial-Stone", "rock-{secondarystone}"],
-            "wood-*::primarywood-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Wood", "material-{primarywood}", "\n", "blockmaterial-Stone", "rock-{secondarystone}"],
-            "wood-*::primarystone-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Stone", "rock-{primarystone}", "\n", "blockmaterial-Wood", "material-{secondarywood}"],
+            "wood-*::primarywood-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Wood", ": ", "material-{primarywood}", "\n", "blockmaterial-Wood", ": ", "material-{secondarywood}"],
+            "wood-*::primarystone-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Stone", ": ", "rock-{primarystone}", "\n", "blockmaterial-Stone", ": ", "rock-{secondarystone}"],
+            "wood-*::primarywood-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Wood", ": ", "material-{primarywood}", "\n", "blockmaterial-Stone", ": ", "rock-{secondarystone}"],
+            "wood-*::primarystone-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Wood", ": ", "material-{wood}", "\n", "blockmaterial-Stone", ": ", "rock-{primarystone}", "\n", "blockmaterial-Wood", ": ", "material-{secondarywood}"],
 
-            "stone-*::primarywood-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Wood", "material-{primarywood}", "\n", "blockmaterial-Wood", "material-{secondarywood}"],
-            "stone-*::primarystone-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Stone", "rock-{primarystone}", "\n", "blockmaterial-Stone", "rock-{secondarystone}"],
-            "stone-*::primarywood-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Wood", "material-{primarywood}", "\n", "blockmaterial-Stone", "rock-{secondarystone}"],
-            "stone-*::primarystone-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Stone", "rock-{primarystone}", "\n", "blockmaterial-Wood", "material-{secondarywood}"]
+            "stone-*::primarywood-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Wood", ": ", "material-{primarywood}", "\n", "blockmaterial-Wood", ": ", "material-{secondarywood}"],
+            "stone-*::primarystone-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Stone", ": ", "rock-{primarystone}", "\n", "blockmaterial-Stone", ": ", "rock-{secondarystone}"],
+            "stone-*::primarywood-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Wood", ": ", "material-{primarywood}", "\n", "blockmaterial-Stone", ": ", "rock-{secondarystone}"],
+            "stone-*::primarystone-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Stone", ": ", "rock-{primarystone}", "\n", "blockmaterial-Wood", ": ", "material-{secondarywood}"]
         },
         "tabletopTags": ["tabletopBoard", "chess", "omok", "go"],
         "tabletopTagsIgnored": ["tabletopBoard"],
