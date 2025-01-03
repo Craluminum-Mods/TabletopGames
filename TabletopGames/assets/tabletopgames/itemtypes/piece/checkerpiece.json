@@ -17,7 +17,9 @@
             "stone-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["chess"],
+        "tabletopTags": {
+            "tags": ["chess"]
+        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/checkerpiece-{type}" }
         },

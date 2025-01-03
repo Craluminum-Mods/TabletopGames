@@ -19,8 +19,16 @@
             "stone-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["tabletopBoard", "morris", "omok", "go"],
-        "tabletopTagsIgnored": ["tabletopBoard"],
+        "tabletopTags": {
+            "*": {
+                "tagsPerSlot": {
+                    "*": ["tabletopBoard", "morris", "omok", "go"]
+                },
+                "tagsIgnoredPerSlot": {
+                    "*": ["tabletopBoard"]
+                }
+            }
+        },
         "shape": {
             "*": { "base": "tabletopgames:block/board/16x16-overlay" }
         },

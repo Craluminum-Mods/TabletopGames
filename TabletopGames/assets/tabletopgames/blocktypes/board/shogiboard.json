@@ -19,8 +19,16 @@
             "stone-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["tabletopBoard", "shogi"],
-        "tabletopTagsIgnored": ["tabletopBoard"],
+        "tabletopTags": {
+            "*": {
+                "tagsPerSlot": {
+                    "*": ["tabletopBoard", "shogi"]
+                },
+                "tagsIgnoredPerSlot": {
+                    "*": ["tabletopBoard"]
+                }
+            }
+        },
         "shape": {
             "*": { "base": "tabletopgames:block/board/16x16-overlay" }
         },

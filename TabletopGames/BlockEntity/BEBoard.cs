@@ -66,7 +66,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
             {
-                return new ItemSlotTabletop(_inv, OwnBlock.TabletopTags, OwnBlock.TabletopTagsIgnored);
+                return new ItemSlotTabletop(_inv, OwnBlock.GetTags(Materials, slotid));
             });
         }
     }
@@ -286,7 +286,8 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-        bool placeable = OwnBlock.AreTagsCompatible(slot.Itemstack);
+        TabletopTags boardTags = OwnBlock.GetTags(Materials, slotId: blockSel.SelectionBoxIndex);
+        bool placeable = TabletopTags.AreTagsCompatible(boardTags, slot.Itemstack);
 
         if (slot.Empty || !placeable)
         {

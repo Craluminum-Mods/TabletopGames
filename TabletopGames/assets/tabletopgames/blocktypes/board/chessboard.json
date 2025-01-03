@@ -26,8 +26,16 @@
             "stone-*::primarywood-*::secondarystone-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Wood", ": ", "material-{primarywood}", "\n", "blockmaterial-Stone", ": ", "rock-{secondarystone}"],
             "stone-*::primarystone-*::secondarywood-*": ["tabletopgames:trivia-chessboard", "blockmaterial-Stone", ": ", "material-{stone}", "\n", "blockmaterial-Stone", ": ", "rock-{primarystone}", "\n", "blockmaterial-Wood", ": ", "material-{secondarywood}"]
         },
-        "tabletopTags": ["tabletopBoard", "chess", "omok", "go"],
-        "tabletopTagsIgnored": ["tabletopBoard"],
+        "tabletopTags": {
+            "*": {
+                "tagsPerSlot": {
+                    "*": ["tabletopBoard", "chess", "go", "omok"]
+                },
+                "tagsIgnoredPerSlot": {
+                    "*": ["tabletopBoard"]
+                }
+            }
+        },
         "shape": {
             "wood-*::primarywood-*::secondarywood-*": { "base": "tabletopgames:block/board/chess/wood-primarywood-secondarywood" },
             "wood-*::primarystone-*::secondarystone-*": { "base": "tabletopgames:block/board/chess/wood-primarystone-secondarystone" },

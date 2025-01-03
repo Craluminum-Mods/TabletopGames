@@ -17,7 +17,9 @@
             "stone-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["shogi"],
+        "tabletopTags": {
+            "tags": ["shogi"]
+        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/shogipiece" }
         },

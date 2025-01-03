@@ -21,7 +21,9 @@
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": ["go", "omok"],
+        "tabletopTags": {
+            "tags": ["go", "omok"]
+        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/gostone" }
         },

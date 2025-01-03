@@ -22,9 +22,8 @@ namespace TabletopGames;
 public class BlockBoard : Block, IContainedMeshSource
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
+    public Dictionary<string, TabletopTags> TabletopTagsByType { get; protected set; } = new();
 
-    public List<string> TabletopTags { get; protected set; } = new();
-    public List<string> TabletopTagsIgnored { get; protected set; } = new();
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
@@ -56,10 +55,8 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (Attributes != null)
         {
-            BoardDataByType = Attributes["boardData"].AsObject<Dictionary<string, BoardData>>();
-
-            TabletopTags = Attributes["tabletopTags"].AsObject<List<string>>();
-            TabletopTagsIgnored = Attributes["tabletopTagsIgnored"].AsObject<List<string>>();
+            BoardDataByType = Attributes["boardData"].AsObject(defaultValue: new Dictionary<string, BoardData>());
+            TabletopTagsByType = Attributes["tabletopTags"].AsObject(defaultValue: new Dictionary<string, TabletopTags>());
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
@@ -68,7 +65,7 @@ public class BlockBoard : Block, IContainedMeshSource
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
         }
 
-        foreach ((string _, BoardData boardData) in BoardDataByType)
+        foreach (BoardData boardData in BoardDataByType.Values)
         {
             if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == boardData.AttributeTransformCode))
             {
@@ -80,6 +77,37 @@ public class BlockBoard : Block, IContainedMeshSource
     public BoardData GetBoardData(Materials materials)
     {
         return materials.FindByMaterial(BoardDataByType, out BoardData value) ? value : new BoardData();
+    }
+
+    public TabletopTags GetTags(Materials materials, int slotId)
+    {
+        TabletopTags tags = materials.FindByMaterial(TabletopTagsByType, out TabletopTags value) ? value : new TabletopTags();
+        if (slotId >= 0 && (tags.TagsPerSlot.Any() || tags.TagsIgnoredPerSlot.Any()))
+        {
+            TabletopTags newTags = new();
+            string _slotId = slotId.ToString();
+
+            foreach ((string _id, List<string> _tags) in tags.TagsPerSlot)
+            {
+                if (WildcardUtil.Match(_id, _slotId))
+                {
+                    newTags.Tags = _tags;
+                    break;
+                }
+            }
+
+            foreach ((string _id, List<string> _ignoredTags) in tags.TagsIgnoredPerSlot)
+            {
+                if (WildcardUtil.Match(_id, _slotId))
+                {
+                    newTags.TagsIgnored = _ignoredTags;
+                    break;
+                }
+            }
+
+            return newTags;
+        }
+        return tags;
     }
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
