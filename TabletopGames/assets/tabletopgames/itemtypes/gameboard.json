@@ -246,9 +246,9 @@
     "heldTpIdleAnimation": "holdbothhandslarge",
     "heldTpUseAnimation": "twohandplaceblock",
     "guiTransform": {
-        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "rotation": { "x": 140, "y": 30, "z": 0 },
         "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-        "scale": 1.6
+        "scaleXyz": { "x": -1.6, "y": 1.6, "z": 1.6 }
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
