@@ -42,53 +42,62 @@
         },
         "shape": {
             "type-generic": { "base": "tabletopgames:block/board/16x16" },
-            "type-chessboard_step*": { "base": "tabletopgames:block/board/16x16-withtopface-overlay2" }
+
+            "type-chessboard_step1::wood-*::primarywood-*": { "base": "tabletopgames:block/board/chess/wood-primarywood-secondarywood" },
+            "type-chessboard_step1::wood-*::primarystone-*": { "base": "tabletopgames:block/board/chess/wood-primarystone-secondarystone" },
+            "type-chessboard_step1::stone-*::primarywood-*": { "base": "tabletopgames:block/board/chess/stone-primarywood-secondarywood" },
+            "type-chessboard_step1::stone-*::primarystone-*": { "base": "tabletopgames:block/board/chess/stone-primarystone-secondarystone" },
+
+            "type-chessboard_step2::wood-*::primarywood-*::secondarywood-*": { "base": "tabletopgames:block/board/chess/wood-primarywood-secondarywood" },
+            "type-chessboard_step2::wood-*::primarystone-*::secondarystone-*": { "base": "tabletopgames:block/board/chess/wood-primarystone-secondarystone" },
+            "type-chessboard_step2::wood-*::primarywood-*::secondarystone-*": { "base": "tabletopgames:block/board/chess/wood-primarywood-secondarystone" },
+            "type-chessboard_step2::wood-*::primarystone-*::secondarywood-*": { "base": "tabletopgames:block/board/chess/wood-primarystone-secondarywood" },
+
+            "type-chessboard_step2::stone-*::primarywood-*::secondarywood-*": { "base": "tabletopgames:block/board/chess/stone-primarywood-secondarywood" },
+            "type-chessboard_step2::stone-*::primarystone-*::secondarystone-*": { "base": "tabletopgames:block/board/chess/stone-primarystone-secondarystone" },
+            "type-chessboard_step2::stone-*::primarywood-*::secondarystone-*": { "base": "tabletopgames:block/board/chess/stone-primarywood-secondarystone" },
+            "type-chessboard_step2::stone-*::primarystone-*::secondarywood-*": { "base": "tabletopgames:block/board/chess/stone-primarystone-secondarywood" }
         },
         "textures": {
             "type-generic::wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "type-generic::stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
 
-            // chessboard stages
-            "type-chessboard_step1::wood-*::primarystone-*": {
-                "material": { "base": "game:block/wood/debarked/{wood}" },
-                "primary": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/transparent" }
+            "type-chessboard_step1::@(size-5x5|size-7x7)": {
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood-up": { "base": "game:block/wood/debarked/{wood}" },
+                "stone-up": { "base": "game:block/stone/rock/{stone}1" },
+                "primarystone": { "base": "game:block/stone/rock/{primarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}-r", "blendMode": "OverlayCutout" }] },
+                "secondarystone": { "base": "game:block/transparent" },
+                "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}-r", "blendMode": "OverlayCutout" }] },
+                "secondarywood": { "base": "game:block/transparent" }
             },
-            "type-chessboard_step1::wood-*::primarywood-*": {
-                "material": { "base": "game:block/wood/debarked/{wood}" },
-                "primary": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/transparent" }
-            },
-            "type-chessboard_step1::stone-*::primarystone-*": {
-                "material": { "base": "game:block/stone/rock/{stone}1" },
-                "primary": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/transparent" }
-            },
-            "type-chessboard_step1::stone-*::primarywood-*": {
-                "material": { "base": "game:block/stone/rock/{stone}1" },
-                "primary": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/transparent" }
+            "type-chessboard_step1": {
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood-up": { "base": "game:block/wood/debarked/{wood}" },
+                "stone-up": { "base": "game:block/stone/rock/{stone}1" },
+                "primarystone": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "secondarystone": { "base": "game:block/transparent" },
+                "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "secondarywood": { "base": "game:block/transparent" }
             },
 
-            "type-chessboard_step2::wood-*::primarystone-*": {
-                "material": { "base": "game:block/wood/debarked/{wood}" },
-                "primary": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/stone/rock/{secondarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] }
+            "type-chessboard_step2::@(size-5x5|size-7x7)": {
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "primarystone": { "base": "game:block/stone/rock/{primarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}-r", "blendMode": "OverlayCutout" }] },
+                "secondarystone": { "base": "game:block/stone/rock/{secondarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}-r", "blendMode": "OverlayCutout" }] },
+                "secondarywood": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] }
             },
-            "type-chessboard_step2::wood-*::primarywood-*": {
-                "material": { "base": "game:block/wood/debarked/{wood}" },
-                "primary": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] }
-            },
-            "type-chessboard_step2::stone-*::primarystone-*": {
-                "material": { "base": "game:block/stone/rock/{stone}1" },
-                "primary": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/stone/rock/{secondarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] }
-            },
-            "type-chessboard_step2::stone-*::primarywood-*": {
-                "material": { "base": "game:block/stone/rock/{stone}1" },
-                "primary": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] },
-                "secondary": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/8x8", "blendMode": "OverlayCutout" }] }
+            "type-chessboard_step2": {
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "primarystone": { "base": "game:block/stone/rock/{primarystone}1", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "secondarystone": { "base": "game:block/stone/rock/{secondarystone}1", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
+                "secondarywood": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] }
             }
         },
         "inWorldCraftingProps": {
