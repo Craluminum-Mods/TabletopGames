@@ -1,8 +1,8 @@
 {
     "game:tabname-tabletopgames": "Tabletop Games",
 
-    "item-gameboard": "Generic game board (Not functional)",
-    "itemdesc-gameboard": "Place on the ground to make all possible boards",
+    "gameboard": "Generic game board (Not functional)",
+    "gameboard-description": "Place on the ground to make all possible boards",
 
     "block-chessboard": "Chessboard",
     "item-chesspiece": "Chess piece",
