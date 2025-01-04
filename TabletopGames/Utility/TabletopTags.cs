@@ -57,31 +57,30 @@ public class TabletopTags
 
         if (verbose)
         {
-            dsc.AppendLine(nameof(TabletopTags) + ": ");
             if (Tags.Any())
             {
-                dsc.AppendLine("\t" + nameof(Tags) + ": " + string.Join(", ", Tags));
+                dsc.AppendLine( nameof(Tags) + ": " + string.Join(", ", Tags));
             }
             if (TagsIgnored.Any())
             {
-                dsc.AppendLine("\t" + nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
+                dsc.AppendLine( nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
             }
 
-            dsc.AppendLine("\t" + nameof(TagsPerSlot) + ": ");
+            dsc.AppendLine(nameof(TagsPerSlot) + ": ");
             foreach ((string id, List<string> tags) in TagsPerSlot)
             {
                 if (tags.Any())
                 {
-                    dsc.AppendLine("\t" + $"[{id}] " + string.Join(", ", tags));
+                    dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
                 }
             }
 
-            dsc.AppendLine("\t" + nameof(TagsIgnoredPerSlot) + ": ");
+            dsc.AppendLine(nameof(TagsIgnoredPerSlot) + ": ");
             foreach ((string id, List<string> tags) in TagsIgnoredPerSlot)
             {
                 if (tags.Any())
                 {
-                    dsc.AppendLine("\t" + $"[{id}] " + string.Join(", ", tags));
+                    dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
                 }
             }
 
