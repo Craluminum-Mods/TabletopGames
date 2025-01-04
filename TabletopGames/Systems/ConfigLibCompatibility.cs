@@ -151,9 +151,9 @@ public class ConfigLibCompatibility
 
     private static void AppendSelectionBox(StringBuilder sb, Cuboidf box, int index)
     {
-        sb.AppendLine($"{{ \"index\": \"{index}\", ");
-        sb.AppendLine($"  \"x1\": {box.X1}, \"y1\": {box.Y1}, \"z1\": {box.Z1}, ");
-        sb.AppendLine($"  \"x2\": {box.X2}, \"y2\": {box.Y2}, \"z2\": {box.Z2} }}");
+        sb.Append($"{{ \"index\": \"{index}\", ");
+        sb.Append($"  \"x1\": {box.X1}, \"y1\": {box.Y1}, \"z1\": {box.Z1}, ");
+        sb.AppendLine($"  \"x2\": {box.X2}, \"y2\": {box.Y2}, \"z2\": {box.Z2} }},");
     }
 
     private void ColorPicker4VS(string label, ref Vec4f vec)
