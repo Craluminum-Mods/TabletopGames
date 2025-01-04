@@ -1,5 +1,6 @@
 ﻿using ConfigLib;
 using ImGuiNET;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
@@ -21,31 +22,37 @@ public class ConfigLibCompatibility
         });
     }
 
+    private static List<Cuboidf> SelectedSelectionBoxes { get; set; } = new();
+
     private void Edit(ICoreAPI api, string id)
     {
-        if (ImGui.CollapsingHeader($"DEBUG##DEBUG-{id}"))
+        if (ImGui.CollapsingHeader($"Debug##Debug-{id}"))
         {
             ImGui.Indent();
-            ImGui.Checkbox("Toggle variants debug info" + $"##DEBUG-VariantsDebugInfo-{id}", ref TabletopDebug.VariantsDebugInfo);
-            ImGui.Checkbox("Toggle board data debug info" + $"##DEBUG-BoardDataDebugInfo-{id}", ref TabletopDebug.BoardDataDebugInfo);
-            ImGui.Checkbox("Toggle tags debug info" + $"##DEBUG-TagsDebugInfo-{id}", ref TabletopDebug.TagsDebugInfo);
-            ImGui.Checkbox("Toggle board particle selection" + $"##DEBUG-BoardParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
-            if (ImGui.CollapsingHeader($"Selection colors##DEBUG-{id}"))
+
+            ImGui.Checkbox($"Show variants debug info##VariantsDebug-{id}", ref TabletopDebug.VariantsDebugInfo);
+            ImGui.Checkbox($"Show board data debug info##BoardDataDebug-{id}", ref TabletopDebug.BoardDataDebugInfo);
+            ImGui.Checkbox($"Show tags debug info##TagsDebug-{id}", ref TabletopDebug.TagsDebugInfo);
+            ImGui.Checkbox($"Enable board particle selection##ParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
+
+            if (ImGui.CollapsingHeader($"Selection Colors##SelectionColors-{id}"))
             {
                 ImGui.Indent();
-                ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
+                ColorPicker4VS($"Board Selection Color##SelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
                 ImGui.Unindent();
             }
+
             if (api is ICoreClientAPI capi)
             {
                 BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
                 if (selection != null && capi.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
                 {
-                    StealSelBox(id, blockEntity);
+                    ManageSelectionBoxes(id, blockEntity);
                     ImGui.NewLine();
                     EditBoardData(id, blockEntity);
                 }
             }
+
             ImGui.Unindent();
         }
     }
@@ -54,29 +61,31 @@ public class ConfigLibCompatibility
     {
         if (blockEntity.BoardData != null)
         {
-            EditPadding(id, blockEntity);
+            ManagePadding(id, blockEntity);
         }
     }
 
-    private static void EditPadding(string id, BlockEntityBoard blockEntity)
+    private static void ManagePadding(string id, BlockEntityBoard blockEntity)
     {
         ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
 
         Vec4f oldPadding = blockEntity.BoardData.Padding;
         Vector4 padding = new Vector4(oldPadding.X, oldPadding.Y, oldPadding.Z, oldPadding.W);
-        if (ImGui.InputFloat4("edit padding" + $"##DEBUG-EditPadding-{id}", ref padding))
+
+        if (ImGui.InputFloat4($"Edit Padding##EditPadding-{id}", ref padding))
         {
             Vec4f newPadding = new Vec4f(padding.X, padding.Y, padding.Z, padding.W);
             blockEntity.BoardData.Padding = newPadding;
             blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
         }
-        if (ImGui.Button("Copy padding" + $"##DEBUG-CopyPadding-{id}"))
+
+        if (ImGui.Button($"Copy Padding##CopyPadding-{id}"))
         {
             StringBuilder dsc = new();
-            dsc.Append("\"padding\": { \"x\": " + blockEntity.BoardData.Padding.X.ToString());
-            dsc.Append(", \"y\": " + blockEntity.BoardData.Padding.Y.ToString() + " ");
-            dsc.Append(", \"z\": " + blockEntity.BoardData.Padding.Z.ToString() + " ");
-            dsc.Append(", \"w\": " + blockEntity.BoardData.Padding.W.ToString() + " }");
+            dsc.Append($"\"padding\": {{ \"x\": {blockEntity.BoardData.Padding.X}, ");
+            dsc.Append($"\"y\": {blockEntity.BoardData.Padding.Y}, ");
+            dsc.Append($"\"z\": {blockEntity.BoardData.Padding.Z}, ");
+            dsc.Append($"\"w\": {blockEntity.BoardData.Padding.W} }}");
 
             if (capi != null)
             {
@@ -85,49 +94,66 @@ public class ConfigLibCompatibility
         }
     }
 
-    private static void StealSelBox(string id, BlockEntityBoard blockEntity)
+    private static void ManageSelectionBoxes(string id, BlockEntityBoard blockEntity)
     {
         ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
+        ImGui.NewLine();
 
-        bool stealAll = ImGui.Button("Steal whole selected block selection" + $"##DEBUG-StealWholeSelectedBlockSelection-{id}");
-        bool stealOne = ImGui.Button("Steal selected block selection" + $"##DEBUG-StealSelectedBlockSelection-{id}");
+        bool addBoxToList = ImGui.Button($"Add Selection Box to List##SelectionBoxes-AddToList-{id}");
+        bool copyListToClipboard = ImGui.Button($"Copy Selection Box List to Clipboard##SelectionBoxes-CopyList-{id}");
+        bool clearList = ImGui.Button($"Clear Selection Box List##ClearList-{id}");
+        ImGui.NewLine();
+        bool copyAllBoxes = ImGui.Button($"Copy All Selection Boxes to Clipboard##SelectionBoxes-CopyAll-{id}");
+        bool copySelectedBox = ImGui.Button($"Copy Selected Selection Box to Clipboard##SelectionBoxes-CopySelected-{id}");
 
-        if (!stealAll && !stealOne)
+        if (clearList)
         {
+            SelectedSelectionBoxes.Clear();
+            return;
+        }
+
+        if (!addBoxToList && !copyListToClipboard && !copyAllBoxes && !copySelectedBox) return;
+
+        Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
+        int selectedIndex = capi.World.Player.CurrentBlockSelection.SelectionBoxIndex;
+
+        if (addBoxToList)
+        {
+            if (selectedIndex >= 0 && selectedIndex < cuboids.Length)
+            {
+                SelectedSelectionBoxes.Add(cuboids[selectedIndex]);
+            }
             return;
         }
 
         StringBuilder sb = new();
-
-        int selectionBoxIndex = capi.World.Player.CurrentBlockSelection.SelectionBoxIndex;
-
-        Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
-        if (stealAll)
+        if (copyAllBoxes)
         {
             for (int i = 0; i < cuboids.Length; i++)
             {
-                SaveSelBoxAsText(sb, cuboids[i], i);
+                AppendSelectionBox(sb, cuboids[i], i);
             }
         }
-        else if (stealOne)
+        else if (copySelectedBox)
         {
-            Cuboidf box = cuboids[selectionBoxIndex];
-            SaveSelBoxAsText(sb, box, selectionBoxIndex);
+            AppendSelectionBox(sb, cuboids[selectedIndex], selectedIndex);
+        }
+        else if (copyListToClipboard)
+        {
+            for (int i = 0; i < SelectedSelectionBoxes.Count; i++)
+            {
+                AppendSelectionBox(sb, SelectedSelectionBoxes[i], i);
+            }
         }
 
         capi.Input.ClipboardText = sb.ToString();
     }
 
-    private static void SaveSelBoxAsText(StringBuilder sb, Cuboidf box, int i)
+    private static void AppendSelectionBox(StringBuilder sb, Cuboidf box, int index)
     {
-        sb.Append("{ \"___cmt\": \"" + i + "\", ");
-        sb.Append("\"" + nameof(box.X1).ToLower() + "\": " + box.X1.ToString() + ", ");
-        sb.Append("\"" + nameof(box.Y1).ToLower() + "\": " + box.Y1.ToString() + ", ");
-        sb.Append("\"" + nameof(box.Z1).ToLower() + "\": " + box.Z1.ToString() + ", ");
-        sb.Append("\"" + nameof(box.X2).ToLower() + "\": " + box.X2.ToString() + ", ");
-        sb.Append("\"" + nameof(box.Y2).ToLower() + "\": " + box.Y2.ToString() + ", ");
-        sb.Append("\"" + nameof(box.Z2).ToLower() + "\": " + box.Z2.ToString());
-        sb.AppendLine(" },");
+        sb.AppendLine($"{{ \"index\": \"{index}\", ");
+        sb.AppendLine($"  \"x1\": {box.X1}, \"y1\": {box.Y1}, \"z1\": {box.Z1}, ");
+        sb.AppendLine($"  \"x2\": {box.X2}, \"y2\": {box.Y2}, \"z2\": {box.Z2} }}");
     }
 
     private void ColorPicker4VS(string label, ref Vec4f vec)
