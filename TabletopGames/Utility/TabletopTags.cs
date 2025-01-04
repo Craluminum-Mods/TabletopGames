@@ -48,10 +48,43 @@ public class TabletopTags
         return new List<string>();
     }
 
-    public void GetDescription(StringBuilder dsc, int slotIndex = -1)
+    public void GetDescription(StringBuilder dsc, int slotIndex = -1, bool verbose = false)
     {
         if (!TabletopDebug.TagsDebugInfo)
         {
+            return;
+        }
+
+        if (verbose)
+        {
+            dsc.AppendLine(nameof(TabletopTags) + ": ");
+            if (Tags.Any())
+            {
+                dsc.AppendLine("\t" + nameof(Tags) + ": " + string.Join(", ", Tags));
+            }
+            if (TagsIgnored.Any())
+            {
+                dsc.AppendLine("\t" + nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
+            }
+
+            dsc.AppendLine("\t" + nameof(TagsPerSlot) + ": ");
+            foreach ((string id, List<string> tags) in TagsPerSlot)
+            {
+                if (tags.Any())
+                {
+                    dsc.AppendLine("\t" + $"[{id}] " + string.Join(", ", tags));
+                }
+            }
+
+            dsc.AppendLine("\t" + nameof(TagsIgnoredPerSlot) + ": ");
+            foreach ((string id, List<string> tags) in TagsIgnoredPerSlot)
+            {
+                if (tags.Any())
+                {
+                    dsc.AppendLine("\t" + $"[{id}] " + string.Join(", ", tags));
+                }
+            }
+
             return;
         }
 

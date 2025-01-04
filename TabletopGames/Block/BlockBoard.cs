@@ -79,11 +79,13 @@ public class BlockBoard : Block, IContainedMeshSource
         return variants.FindByVariant(BoardDataByType, out BoardData value) ? value : new BoardData();
     }
 
-    public virtual TabletopTags GetTags(Variants variants, int slotId)
+    public virtual TabletopTags GetTags(Variants variants, int slotId, bool resolve = true)
     {
-        return variants.FindByVariant(TabletopTagsByType, out TabletopTags value) ? value.GetResolvedTags(slotId) : new TabletopTags();
+        return variants.FindByVariant(TabletopTagsByType, out TabletopTags tags)
+            ? resolve ? tags.GetResolvedTags(slotId) : tags
+            : new TabletopTags();
     }
-    
+
     public virtual ItemSlot CreateSlot(Variants variants, InventoryBase inventory, int slotId)
     {
         BoardData boardData = GetBoardData(variants);
