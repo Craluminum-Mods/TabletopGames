@@ -50,23 +50,23 @@
             "properties": {
                 "toolModes": {
                     "*": [
-                        { "setStackMaterials": { "type": "gyokusho" } }, //                     King (gyokusho)
-                        { "setStackMaterials": { "type": "osho" } }, //                         King (osho)
-                        { "setStackMaterials": { "type": "kinsho" } }, //                       Gold general (kinsho)
+                        { "setVariants": { "type": "gyokusho" } }, //                     King (gyokusho)
+                        { "setVariants": { "type": "osho" } }, //                         King (osho)
+                        { "setVariants": { "type": "kinsho" } }, //                       Gold general (kinsho)
 
-                        { "setStackMaterials": { "type": "ginsho" }, "linebreak": true }, //    Silver general (ginsho)
-                        { "setStackMaterials": { "type": "kyosha" } }, //                       Lance (kyosha)
-                        { "setStackMaterials": { "type": "keima" } }, //                        Knight (keima)
-                        { "setStackMaterials": { "type": "kakugyo" } }, //                      Bishop (kakugyo)
-                        { "setStackMaterials": { "type": "hisha" } }, //                        Rook (hisha)
-                        { "setStackMaterials": { "type": "fuhyo" } }, //                        Pawn (fuhyo)
+                        { "setVariants": { "type": "ginsho" }, "linebreak": true }, //    Silver general (ginsho)
+                        { "setVariants": { "type": "kyosha" } }, //                       Lance (kyosha)
+                        { "setVariants": { "type": "keima" } }, //                        Knight (keima)
+                        { "setVariants": { "type": "kakugyo" } }, //                      Bishop (kakugyo)
+                        { "setVariants": { "type": "hisha" } }, //                        Rook (hisha)
+                        { "setVariants": { "type": "fuhyo" } }, //                        Pawn (fuhyo)
 
-                        { "setStackMaterials": { "type": "narigin" }, "linebreak": true }, //   Promoted silver (narigin)
-                        { "setStackMaterials": { "type": "narikyo" } }, //                      Promoted lance (narikyo)
-                        { "setStackMaterials": { "type": "narikei" } }, //                      Promoted knight (narikei
-                        { "setStackMaterials": { "type": "ryuma" } }, //                        Promoted bishop (ryuma)
-                        { "setStackMaterials": { "type": "ryuo" } }, //                         Promoted rook (ryuo)
-                        { "setStackMaterials": { "type": "tokin" } } //                         Promoted pawn (tokin)
+                        { "setVariants": { "type": "narigin" }, "linebreak": true }, //   Promoted silver (narigin)
+                        { "setVariants": { "type": "narikyo" } }, //                      Promoted lance (narikyo)
+                        { "setVariants": { "type": "narikei" } }, //                      Promoted knight (narikei
+                        { "setVariants": { "type": "ryuma" } }, //                        Promoted bishop (ryuma)
+                        { "setVariants": { "type": "ryuo" } }, //                         Promoted rook (ryuo)
+                        { "setVariants": { "type": "tokin" } } //                         Promoted pawn (tokin)
                     ]
                 }
             }

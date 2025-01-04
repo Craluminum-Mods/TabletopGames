@@ -60,8 +60,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             return;
         }
 
-        Materials materials = Materials.FromStack(slot.Itemstack);
-        if (!materials.FindByMaterial(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
+        Variants variants = Variants.FromStack(slot.Itemstack);
+        if (!variants.FindByVariant(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
         {
             return;
         }
@@ -73,12 +73,12 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         AdvancedToolMode advMode = toolModes[index];
 
-        if (TryProcessSinkSlot(advMode, slot, byPlayer, materials)) return;
+        if (TryProcessSinkSlot(advMode, slot, byPlayer, variants)) return;
 
         JsonItemStack output = advMode.ConvertTo?.Clone();
         output?.Resolve(byPlayer.Entity.World, "");
 
-        slot.Itemstack.SetStackMaterials(out ItemStack finalStack, setAttributes: advMode.SetStackMaterials, removeAttributes: advMode.RemoveStackMaterials, materials: materials);
+        slot.Itemstack.OverwriteVariants(out ItemStack finalStack, setVariants: advMode.SetVariants, removeVariants: advMode.RemoveVariants, variants: variants);
 
         if (output != null && output.ResolvedItemstack != null)
         {
@@ -107,8 +107,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             return null;
         }
 
-        Materials materials = Materials.FromStack(slot.Itemstack);
-        if (!materials.FindByMaterial(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
+        Variants variants = Variants.FromStack(slot.Itemstack);
+        if (!variants.FindByVariant(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
         {
             return null;
         }
@@ -120,7 +120,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
 
-            slot.Itemstack.SetStackMaterials(out ItemStack finalStack, advMode.SetStackMaterials, materials: materials);
+            slot.Itemstack.OverwriteVariants(out ItemStack finalStack, advMode.SetVariants, variants: variants);
 
             if (output != null && output.ResolvedItemstack != null)
             {
@@ -145,14 +145,14 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return _toolModes;
     }
 
-    private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Materials materials)
+    private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Variants variants)
     {
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
         if (advMode.IsSinkSlot && !mouseslot.Empty)
         {
-            if (!byPlayer.HandleGiveStack(mouseslot, materials, advMode.SlotParams))
+            if (!byPlayer.ConsumeIngredientAndGiveStack(mouseslot, variants, advMode.SlotParams))
             {
-                slot.HandleInWorldCrafting(byPlayer, mouseslot, materials, advMode.SlotParams);
+                slot.HandleInWorldCrafting(byPlayer, mouseslot, variants, advMode.SlotParams);
             }
 
             byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
@@ -202,8 +202,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
 public class AdvancedToolMode
 {
-    public Dictionary<string, string> SetStackMaterials { get; set; } = new();
-    public List<string> RemoveStackMaterials { get; set; } = new();
+    public Dictionary<string, string> SetVariants { get; set; } = new();
+    public List<string> RemoveVariants { get; set; } = new();
 
     public JsonItemStack ConvertTo { get; set; }
     public bool CopyAttributes { get; set; }

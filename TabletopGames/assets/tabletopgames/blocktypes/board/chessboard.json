@@ -118,11 +118,11 @@
                 "toolModes": {
                     "*": [
                         //
-                        { "setStackMaterials": { "size": "5x5" } },
-                        { "setStackMaterials": { "size": "6x6" } },
-                        { "setStackMaterials": { "size": "7x7" } },
-                        { "setStackMaterials": { "size": "8x8" } },
-                        { "setStackMaterials": { "size": "10x10" } }
+                        { "setVariants": { "size": "5x5" } },
+                        { "setVariants": { "size": "6x6" } },
+                        { "setVariants": { "size": "7x7" } },
+                        { "setVariants": { "size": "8x8" } },
+                        { "setVariants": { "size": "10x10" } }
                     ]
                 }
             }

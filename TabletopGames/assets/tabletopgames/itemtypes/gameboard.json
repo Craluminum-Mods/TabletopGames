@@ -102,11 +102,11 @@
             "type-generic": [
                 {
                     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                    "setStackMaterials": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
+                    "setVariants": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
-                    "setStackMaterials": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" }
+                    "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" }
                 },
 
                 // go boards
@@ -114,65 +114,65 @@
                     "triggerBy": { "type": "item", "code": "game:charcoal" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "carbonblack" },
+                    "setVariants": { "size": "19x19", "color": "carbonblack" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "carbonblack" },
+                    "setVariants": { "size": "19x19", "color": "carbonblack" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:coke" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "cokeblack" },
+                    "setVariants": { "size": "19x19", "color": "cokeblack" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:stone-chalk" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "chalkwhite" },
+                    "setVariants": { "size": "19x19", "color": "chalkwhite" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:stone-limestone" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "limewhite" },
+                    "setVariants": { "size": "19x19", "color": "limewhite" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:nugget-malachite" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "verdigris" },
+                    "setVariants": { "size": "19x19", "color": "verdigris" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "ultramarine" },
+                    "setVariants": { "size": "19x19", "color": "ultramarine" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:ore-cinnabar" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
                     "copyAttributes": true,
-                    "setStackMaterials": { "size": "19x19", "color": "cinnabar" },
+                    "setVariants": { "size": "19x19", "color": "cinnabar" },
                     "consumeIngredient": false,
-                    "removeStackMaterials": ["type"]
+                    "removeVariants": ["type"]
                 }
             ],
 
@@ -180,18 +180,18 @@
             "type-chessboard_step1": [
                 {
                     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                    "setStackMaterials": { "type": "chessboard_step2", "secondarystone": "{stone}" }
+                    "setVariants": { "type": "chessboard_step2", "secondarystone": "{stone}" }
                 },
                 {
                     "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
-                    "setStackMaterials": { "type": "chessboard_step2", "secondarywood": "{wood}" }
+                    "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" }
                 }
             ],
             "type-chessboard_step2": [
                 {
                     "triggerBy": { "type": "item", "code": "game:chisel-*", "isTool": true },
                     "convertTo": { "type": "block", "code": "tabletopgames:chessboard" },
-                    "removeStackMaterials": ["type"],
+                    "removeVariants": ["type"],
                     "copyAttributes": true
                 }
             ]

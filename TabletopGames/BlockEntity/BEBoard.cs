@@ -20,13 +20,13 @@ namespace TabletopGames;
 public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
-    public BoardData BoardData => OwnBlock?.GetBoardData(Materials);
+    public BoardData BoardData => OwnBlock?.GetBoardData(Variants);
 
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
     public override string AttributeTransformCode => BoardData.AttributeTransformCode;
 
-    public Materials Materials { get; protected set; } = new Materials();
+    public Variants Variants { get; protected set; } = new Variants();
     public float MeshAngleRad { get; set; }
 
     private MeshData mesh;
@@ -45,7 +45,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
 
-    protected void Init()
+    protected virtual void Init()
     {
         if (Api == null || OwnBlock == null)
         {
@@ -55,18 +55,18 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (Api.Side == EnumAppSide.Client)
         {
             GetOrCreateSelectionBoxes(forceNew: true);
-            mesh = OwnBlock.GetOrCreateMesh(Materials);
+            mesh = OwnBlock.GetOrCreateMesh(Variants);
             mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
         }
     }
 
-    public virtual void InitInventory()
+    protected virtual void InitInventory()
     {
         if (inventory == null || inventory.Count == 0)
         {
             inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
             {
-                return OwnBlock.CreateSlot(Materials, inventory, slotid);
+                return OwnBlock.CreateSlot(Variants, inventory, slotid);
             });
         }
     }
@@ -89,7 +89,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         base.OnBlockPlaced(byItemStack);
         if (byItemStack != null)
         {
-            Materials = Materials.FromStack(byItemStack);
+            Variants = Variants.FromStack(byItemStack);
         }
 
         InitInventory();
@@ -100,13 +100,13 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     public override void ToTreeAttributes(ITreeAttribute tree)
     {
         base.ToTreeAttributes(tree);
-        Materials.ToTreeAttribute(tree);
+        Variants.ToTreeAttribute(tree);
         tree.SetFloat("meshAngleRad", MeshAngleRad);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
     {
-        Materials = Materials.FromTreeAttribute(tree);
+        Variants = Variants.FromTreeAttribute(tree);
         MeshAngleRad = tree.GetFloat("meshAngleRad");
 
         InitInventory();
@@ -169,7 +169,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return _tfMatrices;
     }
 
-    public Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
+    public virtual Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
     {
         if (forceNew || selectionBoxes == null)
         {
@@ -192,7 +192,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return selectionBoxes;
     }
 
-    private void GenerateSelectionWithoutPadding()
+    protected virtual void GenerateSelectionWithoutPadding()
     {
         float width = BoardData.Size.X;
         float depth = BoardData.Size.Y;
@@ -219,7 +219,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
     
-    private void GenerateSelectionWithPadding()
+    protected virtual void GenerateSelectionWithPadding()
     {
         float width = BoardData.Size.X;
         float depth = BoardData.Size.Y;
@@ -286,7 +286,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-        TabletopTags boardTags = OwnBlock.GetTags(Materials, slotId: blockSel.SelectionBoxIndex);
+        TabletopTags boardTags = OwnBlock.GetTags(Variants, slotId: blockSel.SelectionBoxIndex);
         bool placeable = TabletopTags.AreTagsCompatible(boardTags, slot.Itemstack);
 
         if (slot.Empty || !placeable)
@@ -346,7 +346,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return true;
     }
 
-    private void SetPieceRotation(ItemSlot slot, IPlayer player)
+    public virtual void SetPieceRotation(ItemSlot slot, IPlayer player)
     {
         if (slot.Itemstack.ItemAttributes.KeyExists("rotateWhenPlacedOnBoard"))
         {
@@ -355,12 +355,12 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
     
-    private void RemovePieceRotation(ItemSlot slot)
+    public virtual void RemovePieceRotation(ItemSlot slot)
     {
         slot?.Itemstack?.Attributes?.RemoveAttribute("rotateYaw");
     }
 
-    private void ApplyPieceMeshRotation(ItemSlot slot, ref MeshData stackMesh)
+    public virtual void ApplyPieceMeshRotation(ItemSlot slot, ref MeshData stackMesh)
     {
         if (slot.Itemstack.Attributes.HasAttribute("rotateYaw"))
         {

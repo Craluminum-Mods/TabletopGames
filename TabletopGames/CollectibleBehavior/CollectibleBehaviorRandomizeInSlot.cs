@@ -8,16 +8,16 @@ namespace TabletopGames;
 public class CollectibleBehaviorRandomizeInSlot : CollectibleBehavior
 {
     private ICoreAPI api;
-    private string targetAttribute;
-    private List<string> possibleAttributeValues = new();
+    private string targetVariant;
+    private List<string> possibleVariantValues = new();
 
     public CollectibleBehaviorRandomizeInSlot(CollectibleObject collObj) : base(collObj) { }
 
     public override void Initialize(JsonObject properties)
     {
         base.Initialize(properties);
-        targetAttribute = properties["targetAttribute"].AsString();
-        possibleAttributeValues = properties["possibleAttributeValues"].AsObject(new List<string>());
+        targetVariant = properties["targetVariant"].AsString();
+        possibleVariantValues = properties["possibleVariantValues"].AsObject(new List<string>());
     }
 
     public override void OnLoaded(ICoreAPI api)
@@ -27,12 +27,12 @@ public class CollectibleBehaviorRandomizeInSlot : CollectibleBehavior
 
     public void RandomizeAttributes(ItemStack stack)
     {
-        if (possibleAttributeValues == null || !possibleAttributeValues.Any() || string.IsNullOrEmpty(targetAttribute))
+        if (possibleVariantValues == null || !possibleVariantValues.Any() || string.IsNullOrEmpty(targetVariant))
         {
             return;
         }
-        Materials materials = Materials.FromStack(stack);
-        materials.SetValue(targetAttribute, possibleAttributeValues[api.World.Rand.Next(possibleAttributeValues.Count)]);
-        materials.ToStack(stack);
+        Variants variants = Variants.FromStack(stack);
+        variants.Set(targetVariant, possibleVariantValues[api.World.Rand.Next(possibleVariantValues.Count)]);
+        variants.ToStack(stack);
     }
 }

@@ -51,7 +51,7 @@ public class BlockBoard : Block, IContainedMeshSource
         }
     }
 
-    public void LoadTypes()
+    public virtual void LoadTypes()
     {
         if (Attributes != null)
         {
@@ -74,14 +74,14 @@ public class BlockBoard : Block, IContainedMeshSource
         }
     }
 
-    public BoardData GetBoardData(Materials materials)
+    public virtual BoardData GetBoardData(Variants variants)
     {
-        return materials.FindByMaterial(BoardDataByType, out BoardData value) ? value : new BoardData();
+        return variants.FindByVariant(BoardDataByType, out BoardData value) ? value : new BoardData();
     }
 
-    public TabletopTags GetTags(Materials materials, int slotId)
+    public virtual TabletopTags GetTags(Variants variants, int slotId)
     {
-        TabletopTags tags = materials.FindByMaterial(TabletopTagsByType, out TabletopTags value) ? value : new TabletopTags();
+        TabletopTags tags = variants.FindByVariant(TabletopTagsByType, out TabletopTags value) ? value : new TabletopTags();
         if (slotId >= 0 && (tags.TagsPerSlot.Any() || tags.TagsIgnoredPerSlot.Any()))
         {
             TabletopTags newTags = new();
@@ -110,10 +110,10 @@ public class BlockBoard : Block, IContainedMeshSource
         return tags;
     }
     
-    public ItemSlot CreateSlot(Materials materials, InventoryBase inventory, int slotId)
+    public virtual ItemSlot CreateSlot(Variants variants, InventoryBase inventory, int slotId)
     {
-        BoardData boardData = GetBoardData(materials);
-        TabletopTags tags = GetTags(materials, slotId);
+        BoardData boardData = GetBoardData(variants);
+        TabletopTags tags = GetTags(variants, slotId);
         EnumSlotType slotType = EnumSlotType.Normal;
 
         if (boardData.SlotTypes.Any())
@@ -154,19 +154,19 @@ public class BlockBoard : Block, IContainedMeshSource
         }
     }
 
-    public MeshData GetOrCreateMesh(Materials materials, ITexPositionSource overrideTexturesource = null)
+    public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
-        materials.FindByMaterial(shapeByType, out CompositeShape _shape);
+        variants.FindByVariant(shapeByType, out CompositeShape _shape);
         if (_shape == null)
         {
             return mesh;
         }
 
         CompositeShape rcshape = _shape.Clone();
-        rcshape.Base.Path = materials.ReplacePlaceholders(rcshape.Base.Path);
+        rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
@@ -178,7 +178,7 @@ public class BlockBoard : Block, IContainedMeshSource
         }
         if (texSource == null)
         {
-            materials.FindByMaterial(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+            variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
             _textures ??= new Dictionary<string, CompositeTexture>();
 
             ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
@@ -186,12 +186,12 @@ public class BlockBoard : Block, IContainedMeshSource
             foreach (KeyValuePair<string, CompositeTexture> val in _textures)
             {
                 CompositeTexture ctex = val.Value.Clone();
-                ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);
+                ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
                 if (ctex.BlendedOverlays != null)
                 {
                     foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
                     {
-                        overlayCtex.Base.Path = materials.ReplacePlaceholders(overlayCtex.Base.Path);
+                        overlayCtex.Base.Path = variants.ReplacePlaceholders(overlayCtex.Base.Path);
                     }
                 }
                 ctex.Bake(capi.Assets);
@@ -208,8 +208,8 @@ public class BlockBoard : Block, IContainedMeshSource
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
             float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntiy.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
-            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Materials, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
-            MeshData blockMesh = GetOrCreateMesh(blockEntiy.Materials).Clone().MatrixTransform(mat);
+            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Variants, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
+            MeshData blockMesh = GetOrCreateMesh(blockEntiy.Variants).Clone().MatrixTransform(mat);
             decalModelData = decalMesh;
             blockModelData = blockMesh;
             return;
@@ -225,8 +225,8 @@ public class BlockBoard : Block, IContainedMeshSource
         string key = GetMeshCacheKey(itemstack);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
-            Materials materials = Materials.FromStack(itemstack);
-            MeshData mesh = GetOrCreateMesh(materials);
+            Variants variants = Variants.FromStack(itemstack);
+            MeshData mesh = GetOrCreateMesh(variants);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -256,17 +256,17 @@ public class BlockBoard : Block, IContainedMeshSource
         ItemStack stack = base.OnPickBlock(world, pos).Clone();
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntiy)
         {
-            blockEntiy.Materials.ToStack(stack);
+            blockEntiy.Variants.ToStack(stack);
         }
         return stack;
     }
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
-        Materials materials =  Materials.FromStack(itemStack);
-        materials.FindByMaterial(NameByType, out List<string> name);
+        Variants variants =  Variants.FromStack(itemStack);
+        variants.FindByVariant(NameByType, out List<string> name);
         return (name?.Any() ?? false)
-            ? string.Join("", name.Select(x => Lang.Get(materials.ReplacePlaceholders(x))))
+            ? string.Join("", name.Select(x => Lang.Get(variants.ReplacePlaceholders(x))))
             : base.GetHeldItemName(itemStack);
     }
 
@@ -274,9 +274,9 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
         {
-            blockEntity.Materials.FindByMaterial(NameByType, out List<string> name);
+            blockEntity.Variants.FindByVariant(NameByType, out List<string> name);
             return (name?.Any() ?? false)
-                ? string.Join("",name.Select(x => Lang.Get(blockEntity.Materials.ReplacePlaceholders(x))))
+                ? string.Join("",name.Select(x => Lang.Get(blockEntity.Variants.ReplacePlaceholders(x))))
                 : base.GetPlacedBlockName(world, pos);
         }
         return base.GetPlacedBlockName(world, pos);
@@ -286,10 +286,10 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-        Materials materials =  Materials.FromStack(inSlot.Itemstack);
-        materials.FindByMaterial(DescriptionByType, out List<string> description);
+        Variants variants =  Variants.FromStack(inSlot.Itemstack);
+        variants.FindByVariant(DescriptionByType, out List<string> description);
         description ??= new List<string>();
-        materials.GetDescription(dsc, description);
+        variants.GetDescription(dsc, description);
     }
 
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -303,7 +303,7 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
         {
-            blockEntity.Materials.FindByMaterial(ExtraSelectionBoxesByType, out Cuboidf[] boxes);
+            blockEntity.Variants.FindByVariant(ExtraSelectionBoxesByType, out Cuboidf[] boxes);
             boxes ??= Array.Empty<Cuboidf>();
             return blockEntity.GetOrCreateSelectionBoxes().Append(boxes);
         }
@@ -315,13 +315,13 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        Materials materials = Materials.FromStack(itemstack);
-        return GetOrCreateMesh(materials);
+        Variants variants = Variants.FromStack(itemstack);
+        return GetOrCreateMesh(variants);
     }
 
     public string GetMeshCacheKey(ItemStack itemstack)
     {
-        Materials materials = Materials.FromStack(itemstack);
-        return $"{itemstack.Collectible.Code}-{materials}";
+        Variants variants = Variants.FromStack(itemstack);
+        return $"{itemstack.Collectible.Code}-{variants}";
     }
 }

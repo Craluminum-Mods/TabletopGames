@@ -27,12 +27,12 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
             return false;
         }
 
-        Materials materials = Materials.FromStack(slot.Itemstack);
-        if (!materials.FindByMaterial(InWorldCraftingPropsByType, out List<CraftingStep> steps) || steps == null || !steps.Any())
+        Variants variants = Variants.FromStack(slot.Itemstack);
+        if (!variants.FindByVariant(InWorldCraftingPropsByType, out List<CraftingStep> steps) || steps == null || !steps.Any())
         {
             return false;
         }
-        return slot.HandleInWorldCrafting(byPlayer, activeSlot, materials, steps);
+        return slot.HandleInWorldCrafting(byPlayer, activeSlot, variants, steps);
     }
 
     public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
@@ -42,8 +42,8 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
 public class CraftingStep
 {
     public CraftingRecipeIngredient TriggerBy { get; set; }
-    public Dictionary<string, string> SetStackMaterials { get; set; } = new();
-    public List<string> RemoveStackMaterials { get; set; } = new();
+    public Dictionary<string, string> SetVariants { get; set; } = new();
+    public List<string> RemoveVariants { get; set; } = new();
 
     public JsonItemStack ConvertTo { get; set; }
     public bool CopyAttributes { get; set; }

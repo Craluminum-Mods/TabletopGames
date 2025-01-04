@@ -7,30 +7,30 @@ using Vintagestory.API.Datastructures;
 
 namespace TabletopGames;
 
-public class Materials
+public class Variants
 {
-    public const string AttributeName = "types";
+    public const string RootAttributeName = "types";
 
     protected Dictionary<string, string> Elements { get; set; } = new();
 
     public int Count => Elements.Count;
     public bool Any => Elements.Any();
 
-    public IOrderedEnumerable<Material> GetOrdered()
+    public IOrderedEnumerable<Variant> GetOrdered()
     {
         return Elements
-            .Select(x => new Material(x.Key, x.Value))
+            .Select(x => new Variant(x.Key, x.Value))
             .OrderBy(x => x.Key);
     }
 
     public IOrderedEnumerable<string> GetOrderedStringArray()
     {
         return Elements
-            .Select(x => new Material(x.Key, x.Value).ToString())
-            .Order();
+            .Select(x => $"{x.Key}-{x.Value}")
+            .OrderBy(x => x);
     }
 
-    public void SetValue(string key, string value)
+    public void Set(string key, string value)
     {
         if (Elements.ContainsKey(key))
         {
@@ -47,12 +47,13 @@ public class Materials
 
     public void GetDescription(StringBuilder dsc, List<string> langKeys)
     {
+        langKeys ??= new List<string>();
         if (!Elements.Any())
         {
             return;
         }
 
-        if (langKeys?.Any() ?? false)
+        if (langKeys.Any())
         {
             foreach (string langKey in langKeys)
             {
@@ -62,30 +63,30 @@ public class Materials
             dsc.AppendLine();
         }
 
-        if (TabletopDebug.MaterialsDebugInfo)
+        if (TabletopDebug.VariantsDebugInfo)
         {
             dsc.AppendLine();
-            foreach (KeyValuePair<string, string> material in Elements)
+            foreach (KeyValuePair<string, string> variant in Elements)
             {
-                dsc.AppendLine($"DEBUG::{material.Key}-{material.Value}");
+                dsc.AppendLine($"DEBUG::{variant.Key}-{variant.Value}");
             }
         }
     }
 
-    public static Materials FromTreeAttribute(ITreeAttribute rootTree)
+    public static Variants FromTreeAttribute(ITreeAttribute rootTree)
     {
-        Materials materials = new Materials();
-        if (!rootTree.HasAttribute(AttributeName))
+        Variants variants = new Variants();
+        if (!rootTree.HasAttribute(RootAttributeName))
         {
-            return materials;
+            return variants;
         }
 
-        ITreeAttribute typesTree = rootTree.GetTreeAttribute(AttributeName);
-        foreach (string key in typesTree.Select(x => x.Key).Where(key => !materials.Elements.ContainsKey(key)))
+        ITreeAttribute typesTree = rootTree.GetTreeAttribute(RootAttributeName);
+        foreach (string key in typesTree.Select(x => x.Key).Where(key => !variants.Elements.ContainsKey(key)))
         {
-            materials.Elements.Add(key, typesTree.GetString(key));
+            variants.Elements.Add(key, typesTree.GetString(key));
         }
-        return materials;
+        return variants;
     }
 
     /// <summary>
@@ -93,15 +94,15 @@ public class Materials
     /// </summary>
     public void ToTreeAttribute(ITreeAttribute rootTree)
     {
-        rootTree.RemoveAttribute(AttributeName);
-        ITreeAttribute typesTree = rootTree.GetOrAddTreeAttribute(AttributeName);
+        rootTree.RemoveAttribute(RootAttributeName);
+        ITreeAttribute typesTree = rootTree.GetOrAddTreeAttribute(RootAttributeName);
         foreach ((string key, string val) in Elements)
         {
             typesTree.SetString(key, val);
         }
     }
 
-    public static Materials FromStack(ItemStack stack)
+    public static Variants FromStack(ItemStack stack)
     {
         return FromTreeAttribute(stack.Attributes);
     }
@@ -133,38 +134,38 @@ public class Materials
         return result.ToString();
     }
 
-    public Materials Clone()
+    public Variants Clone()
     {
-        return new Materials()
+        return new Variants()
         {
             Elements = Elements
         };
     }
-}
 
-public class Material
-{
-    public string Key { get; protected set; }
-    public string Value { get; protected set; }
-
-    public Material(string key, string value)
+    public class Variant
     {
-        Key = key;
-        Value = value;
-    }
+        public string Key { get; protected set; }
+        public string Value { get; protected set; }
 
-    public static Material FromString(string keyVal)
-    {
-        string[] list = keyVal.Split('-');
-        if (list.Length != 2)
+        public Variant(string key, string value)
         {
-            return null;
+            Key = key;
+            Value = value;
         }
-        return new Material(list[0], list[1]);
-    }
 
-    public override string ToString()
-    {
-        return $"{Key}-{Value}";
+        public static Variant FromString(string keyVal)
+        {
+            string[] list = keyVal?.Split('-');
+            if (list.Length != 2)
+            {
+                return null;
+            }
+            return new Variant(list[0], list[1]);
+        }
+
+        public override string ToString()
+        {
+            return $"{Key}-{Value}";
+        }
     }
 }

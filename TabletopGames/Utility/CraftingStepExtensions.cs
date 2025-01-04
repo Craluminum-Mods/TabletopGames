@@ -8,7 +8,7 @@ namespace TabletopGames;
 
 public static class CraftingStepExtensions
 {
-    public static bool HandleInWorldCrafting(this ItemSlot targetSlot, IPlayer byPlayer, ItemSlot inputSlot, Materials targetMaterials, List<CraftingStep> steps)
+    public static bool HandleInWorldCrafting(this ItemSlot targetSlot, IPlayer byPlayer, ItemSlot inputSlot, Variants targetVariants, List<CraftingStep> steps)
     {
         foreach (CraftingStep step in steps)
         {
@@ -27,14 +27,14 @@ public static class CraftingStepExtensions
                 return false;
             }
 
-            Dictionary<string, string> setStackMaterials = step.SetStackMaterials.ShallowClone();
+            Dictionary<string, string> setVariants = step.SetVariants.ShallowClone();
             if (!string.IsNullOrEmpty(ingred.Name) && ingred.IsWildCard)
             {
                 string value = WildcardUtil.GetWildcardValue(ingred.Code, inputSlot.Itemstack.Collectible.Code);
-                setStackMaterials = setStackMaterials.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
+                setVariants = setVariants.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
             }
 
-            targetSlot.Itemstack.SetStackMaterials(out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, targetMaterials);
+            targetSlot.Itemstack.OverwriteVariants(out ItemStack finalStack, setVariants: setVariants, removeVariants: step.RemoveVariants, targetVariants);
 
             if (output != null && output.ResolvedItemstack != null)
             {
@@ -68,7 +68,7 @@ public static class CraftingStepExtensions
         return false;
     }
 
-    public static bool HandleGiveStack(this IPlayer byPlayer, ItemSlot inputSlot, Materials targetMaterials, List<CraftingStep> steps)
+    public static bool ConsumeIngredientAndGiveStack(this IPlayer byPlayer, ItemSlot inputSlot, Variants targetVariants, List<CraftingStep> steps)
     {
         foreach (CraftingStep step in steps)
         {
@@ -82,14 +82,14 @@ public static class CraftingStepExtensions
                 continue;
             }
 
-            Dictionary<string, string> setStackMaterials = step.SetStackMaterials.ShallowClone();
+            Dictionary<string, string> setVariants = step.SetVariants.ShallowClone();
             if (!string.IsNullOrEmpty(ingred.Name) && ingred.IsWildCard)
             {
                 string value = WildcardUtil.GetWildcardValue(ingred.Code, inputSlot.Itemstack.Collectible.Code);
-                setStackMaterials = setStackMaterials.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
+                setVariants = setVariants.ToDictionary(x => x.Key, x => x.Value.Replace("{" + ingred.Name + "}", value));
             }
 
-            output.ResolvedItemstack.SetStackMaterials(out ItemStack finalStack, setAttributes: setStackMaterials, removeAttributes: step.RemoveStackMaterials, targetMaterials);
+            output.ResolvedItemstack.OverwriteVariants(out ItemStack finalStack, setVariants: setVariants, removeVariants: step.RemoveVariants, targetVariants);
 
             if (!byPlayer.InventoryManager.TryGiveItemstack(finalStack))
             {

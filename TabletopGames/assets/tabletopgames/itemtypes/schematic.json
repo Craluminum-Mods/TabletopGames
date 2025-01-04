@@ -28,102 +28,102 @@
                 "toolModes": {
                     "type-generic_piece": [
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createstone-chesspiece",
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-chesspiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 },
-                                    "setStackMaterials": { "type": "pawn", "stone": "{stone}" }
+                                    "setVariants": { "type": "pawn", "stone": "{stone}" }
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createstone-checkerpiece",
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-checkerpiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 12 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 },
-                                    "setStackMaterials": { "type": "pawn", "stone": "{stone}" }
+                                    "setVariants": { "type": "pawn", "stone": "{stone}" }
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createstone-gostone",
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gostone",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "granite" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
-                                    "setStackMaterials": { "stone": "{stone}" },
-                                    "removeStackMaterials": ["type"]
+                                    "setVariants": { "stone": "{stone}" },
+                                    "removeVariants": ["type"]
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createstone-shogipiece",
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-shogipiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "stone": "granite" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 20 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
-                                    "setStackMaterials": { "type": "fuhyo", "stone": "{stone}" }
+                                    "setVariants": { "type": "fuhyo", "stone": "{stone}" }
                                 }
                             ]
                         },
 
                         {
                             "linebreak": true,
-                            "name": "tabletopgames:toolmode-sinkslot-material-createwooden-chesspiece",
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-chesspiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 },
-                                    "setStackMaterials": { "type": "pawn", "wood": "{wood}" }
+                                    "setVariants": { "type": "pawn", "wood": "{wood}" }
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createwooden-checkerpiece",
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-checkerpiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 12 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 },
-                                    "setStackMaterials": { "type": "pawn", "wood": "{wood}" }
+                                    "setVariants": { "type": "pawn", "wood": "{wood}" }
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createwooden-gostone",
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gostone",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "wood": "oak" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
-                                    "setStackMaterials": { "wood": "{wood}" },
-                                    "removeStackMaterials": ["type"]
+                                    "setVariants": { "wood": "{wood}" },
+                                    "removeVariants": ["type"]
                                 }
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-material-createwooden-shogipiece",
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-shogipiece",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "oak" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 20 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
-                                    "setStackMaterials": { "type": "fuhyo", "wood": "{wood}" }
+                                    "setVariants": { "type": "fuhyo", "wood": "{wood}" }
                                 }
                             ]
                         }

@@ -81,12 +81,12 @@
                 "toolModes": {
                     "*": [
                         //
-                        { "setStackMaterials": { "type": "pawn" } },
-                        { "setStackMaterials": { "type": "knight" } },
-                        { "setStackMaterials": { "type": "bishop" } },
-                        { "setStackMaterials": { "type": "rook" } },
-                        { "setStackMaterials": { "type": "queen" } },
-                        { "setStackMaterials": { "type": "king" } }
+                        { "setVariants": { "type": "pawn" } },
+                        { "setVariants": { "type": "knight" } },
+                        { "setVariants": { "type": "bishop" } },
+                        { "setVariants": { "type": "rook" } },
+                        { "setVariants": { "type": "queen" } },
+                        { "setVariants": { "type": "king" } }
                     ]
                 }
             }

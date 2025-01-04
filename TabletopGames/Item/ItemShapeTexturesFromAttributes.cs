@@ -64,24 +64,24 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
     }
 
-    public MeshData GetOrCreateMesh(Materials materials, ITextureAtlasAPI targetAtlas)
+    public MeshData GetOrCreateMesh(Variants variants, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
-        materials.FindByMaterial(shapeByType, out CompositeShape _shape);
+        variants.FindByVariant(shapeByType, out CompositeShape _shape);
         if (_shape == null)
         {
             return mesh;
         }
 
         CompositeShape rcshape = _shape.Clone();
-        rcshape.Base.Path = materials.ReplacePlaceholders(rcshape.Base.Path);
+        rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        materials.FindByMaterial(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
@@ -89,12 +89,12 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
-            ctex.Base.Path = materials.ReplacePlaceholders(ctex.Base.Path);
+            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
             if (ctex.BlendedOverlays != null)
             {
                 foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
                 {
-                    overlayCtex.Base.Path = materials.ReplacePlaceholders(overlayCtex.Base.Path);
+                    overlayCtex.Base.Path = variants.ReplacePlaceholders(overlayCtex.Base.Path);
                 }
             }
             ctex.Bake(capi.Assets);
@@ -109,12 +109,12 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        Materials materials = Materials.FromStack(itemstack);
+        Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
-            MeshData mesh = GetOrCreateMesh(materials, capi.ItemTextureAtlas);
+            MeshData mesh = GetOrCreateMesh(variants, capi.ItemTextureAtlas);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -122,7 +122,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         renderinfo.ModelRef = meshref;
         renderinfo.NormalShaded = true;
 
-        if (materials.FindByMaterial(attribute: $"{target}TransformBy", itemstack, out ModelTransform transform))
+        if (variants.FindByVariant(attribute: $"{target}TransformBy", itemstack, out ModelTransform transform))
         {
             renderinfo.Transform = transform;
         }
@@ -132,10 +132,10 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
-        Materials materials = Materials.FromStack(itemStack);
-        materials.FindByMaterial(NameByType, out List<string> name);
+        Variants variants = Variants.FromStack(itemStack);
+        variants.FindByVariant(NameByType, out List<string> name);
         return (name?.Any() ?? false)
-            ? string.Join("", name.Select(x => Lang.Get(materials.ReplacePlaceholders(x))))
+            ? string.Join("", name.Select(x => Lang.Get(variants.ReplacePlaceholders(x))))
             : base.GetHeldItemName(itemStack);
     }
 
@@ -143,37 +143,33 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-        Materials materials = Materials.FromStack(inSlot.Itemstack);
-        materials.FindByMaterial(DescriptionByType, out List<string> _langKeys);
-        _langKeys ??= new List<string>();
-        materials.GetDescription(dsc, _langKeys);
+        Variants variants = Variants.FromStack(inSlot.Itemstack);
+        variants.FindByVariant(DescriptionByType, out List<string> _langKeys);
+        variants.GetDescription(dsc, _langKeys);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        Materials materials = Materials.FromStack(itemstack);
-        return GetOrCreateMesh(materials, targetAtlas);
+        return GetOrCreateMesh(Variants.FromStack(itemstack), targetAtlas);
     }
 
     public string GetMeshCacheKey(ItemStack itemstack)
     {
-        Materials materials = Materials.FromStack(itemstack);
-        return $"{itemstack.Collectible.Code}-{materials}";
+        return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
     }
 
     public string GetContainedInfo(ItemSlot inSlot)
     {
         StringBuilder dsc = new();
-        Materials materials = Materials.FromStack(inSlot.Itemstack);
-        materials.FindByMaterial(ContainedDescriptionByType, out List<string> _langKeys);
+        Variants variants = Variants.FromStack(inSlot.Itemstack);
+        variants.FindByVariant(ContainedDescriptionByType, out List<string> _langKeys);
         
         if (_langKeys == null || !_langKeys.Any())
         {
             return GetHeldItemName(inSlot.Itemstack);
         }
 
-        _langKeys ??= new List<string>();
-        materials.GetDescription(dsc, _langKeys);
+        variants.GetDescription(dsc, _langKeys);
         return dsc.ToString();
     }
 

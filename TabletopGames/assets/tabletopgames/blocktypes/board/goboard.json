@@ -103,29 +103,29 @@
                             "isSinkSlot": true,
                             "iconTexture": "paintbrush",
                             "slotParams": [
-                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setStackMaterials": { "color": "carbonblack" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setStackMaterials": { "color": "cokeblack" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setStackMaterials": { "color": "chalkwhite" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setStackMaterials": { "color": "limewhite" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setStackMaterials": { "color": "verdigris" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setStackMaterials": { "color": "ultramarine" }, "consumeIngredient": false },
-                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setStackMaterials": { "color": "cinnabar" }, "consumeIngredient": false }
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
 
-                        { "setStackMaterials": { "size": "9x9" }, "linebreak": true },
-                        { "setStackMaterials": { "size": "13x13" } },
-                        { "setStackMaterials": { "size": "15x15" } },
-                        { "setStackMaterials": { "size": "17x17" } },
-                        { "setStackMaterials": { "size": "19x19" } },
+                        { "setVariants": { "size": "9x9" }, "linebreak": true },
+                        { "setVariants": { "size": "13x13" } },
+                        { "setVariants": { "size": "15x15" } },
+                        { "setVariants": { "size": "17x17" } },
+                        { "setVariants": { "size": "19x19" } },
 
-                        { "setStackMaterials": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
-                        { "setStackMaterials": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
-                        { "setStackMaterials": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
-                        { "setStackMaterials": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setVariants": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
 
-                        { "setStackMaterials": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true }
+                        { "setVariants": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
             }
