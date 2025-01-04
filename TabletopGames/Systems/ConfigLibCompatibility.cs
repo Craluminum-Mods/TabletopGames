@@ -60,24 +60,23 @@ public class ConfigLibCompatibility
 
     private static void EditPadding(string id, BlockEntityBoard blockEntity)
     {
-        if (blockEntity.BoardData.Padding == null)
-        {
-            return;
-        }
-
         ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
 
-        Vector2 padding = new Vector2(blockEntity.BoardData.Padding.X, blockEntity.BoardData.Padding.Y);
-        if (ImGui.InputFloat2("edit padding" + $"##DEBUG-EditPadding-{id}", ref padding))
+        Vec4f oldPadding = blockEntity.BoardData.Padding;
+        Vector4 padding = new Vector4(oldPadding.X, oldPadding.Y, oldPadding.Z, oldPadding.W);
+        if (ImGui.InputFloat4("edit padding" + $"##DEBUG-EditPadding-{id}", ref padding))
         {
-            Vec2f newPadding = new Vec2f(padding.X, padding.Y);
+            Vec4f newPadding = new Vec4f(padding.X, padding.Y, padding.Z, padding.W);
             blockEntity.BoardData.Padding = newPadding;
             blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
         }
         if (ImGui.Button("Copy padding" + $"##DEBUG-CopyPadding-{id}"))
         {
             StringBuilder dsc = new();
-            dsc.Append("\"padding\": { \"x\": " + blockEntity.BoardData.Padding.X.ToString() + ", \"y\": " + blockEntity.BoardData.Padding.Y.ToString() + " }");
+            dsc.Append("\"padding\": { \"x\": " + blockEntity.BoardData.Padding.X.ToString());
+            dsc.Append(", \"y\": " + blockEntity.BoardData.Padding.Y.ToString() + " ");
+            dsc.Append(", \"z\": " + blockEntity.BoardData.Padding.Z.ToString() + " ");
+            dsc.Append(", \"w\": " + blockEntity.BoardData.Padding.W.ToString() + " }");
 
             if (capi != null)
             {

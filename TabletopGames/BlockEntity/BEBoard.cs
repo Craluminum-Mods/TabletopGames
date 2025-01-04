@@ -182,62 +182,32 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                 return selectionBoxes;
             }
 
-            bool hasPadding = BoardData.Padding != null;
-            switch (hasPadding)
-            {
-                case true: GenerateSelectionWithPadding(); break;
-                default: GenerateSelectionWithoutPadding(); break;
-            }
+            GenerateSelection();
         }
         return selectionBoxes;
     }
 
-    protected virtual void GenerateSelectionWithoutPadding()
+    protected virtual void GenerateSelection()
     {
         int width = BoardData.Size.X;
         int depth = BoardData.Size.Y;
 
         selectionBoxes = new Cuboidf[width * depth];
 
-        for (int dx = 0; dx < width; dx++)
-        {
-            for (int dz = 0; dz < depth; dz++)
-            {
-                Cuboidf newCuboid = new Cuboidf()
-                {
-                    X1 = (float)dx / width,
-                    Y1 = BoardData.SlotMinY,
-                    Z1 = (float)dz / depth,
-                    X2 = (float)(dx + 1) / width,
-                    Y2 = BoardData.SlotMaxY,
-                    Z2 = (float)(dz + 1) / depth,
-                };
+        float paddingLeft = BoardData.Padding.X;
+        float paddingTop = BoardData.Padding.Y;
+        float paddingRight = BoardData.Padding.Z;
+        float paddingBottom = BoardData.Padding.W;
 
-                int index = (dz * width) + dx;
-                selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
-            }
-        }
-    }
-    
-    protected virtual void GenerateSelectionWithPadding()
-    {
-        int width = BoardData.Size.X;
-        int depth = BoardData.Size.Y;
-
-        selectionBoxes = new Cuboidf[width * depth];
-
-        float paddingWidth = BoardData.Padding.X;
-        float paddingDepth = BoardData.Padding.Y;
-
-        float slotWidth = (1 - (2 * paddingWidth)) / width;
-        float slotDepth = (1 - (2 * paddingDepth)) / depth;
+        float slotWidth = (1 - (paddingLeft + paddingRight)) / width;
+        float slotDepth = (1 - (paddingTop + paddingBottom)) / depth;
 
         for (int dx = 0; dx < width; dx++)
         {
             for (int dz = 0; dz < depth; dz++)
             {
-                float x1 = paddingWidth + dx * slotWidth;
-                float z1 = paddingDepth + dz * slotDepth;
+                float x1 = paddingLeft + dx * slotWidth;
+                float z1 = paddingTop + dz * slotDepth;
                 float x2 = x1 + slotWidth;
                 float z2 = z1 + slotDepth;
 
