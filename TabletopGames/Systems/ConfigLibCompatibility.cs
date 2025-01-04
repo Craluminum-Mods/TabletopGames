@@ -23,35 +23,80 @@ public class ConfigLibCompatibility
 
     private void Edit(ICoreAPI api, string id)
     {
-        if (ImGui.CollapsingHeader("DEBUG##DEBUG-{id}"))
+        if (ImGui.CollapsingHeader($"DEBUG##DEBUG-{id}"))
         {
             ImGui.Indent();
-            if (api is ICoreClientAPI capi)
-            {
-                if (ImGui.Button("Steal selected block selection" + $"##DEBUG-StealSelectedBlockSelection-{id}"))
-                {
-                    StealSelBox(capi);
-
-                    var aa = capi.World.Player.CurrentBlockSelection?.SelectionBoxIndex;
-                }
-                if (ImGui.Button("Steal whole selected block selection" + $"##DEBUG-StealWholeSelectedBlockSelection-{id}"))
-                {
-                    var aa = capi.World.Player.CurrentBlockSelection?.SelectionBoxIndex;
-                    StealSelBox(capi, whole: true);
-                }
-            }
-
             ImGui.Checkbox("Toggle variants debug info" + $"##DEBUG-VariantsDebugInfo-{id}", ref TabletopDebug.VariantsDebugInfo);
             ImGui.Checkbox("Toggle board data debug info" + $"##DEBUG-BoardDataDebugInfo-{id}", ref TabletopDebug.BoardDataDebugInfo);
             ImGui.Checkbox("Toggle tags debug info" + $"##DEBUG-TagsDebugInfo-{id}", ref TabletopDebug.TagsDebugInfo);
             ImGui.Checkbox("Toggle board particle selection" + $"##DEBUG-BoardParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
-            ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
+            if (ImGui.CollapsingHeader($"Selection colors##DEBUG-{id}"))
+            {
+                ImGui.Indent();
+                ColorPicker4VS("Board selection color" + $"##DEBUG-BoardSelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
+                ImGui.Unindent();
+            }
+            if (api is ICoreClientAPI capi)
+            {
+                BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
+                if (selection != null && capi.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
+                {
+                    StealSelBox(id, capi);
+                    ImGui.NewLine();
+                    EditBoardData(id, blockEntity);
+                }
+            }
+
             ImGui.Unindent();
         }
     }
 
-    private static void StealSelBox(ICoreClientAPI capi, bool whole = false)
+    private static void EditBoardData(string id, BlockEntityBoard blockEntity)
     {
+        if (blockEntity.BoardData != null)
+        {
+            EditPadding(id, blockEntity);
+        }
+    }
+
+    private static void EditPadding(string id, BlockEntityBoard blockEntity)
+    {
+        if (blockEntity.BoardData.Padding == null)
+        {
+            return;
+        }
+
+        ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
+
+        Vector2 padding = new Vector2(blockEntity.BoardData.Padding.X, blockEntity.BoardData.Padding.Y);
+        if (ImGui.InputFloat2("edit padding" + $"##DEBUG-EditPadding-{id}", ref padding))
+        {
+            Vec2f newPadding = new Vec2f(padding.X, padding.Y);
+            blockEntity.BoardData.Padding = newPadding;
+            blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
+        }
+        if (ImGui.Button("Copy padding" + $"##DEBUG-CopyPadding-{id}"))
+        {
+            StringBuilder dsc = new();
+            dsc.Append("\"padding\": { \"x\": " + blockEntity.BoardData.Padding.X.ToString() + ", \"y\": " + blockEntity.BoardData.Padding.Y.ToString() + " }");
+
+            if (capi != null)
+            {
+                capi.Input.ClipboardText = dsc.ToString();
+            }
+        }
+    }
+
+    private static void StealSelBox(string id, ICoreClientAPI capi)
+    {
+        bool stealAll = ImGui.Button("Steal whole selected block selection" + $"##DEBUG-StealWholeSelectedBlockSelection-{id}");
+        bool stealOne = ImGui.Button("Steal selected block selection" + $"##DEBUG-StealSelectedBlockSelection-{id}");
+
+        if (!stealAll && !stealOne)
+        {
+            return;
+        }
+
         BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
         if (selection == null || capi.World.BlockAccessor.GetBlockEntity(selection.Position) is not BlockEntityBoard blockEntity)
         {
@@ -63,16 +108,16 @@ public class ConfigLibCompatibility
         int selectionBoxIndex = selection.SelectionBoxIndex;
 
         Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
-        if (whole)
+        if (stealAll)
         {
             for (int i = 0; i < cuboids.Length; i++)
             {
                 SaveSelBoxAsText(sb, cuboids[i], i);
             }
         }
-        else
+        else if (stealOne)
         {
-            Cuboidf box = blockEntity.GetOrCreateSelectionBoxes()[selectionBoxIndex];
+            Cuboidf box = cuboids[selectionBoxIndex];
             SaveSelBoxAsText(sb, box, selectionBoxIndex);
         }
 
