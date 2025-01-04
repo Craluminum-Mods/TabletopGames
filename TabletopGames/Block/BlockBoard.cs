@@ -281,6 +281,7 @@ public class BlockBoard : Block, IContainedMeshSource
         {
             blockEntity.Variants.FindByVariant(ExtraSelectionBoxesByType, out Cuboidf[] boxes);
             boxes ??= Array.Empty<Cuboidf>();
+            boxes = boxes.Select(x => x.RotatedCopy(0, blockEntity.MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5))).ToArray();
             return blockEntity.GetOrCreateSelectionBoxes().Append(boxes);
         }
         return base.GetSelectionBoxes(blockAccessor, pos);
