@@ -146,6 +146,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         Variants variants = Variants.FromStack(inSlot.Itemstack);
         variants.FindByVariant(DescriptionByType, out List<string> _langKeys);
         variants.GetDescription(dsc, _langKeys);
+
+        TabletopTags.FromStack(inSlot.Itemstack)?.GetDescription(dsc);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

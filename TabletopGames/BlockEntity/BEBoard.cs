@@ -259,15 +259,19 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
-        int i = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-        if (inventory.Count > i)
+        int index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
+        if (inventory.Count > index)
         {
-            ItemSlot slot = inventory[i];
-            dsc.AppendLine(string.Format(i + 1 + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+            ItemSlot slot = inventory[index];
+            dsc.AppendLine(string.Format(index + 1 + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+
+            if (TabletopDebug.TagsDebugInfo) // twice check to avoid constant iterations in ByType
+            {
+                OwnBlock.GetTags(Variants, index)?.GetDescription(dsc, index);
+            }
         }
 
-        BoardData.GetDescription(dsc, i);
-
+        BoardData.GetDescription(dsc, index);
         foreach (BlockEntityBehavior behavior in Behaviors)
         {
             behavior.GetBlockInfo(forPlayer, dsc);

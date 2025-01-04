@@ -81,33 +81,7 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public virtual TabletopTags GetTags(Variants variants, int slotId)
     {
-        TabletopTags tags = variants.FindByVariant(TabletopTagsByType, out TabletopTags value) ? value : new TabletopTags();
-        if (slotId >= 0 && (tags.TagsPerSlot.Any() || tags.TagsIgnoredPerSlot.Any()))
-        {
-            TabletopTags newTags = new();
-            string id = slotId.ToString();
-
-            foreach ((string wildcard, List<string> _tags) in tags.TagsPerSlot)
-            {
-                if (WildcardUtil.Match(wildcard, id))
-                {
-                    newTags.Tags = _tags;
-                    break;
-                }
-            }
-
-            foreach ((string wildcard, List<string> _ignoredTags) in tags.TagsIgnoredPerSlot)
-            {
-                if (WildcardUtil.Match(wildcard, id))
-                {
-                    newTags.TagsIgnored = _ignoredTags;
-                    break;
-                }
-            }
-
-            return newTags;
-        }
-        return tags;
+        return variants.FindByVariant(TabletopTagsByType, out TabletopTags value) ? value.GetResolvedTags(slotId) : new TabletopTags();
     }
     
     public virtual ItemSlot CreateSlot(Variants variants, InventoryBase inventory, int slotId)
