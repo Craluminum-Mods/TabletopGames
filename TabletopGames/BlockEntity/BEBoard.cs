@@ -66,7 +66,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
             {
-                return new ItemSlotTabletop(_inv, OwnBlock.GetTags(Materials, slotid));
+                return OwnBlock.CreateSlot(Materials, inventory, slotid);
             });
         }
     }
@@ -266,7 +266,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             dsc.AppendLine(string.Format(i + 1 + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
         }
 
-        BoardData.GetDescription(dsc);
+        BoardData.GetDescription(dsc, i);
 
         foreach (BlockEntityBehavior behavior in Behaviors)
         {

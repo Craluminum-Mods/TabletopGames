@@ -4,10 +4,13 @@ namespace TabletopGames;
 
 public class ItemSlotTabletop : ItemSlot
 {
+    public EnumSlotType SlotType { get; }
     public TabletopTags TabletopTags { get; }
 
-    public ItemSlotTabletop(InventoryBase inventory, TabletopTags tabletopTags) : base(inventory)
+    public ItemSlotTabletop(InventoryBase inventory, TabletopTags tabletopTags, EnumSlotType slotType) : base(inventory)
     {
+        this.inventory = inventory;
+        SlotType = slotType;
         TabletopTags = tabletopTags;
     }
 
@@ -22,4 +25,23 @@ public class ItemSlotTabletop : ItemSlot
     {
         return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) || base.CanTakeFrom(sourceSlot, priority);
     }
+
+    public override void OnItemSlotModified(ItemStack sinkStack)
+    {
+        base.OnItemSlotModified(sinkStack);
+
+        if (SlotType == EnumSlotType.Random)
+        {
+            sinkStack?.Collectible?.GetBehavior<CollectibleBehaviorRandomizeInSlot>()?.RandomizeAttributes(sinkStack);
+        }
+    }
+}
+
+/// <summary>
+/// Determines whether slot is default or used to randomize dices
+/// </summary>
+public enum EnumSlotType
+{
+    Normal,
+    Random
 }

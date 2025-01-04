@@ -85,20 +85,20 @@ public class BlockBoard : Block, IContainedMeshSource
         if (slotId >= 0 && (tags.TagsPerSlot.Any() || tags.TagsIgnoredPerSlot.Any()))
         {
             TabletopTags newTags = new();
-            string _slotId = slotId.ToString();
+            string id = slotId.ToString();
 
-            foreach ((string _id, List<string> _tags) in tags.TagsPerSlot)
+            foreach ((string wildcard, List<string> _tags) in tags.TagsPerSlot)
             {
-                if (WildcardUtil.Match(_id, _slotId))
+                if (WildcardUtil.Match(wildcard, id))
                 {
                     newTags.Tags = _tags;
                     break;
                 }
             }
 
-            foreach ((string _id, List<string> _ignoredTags) in tags.TagsIgnoredPerSlot)
+            foreach ((string wildcard, List<string> _ignoredTags) in tags.TagsIgnoredPerSlot)
             {
-                if (WildcardUtil.Match(_id, _slotId))
+                if (WildcardUtil.Match(wildcard, id))
                 {
                     newTags.TagsIgnored = _ignoredTags;
                     break;
@@ -108,6 +108,27 @@ public class BlockBoard : Block, IContainedMeshSource
             return newTags;
         }
         return tags;
+    }
+    
+    public ItemSlot CreateSlot(Materials materials, InventoryBase inventory, int slotId)
+    {
+        BoardData boardData = GetBoardData(materials);
+        TabletopTags tags = GetTags(materials, slotId);
+        EnumSlotType slotType = EnumSlotType.Normal;
+
+        if (boardData.SlotTypes.Any())
+        {
+            string id = slotId.ToString();
+            foreach ((string wildcard, EnumSlotType _slotType) in boardData.SlotTypes)
+            {
+                if (WildcardUtil.Match(wildcard, id))
+                {
+                    slotType = _slotType;
+                    break;
+                }
+            }
+        }
+        return new ItemSlotTabletop(inventory, tags, slotType);
     }
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)

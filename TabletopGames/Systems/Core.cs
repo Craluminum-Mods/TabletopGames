@@ -51,6 +51,7 @@ public class Core : ModSystem
     private void RegisterBehaviors()
     {
         api.RegisterCollectibleBehaviorClass("TabletopGames.AdvancedToolModes", typeof(CollectibleBehaviorAdvancedToolModes));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
     }
 
     private void RegisterBlockEntities()
