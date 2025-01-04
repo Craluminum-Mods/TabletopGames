@@ -41,12 +41,11 @@ public class ConfigLibCompatibility
                 BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
                 if (selection != null && capi.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
                 {
-                    StealSelBox(id, capi);
+                    StealSelBox(id, blockEntity);
                     ImGui.NewLine();
                     EditBoardData(id, blockEntity);
                 }
             }
-
             ImGui.Unindent();
         }
     }
@@ -87,8 +86,10 @@ public class ConfigLibCompatibility
         }
     }
 
-    private static void StealSelBox(string id, ICoreClientAPI capi)
+    private static void StealSelBox(string id, BlockEntityBoard blockEntity)
     {
+        ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
+
         bool stealAll = ImGui.Button("Steal whole selected block selection" + $"##DEBUG-StealWholeSelectedBlockSelection-{id}");
         bool stealOne = ImGui.Button("Steal selected block selection" + $"##DEBUG-StealSelectedBlockSelection-{id}");
 
@@ -97,15 +98,9 @@ public class ConfigLibCompatibility
             return;
         }
 
-        BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
-        if (selection == null || capi.World.BlockAccessor.GetBlockEntity(selection.Position) is not BlockEntityBoard blockEntity)
-        {
-            return;
-        }
-
         StringBuilder sb = new();
 
-        int selectionBoxIndex = selection.SelectionBoxIndex;
+        int selectionBoxIndex = capi.World.Player.CurrentBlockSelection.SelectionBoxIndex;
 
         Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
         if (stealAll)
