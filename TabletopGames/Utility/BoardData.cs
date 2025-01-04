@@ -33,14 +33,14 @@ public class BoardData
             {
                 if (WildcardUtil.Match(wildcard, id))
                 {
-                    dsc.AppendLine("Slot Type: " + slotType.ToString());
+                    dsc.AppendLine("DEBUG::Slot Type: " + slotType.ToString());
                     break;
                 }
             }
         }
         else
         {
-            dsc.AppendLine("Slot Type: " + EnumSlotType.Normal.ToString());
+            dsc.AppendLine("DEBUG::Slot Type: " + EnumSlotType.Normal.ToString());
         }
 
         if (Size != null)

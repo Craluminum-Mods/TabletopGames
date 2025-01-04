@@ -59,44 +59,59 @@ public class TabletopTags
         {
             if (Tags.Any())
             {
-                dsc.AppendLine( nameof(Tags) + ": " + string.Join(", ", Tags));
+                dsc.AppendLine("DEBUG::" + nameof(Tags) + ": " + string.Join(", ", Tags));
             }
             if (TagsIgnored.Any())
             {
-                dsc.AppendLine( nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
+                dsc.AppendLine("DEBUG::" + nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
             }
-
-            dsc.AppendLine(nameof(TagsPerSlot) + ": ");
-            foreach ((string id, List<string> tags) in TagsPerSlot)
+            if (TagsPerSlot.Any())
             {
-                if (tags.Any())
+                dsc.AppendLine($"DEBUG::{nameof(TagsPerSlot)}: ");
+                foreach ((string id, List<string> tags) in TagsPerSlot)
                 {
-                    dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
+                    if (tags.Any())
+                    {
+                        dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
+                    }
                 }
             }
-
-            dsc.AppendLine(nameof(TagsIgnoredPerSlot) + ": ");
-            foreach ((string id, List<string> tags) in TagsIgnoredPerSlot)
+            if (TagsIgnoredPerSlot.Any())
             {
-                if (tags.Any())
+                dsc.AppendLine($"DEBUG::{nameof(TagsIgnoredPerSlot)}: ");
+                foreach ((string id, List<string> tags) in TagsIgnoredPerSlot)
                 {
-                    dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
+                    if (tags.Any())
+                    {
+                        dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
+                    }
                 }
             }
-
             return;
         }
 
         TabletopTags tabletopTags = GetResolvedTags(slotIndex);
         if (slotIndex >= 0)
         {
-            dsc.AppendLine("Slot Tags: " + string.Join(", ", tabletopTags.Tags));
-            dsc.AppendLine("Slot Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
+            if (tabletopTags.Tags.Any())
+            {
+                dsc.AppendLine("DEBUG::Slot Tags: " + string.Join(", ", tabletopTags.Tags));
+            }
+            if (tabletopTags.TagsIgnored.Any())
+            {
+                dsc.AppendLine("DEBUG::Slot Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
+            }
             return;
         }
 
-        dsc.AppendLine("Tags: " + string.Join(", ", tabletopTags.Tags));
-        dsc.AppendLine("Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
+        if (tabletopTags.Tags.Any())
+        {
+            dsc.AppendLine("DEBUG::Tags: " + string.Join(", ", tabletopTags.Tags));
+        }
+        if (tabletopTags.TagsIgnored.Any())
+        {
+            dsc.AppendLine("DEBUG::Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
+        }
     }
 
     public static TabletopTags FromStack(ItemStack stack)
