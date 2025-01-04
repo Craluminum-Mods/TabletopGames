@@ -1,6 +1,7 @@
 ﻿using ConfigLib;
 using ImGuiNET;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
@@ -105,6 +106,9 @@ public class ConfigLibCompatibility
         ImGui.NewLine();
         bool copyAllBoxes = ImGui.Button($"Copy All Selection Boxes to Clipboard##SelectionBoxes-CopyAll-{id}");
         bool copySelectedBox = ImGui.Button($"Copy Selected Selection Box to Clipboard##SelectionBoxes-CopySelected-{id}");
+        ImGui.NewLine();
+        bool copyAndApplyRotated90 = ImGui.Button($"Rotate by 90 & Copy Selection Boxes To Clipboard##SelectionBoxes-CopyApplyRotated90-{id}");
+        bool copyAndApplyRotated180 = ImGui.Button($"Rotate by 180 & Copy Selection Boxes To Clipboard##SelectionBoxes-CopyApplyRotated180-{id}");
 
         if (clearList)
         {
@@ -112,9 +116,10 @@ public class ConfigLibCompatibility
             return;
         }
 
-        if (!addBoxToList && !copyListToClipboard && !copyAllBoxes && !copySelectedBox) return;
+        if (!addBoxToList && !copyListToClipboard && !copyAllBoxes && !copySelectedBox && !copyAndApplyRotated90 && !copyAndApplyRotated180) return;
 
         Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
+
         int selectedIndex = capi.World.Player.CurrentBlockSelection.SelectionBoxIndex;
 
         if (addBoxToList)
@@ -133,6 +138,21 @@ public class ConfigLibCompatibility
             {
                 AppendSelectionBox(sb, cuboids[i], i);
             }
+        }
+        else if (copyAndApplyRotated90 || copyAndApplyRotated180)
+        {
+            int rotatedBy = 90;
+            if (copyAndApplyRotated180)
+            {
+                rotatedBy = 180;
+            }
+
+            List<Cuboidf> newCuboids = cuboids.DeepClone().Select(x => x.RotatedCopy(0, rotatedBy, 0, new Vec3d(0.5, 0.5, 0.5))).ToList();
+            for (int i = 0; i < newCuboids.Count; i++)
+            {
+                AppendSelectionBox(sb, newCuboids[i], i);
+            }
+            blockEntity.SetSelectionBoxes(newCuboids.ToArray());
         }
         else if (copySelectedBox)
         {

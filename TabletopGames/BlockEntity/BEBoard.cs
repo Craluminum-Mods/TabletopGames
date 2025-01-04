@@ -186,6 +186,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
         return selectionBoxes;
     }
+    
+    public virtual void SetSelectionBoxes(Cuboidf[] cuboids)
+    {
+        selectionBoxes = cuboids;
+    }
 
     protected virtual void GenerateSelection()
     {
