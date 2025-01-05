@@ -9,7 +9,6 @@ public class ItemSlotTabletop : ItemSlot
 
     public ItemSlotTabletop(InventoryBase inventory, TabletopTags tabletopTags, EnumSlotType slotType) : base(inventory)
     {
-        this.inventory = inventory;
         SlotType = slotType;
         TabletopTags = tabletopTags;
     }

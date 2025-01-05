@@ -64,9 +64,9 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
     {
         if (inventory == null || inventory.Count == 0)
         {
-            inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-0", null, Api, (slotid, _inv) =>
+            inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-1", null, Api, (slotid, _inv) =>
             {
-                return OwnBlock.CreateSlot(Variants, inventory, slotid);
+                return OwnBlock.CreateSlot(Variants, _inv, slotid);
             });
         }
     }
