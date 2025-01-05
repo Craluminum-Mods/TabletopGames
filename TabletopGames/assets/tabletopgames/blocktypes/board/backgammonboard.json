@@ -262,7 +262,20 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color2": "ultramarine" }, "consumeIngredient": false },
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color2": "cinnabar" }, "consumeIngredient": false }
                             ]
-                        }
+                        },
+
+                        { "setVariants": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setVariants": { "size": "13x13" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "15x15" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "17x17" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "19x19" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true },
+
+                        { "setVariants": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setVariants": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+                        { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+
+                        { "setVariants": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
             }

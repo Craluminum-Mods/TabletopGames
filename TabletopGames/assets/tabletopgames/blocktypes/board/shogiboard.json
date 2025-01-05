@@ -95,7 +95,10 @@
                         { "setVariants": { "size": "three" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true, "linebreak": true },
                         { "setVariants": { "size": "six" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
                         { "setVariants": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
-                        { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true }
+                        { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
+
+                        // giving backgammon board with second color for free to avoid missing textures
+                        { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
             }
