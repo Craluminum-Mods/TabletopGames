@@ -11,6 +11,27 @@ namespace TabletopGames;
 
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
+    public class AdvancedToolMode
+    {
+        public Dictionary<string, string> SetVariants { get; set; } = new();
+        public List<string> RemoveVariants { get; set; } = new();
+
+        public JsonItemStack ConvertTo { get; set; }
+        public bool CopyAttributes { get; set; }
+
+        public bool IsSinkSlot { get; set; }
+        public List<CraftingStep> SlotParams { get; set; } = new();
+
+        public string IconTexture { get; set; } = "";
+        public JsonItemStack IconStack { get; set; }
+
+        public string Name { get; set; }
+        public bool Linebreak { get; set; }
+
+        public string NameTranslated => Lang.Get(Name);
+        public bool NameExists => !string.IsNullOrEmpty(Name);
+    }
+
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
     private Dictionary<string, LoadedTexture> texturesByKeyResolved = new();
     private Dictionary<string, string> texturesByKey = new();
@@ -134,7 +155,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
             SkillItem mode = new()
             {
-                Name = finalStack.GetName(),
+                Name = advMode.NameExists ? advMode.NameTranslated : finalStack.GetName(),
                 RenderHandler = finalStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false),
                 Linebreak = advMode.Linebreak
             };
@@ -170,7 +191,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         SkillItem _mode = new()
         {
-            Name = Lang.Get(advMode.Name),
+            Name = advMode.NameTranslated,
             Linebreak = advMode.Linebreak
         };
 
@@ -198,22 +219,4 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             HotKeyCode = "toolmodeselect"
         });
     }
-}
-
-public class AdvancedToolMode
-{
-    public Dictionary<string, string> SetVariants { get; set; } = new();
-    public List<string> RemoveVariants { get; set; } = new();
-
-    public JsonItemStack ConvertTo { get; set; }
-    public bool CopyAttributes { get; set; }
-
-    public bool IsSinkSlot { get; set; }
-    public List<CraftingStep> SlotParams { get; set; } = new();
-
-    public string IconTexture { get; set; } = "";
-    public JsonItemStack IconStack { get; set; }
-
-    public string Name { get; set; }
-    public bool Linebreak { get; set; }
 }
