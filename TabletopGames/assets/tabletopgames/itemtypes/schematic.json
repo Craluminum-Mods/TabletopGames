@@ -82,8 +82,8 @@
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
                             "slotParams": [
                                 {
-                                    "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 20 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 20 },
+                                    "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 1 },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
                                     "setVariants": { "type": "classic_cube", "dot": "6", "stone": "{stone}", "color": "carbonblack" } // giving dice with color for free to avoid missing textures
                                 }
                             ]
