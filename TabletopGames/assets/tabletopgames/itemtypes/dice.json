@@ -90,7 +90,9 @@
                         {
                             "name": "tabletopgames:toolmode-dice-reset",
                             "setVariants": { "dot": "6" }
-                        }
+                        },
+
+                        { "linebreak": true, "setVariants": { "type": "doubling_cube", "dot": "64" } }
                     ],
                     "type-doubling_cube": [
                         {
@@ -111,7 +113,9 @@
                         {
                             "name": "tabletopgames:toolmode-dice-reset",
                             "setVariants": { "dot": "64" }
-                        }
+                        },
+
+                        { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } }
                     ]
                 }
             }
