@@ -10,7 +10,8 @@
             "type-*": ["tabletopgames:item-dice-{type}"]
         },
         "description": {
-            "type-*": ["tabletopgames:itemdesc-dice-{type}", "<br><br>", "tabletopgames:itemdesc-dice-{type}-dots-{dot}"]
+            "type-*::wood-*": ["tabletopgames:itemdesc-dice-{type}-dots-{dot}", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "type-*::stone-*": ["tabletopgames:itemdesc-dice-{type}-dots-{dot}", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"]
         },
         "shape": {
             "type-classic_cube::wood-*": { "base": "tabletopgames:item/dice/cube/wood-{dot}" },
