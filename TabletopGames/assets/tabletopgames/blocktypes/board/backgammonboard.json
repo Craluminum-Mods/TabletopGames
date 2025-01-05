@@ -16,8 +16,8 @@
             "*": ["tabletopgames:block-backgammonboard-{size}"]
         },
         "description": {
-            "stone-*": ["tabletopgames:trivia-backgammonboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-backgammonboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "tabletopTags": {
             "size-classic": {
