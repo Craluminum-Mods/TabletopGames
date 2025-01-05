@@ -132,15 +132,6 @@
         {
             "tabs": ["tabletopgames"],
             "stacks": [
-                { "type": "item", "code": "game:charcoal" },
-                { "type": "item", "code": "game:coke" },
-                { "type": "item", "code": "game:nugget-malachite" },
-                { "type": "item", "code": "game:ore-bituminouscoal" },
-                { "type": "item", "code": "game:ore-cinnabar" },
-                { "type": "item", "code": "game:ore-lapislazuli" },
-                { "type": "item", "code": "game:stone-chalk" },
-                { "type": "item", "code": "game:stone-limestone" },
-
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "5x5", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "6x6", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "7x7", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
