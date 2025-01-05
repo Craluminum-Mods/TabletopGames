@@ -47,6 +47,8 @@
     "item-schematic-generic_piece": "Tabletop pieces Schematic",
     "itemdesc-schematic-generic_piece": "Used for creating all possible pieces",
 
+    "block-backgammonboard-classic": "Backgammon board",
+
     "game:onMorrisTransform": "On Morris board",
     "game:onChessboardTransform": "On chessboard",
     "game:onGoboard9x9Transform": "On 9x9 Go board",
