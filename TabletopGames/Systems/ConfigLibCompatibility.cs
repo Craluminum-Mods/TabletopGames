@@ -109,14 +109,30 @@ public class ConfigLibCompatibility
         ImGui.NewLine();
         bool copyAndApplyRotated90 = ImGui.Button($"Rotate by 90 & Copy Selection Boxes To Clipboard##SelectionBoxes-CopyApplyRotated90-{id}");
         bool copyAndApplyRotated180 = ImGui.Button($"Rotate by 180 & Copy Selection Boxes To Clipboard##SelectionBoxes-CopyApplyRotated180-{id}");
+        bool resetSelBoxes = ImGui.Button($"Reset Selection Boxes##SelectionBoxes-Reset-{id}");
+        bool roundSelBoxes = ImGui.Button($"Round Selection Boxes to 0.0001##SelectionBoxes-RoundTo0.0001-{id}");
 
+        if (resetSelBoxes)
+        {
+            blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
+            return;
+        }
         if (clearList)
         {
             SelectedSelectionBoxes.Clear();
             return;
         }
 
-        if (!addBoxToList && !copyListToClipboard && !copyAllBoxes && !copySelectedBox && !copyAndApplyRotated90 && !copyAndApplyRotated180) return;
+        if (!addBoxToList
+            && !copyListToClipboard
+            && !copyAllBoxes
+            && !copySelectedBox
+            && !copyAndApplyRotated90
+            && !copyAndApplyRotated180
+            && !roundSelBoxes)
+        {
+            return;
+        }
 
         Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
 
@@ -147,7 +163,9 @@ public class ConfigLibCompatibility
                 rotatedBy = 180;
             }
 
-            List<Cuboidf> newCuboids = cuboids.DeepClone().Select(x => x.RotatedCopy(0, rotatedBy, 0, new Vec3d(0.5, 0.5, 0.5))).ToList();
+            // NOTE: rotate among Z axis by 180 degrees to mirror selboxes
+            double originY = 0.015625; // most common Y in the center of boards
+            List<Cuboidf> newCuboids = cuboids.DeepClone().Select(x => x.RotatedCopy(0, rotatedBy, 0, new Vec3d(0.5, originY, 0.5))).ToList();
             for (int i = 0; i < newCuboids.Count; i++)
             {
                 AppendSelectionBox(sb, newCuboids[i], i);
@@ -164,6 +182,16 @@ public class ConfigLibCompatibility
             {
                 AppendSelectionBox(sb, SelectedSelectionBoxes[i], i);
             }
+        }
+        else if (roundSelBoxes)
+        {
+            List<Cuboidf> newCuboids = cuboids.DeepClone().ToList();
+            for (int i = 0; i < newCuboids.Count; i++)
+            {
+                newCuboids[i].RoundToFracsOfOne10thousand();
+                AppendSelectionBox(sb, newCuboids[i], i);
+            }
+            blockEntity.SetSelectionBoxes(newCuboids.ToArray());
         }
 
         capi.Input.ClipboardText = sb.ToString();
