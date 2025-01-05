@@ -1,0 +1,159 @@
+{
+    "code": "dice",
+    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
+    "maxStackSize": 1,
+    "attributes": {
+        "handbook": { "groupBy": ["tabletopgames:dice"] },
+        "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.1 }, "rotation": { "x": -90, "y": -145, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 1.25 },
+        "onBackgammonTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.4 },
+        "name": {
+            "type-*": ["tabletopgames:item-dice-{type}"]
+        },
+        "description": {
+            "type-*": ["tabletopgames:itemdesc-dice-{type}", "<br><br>", "tabletopgames:itemdesc-dice-{type}-dots-{dot}"]
+        },
+        "shape": {
+            "type-classic_cube::wood-*": { "base": "tabletopgames:item/dice/cube/wood-{dot}" },
+            "type-classic_cube::stone-*": { "base": "tabletopgames:item/dice/cube/stone-{dot}" },
+
+            "type-doubling_cube::wood-*::dot-2": { "base": "tabletopgames:item/dice/cube/wood-1" },
+            "type-doubling_cube::stone-*::dot-2": { "base": "tabletopgames:item/dice/cube/stone-1" },
+
+            "type-doubling_cube::wood-*::dot-4": { "base": "tabletopgames:item/dice/cube/wood-2" },
+            "type-doubling_cube::stone-*::dot-4": { "base": "tabletopgames:item/dice/cube/stone-2" },
+
+            "type-doubling_cube::wood-*::dot-8": { "base": "tabletopgames:item/dice/cube/wood-3" },
+            "type-doubling_cube::stone-*::dot-8": { "base": "tabletopgames:item/dice/cube/stone-3" },
+
+            "type-doubling_cube::wood-*::dot-16": { "base": "tabletopgames:item/dice/cube/wood-4" },
+            "type-doubling_cube::stone-*::dot-16": { "base": "tabletopgames:item/dice/cube/stone-4" },
+
+            "type-doubling_cube::wood-*::dot-32": { "base": "tabletopgames:item/dice/cube/wood-5" },
+            "type-doubling_cube::stone-*::dot-32": { "base": "tabletopgames:item/dice/cube/stone-5" },
+
+            "type-doubling_cube::wood-*::dot-64": { "base": "tabletopgames:item/dice/cube/wood-6" },
+            "type-doubling_cube::stone-*::dot-64": { "base": "tabletopgames:item/dice/cube/stone-6" }
+        },
+        "textures": {
+            "type-classic_cube": {
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-6", "blendMode": "OverlayCutout" }] }
+            },
+            "type-doubling_cube": {
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood": { "base": "game:block/wood/debarked/{wood}" },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-16", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-32", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-64", "blendMode": "OverlayCutout" }] }
+            }
+        },
+        "tabletopTags": {
+            "tags": ["dice"]
+        },
+        "rotateWhenPlacedOnBoard": true
+    },
+    "behaviors": [
+        { "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } },
+        {
+            "name": "TabletopGames.AdvancedToolModes",
+            "properties": {
+                "textures": {
+                    "paintbrush": "paintbrush"
+                },
+                "toolModes": {
+                    "type-classic_cube": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-dice-changedotcolor",
+                            "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-dice-reset",
+                            "setVariants": { "dot": "6" }
+                        }
+                    ],
+                    "type-doubling_cube": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-dice-changedotcolor",
+                            "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-dice-reset",
+                            "setVariants": { "dot": "64" }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.RandomizeInSlot",
+            "properties": {
+                "targetVariant": {
+                    "type-classic_cube": "dot",
+                    "type-doubling_cube": "dot"
+                },
+                "possibleVariantValues": {
+                    "type-classic_cube": ["1", "2", "3", "4", "5", "6"],
+                    "type-doubling_cube": ["2", "4", "8", "16", "32", "64"]
+                }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames"],
+            "stacks": [
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "doubling_cube", "dot": "64", "stone": "basalt", "color": "chalkwhite" } } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "translation": { "x": 3, "y": 0, "z": 0 },
+        "rotation": { "x": 135, "y": 35, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
+        "scaleXyz": { "x": -2.7, "y": 2.7, "z": 2.7 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+        "scale": 2
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.6, "y": -0.9, "z": -2 },
+        "rotation": { "x": -90, "y": 0, "z": -90 },
+        "origin": { "x": 0.5, "y": 0.26666668, "z": 0.5 },
+        "scale": 0.25
+    }
+}

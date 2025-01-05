@@ -49,6 +49,23 @@
 
     "block-backgammonboard-classic": "Backgammon board",
 
+    "item-dice-classic_cube": "Dice",
+    "item-dice-doubling_cube": "Doubling Cube Dice",
+    "itemdesc-dice-classic_cube": "Generates random values when rolled (placed) on the board.",
+    "itemdesc-dice-doubling_cube": "Generates random values when rolled (placed) on the board. Commonly used in Backgammon.",
+    "itemdesc-dice-classic_cube-dots-1": "Shows 1 dot on the top face.",
+    "itemdesc-dice-classic_cube-dots-2": "Shows 2 dots on the top face.",
+    "itemdesc-dice-classic_cube-dots-3": "Shows 3 dots on the top face.",
+    "itemdesc-dice-classic_cube-dots-4": "Shows 4 dots on the top face.",
+    "itemdesc-dice-classic_cube-dots-5": "Shows 5 dots on the top face.",
+    "itemdesc-dice-classic_cube-dots-6": "Shows 6 dots on the top face.",
+    "itemdesc-dice-doubling_cube-dots-2": "Shows 2 on the top face.",
+    "itemdesc-dice-doubling_cube-dots-4": "Shows 4 on the top face.",
+    "itemdesc-dice-doubling_cube-dots-8": "Shows 8 on the top face.",
+    "itemdesc-dice-doubling_cube-dots-16": "Shows 16 on the top face.",
+    "itemdesc-dice-doubling_cube-dots-32": "Shows 32 on the top face.",
+    "itemdesc-dice-doubling_cube-dots-64": "Shows 64 on the top face.",
+
     "game:onMorrisTransform": "On Morris board",
     "game:onChessboardTransform": "On chessboard",
     "game:onGoboard9x9Transform": "On 9x9 Go board",
@@ -62,11 +79,19 @@
     "toolmode-sinkslot-stone-create-checkerpiece": "Drag and drop 12 stones for 12 Checker pieces",
     "toolmode-sinkslot-stone-create-gostone": "Drag and drop 16 stones for 64 Go stones",
     "toolmode-sinkslot-stone-create-shogipiece": "Drag and drop 20 stones for 20 Shogi pieces",
+    "toolmode-sinkslot-stone-create-dice": "Drag and drop 1 stone for 1 Dice",
 
     "toolmode-sinkslot-wooden-create-chesspiece": "Drag and drop 16 planks for 16 Chess pieces",
     "toolmode-sinkslot-wooden-create-checkerpiece": "Drag and drop 12 planks for 12 Checker pieces",
     "toolmode-sinkslot-wooden-create-gostone": "Drag and drop 16 planks for 64 Go stones",
     "toolmode-sinkslot-wooden-create-shogipiece": "Drag and drop 20 planks for 20 Shogi pieces",
+    "toolmode-sinkslot-wood-create-dice": "Drag and drop 1 plank for 1 Dice",
+
+    "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "Drag and drop pigment here to change the primary color of the drawings on the board.",
+    "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Drag and drop pigment here to change the secondary color of the drawings on the board.",
+
+    "toolmode-sinkslot-pigment-dice-changedotcolor": "Drag and drop pigment here to change the color of dots or numbers on the dice.",
+    "toolmode-dice-reset": "Reset the dice to its default state.",
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",

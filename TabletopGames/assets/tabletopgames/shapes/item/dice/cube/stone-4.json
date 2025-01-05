@@ -1,0 +1,106 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+		"dot-1": [16,16],
+		"dot-2": [16,16],
+		"dot-3": [16,16],
+		"dot-4": [16,16],
+		"dot-5": [16,16],
+		"dot-6": [16,16]
+	},
+	"textures": {
+		"dot-1": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-2",
+		"dot-2": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-4",
+		"dot-3": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-8",
+		"dot-4": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-16",
+		"dot-5": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-32",
+		"dot-6": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-64",
+		"stone": "block/stone/rock/granite1"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 8.0, 0.0, 8.0 ],
+			"to": [ 8.0, 0.0, 8.0 ],
+			"rotationOrigin": [ 8.0, 3.0, 8.0 ],
+			"rotationX": -90.0,
+			"rotationZ": -180.0,
+			"faces": {
+			},
+			"children": [
+				{
+					"name": "cube",
+					"from": [ -3.0, 0.0, -3.0 ],
+					"to": [ 3.0, 6.0, 3.0 ],
+					"rotationOrigin": [ 0.0, 3.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#stone", "uv": [ 0.5, 3.0, 6.5, 9.0 ] },
+						"east": { "texture": "#stone", "uv": [ 4.0, 8.0, 10.0, 14.0 ] },
+						"south": { "texture": "#stone", "uv": [ 1.5, 7.0, 7.5, 13.0 ] },
+						"west": { "texture": "#stone", "uv": [ 6.0, 3.5, 12.0, 9.5 ] },
+						"up": { "texture": "#stone", "uv": [ 9.5, 1.5, 15.5, 7.5 ] },
+						"down": { "texture": "#stone", "uv": [ 3.5, 4.0, 9.5, 10.0 ] }
+					},
+					"children": [
+						{
+							"name": "D-1",
+							"from": [ 0.0, -0.01, 0.0 ],
+							"to": [ 6.0, -0.01, 6.0 ],
+							"rotationOrigin": [ 0.0, -0.1, 0.0 ],
+							"faces": {
+								"down": { "texture": "#dot-1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						},
+						{
+							"name": "E-2",
+							"from": [ 6.01, 0.0, 0.0 ],
+							"to": [ 6.01, 6.0, 6.0 ],
+							"rotationOrigin": [ 6.0, 0.0, 0.0 ],
+							"faces": {
+								"east": { "texture": "#dot-2", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false }
+							}
+						},
+						{
+							"name": "N-3",
+							"from": [ 0.0, 0.0, -0.01 ],
+							"to": [ 6.0, 6.0, -0.01 ],
+							"faces": {
+								"north": { "texture": "#dot-3", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						},
+						{
+							"name": "S-4",
+							"from": [ 0.0, 0.0, 6.01 ],
+							"to": [ 6.0, 6.0, 6.01 ],
+							"rotationOrigin": [ 0.0, 0.0, 6.0 ],
+							"faces": {
+								"south": { "texture": "#dot-4", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						},
+						{
+							"name": "W-5",
+							"from": [ -0.01, 0.0, 0.0 ],
+							"to": [ -0.01, 6.0, 6.0 ],
+							"faces": {
+								"west": { "texture": "#dot-5", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						},
+						{
+							"name": "U-6",
+							"from": [ 0.0, 6.01, 0.0 ],
+							"to": [ 6.0, 6.01, 6.0 ],
+							"rotationOrigin": [ 0.0, 6.1, 0.0 ],
+							"faces": {
+								"up": { "texture": "#dot-6", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}
