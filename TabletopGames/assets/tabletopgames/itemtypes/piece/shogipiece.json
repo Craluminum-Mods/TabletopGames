@@ -101,12 +101,6 @@
         "origin": { "x": 0.5, "y": 0, "z": 0.5 },
         "scale": 1.65
     },
-    "fpHandTransform": {
-        "translation": { "x": 0, "y": 0.5, "z": 0 },
-        "rotation": { "x": 22, "y": 180, "z": 0 },
-        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-        "scale": 0.9
-    },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },

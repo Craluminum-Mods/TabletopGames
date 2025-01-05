@@ -74,11 +74,5 @@
     "tpHandTransform": {
         "translation": { "x": -2.2, "y": -1.9, "z": -2 },
         "scale": 0.25
-    },
-    "fpHandTransform": {
-        "translation": { "x": 0, "y": 0, "z": 0 },
-        "rotation": { "x": 0, "y": 0, "z": 0 },
-        "origin": { "x": 0.5, "y": 0.2, "z": 0.5 },
-        "scale": 0.5
     }
 }
