@@ -20,7 +20,7 @@
 		"dot-4": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-16",
 		"dot-5": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-32",
 		"dot-6": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/item/dice/doubling/dice-64",
-		"wood": "block/wood/debarked/oak"
+		"material": "block/wood/debarked/oak"
 	},
 	"elements": [
 		{
@@ -28,7 +28,7 @@
 			"from": [ 8.0, 0.0, 8.0 ],
 			"to": [ 8.0, 0.0, 8.0 ],
 			"rotationOrigin": [ 8.0, 3.0, 8.0 ],
-			"rotationX": 90.0,
+			"rotationY": -180.0,
 			"faces": {
 			},
 			"children": [
@@ -38,12 +38,12 @@
 					"to": [ 3.0, 6.0, 3.0 ],
 					"rotationOrigin": [ 0.0, 3.0, 0.0 ],
 					"faces": {
-						"north": { "texture": "#wood", "uv": [ 0.5, 3.0, 6.5, 9.0 ] },
-						"east": { "texture": "#wood", "uv": [ 4.0, 8.0, 10.0, 14.0 ] },
-						"south": { "texture": "#wood", "uv": [ 1.5, 7.0, 7.5, 13.0 ] },
-						"west": { "texture": "#wood", "uv": [ 6.0, 3.5, 12.0, 9.5 ] },
-						"up": { "texture": "#wood", "uv": [ 9.5, 1.5, 15.5, 7.5 ] },
-						"down": { "texture": "#wood", "uv": [ 3.5, 4.0, 9.5, 10.0 ] }
+						"north": { "texture": "#material", "uv": [ 0.5, 3.0, 6.5, 9.0 ] },
+						"east": { "texture": "#material", "uv": [ 4.0, 8.0, 10.0, 14.0 ] },
+						"south": { "texture": "#material", "uv": [ 1.5, 7.0, 7.5, 13.0 ] },
+						"west": { "texture": "#material", "uv": [ 6.0, 3.5, 12.0, 9.5 ] },
+						"up": { "texture": "#material", "uv": [ 9.5, 1.5, 15.5, 7.5 ] },
+						"down": { "texture": "#material", "uv": [ 3.5, 4.0, 9.5, 10.0 ] }
 					},
 					"children": [
 						{

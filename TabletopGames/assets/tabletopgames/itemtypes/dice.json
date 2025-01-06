@@ -14,31 +14,23 @@
             "type-*::stone-*": ["tabletopgames:itemdesc-dice-{type}-dots-{dot}", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"]
         },
         "shape": {
-            "type-classic_cube::wood-*": { "base": "tabletopgames:item/dice/cube/wood-{dot}" },
-            "type-classic_cube::stone-*": { "base": "tabletopgames:item/dice/cube/stone-{dot}" },
+            "type-classic_cube::dot-1": { "base": "tabletopgames:item/dice/cube", "rotateX": 180, "rotateY": 180, "rotateZ": 0 },
+            "type-classic_cube::dot-2": { "base": "tabletopgames:item/dice/cube", "rotateX": 0, "rotateY": 270, "rotateZ": 270 },
+            "type-classic_cube::dot-3": { "base": "tabletopgames:item/dice/cube", "rotateX": 270, "rotateY": 0, "rotateZ": 180 },
+            "type-classic_cube::dot-4": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 0, "rotateZ": 0 },
+            "type-classic_cube::dot-5": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 90, "rotateZ": 0 },
+            "type-classic_cube::dot-6": { "base": "tabletopgames:item/dice/cube" }, // no rotations
 
-            "type-doubling_cube::wood-*::dot-2": { "base": "tabletopgames:item/dice/cube/wood-1" },
-            "type-doubling_cube::stone-*::dot-2": { "base": "tabletopgames:item/dice/cube/stone-1" },
-
-            "type-doubling_cube::wood-*::dot-4": { "base": "tabletopgames:item/dice/cube/wood-2" },
-            "type-doubling_cube::stone-*::dot-4": { "base": "tabletopgames:item/dice/cube/stone-2" },
-
-            "type-doubling_cube::wood-*::dot-8": { "base": "tabletopgames:item/dice/cube/wood-3" },
-            "type-doubling_cube::stone-*::dot-8": { "base": "tabletopgames:item/dice/cube/stone-3" },
-
-            "type-doubling_cube::wood-*::dot-16": { "base": "tabletopgames:item/dice/cube/wood-4" },
-            "type-doubling_cube::stone-*::dot-16": { "base": "tabletopgames:item/dice/cube/stone-4" },
-
-            "type-doubling_cube::wood-*::dot-32": { "base": "tabletopgames:item/dice/cube/wood-5" },
-            "type-doubling_cube::stone-*::dot-32": { "base": "tabletopgames:item/dice/cube/stone-5" },
-
-            "type-doubling_cube::wood-*::dot-64": { "base": "tabletopgames:item/dice/cube/wood-6" },
-            "type-doubling_cube::stone-*::dot-64": { "base": "tabletopgames:item/dice/cube/stone-6" }
+            "type-doubling_cube::dot-2": { "base": "tabletopgames:item/dice/cube", "rotateX": 180, "rotateY": 180, "rotateZ": 0 },
+            "type-doubling_cube::dot-4": { "base": "tabletopgames:item/dice/cube", "rotateX": 0, "rotateY": 270, "rotateZ": 270 },
+            "type-doubling_cube::dot-8": { "base": "tabletopgames:item/dice/cube", "rotateX": 270, "rotateY": 0, "rotateZ": 180 },
+            "type-doubling_cube::dot-16": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 0, "rotateZ": 0 },
+            "type-doubling_cube::dot-32": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 90, "rotateZ": 0 },
+            "type-doubling_cube::dot-64": { "base": "tabletopgames:item/dice/cube" } // no rotations
         },
         "textures": {
-            "type-classic_cube": {
-                "stone": { "base": "game:block/stone/rock/{stone}1" },
-                "wood": { "base": "game:block/wood/debarked/{wood}" },
+            "type-classic_cube::wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
                 "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-1", "blendMode": "OverlayCutout" }] },
                 "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-2", "blendMode": "OverlayCutout" }] },
                 "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-3", "blendMode": "OverlayCutout" }] },
@@ -46,9 +38,26 @@
                 "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-5", "blendMode": "OverlayCutout" }] },
                 "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-6", "blendMode": "OverlayCutout" }] }
             },
-            "type-doubling_cube": {
-                "stone": { "base": "game:block/stone/rock/{stone}1" },
-                "wood": { "base": "game:block/wood/debarked/{wood}" },
+            "type-classic_cube::stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/classic/dice-6", "blendMode": "OverlayCutout" }] }
+            },
+            "type-doubling_cube::wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-16", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-32", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-64", "blendMode": "OverlayCutout" }] }
+            },
+            "type-doubling_cube::stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
                 "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-2", "blendMode": "OverlayCutout" }] },
                 "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-4", "blendMode": "OverlayCutout" }] },
                 "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/doubling/dice-8", "blendMode": "OverlayCutout" }] },
