@@ -102,7 +102,31 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         }
         if (shape == null) return mesh;
         capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes item", shape, out mesh, stexSource);
+        TryRotateShape(ref mesh, _shape, shape);
         return mesh;
+    }
+
+    public virtual void TryRotateShape(ref MeshData mesh, CompositeShape cshape, Shape shape)
+    {
+        ShapeElement origin = shape.GetElementByName("origin");
+        bool rotateNormalWay = cshape.rotateX != 0 || cshape.rotateY != 0 || cshape.rotateZ != 0;
+        if (!TabletopDebug.ItemRotations && !rotateNormalWay)
+        {
+            return;
+        }
+
+        if (origin?.RotationOrigin?.Length != 3)
+        {
+            api.Logger.Debug("[TabletopGames] Shape {0} for item {1} is missing origin cube, it will not rotate!", cshape.Base, Code);
+            return;
+        }
+
+        float rotateX = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.X * GameMath.DEG2RAD : cshape.rotateX * GameMath.DEG2RAD;
+        float rotateY = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.Y * GameMath.DEG2RAD : cshape.rotateY * GameMath.DEG2RAD;
+        float rotateZ = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.Z * GameMath.DEG2RAD : cshape.rotateZ * GameMath.DEG2RAD;
+
+        Vec3f rotationOrigin = new Vec3d(origin.RotationOrigin[0] / 16, origin.RotationOrigin[1] / 16, origin.RotationOrigin[2] / 16).ToVec3f();
+        mesh.Rotate(rotationOrigin, rotateX, rotateY, rotateZ);
     }
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
@@ -112,7 +136,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
 
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
         {
             MeshData mesh = GetOrCreateMesh(variants, capi.ItemTextureAtlas);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
