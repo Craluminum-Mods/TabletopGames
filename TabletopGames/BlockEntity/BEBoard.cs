@@ -239,15 +239,15 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             ItemSlot slot = inventory[index];
             int displayedIndex = TabletopDebug.TagsDebugInfo ? index : index + 1;
+            dsc.Append(displayedIndex + ": ");
             if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
             {
-                dsc.Append(displayedIndex + ": ");
-                dsc.Append("1x ");
+                dsc.Append($"{slot.StackSize}x ");
                 dsc.AppendLine(containedCustomName.GetContainedInfo(slot));
             }
             else
             {
-                dsc.AppendLine(string.Format(displayedIndex + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+                dsc.AppendLine(slot.Empty ? Lang.Get("Empty") : $"{slot.StackSize}x " + slot.GetStackName());
             }
         }
 
