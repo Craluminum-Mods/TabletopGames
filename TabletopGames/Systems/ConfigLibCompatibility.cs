@@ -50,7 +50,7 @@ public class ConfigLibCompatibility
                 }
 
                 Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
-                ImGui.InputFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
+                ImGui.DragFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
                 TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
             }
 
