@@ -239,7 +239,14 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             ItemSlot slot = inventory[index];
             int displayedIndex = TabletopDebug.TagsDebugInfo ? index : index + 1;
-            dsc.AppendLine(string.Format(displayedIndex + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+            if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
+            {
+                dsc.AppendLine(containedCustomName.GetContainedInfo(slot));
+            }
+            else
+            {
+                dsc.AppendLine(string.Format(displayedIndex + ": {0}", slot.Empty ? Lang.Get("Empty") : slot.GetStackName()));
+            }
         }
 
         if (TabletopDebug.TagsDebugInfo && inventory.Count > index) // twice check to avoid constant iterations in ByType
