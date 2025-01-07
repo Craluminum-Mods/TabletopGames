@@ -54,14 +54,20 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         foreach ((string key, string path) in texturesByKey)
         {
-            if (!texturesByKeyResolved.ContainsKey(key))
+            if (texturesByKeyResolved.ContainsKey(key))
             {
-                LoadedTexture _texture = new SkillItem().WithIcon(capi, path).Texture;
-                if (_texture != null)
-                {
-                    texturesByKeyResolved.Add(key, _texture);
-                }
+                continue;
             }
+
+            IAsset asset = capi.Assets.TryGet(path);
+            if (asset != null)
+            {
+                LoadedTexture _texture = new SkillItem().WithIcon(capi, capi.Gui.LoadSvgWithPadding(asset.Location, 48, 48, 5)).Texture;
+                texturesByKeyResolved.Add(key, _texture);
+                continue;
+            }
+
+            texturesByKeyResolved.Add(key, new SkillItem().WithIcon(capi, path).Texture);
         }
     }
 
@@ -217,6 +223,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         if (hasIcon)
         {
             _mode.Texture = _texture;
+            _mode.TexturePremultipliedAlpha = false;
         }
         else if (renderedStack != null)
         {
