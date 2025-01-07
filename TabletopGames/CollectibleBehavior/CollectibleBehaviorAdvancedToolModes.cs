@@ -169,8 +169,10 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Variants variants)
     {
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
-        if (advMode.IsSinkSlot && !mouseslot.Empty)
+        if (!advMode.IsSinkSlot || mouseslot.Empty)
         {
+            return false;
+        }
             if (!byPlayer.ConsumeIngredientAndGiveStack(mouseslot, variants, advMode.SlotParams))
             {
                 slot.HandleInWorldCrafting(byPlayer, mouseslot, variants, advMode.SlotParams);
@@ -179,8 +181,6 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
             return true;
         }
-        return false;
-    }
 
     private bool TryAddSinkSlot(IClientPlayer forPlayer, AdvancedToolMode advMode, ref SkillItem[] _toolModes)
     {
