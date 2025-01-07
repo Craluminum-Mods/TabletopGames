@@ -44,8 +44,9 @@ public class Core : ModSystem
     private void RegisterItems()
     {
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
-        api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
         api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
+        api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
+        api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
     }
 
     private void RegisterBehaviors()

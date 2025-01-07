@@ -1,6 +1,6 @@
 {
     "code": "dice",
-    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
+    "class": "TabletopGames.ItemDice",
     "maxStackSize": 1,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:dice"] },
