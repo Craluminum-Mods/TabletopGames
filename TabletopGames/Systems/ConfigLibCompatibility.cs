@@ -32,9 +32,12 @@ public class ConfigLibCompatibility
             ImGui.Indent();
 
             ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.ItemRotations);
-            Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
-            ImGui.InputFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
-            TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
+            if (TabletopDebug.ItemRotations)
+            {
+                Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
+                ImGui.InputFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
+                TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
+            }
 
             ImGui.NewLine();
             ImGui.Checkbox($"Show variants debug info##VariantsDebug-{id}", ref TabletopDebug.VariantsDebugInfo);
