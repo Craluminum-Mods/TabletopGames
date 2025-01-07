@@ -10,12 +10,7 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary>
-/// <para> Renders shape and textures using attribute based type system. </para>
-/// <para> Used for pieces. </para>
-/// <para> Optional rotation. </para>
-/// <para> Has "automatic" localization. </para>
-/// </summary>
+/// <summary> Renders shape and textures using attribute based type system. </summary>
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
 {
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();

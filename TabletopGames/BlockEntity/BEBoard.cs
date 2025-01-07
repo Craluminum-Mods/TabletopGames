@@ -10,13 +10,7 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary>
-/// <para> Renders shape and textures using attribute based type system. </para>
-/// <para> Used for boards. </para>
-/// <para> Has rotation. </para>
-/// <para> Has "automatic" localization. </para>
-/// <para> Has inventory and displays stored items. </para>
-/// </summary>
+/// <summary> Block Entity with inventory that renders shape and textures using attribute based type system. </summary>
 public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 {
     public BlockBoard OwnBlock => Block as BlockBoard;

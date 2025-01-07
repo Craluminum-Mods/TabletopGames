@@ -8,14 +8,10 @@ namespace TabletopGames;
 
 public class TabletopTags
 {
-    /// <summary>
-    /// When set, normal tabletopTags are ignored
-    /// </summary>
+    /// <summary> When set, normal tabletopTags are ignored </summary>
     public Dictionary<string, List<string>> TagsPerSlot { get; set; } = new();
 
-    /// <summary>
-    /// When set, normal tabletopTags are ignored
-    /// </summary>
+    /// <summary> When set, normal tabletopTags are ignored </summary>
     public Dictionary<string, List<string>> TagsIgnoredPerSlot { get; set; } = new();
 
     public List<string> Tags { get; set; } = new();

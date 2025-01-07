@@ -89,9 +89,7 @@ public class Variants
         return variants;
     }
 
-    /// <summary>
-    /// Overwrites tree
-    /// </summary>
+    /// <summary> Overwrites tree </summary>
     public void ToTreeAttribute(ITreeAttribute rootTree)
     {
         rootTree.RemoveAttribute(RootAttributeName);
@@ -107,9 +105,7 @@ public class Variants
         return FromTreeAttribute(stack.Attributes);
     }
 
-    /// <summary>
-    /// Overwrites tree
-    /// </summary>
+    /// <summary> Overwrites tree </summary>
     public void ToStack(ItemStack stack)
     {
         ToTreeAttribute(stack.Attributes);
