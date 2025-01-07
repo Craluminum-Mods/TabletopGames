@@ -213,8 +213,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             renderedStack = iconStack?.ResolvedItemstack?.Clone();
         }
 
-        // prefer icons over rendering stacks
-        if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
+        bool hasIcon = texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null;
+        if (hasIcon)
         {
             _mode.Texture = _texture;
         }
