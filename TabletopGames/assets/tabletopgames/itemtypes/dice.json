@@ -170,7 +170,8 @@
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
                 "textures": {
-                    "paintbrush": "paintbrush"
+                    "paintbrush": "paintbrush",
+                    "dice": "dice"
                 },
                 "toolModes": {
                     "type-classic_cube": [
@@ -189,7 +190,7 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
-                        { "name": "tabletopgames:toolmode-dice-reset", "setVariants": { "dot": "6" } },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "6" } },
 
                         { "linebreak": true, "setVariants": { "type": "doubling_cube", "dot": "64" } },
                         { "setVariants": { "type": "d4", "dot": "1" } },
@@ -212,7 +213,7 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
-                        { "name": "tabletopgames:toolmode-dice-reset", "setVariants": { "dot": "64" } },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "64" } },
 
                         { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
                         { "setVariants": { "type": "d4", "dot": "1" } },
@@ -235,7 +236,7 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
-                        { "name": "tabletopgames:toolmode-dice-reset", "setVariants": { "dot": "1" } },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "1" } },
 
                         { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
@@ -258,7 +259,7 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
-                        { "name": "tabletopgames:toolmode-dice-reset", "setVariants": { "dot": "6" } },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "6" } },
 
                         { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
@@ -281,7 +282,7 @@
                                 { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
                             ]
                         },
-                        { "name": "tabletopgames:toolmode-dice-reset", "setVariants": { "dot": "12" } },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "12" } },
 
                         { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
