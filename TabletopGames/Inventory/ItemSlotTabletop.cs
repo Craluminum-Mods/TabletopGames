@@ -31,14 +31,4 @@ public class ItemSlotTabletop : ItemSlot
     {
         return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) || base.CanTakeFrom(sourceSlot, priority);
     }
-
-    public override void OnItemSlotModified(ItemStack sinkStack)
-    {
-        base.OnItemSlotModified(sinkStack);
-
-        if (SlotType == EnumSlotType.Random)
-        {
-            sinkStack?.Collectible?.GetBehavior<CollectibleBehaviorRandomizeInSlot>()?.RandomizeAttributes(sinkStack);
-        }
-    }
 }

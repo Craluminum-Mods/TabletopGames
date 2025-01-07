@@ -4,7 +4,8 @@ using Vintagestory.API.Common;
 namespace TabletopGames;
 
 /// <summary>
-/// Represents a dice item that handles animations and randomization behavior when dropped
+/// Represents a dice item that handles animations when dropped 
+/// and randomization behavior when dropped or placed in a slot.
 /// </summary>
 public class ItemDice : ItemShapeTexturesFromAttributes
 {
@@ -58,5 +59,15 @@ public class ItemDice : ItemShapeTexturesFromAttributes
             && transform1.Translation == transform2.Translation
             && transform1.Origin == transform2.Origin
             && transform1.ScaleXYZ == transform2.ScaleXYZ;
+    }
+
+    public override void OnModifiedInInventorySlot(IWorldAccessor world, ItemSlot slot, ItemStack extractedStack = null)
+    {
+        base.OnModifiedInInventorySlot(world, slot, extractedStack);
+
+        if (slot is ItemSlotTabletop slotTabletop && slotTabletop.SlotType == EnumSlotType.Random)
+        {
+            extractedStack?.Collectible?.GetBehavior<CollectibleBehaviorRandomizeInSlot>()?.RandomizeAttributes(extractedStack);
+        }
     }
 }
