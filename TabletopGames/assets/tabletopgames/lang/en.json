@@ -79,12 +79,12 @@
     "itemdesc-dice-d4-dots-3": "<font color=\"#99c9f9\"><i>Shows 3 on the top of the pyramid.</i></font>",
     "itemdesc-dice-d4-dots-4": "<font color=\"#99c9f9\"><i>Shows 4 on the top of the pyramid.</i></font>",
 
-    "itemdesc-dice-d6-dots-1": "<font color=\"#99c9f9\"><i>Shows 1 dot on the top face.</i></font>",
-    "itemdesc-dice-d6-dots-2": "<font color=\"#99c9f9\"><i>Shows 2 dots on the top face.</i></font>",
-    "itemdesc-dice-d6-dots-3": "<font color=\"#99c9f9\"><i>Shows 3 dots on the top face.</i></font>",
-    "itemdesc-dice-d6-dots-4": "<font color=\"#99c9f9\"><i>Shows 4 dots on the top face.</i></font>",
-    "itemdesc-dice-d6-dots-5": "<font color=\"#99c9f9\"><i>Shows 5 dots on the top face.</i></font>",
-    "itemdesc-dice-d6-dots-6": "<font color=\"#99c9f9\"><i>Shows 6 dots on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-1": "<font color=\"#99c9f9\"><i>Shows 1 on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-2": "<font color=\"#99c9f9\"><i>Shows 2 on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-3": "<font color=\"#99c9f9\"><i>Shows 3 on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-4": "<font color=\"#99c9f9\"><i>Shows 4 on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-5": "<font color=\"#99c9f9\"><i>Shows 5 on the top face.</i></font>",
+    "itemdesc-dice-d6-dots-6": "<font color=\"#99c9f9\"><i>Shows 6 on the top face.</i></font>",
 
     "itemdesc-dice-d12-dots-1": "<font color=\"#99c9f9\"><i>Shows 1 on the top face.</i></font>",
     "itemdesc-dice-d12-dots-2": "<font color=\"#99c9f9\"><i>Shows 2 on the top face.</i></font>",
