@@ -27,6 +27,8 @@ public class ConfigLibCompatibility
 
     private void Edit(ICoreAPI api, string id)
     {
+        ICoreClientAPI capi = api as ICoreClientAPI;
+
         if (ImGui.CollapsingHeader($"Debug##Debug-{id}"))
         {
             ImGui.Indent();
@@ -34,6 +36,19 @@ public class ConfigLibCompatibility
             ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.ItemRotations);
             if (TabletopDebug.ItemRotations)
             {
+                if (ImGui.Button($"Copy Item Rotation##CopyItemRotation-{id}"))
+                {
+                    StringBuilder dsc = new();
+                    dsc.Append($"\"rotateX\": {TabletopDebug.ItemRotationsVec.X}, ");
+                    dsc.Append($"\"rotateY\": {TabletopDebug.ItemRotationsVec.Y}, ");
+                    dsc.Append($"\"rotateZ\": {TabletopDebug.ItemRotationsVec.Z}, ");
+
+                    if (capi != null)
+                    {
+                        capi.Input.ClipboardText = dsc.ToString();
+                    }
+                }
+
                 Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
                 ImGui.InputFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
                 TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
@@ -52,15 +67,12 @@ public class ConfigLibCompatibility
                 ImGui.Unindent();
             }
 
-            if (api is ICoreClientAPI capi)
+            BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
+            if (selection != null && capi?.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
             {
-                BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
-                if (selection != null && capi.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
-                {
-                    ManageSelectionBoxes(id, blockEntity);
-                    ImGui.NewLine();
-                    EditBoardData(id, blockEntity);
-                }
+                ManageSelectionBoxes(id, blockEntity);
+                ImGui.NewLine();
+                EditBoardData(id, blockEntity);
             }
 
             ImGui.Unindent();
