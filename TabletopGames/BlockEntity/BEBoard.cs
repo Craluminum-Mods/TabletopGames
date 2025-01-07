@@ -241,6 +241,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             int displayedIndex = TabletopDebug.TagsDebugInfo ? index : index + 1;
             if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
             {
+                dsc.Append(displayedIndex + ": ");
                 dsc.Append("1x ");
                 dsc.AppendLine(containedCustomName.GetContainedInfo(slot));
             }
