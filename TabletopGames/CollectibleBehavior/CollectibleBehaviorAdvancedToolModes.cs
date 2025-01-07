@@ -61,7 +61,6 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
                 {
                     texturesByKeyResolved.Add(key, _texture);
                 }
-
             }
         }
     }
@@ -156,10 +155,10 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             SkillItem mode = new()
             {
                 Name = advMode.NameExists ? advMode.NameTranslated : finalStack.GetName(),
-                RenderHandler = finalStack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false),
                 Linebreak = advMode.Linebreak
             };
 
+            SetModeTextureOrRender(forPlayer.Entity.World.Api, ref mode, advMode, finalStack);
             _toolModes = _toolModes.Append(mode);
         }
 
@@ -173,14 +172,14 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         {
             return false;
         }
-            if (!byPlayer.ConsumeIngredientAndGiveStack(mouseslot, variants, advMode.SlotParams))
-            {
-                slot.HandleInWorldCrafting(byPlayer, mouseslot, variants, advMode.SlotParams);
-            }
-
-            byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
-            return true;
+        if (!byPlayer.ConsumeIngredientAndGiveStack(mouseslot, variants, advMode.SlotParams))
+        {
+            slot.HandleInWorldCrafting(byPlayer, mouseslot, variants, advMode.SlotParams);
         }
+
+        byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
+        return true;
+    }
 
     private bool TryAddSinkSlot(IClientPlayer forPlayer, AdvancedToolMode advMode, ref SkillItem[] _toolModes)
     {
@@ -189,25 +188,40 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             return false;
         }
 
-        SkillItem _mode = new()
+        SkillItem mode = new()
         {
             Name = advMode.NameTranslated,
             Linebreak = advMode.Linebreak
         };
 
+        SetModeTextureOrRender(forPlayer.Entity.World.Api, ref mode, advMode);
+        _toolModes = _toolModes.Append(mode);
+        return true;
+    }
+
+    private void SetModeTextureOrRender(ICoreAPI api, ref SkillItem _mode, AdvancedToolMode advMode, ItemStack forStack = null)
+    {
+        if (api is not ICoreClientAPI capi) return;
+
+        ItemStack renderedStack = forStack?.Clone();
+
         JsonItemStack iconStack = advMode.IconStack?.Clone();
-        iconStack?.Resolve(forPlayer.Entity.World, "");
-        if (iconStack?.ResolvedItemstack != null)
+        iconStack?.Resolve(capi.World, "");
+
+        if (renderedStack == null && iconStack?.ResolvedItemstack != null)
         {
-            _mode.RenderHandler = iconStack.ResolvedItemstack.RenderItemStack(forPlayer.Entity.Api as ICoreClientAPI, showStackSize: false);
+            renderedStack = iconStack?.ResolvedItemstack?.Clone();
         }
-        else if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
+
+        // prefer icons over rendering stacks
+        if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
         {
             _mode.Texture = _texture;
         }
-
-        _toolModes = _toolModes.Append(_mode);
-        return true;
+        else if (renderedStack != null)
+        {
+            _mode.RenderHandler = renderedStack.RenderItemStack(capi, showStackSize: false);
+        }
     }
 
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
