@@ -4,7 +4,7 @@
     "name": "Tabletop Games",
     "authors": ["Craluminum2413"],
     "description": "Various tabletop games from real world",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "dependencies": {
         "game": "1.20.0-rc.1"
     }
