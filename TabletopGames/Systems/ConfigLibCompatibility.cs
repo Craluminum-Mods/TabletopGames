@@ -4,28 +4,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using TabletopGames.Configuration;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 
 namespace TabletopGames;
 
 public class ConfigLibCompatibility
 {
+    private const string prefixSetting = $"{TabletopConstants.ModID}:Config.Settings.";
+
+    private static List<Cuboidf> SelectedSelectionBoxes { get; set; } = new();
+
     public ConfigLibCompatibility(ICoreAPI api)
     {
-        api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(TabletopConstants.ModID, (id, buttons) =>
+        api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-client"), (id, buttons) =>
+        {
+            if (buttons.Save) ModConfig.WriteConfig(api, ConfigClient.ConfigName, Core.ConfigClient);
+            if (buttons.Restore) Core.ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
+            if (buttons.Defaults) Core.ConfigClient = new(api);
+            EditClient(api, Core.ConfigClient, id);
+        });
+
+        api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-debug"), (id, buttons) =>
         {
             buttons.Save = false;
             buttons.Restore = false;
             buttons.Defaults = false;
-            Edit(api, id);
+            EditDebug(api, id);
         });
     }
 
-    private static List<Cuboidf> SelectedSelectionBoxes { get; set; } = new();
+    private void EditClient(ICoreAPI api, ConfigClient config, string id)
+    {
+        config.DiceAnimationsEnabled = OnCheckBox(id, config.DiceAnimationsEnabled, nameof(config.DiceAnimationsEnabled));
+    }
 
-    private void Edit(ICoreAPI api, string id)
+    private void EditDebug(ICoreAPI api, string id)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
 
@@ -223,6 +240,13 @@ public class ConfigLibCompatibility
         sb.Append($"{{ \"index\": \"{index}\", ");
         sb.Append($"  \"x1\": {box.X1}, \"y1\": {box.Y1}, \"z1\": {box.Z1}, ");
         sb.AppendLine($"  \"x2\": {box.X2}, \"y2\": {box.Y2}, \"z2\": {box.Z2} }},");
+    }
+
+    private bool OnCheckBox(string id, bool value, string name)
+    {
+        bool newValue = value;
+        ImGui.Checkbox(Lang.Get(prefixSetting + name) + $"##{name}-{id}", ref newValue);
+        return newValue;
     }
 
     private void ColorPicker4VS(string label, ref Vec4f vec)

@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TabletopGames.Configuration;
 using Vintagestory.API.Common;
 
 namespace TabletopGames;
@@ -6,12 +7,18 @@ namespace TabletopGames;
 public class Core : ModSystem
 {
     public static ICoreAPI apiForHarmony;
+    public static ConfigClient ConfigClient { get; set; }
 
     private ICoreAPI api;
     private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
 
     public override void StartPre(ICoreAPI api)
     {
+        if (api.Side.IsClient())
+        {
+            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
+        }
+
         HarmonyInstance.PatchAll();
         apiForHarmony = api;
 
