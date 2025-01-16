@@ -232,8 +232,10 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         if (inventory.Count > index)
         {
             ItemSlot slot = inventory[index];
+
             int displayedIndex = TabletopDebug.TagsDebugInfo ? index : index + 1;
             dsc.Append(displayedIndex + ": ");
+
             if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
             {
                 dsc.Append($"{slot.StackSize}x ");

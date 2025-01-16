@@ -45,15 +45,23 @@ public class Variants
         Elements.Remove(key);
     }
 
+    public string GetName(List<string> langKeys, string defaultName)
+    {
+        if (!Elements.Any() || langKeys == null || !langKeys.Any())
+        {
+            return defaultName;
+        }
+        return string.Join("", langKeys.Select(key => Lang.Get(ReplacePlaceholders(key))));
+    }
+
     public void GetDescription(StringBuilder dsc, List<string> langKeys)
     {
-        langKeys ??= new List<string>();
         if (!Elements.Any())
         {
             return;
         }
 
-        if (langKeys.Any())
+        if (langKeys != null && langKeys.Any())
         {
             foreach (string langKey in langKeys)
             {

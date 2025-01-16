@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -152,10 +151,9 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public override string GetHeldItemName(ItemStack itemStack)
     {
         Variants variants = Variants.FromStack(itemStack);
-        variants.FindByVariant(NameByType, out List<string> name);
-        return (name?.Any() ?? false)
-            ? string.Join("", name.Select(x => Lang.Get(variants.ReplacePlaceholders(x))))
-            : base.GetHeldItemName(itemStack);
+        variants.FindByVariant(NameByType, out List<string> _langKeys);
+        string defaultName = base.GetHeldItemName(itemStack);
+        return variants.GetName(_langKeys, defaultName);
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)

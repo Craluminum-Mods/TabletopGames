@@ -75,9 +75,11 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public virtual TabletopTags GetTags(Variants variants, int slotId, bool resolve = true)
     {
-        return variants.FindByVariant(TabletopTagsByType, out TabletopTags tags)
-            ? resolve ? tags.GetResolvedTags(slotId) : tags
-            : new TabletopTags();
+        if (variants.FindByVariant(TabletopTagsByType, out TabletopTags tags))
+        {
+            return resolve ? tags.GetResolvedTags(slotId) : tags;
+        }
+        return new TabletopTags();
     }
 
     public virtual ItemSlot CreateSlot(Variants variants, InventoryBase inventory, int slotId)
@@ -233,21 +235,19 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
-        Variants variants =  Variants.FromStack(itemStack);
-        variants.FindByVariant(NameByType, out List<string> name);
-        return (name?.Any() ?? false)
-            ? string.Join("", name.Select(x => Lang.Get(variants.ReplacePlaceholders(x))))
-            : base.GetHeldItemName(itemStack);
+        Variants variants = Variants.FromStack(itemStack);
+        variants.FindByVariant(NameByType, out List<string> _langKeys);
+        string defaultName = base.GetHeldItemName(itemStack);
+        return variants.GetName(_langKeys, defaultName);
     }
 
     public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
         {
-            blockEntity.Variants.FindByVariant(NameByType, out List<string> name);
-            return (name?.Any() ?? false)
-                ? string.Join("",name.Select(x => Lang.Get(blockEntity.Variants.ReplacePlaceholders(x))))
-                : base.GetPlacedBlockName(world, pos);
+            blockEntity.Variants.FindByVariant(NameByType, out List<string> _langKeys);
+            string defaultName = base.GetPlacedBlockName(world, pos);
+            return blockEntity.Variants.GetName(_langKeys, defaultName);
         }
         return base.GetPlacedBlockName(world, pos);
     }
@@ -258,7 +258,6 @@ public class BlockBoard : Block, IContainedMeshSource
 
         Variants variants =  Variants.FromStack(inSlot.Itemstack);
         variants.FindByVariant(DescriptionByType, out List<string> description);
-        description ??= new List<string>();
         variants.GetDescription(dsc, description);
     }
 
