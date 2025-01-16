@@ -1,0 +1,240 @@
+{
+    "game:tabname-tabletopgames": "Настольные игры",
+
+    "gameboard": "Универсальная игровая доска (Не функциональна)",
+    "gameboard-description": "Разместите на земле, чтобы создать все возможные доски",
+
+    "block-chessboard": "Шахматная доска",
+    "item-chesspiece": "Шахматная фигура",
+    "chesspiece-bishop": "Слон",
+    "chesspiece-king": "Король",
+    "chesspiece-knight": "Конь",
+    "chesspiece-pawn": "Пешка",
+    "chesspiece-queen": "Ферзь",
+    "chesspiece-rook": "Ладья",
+
+    "item-checkerpiece": "Шашка",
+    "checkerpiece-pawn": "Пешка",
+    "checkerpiece-king": "Дамка",
+
+    "block-morrisboard-three": "Доска для игры 'Мельница' (3 фишки)",
+    "block-morrisboard-six": "Доска для игры 'Мельница' (6 фишек)",
+    "block-morrisboard-nine": "Доска для игры 'Мельница' (9 фишек)",
+    "block-morrisboard-twelve": "Доска для игры 'Мельница' (12 фишек)",
+
+    "block-goboard": "Гобан",
+    "item-gostone": "Камень для го",
+
+    "block-shogiboard": "Сёгибан",
+    "item-shogipiece": "Фигура сёги",
+
+    "shogipiece-fuhyo": "Пешка (Fuhyo)",
+    "shogipiece-ginsho": "Серебро (Ginsho)",
+    "shogipiece-gyokusho": "Король (Gyokusho)",
+    "shogipiece-hisha": "Ладья (Hisha)",
+    "shogipiece-kakugyo": "Слон (Kakugyo)",
+    "shogipiece-keima": "Конь (Keima)",
+    "shogipiece-kinsho": "Золото (Kinsho)",
+    "shogipiece-kyosha": "Стрелка (Kyosha)",
+    "shogipiece-narigin": "Перевёрнутое серебро (Narigin)",
+    "shogipiece-narikei": "Перевёрнутый конь (Narikei)",
+    "shogipiece-narikyo": "Перевёрнутая стрелка (Narikyo)",
+    "shogipiece-osho": "Король (Osho)",
+    "shogipiece-ryuma": "Лошадь-дракон (Ryuma)",
+    "shogipiece-ryuo": "Дракон-король (Ryuo)",
+    "shogipiece-tokin": "Токин (Tokin)",
+
+    "item-schematic-generic_piece": "Чертеж для настольных фигур",
+    "itemdesc-schematic-generic_piece": "Используется для создания всех возможных настольных фигур",
+
+    "block-backgammonboard-classic": "Доска для нард",
+
+    // #############
+    // ### Dices ###
+    // #############
+
+    "item-dice-classic_cube": "Классический игральный кубик",
+    "item-dice-doubling_cube": "Игральный кубик с удвоением",
+    "item-dice-d4": "Игральный кубик D4",
+    "item-dice-d6": "Игральный кубик D6",
+    "item-dice-d8": "Игральный кубик D8",
+    "item-dice-d12": "Игральный кубик D12",
+    "item-dice-d20": "Игральный кубик D20",
+    "itemdesc-dice-classic_cube": "Шестигранный игральный кубик кубической формы. Генерирует случайные значения от 1 до 6 при броске или размещении на доске.",
+    "itemdesc-dice-doubling_cube": "Шестигранный игральный кубик кубической формы. Генерирует случайные значения из 2, 4, 8, 16, 32 или 64 при броске или размещении на доске. Обычно используется в нардах.",
+    "itemdesc-dice-d4": "Четырёхгранный игральный кубик тетраэдрической формы. Генерирует случайные значения от 1 до 4 при броске или размещении на доске.",
+    "itemdesc-dice-d6": "Шестигранный игральный кубик кубической формы. Генерирует случайные значения от 1 до 6 при броске или размещении на доске.",
+    "itemdesc-dice-d8": "Восьмигранный игральный кубик октаэдрической формы. Генерирует случайные значения от 1 до 8 при броске или размещении на доске.",
+    "itemdesc-dice-d12": "Двенадцатигранный игральный кубик додекаэдрической формы. Генерирует случайные значения от 1 до 12 при броске или размещении на доске.",
+    "itemdesc-dice-d20": "Двадцатигранный игральный кубик икосаэдрической формы. Генерирует случайные значения от 1 до 20 при броске или размещении на доске.",
+
+    "itemdesc-dice-classic_cube-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 точку на верхней грани.</i></font>",
+    "itemdesc-dice-classic_cube-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 точки на верхней грани.</i></font>",
+    "itemdesc-dice-classic_cube-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 точки на верхней грани.</i></font>",
+    "itemdesc-dice-classic_cube-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 точки на верхней грани.</i></font>",
+    "itemdesc-dice-classic_cube-dots-5": "<font color=\"#99c9f9\"><i>Показывает 5 точек на верхней грани.</i></font>",
+    "itemdesc-dice-classic_cube-dots-6": "<font color=\"#99c9f9\"><i>Показывает 6 точек на верхней грани.</i></font>",
+
+    "itemdesc-dice-doubling_cube-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на верхней грани.</i></font>",
+    "itemdesc-dice-doubling_cube-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на верхней грани.</i></font>",
+    "itemdesc-dice-doubling_cube-dots-8": "<font color=\"#99c9f9\"><i>Показывает 8 на верхней грани.</i></font>",
+    "itemdesc-dice-doubling_cube-dots-16": "<font color=\"#99c9f9\"><i>Показывает 16 на верхней грани.</i></font>",
+    "itemdesc-dice-doubling_cube-dots-32": "<font color=\"#99c9f9\"><i>Показывает 32 на верхней грани.</i></font>",
+    "itemdesc-dice-doubling_cube-dots-64": "<font color=\"#99c9f9\"><i>Показывает 64 на верхней грани.</i></font>",
+
+    "itemdesc-dice-d4-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 на вершине пирамиды.</i></font>",
+    "itemdesc-dice-d4-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на вершине пирамиды.</i></font>",
+    "itemdesc-dice-d4-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 на вершине пирамиды.</i></font>",
+    "itemdesc-dice-d4-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на вершине пирамиды.</i></font>",
+
+    "itemdesc-dice-d6-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 на верхней грани.</i></font>",
+    "itemdesc-dice-d6-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на верхней грани.</i></font>",
+    "itemdesc-dice-d6-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 на верхней грани.</i></font>",
+    "itemdesc-dice-d6-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на верхней грани.</i></font>",
+    "itemdesc-dice-d6-dots-5": "<font color=\"#99c9f9\"><i>Показывает 5 на верхней грани.</i></font>",
+    "itemdesc-dice-d6-dots-6": "<font color=\"#99c9f9\"><i>Показывает 6 на верхней грани.</i></font>",
+
+    "itemdesc-dice-d8-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-5": "<font color=\"#99c9f9\"><i>Показывает 5 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-6": "<font color=\"#99c9f9\"><i>Показывает 6 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-7": "<font color=\"#99c9f9\"><i>Показывает 7 на верхней грани.</i></font>",
+    "itemdesc-dice-d8-dots-8": "<font color=\"#99c9f9\"><i>Показывает 8 на верхней грани.</i></font>",
+
+    "itemdesc-dice-d12-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-5": "<font color=\"#99c9f9\"><i>Показывает 5 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-6": "<font color=\"#99c9f9\"><i>Показывает 6 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-7": "<font color=\"#99c9f9\"><i>Показывает 7 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-8": "<font color=\"#99c9f9\"><i>Показывает 8 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-9": "<font color=\"#99c9f9\"><i>Показывает 9 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-10": "<font color=\"#99c9f9\"><i>Показывает 10 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-11": "<font color=\"#99c9f9\"><i>Показывает 11 на верхней грани.</i></font>",
+    "itemdesc-dice-d12-dots-12": "<font color=\"#99c9f9\"><i>Показывает 12 на верхней грани.</i></font>",
+
+    "itemdesc-dice-d20-dots-1": "<font color=\"#99c9f9\"><i>Показывает 1 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-2": "<font color=\"#99c9f9\"><i>Показывает 2 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-3": "<font color=\"#99c9f9\"><i>Показывает 3 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-4": "<font color=\"#99c9f9\"><i>Показывает 4 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-5": "<font color=\"#99c9f9\"><i>Показывает 5 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-6": "<font color=\"#99c9f9\"><i>Показывает 6 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-7": "<font color=\"#99c9f9\"><i>Показывает 7 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-8": "<font color=\"#99c9f9\"><i>Показывает 8 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-9": "<font color=\"#99c9f9\"><i>Показывает 9 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-10": "<font color=\"#99c9f9\"><i>Показывает 10 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-11": "<font color=\"#99c9f9\"><i>Показывает 11 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-12": "<font color=\"#99c9f9\"><i>Показывает 12 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-13": "<font color=\"#99c9f9\"><i>Показывает 13 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-14": "<font color=\"#99c9f9\"><i>Показывает 14 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-15": "<font color=\"#99c9f9\"><i>Показывает 15 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-16": "<font color=\"#99c9f9\"><i>Показывает 16 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-17": "<font color=\"#99c9f9\"><i>Показывает 17 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-18": "<font color=\"#99c9f9\"><i>Показывает 18 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-19": "<font color=\"#99c9f9\"><i>Показывает 19 на верхней грани.</i></font>",
+    "itemdesc-dice-d20-dots-20": "<font color=\"#99c9f9\"><i>Показывает 20 на верхней грани.</i></font>",
+
+    // ##################
+    // ### Tool Modes ###
+    // ##################
+
+    "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",
+
+    "toolmode-sinkslot-stone-create-chesspiece": "Перетащите сюда 16 камней для создания 16 шахматных фигур",
+    "toolmode-sinkslot-stone-create-checkerpiece": "Перетащите сюда 12 камней для создания 12 шашек",
+    "toolmode-sinkslot-stone-create-gostone": "Перетащите сюда 16 камней для создания 64 камней для Го",
+    "toolmode-sinkslot-stone-create-shogipiece": "Перетащите сюда 20 камней для создания 20 фигур для Сёги",
+    "toolmode-sinkslot-stone-create-dice": "Перетащите сюда 1 камень для создания 1 игрального кубика",
+
+    "toolmode-sinkslot-wooden-create-chesspiece": "Перетащите сюда 16 досок для создания 16 шахматных фигур",
+    "toolmode-sinkslot-wooden-create-checkerpiece": "Перетащите сюда 12 досок для создания 12 шашек",
+    "toolmode-sinkslot-wooden-create-gostone": "Перетащите сюда 16 досок для создания 64 камней для Го",
+    "toolmode-sinkslot-wooden-create-shogipiece": "Перетащите сюда 20 досок для создания 20 фигур для Сёги",
+    "toolmode-sinkslot-wood-create-dice": "Перетащите сюда 1 доску для создания 1 игрального кубика",
+
+    "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "Перетащите пигмент сюда, чтобы изменить первичный цвет рисунков на доске.",
+    "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Перетащите пигмент сюда, чтобы изменить вторичный цвет рисунков на доске.",
+
+    "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетащите пигмент сюда, чтобы изменить цвет точек или цифр на кубике.",
+    "toolmode-dice-reset": "Сбросить кубик.",
+
+    // #########################
+    // ### In world crafting ###
+    // #########################
+
+    "inworldcrafting-item-gameboard-chessboard_step1": "Создание шахматной доски: Этап 1/3",
+    "inworldcrafting-item-gameboard-chessboard_step2": "Создание шахматной доски: Этап 2/3",
+
+    "inworldcraftingdesc-chessboardinfo": "Начните создание шахматной доски, добавив 2 любых доски или камня. Используйте <hk>rightmouse</hk>, чтобы добавить темные клетки.",
+    "inworldcraftingdesc-goboardinfo": "Преобразуйте в доску для игры в Го, используя любой пигмент с помощью <hk>rightmouse</hk> для рисования линий.",
+
+    "inworldcraftingdesc-item-gameboard-chessboard_step1": "Добавьте 2 любых доски или камня, используя <hk>rightmouse</hk>, чтобы добавить светлые клетки.",
+    "inworldcraftingdesc-item-gameboard-chessboard_step2": "Используйте зубило, чтобы сделать доску функциональной.",
+
+    // ####################
+    // ### Descriptions ###
+    // ####################
+
+    "trivia-chessboard": "<font color=\"#99c9f9\"><i>Можно также использовать в качестве шашечной доски.</i></font><br>",
+    "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Ходит по диагонали.</i></font><br>",
+    "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>Самая важная фигура; защищайте её любой ценой.</i></font><br>",
+    "trivia-chesspiece-knight": "<font color=\"#99c9f9\"><i>Имеет уникальное движение в форме 'Г'.</i></font><br>",
+    "trivia-chesspiece-pawn": "<font color=\"#99c9f9\"><i>Пешки — душа шахмат.</i></font><br>",
+    "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>Самая мощная фигура, объединяет ходы ладьи и слона.</i></font><br>",
+    "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Ходит по прямым линиям горизонтально или вертикально.</i></font><br>",
+    "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Можно перевернуть, чтобы переключиться между пешкой и дамкой.</i></font><br>",
+
+    "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Идеально для начинающих, изучающих го.</i></font><br>",
+    "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Подходит для игроков среднего уровня.</i></font><br>",
+    "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Используется в основном для игры в гомоку.</i></font><br>",
+    "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Исторически использовалась до того, как доска 19x19 стала стандартом.</i></font><br>",
+    "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>Стандартная доска для игры в го.</i></font><br>",
+
+    "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>Упрощённая версия игры в мельницу, подходит для быстрых партий.</i></font><br>",
+    "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Также может использоваться для игры в мельницу с пятью фишками.</i></font><br>",
+    "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>Классическая игра в мельницу для девяти фишек.</i></font><br>",
+    "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Также может использоваться для игры в мельницу с одиннадцатью фишками.</i></font><br>",
+
+    "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Используется для игры в сёги, также известной как японские шахматы.</i></font><br>",
+    "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Используется для игры в сёги, также известной как японские шахматы.</i></font><br>",
+
+    "dimension-5x5": "5 x 5",
+    "dimension-6x6": "6 x 6",
+    "dimension-7x7": "7 x 7",
+    "dimension-8x8": "8 x 8",
+    "dimension-9x9": "9 x 9",
+    "dimension-10x10": "10 x 10",
+    "dimension-13x13": "13 x 13",
+    "dimension-15x15": "15 x 15",
+    "dimension-17x17": "17 x 17",
+    "dimension-19x19": "19 x 19",
+
+    // ########################
+    // ### Transform Editor ###
+    // ########################
+
+    "game:onMorrisTransform": "На доске для игры в Мельницу",
+    "game:onChessboardTransform": "На шахматной доске",
+    "game:onGoboard9x9Transform": "На 9x9 доске для Го",
+    "game:onGoboard13x13Transform": "На 13x13 доске для Го",
+    "game:onGoboard19x19Transform": "На 19x19 доске для Го",
+    "game:onShogiTransform": "На доске для Сёги",
+
+    // ###############
+    // ### Configs ###
+    // ###############
+
+    "config-client": "Настольные игры - Клиент",
+    "config-debug": "Настольные игры - DEBUG",
+    "Config.Settings.DiceAnimationsEnabled": "Включить анимацию игральных кубиков",
+
+    // ##############
+    // ### Guides ###
+    // ##############
+
+    "craftinginfo-starterguide-title": "Настольные игры 101 - Руководство для начинающих",
+    "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на земле и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на земле.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур."
+}
