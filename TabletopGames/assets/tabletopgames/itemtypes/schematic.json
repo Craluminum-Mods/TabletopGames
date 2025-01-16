@@ -158,7 +158,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 //
                 { "type": "item", "code": "schematic", "attributes": { "types": { "type": "generic_piece" } } }

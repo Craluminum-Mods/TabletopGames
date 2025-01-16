@@ -74,7 +74,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "gyokusho", "wood": "birch" } } }, //    King (gyokusho)
                 { "type": "item", "code": "shogipiece", "attributes": { "types": { "type": "osho", "wood": "birch" } } }, //        King (osho)

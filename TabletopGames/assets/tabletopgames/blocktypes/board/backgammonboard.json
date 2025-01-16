@@ -298,7 +298,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "decorative"],
             "stacks": [
                 { "type": "block", "code": "backgammonboard", "attributes": { "types": { "size": "classic", "stone": "granite", "color": "carbonblack", "color2": "chalkwhite" } } },
                 { "type": "block", "code": "backgammonboard", "attributes": { "types": { "size": "classic", "wood": "oak", "color": "carbonblack", "color2": "chalkwhite" } } }

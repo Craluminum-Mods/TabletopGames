@@ -209,7 +209,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "wood": "birch" } } },
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "wood": "oak" } } },

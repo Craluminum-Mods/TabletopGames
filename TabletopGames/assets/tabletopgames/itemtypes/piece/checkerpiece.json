@@ -50,7 +50,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "basalt" } } },
                 { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "chalk" } } },

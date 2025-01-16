@@ -130,7 +130,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "decorative"],
             "stacks": [
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "5x5", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },
                 { "type": "block", "code": "chessboard", "attributes": { "types": { "size": "6x6", "wood": "oak", "primarystone": "basalt", "secondarystone": "chalk" } } },

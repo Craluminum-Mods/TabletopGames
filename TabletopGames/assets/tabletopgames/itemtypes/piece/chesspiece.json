@@ -94,7 +94,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "stone": "basalt" } } },
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "stone": "basalt" } } },

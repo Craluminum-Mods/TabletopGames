@@ -106,7 +106,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "decorative"],
             "stacks": [
                 //
                 { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } }

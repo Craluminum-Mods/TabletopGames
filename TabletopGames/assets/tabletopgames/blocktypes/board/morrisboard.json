@@ -183,7 +183,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "decorative"],
             "stacks": [
                 { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "three", "stone": "granite", "color": "carbonblack" } } },
                 { "type": "block", "code": "morrisboard", "attributes": { "types": { "size": "six", "stone": "granite", "color": "carbonblack" } } },

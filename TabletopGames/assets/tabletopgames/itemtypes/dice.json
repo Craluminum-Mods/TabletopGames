@@ -481,7 +481,7 @@
     ],
     "creativeinventoryStacks": [
         {
-            "tabs": ["tabletopgames"],
+            "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "doubling_cube", "dot": "64", "stone": "basalt", "color": "chalkwhite" } } },
