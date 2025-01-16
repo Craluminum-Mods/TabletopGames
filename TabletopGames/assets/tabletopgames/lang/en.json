@@ -22,10 +22,10 @@
     "block-morrisboard-nine": "Nine men's morris board",
     "block-morrisboard-twelve": "Twelve men's morris board",
 
-    "block-goboard": "Go board",
+    "block-goboard": "Goban",
     "item-gostone": "Go stone",
 
-    "block-shogiboard": "Shogi board",
+    "block-shogiboard": "Shogi ban",
     "item-shogipiece": "Shogi piece",
 
     "shogipiece-fuhyo": "Pawn (Fuhyo)",
@@ -187,11 +187,11 @@
     "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Moves in straight lines horizontally or vertically.</i></font><br>",
     "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Can be flipped to switch between pawn and king.</i></font><br>",
 
-    "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Ideal for beginners to learn Go.</i></font><br>",
-    "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Well-suited for intermediate players.</i></font><br>",
-    "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Primarily used to play gomoku.</i></font><br>",
-    "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Historically used before the 19x19 board became the standard.</i></font><br>",
-    "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>The standard board for playing Go.</i></font><br>",
+    "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Go board. Ideal for beginners to learn Go.</i></font><br>",
+    "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Go board. Well-suited for intermediate players.</i></font><br>",
+    "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Go board. Primarily used to play gomoku.</i></font><br>",
+    "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Go board. Historically used before the 19x19 board became the standard.</i></font><br>",
+    "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>Go board. The standard board for playing Go.</i></font><br>",
 
     "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>A simplified version of Morris, great for quick games.</i></font><br>",
     "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Can also be used for five men's morris.</i></font><br>",
@@ -199,7 +199,7 @@
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Can also be used for eleven men's morris.</i></font><br>",
 
     "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Used to play shogi, also known as Japanese chess.</i></font><br>",
-    "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Used to play shogi, also known as Japanese chess.</i></font><br>",
+    "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Shogi board. Used to play shogi, also known as Japanese chess.</i></font><br>",
 
     "dimension-5x5": "5 x 5",
     "dimension-6x6": "6 x 6",
