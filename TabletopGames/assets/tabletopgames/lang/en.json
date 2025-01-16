@@ -49,6 +49,10 @@
 
     "block-backgammonboard-classic": "Backgammon board",
 
+    // #############
+    // ### Dices ###
+    // #############
+
     "item-dice-classic_cube": "Dice",
     "item-dice-doubling_cube": "Doubling Cube Dice",
     "item-dice-d4": "D4 Dice",
@@ -133,12 +137,9 @@
     "itemdesc-dice-d20-dots-19": "<font color=\"#99c9f9\"><i>Shows 19 on the top face.</i></font>",
     "itemdesc-dice-d20-dots-20": "<font color=\"#99c9f9\"><i>Shows 20 on the top face.</i></font>",
 
-    "game:onMorrisTransform": "On Morris board",
-    "game:onChessboardTransform": "On chessboard",
-    "game:onGoboard9x9Transform": "On 9x9 Go board",
-    "game:onGoboard13x13Transform": "On 13x13 Go board",
-    "game:onGoboard19x19Transform": "On 19x19 Go board",
-    "game:onShogiTransform": "On shogi board",
+    // ##################
+    // ### Tool Modes ###
+    // ##################
 
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
 
@@ -160,6 +161,10 @@
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Drag and drop pigment here to change the color of dots or numbers on the dice.",
     "toolmode-dice-reset": "Reset the dice to its default state.",
 
+    // #########################
+    // ### In world crafting ###
+    // #########################
+
     "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",
 
@@ -168,6 +173,10 @@
 
     "inworldcraftingdesc-item-gameboard-chessboard_step1": "Add any 2x planks or 2x stones with <hk>rightmouse</hk> to create light tiles.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Use a chisel to make it functional.",
+
+    // ####################
+    // ### Descriptions ###
+    // ####################
 
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Can also be used as a checkerboard.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Moves diagonally across the board.</i></font><br>",
@@ -207,9 +216,28 @@
     "Primary": "Primary",
     "Secondary": "Secondary",
 
+    // ########################
+    // ### Transform Editor ###
+    // ########################
+
+    "game:onMorrisTransform": "On Morris board",
+    "game:onChessboardTransform": "On chessboard",
+    "game:onGoboard9x9Transform": "On 9x9 Go board",
+    "game:onGoboard13x13Transform": "On 13x13 Go board",
+    "game:onGoboard19x19Transform": "On 19x19 Go board",
+    "game:onShogiTransform": "On shogi board",
+
+    // ###############
+    // ### Configs ###
+    // ###############
+
     "config-client": "Tabletop Games - Client",
     "config-debug": "Tabletop Games - DEBUG",
     "Config.Settings.DiceAnimationsEnabled": "Toggle Dice Animations",
+
+    // ##############
+    // ### Guides ###
+    // ##############
 
     "craftinginfo-starterguide-title": "Tabletop Games 101 - Starter Guide",
     "craftinginfo-starterguide-text": "<strong>Tabletop Games Starter Guide</strong>     <br><br><strong>Create generic board</strong>      <br>Once you create <a href=\"handbooksearch://generic game board\">Generic board</a>, place it on the ground and follow instructions in tooltip.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Create schematic</a></strong>       <br>Made by interacting with any pigment on parchment placed on the ground.     <br><br><strong>Create pieces</strong>       <br>With schematic in active hand, press <hk>toolmodeselect</hk> key (Tool Mode) to open menu for creating pieces."
