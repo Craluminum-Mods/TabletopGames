@@ -1,0 +1,42 @@
+{
+    "game:tabname-tabletopgames": "테이블 게임",
+    "block-chessboard": "체스판",
+    //
+    //
+    "block-morrisboard-nine": "나인 멘스 모리스 (판)",
+    //
+    "block-goboard": "바둑판",
+    "block-shogiboard": "쇼기판",
+    "block-backgammonboard-classic": "백개먼판",
+    //
+    //
+    //
+    //
+    "item-chesspiece": "체스 기물",
+    "item-chesspiece-bishop": "비숍",
+    "item-chesspiece-king": "킹",
+    "item-chesspiece-knight": "나이트",
+    "item-chesspiece-pawn": "폰",
+    "item-chesspiece-queen": "퀸",
+    "item-chesspiece-rook": "룩",
+    //
+    //
+    "item-checkerpiece-king": "왕",
+    //
+    "item-shogipiece": "쇼기의 기물",
+    "item-shogipiece-fuhyo": "보병",
+    "item-shogipiece-ginsho": "은장",
+    "item-shogipiece-gyokusho": "옥장",
+    "item-shogipiece-hisha": "비차",
+    "item-shogipiece-kakugyo": "각행",
+    "item-shogipiece-keima": "계마",
+    "item-shogipiece-kinsho": "금장",
+    "item-shogipiece-kyosha": "향차",
+    "item-shogipiece-narigin": "성은",
+    "item-shogipiece-narikei": "성계",
+    "item-shogipiece-narikyo": "성향",
+    "item-shogipiece-osho": "왕장",
+    "item-shogipiece-ryuma": "용마",
+    "item-shogipiece-ryuo": "용왕",
+    "item-shogipiece-tokin": "토금"
+}
