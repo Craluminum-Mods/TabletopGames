@@ -1,52 +1,43 @@
 {
     "game:tabname-tabletopgames": "Настольные игры",
-
-    "gameboard": "Универсальная игровая доска (Не функциональна)",
-    "gameboard-description": "Разместите на земле, чтобы создать все возможные доски",
-
+    "item-gameboard-generic": "Универсальная игровая доска (Не функциональна)",
+    "itemdesc-gameboard-generic": "Разместите на земле, чтобы создать все возможные доски",
     "block-chessboard": "Шахматная доска",
     "item-chesspiece": "Шахматная фигура",
-    "chesspiece-bishop": "Слон",
-    "chesspiece-king": "Король",
-    "chesspiece-knight": "Конь",
-    "chesspiece-pawn": "Пешка",
-    "chesspiece-queen": "Ферзь",
-    "chesspiece-rook": "Ладья",
-
+    "item-chesspiece-bishop": "Слон",
+    "item-chesspiece-king": "Король",
+    "item-chesspiece-knight": "Конь",
+    "item-chesspiece-pawn": "Пешка",
+    "item-chesspiece-queen": "Ферзь",
+    "item-chesspiece-rook": "Ладья",
     "item-checkerpiece": "Шашка",
-    "checkerpiece-pawn": "Пешка",
-    "checkerpiece-king": "Дамка",
-
+    "item-checkerpiece-pawn": "Пешка",
+    "item-checkerpiece-king": "Дамка",
     "block-morrisboard-three": "Доска для игры 'Мельница' (3 фишки)",
     "block-morrisboard-six": "Доска для игры 'Мельница' (6 фишек)",
     "block-morrisboard-nine": "Доска для игры 'Мельница' (9 фишек)",
     "block-morrisboard-twelve": "Доска для игры 'Мельница' (12 фишек)",
-
     "block-goboard": "Гобан",
     "item-gostone": "Камень для го",
-
     "block-shogiboard": "Сёгибан",
     "item-shogipiece": "Фигура сёги",
-
-    "shogipiece-fuhyo": "Пешка (Fuhyo)",
-    "shogipiece-ginsho": "Серебро (Ginsho)",
-    "shogipiece-gyokusho": "Король (Gyokusho)",
-    "shogipiece-hisha": "Ладья (Hisha)",
-    "shogipiece-kakugyo": "Слон (Kakugyo)",
-    "shogipiece-keima": "Конь (Keima)",
-    "shogipiece-kinsho": "Золото (Kinsho)",
-    "shogipiece-kyosha": "Стрелка (Kyosha)",
-    "shogipiece-narigin": "Перевёрнутое серебро (Narigin)",
-    "shogipiece-narikei": "Перевёрнутый конь (Narikei)",
-    "shogipiece-narikyo": "Перевёрнутая стрелка (Narikyo)",
-    "shogipiece-osho": "Король (Osho)",
-    "shogipiece-ryuma": "Лошадь-дракон (Ryuma)",
-    "shogipiece-ryuo": "Дракон-король (Ryuo)",
-    "shogipiece-tokin": "Токин (Tokin)",
-
+    "item-shogipiece-fuhyo": "Пешка (Fuhyo)",
+    "item-shogipiece-ginsho": "Серебро (Ginsho)",
+    "item-shogipiece-gyokusho": "Король (Gyokusho)",
+    "item-shogipiece-hisha": "Ладья (Hisha)",
+    "item-shogipiece-kakugyo": "Слон (Kakugyo)",
+    "item-shogipiece-keima": "Конь (Keima)",
+    "item-shogipiece-kinsho": "Золото (Kinsho)",
+    "item-shogipiece-kyosha": "Стрелка (Kyosha)",
+    "item-shogipiece-narigin": "Перевёрнутое серебро (Narigin)",
+    "item-shogipiece-narikei": "Перевёрнутый конь (Narikei)",
+    "item-shogipiece-narikyo": "Перевёрнутая стрелка (Narikyo)",
+    "item-shogipiece-osho": "Король (Osho)",
+    "item-shogipiece-ryuma": "Лошадь-дракон (Ryuma)",
+    "item-shogipiece-ryuo": "Дракон-король (Ryuo)",
+    "item-shogipiece-tokin": "Токин (Tokin)",
     "item-schematic-generic_piece": "Чертеж для настольных фигур",
     "itemdesc-schematic-generic_piece": "Используется для создания всех возможных настольных фигур",
-
     "block-backgammonboard-classic": "Доска для нард",
 
     // #############
@@ -142,22 +133,18 @@
     // ##################
 
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",
-
     "toolmode-sinkslot-stone-create-chesspiece": "Перетащите сюда 16 камней для создания 16 шахматных фигур",
     "toolmode-sinkslot-stone-create-checkerpiece": "Перетащите сюда 12 камней для создания 12 шашек",
     "toolmode-sinkslot-stone-create-gostone": "Перетащите сюда 16 камней для создания 64 камней для Го",
     "toolmode-sinkslot-stone-create-shogipiece": "Перетащите сюда 20 камней для создания 20 фигур для Сёги",
     "toolmode-sinkslot-stone-create-dice": "Перетащите сюда 1 камень для создания 1 игрального кубика",
-
     "toolmode-sinkslot-wooden-create-chesspiece": "Перетащите сюда 16 досок для создания 16 шахматных фигур",
     "toolmode-sinkslot-wooden-create-checkerpiece": "Перетащите сюда 12 досок для создания 12 шашек",
     "toolmode-sinkslot-wooden-create-gostone": "Перетащите сюда 16 досок для создания 64 камней для Го",
     "toolmode-sinkslot-wooden-create-shogipiece": "Перетащите сюда 20 досок для создания 20 фигур для Сёги",
     "toolmode-sinkslot-wood-create-dice": "Перетащите сюда 1 доску для создания 1 игрального кубика",
-
     "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "Перетащите пигмент сюда, чтобы изменить первичный цвет рисунков на доске.",
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Перетащите пигмент сюда, чтобы изменить вторичный цвет рисунков на доске.",
-
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетащите пигмент сюда, чтобы изменить цвет точек или цифр на кубике.",
     "toolmode-dice-reset": "Сбросить кубик.",
 
@@ -167,10 +154,8 @@
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Создание шахматной доски: Этап 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Создание шахматной доски: Этап 2/3",
-
     "inworldcraftingdesc-chessboardinfo": "Начните создание шахматной доски, добавив 2 любых доски или камня. Используйте <hk>rightmouse</hk>, чтобы добавить темные клетки.",
     "inworldcraftingdesc-goboardinfo": "Преобразуйте в доску для игры в Го, используя любой пигмент с помощью <hk>rightmouse</hk> для рисования линий.",
-
     "inworldcraftingdesc-item-gameboard-chessboard_step1": "Добавьте 2 любых доски или камня, используя <hk>rightmouse</hk>, чтобы добавить светлые клетки.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Используйте зубило, чтобы сделать доску функциональной.",
 
@@ -186,21 +171,17 @@
     "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>Самая мощная фигура, объединяет ходы ладьи и слона.</i></font><br>",
     "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Ходит по прямым линиям горизонтально или вертикально.</i></font><br>",
     "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Можно перевернуть, чтобы переключиться между пешкой и дамкой.</i></font><br>",
-
     "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Идеально для начинающих, изучающих го.</i></font><br>",
     "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Подходит для игроков среднего уровня.</i></font><br>",
     "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Используется в основном для игры в гомоку.</i></font><br>",
     "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Исторически использовалась до того, как доска 19x19 стала стандартом.</i></font><br>",
     "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>Стандартная доска для игры в го.</i></font><br>",
-
     "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>Упрощённая версия игры в мельницу, подходит для быстрых партий.</i></font><br>",
     "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Также может использоваться для игры в мельницу с пятью фишками.</i></font><br>",
     "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>Классическая игра в мельницу для девяти фишек.</i></font><br>",
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Также может использоваться для игры в мельницу с одиннадцатью фишками.</i></font><br>",
-
     "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Используется для игры в сёги, также известной как японские шахматы.</i></font><br>",
     "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Используется для игры в сёги, также известной как японские шахматы.</i></font><br>",
-
     "dimension-5x5": "5 x 5",
     "dimension-6x6": "6 x 6",
     "dimension-7x7": "7 x 7",

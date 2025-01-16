@@ -1,52 +1,43 @@
 {
     "game:tabname-tabletopgames": "Tabletop Games",
-
-    "gameboard": "Generic game board (Not functional)",
-    "gameboard-description": "Place on the ground to make all possible boards",
-
+    "item-gameboard-generic": "Generic game board (Not functional)",
+    "itemdesc-gameboard-generic": "Place on the ground to make all possible boards",
     "block-chessboard": "Chessboard",
     "item-chesspiece": "Chess piece",
-    "chesspiece-bishop": "Bishop",
-    "chesspiece-king": "King",
-    "chesspiece-knight": "Knight",
-    "chesspiece-pawn": "Pawn",
-    "chesspiece-queen": "Queen",
-    "chesspiece-rook": "Rook",
-
+    "item-chesspiece-bishop": "Bishop",
+    "item-chesspiece-king": "King",
+    "item-chesspiece-knight": "Knight",
+    "item-chesspiece-pawn": "Pawn",
+    "item-chesspiece-queen": "Queen",
+    "item-chesspiece-rook": "Rook",
     "item-checkerpiece": "Checker piece",
-    "checkerpiece-pawn": "Pawn",
-    "checkerpiece-king": "King",
-
+    "item-checkerpiece-pawn": "Pawn",
+    "item-checkerpiece-king": "King",
     "block-morrisboard-three": "Three men's morris board",
     "block-morrisboard-six": "Six men's morris board",
     "block-morrisboard-nine": "Nine men's morris board",
     "block-morrisboard-twelve": "Twelve men's morris board",
-
     "block-goboard": "Goban",
     "item-gostone": "Go stone",
-
     "block-shogiboard": "Shogi ban",
     "item-shogipiece": "Shogi piece",
-
-    "shogipiece-fuhyo": "Pawn (Fuhyo)",
-    "shogipiece-ginsho": "Silver general (Ginsho)",
-    "shogipiece-gyokusho": "King (Gyokusho)",
-    "shogipiece-hisha": "Rook (Hisha)",
-    "shogipiece-kakugyo": "Bishop (Kakugyo)",
-    "shogipiece-keima": "Knight (Keima)",
-    "shogipiece-kinsho": "Gold general (Kinsho)",
-    "shogipiece-kyosha": "Lance (Kyosha)",
-    "shogipiece-narigin": "Promoted silver (Narigin)",
-    "shogipiece-narikei": "Promoted knight (Narikei)",
-    "shogipiece-narikyo": "Promoted lance (Narikyo)",
-    "shogipiece-osho": "King (Osho)",
-    "shogipiece-ryuma": "Promoted bishop (Ryuma)",
-    "shogipiece-ryuo": "Promoted rook (Ryuo)",
-    "shogipiece-tokin": "Promoted pawn (Tokin)",
-
+    "item-shogipiece-fuhyo": "Pawn (Fuhyo)",
+    "item-shogipiece-ginsho": "Silver general (Ginsho)",
+    "item-shogipiece-gyokusho": "King (Gyokusho)",
+    "item-shogipiece-hisha": "Rook (Hisha)",
+    "item-shogipiece-kakugyo": "Bishop (Kakugyo)",
+    "item-shogipiece-keima": "Knight (Keima)",
+    "item-shogipiece-kinsho": "Gold general (Kinsho)",
+    "item-shogipiece-kyosha": "Lance (Kyosha)",
+    "item-shogipiece-narigin": "Promoted silver (Narigin)",
+    "item-shogipiece-narikei": "Promoted knight (Narikei)",
+    "item-shogipiece-narikyo": "Promoted lance (Narikyo)",
+    "item-shogipiece-osho": "King (Osho)",
+    "item-shogipiece-ryuma": "Promoted bishop (Ryuma)",
+    "item-shogipiece-ryuo": "Promoted rook (Ryuo)",
+    "item-shogipiece-tokin": "Promoted pawn (Tokin)",
     "item-schematic-generic_piece": "Tabletop pieces Schematic",
     "itemdesc-schematic-generic_piece": "Used for creating all possible pieces",
-
     "block-backgammonboard-classic": "Backgammon board",
 
     // #############
@@ -142,22 +133,18 @@
     // ##################
 
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
-
     "toolmode-sinkslot-stone-create-chesspiece": "Drag and drop 16 stones for 16 Chess pieces",
     "toolmode-sinkslot-stone-create-checkerpiece": "Drag and drop 12 stones for 12 Checker pieces",
     "toolmode-sinkslot-stone-create-gostone": "Drag and drop 16 stones for 64 Go stones",
     "toolmode-sinkslot-stone-create-shogipiece": "Drag and drop 20 stones for 20 Shogi pieces",
     "toolmode-sinkslot-stone-create-dice": "Drag and drop 1 stone for 1 Dice",
-
     "toolmode-sinkslot-wooden-create-chesspiece": "Drag and drop 16 planks for 16 Chess pieces",
     "toolmode-sinkslot-wooden-create-checkerpiece": "Drag and drop 12 planks for 12 Checker pieces",
     "toolmode-sinkslot-wooden-create-gostone": "Drag and drop 16 planks for 64 Go stones",
     "toolmode-sinkslot-wooden-create-shogipiece": "Drag and drop 20 planks for 20 Shogi pieces",
     "toolmode-sinkslot-wood-create-dice": "Drag and drop 1 plank for 1 Dice",
-
     "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "Drag and drop pigment here to change the primary color of the drawings on the board.",
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Drag and drop pigment here to change the secondary color of the drawings on the board.",
-
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Drag and drop pigment here to change the color of dots or numbers on the dice.",
     "toolmode-dice-reset": "Reset the dice to its default state.",
 
@@ -167,10 +154,8 @@
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",
-
     "inworldcraftingdesc-chessboardinfo": "Start constructing a chessboard by adding any 2x planks or 2x stones. Use <hk>rightmouse</hk> to create dark tiles.",
     "inworldcraftingdesc-goboardinfo": "Convert to Go Board by using any pigment with <hk>rightmouse</hk> to draw lines.",
-
     "inworldcraftingdesc-item-gameboard-chessboard_step1": "Add any 2x planks or 2x stones with <hk>rightmouse</hk> to create light tiles.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Use a chisel to make it functional.",
 
@@ -186,21 +171,17 @@
     "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>The most powerful piece, combining rook and bishop movements.</i></font><br>",
     "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Moves in straight lines horizontally or vertically.</i></font><br>",
     "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Can be flipped to switch between pawn and king.</i></font><br>",
-
     "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Go board. Ideal for beginners to learn Go.</i></font><br>",
     "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Go board. Well-suited for intermediate players.</i></font><br>",
     "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Go board. Primarily used to play gomoku.</i></font><br>",
     "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Go board. Historically used before the 19x19 board became the standard.</i></font><br>",
     "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>Go board. The standard board for playing Go.</i></font><br>",
-
     "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>A simplified version of Morris, great for quick games.</i></font><br>",
     "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Can also be used for five men's morris.</i></font><br>",
     "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>The classic Nine Men's Morris game.</i></font><br>",
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Can also be used for eleven men's morris.</i></font><br>",
-
     "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Used to play shogi, also known as Japanese chess.</i></font><br>",
     "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Shogi board. Used to play shogi, also known as Japanese chess.</i></font><br>",
-
     "dimension-5x5": "5 x 5",
     "dimension-6x6": "6 x 6",
     "dimension-7x7": "7 x 7",

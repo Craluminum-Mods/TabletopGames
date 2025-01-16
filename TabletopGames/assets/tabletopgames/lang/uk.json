@@ -1,52 +1,43 @@
 {
     "game:tabname-tabletopgames": "Настільні ігри",
-
-    "gameboard": "Універсальна ігрова дошка (Не функціональна",
-    "gameboard-description": "Розмістіть на землі, щоб створити всі можливі дошки",
-
+    "item-gameboard-generic": "Універсальна ігрова дошка (Не функціональна",
+    "itemdesc-gameboard-generic": "Розмістіть на землі, щоб створити всі можливі дошки",
     "block-chessboard": "Шахівниця",
     "item-chesspiece": "Шахова фігура",
-    "chesspiece-bishop": "Слон",
-    "chesspiece-king": "Король",
-    "chesspiece-knight": "Кінь",
-    "chesspiece-pawn": "Пішак",
-    "chesspiece-queen": "Ферзь",
-    "chesspiece-rook": "Тура",
-
+    "item-chesspiece-bishop": "Слон",
+    "item-chesspiece-king": "Король",
+    "item-chesspiece-knight": "Кінь",
+    "item-chesspiece-pawn": "Пішак",
+    "item-chesspiece-queen": "Ферзь",
+    "item-chesspiece-rook": "Тура",
     "item-checkerpiece": "Шашка",
-    "checkerpiece-pawn": "Пішак",
-    "checkerpiece-king": "Дамка",
-
+    "item-checkerpiece-pawn": "Пішак",
+    "item-checkerpiece-king": "Дамка",
     "block-morrisboard-three": "Дошка для гри 'Млин' (3 фішки)",
     "block-morrisboard-six": "Дошка для гри 'Млин' (6 фішок)",
     "block-morrisboard-nine": "Дошка для гри 'Млин' (9 фішок)",
     "block-morrisboard-twelve": "Дошка для гри 'Млин' (12 фішок)",
-
     "block-goboard": "Гобан",
     "item-gostone": "Камінь для го",
-
     "block-shogiboard": "Сьогібан",
     "item-shogipiece": "Фігура сьогі",
-
-    "shogipiece-fuhyo": "Пішак (Fuhyo)",
-    "shogipiece-ginsho": "Срібний генерал (Ginsho)",
-    "shogipiece-gyokusho": "Король (Gyokusho)",
-    "shogipiece-hisha": "Тура (Hisha)",
-    "shogipiece-kakugyo": "Слон (Kakugyo)",
-    "shogipiece-keima": "Кінь (Keima)",
-    "shogipiece-kinsho": "Золотий генерал (Kinsho)",
-    "shogipiece-kyosha": "Спис (Kyosha)",
-    "shogipiece-narigin": "Перетворений срібний генерал (Narigin)",
-    "shogipiece-narikei": "Перетворений кінь (Narikei)",
-    "shogipiece-narikyo": "Перетворений спис (Narikyo)",
-    "shogipiece-osho": "Король (Osho)",
-    "shogipiece-ryuma": "Слон-дракон (Ryuma)",
-    "shogipiece-ryuo": "Тура-дракон (Ryuo)",
-    "shogipiece-tokin": "Перетворений пішак (Tokin)",
-
+    "item-shogipiece-fuhyo": "Пішак (Fuhyo)",
+    "item-shogipiece-ginsho": "Срібний генерал (Ginsho)",
+    "item-shogipiece-gyokusho": "Король (Gyokusho)",
+    "item-shogipiece-hisha": "Тура (Hisha)",
+    "item-shogipiece-kakugyo": "Слон (Kakugyo)",
+    "item-shogipiece-keima": "Кінь (Keima)",
+    "item-shogipiece-kinsho": "Золотий генерал (Kinsho)",
+    "item-shogipiece-kyosha": "Спис (Kyosha)",
+    "item-shogipiece-narigin": "Перетворений срібний генерал (Narigin)",
+    "item-shogipiece-narikei": "Перетворений кінь (Narikei)",
+    "item-shogipiece-narikyo": "Перетворений спис (Narikyo)",
+    "item-shogipiece-osho": "Король (Osho)",
+    "item-shogipiece-ryuma": "Слон-дракон (Ryuma)",
+    "item-shogipiece-ryuo": "Тура-дракон (Ryuo)",
+    "item-shogipiece-tokin": "Перетворений пішак (Tokin)",
     "item-schematic-generic_piece": "Креслення для настільних фігур",
     "itemdesc-schematic-generic_piece": "Використовується для створення всіх можливих настільних фігур",
-
     "block-backgammonboard-classic": "Дошка для нард",
 
     // #############
@@ -142,22 +133,18 @@
     // ##################
 
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетягніть пігмент сюди, щоб змінити колір ліній на дошці.",
-
     "toolmode-sinkslot-stone-create-chesspiece": "Перетягніть сюди 16 каменів для створення 16 шахових фігур",
     "toolmode-sinkslot-stone-create-checkerpiece": "Перетягніть сюди 12 каменів для створення 12 шашок",
     "toolmode-sinkslot-stone-create-gostone": "Перетягніть сюди 16 каменів для створення 64 каменів для Го",
     "toolmode-sinkslot-stone-create-shogipiece": "Перетягніть сюди 20 каменів для створення 20 фігур для Сьогі",
     "toolmode-sinkslot-stone-create-dice": "Перетягніть сюди 1 камінь для створення 1 грального кубика",
-
     "toolmode-sinkslot-wooden-create-chesspiece": "Перетягніть сюди 16 дощок для створення 16 шахових фігур",
     "toolmode-sinkslot-wooden-create-checkerpiece": "Перетягніть сюди 12 дощок для створення 12 шашок",
     "toolmode-sinkslot-wooden-create-gostone": "Перетягніть сюди 16 дощок для створення 64 каменів для Го",
     "toolmode-sinkslot-wooden-create-shogipiece": "Перетягніть сюди 20 дощок для створення 20 фігур для Сьогі",
     "toolmode-sinkslot-wood-create-dice": "Перетягніть сюди 1 дошку для створення 1 грального кубика",
-
     "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "Перетягніть пігмент сюди, щоб змінити первинний колір малюнків на дошці.",
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Перетягніть пігмент сюди, щоб змінити вторинний колір малюнків на дошці.",
-
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетягніть пігмент сюди, щоб змінити колір точок або цифр на кубику.",
     "toolmode-dice-reset": "Скинути кубик.",
 
@@ -167,10 +154,8 @@
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Створення шахової дошки: Етап 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Створення шахової дошки: Етап 2/3",
-
     "inworldcraftingdesc-chessboardinfo": "Почніть створення шахової дошки, додавши 2 будь-яких дошки або каменя. Використовуйте <hk>rightmouse</hk>, щоб додати темні клітинки.",
     "inworldcraftingdesc-goboardinfo": "Перетворіть на дошку для гри в Го, використовуючи будь-який пігмент за допомогою <hk>rightmouse</hk> для малювання ліній.",
-
     "inworldcraftingdesc-item-gameboard-chessboard_step1": "Додайте 2 будь-яких дошки або каменю, використовуючи <hk>rightmouse</hk>, щоб додати світлі клітини.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Використайте зубило, щоб зробити дошку функціональною.",
 
@@ -186,21 +171,17 @@
     "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>Наймогутніша фігура, об'єднує ходи тури та слона.</i></font><br>",
     "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>Ходить по прямих лініях горизонтально або вертикально.</i></font><br>",
     "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>Можна перевернути, щоб переключитися між пішкою і дамкою.</i></font><br>",
-
     "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>Ідеально для початківців, що вивчають го.</i></font><br>",
     "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>Підходить для гравців середнього рівня.</i></font><br>",
     "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>Використовується в основному для гри в гомоку.</i></font><br>",
     "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>Історично використовувалась до того, як дошка 19x19 стала стандартом.</i></font><br>",
     "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>Стандартна дошка для гри в го.</i></font><br>",
-
     "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>Спрощена версія гри в млин, підходить для швидких партій.</i></font><br>",
     "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>Також може використовуватись для гри в млин з п'ятьма фішками.</i></font><br>",
     "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>Класична гра в млин для дев'яти фішок.</i></font><br>",
     "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>Також може використовуватись для гри в млин з одинадцятьма фішками.</i></font><br>",
-
     "trivia-shogipiece": "<font color=\"#99c9f9\"><i>Використовується для гри в сьогі, також відомої як японські шахи.</i></font><br>",
     "trivia-shogiboard": "<font color=\"#99c9f9\"><i>Використовується для гри в сьогі, також відомої як японські шахи.</i></font><br>",
-
     "dimension-5x5": "5 x 5",
     "dimension-6x6": "6 x 6",
     "dimension-7x7": "7 x 7",

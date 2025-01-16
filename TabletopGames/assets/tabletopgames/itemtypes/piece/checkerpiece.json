@@ -12,7 +12,7 @@
         "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
         "onBackgammonTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.4 },
         "name": {
-            "*": ["tabletopgames:item-checkerpiece", " (", "tabletopgames:checkerpiece-{type}", ")"]
+            "*": ["tabletopgames:item-checkerpiece", " (", "tabletopgames:item-checkerpiece-{type}", ")"]
         },
         "description": {
             "stone-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "rock-{stone}"],

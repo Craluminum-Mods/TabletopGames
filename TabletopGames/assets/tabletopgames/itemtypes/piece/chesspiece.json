@@ -11,7 +11,7 @@
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.13, "z": 0.5 }, "scale": 0.75 },
         "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
         "name": {
-            "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:chesspiece-{type}", ")"]
+            "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:item-chesspiece-{type}", ")"]
         },
         "description": {
             "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],

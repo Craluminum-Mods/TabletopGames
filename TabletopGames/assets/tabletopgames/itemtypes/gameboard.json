@@ -12,12 +12,12 @@
         "onshelfTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.1, "z": 0.5 }, "scale": 0.6 },
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.1 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 2.5 },
         "name": {
-            "type-generic": ["tabletopgames:gameboard"],
+            "type-generic": ["tabletopgames:item-gameboard-generic"],
             "type-*": ["tabletopgames:inworldcrafting-item-gameboard-{type}"]
         },
         "description": {
-            "stone-*": ["tabletopgames:gameboard-description", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:gameboard-description", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:itemdesc-gameboard-generic", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:itemdesc-gameboard-generic", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "containedDescription": {
             "type-generic": [
