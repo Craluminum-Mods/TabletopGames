@@ -1,0 +1,42 @@
+{
+    "game:tabname-tabletopgames": "テーブルゲーム",
+    "block-chessboard": "チェスボード",
+    //
+    //
+    "block-morrisboard-nine": "ナイン・メンズ・モリス",
+    //
+    "block-goboard": "碁盤",
+    "block-shogiboard": "将棋盤",
+    "block-backgammonboard-classic": "バックギャモン",
+    //
+    //
+    //
+    //
+    "item-chesspiece": "駒 (チェス)",
+    "item-chesspiece-bishop": "ビショップ",
+    "item-chesspiece-king": "キング",
+    "item-chesspiece-knight": "ナイト",
+    "item-chesspiece-pawn": "ポーン",
+    "item-chesspiece-queen": "クイーン",
+    "item-chesspiece-rook": "ルーク",
+    //
+    //
+    "item-checkerpiece-king": "キング",
+    //
+    "item-shogipiece": "将棋駒",
+    "item-shogipiece-fuhyo": "歩兵（ふひょう）",
+    "item-shogipiece-ginsho": "銀将（ぎんしょう）",
+    "item-shogipiece-gyokusho": "玉将（ぎょくしょう）",
+    "item-shogipiece-hisha": "飛車（ひしゃ）",
+    "item-shogipiece-kakugyo": "角行（かくぎょう）",
+    "item-shogipiece-keima": "桂馬（けいま）",
+    "item-shogipiece-kinsho": "金将（きんしょう）",
+    "item-shogipiece-kyosha": "香車（きょうしゃ）",
+    "item-shogipiece-narigin": "成銀（なりぎん）",
+    "item-shogipiece-narikei": "成桂（なりけい）",
+    "item-shogipiece-narikyo": "成香（なりきょう）",
+    "item-shogipiece-osho": "王将（おうしょう）",
+    "item-shogipiece-ryuma": "竜馬（りゅうま）",
+    "item-shogipiece-ryuo": "竜王（りゅうおう）",
+    "item-shogipiece-tokin": "と金（ときん）"
+}
