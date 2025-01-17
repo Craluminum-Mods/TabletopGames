@@ -10,11 +10,11 @@
             "type-*": ["tabletopgames:item-dice-{type}"]
         },
         "description": {
-            "type-*::wood-*": ["tabletopgames:itemdesc-dice-{type}-dots-{dot}", "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"],
-            "type-*::stone-*": ["tabletopgames:itemdesc-dice-{type}-dots-{dot}", "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"]
+            "type-*::wood-*": ["tabletopgames:itemdesc-dice-dots-{dot}", "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "type-*::stone-*": ["tabletopgames:itemdesc-dice-dots-{dot}", "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"]
         },
         "containedDescription": {
-            "type-*": ["tabletopgames:item-dice-{type}", "<br>", "tabletopgames:itemdesc-dice-{type}-dots-{dot}"]
+            "type-*": ["tabletopgames:item-dice-{type}", "<br>", "tabletopgames:itemdesc-dice-dots-{dot}"]
         },
         "shape": {
             "type-classic_cube::dot-1": { "base": "tabletopgames:item/dice/cube", "rotateX": 180, "rotateY": 180, "rotateZ": 0 },
