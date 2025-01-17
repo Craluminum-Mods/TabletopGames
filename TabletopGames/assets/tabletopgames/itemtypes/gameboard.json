@@ -109,7 +109,6 @@
                     "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" }
                 },
 
-                // go boards
                 {
                     "triggerBy": { "type": "item", "code": "game:charcoal" },
                     "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
@@ -176,7 +175,6 @@
                 }
             ],
 
-            // chessboard
             "type-chessboard_step1": [
                 {
                     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },

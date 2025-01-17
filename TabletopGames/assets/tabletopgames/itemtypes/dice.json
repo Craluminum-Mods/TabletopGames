@@ -22,16 +22,16 @@
             "type-classic_cube::dot-3": { "base": "tabletopgames:item/dice/cube", "rotateX": 270, "rotateY": 0, "rotateZ": 180 },
             "type-classic_cube::dot-4": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 0, "rotateZ": 0 },
             "type-classic_cube::dot-5": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 90, "rotateZ": 0 },
-            "type-classic_cube::dot-6": { "base": "tabletopgames:item/dice/cube" }, // no rotations
+            "type-classic_cube::dot-6": { "base": "tabletopgames:item/dice/cube" },
 
             "type-doubling_cube::dot-2": { "base": "tabletopgames:item/dice/cube", "rotateX": 180, "rotateY": 180, "rotateZ": 0 },
             "type-doubling_cube::dot-4": { "base": "tabletopgames:item/dice/cube", "rotateX": 0, "rotateY": 270, "rotateZ": 270 },
             "type-doubling_cube::dot-8": { "base": "tabletopgames:item/dice/cube", "rotateX": 270, "rotateY": 0, "rotateZ": 180 },
             "type-doubling_cube::dot-16": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 0, "rotateZ": 0 },
             "type-doubling_cube::dot-32": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 90, "rotateZ": 0 },
-            "type-doubling_cube::dot-64": { "base": "tabletopgames:item/dice/cube" }, // no rotations
+            "type-doubling_cube::dot-64": { "base": "tabletopgames:item/dice/cube" },
 
-            "type-d4::dot-1": { "base": "tabletopgames:item/dice/d4" }, // no rotations
+            "type-d4::dot-1": { "base": "tabletopgames:item/dice/d4" },
             "type-d4::dot-2": { "base": "tabletopgames:item/dice/d4", "rotateX": 90, "rotateY": 160, "rotateZ": 100 },
             "type-d4::dot-3": { "base": "tabletopgames:item/dice/d4", "rotateX": 135, "rotateY": 52, "rotateZ": -30 },
             "type-d4::dot-4": { "base": "tabletopgames:item/dice/d4", "rotateX": 60, "rotateY": -50, "rotateZ": -60 },
@@ -41,7 +41,7 @@
             "type-d6::dot-3": { "base": "tabletopgames:item/dice/cube", "rotateX": 270, "rotateY": 0, "rotateZ": 180 },
             "type-d6::dot-4": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 0, "rotateZ": 0 },
             "type-d6::dot-5": { "base": "tabletopgames:item/dice/cube", "rotateX": 90, "rotateY": 90, "rotateZ": 0 },
-            "type-d6::dot-6": { "base": "tabletopgames:item/dice/cube" }, // no rotations
+            "type-d6::dot-6": { "base": "tabletopgames:item/dice/cube" },
 
             "type-d8::dot-1": { "base": "tabletopgames:item/dice/d8", "rotateX": 0, "rotateY": 180, "rotateZ": 180 },
             "type-d8::dot-2": { "base": "tabletopgames:item/dice/d8", "rotateX": 150, "rotateY": 200, "rotateZ": 100 },
@@ -50,7 +50,7 @@
             "type-d8::dot-5": { "base": "tabletopgames:item/dice/d8", "rotateX": 150, "rotateY": 30, "rotateZ": 90 },
             "type-d8::dot-6": { "base": "tabletopgames:item/dice/d8", "rotateX": 120, "rotateY": 180, "rotateZ": 0 },
             "type-d8::dot-7": { "base": "tabletopgames:item/dice/d8", "rotateX": -24, "rotateY": 210, "rotateZ": 90 },
-            "type-d8::dot-8": { "base": "tabletopgames:item/dice/d8" }, // no rotations
+            "type-d8::dot-8": { "base": "tabletopgames:item/dice/d8" },
 
             "type-d12::dot-1": { "base": "tabletopgames:item/dice/d12", "rotateX": 0, "rotateY": 180, "rotateZ": 180 },
             "type-d12::dot-2": { "base": "tabletopgames:item/dice/d12", "rotateX": 96, "rotateY": -73, "rotateZ": 160 },
@@ -63,7 +63,7 @@
             "type-d12::dot-9": { "base": "tabletopgames:item/dice/d12", "rotateX": -65, "rotateY": 3, "rotateZ": -166 },
             "type-d12::dot-10": { "base": "tabletopgames:item/dice/d12", "rotateX": 120, "rotateY": 206, "rotateZ": -167 },
             "type-d12::dot-11": { "base": "tabletopgames:item/dice/d12", "rotateX": -23, "rotateY": 297, "rotateZ": -135 },
-            "type-d12::dot-12": { "base": "tabletopgames:item/dice/d12" }, // no rotations
+            "type-d12::dot-12": { "base": "tabletopgames:item/dice/d12" },
 
             "type-d20::dot-1": { "base": "tabletopgames:item/dice/d20", "rotateX": 180, "rotateY": 0, "rotateZ": 0 },
             "type-d20::dot-2": { "base": "tabletopgames:item/dice/d20", "rotateX": -40, "rotateY": 45, "rotateZ": 75 },
@@ -84,7 +84,7 @@
             "type-d20::dot-17": { "base": "tabletopgames:item/dice/d20", "rotateX": 70, "rotateY": 10, "rotateZ": 90 },
             "type-d20::dot-18": { "base": "tabletopgames:item/dice/d20", "rotateX": 240, "rotateY": -14, "rotateZ": -90 },
             "type-d20::dot-19": { "base": "tabletopgames:item/dice/d20", "rotateX": 110, "rotateY": -60, "rotateZ": -30 },
-            "type-d20::dot-20": { "base": "tabletopgames:item/dice/d20" } // no rotations
+            "type-d20::dot-20": { "base": "tabletopgames:item/dice/d20" }
         },
         "textures": {
             "type-classic_cube::wood-*": {

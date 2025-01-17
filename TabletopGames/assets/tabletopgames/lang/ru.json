@@ -40,10 +40,6 @@
     "item-shogipiece-ryuo": "Дракон-король (Ryuo)",
     "item-shogipiece-tokin": "Токин (Tokin)",
 
-    // #############
-    // ### Dices ###
-    // #############
-
     "item-dice-classic_cube": "Классический игральный кубик",
     "item-dice-doubling_cube": "Игральный кубик с удвоением",
     "item-dice-d4": "Игральный кубик D4",
@@ -81,10 +77,6 @@
     "itemdesc-dice-dots-32": "<font color=\"#99c9f9\"><i>Показывает 32 на верхней грани.</i></font>",
     "itemdesc-dice-dots-64": "<font color=\"#99c9f9\"><i>Показывает 64 на верхней грани.</i></font>",
 
-    // ##################
-    // ### Tool Modes ###
-    // ##################
-
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",
     "toolmode-sinkslot-stone-create-chesspiece": "Перетащите сюда 16 камней для создания 16 шахматных фигур",
     "toolmode-sinkslot-stone-create-checkerpiece": "Перетащите сюда 12 камней для создания 12 шашек",
@@ -101,20 +93,12 @@
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетащите пигмент сюда, чтобы изменить цвет точек или цифр на кубике.",
     "toolmode-dice-reset": "Сбросить кубик.",
 
-    // #########################
-    // ### In world crafting ###
-    // #########################
-
     "inworldcrafting-item-gameboard-chessboard_step1": "Создание шахматной доски: Этап 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Создание шахматной доски: Этап 2/3",
     "inworldcraftingdesc-chessboardinfo": "Начните создание шахматной доски, добавив 2 любых доски или камня. Используйте <hk>rightmouse</hk>, чтобы добавить темные клетки.",
     "inworldcraftingdesc-goboardinfo": "Преобразуйте в доску для игры в Го, используя любой пигмент с помощью <hk>rightmouse</hk> для рисования линий.",
     "inworldcraftingdesc-item-gameboard-chessboard_step1": "Добавьте 2 любых доски или камня, используя <hk>rightmouse</hk>, чтобы добавить светлые клетки.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Используйте зубило, чтобы сделать доску функциональной.",
-
-    // ####################
-    // ### Descriptions ###
-    // ####################
 
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Можно также использовать в качестве шашечной доски.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Ходит по диагонали.</i></font><br>",
@@ -146,10 +130,6 @@
     "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
 
-    // ########################
-    // ### Transform Editor ###
-    // ########################
-
     "game:onMorrisTransform": "На доске для игры в Мельницу",
     "game:onChessboardTransform": "На шахматной доске",
     "game:onGoboard9x9Transform": "На 9x9 доске для Го",
@@ -157,17 +137,9 @@
     "game:onGoboard19x19Transform": "На 19x19 доске для Го",
     "game:onShogiTransform": "На доске для Сёги",
 
-    // ###############
-    // ### Configs ###
-    // ###############
-
     "config-client": "Настольные игры - Клиент",
     "config-debug": "Настольные игры - DEBUG",
     "Config.Settings.DiceAnimationsEnabled": "Включить анимацию игральных кубиков",
-
-    // ##############
-    // ### Guides ###
-    // ##############
 
     "craftinginfo-starterguide-title": "Настольные игры 101 - Руководство для начинающих",
     "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на земле и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на земле.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур."

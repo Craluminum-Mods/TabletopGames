@@ -23,7 +23,6 @@
         "shape": {
             "*": { "base": "tabletopgames:item/piece/shogipiece" }
         },
-        // using KaiTi font and Kanji for shogi textures
         "textures": {
             "wood-*": {
                 "material": { "base": "game:block/wood/debarked/{wood}" },

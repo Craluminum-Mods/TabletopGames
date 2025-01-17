@@ -1,17 +1,17 @@
 {
     "game:tabname-tabletopgames": "テーブルゲーム",
     "block-chessboard": "チェスボード",
-    //
-    //
+
+
     "block-morrisboard-nine": "ナイン・メンズ・モリス",
-    //
+
     "block-goboard": "碁盤",
     "block-shogiboard": "将棋盤",
     "block-backgammonboard-classic": "バックギャモン",
-    //
-    //
-    //
-    //
+
+
+
+
     "item-chesspiece": "駒 (チェス)",
     "item-chesspiece-bishop": "ビショップ",
     "item-chesspiece-king": "キング",
@@ -19,10 +19,10 @@
     "item-chesspiece-pawn": "ポーン",
     "item-chesspiece-queen": "クイーン",
     "item-chesspiece-rook": "ルーク",
-    //
-    //
+
+
     "item-checkerpiece-king": "キング",
-    //
+
     "item-shogipiece": "将棋駒",
     "item-shogipiece-fuhyo": "歩兵（ふひょう）",
     "item-shogipiece-ginsho": "銀将（ぎんしょう）",

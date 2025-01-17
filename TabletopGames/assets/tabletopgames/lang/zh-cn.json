@@ -1,17 +1,17 @@
 {
     "game:tabname-tabletopgames": "桌上遊戲",
-    //
-    //
-    //
+
+
+
     "block-morrisboard-nine": "直棋",
-    //
-    //
-    //
+
+
+
     "block-backgammonboard-classic": "雙陸棋",
-    //
-    //
-    //
-    //
+
+
+
+
     "item-chesspiece": "國際象棋",
     "item-chesspiece-bishop": "象",
     "item-chesspiece-king": "王",
@@ -19,10 +19,10 @@
     "item-chesspiece-pawn": "兵",
     "item-chesspiece-queen": "后",
     "item-chesspiece-rook": "车",
-    //
-    //
+
+
     "item-checkerpiece-king": "王",
-    //
+
     "item-shogipiece": "將棋的棋子",
     "item-shogipiece-fuhyo": "步",
     "item-shogipiece-ginsho": "銀",

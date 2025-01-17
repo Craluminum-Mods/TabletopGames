@@ -127,7 +127,7 @@
 
                         { "setVariants": { "size": "9x9" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true },
 
-                        // giving backgammon board with second color for free to avoid missing textures
+                        // giving second color for free to avoid missing textures
                         { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }

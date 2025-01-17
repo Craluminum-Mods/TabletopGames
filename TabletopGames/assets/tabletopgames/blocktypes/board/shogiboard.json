@@ -97,7 +97,7 @@
                         { "setVariants": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
                         { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
 
-                        // giving backgammon board with second color for free to avoid missing textures
+                        // giving second color for free to avoid missing textures
                         { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
@@ -107,10 +107,7 @@
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames", "general", "decorative"],
-            "stacks": [
-                //
-                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } }
-            ]
+            "stacks": [{ "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } }]
         }
     ],
     "blockmaterial": "Wood",
