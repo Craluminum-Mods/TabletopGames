@@ -304,29 +304,29 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return false;
     }
 
-    public virtual bool TryPut(IPlayer byPlayer, ItemSlot slot, BlockSelection blockSel)
+    public virtual bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (index < 0 || index >= inventory.Count || !inventory[index].Empty)
+        if (!TryGetSlot(index, out ItemSlot boardSlot) || !boardSlot.Empty)
         {
             return false;
         }
-        SetPieceRotation(slot.Itemstack, byPlayer);
-        int moved = slot.TryPutInto(Api.World, inventory[index]);
+        SetPieceRotation(hotbarSlot.Itemstack, byPlayer);
+        int moved = hotbarSlot.TryPutInto(Api.World, boardSlot);
         MarkDirty();
-        RemovePieceRotation(slot?.Itemstack);
+        RemovePieceRotation(hotbarSlot?.Itemstack);
         return moved > 0;
     }
 
     public virtual bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (index < 0 || index >= inventory.Count || inventory[index].Empty)
+        if (!TryGetSlot(index, out ItemSlot boardSlot) || boardSlot.Empty)
         {
             return false;
         }
 
-        ItemStack stack = inventory[index].TakeOut(1);
+        ItemStack stack = boardSlot.TakeOut(1);
         if (byPlayer.InventoryManager.TryGiveItemstack(stack))
         {
             AssetLocation sound = stack.Block?.Sounds?.Place;
@@ -339,6 +339,18 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
         MarkDirty();
         return true;
+    }
+
+    public virtual bool TryGetSlot(int index, out ItemSlot slot)
+    {
+        if (index >= 0 && index < inventory.Count)
+        {
+            slot = inventory[index];
+            return true;
+        }
+
+        slot = null;
+        return false;
     }
 
     public virtual void SetPieceRotation(ItemStack stack, IPlayer player)
