@@ -22,9 +22,9 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public Variants Variants { get; protected set; } = new Variants();
     public float MeshAngleRad { get; set; }
+    public float[] Mat { get; protected set; }
 
     private MeshData mesh;
-    private float[] mat;
     private InventoryBase inventory;
     private Cuboidf[] selectionBoxes;
 
@@ -50,7 +50,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             GetOrCreateSelectionBoxes(forceNew: true);
             mesh = OwnBlock.GetOrCreateMesh(Variants);
-            mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
+            Mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
         }
     }
 
@@ -111,7 +111,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
-        mesher.AddMeshData(mesh, mat);
+        mesher.AddMeshData(mesh, Mat);
 
         float[][] _tfMatrices = genTransformationMatrices();
 
@@ -121,7 +121,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             if (!itemSlot.Empty && _tfMatrices != null)
             {
                 MeshData stackMesh = getMesh(itemSlot.Itemstack);
-                ApplyPieceMeshRotation(itemSlot, ref stackMesh);
+                ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, _tfMatrices[i]);
             }
         }
@@ -140,6 +140,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             updateMesh(i);
         }
+    }
+
+    public MeshData GetOrCreateMesh(ItemStack stack, int index)
+    {
+        return getOrCreateMesh(stack, index);
     }
 
     protected override string getMeshCacheKey(ItemStack stack)
@@ -161,6 +166,11 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
             _tfMatrices[i] = new Matrixf().Translate(new Vec3f(x, y, z)).Values;
         }
         return _tfMatrices;
+    }
+
+    public float[][] GenTransformationMatrices()
+    {
+        return genTransformationMatrices();
     }
 
     public virtual Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
@@ -301,10 +311,10 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             return false;
         }
-        SetPieceRotation(slot, byPlayer);
+        SetPieceRotation(slot.Itemstack, byPlayer);
         int moved = slot.TryPutInto(Api.World, inventory[index]);
         MarkDirty();
-        RemovePieceRotation(slot);
+        RemovePieceRotation(slot?.Itemstack);
         return moved > 0;
     }
 
@@ -331,25 +341,25 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return true;
     }
 
-    public virtual void SetPieceRotation(ItemSlot slot, IPlayer player)
+    public virtual void SetPieceRotation(ItemStack stack, IPlayer player)
     {
-        if (slot.Itemstack.ItemAttributes.KeyExists("rotateWhenPlacedOnBoard"))
+        if (stack.ItemAttributes.KeyExists("rotateWhenPlacedOnBoard"))
         {
             float rotateYaw = player.Entity.Pos.Yaw;
-            slot.Itemstack.Attributes.SetFloat("rotateYaw", rotateYaw);
+            stack.Attributes.SetFloat("rotateYaw", rotateYaw);
         }
     }
     
-    public virtual void RemovePieceRotation(ItemSlot slot)
+    public virtual void RemovePieceRotation(ItemStack stack)
     {
-        slot?.Itemstack?.Attributes?.RemoveAttribute("rotateYaw");
+        stack?.Attributes?.RemoveAttribute("rotateYaw");
     }
 
-    public virtual void ApplyPieceMeshRotation(ItemSlot slot, ref MeshData stackMesh)
+    public virtual void ApplyPieceMeshRotation(ItemStack stack, ref MeshData stackMesh)
     {
-        if (slot.Itemstack.Attributes.HasAttribute("rotateYaw"))
+        if (stack.Attributes.HasAttribute("rotateYaw"))
         {
-            float rotateYaw = slot.Itemstack.Attributes.GetFloat("rotateYaw");
+            float rotateYaw = stack.Attributes.GetFloat("rotateYaw");
             stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
         }
     }
