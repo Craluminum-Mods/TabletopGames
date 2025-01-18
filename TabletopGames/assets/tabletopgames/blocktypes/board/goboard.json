@@ -80,6 +80,7 @@
             }
         }
     },
+    "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
     "behaviors": [
         { "name": "Unstable" },
         {
