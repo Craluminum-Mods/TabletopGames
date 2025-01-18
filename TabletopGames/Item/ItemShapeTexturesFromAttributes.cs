@@ -9,7 +9,9 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary> Renders shape and textures using attribute based type system. </summary>
+/// <summary> 
+/// Renders shape and textures using attribute based type system. 
+/// </summary>
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
 {
     public Dictionary<string, List<string>> NameByType { get; protected set; } = new();

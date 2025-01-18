@@ -12,7 +12,9 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary> Block Entity with inventory that renders shape and textures using attribute based type system. </summary>
+/// <summary> 
+/// Block Entity with inventory that renders shape and textures using attribute based type system.
+/// </summary>
 public class BlockBoard : Block, IContainedMeshSource
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
