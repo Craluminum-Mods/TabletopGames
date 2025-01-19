@@ -57,7 +57,8 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
 
     internal void UpdatePreviewMesh()
     {
-        ItemStack hotbarStack = api?.World?.Player?.InventoryManager?.ActiveHotbarSlot?.Itemstack;
+        ItemSlot hotbarSlot = api?.World?.Player?.InventoryManager?.ActiveHotbarSlot;
+        ItemStack hotbarStack = hotbarSlot?.Itemstack;
 
         BlockSelection blockSel = api?.World?.Player?.CurrentBlockSelection;
         int selectionIndex = blockSel?.SelectionBoxIndex ?? 0;
@@ -68,7 +69,7 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
             || api.World.BlockAccessor.GetBlockEntity(pos) is not BlockEntityBoard blockEntity
             || !blockEntity.TryGetSlot(selectionIndex, out ItemSlot boardSlot)
             || !boardSlot.Empty
-            || !TabletopTags.AreTagsCompatible(blockEntity.OwnBlock.GetTags(blockEntity.Variants, selectionIndex), hotbarStack))
+            || !boardSlot.CanHold(hotbarSlot))
         {
             heldItemMeshRef?.Dispose();
             heldItemMeshRef = null;

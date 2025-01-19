@@ -24,11 +24,11 @@ public class ItemSlotTabletop : ItemSlot
 
     public override bool CanHold(ItemSlot sourceSlot)
     {
-        return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) || base.CanHold(sourceSlot);
+        return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) && base.CanHold(sourceSlot);
     }
 
     public override bool CanTakeFrom(ItemSlot sourceSlot, EnumMergePriority priority = EnumMergePriority.AutoMerge)
     {
-        return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) || base.CanTakeFrom(sourceSlot, priority);
+        return TabletopTags.AreTagsCompatible(TabletopTags, stack: sourceSlot?.Itemstack) && base.CanTakeFrom(sourceSlot, priority);
     }
 }
