@@ -51,26 +51,38 @@ public class Variants
         {
             return defaultName;
         }
-        return string.Join("", langKeys.Select(key => Lang.Get(ReplacePlaceholders(key))));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach (string langKey in langKeys)
+        {
+            string newLangKey = ReplacePlaceholders(langKey);
+            stringBuilder.Append(Lang.GetMatching(newLangKey));
+        }
+        return stringBuilder.ToString();
     }
 
     public void GetDescription(StringBuilder dsc, List<string> langKeys)
+    {
+        if (!Elements.Any() || langKeys == null || !langKeys.Any())
+        {
+            return;
+        }
+
+        foreach (string langKey in langKeys)
+        {
+            string newLangKey = ReplacePlaceholders(langKey);
+            dsc.Append(Lang.GetMatching(newLangKey)); 
+        }
+        dsc.AppendLine();
+        GetDebugDescription(dsc);
+    }
+
+    public void GetDebugDescription(StringBuilder dsc)
     {
         if (!Elements.Any())
         {
             return;
         }
-
-        if (langKeys != null && langKeys.Any())
-        {
-            foreach (string langKey in langKeys)
-            {
-                string newLangKey = ReplacePlaceholders(langKey);
-                dsc.Append(Lang.GetMatching(newLangKey));
-            }
-            dsc.AppendLine();
-        }
-
         if (TabletopDebug.VariantsDebugInfo)
         {
             dsc.AppendLine();
