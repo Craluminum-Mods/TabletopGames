@@ -20,8 +20,8 @@ public class BlockBoard : Block, IContainedMeshSource
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
     public Dictionary<string, TabletopTags> TabletopTagsByType { get; protected set; } = new();
 
-    public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
-    public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
 
     private Dictionary<string, CompositeShape> shapeByType = new();
@@ -56,8 +56,8 @@ public class BlockBoard : Block, IContainedMeshSource
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
         }
 
@@ -238,7 +238,7 @@ public class BlockBoard : Block, IContainedMeshSource
     public override string GetHeldItemName(ItemStack itemStack)
     {
         Variants variants = Variants.FromStack(itemStack);
-        variants.FindByVariant(NameByType, out List<string> _langKeys);
+        variants.FindByVariant(NameByType, out List<object> _langKeys);
         string defaultName = base.GetHeldItemName(itemStack);
         return variants.GetName(_langKeys, defaultName);
     }
@@ -247,7 +247,7 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
         {
-            blockEntity.Variants.FindByVariant(NameByType, out List<string> _langKeys);
+            blockEntity.Variants.FindByVariant(NameByType, out List<object> _langKeys);
             string defaultName = base.GetPlacedBlockName(world, pos);
             return blockEntity.Variants.GetName(_langKeys, defaultName);
         }
@@ -259,7 +259,7 @@ public class BlockBoard : Block, IContainedMeshSource
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Variants variants =  Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(DescriptionByType, out List<string> description);
+        variants.FindByVariant(DescriptionByType, out List<object> description);
         variants.GetDescription(dsc, description);
     }
 

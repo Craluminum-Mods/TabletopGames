@@ -14,9 +14,9 @@ namespace TabletopGames;
 /// </summary>
 public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
 {
-    public Dictionary<string, List<string>> NameByType { get; protected set; } = new();
-    public Dictionary<string, List<string>> DescriptionByType { get; protected set; } = new();
-    public Dictionary<string, List<string>> ContainedDescriptionByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> ContainedDescriptionByType { get; protected set; } = new();
 
     private Dictionary<string, CompositeShape> shapeByType = new();
     private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -47,9 +47,9 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         {
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<string>>());
-            ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<string>>());
+            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
         }
     }
 
@@ -153,7 +153,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public override string GetHeldItemName(ItemStack itemStack)
     {
         Variants variants = Variants.FromStack(itemStack);
-        variants.FindByVariant(NameByType, out List<string> _langKeys);
+        variants.FindByVariant(NameByType, out List<object> _langKeys);
         string defaultName = base.GetHeldItemName(itemStack);
         return variants.GetName(_langKeys, defaultName);
     }
@@ -163,7 +163,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
         Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(DescriptionByType, out List<string> _langKeys);
+        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
         variants.GetDescription(dsc, _langKeys);
 
         TabletopTags.FromStack(inSlot.Itemstack)?.GetDescription(dsc);
@@ -183,7 +183,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         StringBuilder dsc = new();
         Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(ContainedDescriptionByType, out List<string> _langKeys);
+        variants.FindByVariant(ContainedDescriptionByType, out List<object> _langKeys);
         
         if (_langKeys == null || !_langKeys.Any())
         {

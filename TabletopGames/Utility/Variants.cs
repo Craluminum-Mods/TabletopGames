@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Vintagestory.API.Common;
@@ -45,39 +46,56 @@ public class Variants
         Elements.Remove(key);
     }
 
-    public string GetName(List<string> langKeys, string defaultName)
+    private void AppendTranslatedText(StringBuilder sb, List<object> entries)
     {
-        if (!Elements.Any() || langKeys == null || !langKeys.Any())
+        foreach (var entry in entries)
+        {
+            if (entry is string)
+            {
+                sb.Append(Lang.GetMatching(ReplacePlaceholders(entry.ToString())));
+            }
+            else if (entry is JArray array && array.Any())
+            {
+                object[] args = array.Skip(1).Select(arg =>
+                {
+                    if (arg.Type == JTokenType.String)
+                    {
+                        return (object)ReplacePlaceholders(arg.ToString());
+                    }
+                    return (object)arg;
+                }).ToArray();
+
+                string key = ReplacePlaceholders(array[0].ToString());
+                sb.Append(Lang.GetMatching(key, args).ToArray());
+            }
+        }
+    }
+
+    public string GetName(List<object> entries, string defaultName)
+    {
+        if (!Elements.Any() || entries == null || !entries.Any())
         {
             return defaultName;
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        foreach (string langKey in langKeys)
-        {
-            string newLangKey = ReplacePlaceholders(langKey);
-            stringBuilder.Append(Lang.GetMatching(newLangKey));
-        }
-        return stringBuilder.ToString();
+        StringBuilder sb = new StringBuilder();
+        AppendTranslatedText(sb, entries);
+        return sb.ToString();
     }
 
-    public void GetDescription(StringBuilder dsc, List<string> langKeys)
+    public void GetDescription(StringBuilder sb, List<object> entries)
     {
-        if (!Elements.Any() || langKeys == null || !langKeys.Any())
+        if (!Elements.Any() || entries == null || !entries.Any())
         {
             return;
         }
 
-        foreach (string langKey in langKeys)
-        {
-            string newLangKey = ReplacePlaceholders(langKey);
-            dsc.Append(Lang.GetMatching(newLangKey)); 
-        }
-        dsc.AppendLine();
-        GetDebugDescription(dsc);
+        AppendTranslatedText(sb, entries);
+        sb.AppendLine();
+        GetDebugDescription(sb);
     }
 
-    public void GetDebugDescription(StringBuilder dsc)
+    public void GetDebugDescription(StringBuilder sb)
     {
         if (!Elements.Any())
         {
@@ -85,10 +103,10 @@ public class Variants
         }
         if (TabletopDebug.VariantsDebugInfo)
         {
-            dsc.AppendLine();
+            sb.AppendLine();
             foreach (KeyValuePair<string, string> variant in Elements)
             {
-                dsc.AppendLine($"DEBUG::{variant.Key}-{variant.Value}");
+                sb.AppendLine($"DEBUG::{variant.Key}-{variant.Value}");
             }
         }
     }
