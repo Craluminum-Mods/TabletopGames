@@ -8,12 +8,13 @@
 	"textureSizes": {
 	},
 	"textures": {
+		"material": "block/wood/debarked/oak"
 	},
 	"elements": [
 		{
 			"name": "Origin",
-			"from": [ 4.0, 0.0, 4.0 ], 
-			"to": [ 4.0, 0.0, 4.0 ], 
+			"from": [ 4.0, 0.0, 4.0 ],
+			"to": [ 4.0, 0.0, 4.0 ],
 			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
 			"faces": {
 				"north": { "texture": "#material", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -26,8 +27,8 @@
 			"children": [
 				{
 					"name": "Base",
-					"from": [ 0.0, 0.0, 0.0 ], 
-					"to": [ 0.0, 0.0, 0.0 ], 
+					"from": [ 0.0, 0.0, 0.0 ],
+					"to": [ 0.0, 0.0, 0.0 ],
 					"faces": {
 						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -39,8 +40,8 @@
 					"children": [
 						{
 							"name": "BaseSole",
-							"from": [ 1.0, 0.0, 1.0 ], 
-							"to": [ 7.0, 2.0, 7.0 ], 
+							"from": [ 1.0, 0.0, 1.0 ],
+							"to": [ 7.0, 2.0, 7.0 ],
 							"rotationOrigin": [ 1.0, 0.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
@@ -53,8 +54,8 @@
 						},
 						{
 							"name": "BaseAnkle",
-							"from": [ 1.0, 3.0, 1.0 ], 
-							"to": [ 7.0, 4.0, 7.0 ], 
+							"from": [ 1.0, 3.0, 1.0 ],
+							"to": [ 7.0, 4.0, 7.0 ],
 							"rotationOrigin": [ 1.0, 3.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
@@ -67,22 +68,22 @@
 						},
 						{
 							"name": "BaseCore",
-							"from": [ 2.0, 0.0, 2.0 ], 
-							"to": [ 6.0, 12.0, 6.0 ], 
-							"rotationOrigin": [ 2.0, 0.0, 2.0 ],
+							"from": [ 2.0, 2.0, 2.0 ],
+							"to": [ 6.0, 12.0, 6.0 ],
+							"rotationOrigin": [ 2.0, 2.0, 2.0 ],
 							"faces": {
-								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 12.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 12.0 ] },
-								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 12.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 12.0 ] },
+								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 10.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 10.0 ] },
+								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 10.0 ] },
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 10.0 ] },
 								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 4.0 ] },
 								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 4.0 ] }
 							}
 						},
 						{
 							"name": "BaseCollar",
-							"from": [ 1.0, 10.0, 1.0 ], 
-							"to": [ 7.0, 11.0, 7.0 ], 
+							"from": [ 1.0, 10.0, 1.0 ],
+							"to": [ 7.0, 11.0, 7.0 ],
 							"rotationOrigin": [ 1.0, 10.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
@@ -97,8 +98,8 @@
 				},
 				{
 					"name": "Head",
-					"from": [ 0.0, 0.0, 0.0 ], 
-					"to": [ 0.0, 0.0, 0.0 ], 
+					"from": [ 0.0, 0.0, 0.0 ],
+					"to": [ 0.0, 0.0, 0.0 ],
 					"faces": {
 						"north": { "texture": "#material", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 						"east": { "texture": "#material", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -110,8 +111,8 @@
 					"children": [
 						{
 							"name": "CollarN",
-							"from": [ 1.0, 12.0, 1.0 ], 
-							"to": [ 7.0, 13.0, 2.0 ], 
+							"from": [ 1.0, 12.0, 1.0 ],
+							"to": [ 7.0, 13.0, 2.0 ],
 							"rotationOrigin": [ 1.0, 12.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
@@ -124,8 +125,8 @@
 						},
 						{
 							"name": "CrenelationNWN",
-							"from": [ 1.0, 13.0, 1.0 ], 
-							"to": [ 3.0, 15.0, 2.0 ], 
+							"from": [ 1.0, 13.0, 1.0 ],
+							"to": [ 3.0, 15.0, 2.0 ],
 							"rotationOrigin": [ 1.0, 13.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
@@ -138,22 +139,22 @@
 						},
 						{
 							"name": "CrenelationNWW",
-							"from": [ 1.0, 13.0, 1.0 ], 
-							"to": [ 2.0, 15.0, 3.0 ], 
-							"rotationOrigin": [ 1.0, 13.0, 1.0 ],
+							"from": [ 1.0, 13.0, 2.0 ],
+							"to": [ 2.0, 15.0, 3.0 ],
+							"rotationOrigin": [ 1.0, 13.0, 2.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
 							}
 						},
 						{
 							"name": "CrenelationNEN",
-							"from": [ 5.0, 13.0, 1.0 ], 
-							"to": [ 7.0, 15.0, 2.0 ], 
+							"from": [ 5.0, 13.0, 1.0 ],
+							"to": [ 7.0, 15.0, 2.0 ],
 							"rotationOrigin": [ 5.0, 13.0, 1.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
@@ -166,22 +167,22 @@
 						},
 						{
 							"name": "CrenelationNEE",
-							"from": [ 6.0, 13.0, 1.0 ], 
-							"to": [ 7.0, 15.0, 3.0 ], 
-							"rotationOrigin": [ 6.0, 13.0, 1.0 ],
+							"from": [ 6.0, 13.0, 2.0 ],
+							"to": [ 7.0, 15.0, 3.0 ],
+							"rotationOrigin": [ 6.0, 13.0, 2.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
 							}
 						},
 						{
 							"name": "CrenelationSES",
-							"from": [ 5.0, 13.0, 6.0 ], 
-							"to": [ 7.0, 15.0, 7.0 ], 
+							"from": [ 5.0, 13.0, 6.0 ],
+							"to": [ 7.0, 15.0, 7.0 ],
 							"rotationOrigin": [ 5.0, 13.0, 6.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
@@ -194,22 +195,22 @@
 						},
 						{
 							"name": "CrenelationSEE",
-							"from": [ 6.0, 13.0, 5.0 ], 
-							"to": [ 7.0, 15.0, 7.0 ], 
+							"from": [ 6.0, 13.0, 5.0 ],
+							"to": [ 7.0, 15.0, 6.0 ],
 							"rotationOrigin": [ 6.0, 13.0, 5.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
 							}
 						},
 						{
 							"name": "CrenelationSWS",
-							"from": [ 1.0, 13.0, 6.0 ], 
-							"to": [ 3.0, 15.0, 7.0 ], 
+							"from": [ 1.0, 13.0, 6.0 ],
+							"to": [ 3.0, 15.0, 7.0 ],
 							"rotationOrigin": [ 1.0, 13.0, 6.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
@@ -222,22 +223,22 @@
 						},
 						{
 							"name": "CrenelationSWW",
-							"from": [ 1.0, 13.0, 5.0 ], 
-							"to": [ 2.0, 15.0, 7.0 ], 
+							"from": [ 1.0, 13.0, 5.0 ],
+							"to": [ 2.0, 15.0, 6.0 ],
 							"rotationOrigin": [ 1.0, 13.0, 5.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
 							}
 						},
 						{
 							"name": "CollarS",
-							"from": [ 1.0, 12.0, 6.0 ], 
-							"to": [ 7.0, 13.0, 7.0 ], 
+							"from": [ 1.0, 12.0, 6.0 ],
+							"to": [ 7.0, 13.0, 7.0 ],
 							"rotationOrigin": [ 1.0, 12.0, 6.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
@@ -250,30 +251,30 @@
 						},
 						{
 							"name": "CollarW",
-							"from": [ 1.0, 12.0, 1.0 ], 
-							"to": [ 2.0, 13.0, 7.0 ], 
-							"rotationOrigin": [ 1.0, 12.0, 1.0 ],
+							"from": [ 1.0, 12.0, 2.0 ],
+							"to": [ 2.0, 13.0, 6.0 ],
+							"rotationOrigin": [ 1.0, 12.0, 2.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 6.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 6.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 4.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 4.0 ] }
 							}
 						},
 						{
 							"name": "CollarE",
-							"from": [ 6.0, 12.0, 1.0 ], 
-							"to": [ 7.0, 13.0, 7.0 ], 
-							"rotationOrigin": [ 6.0, 12.0, 1.0 ],
+							"from": [ 6.0, 12.0, 2.0 ],
+							"to": [ 7.0, 13.0, 6.0 ],
+							"rotationOrigin": [ 6.0, 12.0, 2.0 ],
 							"faces": {
 								"north": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
+								"east": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
 								"south": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 6.0, 1.0 ] },
-								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 6.0 ] },
-								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 6.0 ] }
+								"west": { "texture": "#material", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
+								"up": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 4.0 ] },
+								"down": { "texture": "#material", "uv": [ 0.0, 0.0, 1.0, 4.0 ] }
 							}
 						}
 					]
