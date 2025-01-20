@@ -140,7 +140,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wood-create-dice",
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-dice",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "wood": "oak", "color": "chalkwhite" } } },
                             "slotParams": [
