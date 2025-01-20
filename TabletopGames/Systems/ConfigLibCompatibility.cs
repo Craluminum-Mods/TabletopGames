@@ -14,8 +14,6 @@ namespace TabletopGames;
 
 public class ConfigLibCompatibility
 {
-    private const string prefixSetting = $"{TabletopConstants.ModID}:Config.Settings.";
-
     private static List<Cuboidf> SelectedSelectionBoxes { get; set; } = new();
 
     public ConfigLibCompatibility(ICoreAPI api)
@@ -39,7 +37,7 @@ public class ConfigLibCompatibility
 
     private void EditClient(ICoreAPI api, ConfigClient config, string id)
     {
-        config.DiceAnimationsEnabled = OnCheckBox(id, config.DiceAnimationsEnabled, nameof(config.DiceAnimationsEnabled));
+        config.DiceAnimationsEnabled = OnCheckBox(id, config.DiceAnimationsEnabled, $"{TabletopConstants.ModID}:setting-dice_animations_enabled");
     }
 
     private void EditDebug(ICoreAPI api, string id)
@@ -245,7 +243,7 @@ public class ConfigLibCompatibility
     private bool OnCheckBox(string id, bool value, string name)
     {
         bool newValue = value;
-        ImGui.Checkbox(Lang.Get(prefixSetting + name) + $"##{name}-{id}", ref newValue);
+        ImGui.Checkbox($"{Lang.Get(name)}##{name}-{id}", ref newValue);
         return newValue;
     }
 
