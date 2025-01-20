@@ -65,7 +65,11 @@ public class BlockBoard : Block, IContainedMeshSource
         {
             if (!GuiDialogTransformEditor.extraTransforms.Any(x => x.AttributeName == boardData.AttributeTransformCode))
             {
-                GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig() { Title = Lang.Get(boardData.AttributeTransformCode), AttributeName = boardData.AttributeTransformCode });
+                GuiDialogTransformEditor.extraTransforms.Add(new TransformConfig()
+                {
+                    Title = Lang.Get($"{TabletopConstants.ModID}:transform-{boardData.AttributeTransformCode}"),
+                    AttributeName = boardData.AttributeTransformCode
+                });
             }
         }
     }
