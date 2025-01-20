@@ -13,5 +13,13 @@
         "value": ["@(ore-bituminouscoal|ore-lapislazuli|ore-cinnabar)"],
         "file": "game:itemtypes/resource/ore-ungraded.json",
         "side": "Server"
+    },
+
+    {
+        "op": "add",
+        "path": "/creativeinventory/tabletopgames",
+        "value": ["*"],
+        "file": "game:itemtypes/omokpiece.json",
+        "side": "Server"
     }
 ]
