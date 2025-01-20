@@ -19,6 +19,20 @@ public class BoardData
 
     public Dictionary<string, EnumSlotType> SlotTypes { get; set; } = new();
 
+    public override string ToString()
+    {
+        StringBuilder result = new StringBuilder();
+        if (Size != null)
+        {
+            result.Append(Size);
+            result.Append('-');
+        }
+        result.Append(QuantitySlots);
+        result.Append('-');
+        result.Append(AttributeTransformCode);
+        return result.ToString();
+    }
+
     public void GetDescription(StringBuilder dsc, int slotIndex = -1)
     {
         if (!TabletopDebug.BoardDataDebugInfo)
@@ -58,19 +72,5 @@ public class BoardData
         dsc.AppendLine(string.Format("DEBUG::Slot MinY: {0}", SlotMinY));
         dsc.AppendLine(string.Format("DEBUG::Slot MaxY: {0}", SlotMaxY));
         dsc.AppendLine(string.Format("DEBUG::Transform Code: {0}", AttributeTransformCode));
-    }
-
-    public override string ToString()
-    {
-        StringBuilder result = new StringBuilder();
-        if (Size != null)
-        {
-            result.Append(Size);
-            result.Append('-');
-        }
-        result.Append(QuantitySlots);
-        result.Append('-');
-        result.Append(AttributeTransformCode);
-        return result.ToString();
     }
 }

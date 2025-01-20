@@ -46,71 +46,6 @@ public class Variants
         Elements.Remove(key);
     }
 
-    private void AppendTranslatedText(StringBuilder sb, List<object> entries)
-    {
-        foreach (var entry in entries)
-        {
-            if (entry is string)
-            {
-                sb.Append(Lang.GetMatching(ReplacePlaceholders(entry.ToString())));
-            }
-            else if (entry is JArray array && array.Any())
-            {
-                object[] args = array.Skip(1).Select(arg =>
-                {
-                    if (arg.Type == JTokenType.String)
-                    {
-                        return (object)ReplacePlaceholders(arg.ToString());
-                    }
-                    return (object)arg;
-                }).ToArray();
-
-                string key = ReplacePlaceholders(array[0].ToString());
-                sb.Append(Lang.GetMatching(key, args).ToArray());
-            }
-        }
-    }
-
-    public string GetName(List<object> entries, string defaultName)
-    {
-        if (!Elements.Any() || entries == null || !entries.Any())
-        {
-            return defaultName;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        AppendTranslatedText(sb, entries);
-        return sb.ToString();
-    }
-
-    public void GetDescription(StringBuilder sb, List<object> entries)
-    {
-        if (!Elements.Any() || entries == null || !entries.Any())
-        {
-            return;
-        }
-
-        AppendTranslatedText(sb, entries);
-        sb.AppendLine();
-        GetDebugDescription(sb);
-    }
-
-    public void GetDebugDescription(StringBuilder sb)
-    {
-        if (!Elements.Any())
-        {
-            return;
-        }
-        if (TabletopDebug.VariantsDebugInfo)
-        {
-            sb.AppendLine();
-            foreach (KeyValuePair<string, string> variant in Elements)
-            {
-                sb.AppendLine($"DEBUG::{variant.Key}-{variant.Value}");
-            }
-        }
-    }
-
     public static Variants FromTreeAttribute(ITreeAttribute rootTree)
     {
         Variants variants = new Variants();
@@ -176,30 +111,68 @@ public class Variants
         };
     }
 
-    public class Variant
+    public void AppendTranslatedText(StringBuilder sb, List<object> entries)
     {
-        public string Key { get; protected set; }
-        public string Value { get; protected set; }
-
-        public Variant(string key, string value)
+        foreach (var entry in entries)
         {
-            Key = key;
-            Value = value;
-        }
-
-        public static Variant FromString(string keyVal)
-        {
-            string[] list = keyVal?.Split('-');
-            if (list.Length != 2)
+            if (entry is string)
             {
-                return null;
+                sb.Append(Lang.GetMatching(ReplacePlaceholders(entry.ToString())));
             }
-            return new Variant(list[0], list[1]);
+            else if (entry is JArray array && array.Any())
+            {
+                object[] args = array.Skip(1).Select(arg =>
+                {
+                    if (arg.Type == JTokenType.String)
+                    {
+                        return (object)ReplacePlaceholders(arg.ToString());
+                    }
+                    return (object)arg;
+                }).ToArray();
+
+                string key = ReplacePlaceholders(array[0].ToString());
+                sb.Append(Lang.GetMatching(key, args).ToArray());
+            }
+        }
+    }
+
+    public string GetName(List<object> entries, string defaultName)
+    {
+        if (!Any || entries == null || !entries.Any())
+        {
+            return defaultName;
         }
 
-        public override string ToString()
+        StringBuilder sb = new StringBuilder();
+        AppendTranslatedText(sb, entries);
+        return sb.ToString();
+    }
+
+    public void GetDescription(StringBuilder sb, List<object> entries)
+    {
+        if (!Any || entries == null || !entries.Any())
         {
-            return $"{Key}-{Value}";
+            return;
+        }
+
+        AppendTranslatedText(sb, entries);
+        sb.AppendLine();
+        GetDebugDescription(sb);
+    }
+
+    public void GetDebugDescription(StringBuilder sb)
+    {
+        if (!Any)
+        {
+            return;
+        }
+        if (TabletopDebug.VariantsDebugInfo)
+        {
+            sb.AppendLine();
+            foreach ((string key, string value) in Elements)
+            {
+                sb.AppendLine($"DEBUG::{key}-{value}");
+            }
         }
     }
 }

@@ -2,13 +2,6 @@
 
 namespace TabletopGames;
 
-/// <summary> Determines whether slot is default or used to randomize dices </summary>
-public enum EnumSlotType
-{
-    Normal,
-    Random
-}
-
 public class ItemSlotTabletop : ItemSlot
 {
     public EnumSlotType SlotType { get; }

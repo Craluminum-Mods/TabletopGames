@@ -38,16 +38,3 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
     public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
     public void OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
 }
-
-public class CraftingStep
-{
-    public CraftingRecipeIngredient TriggerBy { get; set; }
-    public Dictionary<string, string> SetVariants { get; set; } = new();
-    public List<string> RemoveVariants { get; set; } = new();
-
-    public JsonItemStack ConvertTo { get; set; }
-    public bool CopyAttributes { get; set; }
-    public bool ConsumeIngredient { get; set; } = true;
-
-    public JsonItemStack GiveStack { get; set; }
-}

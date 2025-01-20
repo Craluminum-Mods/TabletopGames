@@ -8,14 +8,43 @@ namespace TabletopGames;
 
 public class TabletopTags
 {
-    /// <summary> When set, normal tabletopTags are ignored </summary>
+    /// <summary> 
+    /// When set, normal tags are ignored
+    /// </summary>
     public Dictionary<string, List<string>> TagsPerSlot { get; set; } = new();
 
-    /// <summary> When set, normal tabletopTags are ignored </summary>
+    /// <summary> 
+    /// When set, normal tags are ignored
+    /// </summary>
     public Dictionary<string, List<string>> TagsIgnoredPerSlot { get; set; } = new();
 
     public List<string> Tags { get; set; } = new();
     public List<string> TagsIgnored { get; set; } = new();
+
+    public static TabletopTags FromStack(ItemStack stack)
+    {
+        return stack?.ItemAttributes?["tabletopTags"]?.AsObject(new TabletopTags());
+    }
+
+    public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags stackTags)
+    {
+        stackTags ??= new();
+        boardTags ??= new();
+        if (stackTags.Tags.Count == 0)
+        {
+            return false;
+        }
+        if (stackTags.Tags.Any(boardTags.TagsIgnored.Contains))
+        {
+            return false;
+        }
+        return stackTags.Tags.Any(boardTags.Tags.Contains);
+    }
+
+    public static bool AreTagsCompatible(TabletopTags boardTags, ItemStack stack)
+    {
+        return AreTagsCompatible(boardTags, FromStack(stack));
+    }
 
     public TabletopTags GetResolvedTags(int slotId = -1)
     {
@@ -108,30 +137,5 @@ public class TabletopTags
         {
             dsc.AppendLine("DEBUG::Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
         }
-    }
-
-    public static TabletopTags FromStack(ItemStack stack)
-    {
-        return stack?.ItemAttributes?["tabletopTags"]?.AsObject(new TabletopTags());
-    }
-
-    public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags stackTags)
-    {
-        stackTags ??= new();
-        boardTags ??= new();
-        if (stackTags.Tags.Count == 0)
-        {
-            return false;
-        }
-        if (stackTags.Tags.Any(boardTags.TagsIgnored.Contains))
-        {
-            return false;
-        }
-        return stackTags.Tags.Any(boardTags.Tags.Contains);
-    }
-
-    public static bool AreTagsCompatible(TabletopTags boardTags, ItemStack stack)
-    {
-        return AreTagsCompatible(boardTags, FromStack(stack));
     }
 }

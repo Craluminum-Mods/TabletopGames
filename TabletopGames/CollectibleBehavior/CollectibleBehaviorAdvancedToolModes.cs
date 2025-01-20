@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 
@@ -11,27 +10,6 @@ namespace TabletopGames;
 
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
-    public class AdvancedToolMode
-    {
-        public Dictionary<string, string> SetVariants { get; set; } = new();
-        public List<string> RemoveVariants { get; set; } = new();
-
-        public JsonItemStack ConvertTo { get; set; }
-        public bool CopyAttributes { get; set; }
-
-        public bool IsSinkSlot { get; set; }
-        public List<CraftingStep> SlotParams { get; set; } = new();
-
-        public string IconTexture { get; set; } = "";
-        public JsonItemStack IconStack { get; set; }
-
-        public string Name { get; set; }
-        public bool Linebreak { get; set; }
-
-        public string NameTranslated => Lang.Get(Name);
-        public bool NameExists => !string.IsNullOrEmpty(Name);
-    }
-
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
     private Dictionary<string, LoadedTexture> texturesByKeyResolved = new();
     private Dictionary<string, string> texturesByKey = new();
@@ -171,6 +149,16 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return _toolModes;
     }
 
+    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
+    {
+        handling = EnumHandling.PassThrough;
+        return base.GetHeldInteractionHelp(inSlot, ref handling).Append(new WorldInteraction
+        {
+            ActionLangCode = "heldhelp-settoolmode",
+            HotKeyCode = "toolmodeselect"
+        });
+    }
+
     private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Variants variants)
     {
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
@@ -229,15 +217,5 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         {
             _mode.RenderHandler = renderedStack.RenderItemStack(capi, showStackSize: false);
         }
-    }
-
-    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-    {
-        handling = EnumHandling.PassThrough;
-        return base.GetHeldInteractionHelp(inSlot, ref handling).Append(new WorldInteraction
-        {
-            ActionLangCode = "heldhelp-settoolmode",
-            HotKeyCode = "toolmodeselect"
-        });
     }
 }
