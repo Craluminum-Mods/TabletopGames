@@ -357,7 +357,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public virtual void SetPieceRotation(ItemStack stack, IPlayer player)
     {
-        if (stack.ItemAttributes.KeyExists("rotateWhenPlacedOnBoard"))
+        if (stack.ItemAttributes.IsTrue("rotateWhenPlacedOnBoard"))
         {
             float rotateYaw = player.Entity.Pos.Yaw;
             stack.Attributes.SetFloat("rotateYaw", rotateYaw);
