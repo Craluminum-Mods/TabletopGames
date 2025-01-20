@@ -19,5 +19,6 @@
     },
     { "op": "addmerge", "path": "/attributes/onGoboard9x9Transform", "value": { "translation": { "x": -0.025, "y": -0.03, "z": -0.025 } }, "file": "game:itemtypes/omokpiece.json" },
     { "op": "addmerge", "path": "/attributes/onGoboard13x13Transform", "value": { "translation": { "x": -0.025, "y": -0.03, "z": -0.025 } }, "file": "game:itemtypes/omokpiece.json" },
-    { "op": "addmerge", "path": "/attributes/onGoboard19x19Transform", "value": { "translation": { "x": -0.025, "y": -0.03, "z": -0.025 } }, "file": "game:itemtypes/omokpiece.json" }
+    { "op": "addmerge", "path": "/attributes/onGoboard19x19Transform", "value": { "translation": { "x": -0.025, "y": -0.03, "z": -0.025 } }, "file": "game:itemtypes/omokpiece.json" },
+    { "op": "addmerge", "path": "/attributes/onChessboardTransform", "value": { "translation": { "x": -0.025, "y": -0.03, "z": -0.025 } }, "file": "game:itemtypes/omokpiece.json" }
 ]
