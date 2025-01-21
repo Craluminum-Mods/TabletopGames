@@ -90,7 +90,6 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
         InitInventory();
         Init();
-        MarkDirty(redrawOnClient: true);
     }
 
     public override void ToTreeAttributes(ITreeAttribute tree)
@@ -108,6 +107,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         InitInventory();
 
         base.FromTreeAttributes(tree, worldForResolving);
+        Init();
         RedrawAfterReceivingTreeAttributes(worldForResolving);
     }
 
