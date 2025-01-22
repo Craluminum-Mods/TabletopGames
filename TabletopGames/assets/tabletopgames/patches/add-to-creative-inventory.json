@@ -7,19 +7,7 @@
     { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*-malachite"], "file": "game:itemtypes/resource/gem-rough.json", "side": "Server" },
     { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*-malachite"], "file": "game:itemtypes/resource/nugget.json", "side": "Server" },
 
-    {
-        "op": "add",
-        "path": "/creativeinventory/tabletopgames",
-        "value": ["@(ore-bituminouscoal|ore-lapislazuli|ore-cinnabar)"],
-        "file": "game:itemtypes/resource/ore-ungraded.json",
-        "side": "Server"
-    },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["@(ore-bituminouscoal|ore-lapislazuli|ore-cinnabar)"], "file": "game:itemtypes/resource/ore-ungraded.json", "side": "Server" },
 
-    {
-        "op": "add",
-        "path": "/creativeinventory/tabletopgames",
-        "value": ["*"],
-        "file": "game:itemtypes/omokpiece.json",
-        "side": "Server"
-    }
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/omokpiece.json", "side": "Server" }
 ]

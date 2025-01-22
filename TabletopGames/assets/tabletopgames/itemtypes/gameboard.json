@@ -114,70 +114,15 @@
                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
                 { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
 
-                {
-                    "triggerBy": { "type": "item", "code": "game:charcoal" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "carbonblack" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "carbonblack" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:coke" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "cokeblack" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:stone-chalk" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "chalkwhite" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:stone-limestone" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "limewhite" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:nugget-malachite" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "verdigris" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "ultramarine" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                },
-                {
-                    "triggerBy": { "type": "item", "code": "game:ore-cinnabar" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:goboard" },
-                    "copyAttributes": true,
-                    "setVariants": { "size": "19x19", "color": "cinnabar" },
-                    "consumeIngredient": false,
-                    "removeVariants": ["type"]
-                }
+                // go boards
+                { "triggerBy": { "type": "item", "code": "game:charcoal" }, /*              */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, /*    */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:coke" }, /*                  */ "setVariants": { "size": "19x19", "color": "cokeblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, /*           */ "setVariants": { "size": "19x19", "color": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, /*       */ "setVariants": { "size": "19x19", "color": "limewhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, /*      */ "setVariants": { "size": "19x19", "color": "verdigris" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, /*       */ "setVariants": { "size": "19x19", "color": "ultramarine" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, /*          */ "setVariants": { "size": "19x19", "color": "cinnabar" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] }
             ],
 
             "type-chessboard_step1": [
