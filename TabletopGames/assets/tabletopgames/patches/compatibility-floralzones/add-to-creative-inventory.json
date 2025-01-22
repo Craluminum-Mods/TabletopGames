@@ -1,0 +1,70 @@
+[
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzonescaperegion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzonescaperegion" }], "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzonescaribbeanregion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzonescaribbeanregion" }], "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzonescentralaustralianregion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzonescentralaustralianregion" }], "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzoneseastasiaticregion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzoneseastasiaticregion" }], "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzonesmediterraneanregion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzonesmediterraneanregion" }], "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "floralzonesneozeylandicregion:itemtypes/resource/plank.json", "dependsOn": [{ "modid": "floralzonesneozeylandicregion" }], "side": "Server" },
+
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "afrocarpusfalcatus" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "searsialancea" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "floralzonescaperegion" }],
+        "side": "Server"
+    },
+
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            //
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "lysilomalatisiliquum" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "floralzonescaribbeanregion" }],
+        "side": "Server"
+    },
+
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "corymbiaaparrerinja" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "eucalyptuscamaldulensis" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "floralzonescentralaustralianregion" }],
+        "side": "Server"
+    },
+
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "populusalba" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "taxusbaccata" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "floralzonesmediterraneanregion" }],
+        "side": "Server"
+    },
+
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "araucariaheterophylla" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "dacrydiumcupressinum" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "nothofagusmenziesii" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "podocarpustotara" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "floralzonesneozeylandicregion" }],
+        "side": "Server"
+    }
+]

@@ -104,10 +104,15 @@
                     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
                     "setVariants": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
                 },
-                {
-                    "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
-                    "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" }
-                },
+                { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+
+                // Floral Zones mods compatibility
+                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
 
                 {
                     "triggerBy": { "type": "item", "code": "game:charcoal" },
@@ -180,10 +185,15 @@
                     "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
                     "setVariants": { "type": "chessboard_step2", "secondarystone": "{stone}" }
                 },
-                {
-                    "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" },
-                    "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" }
-                }
+                { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+
+                // Floral Zones mods compatibility
+                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } }
             ],
             "type-chessboard_step2": [
                 {

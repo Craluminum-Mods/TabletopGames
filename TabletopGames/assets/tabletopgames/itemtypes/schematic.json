@@ -77,6 +77,7 @@
                             ]
                         },
                         {
+                            // giving color for free to avoid missing textures
                             "name": "tabletopgames:toolmode-sinkslot-stone-create-dice",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
@@ -84,7 +85,7 @@
                                 {
                                     "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 1 },
                                     "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
-                                    "setVariants": { "type": "classic_cube", "dot": "6", "stone": "{stone}", "color": "carbonblack" } // giving color for free to avoid missing textures
+                                    "setVariants": { "type": "classic_cube", "dot": "6", "stone": "{stone}", "color": "carbonblack" }
                                 }
                             ]
                         },
@@ -95,11 +96,15 @@
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
-                                {
-                                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 },
-                                    "setVariants": { "type": "pawn", "wood": "{wood}" }
-                                }
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -107,11 +112,15 @@
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
-                                {
-                                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 12 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 },
-                                    "setVariants": { "type": "pawn", "wood": "{wood}" }
-                                }
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -119,12 +128,15 @@
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "wood": "oak" } } },
                             "slotParams": [
-                                {
-                                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
-                                    "setVariants": { "wood": "{wood}" },
-                                    "removeVariants": ["type"]
-                                }
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] }
                             ]
                         },
                         {
@@ -132,23 +144,32 @@
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "oak" } } },
                             "slotParams": [
-                                {
-                                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 20 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
-                                    "setVariants": { "type": "fuhyo", "wood": "{wood}" }
-                                }
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } }
                             ]
                         },
                         {
+                            // giving color for free to avoid missing textures
                             "name": "tabletopgames:toolmode-sinkslot-wooden-create-dice",
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "wood": "oak", "color": "chalkwhite" } } },
                             "slotParams": [
-                                {
-                                    "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 1 },
-                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
-                                    "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } // giving color for free to avoid missing textures
-                                }
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } }
                             ]
                         }
                     ]

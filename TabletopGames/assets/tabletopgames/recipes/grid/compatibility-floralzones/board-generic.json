@@ -1,0 +1,68 @@
+[
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    },
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    },
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    },
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    },
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    },
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    }
+]

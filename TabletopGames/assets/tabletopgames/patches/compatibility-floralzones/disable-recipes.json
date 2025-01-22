@@ -1,0 +1,8 @@
+[
+    { "op": "add", "path": "/0/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzonescaperegion", "invert": true }], "side": "Server" },
+    { "op": "add", "path": "/1/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzonescaribbeanregion", "invert": true }], "side": "Server" },
+    { "op": "add", "path": "/2/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzonescentralaustralianregion", "invert": true }], "side": "Server" },
+    { "op": "add", "path": "/3/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzoneseastasiaticregion", "invert": true }], "side": "Server" },
+    { "op": "add", "path": "/4/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzonesmediterraneanregion", "invert": true }], "side": "Server" },
+    { "op": "add", "path": "/5/enabled", "value": false, "file": "tabletopgames:recipes/grid/compatibility-floralzones/board-generic.json", "dependsOn": [{ "modid": "floralzonesneozeylandicregion", "invert": true }], "side": "Server" }
+]
