@@ -1,0 +1,25 @@
+[
+    {
+        "op": "addeach",
+        "path": "/creativeinventoryStacks/0/stacks/-",
+        "value": [
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "dolostone" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "siltstone" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "mudstone" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "quartzite" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "gneiss" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "schist" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "migmatite" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "amphibolite" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "rhyolite" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "pumice" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "diorite" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "gabbro" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "jade" } } },
+            { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "stone": "jasper" } } }
+        ],
+        "file": "tabletopgames:itemtypes/gameboard.json",
+        "dependsOn": [{ "modid": "geoaddons" }], // Geology Additions mod
+        "side": "Server"
+    }
+]
