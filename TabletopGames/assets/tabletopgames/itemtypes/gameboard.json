@@ -235,7 +235,8 @@
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "peridotite" } } },
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "phyllite" } } },
                 { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "slate" } } },
-                { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "bauxite" } } }
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "bauxite" } } },
+                { "type": "item", "code": "gameboard", "attributes": { "types": { "type": "generic", "stone": "meteorite-iron" } } }
             ]
         }
     ],
