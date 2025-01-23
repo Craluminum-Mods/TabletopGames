@@ -39,8 +39,8 @@
     "item-shogipiece-ryuma": "Fou promu (Ryuma)",
     "item-shogipiece-ryuo": "Tour promue (Ryuo)",
     "item-shogipiece-tokin": "Pion promu (Tokin)",
-    
-	"item-dice-classic_cube": "Dé",
+
+    "item-dice-classic_cube": "Dé",
     "item-dice-doubling_cube": "Dé de doublement",
     "item-dice-d4": "Dé D4",
     "item-dice-d6": "Dé D6",
@@ -55,7 +55,7 @@
     "itemdesc-dice-d12": "Un dé à douze faces en forme de dodécaèdre. Génère des valeurs aléatoires de 1 à 12 lorsqu'il est lancé ou placé sur le plateau.",
     "itemdesc-dice-d20": "Un dé à vingt faces en forme d'icosaèdre. Génère des valeurs aléatoires de 1 à 20 lorsqu'il est lancé ou placé sur le plateau.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Montre {0} sur la face supérieure.</i></font>",
-    
+
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Glissez et déposez un pigment ici pour changer la couleur des lignes sur le plateau.",
     "toolmode-sinkslot-stone-create-chesspiece": "Glissez et déposez 16 pierres pour créer 16 pièces d'échecs.",
     "toolmode-sinkslot-stone-create-checkerpiece": "Glissez et déposez 12 pierres pour créer 12 pions de dames.",
@@ -71,14 +71,14 @@
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Glissez et déposez un pigment ici pour changer la couleur secondaire des motifs sur le plateau.",
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Glissez et déposez un pigment ici pour changer la couleur des points ou des chiffres sur le dé.",
     "toolmode-dice-reset": "Réinitialisez le dé à son état par défaut.",
-    
+
     "inworldcrafting-item-gameboard-chessboard_step1": "Construction de l'échiquier : Étape 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Construction de l'échiquier : Étape 2/3",
-    "inworldcraftingdesc-chessboardinfo": "Commencez la construction d'un échiquier en ajoutant 2 planches ou 2 pierres. Utilisez <hk>clic droit</hk> pour créer des cases sombres.",
-    "inworldcraftingdesc-goboardinfo": "Convertissez en plateau de Go en utilisant un pigment avec <hk>clic droit</hk> pour tracer des lignes.",
-    "inworldcraftingdesc-item-gameboard-chessboard_step1": "Ajoutez 2 planches ou 2 pierres avec <hk>clic droit</hk> pour créer des cases claires.",
+    "inworldcraftingdesc-chessboardinfo": "Commencez la construction d'un échiquier en ajoutant 2 planches ou 2 pierres. Utilisez <hk>rightmouse</hk> pour créer des cases sombres.",
+    "inworldcraftingdesc-goboardinfo": "Convertissez en plateau de Go en utilisant un pigment avec <hk>rightmouse</hk> pour tracer des lignes.",
+    "inworldcraftingdesc-item-gameboard-chessboard_step1": "Ajoutez 2 planches ou 2 pierres avec <hk>rightmouse</hk> pour créer des cases claires.",
     "inworldcraftingdesc-item-gameboard-chessboard_step2": "Utilisez un ciseau pour le rendre fonctionnel.",
-    
+
     "trivia-chessboard": "<font color=\"#99c9f9\"><i>Peut également être utilisé comme damier.</i></font><br>",
     "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>Se déplace en diagonale sur l'échiquier.</i></font><br>",
     "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>La pièce la plus importante ; protégez-la à tout prix.</i></font><br>",
@@ -122,5 +122,5 @@
     "setting-dice_animations_enabled": "Activer ou désactiver les animations de dés",
 
     "craftinginfo-starterguide-title": "Jeux de Plateau 101 - Guide de Démarrage",
-    "craftinginfo-starterguide-text": "<strong>Guide de Démarrage des Jeux de Plateau</strong>     <br><br><strong>Créer un plateau générique</strong>      <br>Une fois que vous avez créé un <a href=\"handbooksearch://generic game board\">plateau générique</a>, placez-le au sol et suivez les instructions de l'infobulle.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Créer un schéma</a></strong>       <br>Fabriqué en interagissant avec un pigment sur un parchemin placé au sol.     <br><br><strong>Créer des pièces</strong>       <br>Avec un schéma dans la main active, appuyez sur la touche <hk>toolmodeselect</hk> (Mode Outil) pour ouvrir le menu de création des pièces."
+    "craftinginfo-starterguide-text": "<strong>Guide de Démarrage des Jeux de Plateau</strong>     <br><br><strong>Créer un plateau générique</strong>      <br>Une fois que vous avez créé un <a href=\"handbooksearch://plateau de jeu générique\">plateau générique</a>, placez-le au sol et suivez les instructions de l'infobulle.        <br><br><strong><a href=\"handbooksearch://schéma pour pièces de jeux de plateau\">Créer un schéma</a></strong>       <br>Fabriqué en interagissant avec un pigment sur un parchemin placé au sol.     <br><br><strong>Créer des pièces</strong>       <br>Avec un schéma dans la main active, appuyez sur la touche <hk>toolmodeselect</hk> (Mode Outil) pour ouvrir le menu de création des pièces."
 }
