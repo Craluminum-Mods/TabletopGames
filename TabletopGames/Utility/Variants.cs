@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using HarmonyLib;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ public class Variants
             .OrderBy(x => x);
     }
 
+    public string Get(string key)
+    {
+        return Elements.GetValueSafe(key);
+    }
+    
     public void Set(string key, string value)
     {
         if (Elements.ContainsKey(key))
