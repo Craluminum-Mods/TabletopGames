@@ -169,17 +169,17 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         TabletopTags.FromStack(inSlot.Itemstack)?.GetDescription(dsc);
     }
 
-    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         return GetOrCreateMesh(Variants.FromStack(itemstack), targetAtlas);
     }
 
-    public string GetMeshCacheKey(ItemStack itemstack)
+    public virtual string GetMeshCacheKey(ItemStack itemstack)
     {
         return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
     }
 
-    public string GetContainedInfo(ItemSlot inSlot)
+    public virtual string GetContainedInfo(ItemSlot inSlot)
     {
         StringBuilder dsc = new();
         Variants variants = Variants.FromStack(inSlot.Itemstack);
@@ -194,7 +194,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         return dsc.ToString();
     }
 
-    public string GetContainedName(ItemSlot inSlot, int quantity)
+    public virtual string GetContainedName(ItemSlot inSlot, int quantity)
     {
         return GetHeldItemName(inSlot.Itemstack);
     }
