@@ -33,9 +33,8 @@ public static class GroundStorageInteractionFix
             return true;
         }
 
-        if (!hotbarSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>()
-            && targetSlot?.Itemstack?.Collectible is ItemIntermediate itemIntermediate
-            && itemIntermediate.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel))
+        bool isGroundStorable = hotbarSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>();
+        if (!isGroundStorable && (ProcessInWorldCrafting(byPlayer, blockSel, begs, targetSlot) || ProcessContainerInteractions(byPlayer, blockSel, begs, targetSlot)))
         {
             begs.MarkDirty(true);
             __result = true;
@@ -54,5 +53,15 @@ public static class GroundStorageInteractionFix
         }
 
         return true;
+    }
+
+    private static bool ProcessInWorldCrafting(IPlayer byPlayer, BlockSelection blockSel, BlockEntityGroundStorage begs, ItemSlot targetSlot)
+    {
+        return targetSlot?.Itemstack?.Collectible is ItemIntermediate itemIntermediate && itemIntermediate.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel);
+    }
+
+    private static bool ProcessContainerInteractions(IPlayer byPlayer, BlockSelection blockSel, BlockEntityGroundStorage begs, ItemSlot targetSlot)
+    {
+        return targetSlot?.Itemstack?.Collectible is ItemContainer itemContainer && itemContainer.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel);
     }
 }
