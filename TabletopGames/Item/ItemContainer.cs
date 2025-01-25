@@ -274,6 +274,12 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return variants.Get("state");
     }
 
+    /// <summary>
+    /// Retrieves the containable key of this container item,
+    /// which determines what types of items it can store.
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
+    /// <returns>The containable key of the container.</returns>
     public string GetContainableKey(ItemStack containerStack)
     {
         Variants.FromStack(containerStack).FindByVariant(ContainableKeyByType, out string containableKey);
@@ -295,6 +301,11 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return Math.Max(quantitySlots, 1);
     }
 
+    /// <summary>
+    /// Retrieves the inventory stored within the attributes of the container item.
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
+    /// <returns>The inventory associated with the container.</returns>
     public StackContainerInventory GetInventory(ItemStack containerStack)
     {
         string containableKey = GetContainableKey(containerStack);

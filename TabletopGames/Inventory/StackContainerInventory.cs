@@ -40,6 +40,13 @@ public class StackContainerInventory : InventoryBase
     {
     }
 
+    /// <summary>
+    /// Determines whether a source item can be placed into this container.
+    /// Only items with a matching containable key are allowed.
+    /// </summary>
+    /// <param name="sinkSlot">The destination slot in the container.</param>
+    /// <param name="sourceSlot"></param>
+    /// <returns>True if the item can be stored in the container, otherwise false.</returns>
     public override bool CanContain(ItemSlot sinkSlot, ItemSlot sourceSlot)
     {
         if (sourceSlot?.Itemstack?.Collectible.GetCollectibleInterface<IContainable>() is IContainable icontainable)
