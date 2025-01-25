@@ -35,7 +35,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
     public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
     {
-        if (IsEmpty(thisStack) && IsEmpty(otherStack))
+        if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
             ignoreAttributeSubTrees ??= System.Array.Empty<string>();
             ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("slots");
