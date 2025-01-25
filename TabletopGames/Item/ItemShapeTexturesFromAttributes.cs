@@ -18,8 +18,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, List<object>> ContainedDescriptionByType { get; protected set; } = new();
 
-    private Dictionary<string, CompositeShape> shapeByType = new();
-    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    protected Dictionary<string, CompositeShape> shapeByType = new();
+    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -60,11 +60,12 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
     }
 
-    public MeshData GetOrCreateMesh(Variants variants, ITextureAtlasAPI targetAtlas)
+    public virtual MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
+        Variants variants = Variants.FromStack(itemstack);
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
         if (_shape == null)
         {
@@ -134,7 +135,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
         {
-            MeshData mesh = GetOrCreateMesh(variants, capi.ItemTextureAtlas);
+            MeshData mesh = GenMesh(itemstack, capi.ItemTextureAtlas, null);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -171,7 +172,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
     public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GetOrCreateMesh(Variants.FromStack(itemstack), targetAtlas);
+        return GetOrCreateMesh(itemstack, targetAtlas);
     }
 
     public virtual string GetMeshCacheKey(ItemStack itemstack)
