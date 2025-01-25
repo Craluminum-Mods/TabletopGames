@@ -216,11 +216,14 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         GetInventoryInfo(inSlot, dsc);
     }
 
-    private void GetInventoryInfo(ItemSlot inSlot, StringBuilder dsc)
+    /// <summary>
+    /// Appends the content information of the inventory in the specified item slot.
+    /// </summary>
+    protected void GetInventoryInfo(ItemSlot containerSlot, StringBuilder dsc)
     {
         dsc.AppendLine();
 
-        StackContainerInventory inventory = GetInventory(inSlot.Itemstack);
+        StackContainerInventory inventory = GetInventory(containerSlot.Itemstack);
         if (inventory.Empty)
         {
             dsc.AppendLine(Lang.Get("Contents: {0}", Lang.Get("Empty")));
@@ -229,32 +232,36 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
         dsc.Append(Lang.Get("Contents:") + ' ');
 
-        string[] contentSummary = getContentSummary(inventory);
-        for (int i = 0; i < contentSummary.Length; i++)
+        string[] contentSummary = GetContentSummary(inventory);
+        foreach (string summary in contentSummary)
         {
-            dsc.AppendLine(contentSummary[i]);
+            dsc.AppendLine(summary);
         }
     }
 
-    public string[] getContentSummary(StackContainerInventory inventory)
+    /// <summary>
+    /// Creates a summary of the contents in the inventory, including the item name and quantities.
+    /// </summary>
+    /// <returns>An array of strings summarizing the contents of the inventory.</returns>
+    protected string[] GetContentSummary(StackContainerInventory inventory)
     {
         OrderedDictionary<string, int> dict = new OrderedDictionary<string, int>();
 
         foreach (var slot in inventory)
         {
             if (slot.Empty) continue;
-            int cnt;
+            int count;
 
             string stackName = slot.Itemstack.GetName();
 
-            if (slot.Itemstack.Collectible is IContainedCustomName ccn)
+            if (slot.Itemstack.Collectible is IContainedCustomName containedCustomName)
             {
-                stackName = ccn.GetContainedInfo(slot);
+                stackName = containedCustomName.GetContainedInfo(slot);
             }
 
-            if (!dict.TryGetValue(stackName, out cnt)) cnt = 0;
+            if (!dict.TryGetValue(stackName, out count)) count = 0;
 
-            dict[stackName] = cnt + slot.StackSize;
+            dict[stackName] = count + slot.StackSize;
         }
 
         return dict.Select(elem => Lang.Get("{0}x {1}", elem.Value, elem.Key)).ToArray();
@@ -292,10 +299,37 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         variants.ToStack(containerSlot.Itemstack);
         containerSlot.MarkDirty();
     }
-    
+
+    /// <summary>
+    /// Retrieves the current state of the container (opened or closed) from its variants.
+    /// </summary>
+    /// <param name="variants">The variants of the container item.</param>
+    /// <returns>The current state of the container (e.g., "opened" or "closed").</returns>
     public string GetState(Variants variants)
     {
         return variants.Get("state");
+    }
+
+    /// <summary>
+    /// Retrieves the sound associated with opening the item based on its variants.
+    /// </summary>
+    /// <param name="variants">The variants of the item.</param>
+    /// <returns>The sound to play when the item is opened.</returns>
+    public string GetOpenSound(Variants variants)
+    {
+        variants.FindByVariant(openSoundByType, out string openSound);
+        return openSound;
+    }
+
+    /// <summary>
+    /// Retrieves the sound associated with closing the item based on its variants.
+    /// </summary>
+    /// <param name="variants">The variants of the item.</param>
+    /// <returns>The sound to play when the item is closed.</returns>      
+    public string GetCloseSound(Variants variants)
+    {
+        variants.FindByVariant(closeSoundByType, out string closeSound);
+        return closeSound;
     }
 
     /// <summary>
@@ -310,10 +344,16 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return containableKey;
     }
 
-    public int Count(ItemStack containerStack) => GetInventory(containerStack).Count;
-
+    /// <summary>
+    /// Convenient method to check if this container contains anything
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
     public bool IsEmpty(ItemStack containerStack) => GetInventory(containerStack).Empty;
 
+    /// <summary>
+    /// Returns the number of slots in this inventory.
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
     public int GetQuantitySlots(ItemStack containerStack)
     {
         int quantitySlots = 0;
