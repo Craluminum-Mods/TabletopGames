@@ -74,7 +74,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
             return TryTake(containerSlot, inventory, byPlayer, ownSlot);
         }
 
-        bool canPut = ownSlot != null && inventory.CanContain(ownSlot, hotbarSlot) && !hotbarSlot.Empty;
+        bool canPut = inventory.CanContain(ownSlot, hotbarSlot) && !hotbarSlot.Empty;
         if (canPut)
         {
             return TryPut(containerSlot, inventory, byPlayer, ownSlot);
