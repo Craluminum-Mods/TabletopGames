@@ -44,7 +44,6 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot containerSlot = slot;
         ItemStack containerStack = containerSlot.Itemstack;
-
         Variants variants = Variants.FromStack(containerStack);
 
         bool toggleLid = byPlayer.Entity.Controls.ShiftKey;
@@ -65,13 +64,14 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StackContainerInventory inventory = GetInventory(containerStack);
         ItemSlot ownSlot = inventory.FirstNonEmptySlot;
 
-        if (hotbarSlot.Empty && ownSlot != null)
+        bool canTake = hotbarSlot.Empty && ownSlot != null;
+        if (canTake)
         {
             return TryTake(containerSlot, inventory, byPlayer, ownSlot);
         }
 
-        bool canContain = inventory.CanContain(ownSlot, hotbarSlot);
-        if (canContain && !hotbarSlot.Empty)
+        bool canPut = ownSlot != null && inventory.CanContain(ownSlot, hotbarSlot) && !hotbarSlot.Empty;
+        if (canPut)
         {
             return TryPut(containerSlot, inventory, byPlayer, ownSlot);
         }
