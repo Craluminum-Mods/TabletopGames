@@ -11,6 +11,10 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
+/// <summary>
+/// Represents an item that can store multiple ItemStacks within a single ItemStack.  
+/// Provides an inventory that can be accessed from ground storage.  
+/// </summary>
 public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteractable
 {
     public Dictionary<string, int> QuantitySlotsByType { get; protected set; } = new();

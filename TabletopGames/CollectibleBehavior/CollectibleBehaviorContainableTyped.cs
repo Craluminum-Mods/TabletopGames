@@ -6,7 +6,7 @@ using Vintagestory.API.Datastructures;
 namespace TabletopGames;
 
 /// <summary>
-/// Used to render proper mesh when item is stored inside ItemContainer
+/// Ensures proper mesh rendering when an item with Variants is stored inside an ItemContainer.  
 /// </summary>
 public class CollectibleBehaviorContainableTyped : CollectibleBehavior, IContainable
 {
