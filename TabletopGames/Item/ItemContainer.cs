@@ -21,6 +21,9 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     public Dictionary<string, bool> RenderContentsByType { get; protected set; } = new();
     public Dictionary<string, string> ContainableKeyByType { get; protected set; } = new();
 
+    protected Dictionary<string, string> openSoundByType = new();
+    protected Dictionary<string, string> closeSoundByType = new();
+
     public override void OnLoaded(ICoreAPI api)
     {
         base.OnLoaded(api);
@@ -30,6 +33,9 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
             QuantitySlotsByType = Attributes["quantitySlots"].AsObject(defaultValue: new Dictionary<string, int>());
             RenderContentsByType = Attributes["renderContents"].AsObject(defaultValue: new Dictionary<string, bool>());
             ContainableKeyByType = Attributes["containableKey"].AsObject(defaultValue: new Dictionary<string, string>());
+
+            openSoundByType = Attributes["openSound"].AsObject(defaultValue: new Dictionary<string, string>());
+            closeSoundByType = Attributes["closeSound"].AsObject(defaultValue: new Dictionary<string, string>());
         }
     }
 
@@ -53,9 +59,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         bool toggleLid = byPlayer.Entity.Controls.ShiftKey;
         if (toggleLid)
         {
-            ToggleState(containerSlot, variants);
-            variants.ToStack(containerStack);
-            containerSlot.MarkDirty();
+            ToggleState(containerSlot, variants, byPlayer);
             return true;
         }
 
@@ -256,17 +260,37 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return dict.Select(elem => Lang.Get("{0}x {1}", elem.Value, elem.Key)).ToArray();
     }
 
-    public void ToggleState(ItemSlot slot, Variants variants)
+    /// <summary>
+    /// Toggles the state of the container (opened/closed) and plays the corresponding sound based on the item’s variants.
+    /// </summary>
+    /// <param name="containerSlot">The slot where the container is stored.</param>
+    /// <param name="variants">The variants of the container item.</param>
+    /// <param name="byPlayer">The player interacting with the container.</param>
+    public void ToggleState(ItemSlot containerSlot, Variants variants, IPlayer byPlayer)
     {
+        string openSound = GetOpenSound(variants);
+        string closeSound = GetCloseSound(variants);
+
         switch (GetState(variants))
         {
             case "opened":
                 variants.Set("state", "closed");
+                if (!string.IsNullOrEmpty(openSound))
+                {
+                    api.World.PlaySoundAt(openSound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+                }
                 break;
             default:
                 variants.Set("state", "opened");
+                if (!string.IsNullOrEmpty(closeSound))
+                {
+                    api.World.PlaySoundAt(closeSound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+                }
                 break;
         }
+
+        variants.ToStack(containerSlot.Itemstack);
+        containerSlot.MarkDirty();
     }
     
     public string GetState(Variants variants)
