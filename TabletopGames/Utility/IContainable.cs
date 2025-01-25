@@ -22,6 +22,6 @@ public interface IContainable
     /// </summary>
     /// <param name="stack">The item stack to generate the mesh for.</param>
     /// <param name="targetAtlas">The texture atlas to use for the mesh.</param>
-    /// <returns>The generated mesh for rendering.</returns>
-    public MeshData GetInsideContainerMesh(ItemStack stack, ITextureAtlasAPI targetAtlas);
+    /// <returns>The generated content mesh for rendering.</returns>
+    public MeshData GenContentMesh(ItemStack stack, ITextureAtlasAPI targetAtlas);
 }

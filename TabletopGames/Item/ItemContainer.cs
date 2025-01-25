@@ -179,7 +179,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         ItemSlot slot = inventory?.FirstNonEmptySlot;
         if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainable>() is IContainable icontainable)
         {
-            return icontainable.GetInsideContainerMesh(slot.Itemstack, targetAtlas);
+            return icontainable.GenContentMesh(slot.Itemstack, targetAtlas);
         }
         return null;
     }

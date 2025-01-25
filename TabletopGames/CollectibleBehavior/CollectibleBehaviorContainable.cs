@@ -36,7 +36,7 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
         return ContainableKey;
     }
 
-    public MeshData GetInsideContainerMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenContentMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
