@@ -54,12 +54,15 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
         api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
+        api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
     }
 
     private void RegisterBehaviors()
     {
         api.RegisterCollectibleBehaviorClass("TabletopGames.AdvancedToolModes", typeof(CollectibleBehaviorAdvancedToolModes));
         api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ContainableTyped", typeof(CollectibleBehaviorContainableTyped));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.Containable", typeof(CollectibleBehaviorContainable));
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
     }
 
