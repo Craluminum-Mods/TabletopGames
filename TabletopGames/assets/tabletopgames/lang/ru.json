@@ -123,10 +123,10 @@
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаимодействия",
-    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Attach or detach lid: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Прикрепить или снять крышку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаимодействия",
-    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "craftinginfo-starterguide-title": "Настольные игры 101 - Руководство для начинающих",
     "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на земле и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на земле.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур."

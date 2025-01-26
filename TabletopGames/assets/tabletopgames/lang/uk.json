@@ -123,10 +123,10 @@
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаємодії",
-    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Attach or detach lid: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Прикріпити або зняти кришку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаємодії",
-    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "craftinginfo-starterguide-title": "Настільні ігри 101 - Початкове керівництво",
     "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на землю і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на землі.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур."
