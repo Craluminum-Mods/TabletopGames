@@ -10,7 +10,7 @@ public class StackContainerInventory : InventoryBase
 
     private ItemSlot[] slots;
 
-    private string containableKey = "";
+    private string containerKey = "";
     private int quantitySlots = 1;
 
     public ItemSlot[] Slots => slots;
@@ -23,9 +23,9 @@ public class StackContainerInventory : InventoryBase
 
     public override int Count => quantitySlots;
 
-    public StackContainerInventory(ICoreAPI api, string containableKey, int quantitySlots = 1) : this("stackcontainer-" + stackContainerId++, api)
+    public StackContainerInventory(ICoreAPI api, string containerKey, int quantitySlots = 1) : this("stackcontainer-" + stackContainerId++, api)
     {
-        this.containableKey = containableKey;
+        this.containerKey = containerKey;
         this.quantitySlots = quantitySlots;
         slots = GenEmptySlots(quantitySlots);
     }
@@ -42,7 +42,7 @@ public class StackContainerInventory : InventoryBase
 
     /// <summary>
     /// Determines whether a source item can be placed into this container.
-    /// Only items with a matching containable key are allowed.
+    /// Only items with a matching container key are allowed.
     /// </summary>
     /// <param name="sinkSlot">The destination slot in the container.</param>
     /// <param name="sourceSlot"></param>
@@ -51,8 +51,7 @@ public class StackContainerInventory : InventoryBase
     {
         if (sourceSlot?.Itemstack?.Collectible.GetCollectibleInterface<IContainable>() is IContainable icontainable)
         {
-            return icontainable.GetContainableKey(sourceSlot.Itemstack) == containableKey
-                && base.CanContain(sinkSlot, sourceSlot);
+            return icontainable.IsSuitableForContainer(containerKey) && base.CanContain(sinkSlot, sourceSlot);
         }
         return base.CanContain(sinkSlot, sourceSlot);
     }

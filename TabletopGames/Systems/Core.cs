@@ -55,6 +55,7 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
         api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
+        api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
     }
 
     private void RegisterBehaviors()
@@ -63,6 +64,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ContainableTyped", typeof(CollectibleBehaviorContainableTyped));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Containable", typeof(CollectibleBehaviorContainable));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.DetachableLid", typeof(CollectibleBehaviorDetachableLid));
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
     }
 

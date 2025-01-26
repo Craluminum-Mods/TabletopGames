@@ -9,13 +9,9 @@ namespace TabletopGames;
 /// </summary>
 public interface IContainable
 {
-    /// <summary>
-    /// Retrieves a unique containable key for an item.
-    /// This key is used to determine whether the item can be stored in a specific ItemContainer.
-    /// </summary>
-    /// <param name="stack">The item stack to retrieve the key from.</param>
-    /// <returns>The containable key of the item.</returns>
-    public string GetContainableKey(ItemStack stack);
+    public bool IsSuitableForContainer(string containerKey);
+
+    public ContainableProperties GetContainableProperties(string containerKey);
 
     /// <summary>
     /// Generates mesh for rendering the item inside an ItemContainer.
@@ -23,5 +19,5 @@ public interface IContainable
     /// <param name="stack">The item stack to generate the mesh for.</param>
     /// <param name="targetAtlas">The texture atlas to use for the mesh.</param>
     /// <returns>The generated content mesh for rendering.</returns>
-    public MeshData GenContentMesh(ItemStack stack, ITextureAtlasAPI targetAtlas);
+    public MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas);
 }

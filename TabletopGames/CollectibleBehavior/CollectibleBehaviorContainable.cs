@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
@@ -12,18 +13,14 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
 {
     public ICoreAPI api;
 
-    private string ContainableKey = "";
-    private CompositeShape Shape = new();
-    private Dictionary<string, CompositeTexture> Textures = new();
+    protected Dictionary<string, ContainableProperties> Props { get; set; } = new();
 
     public CollectibleBehaviorContainable(CollectibleObject collObj) : base(collObj) { }
 
     public override void Initialize(JsonObject properties)
     {
         base.Initialize(properties);
-        ContainableKey = properties["containableKey"].AsString();
-        Shape = properties["shape"].AsObject<CompositeShape>();
-        Textures = properties["textures"].AsObject(defaultValue: new Dictionary<string, CompositeTexture>());
+        Props = properties.AsObject(defaultValue: new Dictionary<string, ContainableProperties>());
     }
 
     public override void OnLoaded(ICoreAPI api)
@@ -31,21 +28,47 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
         this.api = api;
     }
 
-    public virtual string GetContainableKey(ItemStack stack)
+    public bool IsSuitableForContainer(string containerKey)
     {
-        return ContainableKey;
+        return GetContainableProperties(containerKey) != null;
     }
 
-    public MeshData GenContentMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
+    public ContainableProperties GetContainableProperties(string containerKey)
+    {
+        if (!Props.Any())
+        {
+            return null;
+        }
+
+        foreach (KeyValuePair<string, ContainableProperties> keyValue in Props)
+        {
+            if (keyValue.Key == $"{containerKey}-properties")
+            {
+                return keyValue.Value;
+            }
+        }
+
+        return null;
+    }
+
+    public virtual MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
-        CompositeShape rcshape = Shape.Clone();
+        ContainableProperties props = GetContainableProperties(containerKey);
+
+        CompositeShape _shape = props.GetShape();
+        if (_shape == null) return mesh;
+
+        CompositeShape rcshape = _shape.Clone();
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
-        Dictionary<string, CompositeTexture> _textures = Textures;
+
+        Dictionary<string, CompositeTexture> _textures = props.GetTextures();
+        _textures ??= new Dictionary<string, CompositeTexture>();
+
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
 
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)

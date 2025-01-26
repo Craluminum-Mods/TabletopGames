@@ -8,46 +8,26 @@ namespace TabletopGames;
 /// <summary>
 /// Ensures proper mesh rendering when an item with Variants is stored inside an ItemContainer.  
 /// </summary>
-public class CollectibleBehaviorContainableTyped : CollectibleBehavior, IContainable
+public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainable, IContainable
 {
-    public ICoreAPI api;
-
-    private Dictionary<string, string> ContainableKeyByType = new();
-    private Dictionary<string, CompositeShape> ShapeByType  = new();
-    private Dictionary<string, Dictionary<string, CompositeTexture>> TexturesByType = new();
-
     public CollectibleBehaviorContainableTyped(CollectibleObject collObj) : base(collObj) { }
 
     public override void Initialize(JsonObject properties)
     {
         base.Initialize(properties);
-        ContainableKeyByType = properties["containableKey"].AsObject(defaultValue: new Dictionary<string, string>());
-        ShapeByType = properties["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-        TexturesByType = properties["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+        Props = properties.AsObject(defaultValue: new Dictionary<string, ContainableProperties>());
     }
 
-    public override void OnLoaded(ICoreAPI api)
-    {
-        this.api = api;
-    }
-
-    public string GetContainableKey(ItemStack stack)
-    {
-        Variants.FromStack(stack).FindByVariant(ContainableKeyByType, out string containableKey);
-        return containableKey;
-    }
-
-    public MeshData GenContentMesh(ItemStack stack, ITextureAtlasAPI targetAtlas)
+    public override MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
         Variants variants = Variants.FromStack(stack);
-        variants.FindByVariant(ShapeByType, out CompositeShape _shape);
-        if (_shape == null)
-        {
-            return mesh;
-        }
+        ContainableProperties props = GetContainableProperties(containerKey);
+
+        CompositeShape _shape = props.GetShape(variants);
+        if (_shape == null) return mesh;
 
         CompositeShape rcshape = _shape.Clone();
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
@@ -55,7 +35,7 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehavior, IContain
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        variants.FindByVariant(TexturesByType, out Dictionary<string, CompositeTexture> _textures);
+        Dictionary<string, CompositeTexture> _textures = props.GetTextures(variants);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
