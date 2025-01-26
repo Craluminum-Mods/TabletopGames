@@ -55,6 +55,11 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StackContainerInventory inventory = GetInventory(containerSlot.Itemstack);
         ItemSlot ownSlot = inventory.FirstNonEmptySlot;
 
+        if (hotbarSlot?.Itemstack?.Collectible is ItemContainer)
+        {
+            return false;
+        }
+
         bool inventoryInteractions = byPlayer.Entity.Controls.CtrlKey;
         if (!inventoryInteractions)
         {
