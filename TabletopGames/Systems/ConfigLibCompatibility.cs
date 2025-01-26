@@ -44,53 +44,46 @@ public class ConfigLibCompatibility
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
 
-        if (ImGui.CollapsingHeader($"Debug##Debug-{id}"))
+        ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.ItemRotations);
+        if (TabletopDebug.ItemRotations)
+        {
+            if (ImGui.Button($"Copy Item Rotation##CopyItemRotation-{id}"))
+            {
+                StringBuilder dsc = new();
+                dsc.Append($"\"rotateX\": {TabletopDebug.ItemRotationsVec.X}, ");
+                dsc.Append($"\"rotateY\": {TabletopDebug.ItemRotationsVec.Y}, ");
+                dsc.Append($"\"rotateZ\": {TabletopDebug.ItemRotationsVec.Z}, ");
+
+                if (capi != null)
+                {
+                    capi.Input.ClipboardText = dsc.ToString();
+                }
+            }
+
+            Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
+            ImGui.DragFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
+            TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
+        }
+
+        ImGui.NewLine();
+        ImGui.Checkbox($"Show variants debug info##VariantsDebug-{id}", ref TabletopDebug.VariantsDebugInfo);
+        ImGui.Checkbox($"Show board data debug info##BoardDataDebug-{id}", ref TabletopDebug.BoardDataDebugInfo);
+        ImGui.Checkbox($"Show tags debug info##TagsDebug-{id}", ref TabletopDebug.TagsDebugInfo);
+        ImGui.Checkbox($"Enable board particle selection##ParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
+
+        if (ImGui.CollapsingHeader($"Selection Colors##SelectionColors-{id}"))
         {
             ImGui.Indent();
-
-            ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.ItemRotations);
-            if (TabletopDebug.ItemRotations)
-            {
-                if (ImGui.Button($"Copy Item Rotation##CopyItemRotation-{id}"))
-                {
-                    StringBuilder dsc = new();
-                    dsc.Append($"\"rotateX\": {TabletopDebug.ItemRotationsVec.X}, ");
-                    dsc.Append($"\"rotateY\": {TabletopDebug.ItemRotationsVec.Y}, ");
-                    dsc.Append($"\"rotateZ\": {TabletopDebug.ItemRotationsVec.Z}, ");
-
-                    if (capi != null)
-                    {
-                        capi.Input.ClipboardText = dsc.ToString();
-                    }
-                }
-
-                Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
-                ImGui.DragFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
-                TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
-            }
-
-            ImGui.NewLine();
-            ImGui.Checkbox($"Show variants debug info##VariantsDebug-{id}", ref TabletopDebug.VariantsDebugInfo);
-            ImGui.Checkbox($"Show board data debug info##BoardDataDebug-{id}", ref TabletopDebug.BoardDataDebugInfo);
-            ImGui.Checkbox($"Show tags debug info##TagsDebug-{id}", ref TabletopDebug.TagsDebugInfo);
-            ImGui.Checkbox($"Enable board particle selection##ParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
-
-            if (ImGui.CollapsingHeader($"Selection Colors##SelectionColors-{id}"))
-            {
-                ImGui.Indent();
-                ColorPicker4VS($"Board Selection Color##SelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
-                ImGui.Unindent();
-            }
-
-            BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
-            if (selection != null && capi?.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
-            {
-                ManageSelectionBoxes(id, blockEntity);
-                ImGui.NewLine();
-                EditBoardData(id, blockEntity);
-            }
-
+            ColorPicker4VS($"Board Selection Color##SelectionColor-{id}", ref TabletopDebug.BoardSelectionColor);
             ImGui.Unindent();
+        }
+
+        BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
+        if (selection != null && capi?.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
+        {
+            ManageSelectionBoxes(id, blockEntity);
+            ImGui.NewLine();
+            EditBoardData(id, blockEntity);
         }
     }
 
