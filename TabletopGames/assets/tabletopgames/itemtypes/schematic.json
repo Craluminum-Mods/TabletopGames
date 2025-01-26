@@ -32,7 +32,7 @@
                         // #############
 
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-chesspiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-stone-generic", 16, "tabletopgames:item-chesspiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },
                             "slotParams": [
@@ -44,7 +44,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-checkerpiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 12, "game:item-stone-generic", 12, "tabletopgames:item-checkerpiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },
                             "slotParams": [
@@ -56,7 +56,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gostone",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-stone-generic", 64, "tabletopgames:item-gostone"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "granite" } } },
                             "slotParams": [
@@ -69,7 +69,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-shogipiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 20, "game:item-stone-generic", 20, "tabletopgames:item-shogipiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "stone": "granite" } } },
                             "slotParams": [
@@ -82,7 +82,7 @@
                         },
                         {
                             // giving color for free to avoid missing textures
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-dice",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-stone-generic", 1, "tabletopgames:item-dice"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
                             "slotParams": [
@@ -94,7 +94,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gobowl",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 12, "game:item-stone-generic", 1, "tabletopgames:item-gobowl"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "stone": "basalt" } } },
                             "slotParams": [
@@ -106,7 +106,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gobowl-lid",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 4, "game:item-stone-generic", 1, "tabletopgames:item-gobowl-lid"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "stone": "basalt" } } },
                             "slotParams": [
@@ -124,7 +124,7 @@
 
                         {
                             "linebreak": true,
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-chesspiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-plank-generic", 16, "tabletopgames:item-chesspiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
@@ -140,7 +140,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-checkerpiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 12, "game:item-plank-generic", 12, "tabletopgames:item-checkerpiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "oak" } } },
                             "slotParams": [
@@ -156,7 +156,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gostone",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-plank-generic", 64, "tabletopgames:item-gostone"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "wood": "oak" } } },
                             "slotParams": [
@@ -172,7 +172,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-shogipiece",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 20, "game:item-plank-generic", 20, "tabletopgames:item-shogipiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "wood": "oak" } } },
                             "slotParams": [
@@ -189,7 +189,7 @@
                         },
                         {
                             // giving color for free to avoid missing textures
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-dice",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-plank-generic", 1, "tabletopgames:item-dice"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "wood": "oak", "color": "chalkwhite" } } },
                             "slotParams": [
@@ -205,7 +205,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gobowl",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 12, "game:item-plank-generic", 1, "tabletopgames:item-gobowl"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "wood": "oak" } } },
                             "slotParams": [
@@ -221,7 +221,7 @@
                             ]
                         },
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gobowl-lid",
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 4, "game:item-plank-generic", 1, "tabletopgames:item-gobowl-lid"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "oak" } } },
                             "slotParams": [

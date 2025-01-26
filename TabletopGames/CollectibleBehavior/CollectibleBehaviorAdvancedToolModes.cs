@@ -138,7 +138,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
             SkillItem mode = new()
             {
-                Name = advMode.NameExists ? advMode.NameTranslated : finalStack.GetName(),
+                Name = advMode.NameExists ? advMode.GetName() : finalStack.GetName(),
                 Linebreak = advMode.Linebreak
             };
 
@@ -184,7 +184,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         SkillItem mode = new()
         {
-            Name = advMode.NameTranslated,
+            Name = advMode.GetName(),
             Linebreak = advMode.Linebreak
         };
 
