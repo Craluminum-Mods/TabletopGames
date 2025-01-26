@@ -61,21 +61,9 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         }
 
         bool inventoryInteractions = byPlayer.Entity.Controls.CtrlKey;
-        if (!inventoryInteractions)
+        if (inventoryInteractions)
         {
-            return false;
-        }
-
-        bool canTake = hotbarSlot.Empty && ownSlot != null;
-        if (canTake)
-        {
-            return TryTake(containerSlot, inventory, byPlayer, ownSlot);
-        }
-
-        bool canPut = inventory.CanContain(ownSlot, hotbarSlot) && !hotbarSlot.Empty;
-        if (canPut)
-        {
-            return TryPut(containerSlot, inventory, byPlayer, ownSlot);
+            return TryPut(containerSlot, inventory, byPlayer, ownSlot) || TryTake(containerSlot, inventory, byPlayer, ownSlot);
         }
         return false;
     }
@@ -83,6 +71,10 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     protected bool TryPut(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        if (!inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
+        {
+            return false;
+        }
 
         int quantity = 10;
         int movedQuantity = 0;
@@ -125,6 +117,12 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     
     protected bool TryTake(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        if (!hotbarSlot.Empty || ownSlot == null)
+        {
+            return false;
+        }
+
         int quantity = 10;
         ItemStack stack = ownSlot.TakeOut(quantity);
         int movedQuantity = stack?.StackSize ?? 0;
