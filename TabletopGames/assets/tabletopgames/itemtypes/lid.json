@@ -7,12 +7,12 @@
             "groupBy": ["tabletopgames:gobowl"],
             "extraSections": [
                 {
-                    "title": "tabletopgames:item-handbooktitle-lid-interactions",
-                    "text": "tabletopgames:item-handbooktext-lid-interactions"
+                    "title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-generic-howtoobtain"
                 },
                 {
-                    "title": "tabletopgames:item-handbooktitle-lid-howtoobtain",
-                    "text": "tabletopgames:item-handbooktext-lid-howtoobtain"
+                    "title": "tabletopgames:item-handbooktitle-lid-interactions",
+                    "text": "tabletopgames:item-handbooktext-lid-interactions"
                 }
             ]
         },
@@ -25,8 +25,8 @@
             "*": ["tabletopgames:item-gobowl-lid"]
         },
         "description": {
-            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "stone-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
         "shape": {
             "type-gobowl": { "base": "tabletopgames:item/gobowl/lid" }
@@ -58,9 +58,6 @@
             "name": "TabletopGames.DetachableLid",
             "properties": {
                 "gobowl-properties": {
-                    "enabled": {
-                        "*": true
-                    },
                     "shape": {
                         "*": { "base": "tabletopgames:item/gobowl/contents-lid" }
                     },

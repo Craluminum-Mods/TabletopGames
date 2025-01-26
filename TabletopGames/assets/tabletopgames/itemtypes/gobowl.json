@@ -7,12 +7,12 @@
             "groupBy": ["tabletopgames:gobowl"],
             "extraSections": [
                 {
-                    "title": "tabletopgames:item-handbooktitle-itemcontainer-interactions",
-                    "text": "tabletopgames:item-handbooktext-itemcontainer-interactions"
+                    "title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-generic-howtoobtain"
                 },
                 {
-                    "title": "tabletopgames:item-handbooktitle-itemcontainer-howtoobtain",
-                    "text": "tabletopgames:item-handbooktext-itemcontainer-howtoobtain"
+                    "title": "tabletopgames:item-handbooktitle-itemcontainer-interactions",
+                    "text": "tabletopgames:item-handbooktext-itemcontainer-interactions"
                 }
             ]
         },
