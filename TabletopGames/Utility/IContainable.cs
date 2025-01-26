@@ -9,6 +9,8 @@ namespace TabletopGames;
 /// </summary>
 public interface IContainable
 {
+    public virtual bool IsDetachableLid => false;
+
     public bool IsSuitableForContainer(string containerKey);
 
     public ContainableProperties GetContainableProperties(string containerKey);

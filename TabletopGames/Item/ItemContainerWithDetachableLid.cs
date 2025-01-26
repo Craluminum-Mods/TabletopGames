@@ -30,13 +30,15 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
     {
         if (containerSlot.Empty) return false;
 
+        bool isClosed = HasLid(containerSlot.Itemstack);
         bool lidInteractions = byPlayer.Entity.Controls.ShiftKey;
+
         if (!lidInteractions)
         {
-            return !HasLid(containerSlot.Itemstack) && base.OnContainedInteractStart(be, containerSlot, byPlayer, blockSel);
+            return !isClosed && base.OnContainedInteractStart(be, containerSlot, byPlayer, blockSel);
         }
 
-        return HasLid(containerSlot.Itemstack) ? DetachLid(containerSlot, byPlayer) : TryAttachLid(containerSlot, byPlayer);
+        return isClosed ? DetachLid(containerSlot, byPlayer) : TryAttachLid(containerSlot, byPlayer);
     }
 
     public bool HasLid(ItemStack containerStack)
@@ -60,8 +62,9 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         string containerKey = GetContainerKey(containerSlot.Itemstack);
 
-        if (hotbarSlot?.Itemstack?.Collectible.GetCollectibleInterface<IDetachableLid>() is not IDetachableLid detachableLid ||
-            !detachableLid.IsSuitableForContainer(containerKey))
+        if (hotbarSlot?.Itemstack?.Collectible.GetCollectibleInterface<IContainable>() is not IContainable detachableLid
+            || !detachableLid.IsDetachableLid
+            || !detachableLid.IsSuitableForContainer(containerKey))
         {
             return false;
         }
@@ -138,10 +141,10 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
     {
         ItemStack lidStack = GetLid(containerStack);
 
-        if (lidStack?.Collectible?.GetCollectibleInterface<IDetachableLid>() is IDetachableLid ilid)
+        if (lidStack?.Collectible?.GetCollectibleInterface<IContainable>() is IContainable detachableLid && detachableLid.IsDetachableLid)
         {
             string containerKey = GetContainerKey(containerStack);
-            return ilid.GenContentMesh(containerKey, lidStack, targetAtlas);
+            return detachableLid.GenContentMesh(containerKey, lidStack, targetAtlas);
         }
         return null;
     }
