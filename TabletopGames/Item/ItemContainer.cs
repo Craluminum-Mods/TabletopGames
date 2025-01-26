@@ -184,12 +184,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
     public override string GetMeshCacheKey(ItemStack itemstack)
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(itemstack.Collectible.Code);
-
-        Variants variants = Variants.FromStack(itemstack);
-        stringBuilder.Append('-');
-        stringBuilder.Append(variants);
+        StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(itemstack));
 
         StackContainerInventory inventory = GetInventory(itemstack);
         ItemSlot slot = inventory?.FirstNonEmptySlot;
