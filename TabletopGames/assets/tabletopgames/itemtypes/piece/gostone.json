@@ -40,6 +40,29 @@
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
+        },
+        {
+            "name": "TabletopGames.ContainableTyped",
+            "properties": {
+                "gobowl-properties": {
+                    "shape": {
+                        "*": { "base": "tabletopgames:item/gobowl/contents-gostone" }
+                    },
+                    "textures": {
+                        "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
+                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } }
+                    }
+                },
+                "gobowllid-properties": {
+                    "shape": {
+                        "*": { "base": "tabletopgames:item/gobowl/lidcontents-gostone" }
+                    },
+                    "textures": {
+                        "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
+                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } }
+                    }
+                }
+            }
         }
     ],
     "creativeinventoryStacks": [

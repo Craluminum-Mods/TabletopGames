@@ -1,0 +1,97 @@
+{
+    "code": "gobowl",
+    "class": "TabletopGames.ItemContainerWithDetachableLid",
+    "maxStackSize": 4,
+    "attributes": {
+        "handbook": {
+            "groupBy": ["tabletopgames:gobowl"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:item-handbooktitle-itemcontainer-interactions",
+                    "text": "tabletopgames:item-handbooktext-itemcontainer-interactions"
+                },
+                {
+                    "title": "tabletopgames:item-handbooktitle-itemcontainer-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-itemcontainer-howtoobtain"
+                }
+            ]
+        },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onDisplayTransform": { "translation": { "x": 0, "y": 0.5, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 3 },
+        "onshelfTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.09 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 2.75 },
+        "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.03, "z": 0.5 }, "scale": 3 },
+        "name": {
+            "*": ["tabletopgames:item-gobowl"]
+        },
+        "description": {
+            "stone-*": ["tabletopgames:trivia-gobowl", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["tabletopgames:trivia-gobowl", "blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "shape": {
+            "*": { "base": "tabletopgames:item/gobowl/opened" }
+        },
+        "textures": {
+            "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+        },
+        "quantitySlots": {
+            "*": 8
+        },
+        "renderContent": {
+            "*": true
+        },
+        "containerKey": {
+            "*": "gobowl"
+        },
+        "openSound": {
+            "stone-*": "game:sounds/block/vesselopen",
+            "wood-*": "game:sounds/block/planks"
+        },
+        "closeSound": {
+            "stone-*": "game:sounds/block/vesselclose",
+            "wood-*": "game:sounds/block/planks"
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames", "general", "items"],
+            "stacks": [
+                { "type": "item", "code": "gobowl", "attributes": { "types": { "stone": "basalt" } } },
+                { "type": "item", "code": "gobowl", "attributes": { "types": { "stone": "chalk" } } },
+                { "type": "item", "code": "gobowl", "attributes": { "types": { "wood": "ebony" } } },
+                { "type": "item", "code": "gobowl", "attributes": { "types": { "wood": "baldcypress" } } }
+            ]
+        }
+    ],
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 150, "y": 30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.15, "z": 0.5 },
+        "scale": 3.5
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "tpHandTransform": {
+        "translation": { "x": -0.5, "y": 0.1, "z": -0.3 },
+        "rotation": { "x": 10, "y": 10, "z": -90 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1
+    }
+}

@@ -27,6 +27,10 @@
             "properties": {
                 "toolModes": {
                     "type-generic_piece": [
+                        // #############
+                        // ### Stone ###
+                        // #############
+
                         {
                             "name": "tabletopgames:toolmode-sinkslot-stone-create-chesspiece",
                             "isSinkSlot": true,
@@ -89,6 +93,34 @@
                                 }
                             ]
                         },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gobowl",
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "stone": "basalt" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 12 },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 },
+                                    "setVariants": { "stone": "{stone}" }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-stone-create-gobowl-lid",
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "stone": "basalt" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:stone-*", "name": "stone", "quantity": 4 },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 },
+                                    "setVariants": { "type": "gobowl", "stone": "{stone}" }
+                                }
+                            ]
+                        },
+
+                        // ##############
+                        // ### Wooden ###
+                        // ##############
 
                         {
                             "linebreak": true,
@@ -170,6 +202,38 @@
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } }
+                            ]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gobowl",
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "wood": "oak" } } },
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } }
+                            ]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-wooden-create-gobowl-lid",
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "oak" } } },
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+
+                                // Floral Zones mods compatibility
+                                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } }
                             ]
                         }
                     ]
