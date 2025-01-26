@@ -18,7 +18,8 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
 
     public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
     {
-        if (thisStack.Id == otherStack.Id && HasLid(thisStack) && HasLid(otherStack))
+        bool sameLid = GetLid(thisStack)?.Equals(api.World, GetLid(otherStack), ignoreAttributeSubTrees) == true;
+        if (sameLid)
         {
             ignoreAttributeSubTrees ??= Array.Empty<string>();
             ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append(LidAttributeName);
