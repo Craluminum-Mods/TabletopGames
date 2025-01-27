@@ -13,9 +13,12 @@
         "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
         "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "name": {
+            "@size-(.*stand)": ["tabletopgames:block-shogistand-{size}"],
             "*": ["tabletopgames:block-shogiboard", " (", "tabletopgames:dimension-{size}", ")"]
         },
         "description": {
+            "@size-(.*stand)::stone-*": ["tabletopgames:trivia-shogistand", "blockmaterial-Stone", ": ", "rock-{stone}"],
+            "@size-(.*stand)::wood-*": ["tabletopgames:trivia-shogistand", "blockmaterial-Wood", ": ", "material-{wood}"],
             "stone-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-shogiboard", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
@@ -30,6 +33,7 @@
             }
         },
         "shape": {
+            "@size-(.*stand)": { "base": "tabletopgames:block/board/shogistand/{size}" },
             "*": { "base": "tabletopgames:block/board/16x16-overlay" }
         },
         "textures": {
@@ -48,6 +52,20 @@
                 "slotYRange": { "x": 0, "y": 0.5 },
                 "padding": { "x": 0.0125, "y": 0.0125, "z": 0.0125, "w": 0.0125 },
                 "quantitySlots": 81,
+                "attributeTransformCode": "onShogiTransform"
+            },
+            "size-4x4_lstand": {
+                "size": { "x": 4, "y": 4 },
+                "slotYRange": { "x": 0, "y": 1 },
+                "padding": { "x": 0.03125, "y": 0.53125, "z": 0.53125, "w": 0.03125 },
+                "quantitySlots": 16,
+                "attributeTransformCode": "onShogiTransform"
+            },
+            "size-4x4_rstand": {
+                "size": { "x": 4, "y": 4 },
+                "slotYRange": { "x": 0, "y": 1 },
+                "padding": { "x": 0.53125, "y": 0.53125, "z": 0.03125, "w": 0.03125 },
+                "quantitySlots": 16,
                 "attributeTransformCode": "onShogiTransform"
             }
         }
@@ -98,6 +116,9 @@
                         { "setVariants": { "size": "nine" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
                         { "setVariants": { "size": "twelve" }, "convertTo": { "type": "block", "code": "tabletopgames:morrisboard" }, "copyAttributes": true },
 
+                        { "setVariants": { "size": "4x4_lstand" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true },
+                        { "setVariants": { "size": "4x4_rstand" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true },
+
                         // giving second color for free to avoid missing textures
                         { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
@@ -108,7 +129,11 @@
     "creativeinventoryStacks": [
         {
             "tabs": ["tabletopgames", "general", "decorative"],
-            "stacks": [{ "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } }]
+            "stacks": [
+                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "9x9", "wood": "oak", "color": "carbonblack" } } },
+                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "4x4_lstand", "wood": "oak", "color": "carbonblack" } } },
+                { "type": "block", "code": "shogiboard", "attributes": { "types": { "size": "4x4_rstand", "wood": "oak", "color": "carbonblack" } } }
+            ]
         }
     ],
     "blockmaterial": "Wood",
