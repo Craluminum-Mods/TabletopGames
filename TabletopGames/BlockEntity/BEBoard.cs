@@ -163,8 +163,12 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             Cuboidf hitbox = _selBoxes[i] ??= new Cuboidf();
             float x = hitbox.MidX;
-            float y = hitbox.MinY;
             float z = hitbox.MidZ;
+
+            float extraY = 0.03125f;
+            float offset = (hitbox.Y1 / extraY) + 1f;
+            float y = hitbox.Y1 - (extraY * offset) + hitbox.Y2;
+
             _tfMatrices[i] = new Matrixf().Translate(new Vec3f(x, y, z)).Values;
         }
         return _tfMatrices;
