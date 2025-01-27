@@ -20,6 +20,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    protected Transforms transforms;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -45,11 +46,13 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         if (Attributes != null)
         {
-            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+
+            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            transforms = Attributes["transforms"].AsObject(defaultValue: new Transforms());
         }
     }
 
@@ -142,11 +145,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         renderinfo.ModelRef = meshref;
         renderinfo.NormalShaded = true;
-
-        if (variants.FindByVariant(attribute: $"{target}TransformBy", itemstack, out ModelTransform transform))
-        {
-            renderinfo.Transform = transform;
-        }
+        transforms?.TryApplyTransform(target, variants, ref renderinfo.Transform);
 
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }

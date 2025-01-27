@@ -259,13 +259,15 @@
                 "dot-20": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] }
             }
         },
-        "GuiTransformBy": {
-            "type-d20": {
-                "rotate": false,
-                "translation": { "x": 3, "y": 0, "z": 0 },
-                "rotation": { "x": 135, "y": 35, "z": 0 },
-                "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
-                "scaleXyz": { "x": -2, "y": 2, "z": 2 }
+        "transforms": {
+            "guiTransform": {
+                "type-d20": {
+                    "rotate": false,
+                    "translation": { "x": 3, "y": 0, "z": 0 },
+                    "rotation": { "x": 135, "y": 35, "z": 0 },
+                    "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+                    "scaleXyz": { "x": -2, "y": 2, "z": 2 }
+                }
             }
         },
         "tabletopTags": {

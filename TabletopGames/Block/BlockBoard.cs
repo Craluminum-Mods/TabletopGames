@@ -24,8 +24,9 @@ public class BlockBoard : Block, IContainedMeshSource
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
 
-    private Dictionary<string, CompositeShape> shapeByType = new();
-    private Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    protected Dictionary<string, CompositeShape> shapeByType = new();
+    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    protected Transforms transforms;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -54,11 +55,13 @@ public class BlockBoard : Block, IContainedMeshSource
             BoardDataByType = Attributes["boardData"].AsObject(defaultValue: new Dictionary<string, BoardData>());
             TabletopTagsByType = Attributes["tabletopTags"].AsObject(defaultValue: new Dictionary<string, TabletopTags>());
 
-            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
+
+            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            transforms = Attributes["transforms"].AsObject(defaultValue: new Transforms());
         }
 
         foreach (BoardData boardData in BoardDataByType.Values)
@@ -200,10 +203,10 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_boardMeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
+        Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
-            Variants variants = Variants.FromStack(itemstack);
             MeshData mesh = GetOrCreateMesh(variants);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
@@ -211,6 +214,8 @@ public class BlockBoard : Block, IContainedMeshSource
 
         renderinfo.ModelRef = meshref;
         renderinfo.NormalShaded = true;
+        transforms?.TryApplyTransform(target, variants, ref renderinfo.Transform);
+
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 

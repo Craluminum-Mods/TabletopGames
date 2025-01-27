@@ -30,12 +30,6 @@ public static class VariantExtensions
         return false;
     }
 
-    public static bool FindByVariant<T>(this Variants variants, string attribute, ItemStack stack, out T result)
-    {
-        Dictionary<string, T> dict = stack.Collectible?.Attributes?[attribute]?.AsObject(new Dictionary<string, T>());
-        return FindByVariant(variants, dict, out result);
-    }
-
     /// <summary>
     /// Overwrites the variants of the input <see cref="ItemStack"/> based on the specified parameters.
     /// If the <paramref name="variants"/> argument is null, the variants from the <paramref name="oldStack"/> are cloned and used.
