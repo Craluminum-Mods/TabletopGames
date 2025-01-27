@@ -53,7 +53,7 @@ public class StackContainerInventory : InventoryBase
         {
             return icontainable.IsSuitableForContainer(containerKey) && base.CanContain(sinkSlot, sourceSlot);
         }
-        return base.CanContain(sinkSlot, sourceSlot);
+        return false;
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree)
