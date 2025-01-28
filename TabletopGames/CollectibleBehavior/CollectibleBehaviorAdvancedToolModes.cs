@@ -25,20 +25,13 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
     public override void OnLoaded(ICoreAPI api)
     {
-        if (api is not ICoreClientAPI capi)
-        {
-            return;
-        }
+        if (api is not ICoreClientAPI capi) return;
 
         foreach ((string key, string path) in texturesByKey)
         {
-            if (texturesByKeyResolved.ContainsKey(key))
-            {
-                continue;
-            }
+            if (texturesByKeyResolved.ContainsKey(key)) continue;
 
-            IAsset asset = capi.Assets.TryGet(path);
-            if (asset != null)
+            if (capi.Assets.TryGet(path) is IAsset asset)
             {
                 LoadedTexture _texture = new SkillItem().WithIcon(capi, capi.Gui.LoadSvgWithPadding(asset.Location, 48, 48, 5)).Texture;
                 texturesByKeyResolved.Add(key, _texture);
@@ -51,18 +44,12 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        foreach ((_, LoadedTexture val) in texturesByKeyResolved)
-        {
-            val?.Dispose();
-        }
+        texturesByKeyResolved?.Foreach(texture => texture.Value?.Dispose());
     }
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int index)
     {
-        if (slot.Empty)
-        {
-            return;
-        }
+        if (slot.Empty) return;
 
         Variants variants = Variants.FromStack(slot.Itemstack);
         if (!variants.FindByVariant(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
@@ -70,12 +57,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             return;
         }
 
-        if (toolModes.Count <= index || toolModes[index] == null)
-        {
-            return;
-        }
-
-        AdvancedToolMode advMode = toolModes[index];
+        if (toolModes.Count <= index || toolModes[index] is not AdvancedToolMode advMode) return;
 
         if (TryProcessSinkSlot(advMode, slot, byPlayer, variants)) return;
 
@@ -91,7 +73,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
                 output.ResolvedItemstack.Attributes = finalStack.Attributes.Clone();
             }
 
-            slot.Itemstack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
+            slot.Itemstack.SetFrom(output.ResolvedItemstack ?? finalStack);
         }
         else
         {
@@ -106,10 +88,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     {
         SkillItem[] _toolModes = Array.Empty<SkillItem>();
 
-        if (slot.Empty)
-        {
-            return null;
-        }
+        if (slot.Empty) return null;
 
         Variants variants = Variants.FromStack(slot.Itemstack);
         if (!variants.FindByVariant(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
@@ -119,6 +98,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         foreach (AdvancedToolMode advMode in toolModes)
         {
+            if (advMode == null) continue;
             if (TryAddSinkSlot(forPlayer, advMode, ref _toolModes)) continue;
 
             JsonItemStack output = advMode.ConvertTo?.Clone();
@@ -133,7 +113,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
                     output.ResolvedItemstack.Attributes = finalStack.Attributes.Clone();
                 }
 
-                finalStack.SetFrom(output.ResolvedItemstack?.Clone() ?? finalStack);
+                finalStack.SetFrom(output.ResolvedItemstack ?? finalStack);
             }
 
             SkillItem mode = new()
@@ -162,10 +142,9 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     private static bool TryProcessSinkSlot(AdvancedToolMode advMode, ItemSlot slot, IPlayer byPlayer, Variants variants)
     {
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
-        if (!advMode.IsSinkSlot || mouseslot.Empty)
-        {
-            return false;
-        }
+
+        if (!advMode.IsSinkSlot || mouseslot.Empty) return false;
+
         if (!byPlayer.ConsumeIngredientAndGiveStack(mouseslot, variants, advMode.SlotParams))
         {
             slot.HandleInWorldCrafting(byPlayer, mouseslot, variants, advMode.SlotParams);
@@ -177,10 +156,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
     private bool TryAddSinkSlot(IClientPlayer forPlayer, AdvancedToolMode advMode, ref SkillItem[] _toolModes)
     {
-        if (!advMode.IsSinkSlot)
-        {
-            return false;
-        }
+        if (!advMode.IsSinkSlot) return false;
 
         SkillItem mode = new()
         {
@@ -197,23 +173,17 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
     {
         if (api is not ICoreClientAPI capi) return;
 
-        ItemStack renderedStack = forStack?.Clone();
-
-        JsonItemStack iconStack = advMode.IconStack?.Clone();
-        iconStack?.Resolve(capi.World, "");
-
-        if (renderedStack == null && iconStack?.ResolvedItemstack != null)
-        {
-            renderedStack = iconStack?.ResolvedItemstack?.Clone();
-        }
-
-        bool hasIcon = texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null;
-        if (hasIcon)
+        if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
         {
             _mode.Texture = _texture;
             _mode.TexturePremultipliedAlpha = false;
+            return;
         }
-        else if (renderedStack != null)
+
+        advMode.IconStack?.Resolve(capi.World, "");
+        ItemStack renderedStack = forStack ?? advMode.IconStack?.ResolvedItemstack;
+
+        if (renderedStack != null)
         {
             _mode.RenderHandler = renderedStack.RenderItemStack(capi, showStackSize: false);
         }

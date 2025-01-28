@@ -38,14 +38,8 @@ public class BlockBoard : Block, IContainedMeshSource
     {
         base.OnUnloaded(api);
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
-        if (meshRefs?.Count > 0)
-        {
-            foreach ((string _, MultiTextureMeshRef meshRef) in meshRefs)
-            {
-                meshRef.Dispose();
-            }
-            ObjectCacheUtil.Delete(api, "TabletopGames_boardMeshRefs");
-        }
+        meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
+        ObjectCacheUtil.Delete(api, "TabletopGames_boardMeshRefs");
     }
 
     public virtual void LoadTypes()
@@ -117,13 +111,6 @@ public class BlockBoard : Block, IContainedMeshSource
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
         if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBoard blockEntiy)
         {
-            RotateBy90();
-            blockEntiy.OnBlockPlaced(byItemStack);
-        }
-        return ok;
-
-        void RotateBy90()
-        {
             BlockPos targetPos = blockSel.DidOffset ? blockSel.Position.AddCopy(blockSel.Face.Opposite) : blockSel.Position;
             double dx = byPlayer.Entity.Pos.X - (targetPos.X + blockSel.HitPosition.X);
             double dz = (float)byPlayer.Entity.Pos.Z - (targetPos.Z + blockSel.HitPosition.Z);
@@ -132,7 +119,10 @@ public class BlockBoard : Block, IContainedMeshSource
             float intervalRad = GameMath.PIHALF;
             float roundRad = (int)Math.Round(angleHor / intervalRad) * intervalRad;
             blockEntiy.MeshAngleRad = roundRad;
+
+            blockEntiy.OnBlockPlaced(byItemStack);
         }
+        return ok;
     }
 
     public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
@@ -141,10 +131,7 @@ public class BlockBoard : Block, IContainedMeshSource
         MeshData mesh = new MeshData(4, 3);
 
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
-        if (_shape == null)
-        {
-            return mesh;
-        }
+        if (_shape == null) return mesh;
 
         CompositeShape rcshape = _shape.Clone();
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
@@ -168,13 +155,7 @@ public class BlockBoard : Block, IContainedMeshSource
             {
                 CompositeTexture ctex = val.Value.Clone();
                 ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-                if (ctex.BlendedOverlays != null)
-                {
-                    foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
-                    {
-                        overlayCtex.Base.Path = variants.ReplacePlaceholders(overlayCtex.Base.Path);
-                    }
-                }
+                ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
                 ctex.Bake(capi.Assets);
                 stexSource.textures[val.Key] = ctex;
             }
@@ -281,14 +262,9 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
-        if (blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity)
-        {
-            blockEntity.Variants.FindByVariant(ExtraSelectionBoxesByType, out Cuboidf[] boxes);
-            boxes ??= Array.Empty<Cuboidf>();
-            boxes = boxes.Select(x => x.RotatedCopy(0, blockEntity.MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5))).ToArray();
-            return blockEntity.GetOrCreateSelectionBoxes().Append(boxes);
-        }
-        return base.GetSelectionBoxes(blockAccessor, pos);
+        return blockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity
+            ? blockEntity.GetOrCreateSelectionBoxes().Append(blockEntity.GetExtraSelectionBoxes())
+            : base.GetSelectionBoxes(blockAccessor, pos);
     }
 
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
@@ -296,13 +272,11 @@ public class BlockBoard : Block, IContainedMeshSource
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        Variants variants = Variants.FromStack(itemstack);
-        return GetOrCreateMesh(variants);
+        return GetOrCreateMesh(Variants.FromStack(itemstack));
     }
 
     public string GetMeshCacheKey(ItemStack itemstack)
     {
-        Variants variants = Variants.FromStack(itemstack);
-        return $"{itemstack.Collectible.Code}-{variants}";
+        return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
     }
 }

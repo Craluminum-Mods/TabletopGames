@@ -2,6 +2,7 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
 
 namespace TabletopGames;
 
@@ -44,13 +45,7 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainabl
         {
             CompositeTexture ctex = val.Value.Clone();
             ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            if (ctex.BlendedOverlays != null)
-            {
-                foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
-                {
-                    overlayCtex.Base.Path = variants.ReplacePlaceholders(overlayCtex.Base.Path);
-                }
-            }
+            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }

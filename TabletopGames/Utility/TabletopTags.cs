@@ -30,14 +30,8 @@ public class TabletopTags
     {
         stackTags ??= new();
         boardTags ??= new();
-        if (stackTags.Tags.Count == 0)
-        {
-            return false;
-        }
-        if (stackTags.Tags.Any(boardTags.TagsIgnored.Contains))
-        {
-            return false;
-        }
+        if (stackTags.Tags.Count == 0) return false;
+        if (stackTags.Tags.Any(boardTags.TagsIgnored.Contains)) return false;
         return stackTags.Tags.Any(boardTags.Tags.Contains);
     }
 
@@ -51,13 +45,10 @@ public class TabletopTags
         if (slotId >= 0 && (TagsPerSlot.Any() || TagsIgnoredPerSlot.Any()))
         {
             TabletopTags newTags = new();
-            string id = slotId.ToString();
-
             newTags.Tags = GetTagsForSlot(TagsPerSlot, slotId.ToString());
             newTags.TagsIgnored = GetTagsForSlot(TagsIgnoredPerSlot, slotId.ToString());
             return newTags;
         }
-
         return this;
     }
 

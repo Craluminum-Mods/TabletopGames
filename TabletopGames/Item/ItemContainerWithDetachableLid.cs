@@ -49,10 +49,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
 
     public ItemStack GetLid(ItemStack containerStack)
     {
-        if (containerStack == null)
-        {
-            return null;
-        }
+        if (containerStack == null) return null;
         ItemStack giveStack = containerStack.Attributes.GetItemstack(LidAttributeName);
         giveStack?.ResolveBlockOrItem(api.World);
         return giveStack;

@@ -43,7 +43,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     {
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
-            ignoreAttributeSubTrees ??= System.Array.Empty<string>();
+            ignoreAttributeSubTrees ??= Array.Empty<string>();
             ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("slots");
         }
         return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
@@ -55,10 +55,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StackContainerInventory inventory = GetInventory(containerSlot.Itemstack);
         ItemSlot ownSlot = inventory.FirstNonEmptySlot;
 
-        if (hotbarSlot?.Itemstack?.Collectible is ItemContainer)
-        {
-            return false;
-        }
+        if (hotbarSlot?.Itemstack?.Collectible is ItemContainer) return false;
 
         bool inventoryInteractions = byPlayer.Entity.Controls.CtrlKey;
         if (inventoryInteractions)

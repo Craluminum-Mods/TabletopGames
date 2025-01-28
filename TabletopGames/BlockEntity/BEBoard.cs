@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
@@ -185,7 +186,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         {
             if (BoardData.SlotsHitboxes.Any())
             {
-                return selectionBoxes = BoardData.SlotsHitboxes.Select(x => x.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5))).ToArray();
+                return selectionBoxes = GetRotatedSelectionBoxes(BoardData.SlotsHitboxes);
             }
             if (BoardData.Size == null)
             {
@@ -196,11 +197,18 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
         return selectionBoxes;
     }
-    
-    public virtual void SetSelectionBoxes(Cuboidf[] cuboids)
+
+    public virtual Cuboidf[] GetExtraSelectionBoxes()
     {
-        selectionBoxes = cuboids;
+        Variants.FindByVariant(OwnBlock?.ExtraSelectionBoxesByType, out Cuboidf[] extraBoxes);
+        return GetRotatedSelectionBoxes(extraBoxes ?? Array.Empty<Cuboidf>());
     }
+
+    public virtual Cuboidf[] GetRotatedSelectionBoxes(params Cuboidf[] cuboids) => cuboids.Select(GetRotatedSelectionBox).ToArray();
+
+    public virtual Cuboidf GetRotatedSelectionBox(Cuboidf cuboid) => cuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+
+    public virtual void SetSelectionBoxes(Cuboidf[] cuboids) => selectionBoxes = cuboids;
 
     protected virtual void GenerateSelection()
     {
@@ -237,7 +245,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
                 };
 
                 int index = (dz * width) + dx;
-                selectionBoxes[index] = newCuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
+                selectionBoxes[index] = GetRotatedSelectionBox(newCuboid);
             }
         }
     }
@@ -375,9 +383,8 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
     public virtual void ApplyPieceMeshRotation(ItemStack stack, ref MeshData stackMesh)
     {
-        if (stack.Attributes.HasAttribute("rotateYaw"))
+        if (stack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
         {
-            float rotateYaw = stack.Attributes.GetFloat("rotateYaw");
             stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
         }
     }

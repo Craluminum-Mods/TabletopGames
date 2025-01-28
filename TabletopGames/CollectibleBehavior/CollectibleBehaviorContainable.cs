@@ -35,10 +35,7 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
 
     public ContainableProperties GetContainableProperties(string containerKey)
     {
-        if (!Props.Any())
-        {
-            return null;
-        }
+        if (!Props.Any()) return null;
 
         foreach (KeyValuePair<string, ContainableProperties> keyValue in Props)
         {

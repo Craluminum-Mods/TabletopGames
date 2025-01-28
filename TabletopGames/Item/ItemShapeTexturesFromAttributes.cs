@@ -31,15 +31,9 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public override void OnUnloaded(ICoreAPI api)
     {
         base.OnUnloaded(api);
-        var meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
-        if (meshRefs?.Count > 0)
-        {
-            foreach (var (_, meshRef) in meshRefs)
-            {
-                meshRef.Dispose();
-            }
-            ObjectCacheUtil.Delete(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
-        }
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
+        meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
+        ObjectCacheUtil.Delete(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
     }
 
     public void LoadTypes()
@@ -70,10 +64,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         Variants variants = Variants.FromStack(itemstack);
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
-        if (_shape == null)
-        {
-            return mesh;
-        }
+        if (_shape == null) return mesh;
 
         CompositeShape rcshape = _shape.Clone();
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
@@ -90,13 +81,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         {
             CompositeTexture ctex = val.Value.Clone();
             ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            if (ctex.BlendedOverlays != null)
-            {
-                foreach (BlendedOverlayTexture overlayCtex in ctex.BlendedOverlays)
-                {
-                    overlayCtex.Base.Path = variants.ReplacePlaceholders(overlayCtex.Base.Path);
-                }
-            }
+            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
@@ -110,10 +95,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         ShapeElement origin = shape.GetElementByName("origin");
         bool rotateNormalWay = cshape.rotateX != 0 || cshape.rotateY != 0 || cshape.rotateZ != 0;
-        if (!TabletopDebug.ItemRotations && !rotateNormalWay)
-        {
-            return;
-        }
+
+        if (!TabletopDebug.ItemRotations && !rotateNormalWay) return;
 
         if (origin?.RotationOrigin?.Length != 3)
         {
