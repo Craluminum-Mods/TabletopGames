@@ -20,10 +20,22 @@ public class ConfigLibCompatibility
     {
         api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-client"), (id, buttons) =>
         {
-            if (buttons.Save) ModConfig.WriteConfig(api, ConfigClient.ConfigName, Core.ConfigClient);
-            if (buttons.Restore) Core.ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
-            if (buttons.Defaults) Core.ConfigClient = new(api);
-            EditClient(api, Core.ConfigClient, id);
+            if (buttons.Save)
+            {
+                ModConfig.WriteConfig(api, ConfigClient.ConfigName, Core.GetInstance(api).ConfigClient);
+            }
+
+            if (buttons.Restore)
+            {
+                Core.GetInstance(api).ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
+            }
+
+            if (buttons.Defaults)
+            {
+                Core.GetInstance(api).ConfigClient = new(api);
+            }
+
+            EditClient(api, Core.GetInstance(api).ConfigClient, id);
         });
 
         api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-debug"), (id, buttons) =>

@@ -31,7 +31,7 @@ public class ItemDice : ItemShapeTexturesFromAttributes
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        if (Core.ConfigClient.DiceAnimationsEnabled && target == EnumItemRenderTarget.Ground && renderinfo.InSlot is EntityItemSlot slot)
+        if (Core.GetInstance(capi).ConfigClient != null && Core.GetInstance(capi).ConfigClient.DiceAnimationsEnabled && target == EnumItemRenderTarget.Ground && renderinfo.InSlot is EntityItemSlot slot)
         {
             int ticks = itemstack.TempAttributes.GetAsInt("tabletopGames.ticksUntilStopRolling");
             if (ticks < 350)
@@ -50,9 +50,12 @@ public class ItemDice : ItemShapeTexturesFromAttributes
             }
         }
 
-        if (!Core.ConfigClient.DiceAnimationsEnabled && target == EnumItemRenderTarget.Ground && !IsSameTransform(renderinfo.Transform, OriginalGroundTransform))
+        if (Core.GetInstance(capi).ConfigClient == null || !Core.GetInstance(capi).ConfigClient.DiceAnimationsEnabled)
         {
-            renderinfo.Transform = OriginalGroundTransform.Clone();
+            if (target == EnumItemRenderTarget.Ground && !IsSameTransform(renderinfo.Transform, OriginalGroundTransform))
+            {
+                renderinfo.Transform = OriginalGroundTransform.Clone();
+            }
         }
 
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);

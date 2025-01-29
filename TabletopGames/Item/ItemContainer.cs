@@ -81,7 +81,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
             if (movedQuantity > 0)
             {
                 didMoveItems(inventory[0].Itemstack, byPlayer);
-                api.World.Logger.Audit("{0} Put {1}x{2} into TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, inventory[0].Itemstack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
+                Core.GetInstance(api).Mod.Logger.Audit("{0} Put {1}x{2} into TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, inventory[0].Itemstack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
                 inventory[0].MarkDirty();
             }
         }
@@ -99,7 +99,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
                 if (movedQuantity > 0)
                 {
                     didMoveItems(wslot.slot.Itemstack, byPlayer);
-                    api.World.Logger.Audit("{0} Put {1}x{2} into TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, wslot.slot.Itemstack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
+                    Core.GetInstance(api).Mod.Logger.Audit("{0} Put {1}x{2} into TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, wslot.slot.Itemstack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
                     wslot.slot.MarkDirty();
                     break;
                 }
@@ -132,7 +132,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         {
             didMoveItems(stack, byPlayer);
         }
-        api.World.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
+        Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
         ownSlot.MarkDirty();
         inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
         containerSlot.MarkDirty();

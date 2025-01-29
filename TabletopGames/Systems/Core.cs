@@ -6,11 +6,15 @@ namespace TabletopGames;
 
 public class Core : ModSystem
 {
-    public static ICoreAPI apiForHarmony;
-    public static ConfigClient ConfigClient { get; set; }
+    public ConfigClient ConfigClient { get; set; }
 
     private ICoreAPI api;
     private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
+
+    public static Core GetInstance(ICoreAPI api)
+    {
+        return api.ModLoader.GetModSystem<Core>();
+    }
 
     public override void StartPre(ICoreAPI api)
     {
@@ -20,7 +24,6 @@ public class Core : ModSystem
         }
 
         HarmonyInstance.PatchAll();
-        apiForHarmony = api;
 
         if (api.ModLoader.IsModEnabled("configlib"))
         {
@@ -35,7 +38,7 @@ public class Core : ModSystem
         RegisterItems();
         RegisterBehaviors();
         RegisterBlockEntities();
-        api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
+        Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 
     public override void Dispose()
