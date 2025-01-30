@@ -122,6 +122,11 @@
     "config-debug": "Настільні ігри - DEBUG",
     "setting-dice_animations_enabled": "Увімкнути анімацію гральних кубиків",
 
+    "blockhelp-gobowl-add-10": "Додати x10",
+    "blockhelp-gobowl-remove-10": "Узяти x10",
+    "blockhelp-gobowl-add-or-remove-lid": "Прикріпити або зняти кришку",
+    "blockhelp-schematic-create": "Створити 'креслення для настільних фігур'",
+
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
 
