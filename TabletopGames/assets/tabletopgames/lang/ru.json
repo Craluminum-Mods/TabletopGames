@@ -122,8 +122,8 @@
     "config-debug": "Настольные игры - DEBUG",
     "setting-dice_animations_enabled": "Включить анимацию игральных кубиков",
 
-    "blockhelp-gobowl-add-10": "Добавить x10",
-    "blockhelp-gobowl-remove-10": "Взять x10",
+    "blockhelp-gobowl-add-10": "Добавить 10x Камень для го",
+    "blockhelp-gobowl-remove-10": "Взять 10x Камень для го",
     "blockhelp-gobowl-add-or-remove-lid": "Прикрепить или снять крышку",
     "blockhelp-schematic-create": "Создать 'Чертеж для настольных фигур'",
 

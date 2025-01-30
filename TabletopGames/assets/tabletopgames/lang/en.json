@@ -122,8 +122,8 @@
     "config-debug": "Tabletop Games - DEBUG",
     "setting-dice_animations_enabled": "Toggle Dice Animations",
 
-    "blockhelp-gobowl-add-10": "Add x10",
-    "blockhelp-gobowl-remove-10": "Remove x10",
+    "blockhelp-gobowl-add-10": "Add 10x Go stone",
+    "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
     "blockhelp-schematic-create": "Create 'Tabletop pieces Schematic'",
 
