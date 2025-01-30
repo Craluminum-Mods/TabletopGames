@@ -1,63 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary> 
-/// Has inventory, renders shape and textures using attribute based type system. 
+/// <summary>
+/// Represents the basic block entity of a board for tabletop games.
+/// Handles inventory, mesh rendering, and item interactions.
 /// </summary>
-public class BlockEntityBoard : BlockEntityDisplay, IRotatable
+public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
+
     public BoardData BoardData => OwnBlock?.GetBoardData(Variants);
 
     public override InventoryBase Inventory => inventory;
+
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
+
     public override string AttributeTransformCode => BoardData.AttributeTransformCode;
 
-    public Variants Variants { get; protected set; } = new Variants();
-    public float MeshAngleRad { get; set; }
-    public float[] Mat { get; protected set; }
-
-    private MeshData mesh;
-    private InventoryBase inventory;
-    private Cuboidf[] selectionBoxes;
-
-    public override void Initialize(ICoreAPI api)
-    {
-        InitInventory();
-        base.Initialize(api);
-        inventory.LateInitialize($"{InventoryClassName}-1", api);
-        if (mesh == null)
-        {
-            Init();
-        }
-    }
-
-    protected virtual void Init()
-    {
-        if (Api == null || OwnBlock == null)
-        {
-            return;
-        }
-
-        if (Api.Side == EnumAppSide.Client)
-        {
-            GetOrCreateSelectionBoxes(forceNew: true);
-            mesh = OwnBlock.GetOrCreateMesh(Variants);
-            Mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
-        }
-    }
-
-    protected virtual void InitInventory()
+    protected override void InitInventory()
     {
         if (inventory == null || inventory.Count == 0)
         {
@@ -68,91 +35,20 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
 
-    public override void OnBlockUnloaded()
-    {
-        base.OnBlockUnloaded();
-        mesh?.Dispose();
-        selectionBoxes = null;
-    }
-
-    public override void OnBlockRemoved()
-    {
-        base.OnBlockRemoved();
-        selectionBoxes = null;
-    }
-
-    public override void OnBlockPlaced(ItemStack byItemStack = null)
-    {
-        base.OnBlockPlaced(byItemStack);
-        if (byItemStack != null)
-        {
-            Variants = Variants.FromStack(byItemStack);
-        }
-
-        InitInventory();
-        Init();
-    }
-
-    public override void ToTreeAttributes(ITreeAttribute tree)
-    {
-        base.ToTreeAttributes(tree);
-        Variants.ToTreeAttribute(tree);
-        tree.SetFloat("meshAngleRad", MeshAngleRad);
-    }
-
-    public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
-    {
-        Variants = Variants.FromTreeAttribute(tree);
-        MeshAngleRad = tree.GetFloat("meshAngleRad");
-
-        InitInventory();
-
-        base.FromTreeAttributes(tree, worldForResolving);
-        Init();
-        RedrawAfterReceivingTreeAttributes(worldForResolving);
-    }
-
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
-        mesher.AddMeshData(mesh, Mat);
-
-        float[][] _tfMatrices = genTransformationMatrices();
-
         for (int i = 0; i < DisplayedItems; i++)
         {
             ItemSlot itemSlot = Inventory[i];
-            if (!itemSlot.Empty && _tfMatrices != null)
+            if (!itemSlot.Empty && tfMatrices != null)
             {
                 MeshData stackMesh = getMesh(itemSlot.Itemstack);
                 ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
-                mesher.AddMeshData(stackMesh, _tfMatrices[i]);
+                mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }
         }
 
-        foreach (BlockEntityBehavior behavior in Behaviors)
-        {
-            behavior.OnTesselation(mesher, tesselator);
-        }
-
-        return true;
-    }
-
-    public override void updateMeshes()
-    {
-        for (int i = 0; i < DisplayedItems; i++)
-        {
-            updateMesh(i);
-        }
-    }
-
-    public MeshData GetOrCreateMesh(ItemStack stack, int index)
-    {
-        return getOrCreateMesh(stack, index);
-    }
-
-    protected override string getMeshCacheKey(ItemStack stack)
-    {
-        return $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
+        return base.OnTesselation(mesher, tesselator);
     }
 
     protected override float[][] genTransformationMatrices()
@@ -175,12 +71,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return _tfMatrices;
     }
 
-    public float[][] GenTransformationMatrices()
-    {
-        return genTransformationMatrices();
-    }
-
-    public virtual Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
+    public override Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
     {
         if (forceNew || selectionBoxes == null)
         {
@@ -198,19 +89,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return selectionBoxes;
     }
 
-    public virtual Cuboidf[] GetExtraSelectionBoxes()
-    {
-        Variants.FindByVariant(OwnBlock?.ExtraSelectionBoxesByType, out Cuboidf[] extraBoxes);
-        return GetRotatedSelectionBoxes(extraBoxes ?? Array.Empty<Cuboidf>());
-    }
-
-    public virtual Cuboidf[] GetRotatedSelectionBoxes(params Cuboidf[] cuboids) => cuboids.Select(GetRotatedSelectionBox).ToArray();
-
-    public virtual Cuboidf GetRotatedSelectionBox(Cuboidf cuboid) => cuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
-
-    public virtual void SetSelectionBoxes(Cuboidf[] cuboids) => selectionBoxes = cuboids;
-
-    protected virtual void GenerateSelection()
+    protected override void GenerateSelection()
     {
         int width = BoardData.Size.X;
         int depth = BoardData.Size.Y;
@@ -273,7 +152,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
 
         if (TabletopDebug.TagsDebugInfo && inventory.Count > index) // twice check to avoid constant iterations in ByType
         {
-            OwnBlock.GetTags(Variants, index, resolve: false)?.GetDescription(dsc, index, verbose: true);
+            OwnBlock.GetTags(Variants, index, resolveTags: false)?.GetDescription(dsc, index, verbose: true);
         }
 
         BoardData.GetDescription(dsc, index);
@@ -283,15 +162,7 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         }
     }
 
-    public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
-        Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, EnumAxis? flipAxis)
-    {
-        MeshAngleRad = tree.GetFloat("meshAngleRad");
-        MeshAngleRad -= degreeRotation * GameMath.DEG2RAD;
-        tree.SetFloat("meshAngleRad", MeshAngleRad);
-    }
-
-    public virtual bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
+    public override bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
@@ -318,6 +189,13 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return false;
     }
 
+    /// <summary>
+    /// Attempts to place an item into the board at the selected slot.
+    /// </summary>
+    /// <param name="byPlayer">The player interacting with the board.</param>
+    /// <param name="hotbarSlot">The item slot from the player's inventory.</param>
+    /// <param name="blockSel">The block selection containing the clicked slot index.</param>
+    /// <returns><c>true</c> if the item was successfully placed, otherwise <c>false</c>.</returns>
     public virtual bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
@@ -332,6 +210,12 @@ public class BlockEntityBoard : BlockEntityDisplay, IRotatable
         return moved > 0;
     }
 
+    /// <summary>
+    /// Attempts to take an item from the board at the selected slot.
+    /// </summary>
+    /// <param name="byPlayer">The player attempting to remove the item.</param>
+    /// <param name="blockSel">The block selection containing the clicked slot index.</param>
+    /// <returns><c>true</c> if an item was taken, otherwise <c>false</c>.</returns>
     public virtual bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;

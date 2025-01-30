@@ -6,6 +6,9 @@ using Vintagestory.API.Util;
 
 namespace TabletopGames;
 
+/// <summary>
+/// Stores board-specific metadata, such as slot types and sizes.
+/// </summary>
 public class BoardData
 {
     public Vec2i Size { get; set; }
