@@ -12,6 +12,8 @@ public class Transforms
     public Dictionary<string, ModelTransform> TpOffHandTransform { get; set; } = new();
     public Dictionary<string, ModelTransform> GroundTransform { get; set; } = new();
 
+    public Dictionary<string, Dictionary<string, ModelTransform>> ExtraTransforms { get; set; } = new();
+
     public ModelTransform GetTransform(EnumItemRenderTarget target, Variants variants)
     {
         Dictionary<string, ModelTransform> transformByType = target switch
@@ -39,5 +41,18 @@ public class Transforms
         {
             transform = newTransform;
         }
+    }
+
+    public ModelTransform GetExtraTransform(string attributeTransformCode, Variants variants)
+    {
+        if (ExtraTransforms.TryGetValue(attributeTransformCode, out Dictionary<string, ModelTransform> transformByType)
+            && transformByType != null
+            && transformByType.Any()
+            && variants.FindByVariant(transformByType, out ModelTransform transform)
+            && transform != null)
+        {
+            return transform;
+        }
+        return null;
     }
 }
