@@ -9,7 +9,7 @@
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
-        "onmoldrackTransform": { "translation": { "x": 0, "y": 0.1, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
+        "onmoldrackTransform": { "translation": { "x": 0, "y": 0.08, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
         "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
         "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "name": {
@@ -77,6 +77,22 @@
                 "padding": { "x": 0.0125, "y": 0.0125, "z": 0.0125, "w": 0.0125 },
                 "quantitySlots": 361,
                 "attributeTransformCode": "onGoboard19x19Transform"
+            }
+        },
+        "transforms": {
+            "extraTransforms": {
+                "onmoldrackTransform": {
+                    "size-9x9": {
+                        "translation": { "x": 0, "y": -0.04, "z": 0 },
+                        "rotation": { "x": 0, "y": 0, "z": 85 },
+                        "scale": 0.9
+                    },
+                    "size-13x13": {
+                        "translation": { "x": 0, "y": 0.02, "z": 0 },
+                        "rotation": { "x": 0, "y": 0, "z": 85 },
+                        "scale": 0.9
+                    }
+                }
             }
         }
     },
