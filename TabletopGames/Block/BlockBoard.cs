@@ -15,7 +15,7 @@ namespace TabletopGames;
 /// <summary> 
 /// Has inventory, renders shape and textures using attribute based type system.
 /// </summary>
-public class BlockBoard : Block, IContainedMeshSource
+public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
     public Dictionary<string, TabletopTags> TabletopTagsByType { get; protected set; } = new();
@@ -278,5 +278,14 @@ public class BlockBoard : Block, IContainedMeshSource
     public string GetMeshCacheKey(ItemStack itemstack)
     {
         return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
+    }
+
+    ModelTransform IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
+    {
+        if (transforms?.GetExtraTransform(attributeTransformCode, variants: Variants.FromStack(stack)) is ModelTransform transform)
+        {
+            return transform;
+        }
+        return null;
     }
 }

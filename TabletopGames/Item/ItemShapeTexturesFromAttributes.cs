@@ -12,7 +12,7 @@ namespace TabletopGames;
 /// <summary> 
 /// Renders shape and textures using attribute based type system. 
 /// </summary>
-public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
+public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName, IContainedTransform
 {
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
@@ -180,5 +180,14 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public virtual string GetContainedName(ItemSlot inSlot, int quantity)
     {
         return GetHeldItemName(inSlot.Itemstack);
+    }
+
+    ModelTransform IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
+    {
+        if (transforms?.GetExtraTransform(attributeTransformCode, variants: Variants.FromStack(stack)) is ModelTransform transform)
+        {
+            return transform;
+        }
+        return null;
     }
 }
