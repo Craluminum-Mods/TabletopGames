@@ -16,5 +16,34 @@
         },
         "file": "game:itemtypes/lore/paper.json",
         "side": "Server"
+    },
+
+    {
+        "op": "addmerge",
+        "path": "/behaviors",
+        "value": [
+            {
+                "name": "TabletopGames.InteractionHelpConstructor",
+                "properties": {
+                    "interactions": [
+                        {
+                            "ActionLangCode": "tabletopgames:blockhelp-schematic-create",
+                            "MouseButton": "Right",
+                            "ItemStacks": [
+                                { "type": "item", "code": "game:charcoal" },
+                                { "type": "item", "code": "game:ore-bituminouscoal" },
+                                { "type": "item", "code": "game:coke" },
+                                { "type": "item", "code": "game:stone-chalk" },
+                                { "type": "item", "code": "game:stone-limestone" },
+                                { "type": "item", "code": "game:nugget-malachite" },
+                                { "type": "item", "code": "game:ore-lapislazuli" },
+                                { "type": "item", "code": "game:ore-cinnabar" }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "file": "game:itemtypes/lore/paper.json"
     }
 ]

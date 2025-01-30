@@ -122,6 +122,11 @@
     "config-debug": "Tabletop Games - DEBUG",
     "setting-dice_animations_enabled": "Toggle Dice Animations",
 
+    "blockhelp-gobowl-add-10": "Add 10",
+    "blockhelp-gobowl-remove-10": "Remove 10",
+    "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
+    "blockhelp-schematic-create": "Create 'Tabletop pieces Schematic'",
+
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
 

@@ -61,6 +61,34 @@
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
+        },
+        {
+            "name": "TabletopGames.InteractionHelpConstructor",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-10",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "ctrl",
+                        "ItemStacks": [
+                            { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "basalt" } } },
+                            { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "chalk" } } }
+                        ]
+                    },
+                    {
+                        "ActionLangCode": "tabletopgames:blockhelp-gobowl-remove-10",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "ctrl",
+                        "RequireFreeHand": true
+                    },
+                    {
+                        "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-or-remove-lid",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "shift",
+                        "ItemStacks": [{ "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "ebony" } } }]
+                    }
+                ]
+            }
         }
     ],
     "creativeinventoryStacks": [

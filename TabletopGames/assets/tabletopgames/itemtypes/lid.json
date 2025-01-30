@@ -67,6 +67,28 @@
                     }
                 }
             }
+        },
+        {
+            "name": "TabletopGames.InteractionHelpConstructor",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-10",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "ctrl",
+                        "ItemStacks": [
+                            { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "basalt" } } },
+                            { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "chalk" } } }
+                        ]
+                    },
+                    {
+                        "ActionLangCode": "tabletopgames:blockhelp-gobowl-remove-10",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "ctrl",
+                        "RequireFreeHand": true
+                    }
+                ]
+            }
         }
     ],
     "creativeinventoryStacks": [
