@@ -17,10 +17,10 @@ public class BoardData
     public int QuantitySlots { get; set; }
     public string AttributeTransformCode { get; set; }
     public Cuboidf[] SlotsHitboxes { get; set; } = System.Array.Empty<Cuboidf>();
+    public Dictionary<string, EnumSlotType> SlotTypes { get; set; } = new();
+
     public float SlotMinY => SlotYRange.A / 16f;
     public float SlotMaxY => SlotYRange.B / 16f;
-
-    public Dictionary<string, EnumSlotType> SlotTypes { get; set; } = new();
 
     public override string ToString()
     {
