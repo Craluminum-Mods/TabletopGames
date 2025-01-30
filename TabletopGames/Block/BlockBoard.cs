@@ -15,7 +15,7 @@ namespace TabletopGames;
 /// <summary> 
 /// Has inventory, renders shape and textures using attribute based type system.
 /// </summary>
-public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
+public class BlockBoard : Block, IContainedMeshSource
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
     public Dictionary<string, TabletopTags> TabletopTagsByType { get; protected set; } = new();
@@ -26,7 +26,6 @@ public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
-    protected Transforms transforms;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -55,7 +54,6 @@ public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            transforms = Attributes["transforms"].AsObject(defaultValue: new Transforms());
         }
 
         foreach (BoardData boardData in BoardDataByType.Values)
@@ -195,7 +193,6 @@ public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
 
         renderinfo.ModelRef = meshref;
         renderinfo.NormalShaded = true;
-        transforms?.TryApplyTransform(target, variants, ref renderinfo.Transform);
 
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
@@ -278,14 +275,5 @@ public class BlockBoard : Block, IContainedMeshSource, IContainedTransform
     public string GetMeshCacheKey(ItemStack itemstack)
     {
         return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
-    }
-
-    ModelTransform IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
-    {
-        if (transforms?.GetExtraTransform(attributeTransformCode, variants: Variants.FromStack(stack)) is ModelTransform transform)
-        {
-            return transform;
-        }
-        return null;
     }
 }

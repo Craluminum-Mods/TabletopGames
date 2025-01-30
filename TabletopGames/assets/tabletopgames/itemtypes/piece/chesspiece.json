@@ -27,45 +27,6 @@
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
         },
-        "transforms": {
-            "guiTransform": {
-                "type-bishop": {
-                    "translation": { "x": 0, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
-                    "scale": 1.2
-                },
-                "type-king": {
-                    "translation": { "x": 0, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.9, "z": 0.5 }
-                },
-                "type-knight": {
-                    "translation": { "x": 0, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
-                    "scale": 1.5
-                },
-                "type-pawn": {
-                    "translation": { "x": 0, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
-                    "scale": 1.9
-                },
-                "type-queen": {
-                    "translation": { "x": 0, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.7, "z": 0.5 },
-                    "scale": 1.2
-                },
-                "type-rook": {
-                    "translation": { "x": 3, "y": 0, "z": 0 },
-                    "rotation": { "x": 155, "y": 45, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
-                    "scale": 1.7
-                }
-            }
-        },
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
@@ -90,6 +51,21 @@
                         { "setVariants": { "type": "queen" } },
                         { "setVariants": { "type": "king" } }
                     ]
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.ContainedTransform",
+            "properties": {
+                "transforms": {
+                    "guiTransform": {
+                        "type-bishop": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.7, "z": 0.5 }, "scale": 1.2 },
+                        "type-king": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.9, "z": 0.5 } },
+                        "type-knight": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.5, "z": 0.5 }, "scale": 1.5 },
+                        "type-pawn": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.4, "z": 0.5 }, "scale": 1.9 },
+                        "type-queen": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.7, "z": 0.5 }, "scale": 1.2 },
+                        "type-rook": { "translation": { "x": 3, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.5, "z": 0.5 }, "scale": 1.7 }
+                    }
                 }
             }
         }

@@ -68,50 +68,6 @@
                 "quantitySlots": 16,
                 "attributeTransformCode": "onShogiTransform"
             }
-        },
-        "transforms": {
-            "guiTransform": {
-                "size-4x4_lstand": {
-                    "rotation": { "x": -35, "y": -30, "z": 0 },
-                    "origin": { "x": 0.25, "y": -0, "z": 0.75 },
-                    "scale": 3
-                },
-                "size-4x4_rstand": {
-                    "rotation": { "x": -35, "y": -30, "z": 0 },
-                    "origin": { "x": 0.75, "y": -0, "z": 0.75 },
-                    "scale": 3
-                }
-            },
-            "tphandTransform": {
-                "size-4x4_lstand": {
-                    "translation": { "x": -0.8, "y": 0, "z": -1.25 },
-                    "rotation": { "x": 90, "y": 0, "z": -90 },
-                    "origin": { "x": 0.75, "y": 0, "z": 0.75 },
-                    "scale": 1
-                },
-                "size-4x4_rstand": {
-                    "translation": { "x": -0.8, "y": 0, "z": -0.75 },
-                    "rotation": { "x": 90, "y": 0, "z": -90 },
-                    "origin": { "x": 0.75, "y": 0, "z": 0.75 },
-                    "scale": 1
-                }
-            },
-            "extraTransforms": {
-                "onmoldrackTransform": {
-                    "size-4x4_lstand": {
-                        "translation": { "x": 0.745, "y": 0.29, "z": 0 },
-                        "rotation": { "x": 0, "y": 0, "z": 85 },
-                        "origin": { "x": 0.25, "y": 0, "z": 0.75 },
-                        "scale": 0.9
-                    },
-                    "size-4x4_rstand": {
-                        "translation": { "x": 0.245, "y": 0.29, "z": 0 },
-                        "rotation": { "x": 0, "y": 0, "z": 85 },
-                        "origin": { "x": 0.75, "y": 0, "z": 0.75 },
-                        "scale": 0.9
-                    }
-                }
-            }
         }
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
@@ -166,6 +122,27 @@
                         // giving second color for free to avoid missing textures
                         { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.ContainedTransform",
+            "properties": {
+                "transforms": {
+                    "guiTransform": {
+                        "size-4x4_lstand": { "rotation": { "x": -35, "y": -30, "z": 0 }, "origin": { "x": 0.25, "y": -0, "z": 0.75 }, "scale": 3 },
+                        "size-4x4_rstand": { "rotation": { "x": -35, "y": -30, "z": 0 }, "origin": { "x": 0.75, "y": -0, "z": 0.75 }, "scale": 3 }
+                    },
+                    "tphandTransform": {
+                        "size-4x4_lstand": { "translation": { "x": -0.8, "y": 0, "z": -1.25 }, "rotation": { "x": 90, "y": 0, "z": -90 }, "origin": { "x": 0.75, "y": 0, "z": 0.75 }, "scale": 1 },
+                        "size-4x4_rstand": { "translation": { "x": -0.8, "y": 0, "z": -0.75 }, "rotation": { "x": 90, "y": 0, "z": -90 }, "origin": { "x": 0.75, "y": 0, "z": 0.75 }, "scale": 1 }
+                    }
+                },
+                "extraTransforms": {
+                    "onmoldrackTransform": {
+                        "size-4x4_lstand": { "translation": { "x": 0.745, "y": 0.29, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "origin": { "x": 0.25, "y": 0, "z": 0.75 }, "scale": 0.9 },
+                        "size-4x4_rstand": { "translation": { "x": 0.245, "y": 0.29, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "origin": { "x": 0.75, "y": 0, "z": 0.75 }, "scale": 0.9 }
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace TabletopGames;
 /// <summary> 
 /// Renders shape and textures using attribute based type system. 
 /// </summary>
-public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName, IContainedTransform
+public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
 {
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
@@ -20,7 +20,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
-    protected Transforms transforms;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -46,7 +45,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            transforms = Attributes["transforms"].AsObject(defaultValue: new Transforms());
         }
     }
 
@@ -116,7 +114,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
@@ -128,7 +125,6 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         renderinfo.ModelRef = meshref;
         renderinfo.NormalShaded = true;
-        transforms?.TryApplyTransform(target, variants, ref renderinfo.Transform);
 
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
@@ -180,14 +176,5 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public virtual string GetContainedName(ItemSlot inSlot, int quantity)
     {
         return GetHeldItemName(inSlot.Itemstack);
-    }
-
-    ModelTransform IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
-    {
-        if (transforms?.GetExtraTransform(attributeTransformCode, variants: Variants.FromStack(stack)) is ModelTransform transform)
-        {
-            return transform;
-        }
-        return null;
     }
 }

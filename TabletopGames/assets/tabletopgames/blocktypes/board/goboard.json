@@ -78,22 +78,6 @@
                 "quantitySlots": 361,
                 "attributeTransformCode": "onGoboard19x19Transform"
             }
-        },
-        "transforms": {
-            "extraTransforms": {
-                "onmoldrackTransform": {
-                    "size-9x9": {
-                        "translation": { "x": 0, "y": -0.04, "z": 0 },
-                        "rotation": { "x": 0, "y": 0, "z": 85 },
-                        "scale": 0.9
-                    },
-                    "size-13x13": {
-                        "translation": { "x": 0, "y": 0.02, "z": 0 },
-                        "rotation": { "x": 0, "y": 0, "z": 85 },
-                        "scale": 0.9
-                    }
-                }
-            }
         }
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
@@ -149,6 +133,17 @@
                         // giving second color for free to avoid missing textures
                         { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.ContainedTransform",
+            "properties": {
+                "extraTransforms": {
+                    "onmoldrackTransform": {
+                        "size-9x9": { "translation": { "x": 0, "y": -0.04, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
+                        "size-13x13": { "translation": { "x": 0, "y": 0.02, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 }
+                    }
                 }
             }
         }

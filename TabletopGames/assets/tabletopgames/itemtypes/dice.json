@@ -259,17 +259,6 @@
                 "dot-20": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] }
             }
         },
-        "transforms": {
-            "guiTransform": {
-                "type-d20": {
-                    "rotate": false,
-                    "translation": { "x": 3, "y": 0, "z": 0 },
-                    "rotation": { "x": 135, "y": 35, "z": 0 },
-                    "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
-                    "scaleXyz": { "x": -2, "y": 2, "z": 2 }
-                }
-            }
-        },
         "tabletopTags": {
             "tags": ["dice"]
         },
@@ -477,6 +466,22 @@
                     "type-d8": ["1", "2", "3", "4", "5", "6", "7", "8"],
                     "type-d12": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
                     "type-d20": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.ContainedTransform",
+            "properties": {
+                "transforms": {
+                    "guiTransform": {
+                        "type-d20": {
+                            "rotate": false,
+                            "translation": { "x": 3, "y": 0, "z": 0 },
+                            "rotation": { "x": 135, "y": 35, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+                            "scaleXyz": { "x": -2, "y": 2, "z": 2 }
+                        }
+                    }
                 }
             }
         }
