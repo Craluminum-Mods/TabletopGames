@@ -9,7 +9,7 @@
         "moldrackable": true,
         "shelvable": true,
         "antlermountable": true,
-        "onmoldrackTransform": { "translation": { "x": 0, "y": 0.1, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
+        "onmoldrackTransform": { "translation": { "x": 0.07, "y": 0.1, "z": -0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
         "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
         "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "name": {
@@ -94,6 +94,22 @@
                     "rotation": { "x": 90, "y": 0, "z": -90 },
                     "origin": { "x": 0.75, "y": 0, "z": 0.75 },
                     "scale": 1
+                }
+            },
+            "extraTransforms": {
+                "onmoldrackTransform": {
+                    "size-4x4_lstand": {
+                        "translation": { "x": 0.745, "y": 0.29, "z": 0 },
+                        "rotation": { "x": 0, "y": 0, "z": 85 },
+                        "origin": { "x": 0.25, "y": 0, "z": 0.75 },
+                        "scale": 0.9
+                    },
+                    "size-4x4_rstand": {
+                        "translation": { "x": 0.245, "y": 0.29, "z": 0 },
+                        "rotation": { "x": 0, "y": 0, "z": 85 },
+                        "origin": { "x": 0.75, "y": 0, "z": 0.75 },
+                        "scale": 0.9
+                    }
                 }
             }
         }
