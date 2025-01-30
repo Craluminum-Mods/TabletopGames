@@ -85,7 +85,11 @@
                         "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-or-remove-lid",
                         "MouseButton": "Right",
                         "HotKeyCode": "shift",
-                        "ItemStacks": [{ "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "ebony" } } }]
+                        "ItemStacks": [
+                            { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "oak" } } },
+                            { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "stone": "basalt" } } },
+                            { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "stone": "chalk" } } }
+                        ]
                     }
                 ]
             }
