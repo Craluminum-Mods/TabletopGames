@@ -15,7 +15,7 @@ namespace TabletopGames;
 /// This class extends <see cref="BlockShapeTexturesFromAttributes"/> to manage board-specific properties,
 /// including board data and tabletop tags.
 /// </summary>
-public class BlockBoard : BlockShapeTexturesFromAttributes, IContainedMeshSource
+public class BlockBoard : BlockShapeTexturesFromAttributes
 {
     public Dictionary<string, BoardData> BoardDataByType { get; protected set; } = new();
     public Dictionary<string, TabletopTags> TabletopTagsByType { get; protected set; } = new();
