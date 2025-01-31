@@ -99,7 +99,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         foreach (AdvancedToolMode advMode in toolModes)
         {
             if (advMode == null) continue;
-            if (TryAddSinkSlot(forPlayer, advMode, ref _toolModes)) continue;
+            if (TryAddSinkSlot(ref _toolModes, forPlayer, advMode, texturesByKeyResolved)) continue;
 
             JsonItemStack output = advMode.ConvertTo?.Clone();
             output?.Resolve(forPlayer.Entity.World, "");
@@ -122,7 +122,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
                 Linebreak = advMode.Linebreak
             };
 
-            SetModeTextureOrRender(forPlayer.Entity.World.Api, ref mode, advMode, finalStack);
+            mode = WithTextureOrRender(mode, forPlayer.Entity.World.Api, advMode, finalStack);
             _toolModes = _toolModes.Append(mode);
         }
 
@@ -154,7 +154,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         return true;
     }
 
-    private bool TryAddSinkSlot(IClientPlayer forPlayer, AdvancedToolMode advMode, ref SkillItem[] _toolModes)
+    public static bool TryAddSinkSlot(ref SkillItem[] _toolModes, IClientPlayer forPlayer, AdvancedToolMode advMode, Dictionary<string, LoadedTexture> textures = null)
     {
         if (!advMode.IsSinkSlot) return false;
 
@@ -164,20 +164,20 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
             Linebreak = advMode.Linebreak
         };
 
-        SetModeTextureOrRender(forPlayer.Entity.World.Api, ref mode, advMode);
+        mode = WithTextureOrRender(mode, forPlayer.Entity.World.Api, advMode, textures: textures);
         _toolModes = _toolModes.Append(mode);
         return true;
     }
 
-    private void SetModeTextureOrRender(ICoreAPI api, ref SkillItem _mode, AdvancedToolMode advMode, ItemStack forStack = null)
+    public static SkillItem WithTextureOrRender(SkillItem mode, ICoreAPI api, AdvancedToolMode advMode, ItemStack forStack = null, Dictionary<string, LoadedTexture> textures = null)
     {
-        if (api is not ICoreClientAPI capi) return;
+        if (api is not ICoreClientAPI capi) return mode;
 
-        if (texturesByKeyResolved.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
+        if (textures != null && textures.TryGetValue(advMode.IconTexture, out LoadedTexture _texture) && _texture != null)
         {
-            _mode.Texture = _texture;
-            _mode.TexturePremultipliedAlpha = false;
-            return;
+            mode.Texture = _texture;
+            mode.TexturePremultipliedAlpha = false;
+            return mode;
         }
 
         advMode.IconStack?.Resolve(capi.World, "");
@@ -185,7 +185,8 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
         if (renderedStack != null)
         {
-            _mode.RenderHandler = renderedStack.RenderItemStack(capi, showStackSize: false);
+            mode.RenderHandler = renderedStack.RenderItemStack(capi, showStackSize: false);
         }
+        return mode;
     }
 }
