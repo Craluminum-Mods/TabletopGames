@@ -32,9 +32,9 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public override void OnUnloaded(ICoreAPI api)
     {
         base.OnUnloaded(api);
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_boardMeshRefs");
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
         meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
-        ObjectCacheUtil.Delete(api, "TabletopGames_boardMeshRefs");
+        ObjectCacheUtil.Delete(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
     }
 
     public virtual void LoadTypes()
@@ -126,7 +126,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_boardMeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
