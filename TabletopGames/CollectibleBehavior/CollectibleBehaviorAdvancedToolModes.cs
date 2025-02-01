@@ -4,6 +4,7 @@ using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
 namespace TabletopGames;
@@ -33,7 +34,7 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 
             if (capi.Assets.TryGet(path) is IAsset asset)
             {
-                LoadedTexture _texture = new SkillItem().WithIcon(capi, capi.Gui.LoadSvgWithPadding(asset.Location, 48, 48, 5)).Texture;
+                LoadedTexture _texture = new SkillItem().WithIcon(capi, capi.Gui.LoadSvgWithPadding(asset.Location, 48, 48, 5, color: ColorUtil.WhiteArgb)).Texture;
                 texturesByKeyResolved.Add(key, _texture);
                 continue;
             }
