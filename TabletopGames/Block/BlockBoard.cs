@@ -6,7 +6,6 @@ using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.Client.NoObf;
-using Vintagestory.GameContent;
 
 namespace TabletopGames;
 

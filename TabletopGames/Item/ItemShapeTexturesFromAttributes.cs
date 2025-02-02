@@ -35,7 +35,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         ObjectCacheUtil.Delete(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
     }
 
-    public void LoadTypes()
+    public virtual void LoadTypes()
     {
         if (Attributes != null)
         {
