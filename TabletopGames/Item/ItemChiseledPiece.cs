@@ -104,6 +104,22 @@ public class ItemChiseledPiece : ItemBoardPiece
         SelfDestroyIfEmpty(entityItem?.Slot);
     }
 
+    public override string GetHeldItemName(ItemStack itemStack)
+    {
+        string name = GetChiseledStack(itemStack, Vec3i.Zero, api.World)?.Attributes.GetString("blockName");
+        return !string.IsNullOrEmpty(name) ? name : base.GetHeldItemName(itemStack);
+    }
+
+    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+    {
+        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+
+        if (inSlot.Itemstack.Attributes.GetInt("rotateY", 0) is int rotateY && rotateY != 0)
+        {
+            dsc.AppendLine(Lang.Get("tabletopgames:rotation-y", rotateY));
+        }
+    }
+
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int index)
     {
         if (slot.Empty || toolModes?.Length <= index) return;
@@ -228,16 +244,6 @@ public class ItemChiseledPiece : ItemBoardPiece
     }
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => toolModes;
-
-    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
-    {
-        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-
-        if (inSlot.Itemstack.Attributes.GetInt("rotateY", 0) is int rotateY && rotateY != 0)
-        {
-            dsc.AppendLine(Lang.Get("tabletopgames:rotation-y", rotateY));
-        }
-    }
 
     private bool TriggerErrorOnMultipleReceivers(int stackSize)
     {
