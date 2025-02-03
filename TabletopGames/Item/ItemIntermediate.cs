@@ -21,8 +21,8 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
 
     public bool OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot activeSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-        if (be is not BlockEntityGroundStorage gs || activeSlot.Empty)
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        if (be is not BlockEntityGroundStorage gs || hotbarSlot.Empty)
         {
             return false;
         }
@@ -32,7 +32,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
         {
             return false;
         }
-        return slot.HandleInWorldCrafting(byPlayer, activeSlot, variants, steps);
+        return byPlayer.HandleInWorldCrafting(slot, inputSlot: hotbarSlot, variants, steps);
     }
 
     public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;

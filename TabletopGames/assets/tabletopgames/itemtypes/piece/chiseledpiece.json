@@ -1,0 +1,45 @@
+{
+    "code": "chiseledpiece",
+    "class": "TabletopGames.ItemChiseledPiece",
+    "maxStackSize": 64,
+    "attributes": {
+        "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.09 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
+        "onMorrisTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onChessboardTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onGoboard9x9Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onGoboard13x13Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onGoboard19x19Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onShogiTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onBackgammonTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "tabletopTags": {
+            "tags": ["chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
+        },
+        "rotateWhenPlacedOnBoard": true
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "guiTransform": {
+        "rotation": { "x": 158, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.5, "z": 0.5 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+        "scale": 2
+    },
+    "tpHandTransform": {
+        "translation": { "x": -2.6, "y": -0.9, "z": -2 },
+        "rotation": { "x": -90, "y": 0, "z": -90 },
+        "origin": { "x": 0.5, "y": 0.26666668, "z": 0.5 },
+        "scale": 0.25
+    }
+}

@@ -59,6 +59,7 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
         api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
         api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
+        api.RegisterItemClass("TabletopGames.ItemChiseledPiece", typeof(ItemChiseledPiece));
     }
 
     private void RegisterBehaviors()

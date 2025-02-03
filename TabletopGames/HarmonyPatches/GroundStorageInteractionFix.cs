@@ -44,7 +44,7 @@ public static class GroundStorageInteractionFix
         if (targetSlot?.Itemstack?.ItemAttributes != null && targetSlot.Itemstack.ItemAttributes.KeyExists("tabletopGames.inWorldCraftingProps"))
         {
             List<CraftingStep> steps = targetSlot.Itemstack.ItemAttributes["tabletopGames.inWorldCraftingProps"].AsObject(defaultValue: new List<CraftingStep>());
-            if (steps.Any() && targetSlot.HandleInWorldCrafting(byPlayer, hotbarSlot, null, steps))
+            if (steps.Any() && byPlayer.HandleInWorldCrafting(targetSlot, inputSlot: hotbarSlot, null, steps))
             {
                 begs.MarkDirty(true);
                 __result = true;

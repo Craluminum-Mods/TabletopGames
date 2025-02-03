@@ -25,13 +25,23 @@
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
+                "textures": {
+                    "chisel": "textures/icons/worldedit/chiselbrush.svg"
+                },
                 "toolModes": {
                     "type-generic_piece": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece",
+                            "iconTexture": "chisel",
+                            "isSinkSlot": true,
+                            "slotParams": [{ "giveStack": { "type": "item", "code": "tabletopgames:chiseledpiece", "quantity": 1 } }]
+                        },
+
                         // #############
                         // ### Stone ###
                         // #############
-
                         {
+                            "linebreak": true,
                             "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-stone-generic", 16, "tabletopgames:item-chesspiece"]],
                             "isSinkSlot": true,
                             "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "stone": "granite" } } },

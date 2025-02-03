@@ -8,7 +8,14 @@ namespace TabletopGames;
 
 public static class CraftingStepExtensions
 {
-    public static bool HandleInWorldCrafting(this ItemSlot targetSlot, IPlayer byPlayer, ItemSlot inputSlot, Variants targetVariants, List<CraftingStep> steps)
+    public static bool HandleToolModeCrafting(this AdvancedToolMode mode, IPlayer byPlayer, ItemSlot targetSlot, ItemSlot inputSlot, Variants targetVariants)
+    {
+        return ItemChiseledPiece.ConsumeChiseledBlockAndGiveStack(mode, byPlayer, inputSlot)
+            || byPlayer.ConsumeIngredientAndGiveStack(inputSlot, targetVariants, mode.SlotParams)
+            || byPlayer.HandleInWorldCrafting(targetSlot, inputSlot, targetVariants, mode.SlotParams);
+    }
+
+    public static bool HandleInWorldCrafting(this IPlayer byPlayer, ItemSlot targetSlot, ItemSlot inputSlot, Variants targetVariants, List<CraftingStep> steps)
     {
         foreach (CraftingStep step in steps)
         {
