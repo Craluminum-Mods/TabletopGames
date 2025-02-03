@@ -71,7 +71,7 @@
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Перетащите пигмент сюда, чтобы изменить вторичный цвет рисунков на доске.",
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетащите пигмент сюда, чтобы изменить цвет точек или цифр на кубике.",
     "toolmode-dice-reset": "Сбросить кубик.",
-    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Перетащите резной блок сюда чтобы создать резную фигуру",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Перетащите резной блок сюда чтобы создать резную фигуру (массовое действие: зажмите клавишу shift)",
     "toolmode-sinkslot-exchange-chiseled-block": "Перетащите сюда резной блок чтобы заменить им главный резной блок",
     "toolmode-remove-chiseled-block": "Удалить главный резной блок пустым нажатием",
     "toolmode-sinkslot-up-add-chiseled-block": "Перетащите сюда резной блок, чтобы добавить его сверху",

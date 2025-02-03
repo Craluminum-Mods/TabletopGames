@@ -290,7 +290,10 @@ public class ItemChiseledPiece : ItemBoardPiece
         ItemStack finalStack = giveStack.ResolvedItemstack.Clone();
         if (finalStack.Collectible is ItemChiseledPiece itemChiseledPiece)
         {
-            SetChiseledStack(finalStack, inputStack: inputSlot.TakeOut(1), Vec3i.Zero);
+            ItemStack removedMouseStack = byPlayer.Entity.Controls.ShiftKey ? inputSlot.TakeOutWhole() : inputSlot.TakeOut(1);
+            finalStack.StackSize = removedMouseStack.StackSize;
+            removedMouseStack.StackSize = 1;
+            SetChiseledStack(finalStack, inputStack: removedMouseStack, Vec3i.Zero);
         }
         else
         {

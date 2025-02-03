@@ -71,7 +71,7 @@
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Drag and drop pigment here to change the secondary color of the drawings on the board.",
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Drag and drop pigment here to change the color of dots or numbers on the dice.",
     "toolmode-dice-reset": "Reset the dice to its default state.",
-    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Drag and drop chiseled block here to create chiseled piece",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Drag and drop chiseled block here to create chiseled piece (bulk action: hold shift key)",
     "toolmode-sinkslot-exchange-chiseled-block": "Drag and drop chiseled block here to exchange it with main chiseled block",
     "toolmode-remove-chiseled-block": "Remove main chiseled block with empty click",
     "toolmode-sinkslot-up-add-chiseled-block": "Drag and drop chiseled block here to add it above",
