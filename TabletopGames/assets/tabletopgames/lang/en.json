@@ -14,6 +14,8 @@
     "itemdesc-gameboard-generic": "Place on the ground to make all possible boards",
     "item-schematic-generic_piece": "Tabletop pieces Schematic",
     "itemdesc-schematic-generic_piece": "Used for creating all possible pieces",
+    "item-chiseledpiece": "Chiseled piece",
+    "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>Chiseled piece</i></font>     <br>Protip: Chisel blocks facing in one direction        <br><br>Press <hk>toolmodeselect</hk> key (Tool Mode) to manipulate with it in various ways.",
     "item-chesspiece": "Chess piece",
     "item-chesspiece-bishop": "Bishop",
     "item-chesspiece-king": "King",
@@ -69,6 +71,14 @@
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Drag and drop pigment here to change the secondary color of the drawings on the board.",
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Drag and drop pigment here to change the color of dots or numbers on the dice.",
     "toolmode-dice-reset": "Reset the dice to its default state.",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Drag and drop chiseled block here to create chiseled piece",
+    "toolmode-sinkslot-exchange-chiseled-block": "Drag and drop chiseled block here to exchange it with main chiseled block",
+    "toolmode-remove-chiseled-block": "Remove main chiseled block with empty click",
+    "toolmode-sinkslot-up-add-chiseled-block": "Drag and drop chiseled block here to add it above",
+    "toolmode-sinkslot-up-remove-chiseled-block": "Remove a chiseled block above",
+    "toolmode-sinkslot-down-add-chiseled-block": "Drag and drop chiseled block here to add it below",
+    "toolmode-sinkslot-down-remove-chiseled-block": "Remove a chiseled block below",
+    "toolmode-increase-rotation-by-90-degrees": "Rotate by 90 degrees",
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Chessboard Construction: Step 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Chessboard Construction: Step 2/3",
@@ -109,6 +119,7 @@
     "dimension-15x15": "15 x 15",
     "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
+    "rotation-y": "Rotation (Y): {0}",
 
     "transform-onMorrisTransform": "On Morris board",
     "transform-onChessboardTransform": "On chessboard",
@@ -126,6 +137,9 @@
     "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
     "blockhelp-schematic-create": "Create 'Tabletop pieces Schematic'",
+    "ingameerror-max-one-receiver-per-action": "Max one receiver per action is allowed",
+    "ingameerror-stacksize-mismatch": "Only same amount is allowed",
+    "ingameerror-chiseled-block-only": "Only chiseled blocks are allowed",
 
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
@@ -137,5 +151,8 @@
     "item-handbooktext-lid-interactions": "Interactions work only when placed on the solid surface.        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "craftinginfo-starterguide-title": "Tabletop Games 101 - Starter Guide",
-    "craftinginfo-starterguide-text": "<strong>Tabletop Games Starter Guide</strong>     <br><br><strong>Create generic board</strong>      <br>Once you create <a href=\"handbooksearch://generic game board\">Generic board</a>, place it on the ground and follow instructions in tooltip.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Create schematic</a></strong>       <br>Made by interacting with any pigment on parchment placed on the ground.     <br><br><strong>Create pieces</strong>       <br>With schematic in active hand, press <hk>toolmodeselect</hk> key (Tool Mode) to open menu for creating pieces."
+    "craftinginfo-starterguide-text": "<strong>Tabletop Games Starter Guide</strong>     <br><br><strong>Create generic board</strong>      <br>Once you create <a href=\"handbooksearch://generic game board\">Generic board</a>, place it on the ground and follow instructions in tooltip.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Create schematic</a></strong>       <br>Made by interacting with any pigment on parchment placed on the ground.     <br><br><strong>Create pieces</strong>       <br>With schematic in active hand, press <hk>toolmodeselect</hk> key (Tool Mode) to open menu for creating pieces.",
+
+    "craftinginfo-custompiecesguide-title": "Tabletop Games 102 - Custom Pieces",
+    "craftinginfo-custompiecesguide-text": "<strong>Tabletop Games Custom Pieces Guide</strong>     <br><br>With <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a> in active hand, press <hk>toolmodeselect</hk> key (Tool Mode), find a mode with a chisel tool icon, then follow instructions in the description.      <br><br>To change dimension limit, use commands:        <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxUp\">/worldconfig tabletopgames_chiseledPieceMaxUp</a> : Max amount of chiseled blocks that can be added above      <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxDown\">/worldconfig tabletopgames_chiseledPieceMaxDown</a> : Max amount of chiseled blocks that can be added below"
 }

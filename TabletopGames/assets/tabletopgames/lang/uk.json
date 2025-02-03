@@ -14,6 +14,8 @@
     "itemdesc-gameboard-generic": "Розмістіть на землі, щоб створити всі можливі дошки",
     "item-schematic-generic_piece": "Креслення для настільних фігур",
     "itemdesc-schematic-generic_piece": "Використовується для створення всіх можливих настільних фігур",
+    "item-chiseledpiece": "Різьблена фігура",
+    "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>Різьблена фігура</i></font>     <br>Порада: Створюйте різьблені блоки в одному напрямку        <br><br>Натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для різних маніпуляцій із предметом.",
     "item-chesspiece": "Шахова фігура",
     "item-chesspiece-bishop": "Слон",
     "item-chesspiece-king": "Король",
@@ -69,6 +71,14 @@
     "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "Перетягніть пігмент сюди, щоб змінити вторинний колір малюнків на дошці.",
     "toolmode-sinkslot-pigment-dice-changedotcolor": "Перетягніть пігмент сюди, щоб змінити колір точок або цифр на кубику.",
     "toolmode-dice-reset": "Скинути кубик.",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "Перетягніть сюди різьблений блок щоб створити різьблену фігуру",
+    "toolmode-sinkslot-exchange-chiseled-block": "Перетягніть сюди різьблений блок щоб замінити їм головний різьблений блок",
+    "toolmode-remove-chiseled-block": "Видалити головний різьблений блок порожнім натисканням",
+    "toolmode-sinkslot-up-add-chiseled-block": "Перетягніть сюди різьблений блок, щоб додати його зверху",
+    "toolmode-sinkslot-up-remove-chiseled-block": "Видалити різьблений блок зверху",
+    "toolmode-sinkslot-down-add-chiseled-block": "Перетягніть сюди різьблений блок, щоб додати його знизу",
+    "toolmode-sinkslot-down-remove-chiseled-block": "Видалити різьблений блок знизу",
+    "toolmode-increase-rotation-by-90-degrees": "Повернути на 90 градусів",
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Створення шахової дошки: Етап 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Створення шахової дошки: Етап 2/3",
@@ -109,6 +119,7 @@
     "dimension-15x15": "15 x 15",
     "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
+    "rotation-y": "Обертання (Y): {0}",
 
     "transform-onMorrisTransform": "На дошці для гри Млин",
     "transform-onChessboardTransform": "На шахівниці",
@@ -126,6 +137,9 @@
     "blockhelp-gobowl-remove-10": "Узяти 10x Камінь для го",
     "blockhelp-gobowl-add-or-remove-lid": "Прикріпити або зняти кришку",
     "blockhelp-schematic-create": "Створити 'креслення для настільних фігур'",
+    "ingameerror-max-one-receiver-per-action": "Допускається не більше одного одержувача на дію",
+    "ingameerror-stacksize-mismatch": "Дозволено використовувати тільки однакову кількість",
+    "ingameerror-chiseled-block-only": "Дозволено тільки різьблені блоки”",
 
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
@@ -137,5 +151,8 @@
     "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "craftinginfo-starterguide-title": "Настільні ігри 101 - Початкове керівництво",
-    "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на землю і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на землі.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур."
+    "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на землю і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на землі.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур.",
+
+    "craftinginfo-custompiecesguide-title": "Настільні ігри 102 - Користувацькі фігури",
+    "craftinginfo-custompiecesguide-text": "<strong>Настільні ігри: Керівництво по створенню користувацьких фігур</strong>     <br><br>Маючи <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a> в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), знайдіть режим з іконкою долота, потім дотримуйтесь інструкцій в описі.      <br><br>Щоб змінити максимальний розмір, використовуйте команди:     <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxUp\">/worldconfig tabletopgames_chiseledPieceMaxUp</a> : Максимальна кількість різьблених блоків, які можна додати зверху      <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxDown\">/worldconfig tabletopgames_chiseledPieceMaxDown</a> : Максимальна кількість різьблених блоків, які можна додати знизу"
 }
