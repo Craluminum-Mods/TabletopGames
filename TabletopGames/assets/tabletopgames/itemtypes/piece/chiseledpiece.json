@@ -4,13 +4,13 @@
     "maxStackSize": 64,
     "attributes": {
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.09 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
-        "onMorrisTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onMorrisTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.2 },
         "onChessboardTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
-        "onGoboard9x9Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
-        "onGoboard13x13Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
-        "onGoboard19x19Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onGoboard9x9Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
+        "onGoboard13x13Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
+        "onGoboard19x19Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
         "onShogiTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
-        "onBackgammonTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
+        "onBackgammonTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
         "tabletopTags": {
             "tags": ["chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
         },
@@ -34,12 +34,12 @@
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
         "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
-        "scale": 2
+        "scale": 0.75
     },
     "tpHandTransform": {
-        "translation": { "x": -2.6, "y": -0.9, "z": -2 },
+        "translation": { "x": -5, "y": -2, "z": -4 },
         "rotation": { "x": -90, "y": 0, "z": -90 },
-        "origin": { "x": 0.5, "y": 0.26666668, "z": 0.5 },
-        "scale": 0.25
+        "origin": { "x": 0.5, "y": 0.2666, "z": 0.5 },
+        "scale": 0.125
     }
 }

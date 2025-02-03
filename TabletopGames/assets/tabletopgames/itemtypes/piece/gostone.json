@@ -88,8 +88,8 @@
         "origin": { "x": 0.5, "y": 0, "z": 0.5 }
     },
     "tpHandTransform": {
-        "translation": { "x": -2.7, "y": -1.7, "z": -2 },
-        "rotation": { "x": 0, "y": 0, "z": -65 },
+        "translation": { "x": -2.8, "y": -2, "z": -2 },
+        "rotation": { "x": 0, "y": 0, "z": -90 },
         "scale": 0.25
     }
 }
