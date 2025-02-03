@@ -38,6 +38,16 @@ public class Core : ModSystem
         RegisterItems();
         RegisterBehaviors();
         RegisterBlockEntities();
+
+        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxUp"))
+        {
+            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxUp", 6);
+        }
+        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxDown"))
+        {
+            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxDown", 2);
+        }
+
         Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 
