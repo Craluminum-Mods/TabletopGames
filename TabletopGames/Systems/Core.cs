@@ -82,9 +82,9 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.InteractionHelpConstructor", typeof(CollectibleBehaviorInteractionHelpConstructor));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ContainedTransform", typeof(CollectibleBehaviorContainedTransform));
 
-        api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
-
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
+
+        api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
     }
 
     private void RegisterBlockEntities()
