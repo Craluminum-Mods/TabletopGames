@@ -137,7 +137,6 @@
     "blockhelp-gobowl-remove-10": "Взять 10x Камень для го",
     "blockhelp-gobowl-add-or-remove-lid": "Прикрепить или снять крышку",
     "blockhelp-schematic-create": "Создать 'Чертеж для настольных фигур'",
-    "ingameerror-max-one-receiver-per-action": "Допускается не более одного получателя на действие",
     "ingameerror-stacksize-mismatch": "Разрешено использовать только одинаковое количество",
     "ingameerror-chiseled-block-only": "Разрешены только резные блоки",
 

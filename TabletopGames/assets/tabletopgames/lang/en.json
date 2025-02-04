@@ -137,7 +137,6 @@
     "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
     "blockhelp-schematic-create": "Create 'Tabletop pieces Schematic'",
-    "ingameerror-max-one-receiver-per-action": "Max one receiver per action is allowed",
     "ingameerror-stacksize-mismatch": "Only same amount is allowed",
     "ingameerror-chiseled-block-only": "Only chiseled blocks are allowed",
 

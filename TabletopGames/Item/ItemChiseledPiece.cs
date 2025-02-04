@@ -162,7 +162,7 @@ public class ItemChiseledPiece : ItemBoardPiece
             case EnumMode.UpAdd:
                 {
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
-                    if (TriggerErrorOnMultipleReceivers(slot.StackSize)) break;
+                    if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
                     Vec3i curOffset = Vec3i.Zero;
                     for (int i = 0; i < upLimit; i++)
@@ -170,7 +170,9 @@ public class ItemChiseledPiece : ItemBoardPiece
                         curOffset.Y = i;
                         if (!chiseledStacksTree.HasAttribute(ToXYZString(curOffset)))
                         {
-                            SetChiseledStack(slot.Itemstack, mouseslot.TakeOut(1), curOffset);
+                            ItemStack clonedMouseStack = mouseslot.TakeOutWhole();
+                            clonedMouseStack.StackSize = 1;
+                            SetChiseledStack(slot.Itemstack, clonedMouseStack, curOffset);
                             break;
                         }
                     }
@@ -194,7 +196,7 @@ public class ItemChiseledPiece : ItemBoardPiece
             case EnumMode.DownAdd:
                 {
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
-                    if (TriggerErrorOnMultipleReceivers(slot.Itemstack.StackSize)) break;
+                    if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
                     Vec3i curOffset = Vec3i.Zero;
                     for (int i = 0; i >= -downLimit; i--)
@@ -202,7 +204,9 @@ public class ItemChiseledPiece : ItemBoardPiece
                         curOffset.Y = i;
                         if (!chiseledStacksTree.HasAttribute(ToXYZString(curOffset)))
                         {
-                            SetChiseledStack(slot.Itemstack, mouseslot.TakeOut(1), curOffset);
+                            ItemStack clonedMouseStack = mouseslot.TakeOutWhole();
+                            clonedMouseStack.StackSize = 1;
+                            SetChiseledStack(slot.Itemstack, clonedMouseStack, curOffset);
                             break;
                         }
                     }
@@ -244,16 +248,6 @@ public class ItemChiseledPiece : ItemBoardPiece
     }
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => toolModes;
-
-    private bool TriggerErrorOnMultipleReceivers(int stackSize)
-    {
-        bool trigger = stackSize > 1;
-        if (trigger)
-        {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-max-one-receiver-per-action", Lang.Get("tabletopgames:ingameerror-max-one-receiver-per-action"));
-        }
-        return trigger;
-    }
 
     private bool TriggerErrorOnStackSizeMismatch(int firstStackSize, int secondStackSize)
     {
