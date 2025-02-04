@@ -11,10 +11,7 @@ public class Core : ModSystem
     private ICoreAPI api;
     private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
 
-    public static Core GetInstance(ICoreAPI api)
-    {
-        return api.ModLoader.GetModSystem<Core>();
-    }
+    public static Core GetInstance(ICoreAPI api) => api.ModLoader.GetModSystem<Core>();
 
     public override void StartPre(ICoreAPI api)
     {
@@ -27,27 +24,18 @@ public class Core : ModSystem
 
         if (api.ModLoader.IsModEnabled("configlib"))
         {
-            _ = new ConfigLibCompatibility(api);
+            new ConfigLibCompatibility(api);
         }
     }
 
     public override void Start(ICoreAPI api)
     {
         this.api = api;
-        RegisterBlocks();
         RegisterItems();
-        RegisterBehaviors();
+        RegisterBlocks();
         RegisterBlockEntities();
-
-        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxUp"))
-        {
-            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxUp", 6);
-        }
-        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxDown"))
-        {
-            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxDown", 2);
-        }
-
+        RegisterBehaviors();
+        InitializeWorldConfigs();
         Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 
@@ -56,39 +44,51 @@ public class Core : ModSystem
         HarmonyInstance.UnpatchAll(HarmonyInstance.Id);
     }
 
+    private void RegisterItems()
+    {
+        api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
+        api.RegisterItemClass("TabletopGames.ItemChiseledPiece", typeof(ItemChiseledPiece));
+        api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
+        api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
+        api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
+        api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
+        api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
+    }
+
     private void RegisterBlocks()
     {
         api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
     }
 
-    private void RegisterItems()
+    private void RegisterBlockEntities()
     {
-        api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
-        api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
-        api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
-        api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
-        api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
-        api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
-        api.RegisterItemClass("TabletopGames.ItemChiseledPiece", typeof(ItemChiseledPiece));
+        api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
     }
 
     private void RegisterBehaviors()
     {
         api.RegisterCollectibleBehaviorClass("TabletopGames.AdvancedToolModes", typeof(CollectibleBehaviorAdvancedToolModes));
-        api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
-        api.RegisterCollectibleBehaviorClass("TabletopGames.ContainableTyped", typeof(CollectibleBehaviorContainableTyped));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Containable", typeof(CollectibleBehaviorContainable));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ContainableTyped", typeof(CollectibleBehaviorContainableTyped));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ContainedTransform", typeof(CollectibleBehaviorContainedTransform));
         api.RegisterCollectibleBehaviorClass("TabletopGames.DetachableLid", typeof(CollectibleBehaviorDetachableLid));
         api.RegisterCollectibleBehaviorClass("TabletopGames.InteractionHelpConstructor", typeof(CollectibleBehaviorInteractionHelpConstructor));
-        api.RegisterCollectibleBehaviorClass("TabletopGames.ContainedTransform", typeof(CollectibleBehaviorContainedTransform));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
 
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
 
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
     }
 
-    private void RegisterBlockEntities()
+    private void InitializeWorldConfigs()
     {
-        api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
+        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxUp"))
+        {
+            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxUp", 6);
+        }
+        if (!api.World.Config.HasAttribute("tabletopgames_chiseledPieceMaxDown"))
+        {
+            api.World.Config.SetInt("tabletopgames_chiseledPieceMaxDown", 2);
+        }
     }
 }
