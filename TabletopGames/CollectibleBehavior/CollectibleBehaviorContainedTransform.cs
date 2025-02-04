@@ -8,8 +8,8 @@ using Vintagestory.GameContent;
 namespace TabletopGames;
 
 /// <summary>
-/// Provides custom transformation for items stored inside a BlockEntityDisplay, 
-/// specifically for items with Variants.
+/// Provides custom transformation for OnBeforeRender and collectibles stored inside a BlockEntityDisplay, 
+/// specifically for collectibles with Variants.
 /// </summary>
 public class CollectibleBehaviorContainedTransform : CollectibleBehavior, IContainedTransform
 {
