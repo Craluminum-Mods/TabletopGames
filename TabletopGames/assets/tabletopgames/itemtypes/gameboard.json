@@ -25,6 +25,9 @@
                 "tabletopgames:inworldcraftingdesc-chessboardinfo",
                 "<br>",
                 "<br>",
+                "tabletopgames:inworldcraftingdesc-dicetrayinfo",
+                "<br>",
+                "<br>",
                 "tabletopgames:inworldcraftingdesc-goboardinfo",
                 "\t",
                 "<font size=\"24\"><itemstack type=\"item\" code=\"charcoal\"></itemstack></font>",
@@ -122,7 +125,16 @@
                 { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, /*       */ "setVariants": { "size": "19x19", "color": "limewhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
                 { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, /*      */ "setVariants": { "size": "19x19", "color": "verdigris" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
                 { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, /*       */ "setVariants": { "size": "19x19", "color": "ultramarine" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, /*          */ "setVariants": { "size": "19x19", "color": "cinnabar" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] }
+                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, /*          */ "setVariants": { "size": "19x19", "color": "cinnabar" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+
+                // dice tray
+                {
+                    "triggerBy": { "type": "item", "code": "tabletopgames:dice" },
+                    "setVariants": { "type": "pentagon" },
+                    "convertTo": { "type": "block", "code": "tabletopgames:dicetray" },
+                    "copyAttributes": true,
+                    "consumeIngredient": false
+                }
             ],
 
             "type-chessboard_step1": [

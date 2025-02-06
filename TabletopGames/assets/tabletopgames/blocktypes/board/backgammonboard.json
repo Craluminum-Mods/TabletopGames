@@ -45,10 +45,7 @@
                     "blendedOverlays": [{ "base": "tabletopgames:block/board/backgammon/triangle", "blendMode": "OverlayCutout" }]
                 },
                 "maincolor": { "base": "tabletopgames:block/board/{color}32" },
-                "overlay-dice": {
-                    "base": "tabletopgames:block/board/{color}32",
-                    "blendedOverlays": [{ "base": "tabletopgames:block/board/backgammon/diceslot-overlay", "blendMode": "OverlayCutout" }]
-                },
+                "overlay-dice": { "base": "tabletopgames:block/overlay-dice/{color}" },
                 "stone": { "base": "game:block/stone/rock/{stone}1" },
                 "wood": { "base": "game:block/wood/debarked/{wood}" }
             }

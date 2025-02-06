@@ -1,0 +1,186 @@
+{
+    "code": "dicetray",
+    "class": "TabletopGames.BlockBoard",
+    "entityClass": "TabletopGames.Board",
+    "maxStackSize": 8,
+    "attributes": {
+        "handbook": { "groupBy": ["tabletopgames:dicetray"] },
+        "canChisel": false,
+        "moldrackable": true,
+        "shelvable": true,
+        "antlermountable": true,
+        "onmoldrackTransform": { "translation": { "x": 0.78, "y": -0.11, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 }, "scale": 0.8 },
+        "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.3 },
+        "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 90, "y": 0, "z": -90 } },
+        "name": {
+            "*": ["tabletopgames:block-dicetray-{type}"]
+        },
+        "description": {
+            "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+        },
+        "tabletopTags": {
+            "*": {
+                "tagsPerSlot": {
+                    "*": ["tabletopBoard", "dice"]
+                },
+                "tagsIgnoredPerSlot": {
+                    "*": ["tabletopBoard"]
+                }
+            }
+        },
+        "shape": {
+            "*": { "base": "tabletopgames:block/tray/{type}" }
+        },
+        "textures": {
+            "stone-*::color-*": {
+                "overlay": { "base": "tabletopgames:block/overlay-dice/{color}" },
+                "material": { "base": "game:block/stone/rock/{stone}1" }
+            },
+            "wood-*::color-*": {
+                "overlay": { "base": "tabletopgames:block/overlay-dice/{color}" },
+                "material": { "base": "game:block/wood/debarked/{wood}" }
+            },
+            "stone-*": {
+                "overlay": { "base": "game:block/transparent" },
+                "material": { "base": "game:block/stone/rock/{stone}1" }
+            },
+            "wood-*": {
+                "overlay": { "base": "game:block/transparent" },
+                "material": { "base": "game:block/wood/debarked/{wood}" }
+            }
+        },
+        "boardData": {
+            "type-square": {
+                "attributeTransformCode": "onDiceTrayTransform",
+                "quantitySlots": 16,
+                "size": { "x": 4, "y": 4 },
+                "padding": { "x": 0.2, "y": 0.2, "z": 0.2, "w": 0.2 },
+                "slotYRange": { "x": 0, "y": 0.61 },
+                "slotTypes": { "*": "random" }
+            },
+            "type-pentagon": {
+                "attributeTransformCode": "onDiceTrayTransform",
+                "quantitySlots": 16,
+                "size": { "x": 4, "y": 4 },
+                "padding": { "x": 0.25, "y": 0.25, "z": 0.25, "w": 0.15 },
+                "slotYRange": { "x": 0, "y": 0.61 },
+                "slotTypes": { "*": "random" }
+            },
+            "type-hexagon": {
+                "attributeTransformCode": "onDiceTrayTransform",
+                "quantitySlots": 16,
+                "size": { "x": 4, "y": 4 },
+                "padding": { "x": 0.2, "y": 0.2, "z": 0.2, "w": 0.2 },
+                "slotYRange": { "x": 0, "y": 0.61 },
+                "slotTypes": { "*": "random" }
+            },
+            "type-octagon": {
+                "attributeTransformCode": "onDiceTrayTransform",
+                "quantitySlots": 16,
+                "size": { "x": 4, "y": 4 },
+                "padding": { "x": 0.225, "y": 0.175, "z": 0.225, "w": 0.175 },
+                "slotYRange": { "x": 0, "y": 0.61 },
+                "slotTypes": { "*": "random" }
+            },
+            "type-heptagon": {
+                "attributeTransformCode": "onDiceTrayTransform",
+                "quantitySlots": 16,
+                "size": { "x": 4, "y": 4 },
+                "padding": { "x": 0.225, "y": 0.25, "z": 0.225, "w": 0.225 },
+                "slotYRange": { "x": 0, "y": 0.61 },
+                "slotTypes": { "*": "random" }
+            }
+        },
+        "extraSelectionBoxes": {
+            "*": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03, "z2": 1 }]
+        }
+    },
+    "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
+    "behaviors": [
+        { "name": "Unstable" },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "SingleCenter",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.AdvancedToolModes",
+            "properties": {
+                "textures": {
+                    "paintbrush": "paintbrush"
+                },
+                "toolModes": {
+                    "*": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-changeboardlinescolor",
+                            "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+
+                        { "setVariants": { "type": "square" }, "convertTo": { "type": "block", "code": "tabletopgames:dicetray" }, "copyAttributes": true, "linebreak": true },
+                        { "setVariants": { "type": "pentagon" }, "convertTo": { "type": "block", "code": "tabletopgames:dicetray" }, "copyAttributes": true },
+                        { "setVariants": { "type": "hexagon" }, "convertTo": { "type": "block", "code": "tabletopgames:dicetray" }, "copyAttributes": true },
+                        { "setVariants": { "type": "heptagon" }, "convertTo": { "type": "block", "code": "tabletopgames:dicetray" }, "copyAttributes": true },
+                        { "setVariants": { "type": "octagon" }, "convertTo": { "type": "block", "code": "tabletopgames:dicetray" }, "copyAttributes": true }
+                    ]
+                }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames", "general", "decorative"],
+            "stacks": [
+                { "type": "block", "code": "dicetray", "attributes": { "types": { "type": "square", "wood": "oak" } } },
+                { "type": "block", "code": "dicetray", "attributes": { "types": { "type": "pentagon", "wood": "oak" } } },
+                { "type": "block", "code": "dicetray", "attributes": { "types": { "type": "hexagon", "wood": "oak" } } },
+                { "type": "block", "code": "dicetray", "attributes": { "types": { "type": "heptagon", "wood": "oak" } } },
+                { "type": "block", "code": "dicetray", "attributes": { "types": { "type": "octagon", "wood": "oak" } } }
+            ]
+        }
+    ],
+    "blockmaterial": "Wood",
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+        "scale": 1.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": 110, "y": 0, "z": -75 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    },
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 }
+}
