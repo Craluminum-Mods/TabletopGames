@@ -1,7 +1,7 @@
 {
     "code": "dice",
     "class": "TabletopGames.ItemDice",
-    "maxStackSize": 1,
+    "maxStackSize": 8,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:dice"] },
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.5, "z": 0.1 }, "rotation": { "x": -90, "y": -145, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 1.25 },
