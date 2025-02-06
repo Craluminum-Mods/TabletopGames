@@ -68,7 +68,7 @@
     "itemdesc-dice-d8": "Восьмигранный кубик в форме октаэдра. Бросает случайное число от 1 до 8.",
     "itemdesc-dice-d12": "Двенадцатигранный кубик в форме додекаэдра. Бросает случайное число от 1 до 12.",
     "itemdesc-dice-d20": "Двадцатигранный кубик в форме икосаэдра. Бросает случайное число от 1 до 20.",
-    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхняя грань показывает {0}.</i></font>",
+    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхняя грань показывает <strong>{0}</strong>.</i></font>",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ингредиент: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",

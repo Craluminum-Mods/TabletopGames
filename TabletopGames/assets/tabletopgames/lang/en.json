@@ -68,7 +68,7 @@
     "itemdesc-dice-d8": "An eight-sided die with an octahedron shape. Rolls a random number from 1 to 8.",
     "itemdesc-dice-d12": "A twelve-sided die with a dodecahedron shape. Rolls a random number from 1 to 12.",
     "itemdesc-dice-d20": "A twenty-sided die with an icosahedron shape. Rolls a random number from 1 to 20.",
-    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Top face shows {0}.</i></font>",
+    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Top face shows <strong>{0}</strong>.</i></font>",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",

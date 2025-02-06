@@ -68,7 +68,7 @@
     "itemdesc-dice-d8": "Восьмигранний кубик у формі октаедра. Випадає випадкове число від 1 до 8.",
     "itemdesc-dice-d12": "Дванадцятигранний кубик у формі додекаедра. Випадає випадкове число від 1 до 12.",
     "itemdesc-dice-d20": "Двадцятигранний кубик у формі ікосаедра. Випадає випадкове число від 1 до 20.",
-    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхня грань показує {0}.</i></font>",
+    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхня грань показує <strong>{0}</strong>.</i></font>",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Інгредієнт: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетягніть пігмент сюди, щоб змінити колір ліній на дошці.",
