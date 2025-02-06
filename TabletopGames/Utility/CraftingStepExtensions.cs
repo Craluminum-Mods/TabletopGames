@@ -19,12 +19,12 @@ public static class CraftingStepExtensions
     {
         foreach (CraftingStep step in steps)
         {
-            CraftingRecipeIngredient ingred = step.TriggerBy.Clone();
+            CraftingRecipeIngredient ingred = step.TriggerBy?.Clone();
             JsonItemStack output = step.ConvertTo?.Clone();
             ingred?.Resolve(byPlayer.Entity.World, "");
             output?.Resolve(byPlayer.Entity.World, "");
 
-            if (!ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
+            if (ingred == null || !ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
             {
                 continue;
             }
@@ -79,12 +79,12 @@ public static class CraftingStepExtensions
     {
         foreach (CraftingStep step in steps)
         {
-            CraftingRecipeIngredient ingred = step.TriggerBy.Clone();
+            CraftingRecipeIngredient ingred = step.TriggerBy?.Clone();
             JsonItemStack output = step.GiveStack?.Clone();
             ingred?.Resolve(byPlayer.Entity.World, "");
             output?.Resolve(byPlayer.Entity.World, "");
 
-            if (output == null || output.ResolvedItemstack == null || !ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
+            if (output == null || output.ResolvedItemstack == null || ingred == null || !ingred.SatisfiesAsIngredient(inputSlot.Itemstack))
             {
                 continue;
             }
