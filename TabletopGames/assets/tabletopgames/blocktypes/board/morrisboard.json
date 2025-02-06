@@ -2,7 +2,7 @@
     "code": "morrisboard",
     "class": "TabletopGames.BlockBoard",
     "entityClass": "TabletopGames.Board",
-    "maxStackSize": 1,
+    "maxStackSize": 8,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:morrisboard"] },
         "canChisel": false,
