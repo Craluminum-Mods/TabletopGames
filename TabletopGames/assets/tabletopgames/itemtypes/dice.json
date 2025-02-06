@@ -1,7 +1,7 @@
 {
     "code": "dice",
     "class": "TabletopGames.ItemDice",
-    "maxStackSize": 8,
+    "maxStackSize": 64,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:dice"] },
         "shelvable": true,
