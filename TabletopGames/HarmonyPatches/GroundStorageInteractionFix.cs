@@ -13,23 +13,20 @@ public static class GroundStorageInteractionFix
     [HarmonyPrefix]
     public static bool Prefix(ref bool __result, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (blockSel == null || world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityGroundStorage begs)
+        if (blockSel == null || world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityGroundStorage begs || begs.Inventory == null || begs.Inventory.Empty)
         {
-            return true;
-        }
-
-        if (!byPlayer.Entity.World.Claims.TryAccess(byPlayer, blockSel.Position, EnumBlockAccessFlags.Use))
-        {
-            world.BlockAccessor.MarkBlockDirty(blockSel.Position.AddCopy(blockSel.Face));
-            byPlayer.InventoryManager.ActiveHotbarSlot.MarkDirty();
             return true;
         }
 
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (hotbarSlot.Empty || targetSlot.Empty)
+        if (hotbarSlot?.Empty == true || targetSlot?.Empty == true) return true;
+
+        if (!byPlayer.Entity.World.Claims.TryAccess(byPlayer, blockSel.Position, EnumBlockAccessFlags.Use))
         {
+            world.BlockAccessor.MarkBlockDirty(blockSel.Position.AddCopy(blockSel.Face));
+            byPlayer.InventoryManager.ActiveHotbarSlot.MarkDirty();
             return true;
         }
 
