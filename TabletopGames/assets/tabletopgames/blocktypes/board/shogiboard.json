@@ -119,8 +119,7 @@
                         { "setVariants": { "size": "4x4_lstand" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true, "linebreak": true },
                         { "setVariants": { "size": "4x4_rstand" }, "convertTo": { "type": "block", "code": "tabletopgames:shogiboard" }, "copyAttributes": true },
 
-                        // giving second color for free to avoid missing textures
-                        { "setVariants": { "size": "classic", "color2": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
+                        { "setVariants": { "size": "classic" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
                 }
             }

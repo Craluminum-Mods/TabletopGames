@@ -35,7 +35,7 @@
             "size-classic::wood-*": { "base": "tabletopgames:block/board/backgammon/12x16-wood" }
         },
         "textures": {
-            "*": {
+            "color-*::color2-*": {
                 "color1-triangle": {
                     "base": "tabletopgames:block/board/{color}32",
                     "blendedOverlays": [{ "base": "tabletopgames:block/board/backgammon/triangle", "blendMode": "OverlayCutout" }]
@@ -46,6 +46,36 @@
                 },
                 "maincolor": { "base": "tabletopgames:block/board/{color}32" },
                 "overlay-dice": { "base": "tabletopgames:block/overlay-dice/{color}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood": { "base": "game:block/wood/debarked/{wood}" }
+            },
+            "color-*": {
+                "color1-triangle": {
+                    "base": "tabletopgames:block/board/{color}32",
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/backgammon/triangle", "blendMode": "OverlayCutout" }]
+                },
+                "color2-triangle": { "base": "game:block/transparent" },
+                "maincolor": { "base": "tabletopgames:block/board/{color}32" },
+                "overlay-dice": { "base": "tabletopgames:block/overlay-dice/{color}" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood": { "base": "game:block/wood/debarked/{wood}" }
+            },
+            "color2-*": {
+                "color1-triangle": { "base": "game:block/transparent" },
+                "color2-triangle": {
+                    "base": "tabletopgames:block/board/{color2}32",
+                    "blendedOverlays": [{ "base": "tabletopgames:block/board/backgammon/triangle", "blendMode": "OverlayCutout" }]
+                },
+                "maincolor": { "base": "game:block/transparent" },
+                "overlay-dice": { "base": "game:block/transparent" },
+                "stone": { "base": "game:block/stone/rock/{stone}1" },
+                "wood": { "base": "game:block/wood/debarked/{wood}" }
+            },
+            "*": {
+                "color1-triangle": { "base": "game:block/transparent" },
+                "color2-triangle": { "base": "game:block/transparent" },
+                "maincolor": { "base": "game:block/transparent" },
+                "overlay-dice": { "base": "game:block/transparent" },
                 "stone": { "base": "game:block/stone/rock/{stone}1" },
                 "wood": { "base": "game:block/wood/debarked/{wood}" }
             }
