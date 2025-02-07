@@ -9,7 +9,7 @@
 		"overlay": [16,16]
 	},
 	"textures": {
-		"overlay": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/block/board/backgammon/diceslot-overlay",
+		"overlay": "C:/Users/dana_/Source/Repos/TabletopGames/TabletopGames/assets/tabletopgames/textures/block/overlay-dice/carbonblack",
 		"material": "block/wood/debarked/oak"
 	},
 	"elements": [
