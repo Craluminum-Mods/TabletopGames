@@ -33,6 +33,7 @@
         },
         "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-flint": { "material": { "base": "game:block/stone/flint" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
             "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
             "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
@@ -67,6 +68,7 @@
                     },
                     "textures": {
                         "wood-*": { "lid": { "base": "game:block/wood/debarked/{wood}" } },
+                        "stone-flint": { "lid": { "base": "game:block/stone/flint" } },
                         "stone-*": { "lid": { "base": "game:block/stone/rock/{stone}1" } },
                         "@ore_ungraded-(charcoal|coke)": { "lid": { "base": "game:block/coal/{ore_ungraded}" } },
                         "ore_ungraded-rosequartz": { "lid": { "base": "game:item/resource/ungraded/rosyquartz" } },

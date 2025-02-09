@@ -14,6 +14,7 @@
             "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:item-chesspiece-{type}", ")"]
         },
         "description": {
+            "stone-flint": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
@@ -25,6 +26,7 @@
         },
         "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+            "stone-flint": { "material": { "base": "game:block/stone/flint" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
             "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
             "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
