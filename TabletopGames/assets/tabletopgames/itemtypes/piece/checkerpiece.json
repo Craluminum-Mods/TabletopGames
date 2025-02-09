@@ -17,7 +17,9 @@
         "description": {
             "stone-flint": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "wood-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-checkerpiece", "item-mineral", ": ", "item-{ore_ungraded}"],
+            "ore_ungraded-*": ["tabletopgames:trivia-checkerpiece", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
         "tabletopTags": {
             "tags": ["chess", "backgammon"]

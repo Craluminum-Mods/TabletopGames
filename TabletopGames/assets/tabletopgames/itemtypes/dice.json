@@ -17,6 +17,7 @@
             "stone-flint": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
         "containedDescription": {

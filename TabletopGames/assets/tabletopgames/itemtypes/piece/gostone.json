@@ -20,7 +20,9 @@
         "description": {
             "stone-flint": ["blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
+            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["item-mineral", ": ", "item-{ore_ungraded}"],
+            "ore_ungraded-*": ["item-mineral", ": ", "ore-{ore_ungraded}"]
         },
         "tabletopTags": {
             "tags": ["go", "omok"]

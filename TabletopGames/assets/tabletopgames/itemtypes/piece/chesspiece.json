@@ -16,7 +16,9 @@
         "description": {
             "stone-flint": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "item-{ore_ungraded}"],
+            "ore_ungraded-*": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
         "tabletopTags": {
             "tags": ["chess"]

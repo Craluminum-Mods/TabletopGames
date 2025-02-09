@@ -27,7 +27,9 @@
         "description": {
             "stone-flint": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"]
+            "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-{type}-lid", "item-mineral", ": ", "item-{ore_ungraded}"],
+            "ore_ungraded-*": ["tabletopgames:trivia-{type}-lid", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
         "shape": {
             "type-gobowl": { "base": "tabletopgames:item/gobowl/lid" }
