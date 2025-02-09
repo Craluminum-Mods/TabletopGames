@@ -15,6 +15,7 @@
         },
         "description": {
             "stone-flint": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": ["Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-shogipiece", "item-mineral", ": ", "item-{ore_ungraded}"],

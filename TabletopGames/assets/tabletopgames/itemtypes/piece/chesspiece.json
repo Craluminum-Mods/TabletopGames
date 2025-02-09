@@ -15,6 +15,7 @@
         },
         "description": {
             "stone-flint": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": ["tabletopgames:trivia-chesspiece-{type}", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "item-{ore_ungraded}"],
@@ -96,19 +97,9 @@
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "stone": "chalk" } } },
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "stone": "chalk" } } },
 
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "ebony" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "ebony" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "ebony" } } },
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "ebony" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "ebony" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "ebony" } } },
-
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "bishop", "wood": "baldcypress" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "king", "wood": "baldcypress" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "knight", "wood": "baldcypress" } } },
                 { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "wood": "baldcypress" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "queen", "wood": "baldcypress" } } },
-                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "rook", "wood": "baldcypress" } } }
+                { "type": "item", "code": "chesspiece", "attributes": { "types": { "type": "pawn", "stone": "meteorite-iron" } } }
             ]
         }
     ],

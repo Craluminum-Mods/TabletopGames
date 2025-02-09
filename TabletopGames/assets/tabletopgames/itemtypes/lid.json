@@ -26,6 +26,7 @@
         },
         "description": {
             "stone-flint": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": ["tabletopgames:trivia-{type}-lid", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-{type}-lid", "item-mineral", ": ", "item-{ore_ungraded}"],
@@ -111,7 +112,8 @@
                 { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "stone": "basalt" } } },
                 { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "stone": "chalk" } } },
                 { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "wood": "ebony" } } },
-                { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "wood": "baldcypress" } } }
+                { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "wood": "baldcypress" } } },
+                { "type": "item", "code": "lid", "attributes": { "types": { "type": "gobowl", "stone": "meteorite-iron" } } }
             ]
         }
     ],

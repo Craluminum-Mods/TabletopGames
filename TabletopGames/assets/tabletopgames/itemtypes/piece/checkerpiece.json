@@ -16,6 +16,7 @@
         },
         "description": {
             "stone-flint": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": ["tabletopgames:trivia-checkerpiece", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-checkerpiece", "blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-checkerpiece", "item-mineral", ": ", "item-{ore_ungraded}"],
@@ -63,7 +64,8 @@
                 { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "basalt" } } },
                 { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "chalk" } } },
                 { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "ebony" } } },
-                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "baldcypress" } } }
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "wood": "baldcypress" } } },
+                { "type": "item", "code": "checkerpiece", "attributes": { "types": { "type": "pawn", "stone": "meteorite-iron" } } }
             ]
         }
     ],

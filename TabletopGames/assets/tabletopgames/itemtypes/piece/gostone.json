@@ -19,6 +19,7 @@
         },
         "description": {
             "stone-flint": ["blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": ["Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["item-mineral", ": ", "item-{ore_ungraded}"],
@@ -90,7 +91,8 @@
                 { "type": "item", "code": "gostone", "attributes": { "types": { "stone": "basalt" } } },
                 { "type": "item", "code": "gostone", "attributes": { "types": { "stone": "chalk" } } },
                 { "type": "item", "code": "gostone", "attributes": { "types": { "wood": "ebony" } } },
-                { "type": "item", "code": "gostone", "attributes": { "types": { "wood": "baldcypress" } } }
+                { "type": "item", "code": "gostone", "attributes": { "types": { "wood": "baldcypress" } } },
+                { "type": "item", "code": "gostone", "attributes": { "types": { "stone": "meteorite-iron" } } }
             ]
         }
     ],

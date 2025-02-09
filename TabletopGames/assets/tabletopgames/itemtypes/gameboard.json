@@ -16,6 +16,7 @@
             "type-*": ["tabletopgames:inworldcrafting-item-gameboard-{type}"]
         },
         "description": {
+            "stone-meteorite-iron": ["tabletopgames:itemdesc-gameboard-generic", "<br>", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:itemdesc-gameboard-generic", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:itemdesc-gameboard-generic", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"]
         },

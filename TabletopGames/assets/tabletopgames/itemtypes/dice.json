@@ -15,6 +15,7 @@
         },
         "description": {
             "stone-flint": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "item-flint"],
+            "stone-meteorite-iron": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "blockmaterial-Wood", ": ", "material-{wood}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": [["tabletopgames:itemdesc-dice-dots", "{dot}"], "<br>", "tabletopgames:itemdesc-dice-{type}", "<br>", "item-mineral", ": ", "item-{ore_ungraded}"],
@@ -631,7 +632,8 @@
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d8", "dot": "8", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d12", "dot": "12", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d20", "dot": "20", "stone": "basalt", "color": "chalkwhite" } } },
-
+                
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "meteorite-iron", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "stone": "flint", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "charcoal", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "coke", "color": "chalkwhite" } } },
@@ -642,7 +644,7 @@
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "alum", "color": "carbonblack" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "lapislazuli", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "corundum", "color": "chalkwhite" } } },
-                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "anthracite", "color": "carbonblack" } } },
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "anthracite", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "borax", "color": "carbonblack" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "cinnabar", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "lignite", "color": "chalkwhite" } } },
@@ -654,7 +656,7 @@
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "fluorite", "color": "carbonblack" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "graphite", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "kernite", "color": "carbonblack" } } },
-                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "phosphorite", "color": "carbonblack" } } }
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "phosphorite", "color": "chalkwhite" } } }
             ]
         }
     ],
