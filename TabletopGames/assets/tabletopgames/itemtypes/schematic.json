@@ -219,6 +219,28 @@
                             ]
                         },
 
+                        // ####################
+                        // ### Ore Ungraded ###
+                        // ####################
+                        {
+                            // giving color for free to avoid missing textures
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-ore-ungraded", 1, "tabletopgames:item-dice"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "sulfur", "color": "carbonblack" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
+                                    "setVariants": { "type": "classic_cube", "dot": "6", "ore_ungraded": "{ore_ungraded}", "color": "carbonblack" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
+                                    "setVariants": { "type": "classic_cube", "dot": "6", "ore_ungraded": "{ore_ungraded}", "color": "carbonblack" }
+                                }
+                            ]
+                        },
+
                         // ##############
                         // ### Wooden ###
                         // ##############
