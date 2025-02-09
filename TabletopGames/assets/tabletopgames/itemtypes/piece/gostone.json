@@ -18,6 +18,7 @@
             "*": ["tabletopgames:item-gostone"]
         },
         "description": {
+            "stone-flint": ["blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"]
         },

@@ -25,6 +25,7 @@
             "*": ["tabletopgames:item-gobowl"]
         },
         "description": {
+            "stone-flint": ["tabletopgames:trivia-gobowl", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-*": ["tabletopgames:trivia-gobowl", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-gobowl", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
