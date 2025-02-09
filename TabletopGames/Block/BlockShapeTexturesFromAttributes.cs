@@ -32,9 +32,14 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public override void OnUnloaded(ICoreAPI api)
     {
         base.OnUnloaded(api);
+
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
         meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
         ObjectCacheUtil.Delete(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
+
+        Dictionary<string, MeshData> meshes = ObjectCacheUtil.TryGet<Dictionary<string, MeshData>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes");
+        meshRefs?.Foreach(mesh => mesh.Value?.Dispose());
+        ObjectCacheUtil.Delete(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes");
     }
 
     public virtual void LoadTypes()
@@ -69,7 +74,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         return ok;
     }
 
-    public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
+    public virtual MeshData GenGuiMesh(Variants variants)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
@@ -83,29 +88,71 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        ITexPositionSource texSource = null;
-        if (overrideTexturesource != null)
-        {
-            texSource = overrideTexturesource;
-        }
-        if (texSource == null)
-        {
-            variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
-            _textures ??= new Dictionary<string, CompositeTexture>();
+        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        _textures ??= new Dictionary<string, CompositeTexture>();
 
-            ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
-            texSource = stexSource;
-            foreach (KeyValuePair<string, CompositeTexture> val in _textures)
+        ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+        foreach (KeyValuePair<string, CompositeTexture> val in _textures)
+        {
+            CompositeTexture ctex = val.Value.Clone();
+            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
+            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex.Bake(capi.Assets);
+            stexSource.textures[val.Key] = ctex;
+        }
+
+        if (shape == null) return mesh;
+        capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, stexSource);
+        return mesh;
+    }
+
+    public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
+    {
+        Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes", () => new Dictionary<string, MeshData>());
+
+        ICoreClientAPI capi = api as ICoreClientAPI;
+
+        string key = $"{Code}-{variants}";
+        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData mesh))
+        {
+            mesh = new MeshData(4, 3);
+
+            variants.FindByVariant(shapeByType, out CompositeShape _shape);
+            if (_shape == null) return mesh;
+
+            CompositeShape rcshape = _shape.Clone();
+            rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
+            rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
+
+            Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+
+            ITexPositionSource texSource = overrideTexturesource;
+            if (overrideTexturesource == null)
             {
-                CompositeTexture ctex = val.Value.Clone();
-                ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-                ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
-                ctex.Bake(capi.Assets);
-                stexSource.textures[val.Key] = ctex;
+                variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+                _textures ??= new Dictionary<string, CompositeTexture>();
+
+                ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+                texSource = stexSource;
+                foreach (KeyValuePair<string, CompositeTexture> val in _textures)
+                {
+                    CompositeTexture ctex = val.Value.Clone();
+                    ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
+                    ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+                    ctex.Bake(capi.Assets);
+                    stexSource.textures[val.Key] = ctex;
+                }
+            }
+
+            if (shape == null) return mesh;
+
+            capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
+
+            if (overrideTexturesource == null)
+            {
+                cMeshes[key] = mesh;
             }
         }
-        if (shape == null) return mesh;
-        capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
         return mesh;
     }
 
@@ -132,7 +179,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         string key = GetMeshCacheKey(itemstack);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
         {
-            MeshData mesh = GetOrCreateMesh(variants);
+            MeshData mesh = GenGuiMesh(variants);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -212,7 +259,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GetOrCreateMesh(Variants.FromStack(itemstack));
+        return GenGuiMesh(Variants.FromStack(itemstack));
     }
 
     public string GetMeshCacheKey(ItemStack itemstack)
