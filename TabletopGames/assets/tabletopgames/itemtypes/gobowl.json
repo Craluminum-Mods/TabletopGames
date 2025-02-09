@@ -33,7 +33,11 @@
         },
         "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
-            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+            "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
+            "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
+            "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
+            "ore_ungraded-*": { "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
         },
         "quantitySlots": {
             "*": 8
@@ -46,11 +50,13 @@
         },
         "openSound": {
             "stone-*": "game:sounds/block/vesselopen",
-            "wood-*": "game:sounds/block/planks"
+            "wood-*": "game:sounds/block/planks",
+            "ore_ungraded-*": "game:sounds/block/vesselopen"
         },
         "closeSound": {
             "stone-*": "game:sounds/block/vesselclose",
-            "wood-*": "game:sounds/block/planks"
+            "wood-*": "game:sounds/block/planks",
+            "ore_ungraded-*": "game:sounds/block/vesselclose"
         }
     },
     "behaviors": [

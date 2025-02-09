@@ -53,6 +53,7 @@
     "item-shogipiece-tokin": "Promoted pawn (Tokin)",
     "game:item-stone-generic": "Stone",
     "game:item-plank-generic": "Board",
+    "game:item-mineral": "Mineral",
 
     "item-dice": "Dice",
     "item-dice-classic_cube": "D6 Dice",

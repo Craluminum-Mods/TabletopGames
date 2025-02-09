@@ -29,7 +29,11 @@
         },
         "textures": {
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
-            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } }
+            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+            "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
+            "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
+            "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
+            "ore_ungraded-*": { "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
         }
     },
     "behaviors": [
@@ -50,7 +54,11 @@
                     },
                     "textures": {
                         "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
-                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } }
+                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } },
+                        "@ore_ungraded-(charcoal|coke)": { "contents": { "base": "game:block/coal/{ore_ungraded}" } },
+                        "ore_ungraded-rosequartz": { "contents": { "base": "game:item/resource/ungraded/rosyquartz" } },
+                        "ore_ungraded-alum": { "contents": { "base": "game:item/resource/ungraded/quartz" } },
+                        "ore_ungraded-*": { "contents": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
                     }
                 },
                 "gobowllid-properties": {
@@ -59,7 +67,11 @@
                     },
                     "textures": {
                         "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
-                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } }
+                        "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } },
+                        "@ore_ungraded-(charcoal|coke)": { "contents": { "base": "game:block/coal/{ore_ungraded}" } },
+                        "ore_ungraded-rosequartz": { "contents": { "base": "game:item/resource/ungraded/rosyquartz" } },
+                        "ore_ungraded-alum": { "contents": { "base": "game:item/resource/ungraded/quartz" } },
+                        "ore_ungraded-*": { "contents": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
                     }
                 }
             }

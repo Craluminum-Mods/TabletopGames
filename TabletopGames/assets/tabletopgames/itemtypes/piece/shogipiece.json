@@ -31,6 +31,22 @@
             "stone-*": {
                 "material": { "base": "game:block/stone/rock/{stone}1" },
                 "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            },
+            "@ore_ungraded-(charcoal|coke)": {
+                "material": { "base": "game:block/coal/{ore_ungraded}" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            },
+            "ore_ungraded-rosequartz": {
+                "material": { "base": "game:item/resource/ungraded/rosyquartz" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            },
+            "ore_ungraded-alum": {
+                "material": { "base": "game:item/resource/ungraded/quartz" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
+            },
+            "ore_ungraded-*": {
+                "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" },
+                "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" }
             }
         },
         "rotateWhenPlacedOnBoard": true

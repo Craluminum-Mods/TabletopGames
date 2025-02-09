@@ -222,11 +222,81 @@
                         // ####################
                         // ### Ore Ungraded ###
                         // ####################
+
+                        {
+                            "linebreak": true,
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 32, "tabletopgames:item-chesspiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 32 },
+                                    "setVariants": { "type": "pawn", "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 32 },
+                                    "setVariants": { "type": "pawn", "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 32, "tabletopgames:item-checkerpiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 32 },
+                                    "setVariants": { "type": "pawn", "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 32 },
+                                    "setVariants": { "type": "pawn", "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 64, "tabletopgames:item-gostone"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
+                                    "setVariants": { "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 },
+                                    "setVariants": { "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 40, "tabletopgames:item-shogipiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 40 },
+                                    "setVariants": { "type": "fuhyo", "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 40 },
+                                    "setVariants": { "type": "fuhyo", "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
                         {
                             // giving color for free to avoid missing textures
-                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-ore-ungraded", 1, "tabletopgames:item-dice"]],
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 1, "tabletopgames:item-dice"]],
                             "isSinkSlot": true,
-                            "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "sulfur", "color": "carbonblack" } } },
+                            "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "ore_ungraded": "kernite", "color": "carbonblack" } } },
                             "slotParams": [
                                 {
                                     "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
@@ -237,6 +307,40 @@
                                     "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
                                     "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
                                     "setVariants": { "type": "classic_cube", "dot": "6", "ore_ungraded": "{ore_ungraded}", "color": "carbonblack" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 1, "tabletopgames:item-gobowl"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 },
+                                    "setVariants": { "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 },
+                                    "setVariants": { "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-mineral", 1, "tabletopgames:item-gobowl-lid"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "ore_ungraded": "kernite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["charcoal", "coke", "amethyst", "clearquartz", "rosequartz", "smokyquartz"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 },
+                                    "setVariants": { "type": "gobowl", "ore_ungraded": "{ore_ungraded}" }
+                                },
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 },
+                                    "setVariants": { "type": "gobowl", "ore_ungraded": "{ore_ungraded}" }
                                 }
                             ]
                         },
