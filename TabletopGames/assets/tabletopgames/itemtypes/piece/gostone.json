@@ -18,10 +18,11 @@
             "*": ["tabletopgames:item-gostone"]
         },
         "description": {
+            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
             "stone-flint": ["blockmaterial-Stone", ": ", "item-flint"],
             "stone-meteorite-iron": ["Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
+            "metal-*": ["blockmaterial-Metal", ": ", "material-{metal}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["item-mineral", ": ", "ore-{ore_ungraded}"]
         },
@@ -35,6 +36,7 @@
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "stone-flint": { "material": { "base": "game:block/stone/flint" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+            "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" } },
             "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
             "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
             "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
@@ -59,8 +61,9 @@
                     },
                     "textures": {
                         "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
-                        "stone-flint": { "material": { "base": "game:block/stone/flint" } },
+                        "stone-flint": { "contents": { "base": "game:block/stone/flint" } },
                         "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } },
+                        "metal-*": { "contents": { "base": "game:block/metal/ingot/{metal}" } },
                         "@ore_ungraded-(charcoal|coke)": { "contents": { "base": "game:block/coal/{ore_ungraded}" } },
                         "ore_ungraded-rosequartz": { "contents": { "base": "game:item/resource/ungraded/rosyquartz" } },
                         "ore_ungraded-alum": { "contents": { "base": "game:item/resource/ungraded/quartz" } },
@@ -73,8 +76,9 @@
                     },
                     "textures": {
                         "wood-*": { "contents": { "base": "game:block/wood/debarked/{wood}" } },
-                        "stone-flint": { "material": { "base": "game:block/stone/flint" } },
+                        "stone-flint": { "contents": { "base": "game:block/stone/flint" } },
                         "stone-*": { "contents": { "base": "game:block/stone/rock/{stone}1" } },
+                        "metal-*": { "contents": { "base": "game:block/metal/ingot/{metal}" } },
                         "@ore_ungraded-(charcoal|coke)": { "contents": { "base": "game:block/coal/{ore_ungraded}" } },
                         "ore_ungraded-rosequartz": { "contents": { "base": "game:item/resource/ungraded/rosyquartz" } },
                         "ore_ungraded-alum": { "contents": { "base": "game:item/resource/ungraded/quartz" } },

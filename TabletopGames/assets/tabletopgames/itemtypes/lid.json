@@ -25,10 +25,11 @@
             "*": ["tabletopgames:item-gobowl-lid"]
         },
         "description": {
+            "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"],
             "stone-flint": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-meteorite-iron": ["tabletopgames:trivia-{type}-lid", "Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "metal-*": ["tabletopgames:trivia-{type}-lid", "blockmaterial-Metal", ": ", "material-{metal}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-{type}-lid", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["tabletopgames:trivia-{type}-lid", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
@@ -39,6 +40,7 @@
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
             "stone-flint": { "material": { "base": "game:block/stone/flint" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+            "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" } },
             "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
             "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
             "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
@@ -74,6 +76,7 @@
                         "wood-*": { "lid": { "base": "game:block/wood/debarked/{wood}" } },
                         "stone-flint": { "lid": { "base": "game:block/stone/flint" } },
                         "stone-*": { "lid": { "base": "game:block/stone/rock/{stone}1" } },
+                        "metal-*": { "lid": { "base": "game:block/metal/ingot/{metal}" } },
                         "@ore_ungraded-(charcoal|coke)": { "lid": { "base": "game:block/coal/{ore_ungraded}" } },
                         "ore_ungraded-rosequartz": { "lid": { "base": "game:item/resource/ungraded/rosyquartz" } },
                         "ore_ungraded-alum": { "lid": { "base": "game:item/resource/ungraded/quartz" } },

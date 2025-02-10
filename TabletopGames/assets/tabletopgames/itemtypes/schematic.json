@@ -40,6 +40,7 @@
                         // #############
                         // ### Stone ###
                         // #############
+
                         {
                             "linebreak": true,
                             "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 16, "game:item-stone-generic", 16, "tabletopgames:item-chesspiece"]],
@@ -167,6 +168,7 @@
                         // #################
                         // ### Meteorite ###
                         // #################
+
                         {
                             "linebreak": true,
                             "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 1, "game:item-stone-meteorite-iron", 32, "tabletopgames:item-chesspiece"]],
@@ -377,6 +379,97 @@
                                     "triggerBy": { "type": "item", "code": "game:ore-*", "quantity": 1, "name": "ore_ungraded", "allowedVariants": ["alum", "lapislazuli", "corundum", "anthracite", "borax", "cinnabar", "lignite", "bituminouscoal", "sylvite", "quartz", "olivine", "sulfur", "fluorite", "graphite", "kernite", "phosphorite"] },
                                     "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 },
                                     "setVariants": { "type": "gobowl", "ore_ungraded": "{ore_ungraded}" }
+                                }
+                            ]
+                        },
+
+                        // #############
+                        // ### Metal ###
+                        // #############
+
+                        {
+                            "linebreak": true,
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 16, "tabletopgames:item-chesspiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:chesspiece", "attributes": { "types": { "type": "pawn", "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 },
+                                    "setVariants": { "type": "pawn", "metal": "{metal}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 12, "tabletopgames:item-checkerpiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:checkerpiece", "attributes": { "types": { "type": "pawn", "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 },
+                                    "setVariants": { "type": "pawn", "metal": "{metal}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 200, "tabletopgames:item-gostone"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 200 },
+                                    "setVariants": { "metal": "{metal}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 20, "tabletopgames:item-shogipiece"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:shogipiece", "attributes": { "types": { "type": "fuhyo", "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 },
+                                    "setVariants": { "type": "fuhyo", "metal": "{metal}" }
+                                }
+                            ]
+                        },
+                        {
+                            // giving color for free to avoid missing textures
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 1, "tabletopgames:item-dice"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:dice", "attributes": { "types": { "type": "classic_cube", "dot": "6", "metal": "bismuth", "color": "chalkwhite" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 },
+                                    "setVariants": { "type": "classic_cube", "dot": "6", "metal": "{metal}", "color": "carbonblack" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 1, "tabletopgames:item-gobowl"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:gobowl", "attributes": { "types": { "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 },
+                                    "setVariants": { "metal": "{metal}" }
+                                }
+                            ]
+                        },
+                        {
+                            "nameArray": [["tabletopgames:toolmode-sinkslot-quantity-input-quantity-output", 8, "game:item-metalbit", 1, "tabletopgames:item-gobowl-lid"]],
+                            "isSinkSlot": true,
+                            "iconStack": { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "metal": "bismuth" } } },
+                            "slotParams": [
+                                {
+                                    "triggerBy": { "type": "item", "code": "game:metalbit-*", "quantity": 8, "name": "metal" },
+                                    "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 },
+                                    "setVariants": { "type": "gobowl", "metal": "{metal}" }
                                 }
                             ]
                         },

@@ -14,10 +14,11 @@
             "*": ["tabletopgames:item-shogipiece", " (", "tabletopgames:item-shogipiece-{type}", ")"]
         },
         "description": {
+            "wood-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Wood", ": ", "material-{wood}"],
             "stone-flint": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "item-flint"],
             "stone-meteorite-iron": ["Material: ", "item-stone-meteorite-iron"],
             "stone-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "wood-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Wood", ": ", "material-{wood}"],
+            "metal-*": ["tabletopgames:trivia-shogipiece", "blockmaterial-Metal", ": ", "material-{metal}"],
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-shogipiece", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["tabletopgames:trivia-shogipiece", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
@@ -31,6 +32,7 @@
             "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
             "stone-flint": { "material": { "base": "game:block/stone/flint" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
             "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
+            "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
             "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
             "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },
             "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" }, "overlay": { "base": "tabletopgames:item/piece/shogipiece/kanji-whitebackground/{type}" } },

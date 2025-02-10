@@ -17,5 +17,7 @@
     { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/quartz/rosequartz.json", "side": "Server" },
     { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/quartz/smokyquartz.json", "side": "Server" },
 
-    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/flint.json", "side": "Server" }
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/flint.json", "side": "Server" },
+
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/metalbit.json", "side": "Server" }
 ]
