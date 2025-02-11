@@ -1,6 +1,6 @@
 {
 	"editor": {
-		"collapsedPaths": "Root/origin/Cube5,Root/origin2/anchor2/kite-origin2,Root/Cube10/origin2,Root/origin2/anchor1/kite-origin5,Root/Cube6/origin4,Root/origin3,Root/Cube8/origin2,Root/origin2/anchor4/kite-origin3,Root/origin2/anchor5/kite-origin4,Root/Cube8/origin3,Root/origin2,Root/Cube10/origin,Root/Cube4/origin5,Root/origin/anchor5/kite-origin4,Root/origin/Cube5/origin4/kite-origin4,Root/origin2/anchor3/kite-origin,Root/origin/Cube5/origin4,Root/Cube2/origin5",
+		"collapsedPaths": "Root/origin/origin3,Root/origin/origin2,Root/origin/Cube5,Root/origin2/anchor2/kite-origin2,Root/origin2,Root/Cube10/origin,Root/Cube4/origin5,Root/Cube10/origin2,Root/origin2/anchor1/kite-origin5,Root/origin/anchor5/kite-origin4,Root/origin/Cube5/origin4/kite-origin4,Root/Cube6/origin4,Root/origin2/anchor3/kite-origin,Root/origin3,Root/Cube8/origin2,Root/origin/Cube5/origin4,Root/origin2/anchor4/kite-origin3,Root/origin2/anchor5/kite-origin4,Root/Cube8/origin3,Root/Cube2/origin5",
 		"allAngles": false,
 		"entityTextureMode": false
 	},
@@ -35,9 +35,9 @@
 	"elements": [
 		{
 			"name": "origin",
-			"from": [ 0.0, 0.75, 0.0 ],
-			"to": [ 0.0, 0.75, 0.0 ],
-			"rotationOrigin": [ 8.0, 3.75, 8.0 ],
+			"from": [ 0.0, 0.0, 0.0 ],
+			"to": [ 0.0, 0.0, 0.0 ],
+			"rotationOrigin": [ 8.0, 3.0, 8.0 ],
 			"rotationX": -138.0,
 			"rotationZ": 180.0,
 			"faces": {
