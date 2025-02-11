@@ -61,6 +61,28 @@
             "type-d8::dot-7": { "base": "tabletopgames:item/dice/d8", "rotateX": -24, "rotateY": 210, "rotateZ": 90 },
             "type-d8::dot-8": { "base": "tabletopgames:item/dice/d8" },
 
+            "type-d10::dot-0": { "base": "tabletopgames:item/dice/d10", "rotateX": 270, "rotateY": 153, "rotateZ": -25 },
+            "type-d10::dot-1": { "base": "tabletopgames:item/dice/d10" },
+            "type-d10::dot-2": { "base": "tabletopgames:item/dice/d10", "rotateX": 330, "rotateY": 135, "rotateZ": -115 },
+            "type-d10::dot-3": { "base": "tabletopgames:item/dice/d10", "rotateX": -270, "rotateY": 205, "rotateZ": 25 },
+            "type-d10::dot-4": { "base": "tabletopgames:item/dice/d10", "rotateX": -30, "rotateY": 225, "rotateZ": 115 },
+            "type-d10::dot-5": { "base": "tabletopgames:item/dice/d10", "rotateX": -210, "rotateY": 225, "rotateZ": 115 },
+            "type-d10::dot-6": { "base": "tabletopgames:item/dice/d10", "rotateX": 270, "rotateY": 205, "rotateZ": 26 },
+            "type-d10::dot-7": { "base": "tabletopgames:item/dice/d10", "rotateX": -210, "rotateY": 130, "rotateZ": 250 },
+            "type-d10::dot-8": { "base": "tabletopgames:item/dice/d10", "rotateX": 180, "rotateY": 0, "rotateZ": 0 },
+            "type-d10::dot-9": { "base": "tabletopgames:item/dice/d10", "rotateX": -90, "rotateY": 25, "rotateZ": 155 },
+
+            "type-d10p::dot-00": { "base": "tabletopgames:item/dice/d10", "rotateX": 270, "rotateY": 153, "rotateZ": -25 },
+            "type-d10p::dot-10": { "base": "tabletopgames:item/dice/d10" },
+            "type-d10p::dot-20": { "base": "tabletopgames:item/dice/d10", "rotateX": 330, "rotateY": 135, "rotateZ": -115 },
+            "type-d10p::dot-30": { "base": "tabletopgames:item/dice/d10", "rotateX": -270, "rotateY": 205, "rotateZ": 25 },
+            "type-d10p::dot-40": { "base": "tabletopgames:item/dice/d10", "rotateX": -30, "rotateY": 225, "rotateZ": 115 },
+            "type-d10p::dot-50": { "base": "tabletopgames:item/dice/d10", "rotateX": -210, "rotateY": 225, "rotateZ": 115 },
+            "type-d10p::dot-60": { "base": "tabletopgames:item/dice/d10", "rotateX": 270, "rotateY": 205, "rotateZ": 26 },
+            "type-d10p::dot-70": { "base": "tabletopgames:item/dice/d10", "rotateX": -210, "rotateY": 130, "rotateZ": 250 },
+            "type-d10p::dot-80": { "base": "tabletopgames:item/dice/d10", "rotateX": 180, "rotateY": 0, "rotateZ": 0 },
+            "type-d10p::dot-90": { "base": "tabletopgames:item/dice/d10", "rotateX": -90, "rotateY": 25, "rotateZ": 155 },
+
             "type-d12::dot-1": { "base": "tabletopgames:item/dice/d12", "rotateX": 0, "rotateY": 180, "rotateZ": 180 },
             "type-d12::dot-2": { "base": "tabletopgames:item/dice/d12", "rotateX": 96, "rotateY": -73, "rotateZ": 160 },
             "type-d12::dot-3": { "base": "tabletopgames:item/dice/d12", "rotateX": 102, "rotateY": -38, "rotateZ": -24 },
@@ -240,6 +262,216 @@
                 "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-16", "blendMode": "OverlayCutout" }] },
                 "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-32", "blendMode": "OverlayCutout" }] },
                 "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-64", "blendMode": "OverlayCutout" }] }
+            },
+
+            "type-d10::wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::stone-flint": {
+                "material": { "base": "game:block/stone/flint" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::metal-*": {
+                "material": { "base": "game:block/metal/ingot/{metal}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::@ore_ungraded-(charcoal|coke)": {
+                "material": { "base": "game:block/coal/{ore_ungraded}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::ore_ungraded-rosequartz": {
+                "material": { "base": "game:item/resource/ungraded/rosyquartz" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::ore_ungraded-alum": {
+                "material": { "base": "game:item/resource/ungraded/quartz" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10::ore_ungraded-*": {
+                "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-0", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-1", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-2", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-3", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-4", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-5", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-6", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-7", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-8", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-9", "blendMode": "OverlayCutout" }] }
+            },
+
+            "type-d10p::wood-*": {
+                "material": { "base": "game:block/wood/debarked/{wood}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::stone-flint": {
+                "material": { "base": "game:block/stone/flint" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::stone-*": {
+                "material": { "base": "game:block/stone/rock/{stone}1" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::metal-*": {
+                "material": { "base": "game:block/metal/ingot/{metal}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::@ore_ungraded-(charcoal|coke)": {
+                "material": { "base": "game:block/coal/{ore_ungraded}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::ore_ungraded-rosequartz": {
+                "material": { "base": "game:item/resource/ungraded/rosyquartz" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::ore_ungraded-alum": {
+                "material": { "base": "game:item/resource/ungraded/quartz" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
+            },
+            "type-d10p::ore_ungraded-*": {
+                "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" },
+                "dot-0": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-00", "blendMode": "OverlayCutout" }] },
+                "dot-1": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-10", "blendMode": "OverlayCutout" }] },
+                "dot-2": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] },
+                "dot-3": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-30", "blendMode": "OverlayCutout" }] },
+                "dot-4": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-40", "blendMode": "OverlayCutout" }] },
+                "dot-5": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-50", "blendMode": "OverlayCutout" }] },
+                "dot-6": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-60", "blendMode": "OverlayCutout" }] },
+                "dot-7": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-70", "blendMode": "OverlayCutout" }] },
+                "dot-8": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-80", "blendMode": "OverlayCutout" }] },
+                "dot-9": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-90", "blendMode": "OverlayCutout" }] }
             },
 
             "type-*::wood-*": {
@@ -464,6 +696,8 @@
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d12", "dot": "12" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
@@ -489,6 +723,8 @@
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d12", "dot": "12" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
@@ -514,6 +750,8 @@
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d12", "dot": "12" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
@@ -539,6 +777,8 @@
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d12", "dot": "12" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
@@ -564,6 +804,62 @@
                         { "setVariants": { "type": "doubling_cube", "dot": "64" } },
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
+                        { "setVariants": { "type": "d12", "dot": "12" } },
+                        { "setVariants": { "type": "d20", "dot": "20" } }
+                    ],
+                    "type-d10": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-dice-changedotcolor",
+                            "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "1" } },
+
+                        { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
+                        { "setVariants": { "type": "doubling_cube", "dot": "64" } },
+                        { "setVariants": { "type": "d4", "dot": "1" } },
+                        { "setVariants": { "type": "d6", "dot": "6" } },
+                        { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
+                        { "setVariants": { "type": "d12", "dot": "12" } },
+                        { "setVariants": { "type": "d20", "dot": "20" } }
+                    ],
+                    "type-d10p": [
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-pigment-dice-changedotcolor",
+                            "isSinkSlot": true,
+                            "iconTexture": "paintbrush",
+                            "slotParams": [
+                                { "triggerBy": { "type": "item", "code": "game:charcoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, "setVariants": { "color": "carbonblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:coke" }, "setVariants": { "color": "cokeblack" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, "setVariants": { "color": "chalkwhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "setVariants": { "color": "limewhite" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "setVariants": { "color": "verdigris" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "setVariants": { "color": "ultramarine" }, "consumeIngredient": false },
+                                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "setVariants": { "color": "cinnabar" }, "consumeIngredient": false }
+                            ]
+                        },
+                        { "name": "tabletopgames:toolmode-dice-reset", "iconTexture": "dice", "setVariants": { "dot": "10" } },
+
+                        { "linebreak": true, "setVariants": { "type": "classic_cube", "dot": "6" } },
+                        { "setVariants": { "type": "doubling_cube", "dot": "64" } },
+                        { "setVariants": { "type": "d4", "dot": "1" } },
+                        { "setVariants": { "type": "d6", "dot": "6" } },
+                        { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
                         { "setVariants": { "type": "d12", "dot": "12" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
@@ -590,6 +886,8 @@
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d20", "dot": "20" } }
                     ],
                     "type-d20": [
@@ -615,6 +913,8 @@
                         { "setVariants": { "type": "d4", "dot": "1" } },
                         { "setVariants": { "type": "d6", "dot": "6" } },
                         { "setVariants": { "type": "d8", "dot": "8" } },
+                        { "setVariants": { "type": "d10", "dot": "1" } },
+                        { "setVariants": { "type": "d10p", "dot": "10" } },
                         { "setVariants": { "type": "d12", "dot": "12" } }
                     ]
                 }
@@ -632,6 +932,8 @@
                     "type-d4": ["1", "2", "3", "4"],
                     "type-d6": ["1", "2", "3", "4", "5", "6"],
                     "type-d8": ["1", "2", "3", "4", "5", "6", "7", "8"],
+                    "type-d10": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+                    "type-d10p": ["00", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
                     "type-d12": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
                     "type-d20": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
                 }
@@ -642,8 +944,14 @@
             "properties": {
                 "transforms": {
                     "guiTransform": {
-                        "type-d20": {
+                        "@type-(d10|d10p)": {
                             "rotate": false,
+                            "translation": { "x": 3, "y": 0, "z": 0 },
+                            "rotation": { "x": 135, "y": 35, "z": 0 },
+                            "origin": { "x": 0.5, "y": 0.15, "z": 0.5 },
+                            "scaleXyz": { "x": -2.7, "y": 2.7, "z": 2.7 }
+                        },
+                        "type-d20": {
                             "translation": { "x": 3, "y": 0, "z": 0 },
                             "rotation": { "x": 135, "y": 35, "z": 0 },
                             "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
@@ -672,6 +980,8 @@
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d4", "dot": "1", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d6", "dot": "6", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d8", "dot": "8", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "d10", "dot": "1", "stone": "basalt", "color": "chalkwhite" } } },
+                { "type": "item", "code": "dice", "attributes": { "types": { "type": "d10p", "dot": "10", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d12", "dot": "12", "stone": "basalt", "color": "chalkwhite" } } },
                 { "type": "item", "code": "dice", "attributes": { "types": { "type": "d20", "dot": "20", "stone": "basalt", "color": "chalkwhite" } } },
 
@@ -709,6 +1019,7 @@
         "scaleXyz": { "x": -2.7, "y": 2.7, "z": 2.7 }
     },
     "groundTransform": {
+        "rotate": false,
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
         "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
