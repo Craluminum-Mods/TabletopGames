@@ -56,19 +56,6 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
     protected abstract void GenerateSelection();
     public abstract bool OnInteract(IPlayer byPlayer, BlockSelection blockSel);
 
-    public override void OnBlockUnloaded()
-    {
-        base.OnBlockUnloaded();
-        mesh?.Dispose();
-        selectionBoxes = null;
-    }
-
-    public override void OnBlockRemoved()
-    {
-        base.OnBlockRemoved();
-        selectionBoxes = null;
-    }
-
     public override void OnBlockPlaced(ItemStack byItemStack = null)
     {
         base.OnBlockPlaced(byItemStack);
@@ -140,7 +127,6 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
         }
         return selectionBoxes;
     }
-
 
     public virtual Cuboidf[] GetExtraSelectionBoxes()
     {
