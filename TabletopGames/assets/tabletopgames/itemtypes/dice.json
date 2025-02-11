@@ -952,6 +952,7 @@
                             "scaleXyz": { "x": -2.7, "y": 2.7, "z": 2.7 }
                         },
                         "type-d20": {
+                            "rotate": false,
                             "translation": { "x": 3, "y": 0, "z": 0 },
                             "rotation": { "x": 135, "y": 35, "z": 0 },
                             "origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
