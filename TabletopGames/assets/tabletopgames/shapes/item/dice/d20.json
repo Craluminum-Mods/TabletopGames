@@ -1,6 +1,6 @@
 {
 	"editor": {
-		"collapsedPaths": "Root/origin/origin2/origin3/triangle2,Root/origin/origin5,Root/origin/origin4,Root/origin/origin2/triangle1/origin3/origin4,Root/origin/origin3,Root/origin/origin2/triangle1,Root/origin/origin2/origin4,Root/origin/origin2/triangle1/origin3,Root/origin/origin2/origin3,Root/origin/origin6,Root/origin2/origin8,Root/origin/triangle2",
+		"collapsedPaths": "Root/origin/origin2/origin10/triangle15,Root/origin/origin1/origin4/triangle9,Root/origin/origin2/origin10/triangle16,Root/origin/origin1/origin7/triangle5,Root/origin/origin1/origin6/triangle7,Root/origin/origin2/origin3/triangle2,Root/origin/origin1/origin6/triangle4,Root/origin/origin1/origin7/triangle6,Root/origin/origin2/origin4,Root/origin/origin2/triangle1/origin3,Root/origin/origin2/origin3,Root/origin/origin2/origin12/triangle20,Root/origin/origin1/origin3,Root/origin/origin1/origin4,Root/origin/origin1/origin5,Root/origin/origin2/origin8/triangle12,Root/origin/origin1/origin4/triangle2,Root/origin/origin2/origin8/triangle11,Root/origin/origin5,Root/origin/origin4,Root/origin/origin3,Root/origin/origin2/triangle1,Root/origin/origin2,Root/origin/origin6,Root/origin/origin1/origin5/triangle8,Root/origin/origin1/origin3/triangle1,Root/origin/origin2/origin9/triangle14,Root/origin/origin2/origin9/triangle13,Root/origin/origin2/origin12/triangle19,Root/origin/origin2/triangle1/origin3/origin4,Root/origin/origin1/origin5/triangle3,Root/origin/origin1/origin3/triangle10,Root/origin2/origin8,Root/origin/origin2/origin11/triangle18,Root/origin/origin1,Root/origin/origin2/origin11/triangle17,Root/origin/triangle2",
 		"allAngles": false,
 		"entityTextureMode": false
 	},
@@ -58,7 +58,7 @@
 			"from": [ 8.0, 2.0, 8.0 ],
 			"to": [ 8.0, 2.0, 8.0 ],
 			"rotationOrigin": [ 8.0, 5.0, 8.0 ],
-			"rotationX": 45.0,
+			"rotationX": 38.0,
 			"faces": {
 			},
 			"children": [
@@ -80,9 +80,9 @@
 							"children": [
 								{
 									"name": "triangle1",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 1.75, 5.0, 7.75, 5.5 ] },
@@ -220,9 +220,9 @@
 								},
 								{
 									"name": "triangle10",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -372,9 +372,9 @@
 							"children": [
 								{
 									"name": "triangle2",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 1.0, 2.25, 7.0, 2.75 ] },
@@ -512,9 +512,9 @@
 								},
 								{
 									"name": "triangle9",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -666,9 +666,9 @@
 							"children": [
 								{
 									"name": "triangle3",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.25, 2.25, 6.25, 2.75 ] },
@@ -806,9 +806,9 @@
 								},
 								{
 									"name": "triangle8",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -960,9 +960,9 @@
 							"children": [
 								{
 									"name": "triangle4",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.5, 0.0, 6.5, 0.5 ] },
@@ -1100,9 +1100,9 @@
 								},
 								{
 									"name": "triangle7",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -1254,9 +1254,9 @@
 							"children": [
 								{
 									"name": "triangle5",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.0, 3.75, 6.0, 4.25 ] },
@@ -1394,9 +1394,9 @@
 								},
 								{
 									"name": "triangle6",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -1539,9 +1539,9 @@
 				},
 				{
 					"name": "origin2",
-					"from": [ 0.0, 0.0, -1.0 ],
-					"to": [ 0.0, 0.0, -1.0 ],
-					"rotationOrigin": [ 0.0, 0.0, 0.0 ],
+					"from": [ 0.0, 1.0, -1.0 ],
+					"to": [ 0.0, 1.0, -1.0 ],
+					"rotationOrigin": [ 0.0, 1.0, 0.0 ],
 					"rotationX": 180.0,
 					"rotationY": -3.0,
 					"faces": {
@@ -1557,9 +1557,9 @@
 							"children": [
 								{
 									"name": "triangle11",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 1.75, 5.0, 7.75, 5.5 ] },
@@ -1697,9 +1697,9 @@
 								},
 								{
 									"name": "triangle12",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -1849,9 +1849,9 @@
 							"children": [
 								{
 									"name": "triangle13",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 1.0, 2.25, 7.0, 2.75 ] },
@@ -1989,9 +1989,9 @@
 								},
 								{
 									"name": "triangle14",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -2143,9 +2143,9 @@
 							"children": [
 								{
 									"name": "triangle15",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.25, 2.25, 6.25, 2.75 ] },
@@ -2283,9 +2283,9 @@
 								},
 								{
 									"name": "triangle16",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -2437,9 +2437,9 @@
 							"children": [
 								{
 									"name": "triangle17",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.5, 0.0, 6.5, 0.5 ] },
@@ -2577,9 +2577,9 @@
 								},
 								{
 									"name": "triangle18",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
@@ -2731,9 +2731,9 @@
 							"children": [
 								{
 									"name": "triangle19",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ -3.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ -3.0, 0.5, -3.5 ],
 									"rotationX": -40.0,
 									"faces": {
 										"north": { "texture": "#material", "uv": [ 0.0, 3.75, 6.0, 4.25 ] },
@@ -2871,9 +2871,9 @@
 								},
 								{
 									"name": "triangle20",
-									"from": [ -3.0, 0.0, -3.0 ],
-									"to": [ 3.0, 0.5, -2.5 ],
-									"rotationOrigin": [ 0.0, 0.0, -3.0 ],
+									"from": [ -3.0, 0.0, -3.5 ],
+									"to": [ 3.0, 0.5, -3.0 ],
+									"rotationOrigin": [ 0.0, 0.5, -3.5 ],
 									"rotationX": -80.0,
 									"rotationY": 180.0,
 									"faces": {
