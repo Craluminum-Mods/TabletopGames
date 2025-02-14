@@ -34,7 +34,7 @@ public class ItemDice : ItemShapeTexturesFromAttributes
         if (Core.GetInstance(capi).ConfigClient != null && Core.GetInstance(capi).ConfigClient.DiceAnimationsEnabled && target == EnumItemRenderTarget.Ground && renderinfo.InSlot is EntityItemSlot slot)
         {
             int ticks = itemstack.TempAttributes.GetAsInt("tabletopGames.ticksUntilStopRolling");
-            if (ticks < 350)
+            if (ticks < 50)
             {
                 renderinfo.Transform.Rotation.X = capi.World.ElapsedMilliseconds * 6;
                 renderinfo.Transform.Rotation.Y = capi.World.ElapsedMilliseconds * 6;
