@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using Vintagestory.API.Common;
-using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
 namespace TabletopGames;
@@ -19,16 +18,6 @@ public class TabletopTags
     public static TabletopTags FromInterface(ItemStack stack)
     {
         return stack?.Collectible?.GetCollectibleInterface<IPieceTagsSupplier>()?.GetTags(stack);
-    }
-
-    public static TabletopTags FromInterface(IWorldAccessor world, BlockPos pos, int slotId, bool resolve = true)
-    {
-        IBoardTagsSupplier tagsSupplier = world.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardTagsSupplier>(world, pos);
-        if (resolve)
-        {
-            return tagsSupplier?.GetResolvedTags(world, pos, slotId);
-        }
-        return tagsSupplier?.GetUnresolvedTags(world, pos);
     }
 
     public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags pieceTags)

@@ -23,12 +23,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         {
             IBoardDataSupplier supplier = OwnBlock.GetInterface<IBoardDataSupplier>(Api?.World, Pos);
             if (supplier == null) return new BoardData();
-
-            if (Api?.World == null || Pos == null)
-            {
-                return supplier.GetBoardData(Variants);
-            }
-            return supplier.GetBoardData(Api.World, Pos);
+            return supplier.GetBoardData(Variants);
         }
     }
 
@@ -38,12 +33,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         {
             IBoardTagsSupplier supplier = OwnBlock.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
-
-            if (Api?.World == null || Pos == null)
-            {
-                return supplier.GetUnresolvedTags(Variants);
-            }
-            return supplier.GetUnresolvedTags(Api.World, Pos);
+            return supplier.GetUnresolvedTags(Variants);
         }
     }
 
@@ -207,7 +197,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-        TabletopTags boardTags = TabletopTags.FromInterface(Api.World, Pos, slotId: blockSel.SelectionBoxIndex, resolve: true);
+        TabletopTags boardTags = Tags.GetResolvedTags(blockSel.SelectionBoxIndex);
         TabletopTags pieceTags = TabletopTags.FromInterface(slot.Itemstack);
         bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
 

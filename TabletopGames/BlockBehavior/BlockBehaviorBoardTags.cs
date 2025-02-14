@@ -23,9 +23,9 @@ public class BlockBehaviorBoardTags : BlockBehavior, IBoardTagsSupplier
         StringBuilder stringBuilder = new StringBuilder();
 
         int index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-        if (TabletopDebug.TagsDebugInfo && block.GetInterface<IBlockEntityContainer>(world, pos) is IBlockEntityContainer container && container.Inventory.Count > index)
+        if (TabletopDebug.TagsDebugInfo && world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Inventory.Count > index)
         {
-            GetUnresolvedTags(world, pos)?.GetDescription(stringBuilder, index, verbose: true);
+            GetUnresolvedTags(blockEntity.Variants)?.GetDescription(stringBuilder, index, verbose: true);
         }
         return stringBuilder.ToString();
     }
