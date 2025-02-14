@@ -58,38 +58,6 @@
                 "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
                 "secondarywood": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] }
             }
-        },
-        "boardData": {
-            "size-5x5": {
-                "size": { "x": 5, "y": 5 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "quantitySlots": 25,
-                "attributeTransformCode": "onChessboardTransform"
-            },
-            "size-6x6": {
-                "size": { "x": 6, "y": 6 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "quantitySlots": 36,
-                "attributeTransformCode": "onChessboardTransform"
-            },
-            "size-7x7": {
-                "size": { "x": 7, "y": 7 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "quantitySlots": 49,
-                "attributeTransformCode": "onChessboardTransform"
-            },
-            "size-8x8": {
-                "size": { "x": 8, "y": 8 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "quantitySlots": 64,
-                "attributeTransformCode": "onChessboardTransform"
-            },
-            "size-10x10": {
-                "size": { "x": 10, "y": 10 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "quantitySlots": 100,
-                "attributeTransformCode": "onChessboardTransform"
-            }
         }
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
@@ -126,6 +94,43 @@
                         "tagsPerSlot": {
                             "*": ["chess", "go", "omok"]
                         }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.BoardData",
+            "properties": {
+                "boardData": {
+                    "size-5x5": {
+                        "size": { "x": 5, "y": 5 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "quantitySlots": 25,
+                        "attributeTransformCode": "onChessboardTransform"
+                    },
+                    "size-6x6": {
+                        "size": { "x": 6, "y": 6 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "quantitySlots": 36,
+                        "attributeTransformCode": "onChessboardTransform"
+                    },
+                    "size-7x7": {
+                        "size": { "x": 7, "y": 7 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "quantitySlots": 49,
+                        "attributeTransformCode": "onChessboardTransform"
+                    },
+                    "size-8x8": {
+                        "size": { "x": 8, "y": 8 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "quantitySlots": 64,
+                        "attributeTransformCode": "onChessboardTransform"
+                    },
+                    "size-10x10": {
+                        "size": { "x": 10, "y": 10 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "quantitySlots": 100,
+                        "attributeTransformCode": "onChessboardTransform"
                     }
                 }
             }

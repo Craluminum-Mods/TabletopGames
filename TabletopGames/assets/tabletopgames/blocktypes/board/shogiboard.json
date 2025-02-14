@@ -35,29 +35,6 @@
                 "material": { "base": "game:block/wood/debarked/{wood}" },
                 "overlay": { "base": "tabletopgames:block/board/shogi/{size}-{color}" }
             }
-        },
-        "boardData": {
-            "size-9x9": {
-                "size": { "x": 9, "y": 9 },
-                "slotYRange": { "x": 0, "y": 0.5 },
-                "padding": { "x": 0.0125, "y": 0.0125, "z": 0.0125, "w": 0.0125 },
-                "quantitySlots": 81,
-                "attributeTransformCode": "onShogiTransform"
-            },
-            "size-4x4_lstand": {
-                "size": { "x": 4, "y": 4 },
-                "slotYRange": { "x": 0, "y": 1 },
-                "padding": { "x": 0.03125, "y": 0.53125, "z": 0.53125, "w": 0.03125 },
-                "quantitySlots": 16,
-                "attributeTransformCode": "onShogiTransform"
-            },
-            "size-4x4_rstand": {
-                "size": { "x": 4, "y": 4 },
-                "slotYRange": { "x": 0, "y": 1 },
-                "padding": { "x": 0.53125, "y": 0.53125, "z": 0.03125, "w": 0.03125 },
-                "quantitySlots": 16,
-                "attributeTransformCode": "onShogiTransform"
-            }
         }
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
@@ -143,6 +120,34 @@
                         "tagsPerSlot": {
                             "*": ["shogi"]
                         }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TabletopGames.BoardData",
+            "properties": {
+                "boardData": {
+                    "size-9x9": {
+                        "size": { "x": 9, "y": 9 },
+                        "slotYRange": { "x": 0, "y": 0.5 },
+                        "padding": { "x": 0.0125, "y": 0.0125, "z": 0.0125, "w": 0.0125 },
+                        "quantitySlots": 81,
+                        "attributeTransformCode": "onShogiTransform"
+                    },
+                    "size-4x4_lstand": {
+                        "size": { "x": 4, "y": 4 },
+                        "slotYRange": { "x": 0, "y": 1 },
+                        "padding": { "x": 0.03125, "y": 0.53125, "z": 0.53125, "w": 0.03125 },
+                        "quantitySlots": 16,
+                        "attributeTransformCode": "onShogiTransform"
+                    },
+                    "size-4x4_rstand": {
+                        "size": { "x": 4, "y": 4 },
+                        "slotYRange": { "x": 0, "y": 1 },
+                        "padding": { "x": 0.53125, "y": 0.53125, "z": 0.03125, "w": 0.03125 },
+                        "quantitySlots": 16,
+                        "attributeTransformCode": "onShogiTransform"
                     }
                 }
             }

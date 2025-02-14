@@ -3,6 +3,11 @@
 public enum EnumSlotType
 {
     /// <summary>
+    /// Fallback slot
+    /// </summary>
+    None,
+
+    /// <summary>
     /// Default slot for pieces
     /// </summary>
     Normal,
