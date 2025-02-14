@@ -4,6 +4,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace TabletopGames;
@@ -24,13 +25,45 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
 
     public override string AttributeTransformCode => BoardData.AttributeTransformCode;
 
+    protected override void Init()
+    {
+        base.Init();
+
+        if (Api != null && OwnBlock != null && inventory != null)
+        {
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (inventory[i] is ItemSlotTabletop slotTabletop && !slotTabletop.BoardTags.Tags.Any())
+                {
+                    TabletopTags boardTags = OwnBlock.GetInterface<IBoardTagsSupplier>(Api.World, Pos)?.GetResolvedTags(Api.World, Pos, i) ?? new TabletopTags();
+                    slotTabletop.BoardTags = boardTags;
+                }
+            }
+        }
+    }
+
     protected override void InitInventory()
     {
         if (inventory == null || inventory.Count == 0)
         {
-            inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-1", null, Api, (slotid, _inv) =>
+            inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-1", null, Api, (slotId, _inv) =>
             {
-                return OwnBlock.CreateSlot(Variants, _inv, slotid);
+                BoardData boardData = OwnBlock.GetBoardData(Variants);
+                EnumSlotType slotType = EnumSlotType.Normal;
+
+                if (boardData.SlotTypes.Any())
+                {
+                    string id = slotId.ToString();
+                    foreach ((string wildcard, EnumSlotType _slotType) in boardData.SlotTypes)
+                    {
+                        if (WildcardUtil.Match(wildcard, id))
+                        {
+                            slotType = _slotType;
+                            break;
+                        }
+                    }
+                }
+                return new ItemSlotTabletop(_inv, slotType);
             });
         }
     }
@@ -55,6 +88,8 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
     {
         Cuboidf[] _selBoxes = GetOrCreateSelectionBoxes();
         float[][] _tfMatrices = new float[DisplayedItems][];
+
+        if (_selBoxes == null || !_selBoxes.Any()) return _tfMatrices;
 
         for (int i = 0; i < DisplayedItems; i++)
         {
@@ -150,11 +185,6 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
             }
         }
 
-        if (TabletopDebug.TagsDebugInfo && inventory.Count > index) // twice check to avoid constant iterations in ByType
-        {
-            OwnBlock.GetTags(Variants, index, resolveTags: false)?.GetDescription(dsc, index, verbose: true);
-        }
-
         BoardData.GetDescription(dsc, index);
         foreach (BlockEntityBehavior behavior in Behaviors)
         {
@@ -166,7 +196,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
     {
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-        TabletopTags boardTags = OwnBlock.GetTags(Variants, slotId: blockSel.SelectionBoxIndex);
+        TabletopTags boardTags = TabletopTags.FromInterface(Api.World, Pos, slotId: blockSel.SelectionBoxIndex, resolve: true);
         TabletopTags pieceTags = TabletopTags.FromInterface(slot.Itemstack);
         bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
 

@@ -19,16 +19,6 @@
             "stone-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Stone", ": ", "rock-{stone}"],
             "wood-*": ["tabletopgames:trivia-morrisboard-{size}", "blockmaterial-Wood", ": ", "material-{wood}"]
         },
-        "tabletopTags": {
-            "*": {
-                "tagsPerSlot": {
-                    "*": ["tabletopBoard", "morris", "omok", "go"]
-                },
-                "tagsIgnoredPerSlot": {
-                    "*": ["tabletopBoard"]
-                }
-            }
-        },
         "shape": {
             "*": { "base": "tabletopgames:block/board/16x16-overlay" }
         },
@@ -129,15 +119,6 @@
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
     "behaviors": [
-        { "name": "Unstable" },
-        {
-            "name": "GroundStorable",
-            "properties": {
-                "layout": "SingleCenter",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
-                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
-            }
-        },
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
@@ -179,6 +160,30 @@
 
                         { "setVariants": { "size": "classic" }, "convertTo": { "type": "block", "code": "tabletopgames:backgammonboard" }, "copyAttributes": true, "linebreak": true }
                     ]
+                }
+            }
+        },
+        { "name": "Unstable" },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "SingleCenter",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.BoardTags",
+            "properties": {
+                "tabletopTags": {
+                    "*": {
+                        "tagsPerSlot": {
+                            "*": ["tabletopBoard", "morris", "omok", "go"]
+                        },
+                        "tagsIgnoredPerSlot": {
+                            "*": ["tabletopBoard"]
+                        }
+                    }
                 }
             }
         }

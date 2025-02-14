@@ -13,7 +13,7 @@ public class CollectibleBehaviorPieceTags : CollectibleBehavior, IPieceTagsSuppl
     public override void Initialize(JsonObject properties)
     {
         base.Initialize(properties);
-        Tags = properties["tabletopTags"]?.AsObject(new TabletopTags());
+        Tags = properties["tabletopTags"].AsObject(new TabletopTags());
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
