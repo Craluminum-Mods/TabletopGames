@@ -178,10 +178,7 @@
                 "tabletopTags": {
                     "*": {
                         "tagsPerSlot": {
-                            "*": ["tabletopBoard", "dice"]
-                        },
-                        "tagsIgnoredPerSlot": {
-                            "*": ["tabletopBoard"]
+                            "*": ["dice"]
                         }
                     }
                 }

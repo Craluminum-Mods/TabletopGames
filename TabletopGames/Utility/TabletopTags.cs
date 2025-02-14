@@ -14,13 +14,7 @@ public class TabletopTags
     /// </summary>
     public Dictionary<string, List<string>> TagsPerSlot { get; set; } = new();
 
-    /// <summary> 
-    /// When set, normal tags are ignored
-    /// </summary>
-    public Dictionary<string, List<string>> TagsIgnoredPerSlot { get; set; } = new();
-
     public List<string> Tags { get; set; } = new();
-    public List<string> TagsIgnored { get; set; } = new();
 
     public static TabletopTags FromInterface(ItemStack stack)
     {
@@ -39,20 +33,17 @@ public class TabletopTags
 
     public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags pieceTags)
     {
-        pieceTags ??= new();
         boardTags ??= new();
-        if (pieceTags.Tags.Count == 0) return false;
-        if (pieceTags.Tags.Any(boardTags.TagsIgnored.Contains)) return false;
-        return pieceTags.Tags.Any(boardTags.Tags.Contains);
+        pieceTags ??= new();
+        return boardTags.Tags.Any(pieceTags.Tags.Contains);
     }
 
     public TabletopTags GetResolvedTags(int slotId = -1)
     {
-        if (slotId >= 0 && (TagsPerSlot.Any() || TagsIgnoredPerSlot.Any()))
+        if (slotId >= 0 && TagsPerSlot.Any())
         {
             TabletopTags newTags = new();
             newTags.Tags = GetTagsForSlot(TagsPerSlot, slotId.ToString());
-            newTags.TagsIgnored = GetTagsForSlot(TagsIgnoredPerSlot, slotId.ToString());
             return newTags;
         }
         return this;
@@ -83,25 +74,10 @@ public class TabletopTags
             {
                 dsc.AppendLine("DEBUG::" + nameof(Tags) + ": " + string.Join(", ", Tags));
             }
-            if (TagsIgnored.Any())
-            {
-                dsc.AppendLine("DEBUG::" + nameof(TagsIgnored) + ": " + string.Join(", ", TagsIgnored));
-            }
             if (TagsPerSlot.Any())
             {
                 dsc.AppendLine($"DEBUG::{nameof(TagsPerSlot)}: ");
                 foreach ((string id, List<string> tags) in TagsPerSlot)
-                {
-                    if (tags.Any())
-                    {
-                        dsc.AppendLine($"\t[{id}] " + string.Join(", ", tags));
-                    }
-                }
-            }
-            if (TagsIgnoredPerSlot.Any())
-            {
-                dsc.AppendLine($"DEBUG::{nameof(TagsIgnoredPerSlot)}: ");
-                foreach ((string id, List<string> tags) in TagsIgnoredPerSlot)
                 {
                     if (tags.Any())
                     {
@@ -119,20 +95,12 @@ public class TabletopTags
             {
                 dsc.AppendLine("DEBUG::Slot Tags: " + string.Join(", ", tabletopTags.Tags));
             }
-            if (tabletopTags.TagsIgnored.Any())
-            {
-                dsc.AppendLine("DEBUG::Slot Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
-            }
             return;
         }
 
         if (tabletopTags.Tags.Any())
         {
             dsc.AppendLine("DEBUG::Tags: " + string.Join(", ", tabletopTags.Tags));
-        }
-        if (tabletopTags.TagsIgnored.Any())
-        {
-            dsc.AppendLine("DEBUG::Ignored tags: " + string.Join(", ", tabletopTags.TagsIgnored));
         }
     }
 }

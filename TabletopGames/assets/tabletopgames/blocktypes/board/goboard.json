@@ -142,10 +142,7 @@
                 "tabletopTags": {
                     "*": {
                         "tagsPerSlot": {
-                            "*": ["tabletopBoard", "go", "omok"]
-                        },
-                        "tagsIgnoredPerSlot": {
-                            "*": ["tabletopBoard"]
+                            "*": ["go", "omok"]
                         }
                     }
                 }

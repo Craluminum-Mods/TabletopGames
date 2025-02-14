@@ -305,11 +305,8 @@
                 "tabletopTags": {
                     "size-classic": {
                         "tagsPerSlot": {
-                            "@^(12[0-9]|13[0-5])$": ["tabletopBoard", "dice"],
-                            "*": ["tabletopBoard", "backgammon"]
-                        },
-                        "tagsIgnoredPerSlot": {
-                            "*": ["tabletopBoard"]
+                            "@^(12[0-9]|13[0-5])$": ["dice"],
+                            "*": ["backgammon"]
                         }
                     }
                 }

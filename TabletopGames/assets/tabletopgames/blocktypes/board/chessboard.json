@@ -124,10 +124,7 @@
                 "tabletopTags": {
                     "*": {
                         "tagsPerSlot": {
-                            "*": ["tabletopBoard", "chess", "go", "omok"]
-                        },
-                        "tagsIgnoredPerSlot": {
-                            "*": ["tabletopBoard"]
+                            "*": ["chess", "go", "omok"]
                         }
                     }
                 }
