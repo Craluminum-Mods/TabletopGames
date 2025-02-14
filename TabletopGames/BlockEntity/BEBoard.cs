@@ -136,7 +136,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         {
             ItemSlot slot = inventory[index];
 
-            int displayedIndex = TabletopDebug.TagsDebugInfo ? index : index + 1;
+            int displayedIndex = TabletopDebug.BoardDataDebugInfo ? index : index + 1;
             dsc.Append(displayedIndex + ": ");
 
             if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
