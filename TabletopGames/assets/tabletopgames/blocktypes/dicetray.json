@@ -39,12 +39,19 @@
                 "overlay": { "base": "game:block/transparent" },
                 "material": { "base": "game:block/wood/debarked/{wood}" }
             }
-        },
-        "extraSelectionBoxes": {
-            "*": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03, "z2": 1 }]
         }
     },
-    "entityBehaviors": [{ "name": "TabletopGames.BoardPreviewRenderer" }],
+    "entityBehaviors": [
+        {
+            "name": "TabletopGames.BoardSelection",
+            "properties": {
+                "extraSelectionBoxes": {
+                    "*": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03, "z2": 1 }]
+                }
+            }
+        },
+        { "name": "TabletopGames.BoardPreviewRenderer" }
+    ],
     "behaviors": [
         {
             "name": "TabletopGames.AdvancedToolModes",

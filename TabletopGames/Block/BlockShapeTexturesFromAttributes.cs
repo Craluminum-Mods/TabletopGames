@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -18,7 +17,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 {
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
-    public Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType { get; protected set; } = new();
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -48,7 +46,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         {
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-            ExtraSelectionBoxesByType = Attributes["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
@@ -248,13 +245,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity
             ? blockEntity.OnInteract(byPlayer, blockSel) || base.OnBlockInteractStart(world, byPlayer, blockSel)
             : base.OnBlockInteractStart(world, byPlayer, blockSel);
-    }
-
-    public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
-    {
-        return blockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity
-            ? blockEntity.GetOrCreateSelectionBoxes().Append(blockEntity.GetExtraSelectionBoxes())
-            : base.GetSelectionBoxes(blockAccessor, pos);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

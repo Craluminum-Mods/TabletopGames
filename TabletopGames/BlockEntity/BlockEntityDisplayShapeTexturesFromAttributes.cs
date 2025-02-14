@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
@@ -11,7 +9,7 @@ namespace TabletopGames;
 
 /// <summary>
 /// Base class for block entities that render meshes and textures dynamically based on block attributes.
-/// Implements rotation and selection box generation.
+/// Also implements rotation.
 /// </summary>
 public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntityDisplay, IRotatable
 {
@@ -24,7 +22,6 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
 
     protected MeshData mesh;
     protected InventoryBase inventory;
-    protected Cuboidf[] selectionBoxes;
 
     public override void Initialize(ICoreAPI api)
     {
@@ -53,7 +50,7 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
     }
 
     protected abstract void InitInventory();
-    protected abstract void GenerateSelection();
+    protected abstract void GetOrCreateSelectionBoxes(bool forceNew = false);
     public abstract bool OnInteract(IPlayer byPlayer, BlockSelection blockSel);
 
     public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -118,27 +115,6 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
     {
         return $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
     }
-
-    public virtual Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
-    {
-        if (forceNew || selectionBoxes == null)
-        {
-            GenerateSelection();
-        }
-        return selectionBoxes;
-    }
-
-    public virtual Cuboidf[] GetExtraSelectionBoxes()
-    {
-        Variants.FindByVariant(OwnBlockForRendering?.ExtraSelectionBoxesByType, out Cuboidf[] extraBoxes);
-        return GetRotatedSelectionBoxes(extraBoxes ?? Array.Empty<Cuboidf>());
-    }
-
-    public virtual Cuboidf[] GetRotatedSelectionBoxes(params Cuboidf[] cuboids) => cuboids.Select(GetRotatedSelectionBox).ToArray();
-
-    public virtual Cuboidf GetRotatedSelectionBox(Cuboidf cuboid) => cuboid.RotatedCopy(0, MeshAngleRad * GameMath.RAD2DEG, 0, new Vec3d(0.5, 0.5, 0.5));
-
-    public virtual void SetSelectionBoxes(Cuboidf[] cuboids) => selectionBoxes = cuboids;
 
     public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
         Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, EnumAxis? flipAxis)

@@ -109,6 +109,7 @@ public class ConfigLibCompatibility
 
     private static void ManagePadding(string id, BlockEntityBoard blockEntity)
     {
+        BEBehaviorBoardSelection bebehavior = blockEntity.GetBehavior<BEBehaviorBoardSelection>();
         ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
 
         Vec4f oldPadding = blockEntity.BoardData.Padding;
@@ -118,7 +119,7 @@ public class ConfigLibCompatibility
         {
             Vec4f newPadding = new Vec4f(padding.X, padding.Y, padding.Z, padding.W);
             blockEntity.BoardData.Padding = newPadding;
-            blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
+            bebehavior.GetOrCreateSelectionBoxes(forceNew: true);
         }
 
         if (ImGui.Button($"Copy Padding##CopyPadding-{id}"))
@@ -138,6 +139,7 @@ public class ConfigLibCompatibility
 
     private static void ManageSelectionBoxes(string id, BlockEntityBoard blockEntity)
     {
+        BEBehaviorBoardSelection bebehavior = blockEntity.GetBehavior<BEBehaviorBoardSelection>();
         ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
         ImGui.NewLine();
 
@@ -155,7 +157,7 @@ public class ConfigLibCompatibility
 
         if (resetSelBoxes)
         {
-            blockEntity.GetOrCreateSelectionBoxes(forceNew: true);
+            bebehavior.GetOrCreateSelectionBoxes(forceNew: true);
             return;
         }
         if (clearList)
@@ -175,7 +177,7 @@ public class ConfigLibCompatibility
             return;
         }
 
-        Cuboidf[] cuboids = blockEntity.GetOrCreateSelectionBoxes();
+        Cuboidf[] cuboids = bebehavior.GetOrCreateSelectionBoxes();
 
         int selectedIndex = capi.World.Player.CurrentBlockSelection.SelectionBoxIndex;
 
@@ -211,7 +213,7 @@ public class ConfigLibCompatibility
             {
                 AppendSelectionBox(sb, newCuboids[i], i);
             }
-            blockEntity.SetSelectionBoxes(newCuboids.ToArray());
+            bebehavior.SetSelectionBoxes(newCuboids.ToArray());
         }
         else if (copySelectedBox)
         {
@@ -232,7 +234,7 @@ public class ConfigLibCompatibility
                 newCuboids[i].RoundToFracsOfOne10thousand();
                 AppendSelectionBox(sb, newCuboids[i], i);
             }
-            blockEntity.SetSelectionBoxes(newCuboids.ToArray());
+            bebehavior.SetSelectionBoxes(newCuboids.ToArray());
         }
 
         capi.Input.ClipboardText = sb.ToString();

@@ -87,7 +87,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
 
     protected override float[][] genTransformationMatrices()
     {
-        Cuboidf[] _selBoxes = GetOrCreateSelectionBoxes();
+        Cuboidf[] _selBoxes = GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes();
         float[][] _tfMatrices = new float[DisplayedItems][];
 
         if (_selBoxes == null || !_selBoxes.Any()) return _tfMatrices;
@@ -107,63 +107,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         return _tfMatrices;
     }
 
-    public override Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
-    {
-        if (forceNew || selectionBoxes == null)
-        {
-            if (BoardData.SlotsHitboxes.Any())
-            {
-                return selectionBoxes = GetRotatedSelectionBoxes(BoardData.SlotsHitboxes);
-            }
-            if (BoardData.Size == null)
-            {
-                return selectionBoxes;
-            }
-
-            GenerateSelection();
-        }
-        return selectionBoxes;
-    }
-
-    protected override void GenerateSelection()
-    {
-        int width = BoardData.Size.X;
-        int depth = BoardData.Size.Y;
-
-        selectionBoxes = new Cuboidf[width * depth];
-
-        float paddingLeft = BoardData.Padding.X;
-        float paddingTop = BoardData.Padding.Y;
-        float paddingRight = BoardData.Padding.Z;
-        float paddingBottom = BoardData.Padding.W;
-
-        float slotWidth = (1 - (paddingLeft + paddingRight)) / width;
-        float slotDepth = (1 - (paddingTop + paddingBottom)) / depth;
-
-        for (int dx = 0; dx < width; dx++)
-        {
-            for (int dz = 0; dz < depth; dz++)
-            {
-                float x1 = paddingLeft + dx * slotWidth;
-                float z1 = paddingTop + dz * slotDepth;
-                float x2 = x1 + slotWidth;
-                float z2 = z1 + slotDepth;
-
-                Cuboidf newCuboid = new Cuboidf()
-                {
-                    X1 = x1,
-                    Y1 = BoardData.SlotMinY,
-                    Z1 = z1,
-                    X2 = x2,
-                    Y2 = BoardData.SlotMaxY,
-                    Z2 = z2,
-                };
-
-                int index = (dz * width) + dx;
-                selectionBoxes[index] = GetRotatedSelectionBox(newCuboid);
-            }
-        }
-    }
+    protected override void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>().GetOrCreateSelectionBoxes(forceNew);
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {

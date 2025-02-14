@@ -81,6 +81,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("TabletopGames.BoardData", typeof(BlockBehaviorBoardData));
 
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
+        api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardSelection", typeof(BEBehaviorBoardSelection));
     }
 
     private void InitializeWorldConfigs()
