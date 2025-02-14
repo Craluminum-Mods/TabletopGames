@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 
 namespace TabletopGames;
@@ -12,12 +11,6 @@ namespace TabletopGames;
 public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainable, IContainable
 {
     public CollectibleBehaviorContainableTyped(CollectibleObject collObj) : base(collObj) { }
-
-    public override void Initialize(JsonObject properties)
-    {
-        base.Initialize(properties);
-        Props = properties.AsObject(defaultValue: new Dictionary<string, ContainableProperties>());
-    }
 
     public override MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
