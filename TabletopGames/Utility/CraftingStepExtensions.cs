@@ -10,7 +10,7 @@ public static class CraftingStepExtensions
 {
     public static bool HandleToolModeCrafting(this AdvancedToolMode mode, IPlayer byPlayer, ItemSlot targetSlot, ItemSlot inputSlot, Variants targetVariants)
     {
-        return ItemChiseledPiece.ConsumeChiseledBlockAndGiveStack(mode, byPlayer, inputSlot)
+        return ChiselExtensions.ConsumeChiseledBlockAndGiveStack(mode, byPlayer, inputSlot)
             || byPlayer.ConsumeIngredientAndGiveStack(inputSlot, targetVariants, mode.SlotParams)
             || byPlayer.HandleInWorldCrafting(targetSlot, inputSlot, targetVariants, mode.SlotParams);
     }

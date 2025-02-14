@@ -279,37 +279,6 @@ public class ItemChiseledPiece : ItemBoardPiece
         }
     }
 
-    public static bool ConsumeChiseledBlockAndGiveStack(AdvancedToolMode mode, IPlayer byPlayer, ItemSlot inputSlot)
-    {
-        JsonItemStack giveStack = mode?.SlotParams?.First()?.GiveStack;
-        if (inputSlot.Itemstack.Collectible is not BlockChisel || giveStack == null || !giveStack.Resolve(byPlayer.Entity.World, ""))
-        {
-            return false;
-        }
-
-        ItemStack finalStack = giveStack.ResolvedItemstack.Clone();
-        if (finalStack.Collectible is ItemChiseledPiece itemChiseledPiece)
-        {
-            ItemStack removedMouseStack = byPlayer.Entity.Controls.ShiftKey ? inputSlot.TakeOutWhole() : inputSlot.TakeOut(1);
-            finalStack.StackSize = removedMouseStack.StackSize;
-            removedMouseStack.StackSize = 1;
-            SetChiseledStack(finalStack, inputStack: removedMouseStack, Vec3i.Zero);
-        }
-        else
-        {
-            return false;
-        }
-
-        if (!byPlayer.InventoryManager.TryGiveItemstack(finalStack))
-        {
-            byPlayer.Entity.World.SpawnItemEntity(finalStack, byPlayer.Entity.SidedPos.AsBlockPos);
-        }
-
-        inputSlot.MarkDirty();
-        byPlayer.InventoryManager.BroadcastHotbarSlot();
-        return true;
-    }
-
     public static void SetChiseledStack(ItemStack ownStack, ItemStack inputStack, Vec3i pos)
     {
         ownStack.Attributes.GetOrAddTreeAttribute(InventoryAttributeName).SetItemstack(ToXYZString(pos), inputStack);
@@ -346,38 +315,6 @@ public class ItemChiseledPiece : ItemBoardPiece
         return null;
     }
 
-    private MeshData CreateChiseledMesh(ItemStack chiseledStack)
-    {
-        ITreeAttribute tree = chiseledStack.Attributes;
-        if (tree == null)
-        {
-            tree = new TreeAttribute();
-        }
-        int[] materials = BlockEntityMicroBlock.MaterialIdsFromAttributes(tree, api.World);
-        uint[] cuboids = (tree["cuboids"] as IntArrayAttribute)?.AsUint;
-        if (cuboids == null)
-        {
-            cuboids = (tree["cuboids"] as LongArrayAttribute)?.AsUint;
-        }
-        List<uint> voxelCuboids = ((cuboids == null) ? new List<uint>() : new List<uint>(cuboids));
-        Block firstblock = api.World.Blocks[materials[0]];
-        bool num = firstblock.Attributes?.IsTrue("chiselShapeFromCollisionBox") ?? false;
-        uint[] originalCuboids = null;
-        if (num)
-        {
-            Cuboidf[] collboxes = firstblock.CollisionBoxes;
-            originalCuboids = new uint[collboxes.Length];
-            for (int i = 0; i < collboxes.Length; i++)
-            {
-                Cuboidf box = collboxes[i];
-                originalCuboids[i] = BlockEntityMicroBlock.ToUint((int)(16f * box.X1), (int)(16f * box.Y1), (int)(16f * box.Z1), (int)(16f * box.X2), (int)(16f * box.Y2), (int)(16f * box.Z2), 0);
-            }
-        }
-        MeshData mesh = BlockEntityMicroBlock.CreateMesh(api as ICoreClientAPI, voxelCuboids, materials, null, null, originalCuboids);
-        mesh.Rgba.Fill(byte.MaxValue);
-        return mesh;
-    }
-
     public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
@@ -394,7 +331,7 @@ public class ItemChiseledPiece : ItemBoardPiece
                 ItemStack containedStack = GetChiseledStack(itemstack, xyz: attr.Key, api.World);
                 if (containedStack == null) continue;
 
-                MeshData containedMesh = CreateChiseledMesh(containedStack);
+                MeshData containedMesh = containedStack.CreateChiseledMesh(api);
                 mesh.AddMeshData(containedMesh, offset.X, offset.Y, offset.Z);
             }
         }
