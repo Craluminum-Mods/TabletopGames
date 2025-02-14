@@ -26,9 +26,6 @@
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["item-mineral", ": ", "ore-{ore_ungraded}"]
         },
-        "tabletopTags": {
-            "tags": ["go", "omok"]
-        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/gostone" }
         },
@@ -44,14 +41,6 @@
         }
     },
     "behaviors": [
-        {
-            "name": "GroundStorable",
-            "properties": {
-                "layout": "Quadrants",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
-                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
-            }
-        },
         {
             "name": "TabletopGames.ContainableTyped",
             "properties": {
@@ -84,6 +73,22 @@
                         "ore_ungraded-alum": { "contents": { "base": "game:item/resource/ungraded/quartz" } },
                         "ore_ungraded-*": { "contents": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
                     }
+                }
+            }
+        },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.PieceTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["go", "omok"]
                 }
             }
         }

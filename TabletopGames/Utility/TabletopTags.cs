@@ -21,23 +21,18 @@ public class TabletopTags
     public List<string> Tags { get; set; } = new();
     public List<string> TagsIgnored { get; set; } = new();
 
-    public static TabletopTags FromStack(ItemStack stack)
+    public static TabletopTags FromInterface(ItemStack stack)
     {
-        return stack?.ItemAttributes?["tabletopTags"]?.AsObject(new TabletopTags());
+        return stack?.Collectible?.GetCollectibleInterface<IPieceTagsSupplier>()?.GetTags(stack);
     }
 
-    public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags stackTags)
+    public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags pieceTags)
     {
-        stackTags ??= new();
+        pieceTags ??= new();
         boardTags ??= new();
-        if (stackTags.Tags.Count == 0) return false;
-        if (stackTags.Tags.Any(boardTags.TagsIgnored.Contains)) return false;
-        return stackTags.Tags.Any(boardTags.Tags.Contains);
-    }
-
-    public static bool AreTagsCompatible(TabletopTags boardTags, ItemStack stack)
-    {
-        return AreTagsCompatible(boardTags, FromStack(stack));
+        if (pieceTags.Tags.Count == 0) return false;
+        if (pieceTags.Tags.Any(boardTags.TagsIgnored.Contains)) return false;
+        return pieceTags.Tags.Any(boardTags.Tags.Contains);
     }
 
     public TabletopTags GetResolvedTags(int slotId = -1)

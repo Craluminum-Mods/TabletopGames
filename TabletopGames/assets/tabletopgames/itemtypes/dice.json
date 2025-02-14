@@ -659,13 +659,9 @@
                 "dot-20": { "base": "tabletopgames:block/board/{color}32", "blendedOverlays": [{ "base": "tabletopgames:item/dice/numbers/dice-20", "blendMode": "OverlayCutout" }] }
             }
         },
-        "tabletopTags": {
-            "tags": ["dice"]
-        },
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
-        { "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } },
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
@@ -968,6 +964,22 @@
                             "scale": 0.5
                         }
                     }
+                }
+            }
+        },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.PieceTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["dice"]
                 }
             }
         }

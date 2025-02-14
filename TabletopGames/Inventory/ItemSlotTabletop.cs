@@ -17,11 +17,13 @@ public class ItemSlotTabletop : ItemSlot
 
     public override bool CanHold(ItemSlot sourceSlot)
     {
-        return TabletopTags.AreTagsCompatible(BoardTags, stack: sourceSlot?.Itemstack) && base.CanHold(sourceSlot);
+        TabletopTags pieceTags = TabletopTags.FromInterface(sourceSlot?.Itemstack);
+        return TabletopTags.AreTagsCompatible(BoardTags, pieceTags) && base.CanHold(sourceSlot);
     }
 
     public override bool CanTakeFrom(ItemSlot sourceSlot, EnumMergePriority priority = EnumMergePriority.AutoMerge)
     {
-        return TabletopTags.AreTagsCompatible(BoardTags, stack: sourceSlot?.Itemstack) && base.CanTakeFrom(sourceSlot, priority);
+        TabletopTags pieceTags = TabletopTags.FromInterface(sourceSlot?.Itemstack);
+        return TabletopTags.AreTagsCompatible(BoardTags, pieceTags) && base.CanTakeFrom(sourceSlot, priority);
     }
 }

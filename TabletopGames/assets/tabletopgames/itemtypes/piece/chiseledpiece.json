@@ -11,9 +11,6 @@
         "onGoboard19x19Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
         "onShogiTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
         "onBackgammonTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
-        "tabletopTags": {
-            "tags": ["chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
-        },
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
@@ -23,6 +20,14 @@
                 "layout": "Quadrants",
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.PieceTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
+                }
             }
         }
     ],

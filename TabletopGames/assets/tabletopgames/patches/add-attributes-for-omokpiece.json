@@ -1,12 +1,6 @@
 [
     {
         "op": "addmerge",
-        "path": "/attributes/tabletopTags",
-        "value": { "tags": ["go", "omok", "morris"] },
-        "file": "game:itemtypes/omokpiece.json"
-    },
-    {
-        "op": "addmerge",
         "path": "/attributes/onMorrisTransform",
         "value": {
             "translation": { "x": 0.215, "y": -0.07, "z": 0.215 },
@@ -34,6 +28,14 @@
                     "gobowllid-properties": {
                         "shape": { "*": { "base": "tabletopgames:item/gobowl/lidcontents-gostone" } },
                         "textures": { "*": { "contents": { "base": "game:block/metal/plate/{material}" } } }
+                    }
+                }
+            },
+            {
+                "name": "TabletopGames.PieceTags",
+                "properties": {
+                    "tabletopTags": {
+                        "tags": ["go", "omok", "morris"]
                     }
                 }
             }

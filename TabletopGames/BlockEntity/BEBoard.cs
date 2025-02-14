@@ -167,7 +167,8 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
         TabletopTags boardTags = OwnBlock.GetTags(Variants, slotId: blockSel.SelectionBoxIndex);
-        bool placeable = TabletopTags.AreTagsCompatible(boardTags, slot.Itemstack);
+        TabletopTags pieceTags = TabletopTags.FromInterface(slot.Itemstack);
+        bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
 
         if (slot.Empty || !placeable)
         {

@@ -23,9 +23,6 @@
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-checkerpiece", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["tabletopgames:trivia-checkerpiece", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
-        "tabletopTags": {
-            "tags": ["chess", "backgammon"]
-        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/checkerpiece-{type}" }
         },
@@ -42,6 +39,15 @@
     },
     "behaviors": [
         {
+            "name": "TabletopGames.AdvancedToolModes",
+            "properties": {
+                "toolModes": {
+                    "type-king": [{ "setVariants": { "type": "pawn" } }],
+                    "type-pawn": [{ "setVariants": { "type": "king" } }]
+                }
+            }
+        },
+        {
             "name": "GroundStorable",
             "properties": {
                 "layout": "Quadrants",
@@ -50,11 +56,10 @@
             }
         },
         {
-            "name": "TabletopGames.AdvancedToolModes",
+            "name": "TabletopGames.PieceTags",
             "properties": {
-                "toolModes": {
-                    "type-king": [{ "setVariants": { "type": "pawn" } }],
-                    "type-pawn": [{ "setVariants": { "type": "king" } }]
+                "tabletopTags": {
+                    "tags": ["chess", "backgammon"]
                 }
             }
         }

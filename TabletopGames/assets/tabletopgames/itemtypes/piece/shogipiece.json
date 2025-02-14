@@ -22,9 +22,6 @@
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-shogipiece", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["tabletopgames:trivia-shogipiece", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
-        "tabletopTags": {
-            "tags": ["shogi"]
-        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/shogipiece" }
         },
@@ -41,14 +38,6 @@
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
-        {
-            "name": "GroundStorable",
-            "properties": {
-                "layout": "Quadrants",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
-                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
-            }
-        },
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
@@ -72,6 +61,22 @@
                         { "setVariants": { "type": "ryuo" } }, //                         Promoted rook (ryuo)
                         { "setVariants": { "type": "tokin" } } //                         Promoted pawn (tokin)
                     ]
+                }
+            }
+        },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.PieceTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["shogi"]
                 }
             }
         }

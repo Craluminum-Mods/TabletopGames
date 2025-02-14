@@ -22,9 +22,6 @@
             "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "item-{ore_ungraded}"],
             "ore_ungraded-*": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "ore-{ore_ungraded}"]
         },
-        "tabletopTags": {
-            "tags": ["chess"]
-        },
         "shape": {
             "*": { "base": "tabletopgames:item/piece/chesspiece/{type}" }
         },
@@ -41,14 +38,6 @@
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
-        {
-            "name": "GroundStorable",
-            "properties": {
-                "layout": "Quadrants",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
-                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
-            }
-        },
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
@@ -77,6 +66,22 @@
                         "type-queen": { "translation": { "x": 0, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.7, "z": 0.5 }, "scale": 1.2 },
                         "type-rook": { "translation": { "x": 3, "y": 0, "z": 0 }, "rotation": { "x": 155, "y": 45, "z": 0 }, "origin": { "x": 0.5, "y": 0.5, "z": 0.5 }, "scale": 1.7 }
                     }
+                }
+            }
+        },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.PieceTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["chess"]
                 }
             }
         }
