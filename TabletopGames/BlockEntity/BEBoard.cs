@@ -32,53 +32,26 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         }
     }
 
+    public TabletopTags Tags
+    {
+        get
+        {
+            IBoardTagsSupplier supplier = OwnBlock.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
+            if (supplier == null) return new TabletopTags();
+
+            if (Api?.World == null || Pos == null)
+            {
+                return supplier.GetUnresolvedTags(Variants);
+            }
+            return supplier.GetUnresolvedTags(Api.World, Pos);
+        }
+    }
+
     public override InventoryBase Inventory => inventory;
 
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
 
     public override string AttributeTransformCode => BoardData.AttributeTransformCode;
-
-    protected override void Init()
-    {
-        base.Init();
-
-        if (Api != null && OwnBlock != null && inventory != null)
-        {
-            TabletopTags boardTags = OwnBlock.GetInterface<IBoardTagsSupplier>(Api.World, Pos)?.GetUnresolvedTags(Api.World, Pos);
-
-            for (int i = 0; i < inventory.Count; i++)
-            {
-                if (inventory[i] is not ItemSlotTabletop slotTabletop)
-                {
-                    continue;
-                }
-
-                if (!slotTabletop.BoardTags.Tags.Any())
-                {
-                    slotTabletop.BoardTags = boardTags.GetResolvedTags(i);
-                }
-
-                if (slotTabletop.SlotType == EnumSlotType.None)
-                {
-                    EnumSlotType slotType = EnumSlotType.Normal;
-                    if (BoardData.SlotTypes.Any())
-                    {
-                        string id = i.ToString();
-                        foreach ((string wildcard, EnumSlotType _slotType) in BoardData.SlotTypes)
-                        {
-                            if (WildcardUtil.Match(wildcard, id))
-                            {
-                                slotType = _slotType;
-                                break;
-                            }
-                        }
-                    }
-
-                    slotTabletop.SlotType = slotType;
-                }
-            }
-        }
-    }
 
     protected override void InitInventory()
     {
@@ -86,7 +59,22 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
         {
             inventory = new InventoryGeneric(BoardData.QuantitySlots, $"{InventoryClassName}-1", null, Api, (slotId, _inv) =>
             {
-                return new ItemSlotTabletop(_inv);
+                TabletopTags tags = Tags.GetResolvedTags(slotId);
+                EnumSlotType slotType = EnumSlotType.Normal;
+
+                if (BoardData.SlotTypes.Any())
+                {
+                    string id = slotId.ToString();
+                    foreach ((string wildcard, EnumSlotType _slotType) in BoardData.SlotTypes)
+                    {
+                        if (WildcardUtil.Match(wildcard, id))
+                        {
+                            slotType = _slotType;
+                            break;
+                        }
+                    }
+                }
+                return new ItemSlotTabletop(_inv, slotType, tags);
             });
         }
     }

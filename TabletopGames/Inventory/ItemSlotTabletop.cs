@@ -4,11 +4,13 @@ namespace TabletopGames;
 
 public class ItemSlotTabletop : ItemSlot
 {
-    public EnumSlotType SlotType { get; set; } = EnumSlotType.None;
-    public TabletopTags BoardTags { get; set; } = new TabletopTags();
+    public EnumSlotType SlotType { get; }
+    public TabletopTags BoardTags { get; }
 
-    public ItemSlotTabletop(InventoryBase inventory) : base(inventory)
+    public ItemSlotTabletop(InventoryBase inventory, EnumSlotType slotType, TabletopTags boardTags) : base(inventory)
     {
+        SlotType = slotType;
+        BoardTags = boardTags;
     }
 
     public override int MaxSlotStackSize => 1;

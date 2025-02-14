@@ -47,4 +47,22 @@ public class BlockBehaviorBoardTags : BlockBehavior, IBoardTagsSupplier
         }
         return new TabletopTags();
     }
+
+    public TabletopTags GetResolvedTags(Variants variants, int slotId)
+    {
+        if (variants.FindByVariant(TagsByType, out TabletopTags tags))
+        {
+            return tags.GetResolvedTags(slotId);
+        }
+        return new TabletopTags();
+    }
+
+    public TabletopTags GetUnresolvedTags(Variants variants)
+    {
+        if (variants.FindByVariant(TagsByType, out TabletopTags tags))
+        {
+            return tags;
+        }
+        return new TabletopTags();
+    }
 }
