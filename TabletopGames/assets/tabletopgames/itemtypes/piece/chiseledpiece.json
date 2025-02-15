@@ -11,6 +11,7 @@
         "onGoboard19x19Transform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
         "onShogiTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
         "onBackgammonTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.06 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.125 },
+        "onChiseledBoardTransform": { "translation": { "x": -1.515, "y": -1.515, "z": -0.11 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "scale": 0.25 },
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
@@ -26,7 +27,7 @@
             "name": "TabletopGames.PieceTags",
             "properties": {
                 "tabletopTags": {
-                    "tags": ["chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
+                    "tags": ["boardPiece", "chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
                 }
             }
         }

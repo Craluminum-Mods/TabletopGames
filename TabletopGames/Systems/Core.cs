@@ -58,11 +58,13 @@ public class Core : ModSystem
     private void RegisterBlocks()
     {
         api.RegisterBlockClass("TabletopGames.BlockBoard", typeof(BlockBoard));
+        api.RegisterBlockClass("TabletopGames.BlockChiseledBoard", typeof(BlockChiseledBoard));
     }
 
     private void RegisterBlockEntities()
     {
         api.RegisterBlockEntityClass("TabletopGames.Board", typeof(BlockEntityBoard));
+        api.RegisterBlockEntityClass("TabletopGames.ChiseledBoard", typeof(BlockEntityChiseledBoard));
     }
 
     private void RegisterBehaviors()
@@ -79,9 +81,11 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardData", typeof(BlockBehaviorBoardData));
+        api.RegisterBlockBehaviorClass("TabletopGames.ChiseledBoardTags", typeof(BlockBehaviorChiseledBoardTags));
 
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardSelection", typeof(BEBehaviorBoardSelection));
+        api.RegisterBlockEntityBehaviorClass("TabletopGames.ChiseledBoardSelection", typeof(BEBehaviorChiseledBoardSelection));
     }
 
     private void InitializeWorldConfigs()

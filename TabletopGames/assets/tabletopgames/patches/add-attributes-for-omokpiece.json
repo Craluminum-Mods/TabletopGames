@@ -35,7 +35,7 @@
                 "name": "TabletopGames.PieceTags",
                 "properties": {
                     "tabletopTags": {
-                        "tags": ["go", "omok", "morris"]
+                        "tags": ["boardPiece", "go", "omok", "morris"]
                     }
                 }
             }

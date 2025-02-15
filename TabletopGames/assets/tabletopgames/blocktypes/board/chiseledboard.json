@@ -1,0 +1,69 @@
+{
+    "code": "chiseledboard",
+    "class": "TabletopGames.BlockChiseledBoard",
+    "entityClass": "TabletopGames.ChiseledBoard",
+    "maxStackSize": 8,
+    "attributes": {
+        "handbook": { "groupBy": ["tabletopgames:chiseledboard"] },
+        "canChisel": false,
+
+        // "moldrackable": true,
+        // "shelvable": true,
+        // "antlermountable": true,
+        // "onmoldrackTransform": { "translation": { "x": 0, "y": 0.08, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
+        // "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
+        // "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
+
+        "attributeTransformCode": "onChiseledBoardTransform"
+    },
+    "entityBehaviors": [{ "name": "TabletopGames.ChiseledBoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
+    "behaviors": [
+        { "name": "Unstable" },
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "SingleCenter",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.ChiseledBoardTags",
+            "properties": {
+                "tabletopTags": {
+                    "tags": ["boardPiece", "boardDice"]
+                }
+            }
+        }
+    ],
+    "blockmaterial": "Wood",
+    "lightAbsorption": 0,
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sounds": {
+        "place": "game:block/planks",
+        "hit": "game:block/planks",
+        "break": "game:block/planks",
+        "walk": "game:walk/wood"
+    },
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "rotation": { "x": -35, "y": -30, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 1.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": -45, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 5
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.1, "y": 0, "z": -0.6 },
+        "rotation": { "x": 100, "y": 0, "z": -80 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.5
+    },
+    "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.03125, "z2": 1 }
+}

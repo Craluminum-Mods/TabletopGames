@@ -11,6 +11,7 @@
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.07, "z": 0.5 }, "scale": 1.5 },
         "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
         "onBackgammonTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.4 },
+        "onChiseledBoardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
         "name": {
             "*": ["tabletopgames:item-checkerpiece", " (", "tabletopgames:item-checkerpiece-{type}", ")"]
         },
@@ -59,7 +60,7 @@
             "name": "TabletopGames.PieceTags",
             "properties": {
                 "tabletopTags": {
-                    "tags": ["chess", "backgammon"]
+                    "tags": ["boardPiece", "chess", "backgammon"]
                 }
             }
         }

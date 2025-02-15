@@ -62,6 +62,14 @@ public static class ChiselExtensions
                     ItemChiseledPiece.SetChiseledStack(finalStack, inputStack: removedMouseStack, Vec3i.Zero);
                     break;
                 }
+            case BlockChiseledBoard blockChiseledBoard:
+                {
+                    ItemStack removedMouseStack = byPlayer.Entity.Controls.ShiftKey ? inputSlot.TakeOutWhole() : inputSlot.TakeOut(1);
+                    finalStack.StackSize = removedMouseStack.StackSize;
+                    removedMouseStack.StackSize = 1;
+                    BlockChiseledBoard.SetChiseledStack(finalStack, inputStack: removedMouseStack, BlockChiseledBoard.EnumStackType.HitBoxes);
+                    break;
+                }
             default:
                 return false;
         }

@@ -36,6 +36,12 @@
                             "isSinkSlot": true,
                             "slotParams": [{ "giveStack": { "type": "item", "code": "tabletopgames:chiseledpiece", "quantity": 1 } }]
                         },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-convert-chiseled-block-to-chiseled-board",
+                            "iconTexture": "chisel",
+                            "isSinkSlot": true,
+                            "slotParams": [{ "giveStack": { "type": "block", "code": "tabletopgames:chiseledboard", "quantity": 1 } }]
+                        },
 
                         // #############
                         // ### Stone ###
