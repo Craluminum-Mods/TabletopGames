@@ -6,6 +6,7 @@ Icons
 ==============
 Palette icon: https://icon-icons.com/icon/paint-tray-palette-color/175714
 Paintbrush icon: https://www.svgrepo.com/svg/164230/paintbrush
+Exchange icon: https://www.svgrepo.com/svg/257643/exchange-arrow
 
 Textures
 ==============
