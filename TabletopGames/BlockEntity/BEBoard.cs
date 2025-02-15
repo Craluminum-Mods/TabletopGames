@@ -13,7 +13,7 @@ namespace TabletopGames;
 /// Represents the basic block entity of a board for tabletop games.
 /// Handles inventory, mesh rendering, and item interactions.
 /// </summary>
-public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes
+public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, IBoardPreviewRendererHelper
 {
     public BlockBoard OwnBlock => Block as BlockBoard;
 

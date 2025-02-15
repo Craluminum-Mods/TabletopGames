@@ -27,14 +27,20 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
     public void OnRenderFrame(float deltaTime, EnumRenderStage stage)
     {
         UpdatePreviewMesh();
-        if (heldItemMeshRef == null || api.World.BlockAccessor.GetBlockEntity(pos) is not BlockEntityBoard blockEntity)
+        if (heldItemMeshRef == null || api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos) is not IBoardPreviewRendererHelper previewHelper)
         {
             return;
         }
 
-        int selectionIndex = api?.World?.Player?.CurrentBlockSelection?.SelectionBoxIndex ?? 0;
-        float[][] tfMatrices = blockEntity.GenTransformationMatrices();
-        Matrixf mat = new Matrixf(tfMatrices[selectionIndex]);
+        int selectionIndex = api?.World?.Player?.CurrentBlockSelection?.SelectionBoxIndex ?? -1;
+        if (selectionIndex < 0) return;
+
+        float[][] tfMatrices = previewHelper.GenTransformationMatrices();
+
+        float[] preMat = tfMatrices[selectionIndex];
+        if (preMat == null) return;
+
+        Matrixf mat = new Matrixf(preMat);
 
         IRenderAPI render = api.Render;
         Vec3d cameraPos = api.World.Player.Entity.CameraPos;
@@ -66,8 +72,8 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
         if (hotbarStack == null
             || blockSel == null
             || blockSel.Position != pos
-            || api.World.BlockAccessor.GetBlockEntity(pos) is not BlockEntityBoard blockEntity
-            || !blockEntity.TryGetSlot(selectionIndex, out ItemSlot boardSlot)
+            || api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos) is not IBoardPreviewRendererHelper previewHelper
+            || !previewHelper.TryGetSlot(selectionIndex, out ItemSlot boardSlot)
             || !boardSlot.Empty
             || !boardSlot.CanHold(hotbarSlot))
         {
@@ -76,9 +82,9 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
             return;
         }
 
-        blockEntity.SetPieceRotation(hotbarStack, api.World.Player);
-        MeshData heldItemMesh = blockEntity.GetOrCreateMesh(hotbarStack, selectionIndex).Clone();
-        blockEntity.ApplyPieceMeshRotation(hotbarStack, ref heldItemMesh);
+        previewHelper.SetPieceRotation(hotbarStack, api.World.Player);
+        MeshData heldItemMesh = previewHelper.GetOrCreateMesh(hotbarStack, selectionIndex).Clone();
+        previewHelper.ApplyPieceMeshRotation(hotbarStack, ref heldItemMesh);
 
         heldItemMeshRef?.Dispose();
         heldItemMeshRef = null;
