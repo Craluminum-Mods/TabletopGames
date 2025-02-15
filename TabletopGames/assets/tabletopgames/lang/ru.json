@@ -17,7 +17,7 @@
     "block-dicetray-heptagon": "Семигранный лоток для игральных кубиков",
     "block-dicetray-octagon": "Восьмигранный лоток для игральных кубиков",
     "block-chiseledboard": "Резная доска",
-    "blockdesc-chiseledboard": "<font color=\"#99c9f9\"><i>Резная доска</i></font>     <br>Совет: Создавайте резные блоки в одном направлении        <br><br>Нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для различных манипуляций с предметом.",
+    "blockdesc-chiseledboard-held": "<font color=\"#99c9f9\"><i>Резная доска</i></font>     <br>Совет: Создавайте резные блоки в одном направлении        <br><br>Нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для различных манипуляций с предметом.",
     "item-gameboard-generic": "Универсальная игровая доска (Не функциональна)",
     "itemdesc-gameboard-generic": "Разместите на земле, чтобы создать все возможные доски",
     "item-schematic-generic_piece": "Чертеж для настольных фигур",

@@ -121,6 +121,8 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         return base.GetPlacedBlockName(world, pos);
     }
 
+    public override string GetItemDescText() => Lang.Get("tabletopgames:blockdesc-chiseledboard-held") + "\n";
+
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
