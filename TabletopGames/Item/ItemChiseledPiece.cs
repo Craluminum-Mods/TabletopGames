@@ -22,10 +22,14 @@ public class ItemChiseledPiece : ItemBoardPiece
         UpRemove = 3,
         DownAdd = 4,
         DownRemove = 5,
-        Rotate = 6
+        Rotate = 6,
+        ScaleDown = 7,
+        ScaleUp = 8
     }
 
     public const string InventoryAttributeName = "containedChiseledStacks";
+    public const string RotateYAttributeName = "rotateY";
+    public const string ScaleAttributeName = "scale";
 
     private SkillItem[] toolModes = Array.Empty<SkillItem>();
 
@@ -42,6 +46,8 @@ public class ItemChiseledPiece : ItemBoardPiece
             new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-down-add-chiseled-block"), Linebreak = true },
             new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-down-remove-chiseled-block") },
             new() { Name = Lang.Get("tabletopgames:toolmode-increase-rotation-by-90-degrees"), Linebreak = true },
+            new() { Name = Lang.Get("tabletopgames:toolmode-scale-down") },
+            new() { Name = Lang.Get("tabletopgames:toolmode-scale-up") },
         };
 
         if (api is not ICoreClientAPI capi) return;
@@ -79,6 +85,14 @@ public class ItemChiseledPiece : ItemBoardPiece
                     toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("textures/icons/worldedit/rotate.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
+                case EnumMode.ScaleDown:
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-down.svg", 48, 48, 5, color: null));
+                    toolMode.TexturePremultipliedAlpha = false;
+                    break;
+                case EnumMode.ScaleUp:
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-up.svg", 48, 48, 5, color: null));
+                    toolMode.TexturePremultipliedAlpha = false;
+                    break;
             }
             toolModes[i] = toolMode;
         }
@@ -114,9 +128,16 @@ public class ItemChiseledPiece : ItemBoardPiece
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-        if (inSlot.Itemstack.Attributes.GetInt("rotateY", 0) is int rotateY && rotateY != 0)
+        int rotateY = inSlot.Itemstack.Attributes.GetInt(RotateYAttributeName);
+        if (rotateY != 0)
         {
             dsc.AppendLine(Lang.Get("tabletopgames:rotation-y", rotateY));
+        }
+
+        float scale = inSlot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
+        if (scale != 1)
+        {
+            dsc.AppendLine(Lang.Get("tabletopgames:scale", scale));
         }
     }
 
@@ -228,9 +249,25 @@ public class ItemChiseledPiece : ItemBoardPiece
                 }
                 break;
             case EnumMode.Rotate:
-                int rotateY = slot.Itemstack.Attributes.GetInt("rotateY", 0);
-                slot.Itemstack.Attributes.SetInt("rotateY", value: (rotateY + 90) % 360);
+                int rotateY = slot.Itemstack.Attributes.GetInt(RotateYAttributeName);
+                slot.Itemstack.Attributes.SetInt(RotateYAttributeName, value: (rotateY + 90) % 360);
                 break;
+            case EnumMode.ScaleDown:
+                {
+                    keepOpen = true;
+                    float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
+                    scale = byPlayer.Entity.Controls.ShiftKey ? scale - 0.25f : scale - 1;
+                    slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
+                    break;
+                }
+            case EnumMode.ScaleUp:
+                {
+                    keepOpen = true;
+                    float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
+                    scale = byPlayer.Entity.Controls.ShiftKey ? scale + 0.25f : scale + 1;
+                    slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
+                    break;
+                }
         }
 
         slot.MarkDirty();
@@ -335,10 +372,16 @@ public class ItemChiseledPiece : ItemBoardPiece
                 mesh.AddMeshData(containedMesh, offset.X, offset.Y, offset.Z);
             }
         }
-        if (itemstack.Attributes.HasAttribute("rotateY"))
+        if (itemstack.Attributes.HasAttribute(RotateYAttributeName))
         {
-            mesh = mesh.Clone().Rotate(Vec3f.Half, 0, GameMath.DEG2RAD * itemstack.Attributes.GetInt("rotateY"), 0);
+            mesh = mesh.Clone().Rotate(Vec3f.Half, 0, GameMath.DEG2RAD * itemstack.Attributes.GetInt(RotateYAttributeName), 0);
         }
+        if (itemstack.Attributes.HasAttribute(ScaleAttributeName))
+        {
+            float scale = itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
+            mesh = mesh.Clone().Scale(new Vec3f(0.5f, 0, 0.5f), scale, scale, scale);
+        }
+
         return mesh;
     }
 
@@ -347,7 +390,9 @@ public class ItemChiseledPiece : ItemBoardPiece
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(itemstack.Collectible.Code);
         stringBuilder.Append("-rotY:");
-        stringBuilder.Append(itemstack.Attributes.GetInt("rotateY", 0));
+        stringBuilder.Append(itemstack.Attributes.GetInt(RotateYAttributeName));
+        stringBuilder.Append("-scale:");
+        stringBuilder.Append(itemstack.Attributes.GetFloat(ScaleAttributeName, 1));
 
         ITreeAttribute chiseledStacksTree = itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
         if (chiseledStacksTree != null && chiseledStacksTree.Any())

@@ -95,6 +95,8 @@
     "toolmode-increase-rotation-by-90-degrees": "Повернути на 90 градусів",
     "toolmode-sinkslot-chiseled-block-set-hitboxes": "(Хітбокси) Перетягніть сюди різьблений блок, щоб встановити хітбоски дошки",
     "toolmode-sinkslot-chiseled-block-set-textures": "(Текстури) Перетягніть сюди різьблений блок, щоб встановити текстури дошки",
+    "toolmode-scale-down": "Зменшити масштаб в 1 раз; утримуйте Shift, щоб зменшити масштаб у 0,25 раза",
+    "toolmode-scale-up": "Збільшити масштаб в 1 раз; утримуйте Shift, щоб збільшити масштаб у 0,25 раза",
 
     "inworldcrafting-item-gameboard-chessboard_step1": "Створення шахової дошки: Етап 1/3",
     "inworldcrafting-item-gameboard-chessboard_step2": "Створення шахової дошки: Етап 2/3",
@@ -138,6 +140,7 @@
     "dimension-17x17": "17 x 17",
     "dimension-19x19": "19 x 19",
     "rotation-y": "Обертання (Y): {0}",
+    "scale": "Масштаб: {0}",
     "missing-chiseled-block-for-hitboxes": "Хітбокси: <font color=\"#ff8484\">Відсутні</font>",
     "contains-chiseled-block-for-hitboxes": "Хітбокси: <font color=\"#84ff84\">Предоставлені першим різьбленим блоком</font>",
     "missing-chiseled-block-for-textures": "Текстури: <font color=\"#ff8484\">Предоставлені першим різьбленим блоком</font>",
