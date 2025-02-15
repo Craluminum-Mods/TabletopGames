@@ -257,6 +257,7 @@ public class ItemChiseledPiece : ItemBoardPiece
                     keepOpen = true;
                     float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
                     scale = byPlayer.Entity.Controls.ShiftKey ? scale - 0.25f : scale - 1;
+                    if (scale <= 0) break;
                     slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
                     break;
                 }
@@ -265,6 +266,7 @@ public class ItemChiseledPiece : ItemBoardPiece
                     keepOpen = true;
                     float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
                     scale = byPlayer.Entity.Controls.ShiftKey ? scale + 0.25f : scale + 1;
+                    if (scale <= 0) break;
                     slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
                     break;
                 }
