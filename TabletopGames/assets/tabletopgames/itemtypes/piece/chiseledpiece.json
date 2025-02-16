@@ -30,7 +30,8 @@
                     "tags": ["boardPiece", "chiseledPiece", "backgammon", "chess", "go", "omok", "morris", "shogi"]
                 }
             }
-        }
+        },
+        { "name": "TabletopGames.ChiseledPieceToolModes" }
     ],
     "guiTransform": {
         "rotation": { "x": 158, "y": -45, "z": 0 },
