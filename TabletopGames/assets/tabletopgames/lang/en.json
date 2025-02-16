@@ -154,6 +154,7 @@
     "transform-onShogiTransform": "On shogi board",
     "transform-onBackgammonTransform": "On backgammon board",
     "transform-onDiceTrayTransform": "In dice tray",
+    "transform-onChiseledBoardTransform": "On chiseled board",
 
     "config-client": "Tabletop Games - Client",
     "config-debug": "Tabletop Games - DEBUG",

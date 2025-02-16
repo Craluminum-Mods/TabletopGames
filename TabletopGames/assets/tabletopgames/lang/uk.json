@@ -154,6 +154,7 @@
     "transform-onShogiTransform": "На дошці для Сьогі",
     "transform-onBackgammonTransform": "На дошці для нард",
     "transform-onDiceTrayTransform": "У лотку для гральних кубиків",
+    "transform-onChiseledBoardTransform": "На користувацькій дошці",
 
     "config-client": "Настільні ігри - Кліент",
     "config-debug": "Настільні ігри - DEBUG",
