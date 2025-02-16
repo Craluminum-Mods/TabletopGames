@@ -78,6 +78,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.RandomizeInSlot", typeof(CollectibleBehaviorRandomizeInSlot));
         api.RegisterCollectibleBehaviorClass("TabletopGames.PieceTags", typeof(CollectibleBehaviorPieceTags));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ChiseledPieceToolModes", typeof(CollectibleBehaviorChiseledPieceToolModes));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ChiseledBoardToolModes", typeof(CollectibleBehaviorChiseledBoardToolModes));
 
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));

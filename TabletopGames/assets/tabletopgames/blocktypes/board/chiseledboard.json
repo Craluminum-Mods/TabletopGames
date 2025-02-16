@@ -34,7 +34,8 @@
                     "tags": ["boardPiece", "boardDice"]
                 }
             }
-        }
+        },
+        { "name": "TabletopGames.ChiseledBoardToolModes" }
     ],
     "blockmaterial": "Wood",
     "lightAbsorption": 0,
