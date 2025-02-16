@@ -52,6 +52,8 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     {
         ignoreAttributeSubTrees ??= System.Array.Empty<string>();
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
         return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
     }
 
