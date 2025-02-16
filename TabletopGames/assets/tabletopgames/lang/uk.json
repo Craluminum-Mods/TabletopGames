@@ -168,6 +168,7 @@
     "blockhelp-schematic-create": "Створити 'креслення для настільних фігур'",
     "ingameerror-stacksize-mismatch": "Дозволено використовувати тільки однакову кількість",
     "ingameerror-chiseled-block-only": "Дозволено тільки різьблені блоки”",
+    "ingameerror-hitbox-removal-requires-texture-removal": "Не можна видалити блок для хітбоксів, не видаливши спочатку блок для текстур",
 
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",

@@ -138,7 +138,7 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
             case EnumMode.RemoveHitBoxes:
                 {
                     if (!mouseslot.Empty) break;
-                    if (stackTextures != null) break;
+                    if (TriggerErrorOnHitboxRemovalWhenTexturesExist(stackTextures)) break;
                     giveStack = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.HitBoxes, removeAttribute: true);
                     giveStack.StackSize = slot.StackSize;
                     keepOpen = false;
@@ -187,6 +187,16 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         if (trigger)
         {
             (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-chiseled-block-only", Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
+        }
+        return trigger;
+    }
+
+    private bool TriggerErrorOnHitboxRemovalWhenTexturesExist(ItemStack stackTextures)
+    {
+        bool trigger = stackTextures != null;
+        if (trigger)
+        {
+            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-hitbox-removal-requires-texture-removal", Lang.Get("tabletopgames:ingameerror-hitbox-removal-requires-texture-removal"));
         }
         return trigger;
     }

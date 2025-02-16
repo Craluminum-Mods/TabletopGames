@@ -168,6 +168,7 @@
     "blockhelp-schematic-create": "Создать 'Чертеж для настольных фигур'",
     "ingameerror-stacksize-mismatch": "Разрешено использовать только одинаковое количество",
     "ingameerror-chiseled-block-only": "Разрешены только резные блоки",
+    "ingameerror-hitbox-removal-requires-texture-removal": "Нельзя удалить блок для хитбоксов, не удалив сначала блок для текстур",
 
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",

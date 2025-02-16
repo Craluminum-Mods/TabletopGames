@@ -168,6 +168,7 @@
     "blockhelp-schematic-create": "Create 'Tabletop pieces Schematic'",
     "ingameerror-stacksize-mismatch": "Only same amount is allowed",
     "ingameerror-chiseled-block-only": "Only chiseled blocks are allowed",
+    "ingameerror-hitbox-removal-requires-texture-removal": "Can't remove block for hitboxes without removing block for textures first",
 
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
