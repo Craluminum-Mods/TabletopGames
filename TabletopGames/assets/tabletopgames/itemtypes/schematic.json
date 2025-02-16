@@ -26,21 +26,22 @@
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {
                 "textures": {
-                    "chisel": "textures/icons/worldedit/chiselbrush.svg"
+                    "chisel_board": "tabletopgames:textures/icons/chiselbrush-square.svg",
+                    "chisel_piece": "tabletopgames:textures/icons/chiselbrush-horse.svg"
                 },
                 "toolModes": {
                     "type-generic_piece": [
                         {
-                            "name": "tabletopgames:toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece",
-                            "iconTexture": "chisel",
-                            "isSinkSlot": true,
-                            "slotParams": [{ "giveStack": { "type": "item", "code": "tabletopgames:chiseledpiece", "quantity": 1 } }]
-                        },
-                        {
                             "name": "tabletopgames:toolmode-sinkslot-convert-chiseled-block-to-chiseled-board",
-                            "iconTexture": "chisel",
+                            "iconTexture": "chisel_board",
                             "isSinkSlot": true,
                             "slotParams": [{ "giveStack": { "type": "block", "code": "tabletopgames:chiseledboard", "quantity": 1 } }]
+                        },
+                        {
+                            "name": "tabletopgames:toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece",
+                            "iconTexture": "chisel_piece",
+                            "isSinkSlot": true,
+                            "slotParams": [{ "giveStack": { "type": "item", "code": "tabletopgames:chiseledpiece", "quantity": 1 } }]
                         },
 
                         // #############

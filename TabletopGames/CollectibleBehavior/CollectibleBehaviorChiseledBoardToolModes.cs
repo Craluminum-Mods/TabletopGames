@@ -40,11 +40,11 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.HitBoxes:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: ColorUtil.Hex2Int("#aec6cf")));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Textures:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: ColorUtil.Hex2Int("#b39eb5")));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
             }

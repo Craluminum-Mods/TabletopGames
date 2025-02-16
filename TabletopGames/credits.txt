@@ -7,6 +7,9 @@ Icons
 Palette icon: https://icon-icons.com/icon/paint-tray-palette-color/175714
 Paintbrush icon: https://www.svgrepo.com/svg/164230/paintbrush
 Exchange icon: https://www.svgrepo.com/svg/257643/exchange-arrow
+Chess horse icon: https://www.svgrepo.com/svg/159708/horse-black-head-shape-of-a-chess-piece
+scale-down icon: https://www.svgrepo.com/svg/379605/scale-down
+scale-up icon: https://www.svgrepo.com/svg/379606/scale-up
 
 Textures
 ==============

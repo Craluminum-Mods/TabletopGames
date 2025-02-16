@@ -56,7 +56,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.Exchange:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Remove:
@@ -80,7 +80,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Rotate:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("textures/icons/worldedit/rotate.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("textures/icons/rotate.svg", 48, 48, 5, color: ColorUtil.BlackArgb));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.ScaleDown:
@@ -267,5 +267,4 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         }
         return trigger;
     }
-
 }
