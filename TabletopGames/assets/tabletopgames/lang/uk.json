@@ -95,6 +95,8 @@
     "toolmode-increase-rotation-by-90-degrees": "Повернути на 90 градусів",
     "toolmode-sinkslot-chiseled-block-set-hitboxes": "(Хітбокси) Перетягніть сюди різьблений блок, щоб встановити хітбоски дошки",
     "toolmode-sinkslot-chiseled-block-set-textures": "(Текстури) Перетягніть сюди різьблений блок, щоб встановити текстури дошки",
+    "toolmode-sinkslot-chiseled-block-remove-hitboxes": "(Хітбокси) Видалити різьблений блок для хітбоксів",
+    "toolmode-sinkslot-chiseled-block-remove-textures": "(Текстури) Видалити різьблений блок для текстур",
     "toolmode-scale-down": "Зменшити масштаб в 1 раз; утримуйте Shift, щоб зменшити масштаб у 0,25 раза",
     "toolmode-scale-up": "Збільшити масштаб в 1 раз; утримуйте Shift, щоб збільшити масштаб у 0,25 раза",
 

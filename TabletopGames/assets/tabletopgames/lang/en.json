@@ -95,6 +95,8 @@
     "toolmode-increase-rotation-by-90-degrees": "Rotate by 90 degrees",
     "toolmode-sinkslot-chiseled-block-set-hitboxes": "(Hitboxes) Drag and drop chiseled block here to set board's hitboxes",
     "toolmode-sinkslot-chiseled-block-set-textures": "(Textures) Drag and drop chiseled block here to set board's textures",
+    "toolmode-sinkslot-chiseled-block-remove-hitboxes": "(Hitboxes) Remove chiseled block for hitboxes",
+    "toolmode-sinkslot-chiseled-block-remove-textures": "(Textures) Remove chiseled block for textures",
     "toolmode-scale-down": "Scale down by a factor of 1; hold Shift to scale by a factor of 0.25",
     "toolmode-scale-up": "Scale up by a factor of 1; hold Shift to scale by a factor of 0.25",
 

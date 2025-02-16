@@ -2,7 +2,6 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using static TabletopGames.BlockChiseledBoard;
@@ -14,7 +13,9 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
     public enum EnumMode
     {
         HitBoxes = 0,
-        Textures = 1
+        Textures = 1,
+        RemoveHitBoxes = 2,
+        RemoveTextures = 3
     }
 
     private ICoreAPI api;
@@ -30,6 +31,8 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         {
             new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-chiseled-block-set-hitboxes") },
             new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-chiseled-block-set-textures") },
+            new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-chiseled-block-remove-hitboxes"), Linebreak = true },
+            new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-chiseled-block-remove-textures") }
         };
 
         if (api is not ICoreClientAPI capi) return;
@@ -40,11 +43,19 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.HitBoxes:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Textures:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush-white.svg", 48, 48, 5, color: null));
+                    toolMode.TexturePremultipliedAlpha = false;
+                    break;
+                case EnumMode.RemoveHitBoxes:
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels-crossed.svg", 48, 48, 5, color: null));
+                    toolMode.TexturePremultipliedAlpha = false;
+                    break;
+                case EnumMode.RemoveTextures:
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush-crossed.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
             }
@@ -74,17 +85,6 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         {
             case EnumMode.HitBoxes:
                 {
-                    if (mouseslot.Empty)
-                    {
-                        if (stackTextures == null)
-                        {
-                            giveStack = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.HitBoxes, removeAttribute: true);
-                            giveStack.StackSize = slot.StackSize;
-                            keepOpen = false;
-                        }
-                        break;
-                    }
-
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
                     if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
@@ -111,17 +111,6 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
                 break;
             case EnumMode.Textures:
                 {
-                    if (mouseslot.Empty)
-                    {
-                        if (stackTextures != null)
-                        {
-                            giveStack = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.Textures, removeAttribute: true);
-                            giveStack.StackSize = slot.StackSize;
-                            keepOpen = false;
-                        }
-                        break;
-                    }
-
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
                     if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
@@ -144,6 +133,24 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
                     }
 
                     SetChiseledStack(slot.Itemstack, inputStack: clonedMouseStack, EnumStackType.Textures);
+                }
+                break;
+            case EnumMode.RemoveHitBoxes:
+                {
+                    if (!mouseslot.Empty) break;
+                    if (stackTextures != null) break;
+                    giveStack = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.HitBoxes, removeAttribute: true);
+                    giveStack.StackSize = slot.StackSize;
+                    keepOpen = false;
+                }
+                break;
+            case EnumMode.RemoveTextures:
+                {
+                    if (!mouseslot.Empty) break;
+                    if (stackTextures == null) break;
+                    giveStack = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.Textures, removeAttribute: true);
+                    giveStack.StackSize = slot.StackSize;
+                    keepOpen = false;
                 }
                 break;
         }
