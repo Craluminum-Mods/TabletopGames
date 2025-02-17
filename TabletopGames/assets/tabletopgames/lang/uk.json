@@ -173,6 +173,7 @@
     "ingameerror-reached-scale-down-limit": "Спроба зменшити масштаб до {0}, але ліміт {1}!",
     "ingameerror-reached-stacking-up-limit": "Межа додавання зверху {0}!",
     "ingameerror-reached-stacking-down-limit": "Межа додавання знизу {0}!",
+    "ingameerror-mainblock-removal-blocked-by-extrablocks": "Не можна видалити головний блок, не видаливши спочатку додаткові блоки",
 
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",

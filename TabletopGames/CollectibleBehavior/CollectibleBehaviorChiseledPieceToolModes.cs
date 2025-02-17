@@ -33,6 +33,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
     public int StackingDownLimit => api.World.Config.GetInt("tabletopgames_chiseledPieceMaxDown", 2);
 
     private ICoreAPI api;
+    private ICoreClientAPI clientApi => api as ICoreClientAPI;
     private SkillItem[] toolModes = Array.Empty<SkillItem>();
 
     public CollectibleBehaviorChiseledPieceToolModes(CollectibleObject collObj) : base(collObj) { }
@@ -136,12 +137,12 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                 }
                 break;
             case EnumMode.Remove:
-                if (mouseslot.Empty && chiseledStacksTree.Count == 1)
-                {
-                    giveStack = GetChiseledStack(slot.Itemstack, Vec3i.Zero, api.World, removeAttribute: true);
-                    giveStack.StackSize = slot.StackSize;
-                    keepOpen = false;
-                }
+                if (!mouseslot.Empty) break;
+                if (TriggerErrorOnMainBlockRemovalWhenExtraBlocksExist(chiseledStacksTree.Count)) break;
+
+                giveStack = GetChiseledStack(slot.Itemstack, Vec3i.Zero, api.World, removeAttribute: true);
+                giveStack.StackSize = slot.StackSize;
+                keepOpen = false;
                 break;
             case EnumMode.UpAdd:
                 {
@@ -263,12 +264,28 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel) => toolModes;
 
+    private bool TriggerErrorOnMainBlockRemovalWhenExtraBlocksExist(int blockCount)
+    {
+        bool trigger = blockCount > 1;
+        if (trigger)
+        {
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-mainblock-removal-blocked-by-extrablocks",
+                text: Lang.Get("tabletopgames:ingameerror-mainblock-removal-blocked-by-extrablocks"));
+        }
+        return trigger;
+    }
+
     private bool TriggerErrorOnStackSizeMismatch(int firstStackSize, int secondStackSize)
     {
         bool trigger = firstStackSize != secondStackSize;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-stacksize-mismatch", Lang.Get("tabletopgames:ingameerror-stacksize-mismatch"));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-stacksize-mismatch",
+                text: Lang.Get("tabletopgames:ingameerror-stacksize-mismatch"));
         }
         return trigger;
     }
@@ -278,7 +295,10 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         bool trigger = slot.Empty || slot.Itemstack.Collectible is not BlockChisel;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-chiseled-block-only", Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-chiseled-block-only",
+                text: Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
         }
         return trigger;
     }
@@ -288,7 +308,10 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         bool trigger = scale > scaleUpLimit;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-scale-up-limit", Lang.Get("tabletopgames:ingameerror-reached-scale-up-limit", scale, scaleUpLimit));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-reached-scale-up-limit",
+                text: Lang.Get("tabletopgames:ingameerror-reached-scale-up-limit", scale, scaleUpLimit));
         }
         return trigger;
     }
@@ -298,18 +321,26 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         bool trigger = scale < scaleDownLimit;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-scale-down-limit", Lang.Get("tabletopgames:ingameerror-reached-scale-down-limit", scale, scaleDownLimit));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-reached-scale-down-limit",
+                text: Lang.Get("tabletopgames:ingameerror-reached-scale-down-limit", scale, scaleDownLimit));
         }
         return trigger;
     }
 
     private void TriggerErrorOnStackingUpLimit()
     {
-        (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-stacking-up-limit", Lang.Get("tabletopgames:ingameerror-reached-stacking-up-limit", StackingUpLimit));
+        clientApi?.TriggerIngameError(
+            sender: this,
+            errorCode: "tabletopgames:ingameerror-reached-stacking-up-limit",
+            text: Lang.Get("tabletopgames:ingameerror-reached-stacking-up-limit", StackingUpLimit));
     }
 
     private void TriggerErrorOnStackingDownLimit()
     {
-        (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-stacking-down-limit", Lang.Get("tabletopgames:ingameerror-reached-stacking-down-limit", StackingDownLimit));
+        clientApi?.TriggerIngameError(
+            sender: this, errorCode: "tabletopgames:ingameerror-reached-stacking-down-limit",
+            text: Lang.Get("tabletopgames:ingameerror-reached-stacking-down-limit", StackingDownLimit));
     }
 }

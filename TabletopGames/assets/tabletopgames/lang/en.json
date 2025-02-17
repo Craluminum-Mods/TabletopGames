@@ -173,6 +173,7 @@
     "ingameerror-reached-scale-down-limit": "Trying to scale down to {0}x, but limit is {1}x!",
     "ingameerror-reached-stacking-up-limit": "Stacking up limit is {0}!",
     "ingameerror-reached-stacking-down-limit": "Stacking down limit is {0}!",
+    "ingameerror-mainblock-removal-blocked-by-extrablocks": "Can't remove main block without removing extra blocks first",
 
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
