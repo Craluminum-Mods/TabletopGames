@@ -162,11 +162,11 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
 
         if (keepOpen)
         {
-            byPlayer.Entity.World.Api.Event.PushEvent("keepopentoolmodedlg");
+            api.Event.PushEvent("keepopentoolmodedlg");
         }
         if (giveStack != null && !byPlayer.InventoryManager.TryGiveItemstack(giveStack))
         {
-            byPlayer.Entity.World.SpawnItemEntity(giveStack, byPlayer.Entity.SidedPos.AsBlockPos);
+            api.World.SpawnItemEntity(giveStack, byPlayer.Entity.SidedPos.AsBlockPos);
         }
     }
 
