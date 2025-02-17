@@ -15,7 +15,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         {
             IBoardTagsSupplier supplier = Block?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
-            return supplier.GetUnresolvedTags(null);
+            return supplier.GetUnresolvedTags(Api?.World, Pos);
         }
     }
 
