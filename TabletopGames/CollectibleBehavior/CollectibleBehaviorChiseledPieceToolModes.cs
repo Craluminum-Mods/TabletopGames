@@ -55,7 +55,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
             new() { Name = Lang.Get("tabletopgames:toolmode-scale-up") },
         };
 
-        if (api is not ICoreClientAPI capi) return;
+        if (clientApi == null) return;
 
         for (int i = 0; i < toolModes.Length; i++)
         {
@@ -63,39 +63,39 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.Exchange:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Remove:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("textures/icons/worldedit/chiselbrush.svg", 48, 48, 5, color: ColorUtil.Hex2Int("#ff8484")));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("textures/icons/worldedit/chiselbrush.svg", 48, 48, 5, color: ColorUtil.Hex2Int("#ff8484")));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.UpAdd:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/up-add.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/up-add.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.UpRemove:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/up-remove.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/up-remove.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.DownAdd:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/down-add.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/down-add.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.DownRemove:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/down-remove.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/down-remove.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Rotate:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("textures/icons/rotate.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("textures/icons/rotate.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.ScaleDown:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-down.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-down.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.ScaleUp:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-up.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-up.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
             }

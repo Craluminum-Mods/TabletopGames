@@ -19,6 +19,7 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
     }
 
     private ICoreAPI api;
+    private ICoreClientAPI clientApi => api as ICoreClientAPI;
     private SkillItem[] toolModes = Array.Empty<SkillItem>();
 
     public CollectibleBehaviorChiseledBoardToolModes(CollectibleObject collObj) : base(collObj) { }
@@ -35,7 +36,7 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
             new() { Name = Lang.Get("tabletopgames:toolmode-sinkslot-chiseled-block-remove-textures") }
         };
 
-        if (api is not ICoreClientAPI capi) return;
+        if (clientApi == null) return;
 
         for (int i = 0; i < toolModes.Length; i++)
         {
@@ -43,19 +44,19 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.HitBoxes:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Textures:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.RemoveHitBoxes:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels-crossed.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/voxels-crossed.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.RemoveTextures:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush-crossed.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(clientApi, clientApi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush-crossed.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
             }
@@ -176,7 +177,10 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         bool trigger = firstStackSize != secondStackSize;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-stacksize-mismatch", Lang.Get("tabletopgames:ingameerror-stacksize-mismatch"));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-stacksize-mismatch",
+                text: Lang.Get("tabletopgames:ingameerror-stacksize-mismatch"));
         }
         return trigger;
     }
@@ -186,7 +190,10 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         bool trigger = slot.Empty || slot.Itemstack.Collectible is not BlockChisel;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-chiseled-block-only", Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-chiseled-block-only",
+                text: Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
         }
         return trigger;
     }
@@ -196,7 +203,10 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
         bool trigger = stackTextures != null;
         if (trigger)
         {
-            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-hitbox-removal-requires-texture-removal", Lang.Get("tabletopgames:ingameerror-hitbox-removal-requires-texture-removal"));
+            clientApi?.TriggerIngameError(
+                sender: this,
+                errorCode: "tabletopgames:ingameerror-hitbox-removal-requires-texture-removal",
+                text: Lang.Get("tabletopgames:ingameerror-hitbox-removal-requires-texture-removal"));
         }
         return trigger;
     }
