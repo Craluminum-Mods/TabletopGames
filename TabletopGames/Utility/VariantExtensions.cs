@@ -11,7 +11,7 @@ public static class VariantExtensions
     {
         result = default;
 
-        if (inDictionary == null || !inDictionary.Any())
+        if (variants == null || inDictionary == null || !inDictionary.Any())
         {
             return false;
         }
