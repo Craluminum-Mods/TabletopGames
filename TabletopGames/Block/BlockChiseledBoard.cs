@@ -114,7 +114,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public override Cuboidf[] GetCollisionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
         return blockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorChiseledBoardSelection>() is BEBehaviorChiseledBoardSelection bebehavior
-            ? bebehavior.GetOrCreateSelectionBoxes()
+            ? bebehavior.GetOrCreateSelectionBoxes() ?? base.GetCollisionBoxes(blockAccessor, pos)
             : base.GetCollisionBoxes(blockAccessor, pos);
     }
 
