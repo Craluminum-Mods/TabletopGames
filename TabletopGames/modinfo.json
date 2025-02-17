@@ -3,8 +3,8 @@
     "modid": "tabletopgames",
     "name": "Tabletop Games",
     "authors": ["Craluminum2413"],
-    "description": "Various tabletop games from real world",
-    "version": "2.8.5",
+    "description": "A literal tabletop simulator to play real-world tabletop games or create your own",
+    "version": "2.9.0",
     "dependencies": {
         "game": "1.20.0"
     }
