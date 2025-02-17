@@ -12,20 +12,16 @@ namespace TabletopGames;
 
 public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPreviewRendererHelper
 {
-    public BlockChiseledBoard OwnBlock => Block as BlockChiseledBoard;
-
     public ItemStack ChiseledStackHitboxes { get; set; }
     public ItemStack ChiseledStackTextures { get; set; }
     public float MeshAngleRad { get; set; }
     public float[] Mat { get; protected set; }
-
     protected MeshData mesh;
     protected InventoryBase inventory;
 
+    public BlockChiseledBoard OwnBlock => Block as BlockChiseledBoard;
     public override InventoryBase Inventory => inventory;
-
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
-
     public override string AttributeTransformCode => OwnBlock.AttributeTransformCode;
 
     public TabletopTags Tags
@@ -43,10 +39,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         InitInventory();
         base.Initialize(api);
         inventory.LateInitialize($"{InventoryClassName}-1", api);
-        if (mesh == null)
-        {
-            Init();
-        }
+        if (mesh == null) Init();
     }
 
     protected void Init()
@@ -125,24 +118,10 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         {
             behavior.OnTesselation(mesher, tesselator);
         }
-
         return true;
     }
 
-    public override void updateMeshes()
-    {
-        for (int i = 0; i < DisplayedItems; i++)
-        {
-            updateMesh(i);
-
-            tfMatrices = genTransformationMatrices();
-        }
-    }
-
-    protected override string getMeshCacheKey(ItemStack stack)
-    {
-        return $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
-    }
+    protected override string getMeshCacheKey(ItemStack stack) => $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
 
     protected override float[][] genTransformationMatrices()
     {
@@ -196,12 +175,12 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         }
     }
 
-    public MeshData GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
-    public float[][] GenTransformationMatrices() => genTransformationMatrices();
-
     protected void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes(forceNew);
 
-    public void OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
+    float[][] IBoardPreviewRendererHelper.GenTransformationMatrices() => genTransformationMatrices();
+    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
+
+    void IRotatable.OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
         Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, EnumAxis? flipAxis)
     {
         MeshAngleRad = tree.GetFloat("meshAngleRad");

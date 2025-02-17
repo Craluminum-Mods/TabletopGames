@@ -37,10 +37,28 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
     }
 
     public override InventoryBase Inventory => inventory;
-
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
-
     public override string AttributeTransformCode => BoardData.AttributeTransformCode;
+
+    public override void Initialize(ICoreAPI api)
+    {
+        InitInventory();
+        base.Initialize(api);
+        inventory.LateInitialize($"{InventoryClassName}-1", api);
+        if (mesh == null) Init();
+    }
+
+    protected override void Init()
+    {
+        if (Api == null || OwnBlock == null) return;
+
+        if (Api.Side == EnumAppSide.Client)
+        {
+            GetOrCreateSelectionBoxes(forceNew: true);
+            mesh = OwnBlock.GetOrCreateMesh(Variants);
+            Mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
+        }
+    }
 
     protected override void InitInventory()
     {
@@ -68,8 +86,21 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
         }
     }
 
+    public override void OnBlockPlaced(ItemStack byItemStack = null)
+    {
+        base.OnBlockPlaced(byItemStack);
+        if (byItemStack != null)
+        {
+            Variants = Variants.FromStack(byItemStack);
+        }
+        InitInventory();
+        Init();
+    }
+
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
+        mesher.AddMeshData(mesh, Mat);
+
         for (int i = 0; i < DisplayedItems; i++)
         {
             ItemSlot itemSlot = Inventory[i];
@@ -81,8 +112,14 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
             }
         }
 
-        return base.OnTesselation(mesher, tesselator);
+        foreach (BlockEntityBehavior behavior in Behaviors)
+        {
+            behavior.OnTesselation(mesher, tesselator);
+        }
+        return true;
     }
+
+    protected override string getMeshCacheKey(ItemStack stack) => $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
 
     protected override float[][] genTransformationMatrices()
     {
@@ -105,8 +142,6 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
         }
         return _tfMatrices;
     }
-
-    protected override void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>().GetOrCreateSelectionBoxes(forceNew);
 
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
@@ -135,4 +170,9 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
             behavior.GetBlockInfo(forPlayer, dsc);
         }
     }
+
+    protected void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>().GetOrCreateSelectionBoxes(forceNew);
+
+    float[][] IBoardPreviewRendererHelper.GenTransformationMatrices() => genTransformationMatrices();
+    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
 }
