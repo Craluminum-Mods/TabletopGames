@@ -4,7 +4,15 @@
     "entityClass": "TabletopGames.Board",
     "maxStackSize": 8,
     "attributes": {
-        "handbook": { "groupBy": ["tabletopgames:dicetray"] },
+        "handbook": {
+            "groupBy": ["tabletopgames:dicetray"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:item-handbooktitle-dicetray-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-dicetray-howtoobtain"
+                }
+            ]
+        },
         "canChisel": false,
         "moldrackable": true,
         "shelvable": true,

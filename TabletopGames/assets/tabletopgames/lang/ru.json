@@ -173,6 +173,12 @@
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
 
+    "item-handbooktitle-dicetray-howtoobtain": "Как получить",
+    "item-handbooktext-dicetray-howtoobtain": "Разместите <<a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, затем используйте на ней любой <a href=\"handbooksearch://игральный кубик\">игральный кубик</a> с помощью <hk>rightmouse</hk>",
+
+    "item-handbooktitle-schematic-howtoobtain": "Как получить",
+    "item-handbooktext-schematic-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на земле, затем используйте любой твердый краситель <a href=\"handbooksearch://краситель\">пигмент</a> с помощью <hk>rightmouse</hk>",
+
     "item-handbooktitle-itemcontainer-interactions": "Взаимодействия",
     "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Прикрепить или снять крышку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 

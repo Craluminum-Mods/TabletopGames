@@ -173,6 +173,12 @@
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
 
+    "item-handbooktitle-dicetray-howtoobtain": "Як отримати",
+    "item-handbooktext-dicetray-howtoobtain": "Розмістіть <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, потім використайте на ній будь який <a href=\"handbooksearch://гральний кубик\">гральний кубик</a> за допомогою <hk>rightmouse</hk>",
+
+    "item-handbooktitle-schematic-howtoobtain": "Як отримати",
+    "item-handbooktext-schematic-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на землі, потім використайте будь який твердий <a href=\"handbooksearch://барвник\">барвник</a> використовуючи <hk>rightmouse</hk>",
+
     "item-handbooktitle-itemcontainer-interactions": "Взаємодії",
     "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Прикріпити або зняти кришку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 

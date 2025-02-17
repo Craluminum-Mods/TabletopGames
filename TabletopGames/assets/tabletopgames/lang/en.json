@@ -173,6 +173,12 @@
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
 
+    "item-handbooktitle-dicetray-howtoobtain": "How To Obtain",
+    "item-handbooktext-dicetray-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://generic game board\">Generic board</a>, then interacting with any <a href=\"handbooksearch://dice\">dice</a> using <hk>rightmouse</hk>",
+
+    "item-handbooktitle-schematic-howtoobtain": "How To Obtain",
+    "item-handbooktext-schematic-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the ground, then interacting with any <a href=\"handbooksearch://pigment\">pigment</a> using <hk>rightmouse</hk>",
+
     "item-handbooktitle-itemcontainer-interactions": "Interactions",
     "item-handbooktext-itemcontainer-interactions": "Interactions work only when placed on the solid surface.        <br>Attach or detach lid: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
