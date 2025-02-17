@@ -17,9 +17,9 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 {
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
-
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    private ICoreClientAPI clientApi => api as ICoreClientAPI;
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -73,7 +73,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public virtual MeshData GenGuiMesh(Variants variants)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(4, 3);
 
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
@@ -83,31 +82,29 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
         variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
-        ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+        ShapeTextureSource stexSource = new ShapeTextureSource(clientApi, shape, rcshape.Base.ToString());
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
             ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
             ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
-            ctex.Bake(capi.Assets);
+            ctex.Bake(clientApi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
 
         if (shape == null) return mesh;
-        capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, stexSource);
+        clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, stexSource);
         return mesh;
     }
 
     public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
     {
         Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes", () => new Dictionary<string, MeshData>());
-
-        ICoreClientAPI capi = api as ICoreClientAPI;
 
         string key = $"{Code}-{variants}";
         if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData mesh))
@@ -121,7 +118,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
             rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-            Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+            Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
             ITexPositionSource texSource = overrideTexturesource;
             if (overrideTexturesource == null)
@@ -129,21 +126,21 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
                 variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
                 _textures ??= new Dictionary<string, CompositeTexture>();
 
-                ShapeTextureSource stexSource = new ShapeTextureSource(capi, shape, rcshape.Base.ToString());
+                ShapeTextureSource stexSource = new ShapeTextureSource(clientApi, shape, rcshape.Base.ToString());
                 texSource = stexSource;
                 foreach (KeyValuePair<string, CompositeTexture> val in _textures)
                 {
                     CompositeTexture ctex = val.Value.Clone();
                     ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
                     ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
-                    ctex.Bake(capi.Assets);
+                    ctex.Bake(clientApi.Assets);
                     stexSource.textures[val.Key] = ctex;
                 }
             }
 
             if (shape == null) return mesh;
 
-            capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
+            clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
 
             if (overrideTexturesource == null)
             {
