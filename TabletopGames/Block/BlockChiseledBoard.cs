@@ -111,6 +111,13 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
             : base.GetSelectionBoxes(blockAccessor, pos);
     }
 
+    public override Cuboidf[] GetCollisionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
+    {
+        return blockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorChiseledBoardSelection>() is BEBehaviorChiseledBoardSelection bebehavior
+            ? bebehavior.GetOrCreateSelectionBoxes()
+            : base.GetCollisionBoxes(blockAccessor, pos);
+    }
+
     public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
     public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardSelectionColor;
 
