@@ -47,7 +47,7 @@ public class CollectibleBehaviorChiseledBoardToolModes : CollectibleBehavior
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Textures:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush-white.svg", 48, 48, 5, color: null));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/paintbrush.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.RemoveHitBoxes:

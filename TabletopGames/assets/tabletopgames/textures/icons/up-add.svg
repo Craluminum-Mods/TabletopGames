@@ -2,7 +2,7 @@
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
 
 <svg
-   fill="#000000"
+   fill="#ffffff"
    height="256px"
    width="256px"
    version="1.1"
@@ -26,8 +26,8 @@
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
    inkscape:zoom="2.2456165"
-   inkscape:cx="113.55456"
-   inkscape:cy="127.58189"
+   inkscape:cx="114.22253"
+   inkscape:cy="127.13658"
    inkscape:window-width="1920"
    inkscape:window-height="1009"
    inkscape:window-x="-8"
@@ -48,18 +48,7 @@
    d="m 456.662,225.152 c -0.644,-1.332 -1.988,-2.236 -3.46,-2.236 H 376.674 V 3.892 C 376.674,1.768 374.61,0 372.49,0 H 118.982 c -2.12,0 -3.66,1.764 -3.66,3.892 V 222.92 H 38.794 c -1.472,0 -2.816,0.904 -3.456,2.236 -0.644,1.328 -0.468,2.94 0.448,4.092 l 207.196,261.288 c 0.732,0.916 1.84,1.464 3.012,1.464 1.172,0 2.28,-0.536 3.012,-1.452 l 207.204,-261.3 c 0.92,-1.156 1.096,-2.768 0.452,-4.096 z"
    id="path1" /> </g> </g> </g>
 
-<g
-   id="g3"
-   transform="translate(345.9375,432.42187)"><rect
-     style="fill:#ffffff;fill-opacity:1;stroke-width:201.178;stroke-linejoin:round"
-     id="rect2"
-     width="58.809376"
-     height="235.2375"
-     x="37.284374"
-     y="-135.68437" /><rect
-     style="fill:#ffffff;fill-opacity:1;stroke-width:197.233;stroke-linejoin:round"
-     id="rect2-6"
-     width="230.625"
-     height="57.65625"
-     x="-49.200001"
-     y="-49.200001" /></g></svg>
+<path
+   id="rect2"
+   style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:5.70953;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+   d="m 216.01875,123.76875 v 84.78858 h -86.48438 v 56.52575 h 86.48438 v 89.31067 h 58.80936 v -89.31067 h 85.33126 v -56.52575 h -85.33126 v -84.78858 z" /></svg>

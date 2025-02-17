@@ -56,7 +56,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
             switch ((EnumMode)i)
             {
                 case EnumMode.Exchange:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/exchange.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.Remove:
@@ -84,11 +84,11 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.ScaleDown:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-down.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-down.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
                 case EnumMode.ScaleUp:
-                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-up.svg", 48, 48, 5, color: ColorUtil.WhiteArgb));
+                    toolMode.WithIcon(capi, capi.Gui.LoadSvgWithPadding("tabletopgames:textures/icons/scale-up.svg", 48, 48, 5, color: null));
                     toolMode.TexturePremultipliedAlpha = false;
                     break;
             }

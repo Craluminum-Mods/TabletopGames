@@ -2,7 +2,7 @@
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
 
 <svg
-   fill="#000000"
+   fill="#ffffff"
    height="256px"
    width="256px"
    version="1.1"
@@ -26,8 +26,8 @@
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
    inkscape:zoom="2.2456165"
-   inkscape:cx="136.71079"
-   inkscape:cy="133.81626"
+   inkscape:cx="134.26157"
+   inkscape:cy="114.66784"
    inkscape:window-width="1920"
    inkscape:window-height="1009"
    inkscape:window-x="-8"
@@ -49,9 +49,9 @@
    id="path1" /> </g> </g> </g>
 
 <rect
-   style="fill:#ffffff;fill-opacity:1;stroke-width:197.233;stroke-linejoin:round"
+   style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:5.76562;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
    id="rect2-6"
    width="230.625"
    height="57.65625"
-   x="296.73749"
-   y="383.22186" /></svg>
+   x="129.53438"
+   y="210.25313" /></svg>
