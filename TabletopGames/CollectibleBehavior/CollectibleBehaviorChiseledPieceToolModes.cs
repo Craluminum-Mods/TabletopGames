@@ -26,6 +26,12 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         ScaleUp = 8
     }
 
+    public const float scaleUpLimit = 5f;
+    public const float scaleDownLimit = 0.25f;
+
+    public int StackingUpLimit => api.World.Config.GetInt("tabletopgames_chiseledPieceMaxUp", 6);
+    public int StackingDownLimit => api.World.Config.GetInt("tabletopgames_chiseledPieceMaxDown", 2);
+
     private ICoreAPI api;
     private SkillItem[] toolModes = Array.Empty<SkillItem>();
 
@@ -112,9 +118,6 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
         ItemStack giveStack = null;
         bool keepOpen = true;
 
-        int upLimit = api.World.Config.GetInt("tabletopgames_chiseledPieceMaxUp", 6);
-        int downLimit = api.World.Config.GetInt("tabletopgames_chiseledPieceMaxDown", 2);
-
         switch ((EnumMode)index)
         {
             case EnumMode.Exchange:
@@ -145,8 +148,9 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
                     if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
+                    bool triggerError = true;
                     Vec3i curOffset = Vec3i.Zero;
-                    for (int i = 0; i < upLimit; i++)
+                    for (int i = 0; i < StackingUpLimit; i++)
                     {
                         curOffset.Y = i;
                         if (!chiseledStacksTree.HasAttribute(ToXYZString(curOffset)))
@@ -154,8 +158,13 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                             ItemStack clonedMouseStack = mouseslot.TakeOutWhole();
                             clonedMouseStack.StackSize = 1;
                             SetChiseledStack(slot.Itemstack, clonedMouseStack, curOffset);
+                            triggerError = false;
                             break;
                         }
+                    }
+                    if (triggerError)
+                    {
+                        TriggerErrorOnStackingUpLimit();
                     }
                 }
                 break;
@@ -179,8 +188,9 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     if (TriggerErrorOnNotChiseledBlock(mouseslot)) break;
                     if (TriggerErrorOnStackSizeMismatch(slot.StackSize, mouseslot.StackSize)) break;
 
+                    bool triggerError = true;
                     Vec3i curOffset = Vec3i.Zero;
-                    for (int i = 0; i >= -downLimit; i--)
+                    for (int i = 0; i >= -StackingDownLimit; i--)
                     {
                         curOffset.Y = i;
                         if (!chiseledStacksTree.HasAttribute(ToXYZString(curOffset)))
@@ -188,8 +198,13 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                             ItemStack clonedMouseStack = mouseslot.TakeOutWhole();
                             clonedMouseStack.StackSize = 1;
                             SetChiseledStack(slot.Itemstack, clonedMouseStack, curOffset);
+                            triggerError = false;
                             break;
                         }
+                    }
+                    if (triggerError)
+                    {
+                        TriggerErrorOnStackingDownLimit();
                     }
                 }
                 break;
@@ -217,7 +232,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     keepOpen = true;
                     float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
                     scale = byPlayer.Entity.Controls.ShiftKey ? scale - 0.25f : scale - 1;
-                    if (scale <= 0) break;
+                    if (TriggerErrorOnScaleDownLimit(scale)) break;
                     slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
                     break;
                 }
@@ -226,7 +241,7 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
                     keepOpen = true;
                     float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
                     scale = byPlayer.Entity.Controls.ShiftKey ? scale + 0.25f : scale + 1;
-                    if (scale > 5) break;
+                    if (TriggerErrorOnScaleUpLimit(scale)) break;
                     slot.Itemstack.Attributes.SetFloat(ScaleAttributeName, scale);
                     break;
                 }
@@ -266,5 +281,35 @@ public class CollectibleBehaviorChiseledPieceToolModes : CollectibleBehavior
             (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-chiseled-block-only", Lang.Get("tabletopgames:ingameerror-chiseled-block-only"));
         }
         return trigger;
+    }
+
+    private bool TriggerErrorOnScaleUpLimit(float scale)
+    {
+        bool trigger = scale > scaleUpLimit;
+        if (trigger)
+        {
+            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-scale-up-limit", Lang.Get("tabletopgames:ingameerror-reached-scale-up-limit", scale, scaleUpLimit));
+        }
+        return trigger;
+    }
+
+    private bool TriggerErrorOnScaleDownLimit(float scale)
+    {
+        bool trigger = scale < scaleDownLimit;
+        if (trigger)
+        {
+            (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-scale-down-limit", Lang.Get("tabletopgames:ingameerror-reached-scale-down-limit", scale, scaleDownLimit));
+        }
+        return trigger;
+    }
+
+    private void TriggerErrorOnStackingUpLimit()
+    {
+        (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-stacking-up-limit", Lang.Get("tabletopgames:ingameerror-reached-stacking-up-limit", StackingUpLimit));
+    }
+
+    private void TriggerErrorOnStackingDownLimit()
+    {
+        (api as ICoreClientAPI)?.TriggerIngameError(this, "tabletopgames:ingameerror-reached-stacking-down-limit", Lang.Get("tabletopgames:ingameerror-reached-stacking-down-limit", StackingDownLimit));
     }
 }

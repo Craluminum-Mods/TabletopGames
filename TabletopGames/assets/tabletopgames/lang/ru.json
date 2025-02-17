@@ -169,6 +169,10 @@
     "ingameerror-stacksize-mismatch": "Разрешено использовать только одинаковое количество",
     "ingameerror-chiseled-block-only": "Разрешены только резные блоки",
     "ingameerror-hitbox-removal-requires-texture-removal": "Нельзя удалить блок для хитбоксов, не удалив сначала блок для текстур",
+    "ingameerror-reached-scale-up-limit": "Попытка увеличить масштаб до {0}, но лимит {1}!",
+    "ingameerror-reached-scale-down-limit": "Попытка уменьшить масштаб до {0}, но лимит {1}!",
+    "ingameerror-reached-stacking-up-limit": "Предел добавления сверху {0}!",
+    "ingameerror-reached-stacking-down-limit": "Предел добавления снизу {0}!",
 
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
