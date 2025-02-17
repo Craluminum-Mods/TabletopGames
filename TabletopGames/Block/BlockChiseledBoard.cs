@@ -190,13 +190,6 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         return stack;
     }
 
-    public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityChiseledBoard blockEntity
-            ? blockEntity.OnInteract(byPlayer, blockSel) || base.OnBlockInteractStart(world, byPlayer, blockSel)
-            : base.OnBlockInteractStart(world, byPlayer, blockSel);
-    }
-
     public static void SelfDestroyIfEmpty(ItemSlot slot, IWorldAccessor world)
     {
         ItemStack stackHitboxes = GetChiseledStack(slot.Itemstack, world, EnumStackType.HitBoxes);

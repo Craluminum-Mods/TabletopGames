@@ -13,8 +13,9 @@
         // "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "attributeTransformCode": "onChiseledBoardTransform"
     },
-    "entityBehaviors": [{ "name": "TabletopGames.ChiseledBoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
+    "entityBehaviors": [{ "name": "TabletopGames.BoardInteractions" }, { "name": "TabletopGames.ChiseledBoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
     "behaviors": [
+        { "name": "BlockEntityInteract" },
         { "name": "Unstable" },
         {
             "name": "GroundStorable",

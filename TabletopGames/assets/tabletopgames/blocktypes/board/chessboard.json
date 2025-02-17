@@ -60,7 +60,7 @@
             }
         }
     },
-    "entityBehaviors": [{ "name": "TabletopGames.BoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
+    "entityBehaviors": [{ "name": "TabletopGames.BoardInteractions" }, { "name": "TabletopGames.BoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
     "behaviors": [
         {
             "name": "TabletopGames.AdvancedToolModes",
@@ -77,6 +77,7 @@
                 }
             }
         },
+        { "name": "BlockEntityInteract" },
         { "name": "Unstable" },
         {
             "name": "GroundStorable",

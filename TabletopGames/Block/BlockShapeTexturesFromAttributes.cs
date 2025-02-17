@@ -240,13 +240,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         variants.GetDescription(dsc, description);
     }
 
-    public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        return world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity
-            ? blockEntity.OnInteract(byPlayer, blockSel) || base.OnBlockInteractStart(world, byPlayer, blockSel)
-            : base.OnBlockInteractStart(world, byPlayer, blockSel);
-    }
-
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         return GenGuiMesh(Variants.FromStack(itemstack));

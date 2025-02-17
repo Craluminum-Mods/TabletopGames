@@ -50,6 +50,7 @@
         }
     },
     "entityBehaviors": [
+        { "name": "TabletopGames.BoardInteractions" },
         {
             "name": "TabletopGames.BoardSelection",
             "properties": {
@@ -118,6 +119,7 @@
                 }
             }
         },
+        { "name": "BlockEntityInteract" },
         { "name": "Unstable" },
         {
             "name": "GroundStorable",

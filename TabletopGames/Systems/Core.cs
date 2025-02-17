@@ -87,6 +87,7 @@ public class Core : ModSystem
 
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardPreviewRenderer", typeof(BEBehaviorBoardPreviewRenderer));
         api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardSelection", typeof(BEBehaviorBoardSelection));
+        api.RegisterBlockEntityBehaviorClass("TabletopGames.BoardInteractions", typeof(BEBehaviorBoardInteractions));
         api.RegisterBlockEntityBehaviorClass("TabletopGames.ChiseledBoardSelection", typeof(BEBehaviorChiseledBoardSelection));
     }
 

@@ -116,7 +116,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
             if (!itemSlot.Empty && tfMatrices != null)
             {
                 MeshData stackMesh = getMesh(itemSlot.Itemstack);
-                ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
+                BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }
         }
@@ -196,107 +196,8 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         }
     }
 
-    public bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
-    {
-        ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
-
-        TabletopTags boardTags = Tags.GetResolvedTags(blockSel.SelectionBoxIndex);
-        TabletopTags pieceTags = TabletopTags.FromInterface(slot.Itemstack);
-        bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
-
-        if (slot.Empty || !placeable)
-        {
-            return TryTake(byPlayer, blockSel);
-        }
-
-        if (placeable)
-        {
-            AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
-            if (TryPut(byPlayer, slot, blockSel))
-            {
-                Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
-                return true;
-            }
-
-            return false;
-        }
-
-        return false;
-    }
-
     public MeshData GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
     public float[][] GenTransformationMatrices() => genTransformationMatrices();
-
-    public bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, BlockSelection blockSel)
-    {
-        int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || !boardSlot.Empty)
-        {
-            return false;
-        }
-        SetPieceRotation(hotbarSlot.Itemstack, byPlayer);
-        int moved = hotbarSlot.TryPutInto(Api.World, boardSlot);
-        MarkDirty();
-        RemovePieceRotation(hotbarSlot?.Itemstack);
-        return moved > 0;
-    }
-
-    public bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
-    {
-        int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || boardSlot.Empty)
-        {
-            return false;
-        }
-
-        ItemStack stack = boardSlot.TakeOut(1);
-        if (byPlayer.InventoryManager.TryGiveItemstack(stack))
-        {
-            AssetLocation sound = stack.Block?.Sounds?.Place;
-            Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
-        }
-
-        if (stack.StackSize > 0)
-        {
-            Api.World.SpawnItemEntity(stack, Pos);
-        }
-        MarkDirty();
-        return true;
-    }
-
-    public bool TryGetSlot(int index, out ItemSlot slot)
-    {
-        if (index >= 0 && index < inventory.Count)
-        {
-            slot = inventory[index];
-            return true;
-        }
-
-        slot = null;
-        return false;
-    }
-
-    public void SetPieceRotation(ItemStack stack, IPlayer player)
-    {
-        if (stack.ItemAttributes.IsTrue("rotateWhenPlacedOnBoard"))
-        {
-            float rotateYaw = player.Entity.Pos.Yaw;
-            stack.Attributes.SetFloat("rotateYaw", rotateYaw);
-        }
-    }
-
-    public void RemovePieceRotation(ItemStack stack)
-    {
-        stack?.Attributes?.RemoveAttribute("rotateYaw");
-    }
-
-    public void ApplyPieceMeshRotation(ItemStack stack, ref MeshData stackMesh)
-    {
-        if (stack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
-        {
-            stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
-        }
-    }
 
     protected void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes(forceNew);
 

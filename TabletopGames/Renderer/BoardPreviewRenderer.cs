@@ -69,11 +69,19 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
         BlockSelection blockSel = api?.World?.Player?.CurrentBlockSelection;
         int selectionIndex = blockSel?.SelectionBoxIndex ?? 0;
 
-        if (hotbarStack == null
-            || blockSel == null
-            || blockSel.Position != pos
-            || api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos) is not IBoardPreviewRendererHelper previewHelper
-            || !previewHelper.TryGetSlot(selectionIndex, out ItemSlot boardSlot)
+        if (hotbarStack == null || blockSel == null || blockSel.Position != pos)
+        {
+            heldItemMeshRef?.Dispose();
+            heldItemMeshRef = null;
+            return;
+        }
+
+        IBoardPreviewRendererHelper previewHelper = api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos);
+        BEBehaviorBoardInteractions behaviorBoardInteractions =  api.World.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorBoardInteractions>();
+
+        if (previewHelper == null
+            || behaviorBoardInteractions == null
+            || !behaviorBoardInteractions.TryGetSlot(selectionIndex, out ItemSlot boardSlot)
             || !boardSlot.Empty
             || !boardSlot.CanHold(hotbarSlot))
         {
@@ -82,9 +90,9 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
             return;
         }
 
-        previewHelper.SetPieceRotation(hotbarStack, api.World.Player);
+        BEBehaviorBoardInteractions.SetPieceRotation(hotbarStack, api.World.Player);
         MeshData heldItemMesh = previewHelper.GetOrCreateMesh(hotbarStack, selectionIndex).Clone();
-        previewHelper.ApplyPieceMeshRotation(hotbarStack, ref heldItemMesh);
+        BEBehaviorBoardInteractions.ApplyPieceMeshRotation(hotbarStack, ref heldItemMesh);
 
         heldItemMeshRef?.Dispose();
         heldItemMeshRef = null;

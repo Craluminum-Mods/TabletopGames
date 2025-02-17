@@ -51,7 +51,6 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
 
     protected abstract void InitInventory();
     protected abstract void GetOrCreateSelectionBoxes(bool forceNew = false);
-    public abstract bool OnInteract(IPlayer byPlayer, BlockSelection blockSel);
 
     public override void OnBlockPlaced(ItemStack byItemStack = null)
     {
