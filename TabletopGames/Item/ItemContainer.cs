@@ -24,9 +24,9 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     protected Dictionary<string, string> openSoundByType = new();
     protected Dictionary<string, string> closeSoundByType = new();
 
-    public override void OnLoaded(ICoreAPI api)
+    public override void LoadTypes()
     {
-        base.OnLoaded(api);
+        base.LoadTypes();
 
         if (Attributes != null)
         {
@@ -65,7 +65,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return false;
     }
 
-    protected bool TryPut(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
+    protected virtual bool TryPut(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         if (!inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
@@ -112,7 +112,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return true;
     }
     
-    protected bool TryTake(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
+    protected virtual bool TryTake(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         if (!hotbarSlot.Empty || ownSlot == null)
@@ -139,14 +139,14 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return true;
     }
 
-    protected void didMoveItems(ItemStack stack, IPlayer byPlayer)
+    protected virtual void didMoveItems(ItemStack stack, IPlayer byPlayer)
     {
         AssetLocation sound = stack?.Block?.Sounds?.Place;
         api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
     }
 
-    public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
-    public void OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
+    public virtual bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
+    public virtual void OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
 
     public override MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {

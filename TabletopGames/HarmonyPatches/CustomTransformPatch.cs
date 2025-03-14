@@ -50,7 +50,7 @@ public static class CustomTransformPatch
             }
         }
 
-        transform.EnsureDefaultValues();
+        transform = transform.EnsureDefaultValues();
         mesh.ModelTransform(transform);
 
         if (stack.Class == EnumItemClass.Item && (stack.Item.Shape == null || stack.Item.Shape.VoxelizeTexture))

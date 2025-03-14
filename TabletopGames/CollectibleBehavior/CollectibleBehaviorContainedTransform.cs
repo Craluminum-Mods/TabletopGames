@@ -41,7 +41,7 @@ public class CollectibleBehaviorContainedTransform : CollectibleBehavior, IConta
         if (extraTransforms.TryGetValue(attributeTransformCode, out Dictionary<string, ModelTransform> transformByType)
             && Variants.FromStack(stack).FindByVariant(transformByType, out ModelTransform transform))
         {
-            transform.EnsureDefaultValues();
+            transform = transform.EnsureDefaultValues();
             return transform;
         }
         return null;
@@ -60,6 +60,7 @@ public class CollectibleBehaviorContainedTransform : CollectibleBehavior, IConta
 
         if (variants.FindByVariant(inDictionary: transformByType, out ModelTransform newTransform))
         {
+            newTransform = newTransform.EnsureDefaultValues();
             transform = newTransform;
         }
     }
