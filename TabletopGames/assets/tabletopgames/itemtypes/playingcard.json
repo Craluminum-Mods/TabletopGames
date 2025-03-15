@@ -27,22 +27,17 @@
         },
         "description": {
             "*": [
-                "tabletopgames:itemdesc-playingcard-rank",
-                ": ",
-                "tabletopgames:itemdesc-playingcard-rank-{rank}",
-                "<br>",
-                "tabletopgames:itemdesc-playingcard-suit",
-                ": ",
-                "tabletopgames:itemdesc-playingcard-suit-{suit}",
-                "<br>",
-                "tabletopgames:itemdesc-playingcard-pack",
-                ": ",
-                "tabletopgames:itemdesc-playingcard-pack-{pack}"
-                // makes no sense to display color
-                // "<br>",
-                // "waypoint-color",
+                // "tabletopgames:itemdesc-playingcard-rank",
                 // ": ",
-                // "color-{color}"
+                // "tabletopgames:itemdesc-playingcard-rank-{rank}",
+                // "<br>",
+                // "tabletopgames:itemdesc-playingcard-suit",
+                // ": ",
+                // "tabletopgames:itemdesc-playingcard-suit-{suit}",
+                // "<br>",
+                // "tabletopgames:itemdesc-playingcard-pack",
+                // ": ",
+                "tabletopgames:itemdesc-playingcard-pack-{pack}"
             ]
         },
         "shape": {
