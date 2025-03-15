@@ -52,6 +52,7 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
         api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
+        api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
     }
 
