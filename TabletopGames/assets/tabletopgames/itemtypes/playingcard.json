@@ -200,8 +200,8 @@
     "heldTpUseAnimation": "twohandplaceblock",
     "guiTransform": {
         "rotation": { "x": 100, "y": -155, "z": 0 },
-        "origin": { "x": 0.52, "y": -0.05, "z": 0.45 },
-        "scaleXyz": { "x": -3.5, "y": 3.5, "z": 3.5 }
+        "origin": { "x": 0.52, "y": -0.25, "z": 0.45 },
+        "scaleXyz": { "x": -3.33, "y": 3.33, "z": 3.33 }
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
