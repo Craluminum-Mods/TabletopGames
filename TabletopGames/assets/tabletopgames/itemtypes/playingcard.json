@@ -35,8 +35,8 @@
                 // ": ",
                 // "tabletopgames:itemdesc-playingcard-suit-{suit}",
                 // "<br>",
-                // "tabletopgames:itemdesc-playingcard-pack",
-                // ": ",
+                "tabletopgames:itemdesc-playingcard-pack",
+                ": ",
                 "tabletopgames:itemdesc-playingcard-pack-{pack}"
             ]
         },
