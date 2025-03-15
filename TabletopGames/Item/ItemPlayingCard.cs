@@ -5,7 +5,6 @@ using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -249,71 +248,50 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
 
     public override string GetContainedInfo(ItemSlot inSlot)
     {
-        StringBuilder dsc = new StringBuilder(base.GetContainedInfo(inSlot));
-        GetInventoryInfo(inSlot, dsc, includeInfo: false, ignoreEmpty: true);
-        return dsc.ToString();
+        return GetInventoryInfo(inSlot).ToString();
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
-        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        GetInventoryInfo(inSlot, dsc, ignoreEmpty: true);
+        StringBuilder invDsc = GetInventoryInfo(inSlot);
+        if (invDsc.Length > 0)
+        {
+            dsc.Append(invDsc);
+            dsc.AppendLine();
+        }
+
+        if (Code != null && Code.Domain != "game")
+        {
+            Mod mod = api.ModLoader.GetMod(Code.Domain);
+            dsc.AppendLine(Lang.Get("Mod: {0}", mod?.Info.Name ?? Code.Domain));
+        }
+
+        Variants variants = Variants.FromStack(inSlot.Itemstack);
+        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
+        variants.GetDescription(dsc, _langKeys);
     }
 
     /// <summary>
     /// Appends the content information of the inventory in the specified item containerSlot.
     /// </summary>
-    protected void GetInventoryInfo(ItemSlot containerSlot, StringBuilder dsc, bool includeInfo = true, bool ignoreEmpty = false)
+    protected StringBuilder GetInventoryInfo(ItemSlot containerSlot)
     {
-        dsc.AppendLine();
-
+        StringBuilder dsc = new StringBuilder();
         PlayingCardInventory inventory = GetInventory(containerSlot.Itemstack);
         if (inventory.Empty)
         {
-            if (!ignoreEmpty)
-            {
-                dsc.AppendLine(Lang.Get("Contents: {0}", Lang.Get("Empty")));
-            }
-            return;
+            return dsc;
         }
 
-        dsc.Append(Lang.Get("Contents:") + ' ');
-
-        string[] contentSummary = GetContentSummary(inventory, includeInfo);
-        foreach (string summary in contentSummary)
+        int count = 0;
+        foreach (ItemSlot slot in inventory.Append(containerSlot))
         {
-            dsc.AppendLine(summary);
-        }
-    }
-
-    /// <summary>
-    /// Creates a summary of the contents in the inventory, including the item name and quantities.
-    /// </summary>
-    /// <returns>An array of strings summarizing the contents of the inventory.</returns>
-    protected string[] GetContentSummary(PlayingCardInventory inventory, bool includeInfo = true)
-    {
-        OrderedDictionary<string, int> dict = new OrderedDictionary<string, int>();
-
-        foreach (ItemSlot slot in inventory)
-        {
-            if (slot.Empty) continue;
-            int count;
-
-            string stackName = slot.Itemstack.GetName();
-
-            if (includeInfo && slot.Itemstack.Collectible is IContainedCustomName containedCustomName)
-            {
-                stackName = containedCustomName.GetContainedInfo(slot);
-            }
-
-            if (!dict.TryGetValue(stackName, out count)) count = 0;
-
-            dict[stackName] = count + slot.StackSize;
+            count += slot.StackSize;
         }
 
-        return dict.Select(elem => Lang.Get("{0}x {1}", elem.Value, elem.Key)).ToArray();
+        dsc.Append(Lang.Get("{0}x {1}", count, containerSlot.GetStackName()));
+        return dsc;
     }
-
 
     /// <summary>
     /// Convenient method to check if this container contains anything
