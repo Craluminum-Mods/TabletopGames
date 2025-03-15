@@ -35,9 +35,9 @@
                 ": ",
                 "tabletopgames:itemdesc-playingcard-suit-{suit}",
                 "<br>",
-                "tabletopgames:itemdesc-playingcard-set",
+                "tabletopgames:itemdesc-playingcard-pack",
                 ": ",
-                "tabletopgames:itemdesc-playingcard-set-{set}"
+                "tabletopgames:itemdesc-playingcard-pack-{pack}"
                 // makes no sense to display color
                 // "<br>",
                 // "waypoint-color",
@@ -51,33 +51,33 @@
         "textures": {
             "@rank-(j|q|k|a)": {
                 "front": {
-                    "base": "tabletopgames:item/playingcard/set-{set}/background",
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
                     "blendedOverlays": [
                         //
-                        { "base": "tabletopgames:item/playingcard/set-{set}/rank-{rank}-{color}" },
-                        { "base": "tabletopgames:item/playingcard/set-{set}/suit-{suit}" },
-                        { "base": "tabletopgames:item/playingcard/set-{set}/image-0-{rank}" }
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/rank-{rank}-{color}" },
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/suit-{suit}" },
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/image-0-{rank}" }
                     ]
                 },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/set-{set}/background",
-                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/set-{set}/back" }]
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             },
             "*": {
                 "front": {
-                    "base": "tabletopgames:item/playingcard/set-{set}/background",
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
                     "blendedOverlays": [
                         //
-                        { "base": "tabletopgames:item/playingcard/set-{set}/rank-{rank}-{color}" },
-                        { "base": "tabletopgames:item/playingcard/set-{set}/suit-{suit}" },
-                        { "base": "tabletopgames:item/playingcard/set-{set}/image-{suit}-{rank}" }
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/rank-{rank}-{color}" },
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/suit-{suit}" },
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/image-{suit}-{rank}" }
                     ]
                 },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/set-{set}/background",
-                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/set-{set}/back" }]
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             }
@@ -107,10 +107,10 @@
                         "MouseButton": "Right",
                         "HotKeyCode": "shift",
                         "ItemStacks": [
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
                         ]
                     },
                     {
@@ -118,10 +118,10 @@
                         "MouseButton": "Right",
                         "HotKeyCode": "ctrl",
                         "ItemStacks": [
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
                         ]
                     },
                     {
@@ -138,61 +138,61 @@
         {
             "tabs": ["tabletopgames", "general", "items"],
             "stacks": [
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "3", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "4", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "5", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "6", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "7", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "8", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "9", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "10", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "j", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "q", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "k", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "spade", "rank": "a", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "3", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "4", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "5", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "6", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "7", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "8", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "9", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "10", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "j", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "q", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "k", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "a", "color": "black" } } },
 
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "3", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "4", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "5", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "6", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "7", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "8", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "9", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "10", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "j", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "q", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "k", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "heart", "rank": "a", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "3", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "4", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "5", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "6", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "7", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "8", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "9", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "10", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "j", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "q", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "k", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "a", "color": "red" } } },
 
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "2", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "3", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "4", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "5", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "6", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "7", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "8", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "9", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "10", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "j", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "q", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "k", "color": "black" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "club", "rank": "a", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "3", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "4", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "5", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "6", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "7", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "8", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "9", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "10", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "j", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "q", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "k", "color": "black" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "a", "color": "black" } } },
 
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "2", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "3", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "4", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "5", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "6", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "7", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "8", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "9", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "10", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "j", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "q", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "k", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "set": "vs", "suit": "diamond", "rank": "a", "color": "red" } } }
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "2", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "3", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "4", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "5", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "6", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "7", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "8", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "9", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "10", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "j", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "q", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "k", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "a", "color": "red" } } }
             ]
         }
     ],

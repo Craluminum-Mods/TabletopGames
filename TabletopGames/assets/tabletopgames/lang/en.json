@@ -78,7 +78,7 @@
     "itemdesc-dice-d20": "A twenty-sided die with an icosahedron shape. Rolls a random number from 1 to 20.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Top face shows <strong>{0}</strong>.</i></font>",
     "item-playingcard": "Playing card",
-    "itemdesc-playingcard-set": "Set",
+    "itemdesc-playingcard-pack": "Pack",
     "itemdesc-playingcard-suit": "Suit",
     "itemdesc-playingcard-suit-club": "Club",
     "itemdesc-playingcard-suit-spade": "Spade",
@@ -98,7 +98,7 @@
     "itemdesc-playingcard-rank-q": "Queen",
     "itemdesc-playingcard-rank-k": "King",
     "itemdesc-playingcard-rank-a": "Ace",
-    "itemdesc-playingcard-set-vs": "Vintage Story",
+    "itemdesc-playingcard-pack-vs": "Vintage Story",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
