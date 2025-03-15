@@ -257,7 +257,7 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        GetInventoryInfo(inSlot, dsc);
+        GetInventoryInfo(inSlot, dsc, ignoreEmpty: true);
     }
 
     /// <summary>
