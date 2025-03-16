@@ -12,9 +12,9 @@ using Vintagestory.GameContent;
 namespace TabletopGames;
 
 /// <summary>
-/// Implements stacking behavior. Renders shape and textures using attribute based type system.
+/// Implements stacking and container behavior. Renders shape and textures using attribute based type system.
 /// </summary>
-public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource, IContainedCustomName
+public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource
 {
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
@@ -371,16 +371,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             }
         }
         return stringBuilder.ToString();
-    }
-
-    string IContainedCustomName.GetContainedName(ItemSlot inSlot, int quantity)
-    {
-        return GetHeldItemName(inSlot.Itemstack);
-    }
-
-    string IContainedCustomName.GetContainedInfo(ItemSlot inSlot)
-    {
-        return GetInventoryInfo(inSlot).ToString();
     }
 
     /// <summary>
