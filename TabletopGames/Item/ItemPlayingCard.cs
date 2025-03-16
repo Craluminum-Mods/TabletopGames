@@ -12,13 +12,18 @@ using Vintagestory.GameContent;
 namespace TabletopGames;
 
 /// <summary>
-/// Implements stacking behavior.
-/// <inheritdoc/>
+/// Implements stacking behavior. Renders shape and textures using attribute based type system.
 /// </summary>
-public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedInteractable
+public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource, IContainedCustomName
 {
+    public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
+    public Dictionary<string, List<object>> ContainedDescriptionByType { get; protected set; } = new();
     public Dictionary<string, int> QuantitySlotsByType { get; protected set; } = new();
     public Dictionary<string, float> StackingTranslatonByType { get; protected set; } = new();
+
+    protected Dictionary<string, CompositeShape> shapeByType = new();
+    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
 
     private float[] predefinedRotations = new float[64] {
     -0.0167f, -0.0980f,  0.0650f, -0.0403f, -0.0263f, -0.0613f,  0.0132f, -0.0677f,
@@ -31,12 +36,31 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
     -0.0699f, -0.0542f,  0.0078f, -0.0686f, -0.0352f, -0.0901f,  0.0423f, -0.0843f
     };
 
-    public override void LoadTypes()
+    public override void OnLoaded(ICoreAPI api)
     {
-        base.LoadTypes();
+        base.OnLoaded(api);
+        LoadTypes();
+    }
 
+    public override void OnUnloaded(ICoreAPI api)
+    {
+        base.OnUnloaded(api);
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemPlayingCard_MeshRefs");
+        meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
+        ObjectCacheUtil.Delete(api, "TabletopGames_ItemPlayingCard_MeshRefs");
+    }
+
+    public void LoadTypes()
+    {
         if (Attributes != null)
         {
+            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+
+            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
+            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+
             QuantitySlotsByType = Attributes["quantitySlots"].AsObject(defaultValue: new Dictionary<string, int>());
             StackingTranslatonByType = Attributes["stackingTranslaton"].AsObject(defaultValue: new Dictionary<string, float>());
         }
@@ -44,128 +68,110 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
 
     public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
     {
+        ignoreAttributeSubTrees ??= Array.Empty<string>();
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
+
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
-            ignoreAttributeSubTrees ??= Array.Empty<string>();
             ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("slots");
         }
+
         return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
     }
 
-    public bool OnContainedInteractStart(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
+    public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
-        return TryPut(containerSlot, byPlayer) || TryTake(containerSlot, byPlayer);
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemPlayingCard_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
+
+        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack);
+
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
+        {
+            MeshData mesh = ((IContainedMeshSource)this).GenMesh(itemstack, capi.ItemTextureAtlas, null);
+            meshref = capi.Render.UploadMultiTextureMesh(mesh);
+            meshRefs[key] = meshref;
+        }
+
+        renderinfo.ModelRef = meshref;
+        renderinfo.NormalShaded = true;
+
+        base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 
-    public virtual bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
-    public virtual void OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
-
-    protected bool TryPut(ItemSlot containerSlot, IPlayer byPlayer)
+    public override string GetHeldItemName(ItemStack itemStack)
     {
-        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (!inventoryInteractions)
-        {
-            return false;
-        }
-
-        PlayingCardInventory inventory = GetInventory(containerSlot.Itemstack);
-
-        ItemSlot ownSlot = null;
-        if (inventory.Count(x => !x.Empty) < inventory.Count)
-        {
-            ownSlot = inventory[inventory.Count(x => !x.Empty)];
-        }
-
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-
-        if (ownSlot == null || !inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
-        {
-            return false;
-        }
-
-        ItemStack movedStack = ownSlot?.Itemstack?.Clone();
-
-        int movedQuantity = hotbarSlot.TryPutInto(api.World, ownSlot);
-        if (movedQuantity <= 0)
-        {
-            return false;
-        }
-
-        didMoveItems(movedStack, byPlayer);
-
-        Core.GetInstance(api).Mod.Logger.Audit(
-            "{0} Put {1}x{2} into TabletopGames.ItemPlayingCard {3}.",
-            byPlayer.PlayerName,
-            movedQuantity,
-            movedStack?.Collectible.Code,
-            containerSlot?.Itemstack?.Collectible?.Code);
-
-        ownSlot.MarkDirty();
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
-        containerSlot.MarkDirty();
-        hotbarSlot.MarkDirty();
-        return true;
-    }
-    
-    protected bool TryTake(ItemSlot containerSlot, IPlayer byPlayer)
-    {
-        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (!inventoryInteractions)
-        {
-            return false;
-        }
-
-        PlayingCardInventory inventory = GetInventory(containerSlot.Itemstack);
-
-        // default value is null, since we always need the most last slot
-        ItemSlot ownSlot = inventory.LastOrDefault(x => !x.Empty, defaultValue: null);
-
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-
-        if (!hotbarSlot.Empty || ownSlot == null || ownSlot.Empty)
-        {
-            return false;
-        }
-
-        ItemStack stack = ownSlot.TakeOutWhole();
-        int movedQuantity = stack?.StackSize ?? 0;
-
-        if (!byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
-        {
-            api.World.SpawnItemEntity(stack, byPlayer.Entity.SidedPos.AsBlockPos);
-        }
-        else
-        {
-            didMoveItems(stack, byPlayer);
-        }
-
-        Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemPlayingCard {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
-
-        ownSlot.MarkDirty();
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
-        containerSlot.MarkDirty();
-        return true;
+        Variants variants = Variants.FromStack(itemStack);
+        variants.FindByVariant(NameByType, out List<object> _langKeys);
+        string defaultName = base.GetHeldItemName(itemStack);
+        return variants.GetName(_langKeys, defaultName);
     }
 
-    protected void didMoveItems(ItemStack stack, IPlayer byPlayer)
+    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
-        AssetLocation sound = stack?.Block?.Sounds?.Place;
-        api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+        StringBuilder invDsc = GetInventoryInfo(inSlot);
+        if (invDsc.Length > 0)
+        {
+            dsc.Append(invDsc);
+            dsc.AppendLine();
+        }
+
+        if (Code != null && Code.Domain != "game")
+        {
+            Mod mod = api.ModLoader.GetMod(Code.Domain);
+            dsc.AppendLine(Lang.Get("Mod: {0}", mod?.Info.Name ?? Code.Domain));
+        }
+
+        Variants variants = Variants.FromStack(inSlot.Itemstack);
+        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
+        variants.GetDescription(dsc, _langKeys);
     }
 
-    public override MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
-        MeshData containerMesh = base.GetOrCreateMesh(itemstack, targetAtlas);
-
+        MeshData containerMesh = GenContainerMesh(itemstack, targetAtlas);
         if (GenContentMesh(itemstack, targetAtlas) is MeshData contentMesh && contentMesh != null)
         {
             containerMesh.AddMeshData(contentMesh);
         }
-
         return containerMesh;
     }
 
-    public virtual MeshData GenContentMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenContainerMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    {
+        ICoreClientAPI capi = api as ICoreClientAPI;
+        MeshData mesh = new MeshData(4, 3);
+
+        Variants variants = Variants.FromStack(itemstack);
+        variants.FindByVariant(shapeByType, out CompositeShape _shape);
+        if (_shape == null) return mesh;
+
+        CompositeShape rcshape = _shape.Clone();
+        rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
+        rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
+
+        Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+
+        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        _textures ??= new Dictionary<string, CompositeTexture>();
+
+        UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
+
+        foreach (KeyValuePair<string, CompositeTexture> val in _textures)
+        {
+            CompositeTexture ctex = val.Value.Clone();
+            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
+            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex.Bake(capi.Assets);
+            stexSource.textures[val.Key] = ctex;
+        }
+        if (shape == null) return mesh;
+        capi.Tesselator.TesselateShape("ItemPlayingCard item", shape, out mesh, stexSource);
+        return mesh;
+    }
+
+    public MeshData GenContentMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         MeshData contentMesh = null;
 
@@ -216,59 +222,97 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
         return contentMesh;
     }
 
-    public override string GetMeshCacheKey(ItemStack itemstack)
+    protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(itemstack));
-
-        PlayingCardInventory inventory = GetInventory(itemstack);
-
-        if (!inventory.Empty)
+        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
+        if (!inventoryInteractions)
         {
-            stringBuilder.Append("-inv:");
-            foreach (ItemSlot slot in inventory)
-            {
-                stringBuilder.Append('-');
-
-                int slotId = inventory.GetSlotId(slot);
-                if (slot.Empty)
-                {
-                    stringBuilder.Append($"{slotId}:empty");
-                    continue;
-                }
-
-                if (slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is IContainedMeshSource meshSource)
-                {
-                    stringBuilder.Append($"{slotId}:");
-                    stringBuilder.Append(meshSource.GetMeshCacheKey(slot.Itemstack));
-                }
-            }
+            return false;
         }
-        return stringBuilder.ToString();
+
+        PlayingCardInventory inventory = GetInventory(containerSlot.Itemstack);
+
+        ItemSlot ownSlot = null;
+        if (inventory.Count(x => !x.Empty) < inventory.Count)
+        {
+            ownSlot = inventory[inventory.Count(x => !x.Empty)];
+        }
+
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+
+        if (ownSlot == null || !inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
+        {
+            return false;
+        }
+
+        ItemStack movedStack = ownSlot?.Itemstack?.Clone();
+
+        int movedQuantity = hotbarSlot.TryPutInto(api.World, ownSlot);
+        if (movedQuantity <= 0)
+        {
+            return false;
+        }
+
+        didMoveItems(movedStack, byPlayer);
+
+        Core.GetInstance(api).Mod.Logger.Audit(
+            "{0} Put {1}x{2} into TabletopGames.ItemPlayingCard {3}.",
+            byPlayer.PlayerName,
+            movedQuantity,
+            movedStack?.Collectible.Code,
+            containerSlot?.Itemstack?.Collectible?.Code);
+
+        ownSlot.MarkDirty();
+        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
+        containerSlot.MarkDirty();
+        hotbarSlot.MarkDirty();
+        return true;
     }
 
-    public override string GetContainedInfo(ItemSlot inSlot)
+    protected bool TryTake(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        return GetInventoryInfo(inSlot).ToString();
+        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
+        if (!inventoryInteractions)
+        {
+            return false;
+        }
+
+        PlayingCardInventory inventory = GetInventory(containerSlot.Itemstack);
+
+        // default value is null, since we always need the most last slot
+        ItemSlot ownSlot = inventory.LastOrDefault(x => !x.Empty, defaultValue: null);
+
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+
+        if (!hotbarSlot.Empty || ownSlot == null || ownSlot.Empty)
+        {
+            return false;
+        }
+
+        ItemStack stack = ownSlot.TakeOutWhole();
+        int movedQuantity = stack?.StackSize ?? 0;
+
+        if (!byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
+        {
+            api.World.SpawnItemEntity(stack, byPlayer.Entity.SidedPos.AsBlockPos);
+        }
+        else
+        {
+            didMoveItems(stack, byPlayer);
+        }
+
+        Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemPlayingCard {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
+
+        ownSlot.MarkDirty();
+        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
+        containerSlot.MarkDirty();
+        return true;
     }
 
-    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+    protected void didMoveItems(ItemStack stack, IPlayer byPlayer)
     {
-        StringBuilder invDsc = GetInventoryInfo(inSlot);
-        if (invDsc.Length > 0)
-        {
-            dsc.Append(invDsc);
-            dsc.AppendLine();
-        }
-
-        if (Code != null && Code.Domain != "game")
-        {
-            Mod mod = api.ModLoader.GetMod(Code.Domain);
-            dsc.AppendLine(Lang.Get("Mod: {0}", mod?.Info.Name ?? Code.Domain));
-        }
-
-        Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
-        variants.GetDescription(dsc, _langKeys);
+        AssetLocation sound = stack?.Block?.Sounds?.Place;
+        api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
     }
 
     /// <summary>
@@ -340,4 +384,61 @@ public class ItemPlayingCard : ItemShapeTexturesFromAttributes, IContainedIntera
         inv.FromTreeAttributes(containerStack.Attributes);
         return inv;
     }
+
+    MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    {
+        return GetOrCreateMesh(itemstack, targetAtlas);
+    }
+
+    string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.Append(itemstack.Collectible.Code);
+        stringBuilder.Append('-');
+        stringBuilder.Append(Variants.FromStack(itemstack));
+
+        PlayingCardInventory inventory = GetInventory(itemstack);
+
+        if (!inventory.Empty)
+        {
+            stringBuilder.Append("-inv:");
+            foreach (ItemSlot slot in inventory)
+            {
+                stringBuilder.Append('-');
+
+                int slotId = inventory.GetSlotId(slot);
+                if (slot.Empty)
+                {
+                    stringBuilder.Append($"{slotId}:empty");
+                    continue;
+                }
+
+                if (slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is IContainedMeshSource meshSource)
+                {
+                    stringBuilder.Append($"{slotId}:");
+                    stringBuilder.Append(meshSource.GetMeshCacheKey(slot.Itemstack));
+                }
+            }
+        }
+        return stringBuilder.ToString();
+    }
+
+    string IContainedCustomName.GetContainedName(ItemSlot inSlot, int quantity)
+    {
+        return GetHeldItemName(inSlot.Itemstack);
+    }
+
+    string IContainedCustomName.GetContainedInfo(ItemSlot inSlot)
+    {
+        return GetInventoryInfo(inSlot).ToString();
+    }
+
+    bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
+    {
+        return TryPut(be, containerSlot, byPlayer, blockSel) || TryTake(be, containerSlot, byPlayer, blockSel);
+    }
+
+    bool IContainedInteractable.OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
+    void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
 }
