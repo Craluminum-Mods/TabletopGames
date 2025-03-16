@@ -23,7 +23,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     public Dictionary<string, float> StackingTranslatonByType { get; protected set; } = new();
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
+    protected Dictionary<string, CompositeShape> shapeFlippedByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesFlippedByType = new();
 
     private float[] predefinedRotations = new float[64] {
     -0.0167f, -0.0980f,  0.0650f, -0.0403f, -0.0263f, -0.0613f,  0.0132f, -0.0677f,
@@ -59,7 +61,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
+            shapeFlippedByType = Attributes["shapeFlipped"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            texturesFlippedByType = Attributes["texturesFlipped"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
 
             QuantitySlotsByType = Attributes["quantitySlots"].AsObject(defaultValue: new Dictionary<string, int>());
             StackingTranslatonByType = Attributes["stackingTranslaton"].AsObject(defaultValue: new Dictionary<string, float>());
@@ -72,6 +76,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
+        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("flipped");
 
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
@@ -128,6 +133,19 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         variants.GetDescription(dsc, _langKeys);
     }
 
+    public override void OnModifiedInInventorySlot(IWorldAccessor world, ItemSlot slot, ItemStack extractedStack = null)
+    {
+        // moved from container to hotbar slot
+        if (slot?.Inventory is InventoryBasePlayer && extractedStack != null)
+        {
+            PlayingCardInventory inventory = GetInventory(extractedStack);
+            if (inventory.Empty)
+            {
+                slot.Itemstack.Attributes.RemoveAttribute("flipped");
+            }
+        }
+    }
+
     public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         MeshData containerMesh = GenContainerMesh(itemstack, targetAtlas);
@@ -141,10 +159,21 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     public MeshData GenContainerMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps();
 
         Variants variants = Variants.FromStack(itemstack);
-        variants.FindByVariant(shapeByType, out CompositeShape _shape);
+        bool isFlipped = itemstack.Attributes.GetAsBool("flipped");
+
+        CompositeShape _shape = null;
+        if (isFlipped)
+        {
+            variants.FindByVariant(shapeFlippedByType, out _shape);
+        }
+        else
+        {
+            variants.FindByVariant(shapeByType, out _shape);
+        }
+
         if (_shape == null) return mesh;
 
         CompositeShape rcshape = _shape.Clone();
@@ -153,7 +182,16 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        Dictionary<string, CompositeTexture> _textures = null;
+        if (isFlipped)
+        {
+            variants.FindByVariant(texturesFlippedByType, out _textures);
+        }
+        else
+        {
+            variants.FindByVariant(texturesByType, out _textures);
+        }
+
         _textures ??= new Dictionary<string, CompositeTexture>();
 
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
@@ -166,6 +204,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
+
         if (shape == null) return mesh;
         capi.Tesselator.TesselateShape("ItemPlayingCard item", shape, out mesh, stexSource);
         return mesh;
@@ -304,6 +343,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         stringBuilder.Append(itemstack.Collectible.Code);
         stringBuilder.Append('-');
         stringBuilder.Append(Variants.FromStack(itemstack));
+        stringBuilder.Append('-');
+        stringBuilder.Append("flipped:");
+        stringBuilder.Append(itemstack.Attributes.GetBool("flipped", false).ToString());
 
         PlayingCardInventory inventory = GetInventory(itemstack);
 

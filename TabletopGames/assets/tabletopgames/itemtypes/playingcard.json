@@ -43,6 +43,9 @@
         "shape": {
             "*": { "base": "tabletopgames:item/playingcard" }
         },
+        "shapeFlipped": {
+            "*": { "base": "tabletopgames:item/playingcard-flipped" }
+        },
         "textures": {
             "@rank-(j|q|k|a)": {
                 "front": {
@@ -77,6 +80,16 @@
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             }
         },
+        "texturesFlipped": {
+            "*": {
+                "front": { "base": "tabletopgames:item/playingcard/pack-{pack}/background" },
+                "back": {
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
+                },
+                "side": { "base": "game:block/cloth/paper/blank-small" }
+            }
+        },
         "quantitySlots": {
             "*": 63
         },
@@ -89,7 +102,7 @@
             "name": "GroundStorable",
             "properties": {
                 "layout": "Quadrants",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.00625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
         },
