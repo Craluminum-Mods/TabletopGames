@@ -94,7 +94,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
         {
-            MeshData mesh = ((IContainedMeshSource)this).GenMesh(itemstack, capi.ItemTextureAtlas, null);
+            MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, EnumCardPlacement.Hand);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -138,20 +138,33 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         // moved from container to hotbar slot
         if (slot?.Inventory is InventoryBasePlayer && extractedStack != null)
         {
-            PlayingCardInventory inventory = GetInventory(extractedStack);
-            if (inventory.Empty)
+            slot.Itemstack.Attributes.RemoveAttribute("flipped");
+            
+            PlayingCardInventory cardInventory = GetInventory(extractedStack);
+            if (!cardInventory.Empty)
             {
-                slot.Itemstack.Attributes.RemoveAttribute("flipped");
+                foreach (ItemSlot cardSlot in cardInventory)
+                {
+                    if (!cardSlot.Empty)
+                    {
+                        cardSlot.Itemstack.Attributes.RemoveAttribute("flipped");
+                    }
+                }
             }
         }
     }
 
-    public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardPlacement cardPlacement)
     {
         MeshData containerMesh = GenContainerMesh(itemstack, targetAtlas);
-        if (GenContentMesh(itemstack, targetAtlas) is MeshData contentMesh && contentMesh != null)
+        switch (cardPlacement)
         {
-            containerMesh.AddMeshData(contentMesh);
+            case EnumCardPlacement.Hand:
+                GenContentMeshForHand(itemstack, targetAtlas, ref containerMesh);
+                break;
+            case EnumCardPlacement.Pile:
+                GenContentMeshForPile(itemstack, targetAtlas, ref containerMesh);
+                break;
         }
         return containerMesh;
     }
@@ -210,29 +223,67 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return mesh;
     }
 
-    public MeshData GenContentMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public void GenContentMeshForHand(ItemStack itemstack, ITextureAtlasAPI targetAtlas, ref MeshData containerMesh)
     {
         MeshData contentMesh = null;
-
         PlayingCardInventory inventory = GetInventory(itemstack);
+        if (inventory.Empty) return;
 
-        if (inventory.Empty)
+        float translationX = 0;
+        float translationY = 0;
+        float translationZ = 0;
+
+        int total = inventory.Slots.Where(x => !x.Empty).Sum(x => x.StackSize);
+        float rotation = GameMath.DEG2RAD * 65.0f;
+        float rotationStep = total;
+        rotationStep = GameMath.Clamp(rotationStep, GameMath.DEG2RAD * 10.0f, GameMath.DEG2RAD * 10.0625f);
+
+        Vec3f rotationOrigin = new Vec3f(0, 0, 0.35f);
+        containerMesh = containerMesh.Translate(-0.5f, -0.5f, -0.5f);
+        containerMesh = containerMesh.Rotate(rotationOrigin, 0, rotation, 0);
+        containerMesh = containerMesh.Translate(0.5f, 0.5f, 0.5f);
+
+        foreach (ItemSlot slot in inventory)
         {
-            return contentMesh;
+            if (slot.Empty
+                || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, EnumCardPlacement.Hand) is not MeshData containedMesh)
+            {
+                continue;
+            }
+
+            rotation -= rotationStep;
+            containedMesh = containedMesh.Translate(-0.5f, -0.5f, -0.5f);
+            containedMesh = containedMesh.Rotate(rotationOrigin, 0, rotation, 0);
+            containedMesh = containedMesh.Translate(0.5f, 0.5f, 0.5f);
+
+            int slotId = inventory.GetSlotId(slot);
+
+            //translationX += (slotId / 1000) - 0.05f;
+            translationY += GetStackingTranslation(slot.Itemstack);
+            //translationZ += (slotId / 1000) + 0.01f;
+            containedMesh = containedMesh.Translate(translationX, translationY, translationZ);
+
+            if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
+            else contentMesh = containedMesh;
         }
+
+        if (contentMesh != null) containerMesh.AddMeshData(contentMesh);
+    }
+
+    public void GenContentMeshForPile(ItemStack itemstack, ITextureAtlasAPI targetAtlas, ref MeshData containerMesh)
+    {
+        MeshData contentMesh = null;
+        PlayingCardInventory inventory = GetInventory(itemstack);
+        if (inventory.Empty) return;
 
         float translation = 0;
 
         foreach (ItemSlot slot in inventory)
         {
-            if (slot.Empty) continue;
-
-            if (slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is not IContainedMeshSource icontainedMesh)
-            {
-                continue;
-            }
-
-            if (icontainedMesh.GenMesh(slot.Itemstack, targetAtlas, null) is not MeshData containedMesh)
+            if (slot.Empty
+                || slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is not IContainedMeshSource icontainedMesh
+                || icontainedMesh.GenMesh(slot.Itemstack, targetAtlas, null) is not MeshData containedMesh)
             {
                 continue;
             }
@@ -248,17 +299,11 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             translation += GetStackingTranslation(slot.Itemstack);
             containedMesh = containedMesh.Translate(0, translation, 0);
 
-            if (contentMesh != null)
-            {
-                contentMesh.AddMeshData(containedMesh);
-            }
-            else
-            {
-                contentMesh = containedMesh;
-            }
+            if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
+            else contentMesh = containedMesh;
         }
 
-        return contentMesh;
+        if (contentMesh != null) containerMesh.AddMeshData(contentMesh);
     }
 
     /// <summary>
@@ -333,7 +378,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
     MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GetOrCreateMesh(itemstack, targetAtlas);
+        return GetOrCreateMesh(itemstack, targetAtlas, EnumCardPlacement.Pile);
     }
 
     string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)
