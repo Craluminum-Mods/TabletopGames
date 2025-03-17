@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 
@@ -24,6 +25,16 @@ public class PlayingCardInventory : InventoryBase
     }
 
     public override int Count => quantitySlots;
+
+    /// <summary>
+    /// Returns the number of non empty slots in inventory
+    /// </summary>
+    public int NonEmptyCount => Slots.Where(s => !s.Empty).Sum(_ => 1);
+
+    /// <summary>
+    /// Returns the total number of items in inventory
+    /// </summary>
+    public int TotalItemCount => Slots.Where(s => !s.Empty).Sum(stack => stack.StackSize);
 
     public PlayingCardInventory(ICoreAPI api, int quantitySlots = 1) : this(inventoryID: "playingcard-" + stackContainerId++, api: api)
     {

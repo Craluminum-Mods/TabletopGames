@@ -25,6 +25,18 @@
         "name": {
             "*": ["tabletopgames:item-playingcard"]
         },
+        "shortName": {
+            "*": [
+                //
+                "tabletopgames:itemdesc-playingcard-rank-{rank}",
+                "\t",
+                "tabletopgames:itemdesc-playingcard-short-suit-{suit}",
+                "\t",
+                "(",
+                "tabletopgames:itemdesc-playingcard-suit-{suit}",
+                ")"
+            ]
+        },
         "description": {
             "*": [
                 // "tabletopgames:itemdesc-playingcard-rank",
@@ -107,6 +119,7 @@
             }
         },
         { "name": "TabletopGames.PlayingCardInteractions" },
+        { "name": "TabletopGames.PlayingCardToolModes" },
         {
             "name": "TabletopGames.InteractionHelpConstructor",
             "properties": {
