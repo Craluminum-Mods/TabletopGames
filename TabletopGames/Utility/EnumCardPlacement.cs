@@ -3,5 +3,5 @@
 public enum EnumCardPlacement
 {
     Hand,
-    Pile
+    Stack
 }
