@@ -43,7 +43,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
             return false;
         }
 
-        didMoveItems(movedStack, byPlayer);
+        DidMoveItems(byPlayer, HeldSounds.InvPlaceDefault);
 
         Core.GetInstance(api).Mod.Logger.Audit(
             "{0} Put {1}x{2} into TabletopGames.ItemPlayingCard {3}.",
@@ -86,13 +86,13 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
         ItemStack stack = ownSlot.TakeOutWhole();
         int movedQuantity = stack?.StackSize ?? 0;
 
-        if (!byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
+        if (byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
         {
-            api.World.SpawnItemEntity(stack, byPlayer.Entity.SidedPos.AsBlockPos);
+            DidMoveItems(byPlayer, HeldSounds.InvPickUpDefault);
         }
         else
         {
-            didMoveItems(stack, byPlayer);
+            api.World.SpawnItemEntity(stack, byPlayer.Entity.SidedPos.AsBlockPos);
         }
 
         Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemPlayingCard {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
@@ -103,10 +103,9 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
         return true;
     }
 
-    protected void didMoveItems(ItemStack stack, IPlayer byPlayer)
+    public static void DidMoveItems(IPlayer byPlayer, AssetLocation sound)
     {
-        AssetLocation sound = stack?.Block?.Sounds?.Place;
-        byPlayer.Entity.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+        byPlayer.Entity.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
     }
 
     bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)

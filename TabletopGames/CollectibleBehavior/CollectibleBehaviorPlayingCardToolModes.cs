@@ -210,6 +210,11 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
                 break;
         }
 
+        if (action != EnumCardModeAction.None)
+        {
+            CollectibleBehaviorPlayingCardInteractions.DidMoveItems(byPlayer, HeldSounds.InvPickUpDefault);
+        }
+
         slot.MarkDirty();
         mouseslot.MarkDirty();
         byPlayer.InventoryManager.BroadcastHotbarSlot();
