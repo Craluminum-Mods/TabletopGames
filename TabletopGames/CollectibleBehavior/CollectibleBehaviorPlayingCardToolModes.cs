@@ -16,9 +16,9 @@ public enum EnumCardModeAction
     /// </summary>
     Take,
     /// <summary>
-    /// Replace card if mouse slot is not empty
+    /// Exchange card if mouse slot is not empty
     /// </summary>
-    Replace,
+    Exchange,
     /// <summary>
     /// Add new card before current card if mouse slot is not empty and Ctrl key is pressed
     /// </summary>
@@ -112,13 +112,13 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
                     action = EnumCardModeAction.AddNext;
                     break;
                 }
-                // Replace action - swap mouse with target slot
+                // Exchange action - swap mouse with target slot
                 else
                 {
                     ItemStack tempStack = slots[slotIndex].Itemstack.Clone();
                     slots[slotIndex].Itemstack.SetFrom(mouseslot.Itemstack.Clone());
                     mouseslot.Itemstack.SetFrom(tempStack);
-                    action = EnumCardModeAction.Replace;
+                    action = EnumCardModeAction.Exchange;
                     break;
                 }
             }
@@ -163,7 +163,7 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
                     }
                     break;
                 }
-            case EnumCardModeAction.Replace:
+            case EnumCardModeAction.Exchange:
                 {
                     if (slots.Length > 0 && !slots[0].Empty)
                     {
