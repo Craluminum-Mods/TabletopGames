@@ -95,11 +95,17 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemPlayingCard_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack);
+        EnumCardPlacement cardPlacement = target switch
+        {
+            EnumItemRenderTarget.Gui => EnumCardPlacement.Gui,
+            _ => EnumCardPlacement.Hand
+        };
+
+        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack) + '-' + cardPlacement.ToString();
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
         {
-            MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, EnumCardPlacement.Hand);
+            MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, cardPlacement);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -165,7 +171,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
                         cardSlot.Itemstack.Attributes.RemoveAttribute("flipped");
                     }
                 }
-    }
+            }
         }
     }
 
@@ -201,7 +207,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         if (priority != EnumMergePriority.DirectMerge)
         {
             return base.GetMergableQuantity(sinkStack, sourceStack, priority);
-            }
+        }
 
         if (sinkStack?.Collectible is not ItemPlayingCard sinkCard
             || sourceStack?.Collectible is not ItemPlayingCard sourceCard)
@@ -224,6 +230,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     {
         return cardPlacement switch
         {
+            EnumCardPlacement.Gui => GenGuiMesh(itemstack, targetAtlas),
             EnumCardPlacement.Hand => GenHandMesh(itemstack, targetAtlas),
             EnumCardPlacement.Stack => GenStackMesh(itemstack, targetAtlas),
             _ => new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps(),
@@ -285,6 +292,75 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         if (shape == null) return mesh;
         capi.Tesselator.TesselateShape("ItemPlayingCard item", shape, out mesh, stexSource);
+        return mesh;
+    }
+
+    /// <summary>
+    /// Generates mesh for card in gui slot
+    /// </summary>
+    /// <param name="itemstack">First card item</param>
+    /// <returns>Mesh of hand of cards</returns>
+    public MeshData GenGuiMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    {
+        MeshData mesh = GenOneMesh(itemstack, targetAtlas);
+        MeshData contentMesh = null;
+        PlayingCardInventory inventory = GetInventory(itemstack);
+
+        if (inventory.Empty) return mesh;
+
+        const float BASE_ROTATION = GameMath.DEG2RAD * 5.0f;
+        const float ROTATION_STEP = GameMath.DEG2RAD * 8.5f;
+
+        float translationX = 0;
+        float translationY = 0;
+        float translationZ = 0;
+        float rotation = BASE_ROTATION;
+
+        Vec3f rotationOrigin = new Vec3f(0, 0, 0.35f);
+        mesh = mesh.Translate(-0.5f, -0.5f, -0.5f);
+        mesh = mesh.Rotate(rotationOrigin, 0, rotation, 0);
+        mesh = mesh.Translate(0.5f, 0.5f, 0.5f);
+
+        for (int i = 0; i < inventory.Slots.Length; i++)
+        {
+            ItemSlot slot = inventory.Slots[i];
+            if (slot.Empty
+                || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, EnumCardPlacement.Hand) is not MeshData containedMesh)
+            {
+                continue;
+            }
+
+            // not adding 1 breaks things, since 0 slot is the 2nd card
+            if ((i + 1) % 16 == 0)
+            {
+                rotation = BASE_ROTATION;
+                translationZ -= 0.2f;
+
+                int handIndex = (i + 1) / 16;
+                float translationYFactor = handIndex switch
+                {
+                    2 => 1.5f,
+                    3 => 2.75f,
+                    _ => 1.0f
+                };
+
+                translationY -= translationY * (GameMath.DEG2RAD * 80f) * translationYFactor;
+            }
+
+            rotation -= ROTATION_STEP;
+            containedMesh = containedMesh.Translate(-0.5f, -0.5f, -0.5f);
+            containedMesh = containedMesh.Rotate(rotationOrigin, 0, rotation, 0);
+            containedMesh = containedMesh.Translate(0.5f, 0.5f, 0.5f);
+
+            translationY += GetStackingTranslation(slot.Itemstack);
+            containedMesh = containedMesh.Translate(translationX, translationY, translationZ);
+
+            if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
+            else contentMesh = containedMesh;
+        }
+
+        if (contentMesh != null) mesh.AddMeshData(contentMesh);
         return mesh;
     }
 

@@ -2,6 +2,7 @@
 
 public enum EnumCardPlacement
 {
+    Gui,
     Hand,
     Stack
 }
