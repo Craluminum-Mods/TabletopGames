@@ -6,17 +6,17 @@
     "shape": { "base": "game:block/basic/invisible" },
     "attributes": {
         "handbook": {
-            "groupBy": ["tabletopgames:playingcard"]
-            // "extraSections": [
-            //     {
-            //         "title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
-            //         "text": "tabletopgames:item-handbooktext-generic-howtoobtain"
-            //     },
-            //     {
-            //         "title": "tabletopgames:item-handbooktitle-playingcard-interactions",
-            //         "text": "tabletopgames:item-handbooktext-playingcard-interactions"
-            //     }
-            // ]
+            "groupBy": ["tabletopgames:playingcard"],
+            "extraSections": [
+                // {
+                //     "title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
+                //     "text": "tabletopgames:item-handbooktext-generic-howtoobtain"
+                // },
+                {
+                    "title": "tabletopgames:item-handbooktitle-playingcard-interactions",
+                    "text": "tabletopgames:item-handbooktext-playingcard-interactions"
+                }
+            ]
         },
         "shelvable": true,
         "displaycaseable": true,
@@ -39,17 +39,12 @@
         },
         "description": {
             "*": [
-                // "tabletopgames:itemdesc-playingcard-rank",
-                // ": ",
-                // "tabletopgames:itemdesc-playingcard-rank-{rank}",
-                // "<br>",
-                // "tabletopgames:itemdesc-playingcard-suit",
-                // ": ",
-                // "tabletopgames:itemdesc-playingcard-suit-{suit}",
-                // "<br>",
+                // display only pack info to avoid possible cheating
                 "tabletopgames:itemdesc-playingcard-pack",
                 ": ",
-                "tabletopgames:itemdesc-playingcard-pack-{pack}"
+                "tabletopgames:itemdesc-playingcard-pack-{pack}",
+                "<br><br>",
+                "tabletopgames:itemdesc-playingcard-toolmodeinfo"
             ]
         },
         "shape": {
@@ -129,22 +124,15 @@
                         "MouseButton": "Right",
                         "HotKeyCode": "shift",
                         "ItemStacks": [
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
                             { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } },
                             { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
                         ]
                     },
                     {
-                        "ActionLangCode": "tabletopgames:blockhelp-playingcard-add-1-upside-down",
+                        "ActionLangCode": "tabletopgames:blockhelp-playingcard-add-1-flipped",
                         "MouseButton": "Right",
                         "HotKeyCode": "ctrl",
-                        "ItemStacks": [
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "spade", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "heart", "rank": "2", "color": "red" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "2", "color": "red" } } }
-                        ]
+                        "ItemStacks": [{ "type": "item", "code": "tabletopgames:playingcard", "attributes": { "flipped": true, "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } }]
                     },
                     {
                         "ActionLangCode": "tabletopgames:blockhelp-playingcard-remove-1",

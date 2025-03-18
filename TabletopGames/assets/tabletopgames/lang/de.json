@@ -121,6 +121,6 @@
     "config-debug": "Brettspiele - DEBUG",
     "setting-dice_animations_enabled": "Würfelanimationen umschalten",
 
-    "craftinginfo-starterguide-title": "Brettspiele 101 - Einsteigerleitfaden",
+    "craftinginfo-starterguide-title": "Brettspiele 101: Einsteigerleitfaden",
     "craftinginfo-starterguide-text": "<strong>Brettspiele Einsteigerleitfaden</strong>     <br><br><strong>Generisches Brett erstellen</strong>      <br>Nachdem du ein <a href=\"handbooksearch://generisches spielbrett\">Generisches Brett</a> erstellt hast, lege es auf den Boden und folge den Anweisungen im Tooltip.        <br><br><strong><a href=\"handbooksearch://spielfiguren-schema\">Schema erstellen</a></strong>       <br>Erstelle es, indem du mit einem Pigment auf ein Pergament interagierst, das auf dem Boden liegt.     <br><br><strong>Figuren erstellen</strong>       <br>Mit einem Schema in der aktiven Hand drücke die <hk>toolmodeselect</hk>-Taste (Werkzeugmodus), um das Menü zur Erstellung von Figuren zu öffnen."
 }

@@ -121,6 +121,6 @@
     "config-debug": "Jeux de Plateau - DEBUG",
     "setting-dice_animations_enabled": "Activer ou désactiver les animations de dés",
 
-    "craftinginfo-starterguide-title": "Jeux de Plateau 101 - Guide de Démarrage",
+    "craftinginfo-starterguide-title": "Jeux de Plateau 101: Guide de Démarrage",
     "craftinginfo-starterguide-text": "<strong>Guide de Démarrage des Jeux de Plateau</strong>     <br><br><strong>Créer un plateau générique</strong>      <br>Une fois que vous avez créé un <a href=\"handbooksearch://plateau de jeu générique\">plateau générique</a>, placez-le au sol et suivez les instructions de l'infobulle.        <br><br><strong><a href=\"handbooksearch://schéma pour pièces de jeux de plateau\">Créer un schéma</a></strong>       <br>Fabriqué en interagissant avec un pigment sur un parchemin placé au sol.     <br><br><strong>Créer des pièces</strong>       <br>Avec un schéma dans la main active, appuyez sur la touche <hk>toolmodeselect</hk> (Mode Outil) pour ouvrir le menu de création des pièces."
 }
