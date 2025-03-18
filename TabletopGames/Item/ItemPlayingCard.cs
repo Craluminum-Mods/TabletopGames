@@ -227,8 +227,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
-            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex = variants.ReplacePlaceholders(ctex);
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
@@ -258,8 +257,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         float translationY = 0;
         float translationZ = 0;
         float rotation = BASE_ROTATION;
-
-        //int totalCards = inventory.Slots.Where(x => !x.Empty).Sum(x => x.StackSize) + 1;
 
         Vec3f rotationOrigin = new Vec3f(0, 0, 0.35f);
         mesh = mesh.Translate(-0.5f, -0.5f, -0.5f);

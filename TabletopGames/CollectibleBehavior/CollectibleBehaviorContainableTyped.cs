@@ -37,8 +37,7 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainabl
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
-            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex = variants.ReplacePlaceholders(ctex);
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }

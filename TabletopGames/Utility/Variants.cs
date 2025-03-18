@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -94,9 +95,18 @@ public class Variants
     {
         foreach ((string key, string value) in Elements)
         {
-            input = input.Replace("{" + key + "}", value);
+            input = input.Replace($"{{{key}}}", value);
         }
         return input;
+    }
+
+    public CompositeTexture ReplacePlaceholders(CompositeTexture ctex)
+    {
+        foreach ((string key, string value) in Elements)
+        {
+            ctex.FillPlaceholder($"{{{key}}}", value);
+        }
+        return ctex;
     }
 
     public override string ToString()

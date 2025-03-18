@@ -13,7 +13,7 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
     protected BlockPos pos;
     protected ICoreClientAPI api;
 
-    protected MeshRef heldItemMeshRef;
+    protected MultiTextureMeshRef heldItemMeshRef;
 
     public double RenderOrder => 0.5;
     public int RenderRange => 8;
@@ -56,7 +56,7 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
         standardShaderProgram.AlphaTest = 0.05f;
         standardShaderProgram.OverlayOpacity = 0f;
         standardShaderProgram.RgbaLightIn = new Vec4f(1, 1, 1, 0.1f);
-        render.RenderMesh(heldItemMeshRef);
+        render.RenderMultiTextureMesh(heldItemMeshRef, "tex");
         standardShaderProgram.Stop();
         render.GlToggleBlend(blend: true);
     }
@@ -99,7 +99,7 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
 
         if (heldItemMesh != null)
         {
-            heldItemMeshRef = api.Render.UploadMesh(heldItemMesh);
+            heldItemMeshRef = api.Render.UploadMultiTextureMesh(heldItemMesh);
         }
     }
 

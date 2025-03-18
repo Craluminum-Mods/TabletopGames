@@ -6,7 +6,8 @@ using Vintagestory.API.Datastructures;
 namespace TabletopGames;
 
 /// <summary>
-/// Same as StackContainerInventory, but with card-specific logic
+/// Same as StackContainerInventory, but with card-specific logic.
+/// Supports items with 'StackSize = 1' only!
 /// </summary>
 public class PlayingCardInventory : InventoryBase
 {
@@ -29,12 +30,12 @@ public class PlayingCardInventory : InventoryBase
     /// <summary>
     /// Returns the number of non empty slots in inventory
     /// </summary>
-    public int NonEmptyCount => Slots.Where(s => !s.Empty).Sum(_ => 1);
+    public int NonEmptyCount => Slots.Count(slot => !slot.Empty);
 
     /// <summary>
     /// Returns the total number of items in inventory
     /// </summary>
-    public int TotalItemCount => Slots.Where(s => !s.Empty).Sum(stack => stack.StackSize);
+    public int TotalItemCount => Slots.Sum(slot => slot?.StackSize ?? 0);
 
     public PlayingCardInventory(ICoreAPI api, int quantitySlots = 1) : this(inventoryID: "playingcard-" + stackContainerId++, api: api)
     {

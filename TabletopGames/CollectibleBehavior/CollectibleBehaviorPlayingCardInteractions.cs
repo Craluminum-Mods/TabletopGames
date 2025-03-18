@@ -10,12 +10,17 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
 
     protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        if (hotbarSlot?.Itemstack?.Collectible is not ItemPlayingCard)
+        {
+            return false;
+        }
+
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
         if (!inventoryInteractions)
         {
             return false;
         }
-
         ICoreAPI api = byPlayer.Entity.Api;
         PlayingCardInventory inventory = (collObj as ItemPlayingCard).GetInventory(containerSlot.Itemstack);
 
@@ -24,8 +29,6 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
         {
             ownSlot = inventory[inventory.Count(x => !x.Empty)];
         }
-
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
         if (ownSlot == null || !inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
         {
@@ -58,6 +61,12 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
 
     protected bool TryTake(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
+        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        if (!hotbarSlot.Empty)
+        {
+            return false;
+        }
+
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
         if (!inventoryInteractions)
         {
@@ -69,10 +78,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
 
         // default value is null, since we always need the most last slot
         ItemSlot ownSlot = inventory.LastOrDefault(x => !x.Empty, defaultValue: null);
-
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-
-        if (!hotbarSlot.Empty || ownSlot == null || ownSlot.Empty)
+        if (ownSlot == null || ownSlot.Empty)
         {
             return false;
         }

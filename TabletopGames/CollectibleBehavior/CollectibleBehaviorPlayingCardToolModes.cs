@@ -67,6 +67,15 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
 
         ItemSlot mouseslot = byPlayer.InventoryManager.MouseItemSlot;
 
+        // The mouse slot must be either empty or contain an empty card
+        if (!mouseslot.Empty)
+        {
+            if (mouseslot.Itemstack.Collectible is not ItemPlayingCard otherCard || !otherCard.IsEmpty(mouseslot.Itemstack))
+            {
+                return;
+            }
+        }
+
         // clone main stack because it is dangerous to manipulate with it
         // also kill inventory to avoid duping whole deck and possible stack overflow
         // main slot should ALWAYS be first slot
@@ -106,11 +115,9 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
                 // Replace action - swap mouse with target slot
                 else
                 {
-                    ItemStack temp = slots[slotIndex].Itemstack.Clone();
-                    slots[slotIndex].Itemstack = null;
-                    slots[slotIndex].Itemstack = mouseslot.Itemstack.Clone();
-                    mouseslot.Itemstack = null;
-                    mouseslot.Itemstack = temp;
+                    ItemStack tempStack = slots[slotIndex].Itemstack.Clone();
+                    slots[slotIndex].Itemstack.SetFrom(mouseslot.Itemstack.Clone());
+                    mouseslot.Itemstack.SetFrom(tempStack);
                     action = EnumCardModeAction.Replace;
                     break;
                 }
