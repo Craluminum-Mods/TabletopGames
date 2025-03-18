@@ -165,8 +165,59 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
                         cardSlot.Itemstack.Attributes.RemoveAttribute("flipped");
                     }
                 }
-            }
+    }
         }
+    }
+
+    public override void TryMergeStacks(ItemStackMergeOperation op)
+    {
+        if (op?.SinkSlot?.Itemstack?.Collectible is not ItemPlayingCard sinkCard
+            || op?.SourceSlot?.Itemstack?.Collectible is not ItemPlayingCard sourceCard)
+        {
+            base.TryMergeStacks(op);
+            return;
+        }
+
+        PlayingCardInventory sinkInventory = sinkCard.GetInventory(op.SinkSlot.Itemstack);
+        PlayingCardInventory sourceInventory = sourceCard.GetInventory(op.SourceSlot.Itemstack);
+
+        // combine two single cards only!
+        if (!sinkInventory.Empty
+            || !sourceInventory.Empty
+            || !sinkInventory.CanContain(sinkInventory[0], op.SourceSlot)
+            || op.SourceSlot.TryPutInto(api.World, sinkInventory[0]) <= 0)
+        {
+            base.TryMergeStacks(op);
+            return;
+        }
+
+        sinkInventory.ToTreeAttributes(op.SinkSlot.Itemstack.Attributes);
+        op.SinkSlot.MarkDirty();
+        op.SourceSlot.MarkDirty();
+    }
+
+    public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
+    {
+        if (priority != EnumMergePriority.DirectMerge)
+        {
+            return base.GetMergableQuantity(sinkStack, sourceStack, priority);
+            }
+
+        if (sinkStack?.Collectible is not ItemPlayingCard sinkCard
+            || sourceStack?.Collectible is not ItemPlayingCard sourceCard)
+        {
+            return base.GetMergableQuantity(sinkStack, sourceStack, priority);
+        }
+
+        PlayingCardInventory sinkInventory = sinkCard.GetInventory(sinkStack);
+        PlayingCardInventory sourceInventory = sourceCard.GetInventory(sourceStack);
+
+        // combine two single cards only!
+        if (sinkInventory.Empty && sourceInventory.Empty)
+        {
+            return 1;
+        }
+        return 0;
     }
 
     public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardPlacement cardPlacement)
