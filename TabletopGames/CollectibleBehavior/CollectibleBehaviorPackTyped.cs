@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 
@@ -40,6 +41,21 @@ public class CollectibleBehaviorPackTyped : CollectibleBehavior
             handling = EnumHandling.PreventDefault;
             handHandling = EnumHandHandling.PreventDefault;
         }
+    }
+
+    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
+    {
+        WorldInteraction[] interactions = new WorldInteraction[]
+        {
+            new WorldInteraction()
+            {
+                ActionLangCode = "tabletopgames:heldhelp-unpack",
+                MouseButton = EnumMouseButton.Right
+            }
+        };
+
+        handling = EnumHandling.Handled;
+        return interactions;
     }
 
     private ItemPack GetPack(Variants variants)

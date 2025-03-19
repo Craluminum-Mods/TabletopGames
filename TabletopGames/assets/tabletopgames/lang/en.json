@@ -78,7 +78,7 @@
     "itemdesc-dice-d20": "A twenty-sided die with an icosahedron shape. Rolls a random number from 1 to 20.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Top face shows <strong>{0}</strong>.</i></font>",
     "item-playingcard": "Playing card",
-    "itemdesc-playingcard-toolmodeinfo": "The hand of cards can be rearranged or replenished through tool modes (press <hk>toolmodeselect</hk> key).",
+    "itemdesc-playingcard-toolmodeinfo": "The hand of cards can be rearranged or replenished through special menu (press <hk>toolmodeselect</hk> key).",
     "itemdesc-playingcard-pack": "Pack",
     "itemdesc-playingcard-suit": "Suit",
     "itemdesc-playingcard-suit-club": "Club",
@@ -118,7 +118,7 @@
     "itemdesc-playingcard-short-suit-diamond": "\u2666",
     "itemdesc-playingcard-short-suit-heart": "\u2665",
     "item-pack-playingcards_vs": "A pack of playing cards (Vintage Story)",
-    "itemdesc-pack-playingcards_vs": "Unpack it with <hk>rightmouse</hk>!\n\nContains 52 cards for Vintage Story card pack (no jokers)",
+    "itemdesc-pack-playingcards_vs": "Unpack it with <hk>rightmouse</hk>!<br><br>Contains a deck of 52x playing cards in Vintage Story style (no jokers)",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
@@ -204,6 +204,7 @@
     "config-debug": "Tabletop Games - DEBUG",
     "setting-dice_animations_enabled": "Toggle Dice Animations",
 
+    "heldhelp-unpack": "Unpack",
     "blockhelp-gobowl-add-10": "Add 10x Go stone",
     "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
