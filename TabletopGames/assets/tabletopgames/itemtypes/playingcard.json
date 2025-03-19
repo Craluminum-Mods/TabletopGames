@@ -102,6 +102,9 @@
         },
         "stackingTranslaton": {
             "*": 0.00625
+        },
+        "packCode": {
+            "pack-*": "card-{pack}"
         }
     },
     "behaviors": [

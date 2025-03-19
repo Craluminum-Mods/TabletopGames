@@ -117,6 +117,8 @@
     "itemdesc-playingcard-short-suit-spade": "\u2660",
     "itemdesc-playingcard-short-suit-diamond": "\u2666",
     "itemdesc-playingcard-short-suit-heart": "\u2665",
+    "item-pack-playingcards_vs": "A pack of playing cards (Vintage Story)",
+    "itemdesc-pack-playingcards_vs": "Unpack it with <hk>rightmouse</hk>!\n\nContains 52 cards for Vintage Story card pack (no jokers)",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
