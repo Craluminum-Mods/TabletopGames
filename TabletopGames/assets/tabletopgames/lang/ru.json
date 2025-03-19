@@ -123,6 +123,8 @@
     "itemdesc-playingcard-short-suit-none": "-",
     "item-pack-playingcards_vs": "Комплект игральных карт (Vintage Story)",
     "itemdesc-pack-playingcards_vs": "Распакуйте с помощью <hk>rightmouse</hk>!<br><br>Содержит колоду из 52 игральных карт + 4 джокеров в стиле Vintage Story",
+    "item-blankcard": "Пустая карта",
+    "itemdesc-blankcard": "Используется как основа для создания игральных карт.",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ингредиент: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",

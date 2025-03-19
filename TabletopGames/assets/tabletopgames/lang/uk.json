@@ -123,6 +123,8 @@
     "itemdesc-playingcard-short-suit-none": "-",
     "item-pack-playingcards_vs": "Комплект гральних карт (Vintage Story)",
     "itemdesc-pack-playingcards_vs": "Розпакуйте за допомогою <hk>rightmouse</hk>!<br><br>Містить колоду з 52 гральних карт + 4 джокерів у стилі Vintage Story",
+    "item-blankcard": "Порожня карта",
+    "itemdesc-blankcard": "Використовується як основа для створення гральних карт.",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Інгредієнт: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетягніть пігмент сюди, щоб змінити колір ліній на дошці.",

@@ -11,7 +11,12 @@
                 { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
                 { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
                 { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
-                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } }
+                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, "convertTo": { "type": "item", "code": "tabletopgames:schematic", "attributes": { "types": { "type": "generic_piece" } } } },
+
+                {
+                    "triggerBy": { "type": "item", "code": "game:shears-*", "isTool": true },
+                    "convertTo": { "type": "item", "code": "tabletopgames:blankcard", "stackSize": 64, "attributes": { "types": { "material": "parchment" } } }
+                }
             ]
         },
         "file": "game:itemtypes/lore/paper.json",

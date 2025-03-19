@@ -21,5 +21,6 @@
 
     { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/resource/metalbit.json", "side": "Server" },
 
-    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/omokpiece.json", "side": "Server" }
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/omokpiece.json", "side": "Server" },
+    { "op": "add", "path": "/creativeinventory/tabletopgames", "value": ["*"], "file": "game:itemtypes/lore/paper.json", "side": "Server" }
 ]
