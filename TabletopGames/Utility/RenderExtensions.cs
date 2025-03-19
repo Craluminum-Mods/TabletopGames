@@ -23,4 +23,10 @@ public static class RenderExtensions
                 showStackSize: showStackSize);
         };
     }
+
+    public static bool DoesPlayerHaveThisSlot(this ItemRenderInfo renderinfo, ICoreClientAPI capi)
+    {
+        return (renderinfo?.InSlot?.Inventory as InventoryBasePlayer)?.Player.PlayerUID == capi.World.Player.PlayerUID;
+    }
+
 }

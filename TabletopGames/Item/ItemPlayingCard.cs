@@ -27,7 +27,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, CompositeShape> shapeFlippedByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
-    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesFlippedByType = new();
+    protected Dictionary<string, Dictionary<string, CompositeTexture>> safeTexturesByType = new();
 
     /// <summary>
     /// Predefined random rotations for a stack of cards
@@ -69,7 +69,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             shapeFlippedByType = Attributes["shapeFlipped"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-            texturesFlippedByType = Attributes["texturesFlipped"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            safeTexturesByType = Attributes["safeTextures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
 
             PackCodeByType = Attributes["packCode"].AsObject(defaultValue: new Dictionary<string, string>());
             QuantitySlotsByType = Attributes["quantitySlots"].AsObject(defaultValue: new Dictionary<string, int>());
@@ -97,17 +97,18 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemPlayingCard_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        EnumCardPlacement cardPlacement = target switch
+        EnumCardRenderType renderType = target switch
         {
-            EnumItemRenderTarget.Gui => EnumCardPlacement.Gui,
-            _ => EnumCardPlacement.Hand
+            EnumItemRenderTarget.Gui => EnumCardRenderType.Gui,
+            _ when renderinfo.DoesPlayerHaveThisSlot(capi) => EnumCardRenderType.Hand,
+            _ => EnumCardRenderType.HandSafe
         };
 
-        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack) + '-' + cardPlacement.ToString();
+        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack) + '-' + renderType.ToString();
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
         {
-            MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, cardPlacement);
+            MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, renderType);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -238,23 +239,21 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return 0;
     }
 
-    public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardPlacement cardPlacement)
+    public MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType) => renderType switch
     {
-        return cardPlacement switch
-        {
-            EnumCardPlacement.Gui => GenGuiMesh(itemstack, targetAtlas),
-            EnumCardPlacement.Hand => GenHandMesh(itemstack, targetAtlas),
-            EnumCardPlacement.Stack => GenStackMesh(itemstack, targetAtlas),
-            _ => new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps(),
-        };
-    }
+        EnumCardRenderType.Gui => GenGuiMesh(itemstack, targetAtlas, renderType),
+        EnumCardRenderType.Stack => GenStackMesh(itemstack, targetAtlas, renderType),
+        EnumCardRenderType.Hand => GenHandMesh(itemstack, targetAtlas, renderType),
+        EnumCardRenderType.HandSafe => GenHandMesh(itemstack, targetAtlas, renderType),
+        _ => new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps(),
+    };
 
     /// <summary>
     /// Generates mesh for a single card
     /// </summary>
     /// <param name="itemstack">First card item</param>
     /// <returns>Single card mesh</returns>
-    public MeshData GenOneMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenOneMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps();
@@ -281,9 +280,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
         Dictionary<string, CompositeTexture> _textures = null;
-        if (isFlipped)
+        if (isFlipped || renderType == EnumCardRenderType.HandSafe)
         {
-            variants.FindByVariant(texturesFlippedByType, out _textures);
+            variants.FindByVariant(safeTexturesByType, out _textures);
         }
         else
         {
@@ -312,9 +311,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     /// <param name="itemstack">First card item</param>
     /// <returns>Mesh of hand of cards</returns>
-    public MeshData GenGuiMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenGuiMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType)
     {
-        MeshData mesh = GenOneMesh(itemstack, targetAtlas);
+        MeshData mesh = GenOneMesh(itemstack, targetAtlas, renderType);
         MeshData contentMesh = null;
         PlayingCardInventory inventory = GetInventory(itemstack);
 
@@ -338,7 +337,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ItemSlot slot = inventory.Slots[i];
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
-                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, EnumCardPlacement.Hand) is not MeshData containedMesh)
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
             {
                 continue;
             }
@@ -381,9 +380,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     /// <param name="itemstack">First card item</param>
     /// <returns>Mesh of hand of cards</returns>
-    public MeshData GenHandMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenHandMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType)
     {
-        MeshData mesh = GenOneMesh(itemstack, targetAtlas);
+        MeshData mesh = GenOneMesh(itemstack, targetAtlas, renderType);
         MeshData contentMesh = null;
         PlayingCardInventory inventory = GetInventory(itemstack);
 
@@ -407,7 +406,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ItemSlot slot = inventory.Slots[i];
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
-                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, EnumCardPlacement.Hand) is not MeshData containedMesh)
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
             {
                 continue;
             }
@@ -450,9 +449,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     /// <param name="itemstack">First card item</param>
     /// <returns>Mesh of stack of cards</returns>
-    public MeshData GenStackMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenStackMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType)
     {
-        MeshData mesh = GenOneMesh(itemstack, targetAtlas);
+        MeshData mesh = GenOneMesh(itemstack, targetAtlas, renderType);
         MeshData contentMesh = null;
         PlayingCardInventory inventory = GetInventory(itemstack);
 
@@ -463,8 +462,8 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         foreach (ItemSlot slot in inventory)
         {
             if (slot.Empty
-                || slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is not IContainedMeshSource icontainedMesh
-                || icontainedMesh.GenMesh(slot.Itemstack, targetAtlas, null) is not MeshData containedMesh)
+                || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
             {
                 continue;
             }
@@ -560,7 +559,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
     MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GetOrCreateMesh(itemstack, targetAtlas, EnumCardPlacement.Stack);
+        return GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);
     }
 
     string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)

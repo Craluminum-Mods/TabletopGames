@@ -9,8 +9,8 @@
             "groupBy": ["tabletopgames:playingcard"],
             "extraSections": [
                 // {
-                //     "title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
-                //     "text": "tabletopgames:item-handbooktext-generic-howtoobtain"
+                //     "title": "tabletopgames:item-handbooktitle-playingcard-howtoobtain",
+                //     "text": "tabletopgames:item-handbooktext-playingcard-howtoobtain"
                 // },
                 {
                     "title": "tabletopgames:item-handbooktitle-playingcard-interactions",
@@ -65,21 +65,21 @@
         "textures": {
             "rank-joker": {
                 "front": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [
                         //
                         { "base": "tabletopgames:item/playingcard/pack-{pack}/image-0-joker-{color}" }
                     ]
                 },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             },
             "@rank-(j|q|k|a)": {
                 "front": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [
                         //
                         { "base": "tabletopgames:item/playingcard/pack-{pack}/rank-{rank}-{color}" },
@@ -88,14 +88,14 @@
                     ]
                 },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             },
             "*": {
                 "front": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [
                         //
                         { "base": "tabletopgames:item/playingcard/pack-{pack}/rank-{rank}-{color}" },
@@ -104,17 +104,17 @@
                     ]
                 },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
             }
         },
-        "texturesFlipped": {
+        "safeTextures": {
             "*": {
-                "front": { "base": "tabletopgames:item/playingcard/pack-{pack}/background" },
+                "front": { "base": "tabletopgames:item/playingcard/background-parchment" },
                 "back": {
-                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "base": "tabletopgames:item/playingcard/background-parchment",
                     "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
                 },
                 "side": { "base": "game:block/cloth/paper/blank-small" }
