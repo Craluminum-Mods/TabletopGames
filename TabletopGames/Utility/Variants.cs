@@ -109,6 +109,15 @@ public class Variants
         return ctex;
     }
 
+    public JsonItemStack ReplacePlaceholders(JsonItemStack jstack)
+    {
+        foreach ((string key, string value) in Elements)
+        {
+            jstack.FillPlaceHolder(key, value);
+        }
+        return jstack;
+    }
+
     public override string ToString()
     {
         StringBuilder result = new StringBuilder();

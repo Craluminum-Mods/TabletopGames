@@ -16,6 +16,7 @@ namespace TabletopGames;
 /// </summary>
 public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource
 {
+    public Dictionary<string, string> PackCodeByType { get; protected set; } = new();
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> ShortNameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
@@ -70,6 +71,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             texturesFlippedByType = Attributes["texturesFlipped"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
 
+            PackCodeByType = Attributes["packCode"].AsObject(defaultValue: new Dictionary<string, string>());
             QuantitySlotsByType = Attributes["quantitySlots"].AsObject(defaultValue: new Dictionary<string, int>());
             StackingTranslatonByType = Attributes["stackingTranslaton"].AsObject(defaultValue: new Dictionary<string, float>());
         }
@@ -122,6 +124,16 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         variants.FindByVariant(NameByType, out List<object> _langKeys);
         string defaultName = base.GetHeldItemName(itemStack);
         return variants.GetName(_langKeys, defaultName);
+    }
+
+    /// <summary>
+    /// Unique identifier for item packs and shufflers
+    /// </summary>
+    public string GetPackCode(ItemStack itemStack)
+    {
+        Variants variants = Variants.FromStack(itemStack);
+        variants.FindByVariant(PackCodeByType, out string packCode);
+        return !string.IsNullOrEmpty(packCode) ? packCode : "card-default";
     }
 
     /// <summary>
