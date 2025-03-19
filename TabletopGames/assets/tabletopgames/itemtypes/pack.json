@@ -105,7 +105,12 @@
                             { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "j", "color": "red" } } },
                             { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "q", "color": "red" } } },
                             { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "k", "color": "red" } } },
-                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "a", "color": "red" } } }
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "a", "color": "red" } } },
+
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "red" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "red" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "black" } } },
+                            { "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "black" } } }
                         ]
                     }
                 }

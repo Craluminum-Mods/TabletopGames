@@ -25,7 +25,16 @@
         "name": {
             "*": ["tabletopgames:item-playingcard"]
         },
+        // for tool modes
         "shortName": {
+            "rank-joker": [
+                //
+                "tabletopgames:itemdesc-playingcard-rank-{rank}",
+                "\t",
+                "(",
+                "color-{color}",
+                ")"
+            ],
             "*": [
                 //
                 "tabletopgames:itemdesc-playingcard-rank-{rank}",
@@ -54,6 +63,20 @@
             "*": { "base": "tabletopgames:item/playingcard-flipped" }
         },
         "textures": {
+            "rank-joker": {
+                "front": {
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "blendedOverlays": [
+                        //
+                        { "base": "tabletopgames:item/playingcard/pack-{pack}/image-0-joker-{color}" }
+                    ]
+                },
+                "back": {
+                    "base": "tabletopgames:item/playingcard/pack-{pack}/background",
+                    "blendedOverlays": [{ "base": "tabletopgames:item/playingcard/pack-{pack}/back" }]
+                },
+                "side": { "base": "game:block/cloth/paper/blank-small" }
+            },
             "@rank-(j|q|k|a)": {
                 "front": {
                     "base": "tabletopgames:item/playingcard/pack-{pack}/background",
@@ -205,7 +228,10 @@
                 { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "j", "color": "red" } } },
                 { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "q", "color": "red" } } },
                 { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "k", "color": "red" } } },
-                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "a", "color": "red" } } }
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "diamond", "rank": "a", "color": "red" } } },
+
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "red" } } },
+                { "type": "item", "code": "playingcard", "attributes": { "types": { "pack": "vs", "suit": "none", "rank": "joker", "color": "black" } } }
             ]
         }
     ],
