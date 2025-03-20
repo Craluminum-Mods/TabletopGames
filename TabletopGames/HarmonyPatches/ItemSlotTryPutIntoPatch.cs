@@ -24,7 +24,7 @@ public static class putOrGetItemSinglePatch
             PlayingCardInventory cardInventory = card.GetInventory(hotbarSlot.Itemstack);
             if (cardInventory.Empty)
             {
-                hotbarSlot.Itemstack.Attributes.SetBool("flipped", true);
+                card?.FlipCard(hotbarSlot);
             }
         }
     }

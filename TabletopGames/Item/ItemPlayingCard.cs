@@ -25,14 +25,13 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     public Dictionary<string, float> StackingTranslatonByType { get; protected set; } = new();
 
     protected Dictionary<string, CompositeShape> shapeByType = new();
-    protected Dictionary<string, CompositeShape> shapeFlippedByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> safeTexturesByType = new();
 
     /// <summary>
     /// Predefined random rotations for a stack of cards
     /// </summary>
-    private float[] stackRotations = new float[64] {
+    private float[] stackRotations = new float[128] {
     -0.0167f, -0.0980f,  0.0650f, -0.0403f, -0.0263f, -0.0613f,  0.0132f, -0.0677f,
     -0.0751f, -0.0134f,  0.0124f, -0.0651f,  0.0106f, -0.0290f,  0.0916f, -0.0817f,
      0.0957f, -0.0176f,  0.0008f, -0.0704f,  0.0438f, -0.0620f, -0.0317f, -0.0953f,
@@ -40,7 +39,16 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     -0.0642f, -0.0801f, -0.0171f,  0.0771f,  0.0156f,  0.0473f, -0.0535f,  0.0047f,
      0.0419f,  0.0650f,  0.0614f, -0.0535f,  0.0746f, -0.0567f,  0.0604f,  0.0110f,
     -0.0628f,  0.0177f,  0.0036f,  0.0917f, -0.0917f, -0.0672f,  0.0967f,  0.0664f,
-    -0.0699f, -0.0542f,  0.0078f, -0.0686f, -0.0352f, -0.0901f,  0.0423f, -0.0843f
+    -0.0699f, -0.0542f,  0.0078f, -0.0686f, -0.0352f, -0.0901f,  0.0423f, -0.0843f,
+
+    -0.0167f, -0.0980f,  0.0650f, -0.0403f, -0.0263f, -0.0613f,  0.0132f, -0.0677f,
+    -0.0751f, -0.0134f,  0.0124f, -0.0651f,  0.0106f, -0.0290f,  0.0916f, -0.0817f,
+     0.0957f, -0.0176f,  0.0008f, -0.0704f,  0.0438f, -0.0620f, -0.0317f, -0.0953f,
+    -0.0321f,  0.0935f,  0.0958f,  0.0489f, -0.0993f,  0.0880f,  0.0742f,  0.0542f,
+    -0.0642f, -0.0801f, -0.0171f,  0.0771f,  0.0156f,  0.0473f, -0.0535f,  0.0047f,
+     0.0419f,  0.0650f,  0.0614f, -0.0535f,  0.0746f, -0.0567f,  0.0604f,  0.0110f,
+    -0.0628f,  0.0177f,  0.0036f,  0.0917f, -0.0917f, -0.0672f,  0.0967f,  0.0664f,
+    -0.0699f, -0.0542f,  0.0078f, -0.0686f, -0.0352f, -0.0901f,  0.0423f, -0.0843f,
     };
 
     public override void OnLoaded(ICoreAPI api)
@@ -67,7 +75,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
 
             shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-            shapeFlippedByType = Attributes["shapeFlipped"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
             texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
             safeTexturesByType = Attributes["safeTextures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
 
@@ -83,7 +90,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
         ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("flipped");
 
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
@@ -142,9 +148,14 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     public string GetShortName(ItemStack itemStack)
     {
+        if (IsCardFlipped(itemStack))
+        {
+            return string.Empty;
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(ShortNameByType, out List<object> _langKeys);
-        return variants.GetName(_langKeys, "");
+        return variants.GetName(_langKeys, string.Empty);
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
@@ -167,23 +178,37 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         variants.GetDescription(dsc, _langKeys);
     }
 
-    public override void OnModifiedInInventorySlot(IWorldAccessor world, ItemSlot slot, ItemStack extractedStack = null)
+    public bool IsCardFlipped(ItemStack stack)
     {
-        // moved from container to hotbar slot
+        return Variants.FromStack(stack).Get("flipped") == "true";
+    }
+
+    public void FlipCard(ItemSlot inSlot, bool unflip = false)
+    {
+        Variants variants = Variants.FromStack(inSlot.Itemstack);
+
+        if (unflip)
+        {
+            variants.RemoveKey("flipped");
+        }
+        else
+        {
+            variants.Set("flipped", "true");
+        }
+
+        variants.ToStack(inSlot.Itemstack);
+        inSlot.MarkDirty();
+    }
+
+    public override void OnModifiedInInventorySlot(IWorldAccessor world, ItemSlot slot, ItemStack extractedStack)
+    {
+        // Moved from container to hotbar slot. I hope so
         if (slot?.Inventory is InventoryBasePlayer && extractedStack != null)
         {
-            slot.Itemstack.Attributes.RemoveAttribute("flipped");
-            
             PlayingCardInventory cardInventory = GetInventory(extractedStack);
-            if (!cardInventory.Empty)
+            if (cardInventory.Empty)
             {
-                foreach (ItemSlot cardSlot in cardInventory)
-                {
-                    if (!cardSlot.Empty)
-                    {
-                        cardSlot.Itemstack.Attributes.RemoveAttribute("flipped");
-                    }
-                }
+                FlipCard(slot, unflip: true);
             }
         }
     }
@@ -259,17 +284,10 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         MeshData mesh = new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps();
 
         Variants variants = Variants.FromStack(itemstack);
-        bool isFlipped = itemstack.Attributes.GetAsBool("flipped");
+        bool isFlipped = IsCardFlipped(itemstack);
 
         CompositeShape _shape = null;
-        if (isFlipped)
-        {
-            variants.FindByVariant(shapeFlippedByType, out _shape);
-        }
-        else
-        {
-            variants.FindByVariant(shapeByType, out _shape);
-        }
+        variants.FindByVariant(shapeByType, out _shape);
 
         if (_shape == null) return mesh;
 
@@ -321,10 +339,12 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         const float BASE_ROTATION = GameMath.DEG2RAD * 5.0f;
         const float ROTATION_STEP = GameMath.DEG2RAD * 8.5f;
+        const float MAGIC_SCALAR = 8f;
 
-        float translationX = 0;
         float translationY = 0;
-        float translationZ = 0;
+        float previousFanStartingTranslationY = 0;
+
+        float cardHeight = 0;
         float rotation = BASE_ROTATION;
 
         Vec3f rotationOrigin = new Vec3f(0, 0, 0.35f);
@@ -332,9 +352,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         mesh = mesh.Rotate(rotationOrigin, 0, rotation, 0);
         mesh = mesh.Translate(0.5f, 0.5f, 0.5f);
 
-        for (int i = 0; i < inventory.Slots.Length; i++)
+        for (int cardIndex = 0; cardIndex < inventory.Slots.Length; cardIndex++)
         {
-            ItemSlot slot = inventory.Slots[i];
+            ItemSlot slot = inventory.Slots[cardIndex];
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
                 || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
@@ -342,21 +362,20 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
                 continue;
             }
 
+            float cardThickness = GetStackingTranslation(slot.Itemstack);
+
             // not adding 1 breaks things, since 0 slot is the 2nd card
-            if ((i + 1) % 16 == 0)
+            bool isStartingNewFan = (cardIndex + 1) % 16 == 0;
+            if (isStartingNewFan)
             {
                 rotation = BASE_ROTATION;
-                translationZ -= 0.2f;
-
-                int handIndex = (i + 1) / 16;
-                float translationYFactor = handIndex switch
-                {
-                    2 => 1.5f,
-                    3 => 2.75f,
-                    _ => 1.0f
-                };
-
-                translationY -= translationY * (GameMath.DEG2RAD * 80f) * translationYFactor;
+                cardHeight -= 0.2f;
+                translationY = previousFanStartingTranslationY - (cardThickness * MAGIC_SCALAR);
+                previousFanStartingTranslationY = translationY;
+            }
+            else
+            {
+                translationY += cardThickness;
             }
 
             rotation -= ROTATION_STEP;
@@ -364,8 +383,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             containedMesh = containedMesh.Rotate(rotationOrigin, 0, rotation, 0);
             containedMesh = containedMesh.Translate(0.5f, 0.5f, 0.5f);
 
-            translationY += GetStackingTranslation(slot.Itemstack);
-            containedMesh = containedMesh.Translate(translationX, translationY, translationZ);
+            containedMesh = containedMesh.Translate(0, translationY, cardHeight);
 
             if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
             else contentMesh = containedMesh;
@@ -390,10 +408,12 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         const float BASE_ROTATION = GameMath.DEG2RAD * 65.0f;
         const float ROTATION_STEP = GameMath.DEG2RAD * 8.5f;
+        const float MAGIC_SCALAR = 8f;
 
-        float translationX = 0;
         float translationY = 0;
-        float translationZ = 0;
+        float previousFanStartingTranslationY = 0;
+
+        float cardHeight = 0;
         float rotation = BASE_ROTATION;
 
         Vec3f rotationOrigin = new Vec3f(0, 0, 0.35f);
@@ -401,9 +421,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         mesh = mesh.Rotate(rotationOrigin, 0, rotation, 0);
         mesh = mesh.Translate(0.5f, 0.5f, 0.5f);
 
-        for (int i = 0; i < inventory.Slots.Length; i++)
+        for (int cardIndex = 0; cardIndex < inventory.Slots.Length; cardIndex++)
         {
-            ItemSlot slot = inventory.Slots[i];
+            ItemSlot slot = inventory.Slots[cardIndex];
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
                 || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
@@ -411,21 +431,20 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
                 continue;
             }
 
+            float cardThickness = GetStackingTranslation(slot.Itemstack);
+
             // not adding 1 breaks things, since 0 slot is the 2nd card
-            if ((i + 1) % 16 == 0)
+            bool isStartingNewFan = (cardIndex + 1) % 16 == 0;
+            if (isStartingNewFan)
             {
                 rotation = BASE_ROTATION;
-                translationZ -= 0.2f;
-
-                int handIndex = (i + 1) / 16;
-                float translationYFactor = handIndex switch
-                {
-                    2 => 1.5f,
-                    3 => 2.75f,
-                    _ => 1.0f
-                };
-
-                translationY -= translationY * (GameMath.DEG2RAD * 80f) * translationYFactor;
+                cardHeight -= 0.2f;
+                translationY = previousFanStartingTranslationY - (cardThickness * MAGIC_SCALAR);
+                previousFanStartingTranslationY = translationY;
+            }
+            else
+            {
+                translationY += cardThickness;
             }
 
             rotation -= ROTATION_STEP;
@@ -433,8 +452,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             containedMesh = containedMesh.Rotate(rotationOrigin, 0, rotation, 0);
             containedMesh = containedMesh.Translate(0.5f, 0.5f, 0.5f);
 
-            translationY += GetStackingTranslation(slot.Itemstack);
-            containedMesh = containedMesh.Translate(translationX, translationY, translationZ);
+            containedMesh = containedMesh.Translate(0, translationY, cardHeight);
 
             if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
             else contentMesh = containedMesh;
@@ -557,6 +575,70 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return inv;
     }
 
+    /// <summary>
+    /// Adds new card to inventory of main card
+    /// </summary>
+    /// <param name="stack">Main card with inventory</param>
+    /// <param name="newStack">New card</param>
+    public bool TryAddCardToInventory(ItemStack stack, ItemStack newStack, out int movedQuantity)
+    {
+        movedQuantity = 0;
+
+        if (stack == null || newStack == null)
+        {
+            return false;
+        }
+
+        PlayingCardInventory inventory = GetInventory(stack);
+        ItemSlot? invSlot = null;
+
+        if (inventory.NonEmptyCount < inventory.Count)
+        {
+            invSlot = inventory[inventory.NonEmptyCount];
+        }
+
+        if (invSlot == null)
+        {
+            return false;
+        }
+
+        DummySlot dummySlot = new(newStack);
+        movedQuantity = dummySlot.TryPutInto(api.World, invSlot);
+        if (movedQuantity <= 0)
+        {
+            return false;
+        }
+
+        inventory.ToTreeAttributes(stack.Attributes);
+        return true;
+    }
+
+    /// <summary>
+    /// Takes last card from inventory
+    /// </summary>
+    /// <param name="stack">Card with inventory</param>
+    /// <param name="newStack">New card</param>
+    public ItemStack? TryTakeCardFromInventory(ItemStack stack)
+    {
+        if (stack == null)
+        {
+            return null;
+        }
+
+        PlayingCardInventory inventory = GetInventory(stack);
+
+        // default value is null, since we always need the most last slot
+        ItemSlot? invSlot = inventory.LastOrDefault(slot => !slot.Empty, defaultValue: null);
+        if (invSlot == null)
+        {
+            return null;
+        }
+
+        ItemStack giveStack = invSlot.TakeOutWhole();
+        inventory.ToTreeAttributes(stack.Attributes);
+        return giveStack;
+    }
+
     MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         return GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);
@@ -569,9 +651,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         stringBuilder.Append(itemstack.Collectible.Code);
         stringBuilder.Append('-');
         stringBuilder.Append(Variants.FromStack(itemstack));
-        stringBuilder.Append('-');
-        stringBuilder.Append("flipped:");
-        stringBuilder.Append(itemstack.Attributes.GetBool("flipped", false).ToString());
 
         PlayingCardInventory inventory = GetInventory(itemstack);
 

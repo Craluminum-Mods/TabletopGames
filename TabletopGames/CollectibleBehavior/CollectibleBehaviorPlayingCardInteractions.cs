@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Vintagestory.API.Common;
+﻿using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
 namespace TabletopGames;
@@ -11,94 +10,68 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
     protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-        if (hotbarSlot?.Itemstack?.Collectible is not ItemPlayingCard)
-        {
-            return false;
-        }
 
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (!inventoryInteractions)
-        {
-            return false;
-        }
-        ICoreAPI api = byPlayer.Entity.Api;
-        PlayingCardInventory inventory = (collObj as ItemPlayingCard).GetInventory(containerSlot.Itemstack);
-
-        ItemSlot ownSlot = null;
-        if (inventory.Count(x => !x.Empty) < inventory.Count)
-        {
-            ownSlot = inventory[inventory.Count(x => !x.Empty)];
-        }
-
-        if (ownSlot == null || !inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
+        if (!inventoryInteractions || collObj is not ItemPlayingCard card || hotbarSlot.Empty)
         {
             return false;
         }
 
-        ItemStack movedStack = ownSlot?.Itemstack?.Clone();
+        ItemStack movedStack = hotbarSlot.Itemstack.Clone();
 
-        int movedQuantity = hotbarSlot.TryPutInto(api.World, ownSlot);
-        if (movedQuantity <= 0)
+        bool result = card.TryAddCardToInventory(containerSlot.Itemstack, hotbarSlot.Itemstack, out int movedQuantity);
+
+        if (result)
         {
-            return false;
+            DidMoveItems(byPlayer, HeldSounds.InvPlaceDefault);
+
+            Core.GetInstance(byPlayer.Entity.Api).Mod.Logger.Audit(
+                "{0} Put {1}x{2} into {3} at {4}.",
+                byPlayer.PlayerName,
+                movedQuantity,
+                movedStack.Collectible.Code,
+                containerSlot.Itemstack.Collectible.Code,
+                be.Pos.ToString());
         }
 
-        DidMoveItems(byPlayer, HeldSounds.InvPlaceDefault);
-
-        Core.GetInstance(api).Mod.Logger.Audit(
-            "{0} Put {1}x{2} into TabletopGames.ItemPlayingCard {3}.",
-            byPlayer.PlayerName,
-            movedQuantity,
-            movedStack?.Collectible.Code,
-            containerSlot?.Itemstack?.Collectible?.Code);
-
-        ownSlot.MarkDirty();
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
         containerSlot.MarkDirty();
         hotbarSlot.MarkDirty();
-        return true;
+        return result;
     }
 
     protected bool TryTake(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-        if (!hotbarSlot.Empty)
-        {
-            return false;
-        }
-
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (!inventoryInteractions)
+        if (!inventoryInteractions || collObj is not ItemPlayingCard card)
         {
             return false;
         }
 
-        ICoreAPI api = byPlayer.Entity.Api;
-        PlayingCardInventory inventory = (collObj as ItemPlayingCard).GetInventory(containerSlot.Itemstack);
-
-        // default value is null, since we always need the most last slot
-        ItemSlot ownSlot = inventory.LastOrDefault(x => !x.Empty, defaultValue: null);
-        if (ownSlot == null || ownSlot.Empty)
+        ItemStack giveStack = card.TryTakeCardFromInventory(containerSlot.Itemstack);
+        if (giveStack == null)
         {
             return false;
         }
 
-        ItemStack stack = ownSlot.TakeOutWhole();
-        int movedQuantity = stack?.StackSize ?? 0;
+        int movedQuantity = giveStack.StackSize;
 
-        if (byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
+        if (byPlayer.InventoryManager.TryGiveItemstack(giveStack, slotNotifyEffect: true))
         {
             DidMoveItems(byPlayer, HeldSounds.InvPickUpDefault);
         }
         else
         {
-            api.World.SpawnItemEntity(stack, byPlayer.Entity.SidedPos.AsBlockPos);
+            byPlayer.Entity.Api.World.SpawnItemEntity(giveStack, byPlayer.Entity.SidedPos.AsBlockPos);
         }
 
-        Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemPlayingCard {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
+        Core.GetInstance(byPlayer.Entity.Api).Mod.Logger.Audit(
+            "{0} Took {1}x{2} from {3} at {4}.",
+            byPlayer.PlayerName,
+            movedQuantity,
+            giveStack.Collectible.Code,
+            containerSlot.Itemstack.Collectible.Code,
+            be.Pos.ToString());
 
-        ownSlot.MarkDirty();
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
         containerSlot.MarkDirty();
         return true;
     }

@@ -6,7 +6,13 @@
     "shape": { "base": "game:block/basic/invisible" },
     "attributes": {
         "handbook": {
-            "groupBy": ["tabletopgames:blankcard"]
+            "groupBy": ["tabletopgames:blankcard"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:item-handbooktitle-blankcard-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-blankcard-howtoobtain"
+                }
+            ]
         },
         "shelvable": true,
         "displaycaseable": true,

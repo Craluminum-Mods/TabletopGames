@@ -149,7 +149,7 @@ public class CollectibleBehaviorPackTyped : CollectibleBehavior
                     continue;
                 }
 
-                if (!TryAddCardToInventory(tempMainStack, stack))
+                if (stack.Collectible is not ItemPlayingCard card || !card.TryAddCardToInventory(tempMainStack!, stack, out _))
                 {
                     // Fallback: Give stack immediately
                     if (!byPlayer.InventoryManager.TryGiveItemstack(stack, slotNotifyEffect: true))
@@ -169,35 +169,35 @@ public class CollectibleBehaviorPackTyped : CollectibleBehavior
         }
     }
 
-    /// <summary>
-    /// Adds new card to inventory of main card
-    /// </summary>
-    /// <param name="stack">Main card with inventory</param>
-    /// <param name="newStack">New card</param>
-    private bool TryAddCardToInventory(ItemStack stack, ItemStack newStack)
-    {
-        PlayingCardInventory inventory = (stack.Collectible as ItemPlayingCard).GetInventory(stack);
+    ///// <summary>
+    ///// Adds new card to inventory of main card
+    ///// </summary>
+    ///// <param name="stack">Main card with inventory</param>
+    ///// <param name="newStack">New card</param>
+    //private bool TryAddCardToInventory(ItemStack stack, ItemStack newStack)
+    //{
+    //    PlayingCardInventory inventory = (stack.Collectible as ItemPlayingCard).GetInventory(stack);
 
-        ItemSlot? invSlot = null;
+    //    ItemSlot? invSlot = null;
 
-        if (inventory.NonEmptyCount < inventory.Count)
-        {
-            invSlot = inventory[inventory.NonEmptyCount];
-        }
+    //    if (inventory.NonEmptyCount < inventory.Count)
+    //    {
+    //        invSlot = inventory[inventory.NonEmptyCount];
+    //    }
 
-        DummySlot dummySlot = new DummySlot(newStack);
+    //    DummySlot dummySlot = new DummySlot(newStack);
 
-        if (invSlot == null || !inventory.CanContain(invSlot, dummySlot))
-        {
-            return false;
-        }
+    //    if (invSlot == null || !inventory.CanContain(invSlot, dummySlot))
+    //    {
+    //        return false;
+    //    }
 
-        if (dummySlot.TryPutInto(api.World, invSlot) <= 0)
-        {
-            return false;
-        }
+    //    if (dummySlot.TryPutInto(api.World, invSlot) <= 0)
+    //    {
+    //        return false;
+    //    }
 
-        inventory.ToTreeAttributes(stack.Attributes);
-        return true;
-    }
+    //    inventory.ToTreeAttributes(stack.Attributes);
+    //    return true;
+    //}
 }

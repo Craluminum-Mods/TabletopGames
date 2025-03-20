@@ -19,7 +19,7 @@
     "block-chiseledboard": "Резная доска",
     "blockdesc-chiseledboard-held": "<font color=\"#99c9f9\"><i>Резная доска</i></font>     <br>Совет: Создавайте резные блоки в одном направлении        <br><br>Нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для различных манипуляций с предметом.",
     "item-gameboard-generic": "Универсальная игровая доска (Не функциональна)",
-    "itemdesc-gameboard-generic": "Разместите на земле, чтобы создать все возможные доски",
+    "itemdesc-gameboard-generic": "Разместите на твердой поверхности, чтобы создать все возможные доски",
     "item-schematic-generic_piece": "Чертеж для настольных фигур",
     "itemdesc-schematic-generic_piece": "Используется для создания всех возможных настольных фигур",
     "item-chiseledpiece": "Резная фигура",
@@ -234,19 +234,22 @@
     "item-handbooktext-dicetray-howtoobtain": "Разместите <<a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, затем используйте на ней любой <a href=\"handbooksearch://игральный кубик\">игральный кубик</a> с помощью <hk>rightmouse</hk>",
 
     "item-handbooktitle-schematic-howtoobtain": "Как получить",
-    "item-handbooktext-schematic-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на земле, затем используйте любой твердый краситель <a href=\"handbooksearch://краситель\">пигмент</a> с помощью <hk>rightmouse</hk>",
+    "item-handbooktext-schematic-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на твердой поверхности, затем используйте любой твердый краситель <a href=\"handbooksearch://краситель\">пигмент</a> с помощью <hk>rightmouse</hk>",
+
+    "item-handbooktitle-blankcard-howtoobtain": "Как получить",
+    "item-handbooktext-blankcard-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на твердой поверхности, затем используйте <a href=\"handbooksearch://ножницы\">ножницы</a> с помощью <hk>rightmouse</hk>",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаимодействия",
-    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Прикрепить или снять крышку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Прикрепить или снять крышку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаимодействия",
-    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой плоской поверхности.        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Игральные карты - Взаимодействия",
     "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Открыть руководство</a>",
 
     "craftinginfo-starterguide-title": "Настольные игры 101: Руководство для начинающих",
-    "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на земле и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на земле.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур.",
+    "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на твердой поверхности и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на твердой поверхности.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур.",
 
     "craftinginfo-custompiecesguide-title": "Настольные игры: Пользовательские фигуры",
     "craftinginfo-custompiecesguide-text": "<strong>Настольные игры: Руководство по созданию пользовательских фигур</strong>     <br><br>Имея <a href=\"handbooksearch://чертеж для настольных фигур\">чертеж</a> в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), найдите режим с иконкой зубила, затем следуйте инструкциям в описании.      <br><br>Чтобы изменить максимальный размер, используйте следующие команды:     <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxUp\">/worldconfig tabletopgames_chiseledPieceMaxUp</a> : Устанавливает максимальное количество резных блоков, которые можно добавить сверху      <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxDown\">/worldconfig tabletopgames_chiseledPieceMaxDown</a> : Устанавливает максимальное количество резных блоков, которые можно добавить снизу",

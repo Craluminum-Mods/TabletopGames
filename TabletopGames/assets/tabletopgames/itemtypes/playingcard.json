@@ -57,10 +57,8 @@
             ]
         },
         "shape": {
+            "flipped-true": { "base": "tabletopgames:item/playingcard-flipped" },
             "*": { "base": "tabletopgames:item/playingcard" }
-        },
-        "shapeFlipped": {
-            "*": { "base": "tabletopgames:item/playingcard-flipped" }
         },
         "textures": {
             "rank-joker": {
@@ -158,7 +156,7 @@
                         "ActionLangCode": "tabletopgames:blockhelp-playingcard-add-1-flipped",
                         "MouseButton": "Right",
                         "HotKeyCode": "ctrl",
-                        "ItemStacks": [{ "type": "item", "code": "tabletopgames:playingcard", "attributes": { "flipped": true, "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black" } } }]
+                        "ItemStacks": [{ "type": "item", "code": "tabletopgames:playingcard", "attributes": { "types": { "pack": "vs", "suit": "club", "rank": "2", "color": "black", "flipped": "true" } } }]
                     },
                     {
                         "ActionLangCode": "tabletopgames:blockhelp-playingcard-remove-1",

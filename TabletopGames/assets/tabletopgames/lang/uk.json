@@ -19,7 +19,7 @@
     "block-chiseledboard": "Різьблена дошка",
     "blockdesc-chiseledboard-held": "<font color=\"#99c9f9\"><i>Різьблена дошка</i></font>     <br>Порада: Створюйте різьблені блоки в одному напрямку        <br><br>Натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для різних маніпуляцій із предметом.",
     "item-gameboard-generic": "Універсальна ігрова дошка (Не функціональна",
-    "itemdesc-gameboard-generic": "Розмістіть на землі, щоб створити всі можливі дошки",
+    "itemdesc-gameboard-generic": "Розмістіть на твердій поверхні, щоб створити всі можливі дошки",
     "item-schematic-generic_piece": "Креслення для настільних фігур",
     "itemdesc-schematic-generic_piece": "Використовується для створення всіх можливих настільних фігур",
     "item-chiseledpiece": "Різьблена фігура",
@@ -234,19 +234,22 @@
     "item-handbooktext-dicetray-howtoobtain": "Розмістіть <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, потім використайте на ній будь який <a href=\"handbooksearch://гральний кубик\">гральний кубик</a> за допомогою <hk>rightmouse</hk>",
 
     "item-handbooktitle-schematic-howtoobtain": "Як отримати",
-    "item-handbooktext-schematic-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на землі, потім використайте будь який твердий <a href=\"handbooksearch://барвник\">барвник</a> використовуючи <hk>rightmouse</hk>",
+    "item-handbooktext-schematic-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на твердій поверхні, потім використайте будь який твердий <a href=\"handbooksearch://барвник\">барвник</a> використовуючи <hk>rightmouse</hk>",
+
+    "item-handbooktitle-blankcard-howtoobtain": "Як отримати",
+    "item-handbooktext-blankcard-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на твердій поверхні, потім використайте <a href=\"handbooksearch://ножиці\">ножиці</a> за допомогою <hk>rightmouse</hk>",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаємодії",
-    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Прикріпити або зняти кришку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Прикріпити або зняти кришку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаємодії",
-    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій плоскій поверхні.        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Гральні карти - Взаємодії",
     "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Відкрити керівництво</a>",
 
     "craftinginfo-starterguide-title": "Настільні ігри 101: Початкове керівництво",
-    "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на землю і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на землі.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур.",
+    "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на тверду поверхню і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на твердій поверхні.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур.",
 
     "craftinginfo-custompiecesguide-title": "Настільні ігри: Користувацькі фігури",
     "craftinginfo-custompiecesguide-text": "<strong>Настільні ігри: Керівництво по створенню користувацьких фігур</strong>     <br><br>Маючи <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a> в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), знайдіть режим з іконкою долота, потім дотримуйтесь інструкцій в описі.      <br><br>Щоб змінити максимальний розмір, використовуйте наступні команди:     <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxUp\">/worldconfig tabletopgames_chiseledPieceMaxUp</a> : Задає максимальну кількість різьблених блоків, які можна додати зверху      <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxDown\">/worldconfig tabletopgames_chiseledPieceMaxDown</a> : Задає максимальну кількість різьблених блоків, які можна додати знизу",

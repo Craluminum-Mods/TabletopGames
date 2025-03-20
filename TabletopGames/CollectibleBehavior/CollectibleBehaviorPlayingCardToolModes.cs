@@ -8,31 +8,9 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-public enum EnumCardModeAction
-{
-    None,
-    /// <summary>
-    /// Take card if mouse slot is empty
-    /// </summary>
-    Take,
-    /// <summary>
-    /// Exchange card if mouse slot is not empty
-    /// </summary>
-    Exchange,
-    /// <summary>
-    /// Add new card before current card if mouse slot is not empty and Ctrl key is pressed
-    /// </summary>
-    AddPrev,
-    /// <summary>
-    /// Add new card after current card if mouse slot is not empty and Shift key is pressed
-    /// </summary>
-    AddNext
-}
-
 public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
 {
     private ICoreAPI api;
-    private ICoreClientAPI clientApi => api as ICoreClientAPI;
 
     public CollectibleBehaviorPlayingCardToolModes(CollectibleObject collObj) : base(collObj) { }
 
@@ -220,12 +198,12 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
         byPlayer.InventoryManager.BroadcastHotbarSlot();
     }
 
-    public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+    public override SkillItem[]? GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
         if (slot.Empty || slot?.Itemstack?.Collectible is not ItemPlayingCard mainCard) return null;
 
-        Dictionary<string, SkillItem[]> cachedModes = ObjectCacheUtil.GetOrCreate(clientApi, "TabletopGames_PlayingCardModes", () => new Dictionary<string, SkillItem[]>());
-        string key = slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>()?.GetMeshCacheKey(slot.Itemstack);
+        Dictionary<string, SkillItem[]> cachedModes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_PlayingCardModes", () => new Dictionary<string, SkillItem[]>());
+        string key = slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>()?.GetMeshCacheKey(slot.Itemstack) ?? "";
 
         if (cachedModes.TryGetValue(key, out SkillItem[] modes))
         {
@@ -253,7 +231,7 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
             {
                 Name = (slots[i]?.Itemstack?.Collectible as ItemPlayingCard)?.GetShortName(slots[i].Itemstack) ?? "Empty",
                 Code = slots[i]?.Itemstack?.Collectible?.Code ?? "empty",
-                RenderHandler = slots[i]?.Itemstack?.RenderItemStack(clientApi),
+                RenderHandler = slots[i]?.Itemstack?.RenderItemStack(api as ICoreClientAPI),
                 Linebreak = i % 16 == 0
             });
 
