@@ -14,7 +14,7 @@ namespace TabletopGames;
 /// <summary>
 /// Implements stacking and container behavior. Renders shape and textures using attribute based type system.
 /// </summary>
-public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource
+public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource, IShufflable
 {
     public Dictionary<string, string> PackCodeByType { get; protected set; } = new();
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
@@ -185,50 +185,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         }
 
         variants.ToStack(inSlot.Itemstack);
-        inSlot.MarkDirty();
-    }
-
-    public static bool CanShuffle(ItemSlot inSlot)
-    {
-        return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemPlayingCard;
-    }
-
-    /// <summary>
-    /// Shuffle cards inside card inventory
-    /// </summary>
-    public static void Shuffle(ItemSlot inSlot, IWorldAccessor world)
-    {
-        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard card)
-        {
-            return;
-        }
-
-        PlayingCardInventory inventory = card.GetInventory(inSlot.Itemstack);
-        if (inventory.Empty) return;
-
-        ItemStack firstStack = inSlot.Itemstack.Clone();
-        firstStack.Attributes.RemoveAttribute("slots");
-        DummySlot firstSlot = new DummySlot(firstStack);
-        ItemSlot[] slots = new ItemSlot[] { firstSlot }.Append(inventory.Slots).Select(x => new DummySlot(x?.Itemstack?.Clone())).ToArray();
-
-        slots = slots.Shuffle(world.Rand).OrderBy(x => x.Empty).ToArray();
-        slots.Foreach(slot => FlipCard(slot));
-
-        if (slots.Length > 0 && !slots[0].Empty)
-        {
-            ItemStack newFirstStack = slots[0].Itemstack.Clone();
-            ItemSlot[] newSlots = slots.Skip(1).ToArray();
-
-            // Update inventory
-            for (int i = 0; i < inventory.Count && i < slots.Length; i++)
-            {
-                inventory[i] = newSlots[i];
-            }
-
-            inSlot.Itemstack = newFirstStack;
-            inventory.ToTreeAttributes(inSlot.Itemstack.Attributes);
-        }
-
         inSlot.MarkDirty();
     }
 
@@ -664,7 +620,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// Takes last card from inventory
     /// </summary>
     /// <param name="stack">Card with inventory</param>
-    /// <param name="newStack">New card</param>
     public ItemStack? TryTakeCardFromInventory(ItemStack stack)
     {
         if (stack == null)
@@ -730,9 +685,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions cardInteractions)
+        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
         {
-            return cardInteractions.OnContainedInteractStart(be, slot, byPlayer, blockSel);
+            return interactions.OnContainedInteractStart(be, slot, byPlayer, blockSel);
         }
         return false;
     }
@@ -742,9 +697,9 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     bool IContainedInteractable.OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions cardInteractions)
+        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
         {
-            return cardInteractions.OnContainedInteractStep(secondsUsed, be, slot, byPlayer, blockSel);
+            return interactions.OnContainedInteractStep(secondsUsed, be, slot, byPlayer, blockSel);
         }
         return false;
     }
@@ -754,9 +709,50 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     /// </summary>
     void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions cardInteractions)
+        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
         {
-            cardInteractions.OnContainedInteractStop(secondsUsed, be, slot, byPlayer, blockSel);
+            interactions.OnContainedInteractStop(secondsUsed, be, slot, byPlayer, blockSel);
         }
+    }
+
+    bool IShufflable.CanShuffle(ItemSlot inSlot)
+    {
+        return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemPlayingCard;
+    }
+
+    void IShufflable.Shuffle(ItemSlot inSlot, IWorldAccessor world)
+    {
+        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard card)
+        {
+            return;
+        }
+
+        PlayingCardInventory inventory = card.GetInventory(inSlot.Itemstack);
+        if (inventory.Empty) return;
+
+        ItemStack firstStack = inSlot.Itemstack.Clone();
+        firstStack.Attributes.RemoveAttribute("slots");
+        DummySlot firstSlot = new DummySlot(firstStack);
+        ItemSlot[] slots = new ItemSlot[] { firstSlot }.Append(inventory.Slots).Select(x => new DummySlot(x?.Itemstack?.Clone())).ToArray();
+
+        slots = slots.Shuffle(world.Rand).OrderBy(x => x.Empty).ToArray();
+        slots.Foreach(slot => FlipCard(slot));
+
+        if (slots.Length > 0 && !slots[0].Empty)
+        {
+            ItemStack newFirstStack = slots[0].Itemstack.Clone();
+            ItemSlot[] newSlots = slots.Skip(1).ToArray();
+
+            // Update inventory
+            for (int i = 0; i < inventory.Count && i < slots.Length; i++)
+            {
+                inventory[i] = newSlots[i];
+            }
+
+            inSlot.Itemstack = newFirstStack;
+            inventory.ToTreeAttributes(inSlot.Itemstack.Attributes);
+        }
+
+        inSlot.MarkDirty();
     }
 }

@@ -26,7 +26,8 @@
             }
         },
         { "name": "TabletopGames.ChiseledBoardTags", "properties": { "tabletopTags": { "tags": ["boardPiece", "boardDice"] } } },
-        { "name": "TabletopGames.ChiseledBoardToolModes" }
+        { "name": "TabletopGames.ChiseledBoardToolModes" },
+        { "name": "TabletopGames.ShufflerContainable" }
     ],
     "blockmaterial": "Wood",
     "lightAbsorption": 0,

@@ -54,6 +54,7 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
         api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
+        api.RegisterItemClass("TabletopGames.ItemShuffler", typeof(ItemShuffler));
     }
 
     private void RegisterBlocks()
@@ -83,6 +84,8 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardInteractions", typeof(CollectibleBehaviorPlayingCardInteractions));
         api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardToolModes", typeof(CollectibleBehaviorPlayingCardToolModes));
         api.RegisterCollectibleBehaviorClass("TabletopGames.PackTyped", typeof(CollectibleBehaviorPackTyped));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerInteractions", typeof(CollectibleBehaviorShufflerInteractions));
 
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));

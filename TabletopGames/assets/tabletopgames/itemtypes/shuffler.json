@@ -1,0 +1,106 @@
+{
+    "code": "shuffler",
+    "class": "TabletopGames.ItemShuffler",
+    "maxStackSize": 1,
+    // fixes default transformation
+    "shape": { "base": "game:block/basic/invisible" },
+    "attributes": {
+        "handbook": {
+            "groupBy": ["tabletopgames:shuffler"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:item-handbooktitle-shuffler-interactions",
+                    "text": "tabletopgames:item-handbooktext-shuffler-interactions"
+                }
+            ]
+        },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onshelfTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
+        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
+        "name": {
+            "*": ["tabletopgames:item-shuffler-{type}"]
+        },
+        "description": {
+            "*": [
+                //
+                "tabletopgames:itemdesc-shuffler-{type}"
+            ]
+        },
+        "shape": {
+            "type-bag": { "base": "game:item/bag/linensack" }
+        },
+        "textures": {
+            "type-bag": {
+                "top": { "base": "game:item/bag/linensack/top" },
+                "linen": { "base": "game:item/bag/linensack/linen" }
+            }
+        },
+        "quantitySlots": {
+            "*": 256
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        { "name": "TabletopGames.ShufflerInteractions" },
+        {
+            "name": "TabletopGames.InteractionHelpConstructor",
+            "properties": {
+                "interactions": [
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-addone",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "shift"
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-removeone",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "shift",
+                        "RequireFreeHand": true
+                    },
+                    {
+                        "ActionLangCode": "blockhelp-groundstorage-addbulk",
+                        "MouseButton": "Right",
+                        "HotKeyCode": "ctrl"
+                    }
+                ]
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames", "general", "items"],
+            "stacks": [
+                //
+                // "linen": "linen-normal"
+                { "type": "item", "code": "shuffler", "attributes": { "types": { "type": "bag" } } }
+            ]
+        }
+    ],
+    "heldTpIdleAnimation": "holdbothhandslarge",
+    "heldTpUseAnimation": "twohandplaceblock",
+    "guiTransform": {
+        "rotation": { "x": 135, "y": 135, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.215, "z": 0.5 },
+        "scaleXyz": { "x": -1.75, "y": 1.75, "z": 1.75 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+        "scale": 4
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.45, "y": 0, "z": -0.95 },
+        "rotation": { "x": 20, "y": -80, "z": 10 },
+        "origin": { "x": 0.5, "y": 0.003125, "z": 0.5 },
+        "scale": 0.5
+    }
+}

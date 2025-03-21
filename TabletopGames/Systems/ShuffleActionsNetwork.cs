@@ -64,19 +64,21 @@ public class ShuffleActionsNetwork : ModSystem
     {
         string errorCode = string.Empty;
         ItemSlot hotbarSlot = fromPlayer.InventoryManager.ActiveHotbarSlot;
-        if (ItemPlayingCard.CanShuffle(hotbarSlot))
-        {
-            ItemPlayingCard.Shuffle(hotbarSlot, serverApi.World);
-        }
-        else
-        {
-            ShuffleResponse response = new ShuffleResponse()
-            {
-                errorCode = "tabletopgames:ingameerror-shuffle-empty-slot"
-            };
 
-            serverChannel.SendPacket(response, fromPlayer as IServerPlayer);
+        if (!hotbarSlot.Empty
+            && IShufflable.GetInstance(hotbarSlot.Itemstack) is IShufflable shufflable
+            && shufflable.CanShuffle(hotbarSlot))
+        {
+            shufflable.Shuffle(hotbarSlot, serverApi.World);
+            return;
         }
+
+        ShuffleResponse response = new ShuffleResponse()
+        {
+            errorCode = "tabletopgames:ingameerror-shuffle-empty-slot"
+        };
+
+        serverChannel.SendPacket(response, fromPlayer as IServerPlayer);
     }
     #endregion
 }

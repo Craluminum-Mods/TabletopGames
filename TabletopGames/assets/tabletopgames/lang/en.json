@@ -125,6 +125,8 @@
     "itemdesc-pack-playingcards_vs": "Unpack it with <hk>rightmouse</hk>!<br><br>Contains a deck of 52 playing cards + 4 jokers in Vintage Story style",
     "item-blankcard": "Blank card",
     "itemdesc-blankcard": "Used as a base for creating playing cards.",
+    "item-shuffler-bag": "Bag for shuffling",
+    "itemdesc-shuffler-bag": "Used to shuffle things.",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
@@ -229,7 +231,7 @@
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Can't remove main block without removing extra blocks first",
     "ingameerror-shuffle-empty-slot": "You don't have the cards right now. Can't shuffle emptiness!",
 
-    "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or placed shuffler",
+    "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or shuffler",
 
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
