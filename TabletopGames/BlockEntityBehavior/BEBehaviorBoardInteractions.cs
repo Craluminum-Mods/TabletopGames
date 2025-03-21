@@ -41,6 +41,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         }
         if (placeable)
         {
+            TryTake(byPlayer, blockSel);
             AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
             if (TryPut(byPlayer, slot, blockSel))
             {
