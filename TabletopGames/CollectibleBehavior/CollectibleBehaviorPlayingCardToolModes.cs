@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
@@ -11,8 +12,15 @@ namespace TabletopGames;
 public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
 {
     private ICoreAPI api;
+    private Dictionary<string, List<object>> modeNameByType = new();
 
     public CollectibleBehaviorPlayingCardToolModes(CollectibleObject collObj) : base(collObj) { }
+
+    public override void Initialize(JsonObject properties)
+    {
+        base.Initialize(properties);
+        modeNameByType = properties["modeName"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+    }
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -229,7 +237,7 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
         {
             modes = modes.Append(new SkillItem()
             {
-                Name = (slots[i]?.Itemstack?.Collectible as ItemPlayingCard)?.GetShortName(slots[i].Itemstack) ?? "Empty",
+                Name = GetModeName(slots[i].Itemstack),
                 Code = slots[i]?.Itemstack?.Collectible?.Code ?? "empty",
                 RenderHandler = slots[i]?.Itemstack?.RenderItemStack(api as ICoreClientAPI),
                 Linebreak = i % 16 == 0
@@ -238,5 +246,20 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
         }
 
         return cachedModes[key] = modes;
+    }
+
+    /// <summary>
+    /// Short name for tool modes. Usually contains 'Rank' and 'Suit' symbol
+    /// </summary>
+    public string GetModeName(ItemStack itemStack)
+    {
+        if (itemStack == null || ItemPlayingCard.IsCardFlipped(itemStack))
+        {
+            return string.Empty;
+        }
+
+        Variants variants = Variants.FromStack(itemStack);
+        variants.FindByVariant(modeNameByType, out List<object> _langKeys);
+        return variants.GetName(_langKeys, string.Empty);
     }
 }

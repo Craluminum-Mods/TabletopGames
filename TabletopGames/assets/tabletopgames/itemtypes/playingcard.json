@@ -25,27 +25,6 @@
         "name": {
             "*": ["tabletopgames:item-playingcard"]
         },
-        // for tool modes
-        "shortName": {
-            "rank-joker": [
-                //
-                "tabletopgames:itemdesc-playingcard-rank-{rank}",
-                "\t",
-                "(",
-                "color-{color}",
-                ")"
-            ],
-            "*": [
-                //
-                "tabletopgames:itemdesc-playingcard-rank-{rank}",
-                "\t",
-                "tabletopgames:itemdesc-playingcard-short-suit-{suit}",
-                "\t",
-                "(",
-                "tabletopgames:itemdesc-playingcard-suit-{suit}",
-                ")"
-            ]
-        },
         "description": {
             "*": [
                 // display only pack info to avoid possible cheating
@@ -138,7 +117,31 @@
             }
         },
         { "name": "TabletopGames.PlayingCardInteractions" },
-        { "name": "TabletopGames.PlayingCardToolModes" },
+        {
+            "name": "TabletopGames.PlayingCardToolModes",
+            "properties": {
+                "modeName": {
+                    "rank-joker": [
+                        //
+                        "tabletopgames:itemdesc-playingcard-rank-{rank}",
+                        "\t",
+                        "(",
+                        "color-{color}",
+                        ")"
+                    ],
+                    "*": [
+                        //
+                        "tabletopgames:itemdesc-playingcard-rank-{rank}",
+                        "\t",
+                        "tabletopgames:itemdesc-playingcard-short-suit-{suit}",
+                        "\t",
+                        "(",
+                        "tabletopgames:itemdesc-playingcard-suit-{suit}",
+                        ")"
+                    ]
+                }
+            }
+        },
         {
             "name": "TabletopGames.InteractionHelpConstructor",
             "properties": {

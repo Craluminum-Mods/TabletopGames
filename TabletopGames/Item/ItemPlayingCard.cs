@@ -18,7 +18,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 {
     public Dictionary<string, string> PackCodeByType { get; protected set; } = new();
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
-    public Dictionary<string, List<object>> ShortNameByType { get; protected set; } = new();
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
     public Dictionary<string, List<object>> ContainedDescriptionByType { get; protected set; } = new();
     public Dictionary<string, int> QuantitySlotsByType { get; protected set; } = new();
@@ -70,7 +69,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         if (Attributes != null)
         {
             NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-            ShortNameByType = Attributes["shortName"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
             ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
 
@@ -141,21 +139,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(PackCodeByType, out string packCode);
         return !string.IsNullOrEmpty(packCode) ? packCode : "card-default";
-    }
-
-    /// <summary>
-    /// Short name for tool modes. Usually contains 'Rank' and 'Suit' symbol
-    /// </summary>
-    public string GetShortName(ItemStack itemStack)
-    {
-        if (IsCardFlipped(itemStack))
-        {
-            return string.Empty;
-        }
-
-        Variants variants = Variants.FromStack(itemStack);
-        variants.FindByVariant(ShortNameByType, out List<object> _langKeys);
-        return variants.GetName(_langKeys, string.Empty);
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
