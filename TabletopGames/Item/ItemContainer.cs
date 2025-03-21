@@ -57,7 +57,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
         if (hotbarSlot?.Itemstack?.Collectible is ItemContainer) return false;
 
-        bool inventoryInteractions = byPlayer.Entity.Controls.CtrlKey;
+        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
         if (inventoryInteractions)
         {
             return TryPut(containerSlot, inventory, byPlayer, ownSlot) || TryTake(containerSlot, inventory, byPlayer, ownSlot);

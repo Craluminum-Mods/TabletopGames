@@ -32,7 +32,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         if (containerSlot.Empty) return false;
 
         bool isClosed = HasLid(containerSlot.Itemstack);
-        bool lidInteractions = byPlayer.Entity.Controls.ShiftKey;
+        bool lidInteractions = byPlayer.Entity.Controls.CtrlKey;
 
         if (!lidInteractions)
         {

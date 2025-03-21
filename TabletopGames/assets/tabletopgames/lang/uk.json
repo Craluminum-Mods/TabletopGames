@@ -246,10 +246,10 @@
     "item-handbooktext-blankcard-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на твердій поверхні, потім використайте <a href=\"handbooksearch://ножиці\">ножиці</a> за допомогою <hk>rightmouse</hk>",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаємодії",
-    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Прикріпити або зняти кришку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Прикріпити або зняти кришку: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаємодії",
-    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Додати 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Додати 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Гральні карти - Взаємодії",
     "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Відкрити керівництво</a>",

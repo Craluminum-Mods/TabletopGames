@@ -84,7 +84,7 @@
                     {
                         "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-10",
                         "MouseButton": "Right",
-                        "HotKeyCode": "ctrl",
+                        "HotKeyCode": "shift",
                         "ItemStacks": [
                             { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "basalt" } } },
                             { "type": "item", "code": "tabletopgames:gostone", "attributes": { "types": { "stone": "chalk" } } }
@@ -93,13 +93,13 @@
                     {
                         "ActionLangCode": "tabletopgames:blockhelp-gobowl-remove-10",
                         "MouseButton": "Right",
-                        "HotKeyCode": "ctrl",
+                        "HotKeyCode": "shift",
                         "RequireFreeHand": true
                     },
                     {
                         "ActionLangCode": "tabletopgames:blockhelp-gobowl-add-or-remove-lid",
                         "MouseButton": "Right",
-                        "HotKeyCode": "shift",
+                        "HotKeyCode": "ctrl",
                         "ItemStacks": [
                             { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "wood": "oak" } } },
                             { "type": "item", "code": "tabletopgames:lid", "attributes": { "types": { "type": "gobowl", "stone": "basalt" } } },

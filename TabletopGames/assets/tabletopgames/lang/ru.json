@@ -246,10 +246,10 @@
     "item-handbooktext-blankcard-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на твердой поверхности, затем используйте <a href=\"handbooksearch://ножницы\">ножницы</a> с помощью <hk>rightmouse</hk>",
 
     "item-handbooktitle-itemcontainer-interactions": "Взаимодействия",
-    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Прикрепить или снять крышку: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Прикрепить или снять крышку: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Взаимодействия",
-    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Добавить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Добавить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Игральные карты - Взаимодействия",
     "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Открыть руководство</a>",

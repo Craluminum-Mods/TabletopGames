@@ -246,10 +246,10 @@
     "item-handbooktext-blankcard-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the solid surface, then interacting with any <a href=\"handbooksearch://shears\">shears</a> using <hk>rightmouse</hk>",
 
     "item-handbooktitle-itemcontainer-interactions": "Interactions",
-    "item-handbooktext-itemcontainer-interactions": "Interactions work only when placed on the solid surface.        <br>Attach or detach lid: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-itemcontainer-interactions": "Interactions work only when placed on the solid surface.        <br>Attach or detach lid: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-lid-interactions": "Interactions",
-    "item-handbooktext-lid-interactions": "Interactions work only when placed on the solid surface.        <br>Add 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>ctrl</hk> + <hk>rightmouse</hk>",
+    "item-handbooktext-lid-interactions": "Interactions work only when placed on the solid surface.        <br>Add 10 items: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Playing Card Interactions",
     "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Read Guide</a>",
