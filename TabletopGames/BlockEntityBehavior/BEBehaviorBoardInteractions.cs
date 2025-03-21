@@ -41,11 +41,14 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         }
         if (placeable)
         {
-            TryTake(byPlayer, blockSel);
+            bool flip = TryTake(byPlayer, blockSel);
             AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
             if (TryPut(byPlayer, slot, blockSel))
             {
-                Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                if (!flip)
+                {
+                    Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                }
                 return true;
             }
             return false;

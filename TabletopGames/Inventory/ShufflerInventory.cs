@@ -61,11 +61,11 @@ public class ShufflerInventory : InventoryBase
     /// <returns>True if the item can be stored in the container, otherwise false.</returns>
     public override bool CanContain(ItemSlot sinkSlot, ItemSlot sourceSlot)
     {
-        if (sourceSlot.Itemstack.Collectible.GetCollectibleInterface<IShufflerContainable>() is not IShufflerContainable)
+        if (sourceSlot?.Itemstack?.Collectible.GetCollectibleInterface<IShufflerContainable>() is not IShufflerContainable)
         {
             return false;
         }
-        return true;
+        return base.CanContain(sinkSlot, sourceSlot);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree)

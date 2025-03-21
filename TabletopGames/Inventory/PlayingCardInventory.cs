@@ -65,7 +65,7 @@ public class PlayingCardInventory : InventoryBase
         {
             return false;
         }
-        return true;
+        return base.CanContain(sinkSlot, sourceSlot);
     }
 
     public override void FromTreeAttributes(ITreeAttribute tree)
