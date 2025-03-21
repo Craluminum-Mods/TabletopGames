@@ -211,6 +211,7 @@
     "setting-dice_animations_enabled": "Toggle Dice Animations",
 
     "heldhelp-unpack": "Unpack",
+    "heldhelp-shuffle": "Shuffle",
     "blockhelp-gobowl-add-10": "Add 10x Go stone",
     "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
@@ -226,6 +227,9 @@
     "ingameerror-reached-stacking-up-limit": "Stacking up limit is {0}!",
     "ingameerror-reached-stacking-down-limit": "Stacking down limit is {0}!",
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Can't remove main block without removing extra blocks first",
+    "ingameerror-shuffle-empty-slot": "You don't have the cards right now. Can't shuffle emptiness!",
+
+    "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or placed shuffler",
 
     "item-handbooktitle-generic-howtoobtain": "How To Obtain",
     "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",

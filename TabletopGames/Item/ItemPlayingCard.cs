@@ -178,13 +178,18 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         variants.GetDescription(dsc, _langKeys);
     }
 
-    public bool IsCardFlipped(ItemStack stack)
+    public static bool IsCardFlipped(ItemStack stack)
     {
         return Variants.FromStack(stack).Get("flipped") == "true";
     }
 
-    public void FlipCard(ItemSlot inSlot, bool unflip = false)
+    public static void FlipCard(ItemSlot inSlot, bool unflip = false)
     {
+        if (inSlot.Empty)
+        {
+            return;
+        }
+
         Variants variants = Variants.FromStack(inSlot.Itemstack);
 
         if (unflip)
@@ -197,6 +202,50 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         }
 
         variants.ToStack(inSlot.Itemstack);
+        inSlot.MarkDirty();
+    }
+
+    public static bool CanShuffle(ItemSlot inSlot)
+    {
+        return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemPlayingCard;
+    }
+
+    /// <summary>
+    /// Shuffle cards inside card inventory
+    /// </summary>
+    public static void Shuffle(ItemSlot inSlot, IWorldAccessor world)
+    {
+        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard card)
+        {
+            return;
+        }
+
+        PlayingCardInventory inventory = card.GetInventory(inSlot.Itemstack);
+        if (inventory.Empty) return;
+
+        ItemStack firstStack = inSlot.Itemstack.Clone();
+        firstStack.Attributes.RemoveAttribute("slots");
+        DummySlot firstSlot = new DummySlot(firstStack);
+        ItemSlot[] slots = new ItemSlot[] { firstSlot }.Append(inventory.Slots).Select(x => new DummySlot(x?.Itemstack?.Clone())).ToArray();
+
+        slots = slots.Shuffle(world.Rand).OrderBy(x => x.Empty).ToArray();
+        slots.Foreach(slot => FlipCard(slot));
+
+        if (slots.Length > 0 && !slots[0].Empty)
+        {
+            ItemStack newFirstStack = slots[0].Itemstack.Clone();
+            ItemSlot[] newSlots = slots.Skip(1).ToArray();
+
+            // Update inventory
+            for (int i = 0; i < inventory.Count && i < slots.Length; i++)
+            {
+                inventory[i] = newSlots[i];
+            }
+
+            inSlot.Itemstack = newFirstStack;
+            inventory.ToTreeAttributes(inSlot.Itemstack.Attributes);
+        }
+
         inSlot.MarkDirty();
     }
 

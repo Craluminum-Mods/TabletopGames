@@ -1,4 +1,5 @@
-﻿using Vintagestory.API.Common;
+﻿using Vintagestory.API.Client;
+using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
 namespace TabletopGames;
@@ -6,6 +7,21 @@ namespace TabletopGames;
 public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, IPlayingCardInteractions
 {
     public CollectibleBehaviorPlayingCardInteractions(CollectibleObject collObj) : base(collObj) { }
+
+    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
+    {
+        WorldInteraction[] interactions = new WorldInteraction[]
+        {
+            new WorldInteraction()
+            {
+                ActionLangCode = "tabletopgames:heldhelp-shuffle",
+                HotKeyCode = "tabletopgames:shuffle"
+            }
+        };
+
+        handling = EnumHandling.Handled;
+        return interactions;
+    }
 
     protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {

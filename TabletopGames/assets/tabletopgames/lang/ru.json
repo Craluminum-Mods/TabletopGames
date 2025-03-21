@@ -211,6 +211,7 @@
     "setting-dice_animations_enabled": "Включить анимацию игральных кубиков",
 
     "heldhelp-unpack": "Распаковать",
+    "heldhelp-shuffle": "Перетасовать",
     "blockhelp-gobowl-add-10": "Добавить 10 камней для го",
     "blockhelp-gobowl-remove-10": "Взять 10 камней для го",
     "blockhelp-gobowl-add-or-remove-lid": "Прикрепить или снять крышку",
@@ -226,6 +227,9 @@
     "ingameerror-reached-stacking-up-limit": "Предел добавления сверху {0}!",
     "ingameerror-reached-stacking-down-limit": "Предел добавления снизу {0}!",
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Нельзя удалить главный блок, не удалив сначала дополнительные блоки",
+    "ingameerror-shuffle-empty-slot": "Отсутствуют игральные карты в руке. Невозможно перетасовать пустоту!",
+
+    "hotkey-shuffle": "(Tabletop Games) Перетасовать карты в руке либо размещенный тасовщик",
 
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
