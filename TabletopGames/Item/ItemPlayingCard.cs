@@ -406,7 +406,8 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             ItemSlot slot = inventory.Slots[cardIndex];
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
-                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh
+                || containedMesh == null)
             {
                 continue;
             }
@@ -473,9 +474,11 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         for (int cardIndex = 0; cardIndex < inventory.Slots.Length; cardIndex++)
         {
             ItemSlot slot = inventory.Slots[cardIndex];
+
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
-                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh
+                || containedMesh == null)
             {
                 continue;
             }
@@ -524,27 +527,39 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         if (inventory.Empty) return mesh;
 
-        float translation = 0;
+        float translationY = 0;
+        int totalItems = inventory.TotalItemCount;
 
-        foreach (ItemSlot slot in inventory)
+        for (int cardIndex = 0; cardIndex < inventory.Slots.Length; cardIndex++)
         {
+            ItemSlot slot = inventory.Slots[cardIndex];
+
             if (slot.Empty
                 || slot.Itemstack.Collectible is not ItemPlayingCard otherCard
-                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh)
+                || otherCard.GetOrCreateMesh(slot.Itemstack, targetAtlas, renderType) is not MeshData containedMesh
+                || containedMesh == null)
             {
                 continue;
             }
 
-            int slotId = inventory.GetSlotId(slot);
-
-            float rotation = stackRotations.Length > slotId ? stackRotations[slotId] : 0;
+            // 0 index is 2nd card
+            bool rotateVeryfirstCard = cardIndex == 0 && !IsCardFlipped(itemstack);
+            if (rotateVeryfirstCard)
+            {
+                mesh = mesh.Translate(-0.5f, -0.5f, -0.5f);
+                mesh = mesh.Rotate(Vec3f.Zero, 0, GameMath.DEG2RAD * 90f, 0);
+                mesh = mesh.Translate(0.5f, 0.5f, 0.5f);
+            }
+            
+            float cardThickness = GetStackingTranslation(slot.Itemstack);
+            float rotation = stackRotations.Length > cardIndex ? stackRotations[cardIndex] : 0;
 
             containedMesh = containedMesh.Translate(-0.5f, -0.5f, -0.5f);
             containedMesh = containedMesh.Rotate(Vec3f.Zero, 0, rotation, 0);
             containedMesh = containedMesh.Translate(0.5f, 0.5f, 0.5f);
 
-            translation += GetStackingTranslation(slot.Itemstack);
-            containedMesh = containedMesh.Translate(0, translation, 0);
+            translationY += cardThickness;
+            containedMesh = containedMesh.Translate(0, translationY, 0);
 
             if (contentMesh != null) contentMesh.AddMeshData(containedMesh);
             else contentMesh = containedMesh;
@@ -598,7 +613,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     }
 
     /// <summary>
-    /// Returns the mesh translation when stacking meshes on top of each other.
+    /// Returns the mesh translationY when stacking meshes on top of each other.
     /// </summary>
     public float GetStackingTranslation(ItemStack stack)
     {
