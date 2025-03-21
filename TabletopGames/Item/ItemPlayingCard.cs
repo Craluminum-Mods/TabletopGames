@@ -112,7 +112,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack) + '-' + renderType.ToString();
 
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.DebugOnBeforeRender)
         {
             MeshData mesh = GetOrCreateMesh(itemstack, capi.ItemTextureAtlas, renderType);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);

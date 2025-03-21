@@ -56,15 +56,15 @@ public class ConfigLibCompatibility
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
 
-        ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.ItemRotations);
-        if (TabletopDebug.ItemRotations)
+        ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.DebugOnBeforeRender);
+        if (TabletopDebug.DebugOnBeforeRender)
         {
             if (ImGui.Button($"Copy Item Rotation##CopyItemRotation-{id}"))
             {
                 StringBuilder dsc = new();
-                dsc.Append($"\"rotateX\": {TabletopDebug.ItemRotationsVec.X}, ");
-                dsc.Append($"\"rotateY\": {TabletopDebug.ItemRotationsVec.Y}, ");
-                dsc.Append($"\"rotateZ\": {TabletopDebug.ItemRotationsVec.Z}, ");
+                dsc.Append($"\"rotateX\": {TabletopDebug.DebugOnBeforeRenderVec.X}, ");
+                dsc.Append($"\"rotateY\": {TabletopDebug.DebugOnBeforeRenderVec.Y}, ");
+                dsc.Append($"\"rotateZ\": {TabletopDebug.DebugOnBeforeRenderVec.Z}, ");
 
                 if (capi != null)
                 {
@@ -72,9 +72,9 @@ public class ConfigLibCompatibility
                 }
             }
 
-            Vector3 vector3 = new Vector3(TabletopDebug.ItemRotationsVec.X, TabletopDebug.ItemRotationsVec.Y, TabletopDebug.ItemRotationsVec.Z);
+            Vector3 vector3 = new Vector3(TabletopDebug.DebugOnBeforeRenderVec.X, TabletopDebug.DebugOnBeforeRenderVec.Y, TabletopDebug.DebugOnBeforeRenderVec.Z);
             ImGui.DragFloat3($"Edit Item Rotation##EditItemRotation-{id}", ref vector3);
-            TabletopDebug.ItemRotationsVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
+            TabletopDebug.DebugOnBeforeRenderVec = new Vec3f(vector3.X, vector3.Y, vector3.Z);
         }
 
         ImGui.NewLine();

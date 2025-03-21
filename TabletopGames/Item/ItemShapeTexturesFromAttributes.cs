@@ -95,7 +95,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
         ShapeElement origin = shape.GetElementByName("origin");
         bool rotateNormalWay = cshape.rotateX != 0 || cshape.rotateY != 0 || cshape.rotateZ != 0;
 
-        if (!TabletopDebug.ItemRotations && !rotateNormalWay) return;
+        if (!TabletopDebug.DebugOnBeforeRender && !rotateNormalWay) return;
 
         if (origin?.RotationOrigin?.Length != 3)
         {
@@ -103,9 +103,9 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
             return;
         }
 
-        float rotateX = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.X * GameMath.DEG2RAD : cshape.rotateX * GameMath.DEG2RAD;
-        float rotateY = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.Y * GameMath.DEG2RAD : cshape.rotateY * GameMath.DEG2RAD;
-        float rotateZ = TabletopDebug.ItemRotations ? TabletopDebug.ItemRotationsVec.Z * GameMath.DEG2RAD : cshape.rotateZ * GameMath.DEG2RAD;
+        float rotateX = TabletopDebug.DebugOnBeforeRender ? TabletopDebug.DebugOnBeforeRenderVec.X * GameMath.DEG2RAD : cshape.rotateX * GameMath.DEG2RAD;
+        float rotateY = TabletopDebug.DebugOnBeforeRender ? TabletopDebug.DebugOnBeforeRenderVec.Y * GameMath.DEG2RAD : cshape.rotateY * GameMath.DEG2RAD;
+        float rotateZ = TabletopDebug.DebugOnBeforeRender ? TabletopDebug.DebugOnBeforeRenderVec.Z * GameMath.DEG2RAD : cshape.rotateZ * GameMath.DEG2RAD;
 
         Vec3f rotationOrigin = new Vec3d(origin.RotationOrigin[0] / 16, origin.RotationOrigin[1] / 16, origin.RotationOrigin[2] / 16).ToVec3f();
         mesh.Rotate(rotationOrigin, rotateX, rotateY, rotateZ);
@@ -117,7 +117,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         string key = GetMeshCacheKey(itemstack);
 
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.ItemRotations)
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.DebugOnBeforeRender)
         {
             MeshData mesh = GenMesh(itemstack, capi.ItemTextureAtlas, null);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
