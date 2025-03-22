@@ -125,8 +125,8 @@
     "itemdesc-pack-playingcards_vs": "Unpack it with <hk>rightmouse</hk>!<br><br>Contains a deck of 52 playing cards + 4 jokers in Vintage Story style",
     "item-blankcard": "Blank card",
     "itemdesc-blankcard": "Used as a base for creating playing cards.",
-    "item-shuffler-bag": "Bag for shuffling",
-    "itemdesc-shuffler-bag": "Used to shuffle things (<hk>tabletopgames:shuffle</hk>).",
+    "item-shuffler-linensack": "Bag for shuffling",
+    "itemdesc-shuffler-linensack": "Used to shuffle things (<hk>tabletopgames:shuffle</hk>).",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
