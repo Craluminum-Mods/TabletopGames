@@ -52,7 +52,7 @@ public class ItemShuffler : ItemShapeTexturesFromAttributes, IContainedInteracta
         ShufflerInventory inventory = GetInventory(containerSlot.Itemstack);
         if (inventory.Empty)
         {
-            dsc.AppendLine(Lang.Get("Contents: {0}", Lang.Get("Empty")));
+            dsc.AppendLine(Lang.Get("Empty"));
             return;
         }
 
