@@ -206,14 +206,17 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
         byPlayer.InventoryManager.BroadcastHotbarSlot();
     }
 
-    public override SkillItem[]? GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+    public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
-        if (slot.Empty || slot?.Itemstack?.Collectible is not ItemPlayingCard mainCard) return null;
+        if (slot.Empty || slot?.Itemstack?.Collectible is not ItemPlayingCard mainCard)
+        {
+            return Array.Empty<SkillItem>();
+        }
 
         Dictionary<string, SkillItem[]> cachedModes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_PlayingCardModes", () => new Dictionary<string, SkillItem[]>());
         string key = slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>()?.GetMeshCacheKey(slot.Itemstack) ?? "";
 
-        if (cachedModes.TryGetValue(key, out SkillItem[] modes))
+        if (cachedModes.TryGetValue(key, out SkillItem[]? modes))
         {
             return modes;
         }

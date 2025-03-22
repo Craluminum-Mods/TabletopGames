@@ -6,6 +6,8 @@ namespace TabletopGames;
 
 public static class RenderExtensions
 {
+    public static MeshData GenEmptyMesh() => new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps();
+
     public static RenderSkillItemDelegate RenderItemStack(this ItemStack stack, ICoreClientAPI capi, bool showStackSize = false)
     {
         return (AssetLocation code, float dt, double posX, double posY) =>
@@ -28,5 +30,4 @@ public static class RenderExtensions
     {
         return (renderinfo?.InSlot?.Inventory as InventoryBasePlayer)?.Player.PlayerUID == capi.World.Player.PlayerUID;
     }
-
 }

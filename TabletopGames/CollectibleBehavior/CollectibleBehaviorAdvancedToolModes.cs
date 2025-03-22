@@ -8,6 +8,9 @@ using Vintagestory.API.Util;
 
 namespace TabletopGames;
 
+/// <summary>
+/// Tool modes that support crafting with sink slots between 2 <see cref="ItemStack"/>'s, changing <see cref="Variants"/> of stack and converting stack to another one
+/// </summary>
 public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
 {
     private Dictionary<string, List<AdvancedToolMode>> toolModesByType = new();
@@ -84,16 +87,16 @@ public class CollectibleBehaviorAdvancedToolModes : CollectibleBehavior
         byPlayer.InventoryManager.BroadcastHotbarSlot();
     }
 
-    public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+    public override SkillItem[]? GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
         SkillItem[] _toolModes = Array.Empty<SkillItem>();
 
-        if (slot.Empty) return null;
+        if (slot.Empty) return _toolModes;
 
         Variants variants = Variants.FromStack(slot.Itemstack);
         if (!variants.FindByVariant(toolModesByType, out List<AdvancedToolMode> toolModes) || toolModes == null || !toolModes.Any())
         {
-            return null;
+            return _toolModes;
         }
 
         foreach (AdvancedToolMode advMode in toolModes)

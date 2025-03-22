@@ -41,7 +41,7 @@ public static class PlayingCardMeshes
     public static MeshData GenOneMesh(this ItemPlayingCard mainCard, ItemStack itemstack, ITextureAtlasAPI targetAtlas, EnumCardRenderType renderType)
     {
         ICoreClientAPI capi = mainCard.clientApi;
-        MeshData mesh = new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps();
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         Variants variants = Variants.FromStack(itemstack);
         bool isFlipped = ItemPlayingCard.IsCardFlipped(itemstack);

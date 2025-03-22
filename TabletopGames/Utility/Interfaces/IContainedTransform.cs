@@ -5,5 +5,5 @@ namespace TabletopGames;
 
 public interface IContainedTransform
 {
-    public ModelTransform GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack itemStack);
+    public ModelTransform? GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack itemStack);
 }

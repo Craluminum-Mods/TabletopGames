@@ -6,7 +6,7 @@ using Vintagestory.GameContent;
 namespace TabletopGames;
 
 [HarmonyPatch(typeof(BlockEntityGroundStorage), nameof(BlockEntityGroundStorage.putOrGetItemSingle))]
-public static class putOrGetItemSinglePatch
+public static class PutOrGetItemSinglePatch
 {
     [HarmonyPrefix]
     public static void Prefix(BlockEntityGroundStorage __instance, ItemSlot ourSlot, IPlayer player, BlockSelection bs)
@@ -17,7 +17,7 @@ public static class putOrGetItemSinglePatch
         }
 
         bool flipCard = player.Entity.Controls.CtrlKey;
-        ItemSlot hotbarSlot = player.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = player.Entity.RightHandItemSlot;
 
         if (flipCard && hotbarSlot?.Itemstack?.Collectible is ItemPlayingCard card)
         {

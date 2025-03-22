@@ -47,7 +47,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         return GetLid(containerStack) != null;
     }
 
-    public ItemStack GetLid(ItemStack containerStack)
+    public ItemStack? GetLid(ItemStack containerStack)
     {
         if (containerStack == null) return null;
         ItemStack giveStack = containerStack.Attributes.GetItemstack(LidAttributeName);
@@ -57,7 +57,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
 
     public bool TryAttachLid(ItemSlot containerSlot, IPlayer byPlayer)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         string containerKey = GetContainerKey(containerSlot.Itemstack);
 
         if (hotbarSlot?.Itemstack?.Collectible.GetCollectibleInterface<IContainable>() is not IContainable detachableLid
@@ -135,9 +135,9 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         return containerMesh;
     }
 
-    public virtual MeshData GetOrCreateLidMesh(ItemStack containerStack, ITextureAtlasAPI targetAtlas)
+    public virtual MeshData? GetOrCreateLidMesh(ItemStack containerStack, ITextureAtlasAPI targetAtlas)
     {
-        ItemStack lidStack = GetLid(containerStack);
+        ItemStack? lidStack = GetLid(containerStack);
 
         if (lidStack?.Collectible?.GetCollectibleInterface<IContainable>() is IContainable detachableLid && detachableLid.IsDetachableLid)
         {
@@ -151,7 +151,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
     {
         StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(itemstack));
 
-        ItemStack lidStack = GetLid(itemstack);
+        ItemStack? lidStack = GetLid(itemstack);
         if (lidStack != null)
         {
             stringBuilder.Append("-lid:");

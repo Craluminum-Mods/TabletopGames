@@ -28,7 +28,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
 
     protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
 
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
         if (!inventoryInteractions || collObj is not ItemPlayingCard card || hotbarSlot.Empty)
@@ -66,7 +66,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
             return false;
         }
 
-        ItemStack giveStack = card.TryTakeCardFromInventory(containerSlot.Itemstack);
+        ItemStack? giveStack = card.TryTakeCardFromInventory(containerSlot.Itemstack);
         if (giveStack == null)
         {
             return false;

@@ -11,10 +11,10 @@ public class Variant
         Value = value;
     }
 
-    public static Variant FromString(string keyVal)
+    public static Variant? FromString(string keyVal)
     {
-        string[] list = keyVal?.Split('-');
-        if (list.Length != 2)
+        string[]? list = keyVal?.Split('-', 2);
+        if (list?.Length != 2)
         {
             return null;
         }

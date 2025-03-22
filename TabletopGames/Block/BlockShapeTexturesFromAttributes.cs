@@ -73,7 +73,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public virtual MeshData GenGuiMesh(Variants variants)
     {
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
         if (_shape == null) return mesh;
@@ -82,7 +82,8 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        if (shape == null) return mesh;
 
         variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
@@ -96,7 +97,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             stexSource.textures[val.Key] = ctex;
         }
 
-        if (shape == null) return mesh;
         clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, stexSource);
         return mesh;
     }
@@ -106,9 +106,9 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes", () => new Dictionary<string, MeshData>());
 
         string key = $"{Code}-{variants}";
-        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData mesh))
+        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData? mesh))
         {
-            mesh = new MeshData(4, 3);
+            mesh = RenderExtensions.GenEmptyMesh();
 
             variants.FindByVariant(shapeByType, out CompositeShape _shape);
             if (_shape == null) return mesh;
@@ -117,7 +117,8 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
             rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-            Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+            Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+            if (shape == null) return mesh;
 
             ITexPositionSource texSource = overrideTexturesource;
             if (overrideTexturesource == null)
@@ -135,8 +136,6 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
                     stexSource.textures[val.Key] = ctex;
                 }
             }
-
-            if (shape == null) return mesh;
 
             clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
 

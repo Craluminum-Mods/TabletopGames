@@ -18,15 +18,15 @@ public static class GroundStorageInteractionFix
             return true;
         }
 
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (hotbarSlot?.Empty == true || targetSlot?.Empty == true) return true;
+        if (hotbarSlot.Empty == true || targetSlot == null || targetSlot.Empty == true) return true;
 
         if (!byPlayer.Entity.World.Claims.TryAccess(byPlayer, blockSel.Position, EnumBlockAccessFlags.Use))
         {
             world.BlockAccessor.MarkBlockDirty(blockSel.Position.AddCopy(blockSel.Face));
-            byPlayer.InventoryManager.ActiveHotbarSlot.MarkDirty();
+            hotbarSlot.MarkDirty();
             return true;
         }
 

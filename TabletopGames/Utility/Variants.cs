@@ -10,6 +10,9 @@ using Vintagestory.API.Datastructures;
 
 namespace TabletopGames;
 
+/// <summary>
+/// Collection of attributes very similar to VariantGroups, that are stored in local ItemStack / BlockEntity, instead of global CollectibleObject (Block, Item)
+/// </summary>
 public class Variants
 {
     public const string RootAttributeName = "types";
@@ -47,7 +50,12 @@ public class Variants
         }
         Elements.TryAdd(key, value);
     }
-    
+
+    public void Set(Variant variant)
+    {
+        Set(variant.Key, variant.Value);
+    }
+
     public void RemoveKey(string key)
     {
         Elements.Remove(key);

@@ -29,10 +29,10 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
 
     private bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot slot = byPlayer.Entity.RightHandItemSlot;
 
         TabletopTags boardTags = Tags.GetResolvedTags(blockSel.SelectionBoxIndex);
-        TabletopTags pieceTags = TabletopTags.FromInterface(slot?.Itemstack);
+        TabletopTags pieceTags = TabletopTags.FromInterface(slot);
         bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
 
         if (slot.Empty || !placeable)
@@ -42,7 +42,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         if (placeable)
         {
             bool flip = TryTake(byPlayer, blockSel);
-            AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
+            AssetLocation? sound = slot.Itemstack?.Block?.Sounds?.Place;
             if (TryPut(byPlayer, slot, blockSel))
             {
                 if (!flip)
@@ -51,7 +51,6 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
                 }
                 return true;
             }
-            return false;
         }
         return false;
     }

@@ -62,8 +62,7 @@ public class ShuffleActionsNetwork : ModSystem
 
     private void OnClientRequest(IPlayer fromPlayer, ShuffleRequest networkRequest)
     {
-        string errorCode = string.Empty;
-        ItemSlot hotbarSlot = fromPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = fromPlayer.Entity.RightHandItemSlot;
 
         if (!hotbarSlot.Empty
             && IShufflable.GetInstance(hotbarSlot.Itemstack) is IShufflable shufflable

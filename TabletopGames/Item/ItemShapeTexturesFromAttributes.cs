@@ -60,7 +60,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
     public virtual MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         Variants variants = Variants.FromStack(itemstack);
         variants.FindByVariant(shapeByType, out CompositeShape _shape);

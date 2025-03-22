@@ -11,7 +11,7 @@ namespace TabletopGames;
 /// </summary>
 public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShufflable, IShufflerInteractions
 {
-    private ICoreAPI api;
+    private ICoreAPI? api;
 
     public CollectibleBehaviorShufflerInteractions(CollectibleObject collObj) : base(collObj) { }
 
@@ -58,7 +58,7 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
             return any;
         }
 
-        return putOne && PutOne(be, containerSlot, byPlayer, fromSlot: byPlayer.InventoryManager.ActiveHotbarSlot);
+        return putOne && PutOne(be, containerSlot, byPlayer, fromSlot: byPlayer.Entity.RightHandItemSlot);
     }
 
     private bool PutOne(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, ItemSlot fromSlot)
@@ -101,7 +101,7 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
             return false;
         }
 
-        ItemStack giveStack = TryTakeFromInventory(containerSlot.Itemstack);
+        ItemStack? giveStack = TryTakeFromInventory(containerSlot.Itemstack);
         if (giveStack == null)
         {
             return false;
@@ -158,7 +158,7 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         }
 
         DummySlot dummySlot = new(newStack);
-        movedQuantity = dummySlot.TryPutInto(api.World, invSlot);
+        movedQuantity = dummySlot.TryPutInto(api?.World, invSlot);
         if (movedQuantity <= 0)
         {
             return false;
@@ -182,7 +182,7 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         ShufflerInventory inventory = shuffler.GetInventory(ownStack);
 
         // default value is null, since we always need the most last slot
-        ItemSlot? invSlot = inventory.LastOrDefault(slot => !slot.Empty, defaultValue: null);
+        ItemSlot? invSlot = inventory.LastOrDefault(slot => slot != null && !slot.Empty, defaultValue: null);
         if (invSlot == null)
         {
             return null;

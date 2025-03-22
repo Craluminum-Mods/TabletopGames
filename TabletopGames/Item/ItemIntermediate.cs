@@ -9,9 +9,9 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
 {
     public Dictionary<string, List<CraftingStep>> InWorldCraftingPropsByType { get; set; } = new();
 
-    public override void OnLoaded(ICoreAPI api)
+    public override void LoadTypes()
     {
-        base.OnLoaded(api);
+        base.LoadTypes();
 
         if (Attributes != null)
         {
@@ -21,7 +21,7 @@ public class ItemIntermediate : ItemShapeTexturesFromAttributes, IContainedInter
 
     public bool OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         if (be is not BlockEntityGroundStorage gs || hotbarSlot.Empty)
         {
             return false;

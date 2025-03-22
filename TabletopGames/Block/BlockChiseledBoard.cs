@@ -239,7 +239,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public MeshData GenGuiMesh(ItemStack stack)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         ItemStack stackHitboxes = GetChiseledStack(stack, api.World, EnumStackType.HitBoxes);
         ItemStack stackTextures = GetChiseledStack(stack, api.World, EnumStackType.Textures);
@@ -256,7 +256,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public MeshData GetOrCreateMesh(BlockEntityChiseledBoard blockEntity, ITexPositionSource overrideTexturesource = null)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         ItemStack stackHitboxes = blockEntity.ChiseledStackHitboxes;
         ItemStack stackTextures = blockEntity.ChiseledStackTextures;

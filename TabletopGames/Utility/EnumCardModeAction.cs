@@ -1,5 +1,8 @@
 ﻿namespace TabletopGames;
 
+/// <summary>
+/// The action in tool mode menu of the playing card
+/// </summary>
 public enum EnumCardModeAction
 {
     None,

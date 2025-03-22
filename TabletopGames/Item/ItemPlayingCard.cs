@@ -238,7 +238,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         EnumCardRenderType.Stack => this.GenStackMesh(itemstack, targetAtlas, renderType),
         EnumCardRenderType.Hand => this.GenHandMesh(itemstack, targetAtlas, renderType),
         EnumCardRenderType.HandSafe => this.GenHandMesh(itemstack, targetAtlas, renderType),
-        _ => new MeshData(32, 32).WithXyzFaces().WithRenderpasses().WithColorMaps(),
+        _ => RenderExtensions.GenEmptyMesh(),
     };
 
     /// <summary>
