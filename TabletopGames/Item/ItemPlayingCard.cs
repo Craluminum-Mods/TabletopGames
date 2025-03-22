@@ -641,6 +641,35 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return giveStack;
     }
 
+    /// <summary>
+    /// Combine all cards inside player inventory
+    /// </summary>
+    public static void CombineAllInInventory(IPlayer byPlayer)
+    {
+        IEnumerable<ItemSlot> inventorySlots = byPlayer.InventoryManager.GetOwnInventory("backpack").Concat(byPlayer.InventoryManager.GetOwnInventory("hotbar"));
+
+        foreach (ItemSlot? mainSlot in inventorySlots)
+        {
+            if (mainSlot.Empty) continue;
+            if (mainSlot.Itemstack.Collectible is not ItemPlayingCard firstCard) continue;
+
+            foreach (ItemSlot? otherSlot in inventorySlots)
+            {
+                if (mainSlot == otherSlot) continue;
+                if (otherSlot.Empty) continue;
+                if (otherSlot.Itemstack.Collectible is not ItemPlayingCard secondCard) continue;
+                if (!secondCard.IsEmpty(otherSlot.Itemstack)) continue;
+
+                if (firstCard.TryAddCardToInventory(mainSlot.Itemstack, otherSlot.Itemstack.Clone(), out int movedQuantity))
+                {
+                    otherSlot.TakeOut(movedQuantity);
+                    otherSlot.MarkDirty();
+                }
+            }
+            mainSlot.MarkDirty();
+        }
+    }
+
     MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         return GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);

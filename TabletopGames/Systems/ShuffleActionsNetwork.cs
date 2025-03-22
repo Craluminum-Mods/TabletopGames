@@ -41,7 +41,7 @@ public class ShuffleActionsNetwork : ModSystem
         }
     }
 
-    private bool HandleShuffleRequest(KeyCombination t1)
+    private bool HandleShuffleRequest(KeyCombination keyCombination)
     {
         clientChannel.SendPacket(new ShuffleRequest());
         return true;
