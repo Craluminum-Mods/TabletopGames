@@ -87,9 +87,10 @@
     "heldTpIdleAnimation": "holdbothhandslarge",
     "heldTpUseAnimation": "twohandplaceblock",
     "guiTransform": {
+        "rotate": true,
         "rotation": { "x": 135, "y": 135, "z": 0 },
         "origin": { "x": 0.5, "y": 0.215, "z": 0.5 },
-        "scaleXyz": { "x": -1.75, "y": 1.75, "z": 1.75 }
+        "scaleXyz": { "x": -2.5, "y": 2.5, "z": 2.5 }
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },

@@ -126,7 +126,7 @@
     "item-blankcard": "Пустая карта",
     "itemdesc-blankcard": "Используется как основа для создания игральных карт.",
     "item-shuffler-bag": "Мешок-тасовщик",
-    "itemdesc-shuffler-bag": "Используется для перетасовки вещей.",
+    "itemdesc-shuffler-bag": "Используется для перетасовки вещей (<hk>tabletopgames:shuffle</hk>).",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ингредиент: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетащите пигмент сюда, чтобы изменить цвет линий на доске.",
@@ -229,9 +229,9 @@
     "ingameerror-reached-stacking-up-limit": "Предел добавления сверху {0}!",
     "ingameerror-reached-stacking-down-limit": "Предел добавления снизу {0}!",
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Нельзя удалить главный блок, не удалив сначала дополнительные блоки",
-    "ingameerror-shuffle-empty-slot": "Отсутствуют игральные карты в руке. Невозможно перетасовать пустоту!",
+    "ingameerror-shuffle-empty-slot": "Отсутствуют игральные карты в руке. Невозможно перетасовать пустоту! (в руке должны быть карты либо тасовщик)",
 
-    "hotkey-shuffle": "(Tabletop Games) Перетасовать карты в руке либо размещенный тасовщик",
+    "hotkey-shuffle": "(Tabletop Games) Перетасовать карты либо тасовщик в руке",
 
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
@@ -252,7 +252,10 @@
     "item-handbooktext-lid-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Добавить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Игральные карты - Взаимодействия",
-    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Открыть руководство</a>",
+    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-playingcard\">Открыть руководство</a>",
+
+    "item-handbooktitle-shuffler-interactions": "Тасовщик - Взаимодействия",
+    "item-handbooktext-shuffler-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-shuffler\">Открыть руководство</a>",
 
     "craftinginfo-starterguide-title": "Настольные игры 101: Руководство для начинающих",
     "craftinginfo-starterguide-text": "<strong>Настольные игры: Руководство для начинающих</strong>     <br><br><strong>Создайте игровую доску</strong>      <br>Как только вы создадите <a href=\"handbooksearch://универсальная игровая доска\">универсальную игровую доску</a>, разместите её на твердой поверхности и следуйте инструкциям в подсказке.        <br><br><strong><a href=\"handbooksearch://чертеж для настольных фигур\">Создайте чертеж</a></strong>       <br>Создается путем взаимодействия с любым пигментом на пергаменте, размещенном на твердой поверхности.     <br><br><strong>Создайте фигуры</strong>       <br>Имея чертеж в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для создания фигур.",
@@ -263,6 +266,9 @@
     "craftinginfo-customboardsguide-title": "Настольные игры: Пользовательские доски",
     "craftinginfo-customboardsguide-text": "<strong>Настольные игры: Руководство по созданию пользовательских досок</strong>         <br><br>Хитбокс = слот.         <br>Имейте в виду, что в каждый слот помещается только один предмет.         <br><br><strong>Шаг 1: Создайте резной блок для хитбоксов</strong>         <br>Сделайте столбики из вокселей разных материалов для каждого хитбокса. Игра пытается оптимизировать воксели горизонтально, потому использование столбиков - единственный способ предовратить это.         <br>Например, для хитбоксов в виде шахматной доски, вам необходимо использовать лишь два материала.         <br><br><strong>Шаг 2 (Опционально): Создайте резной блок для текстур</strong>         <br>Делайте с вокселями что хотите, серьезно. <strong><i>Убедитесь, что блок 'обращен' в ту же сторону, что и блок из предыдущего шага.</i></strong>         <br><br><strong>Заключительный шаг: Создайте доску</strong>         <br>Имея <a href=\"handbooksearch://чертеж для настольных фигур\">чертеж</a> в активной руке, нажмите <hk>toolmodeselect</hk> (Режим инструмента), найдите режим с иконкой зубила, затем следуйте инструкциям в описании.         <br><br><strong>Дополнительная информация</strong>         <br>Как только вы создадите доску, следуйте подсказкам в описании блока для дальнейших действий.",
 
-    "guide-interactions-playingcard-title": "Настольные игры: Игральные карты - Взаимодействия",
-    "guide-interactions-playingcard-text": "<strong>Настольные игры: Игральные карты - Взаимодействия</strong>         <br><br>Карты в активной руке можно перетасовать с помощью <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Слот инвентаря</strong>       <br><i>Обьединение карт</i>: Кликните карту картой, чтобы обьединить их.<br>Примечание: Можно обьединять только одиночные карты.      <br><br><strong>Меню режимов инструмента</strong>        <br>Вытащить карту из слота: <hk>rightmouse</hk>.       <br>Кликните карту картой, чтобы поменять их местами.       <br>Добавить карту перед картой: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Добавить карту после карты: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Размещенная игральная карта(ы)</strong>       <br>Вытащить карту из колоды или кучи карт: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Разместить карту на размещенную карту(ах): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Разместить <i>перевернутую</i> карту на размещенную карту(ах): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Разместить карту на твердой поверхности: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Разместить <i>перевернутую</i> карту на твердой поверхности: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>."
+    "interactionsinfo-playingcard-title": "Настольные игры: Игральные карты - Взаимодействия",
+    "interactionsinfo-playingcard-text": "<strong>Настольные игры: Игральные карты - Взаимодействия</strong>         <br><br>Карты в активной руке можно перетасовать с помощью <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Слот инвентаря</strong>       <br><i>Обьединение карт</i>: Кликните карту картой, чтобы обьединить их.<br>Примечание: Можно обьединять только одиночные карты.      <br><br><strong>Меню режимов инструмента</strong>        <br>Вытащить карту из слота: <hk>rightmouse</hk>.       <br>Кликните карту картой, чтобы поменять их местами.       <br>Добавить карту перед картой: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Добавить карту после карты: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Размещенная игральная карта(ы)</strong>       <br>Вытащить карту из колоды или кучи карт: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Разместить карту на размещенную карту(ах): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Разместить <i>перевернутую</i> карту на размещенную карту(ах): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Разместить карту на твердой поверхности: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Разместить <i>перевернутую</i> карту на твердой поверхности: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>.",
+
+    "interactionsinfo-shuffler-title": "Настольные игры: Тасовщик - Взаимодействия",
+    "interactionsinfo-shuffler-text": "<strong>Настольные игры: Тасовщик - Взаимодействия</strong>         <br><br>Тасовщик в активной руке можно перетасовать с помощью <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Размещенный тасовщик</strong>       <br>Вытащить один предмет: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Добавить один предмет: <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Добавить много предметов: <hk>ctrl</hk> + <hk>rightmouse</hk>."
 }

@@ -126,7 +126,7 @@
     "item-blankcard": "Порожня карта",
     "itemdesc-blankcard": "Використовується як основа для створення гральних карт.",
     "item-shuffler-bag": "Мішок-тасувальник",
-    "itemdesc-shuffler-bag": "Використовується для перетасовування речей.",
+    "itemdesc-shuffler-bag": "Використовується для перетасовування речей (<hk>tabletopgames:shuffle</hk>).",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Інгредієнт: {0}x {1}; Результат: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Перетягніть пігмент сюди, щоб змінити колір ліній на дошці.",
@@ -229,9 +229,9 @@
     "ingameerror-reached-stacking-up-limit": "Межа додавання зверху {0}!",
     "ingameerror-reached-stacking-down-limit": "Межа додавання знизу {0}!",
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Не можна видалити головний блок, не видаливши спочатку додаткові блоки",
-    "ingameerror-shuffle-empty-slot": "Відсутні гральні карти в руці. Неможливо перетасувати порожнечу!",
+    "ingameerror-shuffle-empty-slot": "Відсутні гральні карти в руці. Неможливо перетасувати порожнечу! (в руці повинні бути карти або тасувальник)",
 
-    "hotkey-shuffle": "(Tabletop Games) Перетасувати карти в руці або розміщений тасувальник",
+    "hotkey-shuffle": "(Tabletop Games) Перетасувати карти або тасувальник в руці",
 
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
@@ -252,7 +252,10 @@
     "item-handbooktext-lid-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Додати 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Гральні карти - Взаємодії",
-    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Відкрити керівництво</a>",
+    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-playingcard\">Відкрити керівництво</a>",
+
+    "item-handbooktitle-shuffler-interactions": "Тасувальник - Взаємодії",
+    "item-handbooktext-shuffler-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-shuffler\">Відкрити керівництво</a>",
 
     "craftinginfo-starterguide-title": "Настільні ігри 101: Початкове керівництво",
     "craftinginfo-starterguide-text": "<strong>Настільні ігри: Початкове керівництво</strong>     <br><br><strong>Створіть ігрову дошку</strong>      <br>Як тільки ви створите <a href=\"handbooksearch://універсальна ігрова дошка\">універсальну ігрову дошку</a>, покладіть її на тверду поверхню і дотримуйтесь інструкцій у підказці.        <br><br><strong><a href=\"handbooksearch://креслення для настільних фігур\">Створіть креслення</a></strong>       <br>Виготовляється шляхом взаємодії з будь-яким пігментом на пергаменті, розміщенному на твердій поверхні.     <br><br><strong>Створіть фігури</strong>       <br>Маючи креслення в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для створення фігур.",
@@ -263,6 +266,9 @@
     "craftinginfo-customboardsguide-title": "Настільні ігри: Користувацькі дошки",
     "craftinginfo-customboardsguide-text": "<strong>Настільні ігри: Керівництво по створенню користувацьких дошок</strong>         <br><br>Хітбокс = слот.         <br>Майте на увазі, що в кожен слот поміщається лише один предмет.         <br><br><strong>Крок 1: Створіть різьблений блок для хітбоксів</strong>         <br>Зробіть стовпчики з вокселів різних матеріалів для кожного хітбоксу. Гра намагається оптимізувати вокселі горизонтально, тому використання стовпчиків це єдиний спосіб цього уникнути.         <br>Наприклад, для хітбоксів у вигляді шахової дошки вам необхідно використати лише два матеріала.         <br><br><strong>Крок 2 (Опціонально): Створіть різьблений блок для текстур</strong>         <br>Робіть із вокселями що хочете, серйозно. <strong><i>Переконайтеся, що блок 'повернутий' у той самий бік, що й блок із попереднього кроку.</i></strong>         <br><br><strong>Завершальний крок: Створіть дошку</strong>         <br>Маючи <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a> в активній руці, натисніть <hk>toolmodeselect</hk> (Режим інструменту), знайдіть режим з іконкою долота, потім дотримуйтесь інструкцій в описі.         <br><br><strong>Додаткова інформація</strong>         <br>Щойно ви створите дошку, дотримуйтесь підказок в описі блоку для подальших дій.",
 
-    "guide-interactions-playingcard-title": "Настільні ігри: Гральні карти - Взаємодії",
-    "guide-interactions-playingcard-text": "<strong>Настільні ігри: Гральні карти - Взаємодії</strong>         <br><br>Карти в активній руці можна перетасувати за допомогою <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Слот инвентаря</strong>       <br><i>Об'єднання карт</i>: Натисніть карту картою, щоб об'єднати їх.<br>Примітка: Можна обєднувати тільки поодинокі карти.      <br><br><strong>Меню режимів інструменту</strong>        <br>Витягнути карту зі слота: <hk>rightmouse</hk>.       <br>Натисніть карту картою, щоб поміняти їх місцями.       <br>Додати карту перед картою: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Додати карту після карти: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Розміщена гральна карта(и)</strong>       <br>Витягнути карту з колоди або купи карт: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Розмістити карту на розміщеній карті(ах): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Розмістити <i>перевернуту</i> карту на розміщеній карті(ах): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Розмістити карту на твердій поверхні: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Розмістити <i>перевернуту</i> карту на твердій поверхні: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>."
+    "interactionsinfo-playingcard-title": "Настільні ігри: Гральні карти - Взаємодії",
+    "interactionsinfo-playingcard-text": "<strong>Настільні ігри: Гральні карти - Взаємодії</strong>         <br><br>Карти в активній руці можна перетасувати за допомогою <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Слот инвентаря</strong>       <br><i>Об'єднання карт</i>: Натисніть карту картою, щоб об'єднати їх.<br>Примітка: Можна обєднувати тільки поодинокі карти.      <br><br><strong>Меню режимів інструменту</strong>        <br>Витягнути карту зі слота: <hk>rightmouse</hk>.       <br>Натисніть карту картою, щоб поміняти їх місцями.       <br>Додати карту перед картою: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Додати карту після карти: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Розміщена гральна карта(и)</strong>       <br>Витягнути карту з колоди або купи карт: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Розмістити карту на розміщеній карті(ах): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Розмістити <i>перевернуту</i> карту на розміщеній карті(ах): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Розмістити карту на твердій поверхні: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Розмістити <i>перевернуту</i> карту на твердій поверхні: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>.",
+
+    "interactionsinfo-shuffler-title": "Настільні ігри: Тасувальник - Взаємодії",
+    "interactionsinfo-shuffler-text": "<strong>Настільні ігри: Тасувальник - Взаємодії</strong>         <br><br>Тасувальник в активній руці можна перетасувати за допомогою <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Розміщений тасувальник</strong>       <br>Витягнути один предмет: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Додати один предмет: <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Додати багато предметів: <hk>ctrl</hk> + <hk>rightmouse</hk>."
 }

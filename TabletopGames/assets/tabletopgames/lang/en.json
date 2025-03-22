@@ -126,7 +126,7 @@
     "item-blankcard": "Blank card",
     "itemdesc-blankcard": "Used as a base for creating playing cards.",
     "item-shuffler-bag": "Bag for shuffling",
-    "itemdesc-shuffler-bag": "Used to shuffle things.",
+    "itemdesc-shuffler-bag": "Used to shuffle things (<hk>tabletopgames:shuffle</hk>).",
 
     "toolmode-sinkslot-quantity-input-quantity-output": "Ingredient: {0}x {1}; Result: {2}x {3}",
     "toolmode-sinkslot-pigment-changeboardlinescolor": "Drag and drop pigment here to change color of lines on the board",
@@ -229,7 +229,7 @@
     "ingameerror-reached-stacking-up-limit": "Stacking up limit is {0}!",
     "ingameerror-reached-stacking-down-limit": "Stacking down limit is {0}!",
     "ingameerror-mainblock-removal-blocked-by-extrablocks": "Can't remove main block without removing extra blocks first",
-    "ingameerror-shuffle-empty-slot": "You don't have the cards right now. Can't shuffle emptiness!",
+    "ingameerror-shuffle-empty-slot": "You don't have the cards right now. Can't shuffle emptiness! (you need to hold cards or shuffler)",
 
     "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or shuffler",
 
@@ -252,7 +252,10 @@
     "item-handbooktext-lid-interactions": "Interactions work only when placed on the solid surface.        <br>Add 10 items: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>shift</hk> + <hk>rightmouse</hk>",
 
     "item-handbooktitle-playingcard-interactions": "Playing Card Interactions",
-    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:guide-interactions-playingcard\">Read Guide</a>",
+    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-playingcard\">Read Guide</a>",
+
+    "item-handbooktitle-shuffler-interactions": "Shuffler Interactions",
+    "item-handbooktext-shuffler-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-shuffler\">Read Guide</a>",
 
     "craftinginfo-starterguide-title": "Tabletop Games 101: Starter Guide",
     "craftinginfo-starterguide-text": "<strong>Tabletop Games: Starter Guide</strong>     <br><br><strong>Create generic board</strong>      <br>Once you create <a href=\"handbooksearch://generic game board\">Generic board</a>, place it on the solid surface and follow instructions in tooltip.        <br><br><strong><a href=\"handbooksearch://tabletop pieces schematic\">Create schematic</a></strong>       <br>Made by interacting with any pigment on parchment placed on the solid surface.     <br><br><strong>Create pieces</strong>       <br>With schematic in active hand, press <hk>toolmodeselect</hk> key (Tool Mode) to open menu for creating pieces.",
@@ -263,6 +266,9 @@
     "craftinginfo-customboardsguide-title": "Tabletop Games: Custom Boards",
     "craftinginfo-customboardsguide-text": "<strong>Tabletop Games: Custom Boards Guide</strong>         <br><br>Hitbox = slot.         <br>Note that each slot can hold only one item.         <br><br><strong>Step 1: Create a chiseled block for hitboxes</strong>         <br>Chisel voxel pillars using different materials for each hitbox. The game optimizes voxels horizontally, and using voxel pillars is the only way to prevent this optimization.         <br>For example, if you want hitboxes arranged in a checkerboard pattern, you only need two different materials.         <br><br><strong>Step 2 (Optional): Create a chiseled block for textures</strong>         <br>Chisel anything you want, seriously, there are no limitations at this step. <strong><i>Just make sure the block is facing in the same direction as the block from the previous step.</i></strong>         <br><br><strong>Final Step: Create the board</strong>         <br>With a <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a> in your active hand, press the <hk>toolmodeselect</hk> key (Tool Mode), find the mode with a chisel tool icon, and follow the instructions in the description.         <br><br><strong>Additional Info</strong>         <br>Once you've created a chiseled board, follow the tooltips in the block’s description for more details.",
 
-    "guide-interactions-playingcard-title": "Tabletop Games: Playing card - Interactions",
-    "guide-interactions-playingcard-text": "<strong>Tabletop Games: Playing Card - Interactions</strong>         <br><br>Cards in active hand can be shuffled using <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Inventory slot</strong>       <br><i>Merging Cards</i>: Click on a card with another card to merge them.<br>Note: Only single cards can be merged, not stacks.      <br><br><strong>Tool Mode Menu</strong>        <br>Take a card from slot: <hk>rightmouse</hk>.       <br>Click a card with another card to exchange cards.       <br>Add a card before another card: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Add a card after another card: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Placed card(s)</strong>       <br>Take a card from a stack: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Put a card onto placed card(s): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Put a <i>flipped</i> card onto placed card(s): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Place a card on solid surface: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Place a <i>flipped</i> card on solid surface: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>."
+    "interactionsinfo-playingcard-title": "Tabletop Games: Playing card - Interactions",
+    "interactionsinfo-playingcard-text": "<strong>Tabletop Games: Playing Card - Interactions</strong>         <br><br>Cards in active hand can be shuffled using <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Inventory slot</strong>       <br><i>Merging Cards</i>: Click on a card with another card to merge them.<br>Note: Only single cards can be merged, not stacks.      <br><br><strong>Tool Mode Menu</strong>        <br>Take a card from slot: <hk>rightmouse</hk>.       <br>Click a card with another card to exchange cards.       <br>Add a card before another card: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>Add a card after another card: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>Placed card(s)</strong>       <br>Take a card from a stack: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Put a card onto placed card(s): <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Put a <i>flipped</i> card onto placed card(s): <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>Place a card on solid surface: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>Place a <i>flipped</i> card on solid surface: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>.",
+
+    "interactionsinfo-shuffler-title": "Tabletop Games: Shuffler - Interactions",
+    "interactionsinfo-shuffler-text": "<strong>Tabletop Games: Shuffler - Interactions</strong>         <br><br>Shuffler in active hand can be shuffled using <hk>tabletopgames:shuffle</hk>.       <br><br><strong>Placed shuffler</strong>       <br>Remove one item: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>Add one item: <hk>shift</hk> + <hk>rightmouse</hk>.         <br>Add many items: <hk>ctrl</hk> + <hk>rightmouse</hk>."
 }
