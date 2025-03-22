@@ -78,7 +78,7 @@
     "itemdesc-dice-d20": "Двадцятигранний кубик у формі ікосаедра. Випадає випадкове число від 1 до 20.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхня грань показує <strong>{0}</strong>.</i></font>",
     "item-playingcard": "Гральна карта",
-    "itemdesc-playingcard-toolmodeinfo": "Карти на руках можна переставляти або поповнювати за допомогою спеціального меню (натисніть <hk>toolmodeselect</hk>).",
+    "itemdesc-playingcard": "Карти на руках можна переставляти або поповнювати за допомогою спеціального меню за допомогою <hk>toolmodeselect</hk>.<br>Перетасувати усю колоду за допомогою <hk>tabletopgames:shuffle</hk>",
     "itemdesc-playingcard-pack": "Набір",
     "itemdesc-playingcard-suit": "Масть",
     "itemdesc-playingcard-suit-club": "Трефа",

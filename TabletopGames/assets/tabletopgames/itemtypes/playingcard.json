@@ -32,7 +32,7 @@
                 ": ",
                 "tabletopgames:itemdesc-playingcard-pack-{pack}",
                 "<br><br>",
-                "tabletopgames:itemdesc-playingcard-toolmodeinfo"
+                "tabletopgames:itemdesc-playingcard"
             ]
         },
         "shape": {

@@ -78,7 +78,7 @@
     "itemdesc-dice-d20": "A twenty-sided die with an icosahedron shape. Rolls a random number from 1 to 20.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Top face shows <strong>{0}</strong>.</i></font>",
     "item-playingcard": "Playing card",
-    "itemdesc-playingcard-toolmodeinfo": "The hand of cards can be rearranged or replenished through special menu (press <hk>toolmodeselect</hk> key).",
+    "itemdesc-playingcard": "The hand of cards can be rearranged or replenished through special menu using <hk>toolmodeselect</hk>.<br>Shuffle whole deck by using <hk>tabletopgames:shuffle</hk>",
     "itemdesc-playingcard-pack": "Pack",
     "itemdesc-playingcard-suit": "Suit",
     "itemdesc-playingcard-suit-club": "Club",

@@ -78,7 +78,7 @@
     "itemdesc-dice-d20": "Двадцатигранный кубик в форме икосаэдра. Выпадает случайное число от 1 до 20.",
     "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>Верхняя грань показывает <strong>{0}</strong>.</i></font>",
     "item-playingcard": "Игральная карта",
-    "itemdesc-playingcard-toolmodeinfo": "Карты на руках можно переставлять или пополнять с помощью специального меню (нажмите <hk>toolmodeselect</hk>).",
+    "itemdesc-playingcard": "Карты на руках можно переставлять или пополнять с помощью специального меню с помощью <hk>toolmodeselect</hk>.<br>Перетасовать всю колоду с помощью <hk>tabletopgames:shuffle</hk>",
     "itemdesc-playingcard-pack": "Набор",
     "itemdesc-playingcard-suit": "Масть",
     "itemdesc-playingcard-suit-club": "Трефы",
