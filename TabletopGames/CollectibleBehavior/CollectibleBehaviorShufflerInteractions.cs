@@ -7,7 +7,7 @@ using Vintagestory.GameContent;
 namespace TabletopGames;
 
 /// <summary>
-/// All in-world interactions with shuffler's inventory are here
+/// In-world interactions between shuffler and items that can be stored in a shuffler
 /// </summary>
 public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShufflable, IShufflerInteractions
 {
@@ -211,11 +211,17 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
 
     void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     bool IShufflable.CanShuffle(ItemSlot inSlot)
     {
         return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemShuffler;
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     void IShufflable.Shuffle(ItemSlot inSlot, IWorldAccessor world)
     {
         if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemShuffler shuffler)

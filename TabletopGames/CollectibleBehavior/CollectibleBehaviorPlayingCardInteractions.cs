@@ -4,6 +4,9 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
+/// <summary>
+/// In-world interactions between cards
+/// </summary>
 public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, IPlayingCardInteractions
 {
     public CollectibleBehaviorPlayingCardInteractions(CollectibleObject collObj) : base(collObj) { }
