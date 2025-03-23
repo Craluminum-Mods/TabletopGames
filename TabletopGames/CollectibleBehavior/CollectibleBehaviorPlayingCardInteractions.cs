@@ -19,6 +19,11 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
             {
                 ActionLangCode = "tabletopgames:heldhelp-shuffle",
                 HotKeyCode = "tabletopgames:shuffle"
+            },
+            new WorldInteraction()
+            {
+                ActionLangCode = "tabletopgames:heldhelp-combinecards",
+                HotKeyCode = "tabletopgames:combinecards"
             }
         };
 

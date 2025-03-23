@@ -214,6 +214,7 @@
 
     "heldhelp-unpack": "Unpack",
     "heldhelp-shuffle": "Shuffle",
+    "heldhelp-combinecards": "Combine all cards in the inventory",
     "blockhelp-gobowl-add-10": "Add 10x Go stone",
     "blockhelp-gobowl-remove-10": "Remove 10x Go stone",
     "blockhelp-gobowl-add-or-remove-lid": "Attach or detach lid",
