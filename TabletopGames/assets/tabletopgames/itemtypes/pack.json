@@ -15,24 +15,13 @@
             "type-playingcards_vs": ["<br>", "tabletopgames:itemdesc-pack-{type}"]
         },
         "shape": {
-            "type-playingcards_vs": { "base": "tabletopgames:item/pack/{type}" }
+            "type-playingcards_vs": { "base": "tabletopgames:item/pack-of-cards" }
         },
         "textures": {
             "type-playingcards_vs": {
-                "material": { "base": "game:block/wood/debarked/oak" },
-                "box-north": { "base": "game:block/transparent" },
-                "box-east": { "base": "game:block/transparent" },
-                "box-south": { "base": "game:block/transparent" },
-                "box-west": { "base": "game:block/transparent" },
-                "lid-up": { "base": "tabletopgames:item/pack/up-{type}" }
-            },
-            "*": {
-                "material": { "base": "game:block/wood/debarked/oak" },
-                "box-north": { "base": "game:block/transparent" },
-                "box-east": { "base": "game:block/transparent" },
-                "box-south": { "base": "game:block/transparent" },
-                "box-west": { "base": "game:block/transparent" },
-                "lid-up": { "base": "game:block/transparent" }
+                "fibers": { "base": "game:item/resource/fibers" },
+                "card-side": { "base": "game:block/cloth/paper/blank-small" },
+                "card-back": { "base": "tabletopgames:item/playingcard/pack-vs/back" }
             }
         }
     },
@@ -41,7 +30,7 @@
             "name": "GroundStorable",
             "properties": {
                 "layout": "Halves",
-                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.00625, "z2": 1 },
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
         },
@@ -130,9 +119,15 @@
     "heldTpUseAnimation": "twohandplaceblock",
     "guiTransform": {
         "rotation": { "x": 135, "y": 135, "z": 0 },
-        "origin": { "x": 0.5, "y": 0.215, "z": 0.5 },
-        "scaleXyz": { "x": -1.75, "y": 1.75, "z": 1.75 }
+        "origin": { "x": 0.5, "y": 0.115, "z": 0.5 },
+        "scaleXyz": { "x": -2.7, "y": 2.7, "z": 2.7 }
     },
+    // for big boxes:
+    // "guiTransform": {
+    //     "rotation": { "x": 135, "y": 135, "z": 0 },
+    //     "origin": { "x": 0.5, "y": 0.215, "z": 0.5 },
+    //     "scaleXyz": { "x": -1.75, "y": 1.75, "z": 1.75 }
+    // },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
