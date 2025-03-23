@@ -16,16 +16,8 @@ public static class PutOrGetItemSinglePatch
             return;
         }
 
-        bool flipCard = player.Entity.Controls.CtrlKey;
         ItemSlot hotbarSlot = player.Entity.RightHandItemSlot;
-
-        if (flipCard && hotbarSlot?.Itemstack?.Collectible is ItemPlayingCard card)
-        {
-            PlayingCardInventory cardInventory = card.GetInventory(hotbarSlot.Itemstack);
-            if (cardInventory.Empty)
-            {
-                ItemPlayingCard.FlipCard(hotbarSlot);
-            }
-        }
+        ItemPlayingCard.SetCardRotation(blockEntityGroundStorage: __instance, player, hotbarSlot);
+        ItemPlayingCard.TryFlipCard(hotbarSlot, player);
     }
 }

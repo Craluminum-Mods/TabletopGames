@@ -22,6 +22,7 @@
         "displaycaseable": true,
         "onshelfTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
         "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
+        "onChiseledBoardTransform": { "translation": { "x": -0.5, "y": 0.0322, "z": -0.5 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 } },
         "name": {
             "*": ["tabletopgames:item-playingcard"]
         },
@@ -105,7 +106,8 @@
         },
         "packCode": {
             "pack-*": "card-{pack}"
-        }
+        },
+        "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
         {
@@ -169,7 +171,8 @@
                     }
                 ]
             }
-        }
+        },
+        { "name": "TabletopGames.PieceTags", "properties": { "tabletopTags": { "tags": ["playingCard"] } } }
     ],
     "creativeinventoryStacks": [
         {

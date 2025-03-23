@@ -146,6 +146,24 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return Variants.FromStack(stack).Get("flipped") == "true";
     }
 
+    public static void TryFlipCard(ItemSlot inSlot, IPlayer byPlayer)
+    {
+        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard card)
+        {
+            return;
+        }
+
+        bool flipCard = byPlayer.Entity.Controls.CtrlKey;
+        if (flipCard)
+        {
+            PlayingCardInventory cardInventory = card.GetInventory(inSlot.Itemstack);
+            if (cardInventory.Empty)
+            {
+                ItemPlayingCard.FlipCard(inSlot);
+            }
+        }
+    }
+
     public static void FlipCard(ItemSlot inSlot, bool unflip = false)
     {
         if (inSlot.Empty)
@@ -403,9 +421,31 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         }
     }
 
+    public static void SetCardRotation(BlockEntityGroundStorage blockEntityGroundStorage, IPlayer byPlayer, ItemSlot inSlot)
+    {
+        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard)
+        {
+            return;
+        }
+
+        float meshAngle = blockEntityGroundStorage.MeshAngle;
+        float rotateYaw = (byPlayer.Entity.Pos.Yaw - meshAngle - (GameMath.DEG2RAD * 45f)) + (GameMath.DEG2RAD * 180f);
+        rotateYaw = GameMath.Mod(rotateYaw, GameMath.TWOPI);
+        inSlot.Itemstack.Attributes.SetFloat("rotateYaw", rotateYaw);
+        inSlot.MarkDirty();
+    }
+
     MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);
+        MeshData mesh = GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);
+
+        // Rotations are currently implemented for BlockEntityGroundStorage only
+        if (itemstack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
+        {
+            mesh = mesh.Rotate(Vec3f.Half, 0, rotateYaw, 0);
+        }
+
+        return mesh;
     }
 
     string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)
@@ -415,6 +455,8 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         stringBuilder.Append(itemstack.Collectible.Code);
         stringBuilder.Append('-');
         stringBuilder.Append(Variants.FromStack(itemstack));
+        stringBuilder.Append("-rotateyaw:");
+        stringBuilder.Append(itemstack.Attributes.GetFloat("rotateYaw"));
 
         PlayingCardInventory inventory = GetInventory(itemstack);
 

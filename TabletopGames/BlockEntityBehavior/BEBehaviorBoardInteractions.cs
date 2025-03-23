@@ -63,10 +63,11 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
             return false;
         }
 
+        ItemPlayingCard.TryFlipCard(hotbarSlot, byPlayer);
         SetPieceRotation(hotbarSlot.Itemstack, byPlayer);
         int moved = hotbarSlot.TryPutInto(Api.World, boardSlot);
         Blockentity.MarkDirty();
-        RemovePieceRotation(hotbarSlot?.Itemstack);
+        RemovePieceRotation(hotbarSlot.Itemstack);
         return moved > 0;
     }
 
