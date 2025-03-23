@@ -234,17 +234,20 @@
     "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or shuffler",
     "hotkey-combinecards": "(Tabletop Games) Combine all cards in the inventory",
 
-    "item-handbooktitle-generic-howtoobtain": "How To Obtain",
-    "item-handbooktext-generic-howtoobtain": "Can be obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
+    "item-handbooktitle-generic-howtoobtain": "Obtaining",
+    "item-handbooktext-generic-howtoobtain": "Obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
 
-    "item-handbooktitle-dicetray-howtoobtain": "How To Obtain",
-    "item-handbooktext-dicetray-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://generic game board\">Generic board</a>, then interacting with any <a href=\"handbooksearch://dice\">dice</a> using <hk>rightmouse</hk>",
+    "item-handbooktitle-dicetray-howtoobtain": "Obtaining",
+    "item-handbooktext-dicetray-howtoobtain": "Obtained by placing <a href=\"handbooksearch://generic game board\">Generic board</a>, then interacting with any <a href=\"handbooksearch://dice\">dice</a> using <hk>rightmouse</hk>",
 
-    "item-handbooktitle-schematic-howtoobtain": "How To Obtain",
-    "item-handbooktext-schematic-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the solid surface, then interacting with any <a href=\"handbooksearch://pigment\">pigment</a> using <hk>rightmouse</hk>",
+    "item-handbooktitle-schematic-howtoobtain": "Obtaining",
+    "item-handbooktext-schematic-howtoobtain": "Obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the solid surface, then interacting with any <a href=\"handbooksearch://pigment\">pigment</a> using <hk>rightmouse</hk>",
 
-    "item-handbooktitle-blankcard-howtoobtain": "How To Obtain",
-    "item-handbooktext-blankcard-howtoobtain": "Can be obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the solid surface, then interacting with any <a href=\"handbooksearch://shears\">shears</a> using <hk>rightmouse</hk>",
+    "item-handbooktitle-blankcard-howtoobtain": "Obtaining",
+    "item-handbooktext-blankcard-howtoobtain": "Obtained by placing <a href=\"handbooksearch://parchment\">parchment</a> on the solid surface, then interacting with any <a href=\"handbooksearch://shears\">shears</a> using <hk>rightmouse</hk>",
+
+    "item-handbooktitle-playingcard-howtoobtain": "Obtaining",
+    "item-handbooktext-playingcard-howtoobtain": "Obtained by unpacking <a href=\"handbooksearch://pack of playing cards\">pack of playing cards</a>",
 
     "item-handbooktitle-itemcontainer-interactions": "Interactions",
     "item-handbooktext-itemcontainer-interactions": "Interactions work only when placed on the solid surface.        <br>Attach or detach lid: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Add 10 items: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Remove 10 items: <hk>shift</hk> + <hk>rightmouse</hk>",

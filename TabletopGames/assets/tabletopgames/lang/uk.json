@@ -246,6 +246,9 @@
     "item-handbooktitle-blankcard-howtoobtain": "Як отримати",
     "item-handbooktext-blankcard-howtoobtain": "Розмістіть <a href=\"handbooksearch://пергамент\">пергамент</a> на твердій поверхні, потім використайте <a href=\"handbooksearch://ножиці\">ножиці</a> за допомогою <hk>rightmouse</hk>",
 
+    "item-handbooktitle-playingcard-howtoobtain": "Як отримати",
+    "item-handbooktext-playingcard-howtoobtain": "Отримується шляхом розпакування <a href=\"handbooksearch://комплект гральних карт\">комплекту гральних карт</a>",
+
     "item-handbooktitle-itemcontainer-interactions": "Взаємодії",
     "item-handbooktext-itemcontainer-interactions": "Взаємодії працюють тільки якщо предмет розміщений на твердій поверхні.        <br>Прикріпити або зняти кришку: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Додати 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Видалити 10 предметів: <hk>shift</hk> + <hk>rightmouse</hk>",
 

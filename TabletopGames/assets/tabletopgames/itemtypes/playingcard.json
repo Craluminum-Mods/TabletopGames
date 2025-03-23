@@ -8,10 +8,10 @@
         "handbook": {
             "groupBy": ["tabletopgames:playingcard"],
             "extraSections": [
-                // {
-                //     "title": "tabletopgames:item-handbooktitle-playingcard-howtoobtain",
-                //     "text": "tabletopgames:item-handbooktext-playingcard-howtoobtain"
-                // },
+                {
+                    "title": "tabletopgames:item-handbooktitle-playingcard-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-playingcard-howtoobtain"
+                },
                 {
                     "title": "tabletopgames:item-handbooktitle-playingcard-interactions",
                     "text": "tabletopgames:item-handbooktext-playingcard-interactions"

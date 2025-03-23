@@ -1,10 +1,10 @@
 [
     {
         "name": "Bag (linensack) for shuffling",
-        "ingredientPattern": "CE",
+        "ingredientPattern": "AB",
         "ingredients": {
-            "C": { "type": "item", "code": "game:linensack" },
-            "E": { "type": "item", "code": "game:drygrass" }
+            "A": { "type": "item", "code": "game:linensack" },
+            "B": { "type": "item", "code": "game:drygrass" }
         },
         "width": 1,
         "height": 2,

@@ -246,6 +246,9 @@
     "item-handbooktitle-blankcard-howtoobtain": "Как получить",
     "item-handbooktext-blankcard-howtoobtain": "Разместите <a href=\"handbooksearch://пергамент\">пергамент</a> на твердой поверхности, затем используйте <a href=\"handbooksearch://ножницы\">ножницы</a> с помощью <hk>rightmouse</hk>",
 
+    "item-handbooktitle-playingcard-howtoobtain": "Как получить",
+    "item-handbooktext-playingcard-howtoobtain": "Получается путем распаковки <a href=\"handbooksearch://набор игральных карт\">набора игральных карт</a>",
+
     "item-handbooktitle-itemcontainer-interactions": "Взаимодействия",
     "item-handbooktext-itemcontainer-interactions": "Взаимодействия работают только если предмет размещен на твердой поверхности.        <br>Прикрепить или снять крышку: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>Добавить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>        <br>Вытащить 10 предметов: <hk>shift</hk> + <hk>rightmouse</hk>",
 

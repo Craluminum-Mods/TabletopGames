@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Pack of cards in Vintage Story style",
+        "ingredientPattern": "ABC",
+        "ingredients": {
+            "A": { "type": "item", "code": "tabletopgames:blankcard", "quantity": 56, "attributes": { "types": { "material": "parchment" } } },
+            "B": { "type": "item", "code": "game:charcoal" },
+            "C": { "type": "item", "code": "game:*", "allowedVariants": ["drygrass", "flaxfibers"] }
+        },
+        "width": 3,
+        "height": 1,
+        "shapeless": true,
+        "output": { "type": "item", "code": "tabletopgames:pack", "attributes": { "types": { "type": "playingcards_vs" } } }
+    }
+]
