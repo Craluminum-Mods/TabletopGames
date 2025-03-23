@@ -234,6 +234,8 @@
     "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or shuffler",
     "hotkey-combinecards": "(Tabletop Games) Combine all cards in the inventory",
 
+    "handbooktitle-shuffler-containable": "Can contain",
+    
     "item-handbooktitle-generic-howtoobtain": "Obtaining",
     "item-handbooktext-generic-howtoobtain": "Obtained using <a href=\"handbooksearch://tabletop pieces schematic\">schematic</a>!",
 

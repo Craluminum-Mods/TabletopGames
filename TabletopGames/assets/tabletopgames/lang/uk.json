@@ -234,6 +234,8 @@
     "hotkey-shuffle": "(Tabletop Games) Перетасувати карти або тасувальник в руці",
     "hotkey-combinecards": "(Tabletop Games) Об'єднати усі карти в інвентарі",
 
+    "handbooktitle-shuffler-containable": "Може містити",
+
     "item-handbooktitle-generic-howtoobtain": "Як отримати",
     "item-handbooktext-generic-howtoobtain": "Створюється за допомогою <a href=\"handbooksearch://креслення для настільних фігур\">креслення</a>!",
 

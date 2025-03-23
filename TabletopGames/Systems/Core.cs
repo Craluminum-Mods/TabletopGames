@@ -1,5 +1,6 @@
 using HarmonyLib;
 using TabletopGames.Configuration;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 
 namespace TabletopGames;
@@ -15,12 +16,12 @@ public class Core : ModSystem
 
     public override void StartPre(ICoreAPI api)
     {
+        HarmonyInstance.PatchAllUncategorized();
+
         if (api.Side.IsClient())
         {
             ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
         }
-
-        HarmonyInstance.PatchAll();
 
         if (api.ModLoader.IsModEnabled("configlib"))
         {
@@ -37,6 +38,11 @@ public class Core : ModSystem
         RegisterBehaviors();
         InitializeWorldConfigs();
         Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
+    }
+
+    public override void StartClientSide(ICoreClientAPI api)
+    {
+        HarmonyInstance.PatchCategory("Client");
     }
 
     public override void Dispose()

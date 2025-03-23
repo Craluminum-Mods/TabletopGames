@@ -234,6 +234,8 @@
     "hotkey-shuffle": "(Tabletop Games) Перетасовать карты либо тасовщик в руке",
     "hotkey-combinecards": "(Tabletop Games) Обьединить все карты в инвентаре",
 
+    "handbooktitle-shuffler-containable": "Может содержать",
+
     "item-handbooktitle-generic-howtoobtain": "Как получить",
     "item-handbooktext-generic-howtoobtain": "Создается с использованием <a href=\"handbooksearch://чертеж для настольных фигур\">чертежа</a>!",
 
