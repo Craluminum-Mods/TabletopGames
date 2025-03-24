@@ -15,9 +15,9 @@ public abstract class BlockEntityDisplayShapeTexturesFromAttributes : BlockEntit
 {
     public Variants Variants { get; protected set; } = new Variants();
     public float MeshAngleRad { get; set; }
-    public float[] Mat { get; protected set; }
-    protected MeshData mesh;
-    protected InventoryBase inventory;
+    public float[]? Mat { get; protected set; }
+    protected MeshData? mesh;
+    protected InventoryBase? inventory;
 
     protected abstract void Init();
     protected abstract void InitInventory();

@@ -18,15 +18,15 @@ public static class GroundStorageInteractionFix
             return true;
         }
 
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (hotbarSlot?.Empty == true || targetSlot?.Empty == true) return true;
+        if (hotbarSlot.Empty == true || targetSlot == null || targetSlot.Empty == true) return true;
 
         if (!byPlayer.Entity.World.Claims.TryAccess(byPlayer, blockSel.Position, EnumBlockAccessFlags.Use))
         {
             world.BlockAccessor.MarkBlockDirty(blockSel.Position.AddCopy(blockSel.Face));
-            byPlayer.InventoryManager.ActiveHotbarSlot.MarkDirty();
+            hotbarSlot.MarkDirty();
             return true;
         }
 
@@ -41,7 +41,7 @@ public static class GroundStorageInteractionFix
         if (targetSlot?.Itemstack?.ItemAttributes != null && targetSlot.Itemstack.ItemAttributes.KeyExists("tabletopGames.inWorldCraftingProps"))
         {
             List<CraftingStep> steps = targetSlot.Itemstack.ItemAttributes["tabletopGames.inWorldCraftingProps"].AsObject(defaultValue: new List<CraftingStep>());
-            if (steps.Any() && byPlayer.HandleInWorldCrafting(targetSlot, inputSlot: hotbarSlot, null, steps))
+            if (steps.Any() && byPlayer.HandleInWorldCrafting(targetSlot, inputSlot: hotbarSlot, new Variants(), steps))
             {
                 begs.MarkDirty(true);
                 __result = true;

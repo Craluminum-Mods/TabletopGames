@@ -3,12 +3,16 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 
 namespace TabletopGames;
 
+/// <summary>
+/// Collection of attributes very similar to VariantGroups, that are stored in local ItemStack / BlockEntity, instead of global CollectibleObject (Block, Item)
+/// </summary>
 public class Variants
 {
     public const string RootAttributeName = "types";
@@ -46,7 +50,12 @@ public class Variants
         }
         Elements.TryAdd(key, value);
     }
-    
+
+    public void Set(Variant variant)
+    {
+        Set(variant.Key, variant.Value);
+    }
+
     public void RemoveKey(string key)
     {
         Elements.Remove(key);
@@ -94,9 +103,27 @@ public class Variants
     {
         foreach ((string key, string value) in Elements)
         {
-            input = input.Replace("{" + key + "}", value);
+            input = input.Replace($"{{{key}}}", value);
         }
         return input;
+    }
+
+    public CompositeTexture ReplacePlaceholders(CompositeTexture ctex)
+    {
+        foreach ((string key, string value) in Elements)
+        {
+            ctex.FillPlaceholder($"{{{key}}}", value);
+        }
+        return ctex;
+    }
+
+    public JsonItemStack ReplacePlaceholders(JsonItemStack jstack)
+    {
+        foreach ((string key, string value) in Elements)
+        {
+            jstack.FillPlaceHolder(key, value);
+        }
+        return jstack;
     }
 
     public override string ToString()

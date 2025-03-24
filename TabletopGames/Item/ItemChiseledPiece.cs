@@ -92,7 +92,7 @@ public class ItemChiseledPiece : ItemBoardPiece
         return $"{pos.X},{pos.Y},{pos.X}";
     }
 
-    public static Vec3i FromXYZString(string xyzString)
+    public static Vec3i? FromXYZString(string xyzString)
     {
         string[] xyz = xyzString.Split(',');
         if (xyz.Length == 3)
@@ -105,7 +105,7 @@ public class ItemChiseledPiece : ItemBoardPiece
     public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         ITreeAttribute chiseledStacksTree = itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
         if (chiseledStacksTree != null && chiseledStacksTree.Any())

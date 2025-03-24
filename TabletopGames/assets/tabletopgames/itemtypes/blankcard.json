@@ -1,0 +1,68 @@
+{
+    "code": "blankcard",
+    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
+    "maxStackSize": 512,
+    // fixes default transformation
+    "shape": { "base": "game:block/basic/invisible" },
+    "attributes": {
+        "handbook": {
+            "groupBy": ["tabletopgames:blankcard"],
+            "extraSections": [
+                {
+                    "title": "tabletopgames:item-handbooktitle-blankcard-howtoobtain",
+                    "text": "tabletopgames:item-handbooktext-blankcard-howtoobtain"
+                }
+            ]
+        },
+        "shelvable": true,
+        "displaycaseable": true,
+        "onshelfTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
+        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
+        "name": {},
+        "description": {},
+        "shape": { "*": { "base": "tabletopgames:item/playingcard" } },
+        "textures": {
+            "*": {
+                "front": { "base": "tabletopgames:item/playingcard/background-parchment" },
+                "back": { "base": "tabletopgames:item/playingcard/background-parchment" },
+                "side": { "base": "game:block/cloth/paper/blank-small" }
+            }
+        }
+    },
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.00625, "z2": 1 },
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        }
+    ],
+    "creativeinventoryStacks": [
+        {
+            "tabs": ["tabletopgames", "general", "items"],
+            "stacks": [
+                //
+                { "type": "item", "code": "blankcard", "attributes": { "types": { "material": "parchment" } } }
+            ]
+        }
+    ],
+    "guiTransform": {
+        "rotation": { "x": 100, "y": -155, "z": 0 },
+        "origin": { "x": 0.52, "y": -0.25, "z": 0.45 },
+        "scaleXyz": { "x": -3.33, "y": 3.33, "z": 3.33 }
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 180 },
+        "origin": { "x": 0.5, "y": 0.01, "z": 0.5299 },
+        "scale": 3
+    },
+    "tpHandTransform": {
+        "translation": { "x": -1.45, "y": 0, "z": -0.95 },
+        "rotation": { "x": 20, "y": -80, "z": 10 },
+        "origin": { "x": 0.5, "y": 0.003125, "z": 0.5 },
+        "scale": 0.5
+    }
+}

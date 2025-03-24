@@ -51,13 +51,13 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
     public virtual bool OnContainedInteractStart(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         StackContainerInventory inventory = GetInventory(containerSlot.Itemstack);
         ItemSlot ownSlot = inventory.FirstNonEmptySlot;
 
         if (hotbarSlot?.Itemstack?.Collectible is ItemContainer) return false;
 
-        bool inventoryInteractions = byPlayer.Entity.Controls.CtrlKey;
+        bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
         if (inventoryInteractions)
         {
             return TryPut(containerSlot, inventory, byPlayer, ownSlot) || TryTake(containerSlot, inventory, byPlayer, ownSlot);
@@ -67,7 +67,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
     protected virtual bool TryPut(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         if (!inventory.CanContain(ownSlot, hotbarSlot) || hotbarSlot.Empty)
         {
             return false;
@@ -106,7 +106,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
                 skipSlots.Add(wslot.slot);
             }
         }
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
+        inventory.ToTreeAttributes(containerSlot!.Itemstack.Attributes);
         containerSlot.MarkDirty();
         hotbarSlot.MarkDirty();
         return true;
@@ -114,7 +114,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     
     protected virtual bool TryTake(ItemSlot containerSlot, StackContainerInventory inventory, IPlayer byPlayer, ItemSlot ownSlot)
     {
-        ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot hotbarSlot = byPlayer.Entity.RightHandItemSlot;
         if (!hotbarSlot.Empty || ownSlot == null)
         {
             return false;
@@ -130,18 +130,18 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         }
         else
         {
-            didMoveItems(stack, byPlayer);
+            didMoveItems(stack!, byPlayer);
         }
         Core.GetInstance(api).Mod.Logger.Audit("{0} Took {1}x{2} from TabletopGames.ItemContainer {3}.", byPlayer.PlayerName, movedQuantity, stack?.Collectible.Code, containerSlot?.Itemstack?.Collectible?.Code);
         ownSlot.MarkDirty();
-        inventory.ToTreeAttributes(containerSlot.Itemstack.Attributes);
+        inventory.ToTreeAttributes(containerSlot!.Itemstack.Attributes);
         containerSlot.MarkDirty();
         return true;
     }
 
     protected virtual void didMoveItems(ItemStack stack, IPlayer byPlayer)
     {
-        AssetLocation sound = stack?.Block?.Sounds?.Place;
+        AssetLocation? sound = stack?.Block?.Sounds?.Place;
         api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
     }
 
@@ -153,8 +153,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         MeshData containerMesh = base.GetOrCreateMesh(itemstack, targetAtlas).Clone();
 
         Variants variants = Variants.FromStack(itemstack);
-        if (variants.FindByVariant(RenderContentByType, out bool renderContent)
-            && renderContent
+        if (variants.IsTrue(RenderContentByType)
             && GetOrCreateContentMesh(itemstack, targetAtlas) is MeshData contentMesh && contentMesh != null)
         {
             containerMesh.AddMeshData(contentMesh);
@@ -162,15 +161,15 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         return containerMesh;
     }
 
-    public MeshData GetOrCreateContentMesh(ItemStack containerStack, ITextureAtlasAPI targetAtlas)
+    public MeshData? GetOrCreateContentMesh(ItemStack containerStack, ITextureAtlasAPI targetAtlas)
     {
         Variants variants = Variants.FromStack(containerStack);
-        if (!variants.FindByVariant(RenderContentByType, out bool renderContents) || !renderContents)
+        if (!variants.IsTrue(RenderContentByType))
         {
             return null;
         }
 
-        ItemSlot slot = GetInventory(containerStack)?.FirstNonEmptySlot;
+        ItemSlot? slot = GetInventory(containerStack)?.FirstNonEmptySlot;
         if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainable>() is IContainable icontainable)
         {
             string containerKey = GetContainerKey(containerStack);
@@ -184,7 +183,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(itemstack));
 
         StackContainerInventory inventory = GetInventory(itemstack);
-        ItemSlot slot = inventory?.FirstNonEmptySlot;
+        ItemSlot? slot = inventory?.FirstNonEmptySlot;
         if (slot != null && !slot.Empty)
         {
             stringBuilder.Append("-inv:");
@@ -218,7 +217,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StackContainerInventory inventory = GetInventory(containerSlot.Itemstack);
         if (inventory.Empty)
         {
-            dsc.AppendLine(Lang.Get("Contents: {0}", Lang.Get("Empty")));
+            dsc.AppendLine(Lang.Get("Empty"));
             return;
         }
 

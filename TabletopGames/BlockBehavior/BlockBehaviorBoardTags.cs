@@ -20,49 +20,41 @@ public class BlockBehaviorBoardTags : BlockBehavior, IBoardTagsSupplier
 
     public override string GetPlacedBlockInfo(IWorldAccessor world, BlockPos pos, IPlayer forPlayer)
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
 
         int index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-        if (TabletopDebug.TagsDebugInfo && world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Inventory.Count > index)
+        if (TabletopDebug.TagsDebugInfo && world?.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Inventory.Count > index)
         {
             GetUnresolvedTags(blockEntity.Variants)?.GetDescription(stringBuilder, index, verbose: true);
         }
         return stringBuilder.ToString();
     }
 
-    public TabletopTags GetResolvedTags(IWorldAccessor world, BlockPos pos, int slotId)
+    public TabletopTags GetResolvedTags(IWorldAccessor? world, BlockPos pos, int slotId)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(TagsByType, out TabletopTags tags))
-        {
-            return tags.GetResolvedTags(slotId);
-        }
-        return new TabletopTags();
+        return world?.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(TagsByType, out TabletopTags tags)
+            ? tags.GetResolvedTags(slotId)
+            : new TabletopTags();
     }
 
-    public TabletopTags GetUnresolvedTags(IWorldAccessor world, BlockPos pos)
+    public TabletopTags GetUnresolvedTags(IWorldAccessor? world, BlockPos pos)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(TagsByType, out TabletopTags tags))
-        {
-            return tags;
-        }
-        return new TabletopTags();
+        return world?.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(TagsByType, out TabletopTags tags)
+            ? tags
+            : new TabletopTags();
     }
 
-    public TabletopTags GetResolvedTags(Variants variants, int slotId)
+    public TabletopTags GetResolvedTags(Variants? variants, int slotId)
     {
-        if (variants.FindByVariant(TagsByType, out TabletopTags tags))
-        {
-            return tags.GetResolvedTags(slotId);
-        }
-        return new TabletopTags();
+        return variants != null && variants.FindByVariant(TagsByType, out TabletopTags tags)
+            ? tags.GetResolvedTags(slotId)
+            : new TabletopTags();
     }
 
-    public TabletopTags GetUnresolvedTags(Variants variants)
+    public TabletopTags GetUnresolvedTags(Variants? variants)
     {
-        if (variants.FindByVariant(TagsByType, out TabletopTags tags))
-        {
-            return tags;
-        }
-        return new TabletopTags();
+        return variants != null && variants.FindByVariant(TagsByType, out TabletopTags tags)
+            ? tags
+            : new TabletopTags();
     }
 }

@@ -7,13 +7,13 @@ namespace TabletopGames;
 
 public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
 {
-    private IInventory Inventory => (Blockentity as IBlockEntityContainer)?.Inventory;
+    private IInventory? Inventory => (Blockentity as IBlockEntityContainer)?.Inventory;
 
     public TabletopTags Tags
     {
         get
         {
-            IBoardTagsSupplier supplier = Block?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
+            IBoardTagsSupplier? supplier = Block?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
             return supplier.GetUnresolvedTags(Api?.World, Pos);
         }
@@ -29,10 +29,10 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
 
     private bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
     {
-        ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        ItemSlot slot = byPlayer.Entity.RightHandItemSlot;
 
         TabletopTags boardTags = Tags.GetResolvedTags(blockSel.SelectionBoxIndex);
-        TabletopTags pieceTags = TabletopTags.FromInterface(slot?.Itemstack);
+        TabletopTags pieceTags = TabletopTags.FromInterface(slot);
         bool placeable = TabletopTags.AreTagsCompatible(boardTags, pieceTags);
 
         if (slot.Empty || !placeable)
@@ -41,13 +41,16 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         }
         if (placeable)
         {
-            AssetLocation sound = slot.Itemstack?.Block?.Sounds?.Place;
+            bool flip = TryTake(byPlayer, blockSel);
+            AssetLocation? sound = slot.Itemstack?.Block?.Sounds?.Place;
             if (TryPut(byPlayer, slot, blockSel))
             {
-                Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                if (!flip)
+                {
+                    Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                }
                 return true;
             }
-            return false;
         }
         return false;
     }
@@ -55,22 +58,23 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
     public bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || !boardSlot.Empty)
+        if (!TryGetSlot(index, out ItemSlot? boardSlot) || boardSlot == null || !boardSlot.Empty)
         {
             return false;
         }
 
+        ItemPlayingCard.TryFlipCard(hotbarSlot, byPlayer);
         SetPieceRotation(hotbarSlot.Itemstack, byPlayer);
         int moved = hotbarSlot.TryPutInto(Api.World, boardSlot);
         Blockentity.MarkDirty();
-        RemovePieceRotation(hotbarSlot?.Itemstack);
+        RemovePieceRotation(hotbarSlot.Itemstack);
         return moved > 0;
     }
 
     public bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || boardSlot.Empty)
+        if (!TryGetSlot(index, out ItemSlot? boardSlot) || boardSlot == null || boardSlot.Empty)
         {
             return false;
         }
@@ -78,7 +82,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         ItemStack stack = boardSlot.TakeOut(1);
         if (byPlayer.InventoryManager.TryGiveItemstack(stack))
         {
-            AssetLocation sound = stack.Block?.Sounds?.Place;
+            AssetLocation? sound = stack.Block?.Sounds?.Place;
             Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
         }
         if (stack.StackSize > 0)
@@ -89,7 +93,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         return true;
     }
 
-    public bool TryGetSlot(int index, out ItemSlot slot)
+    public bool TryGetSlot(int index, out ItemSlot? slot)
     {
         if (index >= 0 && index < Inventory?.Count)
         {
@@ -114,11 +118,13 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         stack?.Attributes?.RemoveAttribute("rotateYaw");
     }
 
-    public static void ApplyPieceMeshRotation(ItemStack stack, ref MeshData stackMesh)
+    public static void ApplyPieceMeshRotation(ItemStack stack, ref MeshData? stackMesh)
     {
+        if (stackMesh == null) return;
+
         if (stack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
         {
-            stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
+            stackMesh = stackMesh.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
         }
     }
 }

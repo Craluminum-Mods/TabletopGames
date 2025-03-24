@@ -15,7 +15,7 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainabl
     public override MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         Variants variants = Variants.FromStack(stack);
         ContainableProperties props = GetContainableProperties(containerKey);
@@ -27,7 +27,8 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainabl
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape? shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        if (shape == null) return mesh;
 
         Dictionary<string, CompositeTexture> _textures = props.GetTextures(variants);
         _textures ??= new Dictionary<string, CompositeTexture>();
@@ -37,13 +38,11 @@ public class CollectibleBehaviorContainableTyped : CollectibleBehaviorContainabl
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
-            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex = variants.ReplacePlaceholders(ctex);
             ctex.Bake(capi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
 
-        if (shape == null) return mesh;
         capi.Tesselator.TesselateShape("ContainableTyped item", shape, out mesh, stexSource);
         return mesh;
     }

@@ -35,7 +35,7 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
 
     public ContainableProperties GetContainableProperties(string containerKey)
     {
-        if (!Props.Any()) return null;
+        if (!Props.Any()) return new ContainableProperties();
 
         foreach (KeyValuePair<string, ContainableProperties> keyValue in Props)
         {
@@ -45,13 +45,13 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
             }
         }
 
-        return null;
+        return new ContainableProperties();
     }
 
     public virtual MeshData GenContentMesh(string containerKey, ItemStack stack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         ContainableProperties props = GetContainableProperties(containerKey);
 
@@ -61,7 +61,8 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
         CompositeShape rcshape = _shape.Clone();
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape? shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        if (shape == null) return mesh;
 
         Dictionary<string, CompositeTexture> _textures = props.GetTextures();
         _textures ??= new Dictionary<string, CompositeTexture>();
@@ -75,7 +76,6 @@ public class CollectibleBehaviorContainable : CollectibleBehavior, IContainable
             stexSource.textures[val.Key] = ctex;
         }
 
-        if (shape == null) return mesh;
         capi.Tesselator.TesselateShape("Containable item", shape, out mesh, stexSource);
         return mesh;
     }

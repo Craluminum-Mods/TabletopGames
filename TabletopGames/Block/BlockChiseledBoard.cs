@@ -16,7 +16,7 @@ namespace TabletopGames;
 /// Chiseled board that contains one-two chiseled blocks.
 /// First chiseled block is used for Hitboxes.
 /// Second chiseled block is used for Textures.
-/// Works in tandem with CollectibleBehaviorChiseledBoardToolModes
+/// Works in tandem with BlockEntityChiseledBoard and CollectibleBehaviorChiseledBoardToolModes
 /// </summary>
 public class BlockChiseledBoard : Block, IContainedMeshSource
 {
@@ -29,7 +29,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public const string ChiseledStackHitboxesAttributeName = "chiseledStackHitboxes";
     public const string ChiseledStackTexturesAttributeName = "chiseledStackTextures";
 
-    public string AttributeTransformCode { get; protected set; }
+    public string? AttributeTransformCode { get; protected set; }
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -77,7 +77,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
-        string name = GetChiseledStack(itemStack, api.World, EnumStackType.HitBoxes)?.Attributes.GetString("blockName");
+        string? name = GetChiseledStack(itemStack, api.World, EnumStackType.HitBoxes)?.Attributes.GetString("blockName");
         return !string.IsNullOrEmpty(name) ? name : base.GetHeldItemName(itemStack);
     }
 
@@ -85,7 +85,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     {
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntity && blockEntity.ChiseledStackHitboxes != null)
         { 
-            string name = blockEntity.ChiseledStackHitboxes?.Attributes.GetString("blockName");
+            string? name = blockEntity.ChiseledStackHitboxes?.Attributes.GetString("blockName");
             return !string.IsNullOrEmpty(name) ? name : base.GetPlacedBlockName(world, pos);
         }
         return base.GetPlacedBlockName(world, pos);
@@ -97,14 +97,14 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-        ItemStack chiseledStackHitboxes = GetChiseledStack(inSlot.Itemstack, api.World, EnumStackType.HitBoxes);
-        ItemStack chiseledStackTextures = GetChiseledStack(inSlot.Itemstack, api.World, EnumStackType.Textures);
+        ItemStack? chiseledStackHitboxes = GetChiseledStack(inSlot.Itemstack, api.World, EnumStackType.HitBoxes);
+        ItemStack? chiseledStackTextures = GetChiseledStack(inSlot.Itemstack, api.World, EnumStackType.Textures);
 
         dsc.AppendLine(chiseledStackHitboxes == null ? Lang.Get("tabletopgames:missing-chiseled-block-for-hitboxes") : Lang.Get("tabletopgames:contains-chiseled-block-for-hitboxes"));
         dsc.AppendLine(chiseledStackTextures == null ? Lang.Get("tabletopgames:missing-chiseled-block-for-textures") : Lang.Get("tabletopgames:contains-chiseled-block-for-textures"));
     }
 
-    public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
+    public override Cuboidf[]? GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
     {
         return blockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorChiseledBoardSelection>() is BEBehaviorChiseledBoardSelection bebehavior
             ? bebehavior.GetOrCreateSelectionBoxes()
@@ -124,7 +124,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
     {
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityChiseledBoard blockEntiy)
+        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityChiseledBoard blockEntity)
         {
             BlockPos targetPos = blockSel.DidOffset ? blockSel.Position.AddCopy(blockSel.Face.Opposite) : blockSel.Position;
             double dx = byPlayer.Entity.Pos.X - (targetPos.X + blockSel.HitPosition.X);
@@ -133,23 +133,23 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
 
             float intervalRad = GameMath.PIHALF;
             float roundRad = (int)Math.Round(angleHor / intervalRad) * intervalRad;
-            blockEntiy.MeshAngleRad = roundRad;
+            blockEntity.MeshAngleRad = roundRad;
 
-            blockEntiy.ChiseledStackHitboxes = GetChiseledStack(byItemStack, world, EnumStackType.HitBoxes);
-            blockEntiy.ChiseledStackTextures = GetChiseledStack(byItemStack, world, EnumStackType.Textures);
+            blockEntity.ChiseledStackHitboxes = GetChiseledStack(byItemStack, world, EnumStackType.HitBoxes);
+            blockEntity.ChiseledStackTextures = GetChiseledStack(byItemStack, world, EnumStackType.Textures);
 
-            blockEntiy.OnBlockPlaced(byItemStack);
+            blockEntity.OnBlockPlaced(byItemStack);
         }
         return ok;
     }
 
     public override void GetDecal(IWorldAccessor world, BlockPos pos, ITexPositionSource decalTexSource, ref MeshData decalModelData, ref MeshData blockModelData)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntity)
         {
-            float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntiy.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
-            MeshData decalMesh = GetOrCreateMesh(blockEntiy, overrideTexturesource: decalTexSource)?.Clone()?.MatrixTransform(mat);
-            MeshData blockMesh = GetOrCreateMesh(blockEntiy)?.Clone()?.MatrixTransform(mat);
+            float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntity.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
+            MeshData? decalMesh = GetOrCreateMesh(blockEntity, overrideTexturesource: decalTexSource)?.Clone()?.MatrixTransform(mat);
+            MeshData? blockMesh = GetOrCreateMesh(blockEntity)?.Clone()?.MatrixTransform(mat);
             if (decalMesh != null && blockMesh != null)
             {
                 decalModelData = decalMesh;
@@ -166,7 +166,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_BlockChiseledBoard_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         string key = GetMeshCacheKey(itemstack);
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef? meshref))
         {
             MeshData mesh = GenGuiMesh(itemstack);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
@@ -181,7 +181,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
     {
-        return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntiy
+        return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntity
             ? (new ItemStack[1] { OnPickBlock(world, pos) })
             : base.GetDrops(world, pos, byPlayer, dropQuantityMultiplier);
     }
@@ -189,18 +189,20 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
     {
         ItemStack stack = base.OnPickBlock(world, pos).Clone();
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityChiseledBoard blockEntity)
         {
-            SetChiseledStack(stack, blockEntiy.ChiseledStackHitboxes, EnumStackType.HitBoxes);
-            SetChiseledStack(stack, blockEntiy.ChiseledStackTextures, EnumStackType.Textures);
+            SetChiseledStack(stack, blockEntity.ChiseledStackHitboxes, EnumStackType.HitBoxes);
+            SetChiseledStack(stack, blockEntity.ChiseledStackTextures, EnumStackType.Textures);
         }
         return stack;
     }
 
-    public static void SelfDestroyIfEmpty(ItemSlot slot, IWorldAccessor world)
+    public static void SelfDestroyIfEmpty(ItemSlot? slot, IWorldAccessor world)
     {
-        ItemStack stackHitboxes = GetChiseledStack(slot.Itemstack, world, EnumStackType.HitBoxes);
-        ItemStack stackTextures = GetChiseledStack(slot.Itemstack, world, EnumStackType.Textures);
+        if (slot == null) return;
+
+        ItemStack? stackHitboxes = GetChiseledStack(slot.Itemstack, world, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(slot.Itemstack, world, EnumStackType.Textures);
         if (stackHitboxes == null && stackTextures == null)
         {
             slot.Itemstack = null;
@@ -208,24 +210,30 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         }
     }
 
-    public static void SetChiseledStack(ItemStack ownStack, ItemStack inputStack, EnumStackType stackType)
+    public static void SetChiseledStack(ItemStack ownStack, ItemStack? inputStack, EnumStackType stackType)
     {
         string attribute = stackType switch
         {
             EnumStackType.HitBoxes => ChiseledStackHitboxesAttributeName,
-            EnumStackType.Textures => ChiseledStackTexturesAttributeName
+            EnumStackType.Textures => ChiseledStackTexturesAttributeName,
+            _ => ""
         };
+
+        if (string.IsNullOrEmpty(attribute)) return;
 
         ownStack.Attributes.SetItemstack(attribute, inputStack);
     }
 
-    public static ItemStack GetChiseledStack(ItemStack ownStack, IWorldAccessor worldForResolving, EnumStackType stackType, bool removeAttribute = false)
+    public static ItemStack? GetChiseledStack(ItemStack ownStack, IWorldAccessor worldForResolving, EnumStackType stackType, bool removeAttribute = false)
     {
         string attribute = stackType switch
         {
             EnumStackType.HitBoxes => ChiseledStackHitboxesAttributeName,
-            EnumStackType.Textures => ChiseledStackTexturesAttributeName
+            EnumStackType.Textures => ChiseledStackTexturesAttributeName,
+            _ => ""
         };
+        
+        if (string.IsNullOrEmpty(attribute)) return null;
 
         ItemStack stack = ownStack.Attributes.GetItemstack(attribute);
         stack?.ResolveBlockOrItem(worldForResolving);
@@ -238,12 +246,11 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
 
     public MeshData GenGuiMesh(ItemStack stack)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        ItemStack stackHitboxes = GetChiseledStack(stack, api.World, EnumStackType.HitBoxes);
-        ItemStack stackTextures = GetChiseledStack(stack, api.World, EnumStackType.Textures);
-        ItemStack stackToRender = stackTextures ?? stackHitboxes;
+        ItemStack? stackHitboxes = GetChiseledStack(stack, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(stack, api.World, EnumStackType.Textures);
+        ItemStack? stackToRender = stackTextures ?? stackHitboxes;
 
         if (stackToRender != null)
         {
@@ -253,14 +260,13 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         return mesh;
     }
 
-    public MeshData GetOrCreateMesh(BlockEntityChiseledBoard blockEntity, ITexPositionSource overrideTexturesource = null)
+    public MeshData GetOrCreateMesh(BlockEntityChiseledBoard blockEntity, ITexPositionSource? overrideTexturesource = null)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        ItemStack stackHitboxes = blockEntity.ChiseledStackHitboxes;
-        ItemStack stackTextures = blockEntity.ChiseledStackTextures;
-        ItemStack stackToRender = stackTextures ?? stackHitboxes;
+        ItemStack? stackHitboxes = blockEntity.ChiseledStackHitboxes;
+        ItemStack? stackTextures = blockEntity.ChiseledStackTextures;
+        ItemStack? stackToRender = stackTextures ?? stackHitboxes;
 
         if (stackToRender != null)
         {
@@ -280,9 +286,9 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(itemstack.Collectible.Code);
 
-        ItemStack stackHitboxes = GetChiseledStack(itemstack, api.World, EnumStackType.HitBoxes);
-        ItemStack stackTextures = GetChiseledStack(itemstack, api.World, EnumStackType.Textures);
-        ItemStack stackToRender = stackTextures ?? stackHitboxes;
+        ItemStack? stackHitboxes = GetChiseledStack(itemstack, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(itemstack, api.World, EnumStackType.Textures);
+        ItemStack? stackToRender = stackTextures ?? stackHitboxes;
 
         if (stackToRender != null)
         {

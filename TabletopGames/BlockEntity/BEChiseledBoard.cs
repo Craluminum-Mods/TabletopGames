@@ -12,23 +12,27 @@ namespace TabletopGames;
 
 public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPreviewRendererHelper
 {
-    public ItemStack ChiseledStackHitboxes { get; set; }
-    public ItemStack ChiseledStackTextures { get; set; }
+    public ItemStack? ChiseledStackHitboxes { get; set; }
+    public ItemStack? ChiseledStackTextures { get; set; }
     public float MeshAngleRad { get; set; }
-    public float[] Mat { get; protected set; }
-    protected MeshData mesh;
+    public float[]? Mat { get; protected set; }
+    protected MeshData? mesh;
+
+    #nullable disable
     protected InventoryBase inventory;
 
     public BlockChiseledBoard OwnBlock => Block as BlockChiseledBoard;
     public override InventoryBase Inventory => inventory;
+
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
     public override string AttributeTransformCode => OwnBlock.AttributeTransformCode;
+    #nullable enable
 
     public TabletopTags Tags
     {
         get
         {
-            IBoardTagsSupplier supplier = OwnBlock.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
+            IBoardTagsSupplier? supplier = OwnBlock?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
             return supplier.GetUnresolvedTags(null);
         }
@@ -38,7 +42,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
     {
         InitInventory();
         base.Initialize(api);
-        inventory.LateInitialize($"{InventoryClassName}-1", api);
+        inventory?.LateInitialize($"{InventoryClassName}-1", api);
         if (mesh == null) Init();
     }
 
@@ -67,7 +71,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         }
     }
 
-    public override void OnBlockPlaced(ItemStack byItemStack = null)
+    public override void OnBlockPlaced(ItemStack? byItemStack = null)
     {
         base.OnBlockPlaced(byItemStack);
         InitInventory();
@@ -108,7 +112,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && tfMatrices != null)
             {
-                MeshData stackMesh = getMesh(itemSlot.Itemstack);
+                MeshData? stackMesh = getMesh(itemSlot.Itemstack);
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }
@@ -128,7 +132,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         float[][] _tfMatrices = new float[DisplayedItems][];
         if (_tfMatrices.Length == 0) return _tfMatrices;
 
-        Cuboidf[] _selBoxes = GetBehavior<BEBehaviorChiseledBoardSelection>()?.GetOrCreateSelectionBoxes();
+        Cuboidf[]? _selBoxes = GetBehavior<BEBehaviorChiseledBoardSelection>()?.GetOrCreateSelectionBoxes();
         if (_selBoxes == null || !_selBoxes.Any()) return _tfMatrices;
 
         for (int i = 0; i < DisplayedItems; i++)
@@ -158,7 +162,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
             int displayedIndex = TabletopDebug.BoardDataDebugInfo ? index : index + 1;
             dsc.Append(displayedIndex + ": ");
 
-            if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
+            if (slot.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
             {
                 dsc.Append($"{slot.StackSize}x ");
                 dsc.AppendLine(containedCustomName.GetContainedInfo(slot));

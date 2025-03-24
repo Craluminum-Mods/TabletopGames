@@ -17,7 +17,12 @@ public class TabletopTags
 
     public static TabletopTags FromInterface(ItemStack stack)
     {
-        return stack?.Collectible?.GetCollectibleInterface<IPieceTagsSupplier>()?.GetTags(stack);
+        return stack?.Collectible?.GetCollectibleInterface<IPieceTagsSupplier>()?.GetTags(stack) ?? new TabletopTags();
+    }
+
+    public static TabletopTags FromInterface(ItemSlot slot)
+    {
+        return FromInterface(slot?.Itemstack!) ?? new TabletopTags();
     }
 
     public static bool AreTagsCompatible(TabletopTags boardTags, TabletopTags pieceTags)

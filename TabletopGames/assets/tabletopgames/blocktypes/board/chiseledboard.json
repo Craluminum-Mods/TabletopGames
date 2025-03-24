@@ -5,12 +5,6 @@
     "maxStackSize": 8,
     "attributes": {
         "canChisel": false,
-        // "moldrackable": true,
-        // "shelvable": true,
-        // "antlermountable": true,
-        // "onmoldrackTransform": { "translation": { "x": 0, "y": 0.08, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": 85 }, "scale": 0.9 },
-        // "onshelfTransform": { "rotation": { "x": 0, "y": 18, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.3 },
-        // "onAntlerMountTransform": { "translation": { "x": 0.1, "y": 0, "z": 0 }, "rotation": { "x": 0, "y": 0, "z": -90 } },
         "attributeTransformCode": "onChiseledBoardTransform"
     },
     "entityBehaviors": [{ "name": "TabletopGames.BoardInteractions" }, { "name": "TabletopGames.ChiseledBoardSelection" }, { "name": "TabletopGames.BoardPreviewRenderer" }],
@@ -25,8 +19,9 @@
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
         },
-        { "name": "TabletopGames.ChiseledBoardTags", "properties": { "tabletopTags": { "tags": ["boardPiece", "boardDice"] } } },
-        { "name": "TabletopGames.ChiseledBoardToolModes" }
+        { "name": "TabletopGames.ChiseledBoardTags", "properties": { "tabletopTags": { "tags": ["boardPiece", "boardDice", "playingCard"] } } },
+        { "name": "TabletopGames.ChiseledBoardToolModes" },
+        { "name": "TabletopGames.ShufflerContainable" }
     ],
     "blockmaterial": "Wood",
     "lightAbsorption": 0,

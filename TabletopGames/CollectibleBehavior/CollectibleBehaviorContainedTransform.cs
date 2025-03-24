@@ -34,11 +34,11 @@ public class CollectibleBehaviorContainedTransform : CollectibleBehavior, IConta
         ApplyOnBeforeRenderTransform(target, variants: Variants.FromStack(itemstack), ref renderinfo.Transform);
     }
 
-    ModelTransform IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
+    ModelTransform? IContainedTransform.GetTransform(BlockEntityDisplay be, string attributeTransformCode, ItemStack stack)
     {
         attributeTransformCode = attributeTransformCode.ToLowerInvariant();
 
-        if (extraTransforms.TryGetValue(attributeTransformCode, out Dictionary<string, ModelTransform> transformByType)
+        if (extraTransforms.TryGetValue(attributeTransformCode, out Dictionary<string, ModelTransform>? transformByType)
             && Variants.FromStack(stack).FindByVariant(transformByType, out ModelTransform transform))
         {
             transform = transform.EnsureDefaultValues();
@@ -55,7 +55,7 @@ public class CollectibleBehaviorContainedTransform : CollectibleBehavior, IConta
             EnumItemRenderTarget.HandTp => transforms.TpHandTransform,
             EnumItemRenderTarget.HandTpOff => transforms.TpOffHandTransform,
             EnumItemRenderTarget.Ground => transforms.GroundTransform,
-            _ => null,
+            _ => new(),
         };
 
         if (variants.FindByVariant(inDictionary: transformByType, out ModelTransform newTransform))

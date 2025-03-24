@@ -7,6 +7,14 @@ namespace TabletopGames;
 
 public static class VariantExtensions
 {
+    /// <summary>
+    /// Similar to ByType, tries to match key (or multiple keys, if there is '::' separator used as AND operator) and give value behind it
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="variants"></param>
+    /// <param name="inDictionary">List of keys, including keys with '::' separator used as AND operator </param>
+    /// <param name="result"></param>
+    /// <returns>True, if value by key is found, otherwise false</returns>
     public static bool FindByVariant<T>(this Variants variants, Dictionary<string, T> inDictionary, out T result)
     {
         result = default;
@@ -28,6 +36,11 @@ public static class VariantExtensions
         }
 
         return false;
+    }
+
+    public static bool IsTrue(this Variants variants, Dictionary<string, bool> inDictionary)
+    {
+        return variants != null && variants.FindByVariant(inDictionary, out bool result) && result;
     }
 
     /// <summary>

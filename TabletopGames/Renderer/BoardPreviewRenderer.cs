@@ -13,10 +13,10 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
     protected BlockPos pos;
     protected ICoreClientAPI api;
 
-    protected MeshRef heldItemMeshRef;
+    protected MultiTextureMeshRef? heldItemMeshRef;
 
-    public double RenderOrder => 0.5;
-    public int RenderRange => 8;
+    double IRenderer.RenderOrder => 0.5;
+    int IRenderer.RenderRange => 8;
 
     public BoardPreviewRenderer(BlockPos pos, ICoreClientAPI api)
     {
@@ -24,15 +24,18 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
         this.pos = pos;
     }
 
-    public void OnRenderFrame(float deltaTime, EnumRenderStage stage)
+    void IRenderer.OnRenderFrame(float deltaTime, EnumRenderStage stage)
     {
+        if (api == null) return;
+        if (!api.PlayerReadyFired) return;
+
         UpdatePreviewMesh();
         if (heldItemMeshRef == null || api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos) is not IBoardPreviewRendererHelper previewHelper)
         {
             return;
         }
 
-        int selectionIndex = api?.World?.Player?.CurrentBlockSelection?.SelectionBoxIndex ?? -1;
+        int selectionIndex = api.World.Player.CurrentBlockSelection?.SelectionBoxIndex ?? -1;
         if (selectionIndex < 0) return;
 
         float[][] tfMatrices = previewHelper.GenTransformationMatrices();
@@ -56,17 +59,17 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
         standardShaderProgram.AlphaTest = 0.05f;
         standardShaderProgram.OverlayOpacity = 0f;
         standardShaderProgram.RgbaLightIn = new Vec4f(1, 1, 1, 0.1f);
-        render.RenderMesh(heldItemMeshRef);
+        render.RenderMultiTextureMesh(heldItemMeshRef, "tex");
         standardShaderProgram.Stop();
         render.GlToggleBlend(blend: true);
     }
 
     internal void UpdatePreviewMesh()
     {
-        ItemSlot hotbarSlot = api?.World?.Player?.InventoryManager?.ActiveHotbarSlot;
-        ItemStack hotbarStack = hotbarSlot?.Itemstack;
+        ItemSlot hotbarSlot = api.World.Player.Entity.RightHandItemSlot;
+        ItemStack hotbarStack = hotbarSlot.Itemstack;
 
-        BlockSelection blockSel = api?.World?.Player?.CurrentBlockSelection;
+        BlockSelection blockSel = api.World.Player.CurrentBlockSelection;
         int selectionIndex = blockSel?.SelectionBoxIndex ?? 0;
 
         if (hotbarStack == null || blockSel == null || blockSel.Position != pos)
@@ -76,8 +79,8 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
             return;
         }
 
-        IBoardPreviewRendererHelper previewHelper = api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos);
-        BEBehaviorBoardInteractions behaviorBoardInteractions =  api.World.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorBoardInteractions>();
+        IBoardPreviewRendererHelper? previewHelper = api.World.BlockAccessor.GetBlock(pos)?.GetInterface<IBoardPreviewRendererHelper>(api.World, pos);
+        BEBehaviorBoardInteractions? behaviorBoardInteractions =  api.World.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorBoardInteractions>();
 
         if (previewHelper == null
             || behaviorBoardInteractions == null
@@ -99,11 +102,11 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
 
         if (heldItemMesh != null)
         {
-            heldItemMeshRef = api.Render.UploadMesh(heldItemMesh);
+            heldItemMeshRef = api.Render.UploadMultiTextureMesh(heldItemMesh);
         }
     }
 
-    public void Dispose()
+    void IDisposable.Dispose()
     {
         api.Event.UnregisterRenderer(this, EnumRenderStage.OIT);
         api.Event.UnregisterRenderer(this, EnumRenderStage.AfterOIT);

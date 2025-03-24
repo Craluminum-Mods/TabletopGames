@@ -19,7 +19,10 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
     protected Dictionary<string, CompositeShape> shapeByType = new();
     protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+
+    #nullable disable
     private ICoreClientAPI clientApi => api as ICoreClientAPI;
+    #nullable enable
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -55,7 +58,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
     {
         bool ok = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityDisplayShapeTexturesFromAttributes blockEntiy)
+        if (ok && world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
         {
             BlockPos targetPos = blockSel.DidOffset ? blockSel.Position.AddCopy(blockSel.Face.Opposite) : blockSel.Position;
             double dx = byPlayer.Entity.Pos.X - (targetPos.X + blockSel.HitPosition.X);
@@ -64,16 +67,16 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
             float intervalRad = GameMath.PIHALF;
             float roundRad = (int)Math.Round(angleHor / intervalRad) * intervalRad;
-            blockEntiy.MeshAngleRad = roundRad;
+            blockEntity.MeshAngleRad = roundRad;
 
-            blockEntiy.OnBlockPlaced(byItemStack);
+            blockEntity.OnBlockPlaced(byItemStack);
         }
         return ok;
     }
 
     public virtual MeshData GenGuiMesh(Variants variants)
     {
-        MeshData mesh = new MeshData(4, 3);
+        MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         variants.FindByVariant(shapeByType, out CompositeShape _shape);
         if (_shape == null) return mesh;
@@ -82,7 +85,8 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        if (shape == null) return mesh;
 
         variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
@@ -91,25 +95,23 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
-            ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-            ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+            ctex = variants.ReplacePlaceholders(ctex);
             ctex.Bake(clientApi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
 
-        if (shape == null) return mesh;
         clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, stexSource);
         return mesh;
     }
 
-    public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource overrideTexturesource = null)
+    public virtual MeshData GetOrCreateMesh(Variants variants, ITexPositionSource? overrideTexturesource = null)
     {
         Dictionary<string, MeshData> cMeshes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes", () => new Dictionary<string, MeshData>());
 
         string key = $"{Code}-{variants}";
-        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData mesh))
+        if (overrideTexturesource != null || !cMeshes.TryGetValue(key, out MeshData? mesh))
         {
-            mesh = new MeshData(4, 3);
+            mesh = RenderExtensions.GenEmptyMesh();
 
             variants.FindByVariant(shapeByType, out CompositeShape _shape);
             if (_shape == null) return mesh;
@@ -118,9 +120,10 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
             rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-            Shape shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+            Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+            if (shape == null) return mesh;
 
-            ITexPositionSource texSource = overrideTexturesource;
+            ITexPositionSource? texSource = overrideTexturesource;
             if (overrideTexturesource == null)
             {
                 variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
@@ -131,14 +134,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
                 foreach (KeyValuePair<string, CompositeTexture> val in _textures)
                 {
                     CompositeTexture ctex = val.Value.Clone();
-                    ctex.Base.Path = variants.ReplacePlaceholders(ctex.Base.Path);
-                    ctex.BlendedOverlays?.Foreach(overlay => overlay.Base.Path = variants.ReplacePlaceholders(overlay.Base.Path));
+                    ctex = variants.ReplacePlaceholders(ctex);
                     ctex.Bake(clientApi.Assets);
                     stexSource.textures[val.Key] = ctex;
                 }
             }
-
-            if (shape == null) return mesh;
 
             clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes block", shape, out mesh, texSource);
 
@@ -152,11 +152,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public override void GetDecal(IWorldAccessor world, BlockPos pos, ITexPositionSource decalTexSource, ref MeshData decalModelData, ref MeshData blockModelData)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
         {
-            float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntiy.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
-            MeshData decalMesh = GetOrCreateMesh(blockEntiy.Variants, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
-            MeshData blockMesh = GetOrCreateMesh(blockEntiy.Variants).Clone().MatrixTransform(mat);
+            float[] mat = Matrixf.Create().Translate(0.5f, 0.5f, 0.5f).RotateY(blockEntity.MeshAngleRad).Translate(-0.5f, -0.5f, -0.5f).Values;
+            MeshData decalMesh = GetOrCreateMesh(blockEntity.Variants, overrideTexturesource: decalTexSource).Clone().MatrixTransform(mat);
+            MeshData blockMesh = GetOrCreateMesh(blockEntity.Variants).Clone().MatrixTransform(mat);
             decalModelData = decalMesh;
             blockModelData = blockMesh;
             return;
@@ -171,7 +171,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
         Variants variants = Variants.FromStack(itemstack);
         string key = GetMeshCacheKey(itemstack);
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref))
+        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef? meshref))
         {
             MeshData mesh = GenGuiMesh(variants);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
@@ -186,7 +186,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
     {
-        return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntiy
+        return world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity
             ? (new ItemStack[1] { OnPickBlock(world, pos) })
             : base.GetDrops(world, pos, byPlayer, dropQuantityMultiplier);
     }
@@ -202,9 +202,9 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public override ItemStack OnPickBlock(IWorldAccessor world, BlockPos pos)
     {
         ItemStack stack = base.OnPickBlock(world, pos).Clone();
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntiy)
+        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
         {
-            blockEntiy.Variants.ToStack(stack);
+            blockEntity.Variants.ToStack(stack);
         }
         return stack;
     }

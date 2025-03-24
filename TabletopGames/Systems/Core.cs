@@ -1,5 +1,6 @@
 using HarmonyLib;
 using TabletopGames.Configuration;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 
 namespace TabletopGames;
@@ -15,12 +16,12 @@ public class Core : ModSystem
 
     public override void StartPre(ICoreAPI api)
     {
+        HarmonyInstance.PatchAllUncategorized();
+
         if (api.Side.IsClient())
         {
             ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClient.ConfigName);
         }
-
-        HarmonyInstance.PatchAll();
 
         if (api.ModLoader.IsModEnabled("configlib"))
         {
@@ -39,6 +40,11 @@ public class Core : ModSystem
         Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 
+    public override void StartClientSide(ICoreClientAPI api)
+    {
+        HarmonyInstance.PatchCategory("Client");
+    }
+
     public override void Dispose()
     {
         HarmonyInstance.UnpatchAll(HarmonyInstance.Id);
@@ -52,7 +58,9 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
         api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
+        api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
+        api.RegisterItemClass("TabletopGames.ItemShuffler", typeof(ItemShuffler));
     }
 
     private void RegisterBlocks()
@@ -79,6 +87,11 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.PieceTags", typeof(CollectibleBehaviorPieceTags));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ChiseledPieceToolModes", typeof(CollectibleBehaviorChiseledPieceToolModes));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ChiseledBoardToolModes", typeof(CollectibleBehaviorChiseledBoardToolModes));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardInteractions", typeof(CollectibleBehaviorPlayingCardInteractions));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardToolModes", typeof(CollectibleBehaviorPlayingCardToolModes));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.PackTyped", typeof(CollectibleBehaviorPackTyped));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerInteractions", typeof(CollectibleBehaviorShufflerInteractions));
 
         api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));
