@@ -19,8 +19,8 @@ public static class CraftingStepExtensions
     {
         foreach (CraftingStep step in steps)
         {
-            CraftingRecipeIngredient ingred = step.TriggerBy?.Clone();
-            JsonItemStack output = step.ConvertTo?.Clone();
+            CraftingRecipeIngredient? ingred = step.TriggerBy?.Clone();
+            JsonItemStack? output = step.ConvertTo?.Clone();
             ingred?.Resolve(byPlayer.Entity.World, "");
             output?.Resolve(byPlayer.Entity.World, "");
 
@@ -79,8 +79,8 @@ public static class CraftingStepExtensions
     {
         foreach (CraftingStep step in steps)
         {
-            CraftingRecipeIngredient ingred = step.TriggerBy?.Clone();
-            JsonItemStack output = step.GiveStack?.Clone();
+            CraftingRecipeIngredient? ingred = step.TriggerBy?.Clone();
+            JsonItemStack? output = step.GiveStack?.Clone();
             ingred?.Resolve(byPlayer.Entity.World, "");
             output?.Resolve(byPlayer.Entity.World, "");
 

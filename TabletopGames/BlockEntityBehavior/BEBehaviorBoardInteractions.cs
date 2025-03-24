@@ -7,13 +7,13 @@ namespace TabletopGames;
 
 public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
 {
-    private IInventory Inventory => (Blockentity as IBlockEntityContainer)?.Inventory;
+    private IInventory? Inventory => (Blockentity as IBlockEntityContainer)?.Inventory;
 
     public TabletopTags Tags
     {
         get
         {
-            IBoardTagsSupplier supplier = Block?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
+            IBoardTagsSupplier? supplier = Block?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
             return supplier.GetUnresolvedTags(Api?.World, Pos);
         }
@@ -58,7 +58,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
     public bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || !boardSlot.Empty)
+        if (!TryGetSlot(index, out ItemSlot? boardSlot) || boardSlot == null || !boardSlot.Empty)
         {
             return false;
         }
@@ -74,7 +74,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
     public bool TryTake(IPlayer byPlayer, BlockSelection blockSel)
     {
         int index = blockSel.SelectionBoxIndex;
-        if (!TryGetSlot(index, out ItemSlot boardSlot) || boardSlot.Empty)
+        if (!TryGetSlot(index, out ItemSlot? boardSlot) || boardSlot == null || boardSlot.Empty)
         {
             return false;
         }
@@ -82,7 +82,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         ItemStack stack = boardSlot.TakeOut(1);
         if (byPlayer.InventoryManager.TryGiveItemstack(stack))
         {
-            AssetLocation sound = stack.Block?.Sounds?.Place;
+            AssetLocation? sound = stack.Block?.Sounds?.Place;
             Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
         }
         if (stack.StackSize > 0)
@@ -93,7 +93,7 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         return true;
     }
 
-    public bool TryGetSlot(int index, out ItemSlot slot)
+    public bool TryGetSlot(int index, out ItemSlot? slot)
     {
         if (index >= 0 && index < Inventory?.Count)
         {
@@ -118,11 +118,13 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         stack?.Attributes?.RemoveAttribute("rotateYaw");
     }
 
-    public static void ApplyPieceMeshRotation(ItemStack stack, ref MeshData stackMesh)
+    public static void ApplyPieceMeshRotation(ItemStack stack, ref MeshData? stackMesh)
     {
+        if (stackMesh == null) return;
+
         if (stack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
         {
-            stackMesh = stackMesh?.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
+            stackMesh = stackMesh.Clone().Rotate(Vec3f.Zero, 0, rotateYaw, 0);
         }
     }
 }

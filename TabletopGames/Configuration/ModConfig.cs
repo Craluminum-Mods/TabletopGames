@@ -42,13 +42,15 @@ public static class ModConfig
         return api.LoadModConfig<T>(jsonConfig);
     }
 
-    private static void GenerateConfig<T>(ICoreAPI api, string jsonConfig, T previousConfig = null) where T : class, IModConfig
+    private static void GenerateConfig<T>(ICoreAPI api, string jsonConfig, T? previousConfig = null) where T : class, IModConfig
     {
         api.StoreModConfig(CloneConfig<T>(api, previousConfig), jsonConfig);
     }
 
-    private static T CloneConfig<T>(ICoreAPI api, T config = null) where T : class, IModConfig
+    private static T? CloneConfig<T>(ICoreAPI api, T? config = null) where T : class, IModConfig
     {
-        return (T)Activator.CreateInstance(typeof(T), new object[] { api, config });
+        if (config == null) return default;
+
+        return (T)Activator.CreateInstance(typeof(T), new object[] { api, config })!;
     }
 }

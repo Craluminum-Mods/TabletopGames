@@ -17,17 +17,17 @@ public class BEBehaviorBoardSelection : BlockEntityBehavior
 
     protected Dictionary<string, Cuboidf[]> ExtraSelectionBoxesByType = new();
     
-    protected Cuboidf[] selectionBoxes;
+    protected Cuboidf[]? selectionBoxes;
 
     public BEBehaviorBoardSelection(BlockEntity blockentity) : base(blockentity) { }
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
         base.Initialize(api, properties);
-        ExtraSelectionBoxesByType = properties?["extraSelectionBoxes"]?.AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
+        ExtraSelectionBoxesByType = properties["extraSelectionBoxes"].AsObject(defaultValue: new Dictionary<string, Cuboidf[]>());
     }
 
-    public Cuboidf[] GetOrCreateSelectionBoxes(bool forceNew = false)
+    public Cuboidf[]? GetOrCreateSelectionBoxes(bool forceNew = false)
     {
         if (forceNew || selectionBoxes == null)
         {

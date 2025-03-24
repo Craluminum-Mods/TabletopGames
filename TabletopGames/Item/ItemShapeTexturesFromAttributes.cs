@@ -99,7 +99,7 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         if (origin?.RotationOrigin?.Length != 3)
         {
-            Core.GetInstance(api).Mod.Logger.Debug("[TabletopGames] Shape {0} for item {1} is missing origin cube, it will not rotate!", cshape.Base, Code);
+            Core.GetInstance(api).Mod.Logger.Debug("Shape {0} for item {1} is missing origin cube, it will not rotate!", cshape.Base, Code);
             return;
         }
 

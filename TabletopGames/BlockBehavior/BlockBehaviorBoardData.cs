@@ -45,9 +45,9 @@ public class BlockBehaviorBoardData : BlockBehavior, IBoardDataSupplier
         return stringBuilder.ToString();
     }
 
-    public BoardData GetBoardData(IWorldAccessor world, BlockPos pos)
+    public BoardData GetBoardData(IWorldAccessor? world, BlockPos pos)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(BoardDataByType, out BoardData boardData))
+        if (world?.BlockAccessor.GetBlockEntity(pos) is BlockEntityBoard blockEntity && blockEntity.Variants.FindByVariant(BoardDataByType, out BoardData boardData))
         {
             return boardData;
         }

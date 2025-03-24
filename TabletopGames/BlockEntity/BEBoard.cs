@@ -14,13 +14,15 @@ namespace TabletopGames;
 /// </summary>
 public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, IBoardPreviewRendererHelper
 {
+    #nullable disable
     public BlockBoard OwnBlock => Block as BlockBoard;
+    #nullable enable
 
     public BoardData BoardData
     {
         get
         {
-            IBoardDataSupplier supplier = OwnBlock.GetInterface<IBoardDataSupplier>(Api?.World, Pos);
+            IBoardDataSupplier? supplier = OwnBlock?.GetInterface<IBoardDataSupplier>(Api?.World, Pos);
             if (supplier == null) return new BoardData();
             return supplier.GetBoardData(Variants);
         }
@@ -30,21 +32,23 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
     {
         get
         {
-            IBoardTagsSupplier supplier = OwnBlock.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
+            IBoardTagsSupplier? supplier = OwnBlock?.GetInterface<IBoardTagsSupplier>(Api?.World, Pos);
             if (supplier == null) return new TabletopTags();
             return supplier.GetUnresolvedTags(Variants);
         }
     }
 
+    #nullable disable
     public override InventoryBase Inventory => inventory;
     public override string InventoryClassName => TabletopConstants.boardInvClassName;
-    public override string AttributeTransformCode => BoardData.AttributeTransformCode;
+    public override string AttributeTransformCode => BoardData?.AttributeTransformCode;
+    #nullable enable
 
     public override void Initialize(ICoreAPI api)
     {
         InitInventory();
         base.Initialize(api);
-        inventory.LateInitialize($"{InventoryClassName}-1", api);
+        inventory?.LateInitialize($"{InventoryClassName}-1", api);
         if (mesh == null) Init();
     }
 
@@ -86,7 +90,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
         }
     }
 
-    public override void OnBlockPlaced(ItemStack byItemStack = null)
+    public override void OnBlockPlaced(ItemStack? byItemStack = null)
     {
         base.OnBlockPlaced(byItemStack);
         if (byItemStack != null)
@@ -106,7 +110,8 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && tfMatrices != null)
             {
-                MeshData stackMesh = getMesh(itemSlot.Itemstack);
+                MeshData? stackMesh = getMesh(itemSlot.Itemstack);
+                if (stackMesh == null) continue;
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }
@@ -123,7 +128,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
 
     protected override float[][] genTransformationMatrices()
     {
-        Cuboidf[] _selBoxes = GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes();
+        Cuboidf[]? _selBoxes = GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes();
         float[][] _tfMatrices = new float[DisplayedItems][];
 
         if (_selBoxes == null || !_selBoxes.Any()) return _tfMatrices;
@@ -146,14 +151,14 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
     public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
     {
         int index = forPlayer.CurrentBlockSelection.SelectionBoxIndex;
-        if (inventory.Count > index)
+        if (inventory?.Count > index)
         {
             ItemSlot slot = inventory[index];
 
             int displayedIndex = TabletopDebug.BoardDataDebugInfo ? index : index + 1;
             dsc.Append(displayedIndex + ": ");
 
-            if (slot?.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
+            if (slot.Itemstack?.Collectible?.GetCollectibleInterface<IContainedCustomName>() is IContainedCustomName containedCustomName)
             {
                 dsc.Append($"{slot.StackSize}x ");
                 dsc.AppendLine(containedCustomName.GetContainedInfo(slot));

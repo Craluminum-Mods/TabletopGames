@@ -6,6 +6,9 @@
 		<OutputPath>bin\$(Configuration)\Mods\mod</OutputPath>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<MSBuildWarningsAsMessages>
+			$(MSBuildWarningsAsMessages);MSB3277;
+		</MSBuildWarningsAsMessages>
 	</PropertyGroup>
 
 	<ItemGroup>

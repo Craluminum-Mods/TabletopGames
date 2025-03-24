@@ -5,8 +5,8 @@ namespace TabletopGames;
 
 public interface IBoardTagsSupplier
 {
-    public TabletopTags GetResolvedTags(IWorldAccessor world, BlockPos pos, int slotId);
-    public TabletopTags GetUnresolvedTags(IWorldAccessor world, BlockPos pos);
-    public TabletopTags GetResolvedTags(Variants variants, int slotId);
-    public TabletopTags GetUnresolvedTags(Variants variants);
+    public TabletopTags GetResolvedTags(IWorldAccessor? world, BlockPos pos, int slotId);
+    public TabletopTags GetUnresolvedTags(IWorldAccessor? world, BlockPos pos);
+    public TabletopTags GetResolvedTags(Variants? variants, int slotId);
+    public TabletopTags GetUnresolvedTags(Variants? variants);
 }

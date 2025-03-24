@@ -24,7 +24,8 @@ public static class CustomTransformPatch
         MeshData mesh = __instance.CallMethod<MeshData>("getMesh", stack);
         if (mesh != null) return true;
 
-        ICoreClientAPI capi = __instance.Api as ICoreClientAPI;
+        ICoreClientAPI? capi = __instance.Api as ICoreClientAPI;
+        if (capi == null) return true;
 
         if (stack.Collectible?.GetCollectibleInterface<IContainedMeshSource>() is IContainedMeshSource meshSource)
         {
@@ -39,8 +40,8 @@ public static class CustomTransformPatch
             }
             else
             {
-                ___nowTesselatingObj = stack.Collectible;
-                ___nowTesselatingShape = null;
+                ___nowTesselatingObj = stack.Collectible!;
+                ___nowTesselatingShape = null!;
                 if (stack.Item.Shape?.Base != null)
                 {
                     ___nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);

@@ -94,7 +94,7 @@ public class ItemShuffler : ItemShapeTexturesFromAttributes, IContainedInteracta
     }
 
     /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStep
+    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStart
     /// </summary>
     bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
@@ -118,7 +118,7 @@ public class ItemShuffler : ItemShapeTexturesFromAttributes, IContainedInteracta
     }
 
     /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStep
+    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStop
     /// </summary>
     void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
