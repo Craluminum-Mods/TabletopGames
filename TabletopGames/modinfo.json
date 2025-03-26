@@ -4,7 +4,7 @@
     "name": "Tabletop Games",
     "authors": ["Craluminum2413"],
     "description": "A literal tabletop simulator to play real-world tabletop games or create your own",
-    "version": "2.10.0",
+    "version": "2.10.1",
     "dependencies": {
         "game": "1.20.6"
     }
