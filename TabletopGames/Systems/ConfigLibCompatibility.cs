@@ -14,10 +14,15 @@ namespace TabletopGames;
 
 public class ConfigLibCompatibility
 {
+    private ICoreClientAPI? capi;
+
     private static List<Cuboidf> SelectedSelectionBoxes { get; set; } = new();
 
     public ConfigLibCompatibility(ICoreAPI api)
     {
+        capi = api as ICoreClientAPI;
+        if (capi == null) return;
+
         api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-client"), (id, buttons) =>
         {
             if (buttons.Save)
@@ -35,7 +40,7 @@ public class ConfigLibCompatibility
                 Core.GetInstance(api).ConfigClient = new(api);
             }
 
-            EditClient(api, Core.GetInstance(api).ConfigClient, id);
+            EditClient(Core.GetInstance(api).ConfigClient, id);
         });
 
         api.ModLoader.GetModSystem<ConfigLibModSystem>().RegisterCustomConfig(Lang.Get(TabletopConstants.ModID + ":config-debug"), (id, buttons) =>
@@ -43,19 +48,17 @@ public class ConfigLibCompatibility
             buttons.Save = false;
             buttons.Restore = false;
             buttons.Defaults = false;
-            EditDebug(api, id);
+            EditDebug(id);
         });
     }
 
-    private void EditClient(ICoreAPI api, ConfigClient config, string id)
+    private void EditClient(ConfigClient config, string id)
     {
         config.DiceAnimationsEnabled = OnCheckBox(id, config.DiceAnimationsEnabled, $"{TabletopConstants.ModID}:setting-dice_animations_enabled");
     }
 
-    private void EditDebug(ICoreAPI api, string id)
+    private void EditDebug(string id)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
-
         ImGui.Checkbox($"Item Rotation##ItemRotation-{id}", ref TabletopDebug.DebugOnBeforeRender);
         if (TabletopDebug.DebugOnBeforeRender)
         {
@@ -90,7 +93,7 @@ public class ConfigLibCompatibility
             ImGui.Unindent();
         }
 
-        BlockSelection selection = capi?.World?.Player?.CurrentBlockSelection;
+        BlockSelection? selection = capi?.World.Player.CurrentBlockSelection;
         if (selection != null && capi?.World.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntityBoard blockEntity)
         {
             ManageSelectionBoxes(id, blockEntity);
@@ -99,7 +102,7 @@ public class ConfigLibCompatibility
         }
     }
 
-    private static void EditBoardData(string id, BlockEntityBoard blockEntity)
+    private void EditBoardData(string id, BlockEntityBoard blockEntity)
     {
         if (blockEntity.BoardData != null)
         {
@@ -107,10 +110,9 @@ public class ConfigLibCompatibility
         }
     }
 
-    private static void ManagePadding(string id, BlockEntityBoard blockEntity)
+    private void ManagePadding(string id, BlockEntityBoard blockEntity)
     {
         BEBehaviorBoardSelection bebehavior = blockEntity.GetBehavior<BEBehaviorBoardSelection>();
-        ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
 
         Vec4f oldPadding = blockEntity.BoardData.Padding;
         Vector4 padding = new Vector4(oldPadding.X, oldPadding.Y, oldPadding.Z, oldPadding.W);
@@ -137,10 +139,9 @@ public class ConfigLibCompatibility
         }
     }
 
-    private static void ManageSelectionBoxes(string id, BlockEntityBoard blockEntity)
+    private void ManageSelectionBoxes(string id, BlockEntityBoard blockEntity)
     {
         BEBehaviorBoardSelection bebehavior = blockEntity.GetBehavior<BEBehaviorBoardSelection>();
-        ICoreClientAPI capi = blockEntity.Api as ICoreClientAPI;
         ImGui.NewLine();
 
         bool addBoxToList = ImGui.Button($"Add Selection Box to List##SelectionBoxes-AddToList-{id}");
@@ -240,7 +241,7 @@ public class ConfigLibCompatibility
         capi.Input.ClipboardText = sb.ToString();
     }
 
-    private static void AppendSelectionBox(StringBuilder sb, Cuboidf box, int index)
+    private void AppendSelectionBox(StringBuilder sb, Cuboidf box, int index)
     {
         sb.Append($"{{ \"index\": \"{index}\", ");
         sb.Append($"  \"x1\": {box.X1}, \"y1\": {box.Y1}, \"z1\": {box.Z1}, ");
