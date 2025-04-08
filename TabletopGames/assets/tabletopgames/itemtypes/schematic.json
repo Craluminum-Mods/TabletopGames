@@ -507,7 +507,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:chesspiece", "quantity": 16 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -523,7 +526,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:checkerpiece", "quantity": 12 }, "setVariants": { "type": "pawn", "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -539,7 +545,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 16 }, "giveStack": { "type": "item", "code": "tabletopgames:gostone", "quantity": 64 }, "setVariants": { "wood": "{wood}" }, "removeVariants": ["type"] }
                             ]
                         },
                         {
@@ -555,7 +564,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 20 }, "giveStack": { "type": "item", "code": "tabletopgames:shogipiece", "quantity": 20 }, "setVariants": { "type": "fuhyo", "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -572,7 +584,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 1 }, "giveStack": { "type": "item", "code": "tabletopgames:dice", "quantity": 1 }, "setVariants": { "type": "classic_cube", "dot": "6", "wood": "{wood}", "color": "carbonblack" } }
                             ]
                         },
                         {
@@ -588,7 +603,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 12 }, "giveStack": { "type": "item", "code": "tabletopgames:gobowl", "quantity": 1 }, "setVariants": { "wood": "{wood}" } }
                             ]
                         },
                         {
@@ -604,7 +622,10 @@
                                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
                                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
-                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } }
+                                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } },
+
+                                // Wildcraft Trees compatibility
+                                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood", "quantity": 4 }, "giveStack": { "type": "item", "code": "tabletopgames:lid", "quantity": 1 }, "setVariants": { "type": "gobowl", "wood": "{wood}" } }
                             ]
                         }
                     ]

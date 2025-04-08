@@ -1,0 +1,10 @@
+[
+    {
+        "op": "addmerge",
+        "path": "/0/enabled",
+        "value": false,
+        "file": "tabletopgames:recipes/grid/compatibility-wildcrafttree/board-generic.json",
+        "dependsOn": [{ "modid": "wildcrafttree", "invert": true }],
+        "side": "Server"
+    }
+]

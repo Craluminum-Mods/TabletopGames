@@ -118,6 +118,9 @@
                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
                 { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
 
+                // Wildcraft Trees compatibility
+                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+
                 // go boards
                 { "triggerBy": { "type": "item", "code": "game:charcoal" }, /*              */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
                 { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, /*    */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
@@ -151,7 +154,10 @@
                 { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
                 { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
                 { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } }
+                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+
+                // Wildcraft Trees compatibility
+                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } }
             ],
             "type-chessboard_step2": [
                 {

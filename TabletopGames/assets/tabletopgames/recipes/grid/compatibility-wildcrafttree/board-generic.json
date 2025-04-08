@@ -1,0 +1,13 @@
+[
+    {
+        "ingredientPattern": "OOS,OOR",
+        "ingredients": {
+            "O": { "type": "item", "code": "wildcrafttree:plank-*", "name": "wood" },
+            "R": { "type": "item", "code": "game:resin" },
+            "S": { "type": "item", "code": "game:saw-*", "IsTool": true }
+        },
+        "width": 3,
+        "height": 2,
+        "output": { "type": "item", "code": "tabletopgames:gameboard", "attributes": { "types": { "type": "generic", "wood": "{wood}" } } }
+    }
+]
