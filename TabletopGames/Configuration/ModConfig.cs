@@ -49,8 +49,6 @@ public static class ModConfig
 
     private static T? CloneConfig<T>(ICoreAPI api, T? config = null) where T : class, IModConfig
     {
-        if (config == null) return default;
-
         return (T)Activator.CreateInstance(typeof(T), new object[] { api, config })!;
     }
 }
