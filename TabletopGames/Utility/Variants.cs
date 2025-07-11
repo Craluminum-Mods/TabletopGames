@@ -22,18 +22,9 @@ public class Variants
     public int Count => Elements.Count;
     public bool Any => Elements.Any();
 
-    public IOrderedEnumerable<Variant> GetOrdered()
+    public List<string> GetAsStringArray()
     {
-        return Elements
-            .Select(x => new Variant(x.Key, x.Value))
-            .OrderBy(x => x.Key);
-    }
-
-    public IOrderedEnumerable<string> GetOrderedStringArray()
-    {
-        return Elements
-            .Select(x => $"{x.Key}-{x.Value}")
-            .OrderBy(x => x);
+        return Elements.Select(x => $"{x.Key}-{x.Value}").ToList();
     }
 
     public string Get(string key)

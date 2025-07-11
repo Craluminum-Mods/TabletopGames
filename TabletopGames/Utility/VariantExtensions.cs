@@ -24,11 +24,11 @@ public static class VariantExtensions
             return false;
         }
 
-        IOrderedEnumerable<string> sortedVariants = variants.GetOrderedStringArray();
+        List<string> variantAsStringArray = variants.GetAsStringArray();
         foreach ((string key, T value) in inDictionary)
         {
             string[] keys = key.Contains("::") ? key.Split("::") : new[] { key };
-            if (keys.All(k => sortedVariants.Any(v => WildcardUtil.Match(k, v))))
+            if (keys.All(k => variantAsStringArray.Any(v => WildcardUtil.Match(k, v))))
             {
                 result = value;
                 return true;
