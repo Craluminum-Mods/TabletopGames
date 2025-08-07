@@ -63,10 +63,7 @@ public class ItemDice : ItemShapeTexturesFromAttributes
 
     public bool IsSameTransform(ModelTransform transform1, ModelTransform transform2)
     {
-        return transform1.Rotation == transform2.Rotation
-            && transform1.Translation == transform2.Translation
-            && transform1.Origin == transform2.Origin
-            && transform1.ScaleXYZ == transform2.ScaleXYZ;
+        return transform1.Equals(transform2);
     }
 
     public override void OnModifiedInInventorySlot(IWorldAccessor world, ItemSlot slot, ItemStack extractedStack = null)
