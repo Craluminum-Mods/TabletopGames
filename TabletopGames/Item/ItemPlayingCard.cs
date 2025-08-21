@@ -65,9 +65,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
     {
         ignoreAttributeSubTrees ??= Array.Empty<string>();
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
 
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
@@ -105,10 +102,20 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
+        if (NameByType == null || !NameByType.Any())
+        {
+            return base.GetHeldItemName(itemStack);
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(NameByType, out List<object> _langKeys);
-        string defaultName = base.GetHeldItemName(itemStack);
-        return variants.GetName(_langKeys, defaultName);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            name = base.GetHeldItemName(itemStack);
+        }
+        return name;
     }
 
     /// <summary>

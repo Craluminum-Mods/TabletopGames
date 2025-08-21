@@ -1,3 +1,4 @@
+global using AttributeRenderingLibrary;
 using HarmonyLib;
 using TabletopGames.Configuration;
 using Vintagestory.API.Client;

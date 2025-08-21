@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -211,19 +212,38 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
+        if (NameByType == null || !NameByType.Any())
+        {
+            return base.GetHeldItemName(itemStack);
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(NameByType, out List<object> _langKeys);
-        string defaultName = base.GetHeldItemName(itemStack);
-        return variants.GetName(_langKeys, defaultName);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            name = base.GetHeldItemName(itemStack);
+        }
+        return name;
     }
 
     public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
     {
+        if (NameByType == null || !NameByType.Any())
+        {
+            return base.GetPlacedBlockName(world, pos);
+        }
+
         if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
         {
             blockEntity.Variants.FindByVariant(NameByType, out List<object> _langKeys);
-            string defaultName = base.GetPlacedBlockName(world, pos);
-            return blockEntity.Variants.GetName(_langKeys, defaultName);
+
+            string name = blockEntity.Variants.GetName(_langKeys);
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
         }
         return base.GetPlacedBlockName(world, pos);
     }
@@ -231,6 +251,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+
+        if (DescriptionByType == null || !DescriptionByType.Any())
+        {
+            return;
+        }
 
         Variants variants = Variants.FromStack(inSlot.Itemstack);
         variants.FindByVariant(DescriptionByType, out List<object> description);

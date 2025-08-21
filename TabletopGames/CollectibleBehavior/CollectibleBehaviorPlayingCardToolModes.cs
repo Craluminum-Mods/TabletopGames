@@ -263,6 +263,6 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
 
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(modeNameByType, out List<object> _langKeys);
-        return variants.GetName(_langKeys, string.Empty);
+        return variants.GetName(_langKeys);
     }
 }
