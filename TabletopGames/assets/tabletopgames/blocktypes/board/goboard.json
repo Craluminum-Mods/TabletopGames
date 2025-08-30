@@ -80,7 +80,7 @@
             }
         },
         {
-            "name": "TabletopGames.ContainedTransform",
+            "name": "AttributeRenderingLibrary.ContainedTransform",
             "properties": {
                 "extraTransforms": {
                     "onmoldrackTransform": {

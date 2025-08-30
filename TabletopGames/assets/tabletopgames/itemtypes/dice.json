@@ -945,7 +945,7 @@
             }
         },
         {
-            "name": "TabletopGames.ContainedTransform",
+            "name": "AttributeRenderingLibrary.ContainedTransform",
             "properties": {
                 "transforms": {
                     "guiTransform": {
