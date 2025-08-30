@@ -1,63 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Util;
-using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-/// <summary> 
-/// Renders shape and textures using attribute based type system. 
-/// </summary>
-public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, IContainedCustomName
+public class ItemShapeTexturesFromAttributes : AttributeRenderingLibrary.ItemShapeTexturesFromAttributes
 {
-    public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
-    public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
-    public Dictionary<string, List<object>> ContainedDescriptionByType { get; protected set; } = new();
-
-    protected Dictionary<string, CompositeShape> shapeByType = new();
-    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
-
-    public override void OnLoaded(ICoreAPI api)
-    {
-        base.OnLoaded(api);
-        LoadTypes();
-    }
-
-    public override void OnUnloaded(ICoreAPI api)
-    {
-        base.OnUnloaded(api);
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
-        meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
-        ObjectCacheUtil.Delete(api, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs");
-    }
-
-    public virtual void LoadTypes()
-    {
-        if (Attributes != null)
-        {
-            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-            ContainedDescriptionByType = Attributes["containedDescription"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-
-            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
-        }
-    }
-
-    public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
-    {
-        ignoreAttributeSubTrees ??= System.Array.Empty<string>();
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
-        return base.Equals(thisStack, otherStack, ignoreAttributeSubTrees);
-    }
-
-    public virtual MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public override MeshData GetOrCreateMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
     {
         ICoreClientAPI capi = api as ICoreClientAPI;
         MeshData mesh = RenderExtensions.GenEmptyMesh();
@@ -109,71 +59,5 @@ public class ItemShapeTexturesFromAttributes : Item, IContainedMeshSource, ICont
 
         Vec3f rotationOrigin = new Vec3d(origin.RotationOrigin[0] / 16, origin.RotationOrigin[1] / 16, origin.RotationOrigin[2] / 16).ToVec3f();
         mesh.Rotate(rotationOrigin, rotateX, rotateY, rotateZ);
-    }
-
-    public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
-    {
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_ItemShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
-
-        string key = GetMeshCacheKey(itemstack);
-
-        if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.DebugOnBeforeRender)
-        {
-            MeshData mesh = GenMesh(itemstack, capi.ItemTextureAtlas, null);
-            meshref = capi.Render.UploadMultiTextureMesh(mesh);
-            meshRefs[key] = meshref;
-        }
-
-        renderinfo.ModelRef = meshref;
-        renderinfo.NormalShaded = true;
-
-        base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
-    }
-
-    public override string GetHeldItemName(ItemStack itemStack)
-    {
-        Variants variants = Variants.FromStack(itemStack);
-        variants.FindByVariant(NameByType, out List<object> _langKeys);
-        string defaultName = base.GetHeldItemName(itemStack);
-        return variants.GetName(_langKeys, defaultName);
-    }
-
-    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
-    {
-        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-
-        Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
-        variants.GetDescription(dsc, _langKeys);
-    }
-
-    public virtual MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
-    {
-        return GetOrCreateMesh(itemstack, targetAtlas);
-    }
-
-    public virtual string GetMeshCacheKey(ItemStack itemstack)
-    {
-        return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
-    }
-
-    public virtual string GetContainedInfo(ItemSlot inSlot)
-    {
-        StringBuilder dsc = new();
-        Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(ContainedDescriptionByType, out List<object> _langKeys);
-        
-        if (_langKeys == null || !_langKeys.Any())
-        {
-            return GetHeldItemName(inSlot.Itemstack);
-        }
-
-        variants.GetDescription(dsc, _langKeys);
-        return dsc.ToString();
-    }
-
-    public virtual string GetContainedName(ItemSlot inSlot, int quantity)
-    {
-        return GetHeldItemName(inSlot.Itemstack);
     }
 }

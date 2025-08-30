@@ -1,7 +1,10 @@
+global using AttributeRenderingLibrary;
 using HarmonyLib;
 using TabletopGames.Configuration;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
+using Vintagestory.API.Util;
 
 namespace TabletopGames;
 
@@ -16,6 +19,10 @@ public class Core : ModSystem
 
     public override void StartPre(ICoreAPI api)
     {
+        GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.Append("rotateYaw");
+        GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.Append("rotateY");
+        GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.Append("scale");
+
         HarmonyInstance.PatchAllUncategorized();
 
         if (api.Side.IsClient())

@@ -261,8 +261,20 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
             return string.Empty;
         }
 
+        if (modeNameByType == null || modeNameByType.Count == 0)
+        {
+            return string.Empty;
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(modeNameByType, out List<object> _langKeys);
-        return variants.GetName(_langKeys, string.Empty);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            return string.Empty;
+        }
+        return name;
+
     }
 }
