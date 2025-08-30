@@ -211,30 +211,58 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
+        if (NameByType == null || NameByType.Count == 0)
+        {
+            return base.GetHeldItemName(itemStack);
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(NameByType, out List<object> _langKeys);
-        string defaultName = base.GetHeldItemName(itemStack);
-        return variants.GetName(_langKeys, defaultName);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            name = base.GetHeldItemName(itemStack);
+        }
+        return name;
     }
 
     public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
     {
-        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
+        if (NameByType == null || NameByType.Count == 0)
         {
-            blockEntity.Variants.FindByVariant(NameByType, out List<object> _langKeys);
-            string defaultName = base.GetPlacedBlockName(world, pos);
-            return blockEntity.Variants.GetName(_langKeys, defaultName);
+            return base.GetPlacedBlockName(world, pos);
         }
-        return base.GetPlacedBlockName(world, pos);
+
+        if (world.BlockAccessor.GetBlockEntity(pos) is not BlockEntityDisplayShapeTexturesFromAttributes blockEntity)
+        {
+            return base.GetPlacedBlockName(world, pos);
+        }
+
+        Variants variants = blockEntity.Variants;
+        variants.FindByVariant(NameByType, out List<object> _langKeys);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            name = base.GetPlacedBlockName(world, pos);
+        }
+        return name;
     }
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
+        if (DescriptionByType == null || DescriptionByType.Count == 0)
+        {
+            return;
+        }
+
         Variants variants = Variants.FromStack(inSlot.Itemstack);
-        variants.FindByVariant(DescriptionByType, out List<object> description);
-        variants.GetDescription(dsc, description);
+        variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
+        variants.GetDescription(dsc, _langKeys);
+        variants.GetDebugDescription(dsc, withDebugInfo);
     }
 
     public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)

@@ -65,9 +65,6 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
     public override bool Equals(ItemStack thisStack, ItemStack otherStack, params string[] ignoreAttributeSubTrees)
     {
         ignoreAttributeSubTrees ??= Array.Empty<string>();
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateYaw");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("rotateY");
-        ignoreAttributeSubTrees = ignoreAttributeSubTrees.Append("scale");
 
         if (thisStack.Id == otherStack.Id && IsEmpty(thisStack) && IsEmpty(otherStack))
         {
@@ -84,7 +81,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         EnumCardRenderType renderType = target switch
         {
             EnumItemRenderTarget.Gui => EnumCardRenderType.Gui,
-            _ when renderinfo.DoesPlayerHaveThisSlot(capi) => EnumCardRenderType.Hand,
+            _ when DoesPlayerHaveThisSlot(renderinfo, capi) => EnumCardRenderType.Hand,
             _ => EnumCardRenderType.HandSafe
         };
 
@@ -103,12 +100,27 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
     }
 
+    public static bool DoesPlayerHaveThisSlot(ItemRenderInfo renderinfo, ICoreClientAPI capi)
+    {
+        return (renderinfo?.InSlot?.Inventory as InventoryBasePlayer)?.Player.PlayerUID == capi.World.Player.PlayerUID;
+    }
+
     public override string GetHeldItemName(ItemStack itemStack)
     {
+        if (NameByType == null || NameByType.Count == 0)
+        {
+            return base.GetHeldItemName(itemStack);
+        }
+
         Variants variants = Variants.FromStack(itemStack);
         variants.FindByVariant(NameByType, out List<object> _langKeys);
-        string defaultName = base.GetHeldItemName(itemStack);
-        return variants.GetName(_langKeys, defaultName);
+
+        string name = variants.GetName(_langKeys);
+        if (string.IsNullOrEmpty(name))
+        {
+            name = base.GetHeldItemName(itemStack);
+        }
+        return name;
     }
 
     /// <summary>
@@ -175,7 +187,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
 
         if (unflip)
         {
-            variants.RemoveKey("flipped");
+            variants.RemoveKeys("flipped");
         }
         else
         {
