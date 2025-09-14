@@ -60,14 +60,7 @@
 			<HintPath>../configlib.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
-		<Reference Include="ImGui.NET">
-			<HintPath>../ImGui.NET.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="VSImGui">
-			<HintPath>../VSImGui.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+		<PackageReference Include="VSImGui" Version="0.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
