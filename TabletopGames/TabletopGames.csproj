@@ -60,7 +60,7 @@
 			<HintPath>../configlib.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
-		<PackageReference Include="VSImGui" Version="0.0.6" />
+		<PackageReference Include="VSImGui" Version="0.0.6" PrivateAssets="all"  />
 	</ItemGroup>
 
 	<ItemGroup>
