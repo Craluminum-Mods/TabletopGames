@@ -1,17 +1,29 @@
 {
     "game:tabname-tabletopgames": "테이블 게임",
     "block-chessboard": "체스판",
-
-
+    "block-morrisboard-three": "쓰리 멘스 모리스 (판)",
+    "block-morrisboard-six": "식스 멘스 모리스 (판)",
     "block-morrisboard-nine": "나인 멘스 모리스 (판)",
-
+    "block-morrisboard-twelve": "트웰브 멘스 모리스 (판)",
     "block-goboard": "바둑판",
     "block-shogiboard": "쇼기판",
-    "block-backgammonboard-classic": "백개먼판",
-
-
-
-
+    "block-shogistand-4x4_rstand": "쇼기 기물 받침 (오른쪽)",
+    "block-shogistand-4x4_lstand": "쇼기 기물 받침 (왼쪽)",
+    "block-backgammonboard-classic": "백개먼 판",
+    "block-dicetray-triangle": "삼각형 주사위 트레이",
+	"block-dicetray-square": "사각형 주사위 트레이",
+	"block-dicetray-pentagon": "오각형 주사위 트레이",
+	"block-dicetray-hexagon": "육각형 주사위 트레이",
+	"block-dicetray-heptagon": "칠각형 주사위 트레이",
+	"block-dicetray-octagon": "팔각형 주사위 트레이",
+    "block-chiseledboard": "조각된 게임판",
+    "blockdesc-chiseledboard-held": "<font color=\"#99c9f9\"><i>조각된 게임판</i></font>     <br>팁: 조각된 블록은 한 방향을 향합니다        <br><br><hk>toolmodeselect</hk> 버튼(도구 모드)으로 다양한 방식으로 수정할 수 있습니다.",
+    "item-gameboard-generic": "일반적인 게임판 (기능 없음)",
+    "itemdesc-gameboard-generic": "단단하고 평평한 표면에 놓아 모든 게임판 제작",
+    "item-schematic-generic_piece": "테이블 게임 기물 도식",
+    "itemdesc-schematic-generic_piece": "모든 게임 기물 제작에 사용",
+    "item-chiseledpiece": "조각된 기물",
+    "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>조각된 기물</i></font>     <br>팁: 조각된 블록은 한 방향을 향합니다        <br><br><hk>toolmodeselect</hk> 버튼(도구 모드)으로 다양한 방식으로 수정할 수 있습니다.",
     "item-chesspiece": "체스 기물",
     "item-chesspiece-bishop": "비숍",
     "item-chesspiece-king": "킹",
@@ -19,17 +31,19 @@
     "item-chesspiece-pawn": "폰",
     "item-chesspiece-queen": "퀸",
     "item-chesspiece-rook": "룩",
-
-
-    "item-checkerpiece-king": "왕",
-
-    "item-shogipiece": "쇼기의 기물",
+    "item-checkerpiece": "체커 기물",
+    "item-checkerpiece-pawn": "일반 기물",
+    "item-checkerpiece-king": "킹",
+    "item-gostone": "바둑돌",
+    "item-gobowl": "바둑통",
+    "item-gobowl-lid": "바둑통 뚜껑",
+    "item-shogipiece": "쇼기 기물",
     "item-shogipiece-fuhyo": "보병",
     "item-shogipiece-ginsho": "은장",
     "item-shogipiece-gyokusho": "옥장",
     "item-shogipiece-hisha": "비차",
     "item-shogipiece-kakugyo": "각행",
-    "item-shogipiece-keima": "계마",
+    "item-shogipiece-keima": "게마",
     "item-shogipiece-kinsho": "금장",
     "item-shogipiece-kyosha": "향차",
     "item-shogipiece-narigin": "성은",
@@ -38,5 +52,230 @@
     "item-shogipiece-osho": "왕장",
     "item-shogipiece-ryuma": "용마",
     "item-shogipiece-ryuo": "용왕",
-    "item-shogipiece-tokin": "토금"
+    "item-shogipiece-tokin": "토금",
+    "game:item-stone-generic": "돌멩이",
+    "game:item-plank-generic": "판자",
+    "game:item-mineral": "광물",
+    "game:item-metalbit": "금속 조각",
+    "item-dice": "주사위",
+    "item-dice-classic_cube": "6면체 주사위",
+    "item-dice-doubling_cube": "더블링 큐브 주사위",
+    "item-dice-d4": "4면체 주사위",
+    "item-dice-d6": "6면체 주사위",
+    "item-dice-d8": "8면체 주사위",
+    "item-dice-d10": "10면체 주사위",
+    "item-dice-d10p": "10단위 10면체 주사위",
+    "item-dice-d12": "12면체 주사위",
+    "item-dice-d20": "20면체 주사위",
+    "itemdesc-dice-classic_cube": "정육면체 모양의 6면체 주사위. 1에서 6까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-doubling_cube": "백개먼에 사용되는 6면체 주사위. 2, 4, 8, 16, 32, 64의 값이 나온다.",
+    "itemdesc-dice-d4": "정사면체 모양의 4면체 주사위. 1에서 4까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d6": "정육면체 모양의 6면체 주사위. 1에서 6까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d8": "정팔면체 모양의 8면체 주사위. 1에서 8까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d10": "오각엇쌍각뿔 모양의 10면체 주사위. 0에서 9까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d10p": "오각엇쌍각뿔 모양의 10면체 백분율 주사위. 00에서 90까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d12": "정십이면체 모양의 12면체 주사위. 1에서 12까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-d20": "정이십면체 모양의 20면체 주사위. 1에서 20까지의 무작위 숫자가 나온다.",
+    "itemdesc-dice-dots": "<font color=\"#99c9f9\"><i>윗면에 <strong>{0}</strong>(이)가 떴다.</i></font>",
+    "item-playingcard": "트럼프 카드",
+    "itemdesc-playingcard": "손에 든 카드들은 <hk>toolmodeselect</hk> 버튼으로 순서를 바꾸거나 뽑을 수 있다.<br><hk>tabletopgames:shuffle</hk> 버튼으로 덱 전체를 섞는다.",
+    "itemdesc-playingcard-pack": "팩",
+    "itemdesc-playingcard-suit": "슈트",
+    "itemdesc-playingcard-suit-club": "클럽",
+    "itemdesc-playingcard-suit-spade": "스페이드",
+    "itemdesc-playingcard-suit-diamond": "다이아몬드",
+    "itemdesc-playingcard-suit-heart": "하트",
+    "itemdesc-playingcard-suit-none": "-",
+    "itemdesc-playingcard-rank": "랭크",
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    "itemdesc-playingcard-rank-j": "잭",
+    "itemdesc-playingcard-rank-q": "퀸",
+    "itemdesc-playingcard-rank-k": "킹",
+    "itemdesc-playingcard-rank-a": "에이스",
+    "itemdesc-playingcard-rank-joker": "조커",
+    "itemdesc-playingcard-pack-vs": "빈티지 스토리",
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    "itemdesc-playingcard-short-rank-j": "J",
+    "itemdesc-playingcard-short-rank-q": "Q",
+    "itemdesc-playingcard-short-rank-k": "K",
+    "itemdesc-playingcard-short-rank-a": "A",
+    "itemdesc-playingcard-short-rank-joker": "조커",
+    "itemdesc-playingcard-short-suit-club": "\u2663",
+    "itemdesc-playingcard-short-suit-spade": "\u2660",
+    "itemdesc-playingcard-short-suit-diamond": "\u25C6",
+    "itemdesc-playingcard-short-suit-heart": "\u2665",
+    "itemdesc-playingcard-short-suit-none": "-",
+    "item-pack-playingcards_vs": "트럼프 카드 한 팩 (빈티지 스토리)",
+    "itemdesc-pack-playingcards_vs": "<hk>rightmouse</hk> 버튼으로 푼다!<br><br>트럼프 카드 52장과 빈티지 스토리 스타일의 조커 4장이 들어 있다",
+    "item-blankcard": "빈 카드",
+    "itemdesc-blankcard": "트럼프 카드 제작에 쓰인다.",
+    "item-shuffler-linensack": "섞기 위한 자루",
+    "itemdesc-shuffler-linensack": "무언가를 섞기(셔플) 위해 쓰인다 (<hk>tabletopgames:shuffle</hk>).",
+
+    "toolmode-sinkslot-quantity-input-quantity-output": "재료: {1} {0}개; 결과: {3} {2}개",
+    "toolmode-sinkslot-pigment-changeboardlinescolor": "여기에 안료를 드래그 앤 드롭 해 게임판의 선 색상을 바꾼다.",
+    "toolmode-sinkslot-pigment-backgammon-changeprimarycolor": "여기에 안료를 드래그 앤 드롭 해 게임판 그림의 주 색상을 바꾼다.",
+    "toolmode-sinkslot-pigment-backgammon-changesecondarycolor": "여기에 안료를 드래그 앤 드롭 해 게임판 그림의 보조 색상을 바꾼다.",
+    "toolmode-sinkslot-pigment-dice-changedotcolor": "여기에 안료를 드래그 앤 드롭 해 주사위의 점이나 숫자 색상을 바꾼다.",
+    "toolmode-dice-reset": "주사위를 기본 상태로 되돌린다.",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-piece": "(기물) 조각된 블록을 여기에 드래그 앤 드롭 해 조각된 기물을 제작한다 (대량 제작: Shift 누르기)",
+    "toolmode-sinkslot-convert-chiseled-block-to-chiseled-board": "(게임판) 조각된 블록을 여기에 드래그 앤 드롭 해 조각된 게임판을 제작한다 (대량 제작: Shift 누르기)",
+    "toolmode-sinkslot-exchange-chiseled-block": "조각된 블록을 여기에 드래그 앤 드롭 해 주 조각된 블록과 교체",
+    "toolmode-remove-chiseled-block": "빈 마우스로 클릭해 주 조각된 블록을 제거",
+    "toolmode-sinkslot-up-add-chiseled-block": "조각된 블록을 여기에 드래그 앤 드롭 해 위에 쌓기",
+    "toolmode-sinkslot-up-remove-chiseled-block": "위에 쌓은 조각된 블록 제거",
+    "toolmode-sinkslot-down-add-chiseled-block": "조각된 블록을 여기에 드래그 앤 드롭 해 아래에 쌓기",
+    "toolmode-sinkslot-down-remove-chiseled-block": "아래에 쌓은 조각된 블록 제거",
+    "toolmode-increase-rotation-by-90-degrees": "90도 회전",
+    "toolmode-sinkslot-chiseled-block-set-hitboxes": "(히트박스) 조각된 블록을 여기에 드래그 앤 드롭 해 게임판의 히트박스 설정",
+    "toolmode-sinkslot-chiseled-block-set-textures": "(겉모습) 조각된 블록을 여기에 드래그 앤 드롭 해 게임판의 겉모습 설정",
+    "toolmode-sinkslot-chiseled-block-remove-hitboxes": "(히트박스) 히트박스에 쓰인 조각된 블록 제거",
+    "toolmode-sinkslot-chiseled-block-remove-textures": "(겉모습) 겉모습에 쓰인 조각된 블록 제거",
+    "toolmode-scale-down": "크기를 1씩 줄이기. Shift를 눌러 크기를 0.25 단위로 변경",
+    "toolmode-scale-up": "크기를 1씩 키우기. Shift를 눌러 크기를 0.25 단위로 변경",
+
+    "inworldcrafting-item-gameboard-chessboard_step1": "체스판 제조: 1/3 단계",
+    "inworldcrafting-item-gameboard-chessboard_step2": "체스판 제조: 2/3 단계",
+    "inworldcraftingdesc-chessboardinfo": "판자 두 개나 돌멩이 두 개를 추가해 체스판 제작을 시작한다. Use <hk>rightmouse</hk> 버튼으로 어두운 칸을 만든다.",
+    "inworldcraftingdesc-goboardinfo": "선을 그릴 안료를 들고 <hk>rightmouse</hk> 버튼으로 바둑판으로 바꾼다.",
+    "inworldcraftingdesc-dicetrayinfo": "주사위를 들고 <hk>rightmouse</hk> 버튼으로 주사위 트레이로 바꾼다.",
+    "inworldcraftingdesc-item-gameboard-chessboard_step1": "판자 두 개나 돌멩이 두 개를 추가해 <hk>rightmouse</hk> 밝은 칸을 만든다.",
+    "inworldcraftingdesc-item-gameboard-chessboard_step2": "끌을 사용해 쓸 수 있게 만든다.",
+
+    "trivia-chessboard": "<font color=\"#99c9f9\"><i>체커판으로도 사용할 수 있다.</i></font><br>",
+    "trivia-chesspiece-bishop": "<font color=\"#99c9f9\"><i>대각선 방향으로 이동한다.</i></font><br>",
+    "trivia-chesspiece-king": "<font color=\"#99c9f9\"><i>가장 중요한 기물. 반드시 지켜내야 한다.</i></font><br>",
+    "trivia-chesspiece-knight": "<font color=\"#99c9f9\"><i>'L'자로 독특하게 이동한다.</i></font><br>",
+    "trivia-chesspiece-pawn": "<font color=\"#99c9f9\"><i>폰은 체스의 영혼이다.</i></font><br>",
+    "trivia-chesspiece-queen": "<font color=\"#99c9f9\"><i>룩과 비숍의 움직임을 결합한 가장 강력한 기물.</i></font><br>",
+    "trivia-chesspiece-rook": "<font color=\"#99c9f9\"><i>가로나 세로 직선 방향으로 이동한다.</i></font><br>",
+    "trivia-checkerpiece": "<font color=\"#99c9f9\"><i>뒤집어서 일반 기물과 킹을 전환할 수 있다.</i></font><br>",
+    "trivia-goboard-9x9": "<font color=\"#99c9f9\"><i>바둑판. 초보자가 바둑을 배우기에 이상적이다.</i></font><br>",
+    "trivia-goboard-13x13": "<font color=\"#99c9f9\"><i>바둑판. 중급 플레이어에게 적합하다.</i></font><br>",
+    "trivia-goboard-15x15": "<font color=\"#99c9f9\"><i>바둑판. 주로 오목을 둘 때 사용한다.</i></font><br>",
+    "trivia-goboard-17x17": "<font color=\"#99c9f9\"><i>바둑판. 19x19 판이 표준이 되기 전 역사적으로 사용되어 왔다.</i></font><br>",
+    "trivia-goboard-19x19": "<font color=\"#99c9f9\"><i>바둑판. 바둑을 두는 표준 크기.</i></font><br>",
+    "trivia-morrisboard-three": "<font color=\"#99c9f9\"><i>모리스의 간소화 버전으로, 짧게 놀기에 좋다.</i></font><br>",
+    "trivia-morrisboard-six": "<font color=\"#99c9f9\"><i>파이브 멘스 모리스를 하는 데도 쓸 수 있다.</i></font><br>",
+    "trivia-morrisboard-nine": "<font color=\"#99c9f9\"><i>고전적인 나인 멘스 모리스 게임.</i></font><br>",
+    "trivia-morrisboard-twelve": "<font color=\"#99c9f9\"><i>일레븐 멘스 모리스를 하는 데도 쓸 수 있다.</i></font><br>",
+    "trivia-shogipiece": "<font color=\"#99c9f9\"><i>일본 장기라고도 불리는 쇼기를 플레이할 때 사용한다.</i></font><br>",
+    "trivia-shogiboard": "<font color=\"#99c9f9\"><i>쇼기판. 일본 장기라고도 불리는 쇼기를 플레이할 때 사용한다.</i></font><br>",
+    "trivia-shogistand": "<font color=\"#99c9f9\"><i>상대방에게서 잡은 쇼기 기물을 올려두는 받침대.</i></font><br>",
+    "trivia-gobowl": "<font color=\"#99c9f9\"><i>바둘돌을 보관하는데 쓰이는 전통적인 그릇.</i></font><br>",
+    "trivia-gobowl-lid": "<font color=\"#99c9f9\"><i>상대방에게서 잡은 바둑돌은 여기로 간다.</i></font><br>",
+    "trivia-dicetray": "<font color=\"#99c9f9\"><i>주사위를 굴리기 위해 마련된 공간.</i></font><br>",
+    "dimension-5x5": "5 x 5",
+    "dimension-6x6": "6 x 6",
+    "dimension-7x7": "7 x 7",
+    "dimension-8x8": "8 x 8",
+    "dimension-9x9": "9 x 9",
+    "dimension-10x10": "10 x 10",
+    "dimension-13x13": "13 x 13",
+    "dimension-15x15": "15 x 15",
+    "dimension-17x17": "17 x 17",
+    "dimension-19x19": "19 x 19",
+    "rotation-y": "회전 (Y): {0}",
+    "scale": "크기: {0}",
+    "missing-chiseled-block-for-hitboxes": "히트박스: <font color=\"#ff8484\">없음</font>",
+    "contains-chiseled-block-for-hitboxes": "히트박스: <font color=\"#84ff84\">처음 조각한 블록에서 나옴</font>",
+    "missing-chiseled-block-for-textures": "겉모습: <font color=\"#ff8484\">처음 조각한 블록에서 나옴</font>",
+    "contains-chiseled-block-for-textures": "겉모습: <font color=\"#84ff84\">두번째로 조각한 블록에서 나옴</font>",
+
+    "transform-onMorrisTransform": "모리스 판 위",
+    "transform-onChessboardTransform": "체스판 위",
+    "transform-onGoboard9x9Transform": "9x9 바둑판 위",
+    "transform-onGoboard13x13Transform": "13x13 바둑판 위",
+    "transform-onGoboard19x19Transform": "19x19 바둑판 위",
+    "transform-onShogiTransform": "쇼기판 위",
+    "transform-onBackgammonTransform": "백개먼 판 위",
+    "transform-onDiceTrayTransform": "주사위 트레이 안",
+    "transform-onChiseledBoardTransform": "조각된 판 위",
+
+
+
+
+
+    "heldhelp-unpack": "풀기",
+    "heldhelp-shuffle": "섞기",
+    "heldhelp-combinecards": "인벤토리에 있는 모든 카드 합치기",
+    "blockhelp-gobowl-add-10": "바둑돌 10개 추가",
+    "blockhelp-gobowl-remove-10": "바둑돌 10개 제거",
+    "blockhelp-gobowl-add-or-remove-lid": "뚜껑 여닫기",
+    "blockhelp-schematic-create": "'테이블 기물 도식' 제작",
+    "blockhelp-playingcard-add-1": "트럼프 카드 하나 추가",
+    "blockhelp-playingcard-add-1-flipped": "뒤집은 트럼프 카드 하나 추가",
+    "blockhelp-playingcard-remove-1": "트럼프 카드 하나 가져가기",
+    "ingameerror-stacksize-mismatch": "같은 개수로만 가능하다",
+    "ingameerror-chiseled-block-only": "조각된 블록만 가능하다",
+    "ingameerror-hitbox-removal-requires-texture-removal": "히트박스용 블록을 제거하기 전에 겉모습용 블록을 먼저 제거해야 한다",
+    "ingameerror-reached-scale-up-limit": "{0}배로 크기를 키우려고 했지만, 최대 크기는 {1}배다!",
+    "ingameerror-reached-scale-down-limit": "{0}배로 크기를 줄이려고 했지만, 최소 크기는 {1}배다!",
+    "ingameerror-reached-stacking-up-limit": "위에 쌓을 수 있는 블록 개수 제한은 {0}개다!",
+    "ingameerror-reached-stacking-down-limit": "아래에 쌓을 수 있는 블록 개수 제한은 {0}개다!",
+    "ingameerror-mainblock-removal-blocked-by-extrablocks": "다른 블록을 먼저 제거하기 전에는 주 블록을 제거할 순 없다",
+    "ingameerror-shuffle-empty-slot": "가진 카드가 없다. 빈 손을 섞을 순 없어! (카드나 섞기 위한 자루를 들고 있어야 한다)",
+
+    "hotkey-shuffle": "(Tabletop Games) 들고 있는 카드나 자루 섞기",
+    "hotkey-combinecards": "(Tabletop Games) 인벤토리의 모든 카드 합치기",
+
+    "handbooktitle-shuffler-containable": "보관 가능",
+    
+    "item-handbooktitle-generic-howtoobtain": "획득",
+    "item-handbooktext-generic-howtoobtain": "<a href=\"handbooksearch://테이블 게임 기물 도식\">도식</a>을 사용해 획득!",
+
+    "item-handbooktitle-dicetray-howtoobtain": "획득",
+    "item-handbooktext-dicetray-howtoobtain": "<a href=\"handbooksearch://일반적인 게임판\">일반적인 게임판</a>을 놓고, <a href=\"handbooksearch://주사위\">주사위</a>를 들고 <hk>rightmouse</hk> 버튼으로 상호 작용해 획득",
+
+    "item-handbooktitle-schematic-howtoobtain": "획득",
+    "item-handbooktext-schematic-howtoobtain": "<a href=\"handbook://item-paper-parchment\">양피지</a>를 단단한 표면에 놓고, <a href=\"handbooksearch://안료\">안료</a>를 들고 <hk>rightmouse</hk> 버튼으로 상호 작용해 획득",
+
+    "item-handbooktitle-blankcard-howtoobtain": "획득",
+    "item-handbooktext-blankcard-howtoobtain": "<a href=\"handbook://item-paper-parchment\">양피지</a>를 단단한 표면에 놓고, <a href=\"handbooksearch://가위\">가위</a>를 들고 <hk>rightmouse</hk> 버튼으로 상호 작용해 획득",
+
+    "item-handbooktitle-playingcard-howtoobtain": "획득",
+    "item-handbooktext-playingcard-howtoobtain": "<a href=\"handbooksearch://트럼프 카드 한 팩\">트럼프 카드 한 팩</a>을 풀어 획득",
+
+    "item-handbooktitle-itemcontainer-interactions": "상호 작용",
+    "item-handbooktext-itemcontainer-interactions": "단단한 표면에 놓았을 때만 상호 작용이 가능합니다.        <br>뚜껑 여닫기: <hk>ctrl</hk> + <hk>rightmouse</hk>        <br>10개 넣기: <hk>shift</hk> + <hk>rightmouse</hk>        <br>10개 꺼내기: <hk>shift</hk> + <hk>rightmouse</hk>",
+
+    "item-handbooktitle-lid-interactions": "상호 작용",
+    "item-handbooktext-lid-interactions": "단단하고 평평한 표면에 놓았을 때만 상호 작용이 가능합니다.        <br>10개 넣기: <hk>shift</hk> + <hk>rightmouse</hk>        <br>10개 꺼내기: <hk>shift</hk> + <hk>rightmouse</hk>",
+
+    "item-handbooktitle-playingcard-interactions": "트럼프 카드 상호 작용",
+    "item-handbooktext-playingcard-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-playingcard\">가이드 읽기</a>",
+
+    "item-handbooktitle-shuffler-interactions": "섞기 위한 자루 상호 작용",
+    "item-handbooktext-shuffler-interactions": "<a href=\"handbook://tabletopgames:interactionsinfo-shuffler\">가이드 읽기</a>",
+
+    "craftinginfo-starterguide-title": "테이블 게임 101: 시작 가이드",
+    "craftinginfo-starterguide-text": "<strong>테이블 게임: 시작 가이드</strong>     <br><br><strong>일반적인 게임판 만들기</strong>      <br><a href=\"handbooksearch://일반적인 게임판\">일반적인 게임판</a>을 만들고 나서, 단단한 표면에 놓고 툴팁의 설명을 따르세요.        <br><br><strong><a href=\"handbooksearch://테이블 게임 기물 도식\">도식 만들기</a></strong>       <br>양피지를 단단한 표면에 놓고 안료로 상호 작용해 만듭니다.     <br><br><strong>기물 만들기</strong>       <br>손에 도식을 들고, <hk>toolmodeselect</hk> 버튼(도구 모드)을 눌러 기물 제작을 위한 메뉴를 엽니다.",
+
+    "craftinginfo-custompiecesguide-title": "테이블 게임: 맞춤 기물",
+    "craftinginfo-custompiecesguide-text": "<strong>테이블 게임: 맞춤 기물</strong>     <br><br><a href=\"handbooksearch://테이블 게임 기물 도식\">도식</a>을 손에 들고, <hk>toolmodeselect</hk> 버튼(도구 모드)을 누릅니다. 끌 도구 아이콘이 있는 모드를 찾아서, 설명을 따르세요.      <br><br>크기 제한을 변경하고 싶다면, 다음 커맨드를 사용하세요:        <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxUp\">/worldconfig tabletopgames_chiseledPieceMaxUp</a> : 위에 쌓을 수 있는 조각된 블록 개수 제한을 설정한다      <br><a href=\"chattype:///worldconfig tabletopgames_chiseledPieceMaxDown\">/worldconfig tabletopgames_chiseledPieceMaxDown</a> : 아래에 쌓을 수 있는 조각된 블록 개수 제한을 설정한다",
+
+    "craftinginfo-customboardsguide-title": "테이블 게임: 맞춤 게임판",
+    "craftinginfo-customboardsguide-text": "<strong>테이블 게임: 맞춤 게임판</strong>         <br><br>히트박스 = 칸.         <br>각 칸에는 물건 하나만 올릴 수 있다는 점 참고하세요.         <br><br><strong>1단계: 히트박스용 조각된 블록 제작</strong>         <br>인접하는 히트박스마다 다른 재질을 사용해 수직 복셀 기둥을 만드세요. 게임이 수평 복셀을 최적화하기에, 이 최적화를 막기 위해서는 수직 복셀 기둥을 사용해야만 합니다.         <br>예를 들어, 히트박스를 체커판 패턴으로 배열하고 싶다면, 재질을 두 종류만 사용해도 됩니다.         <br><br><strong>2단계 (선택): 겉모습용 조각된 블록 제작</strong>         <br>원하는 대로 조각하세요. 진심이에요, 이 단계에는 제약이 없습니다. <strong><i>이전 단계에 만든 블록과 방향이 같게만 하면 됩니다.</i></strong>         <br><br><strong>마지막 단계: 게임판 제작</strong>         <br><a href=\"handbooksearch://테이블 게임 기물 도식\">도식</a>을 손에 들고, <hk>toolmodeselect</hk> 버튼(도구 모드)을 누르세요. 끌 도구 아이콘을 찾아서, 설명을 따르면 됩니다.         <br><br><strong>추가 정보</strong>         <br>조각된 게임판을 만든 뒤에 더 자세한 사항은 블록 설명의 툴팁을 보세요.",
+
+    "interactionsinfo-playingcard-title": "테이블 게임: 트럼프 카드 - 상호 작용",
+    "interactionsinfo-playingcard-text": "<strong>테이블 게임: 트럼프 카드 - 상호 작용</strong>         <br><br>손에 있는 카드들은 <hk>tabletopgames:shuffle</hk> 버튼으로 섞을 수 있습니다.        <br><br>인벤토리에 있는 모든 카드는 <hk>tabletopgames:combinecards</hk> 버튼으로 합칠 수 있습니다.       <br><br><strong>인벤토리 칸</strong>       <br><i>카드 합치기</i>: 카드를 마우스로 들어 다른 카드를 클릭해 합칩니다.<br>참고: 카드 낱장끼리만 합칠 수 있습니다.      <br><br><strong>도구 모드 메뉴</strong>        <br>칸에서 카드 뽑기: <hk>rightmouse</hk>.       <br>카드를 들고 다른 카드를 클릭해 카드를 바꿔치기 합니다.       <br>다른 카드 앞에 카드 넣기: <hk>ctrl</hk> + <hk>rightmouse</hk>.       <br>다른 카드 뒤에 카드 넣기: <hk>shift</hk> + <hk>rightmouse</hk>.       <br><br><strong>바닥에 놓인 카드</strong>       <br>바닥의 카드 스택에서 카드 한 장 뽑기 <hk>shift</hk> + <hk>rightmouse</hk>.     <br>바닥의 카드 위에 카드 쌓기: <hk>shift</hk> + <hk>rightmouse</hk>.         <br>바닥의 카드 위에 <i>뒤집은</i> 카드 놓기: <hk>ctrl</hk> + <hk>rightmouse</hk>.          <br>단단한 표면 위에 카드 놓기: <hk>shift</hk> + <hk>rightmouse</hk>.          <br>단단한 표면 위에 <i>뒤집은</i> 카드 놓기: <hk>shift</hk> + <hk>ctrl</hk> + <hk>rightmouse</hk>.",
+
+    "interactionsinfo-shuffler-title": "테이블 게임: 섞기 위한 자루 - 상호 작용",
+    "interactionsinfo-shuffler-text": "<strong>테이블 게임: 섞기 위한 자루 - 상호 작용</strong>         <br><br>손에 든 섞기 위한 자루는 <hk>tabletopgames:shuffle</hk> 버튼을 눌러 섞을 수 있습니다.       <br><br><strong>바닥에 놓인 섞기 위한 자루</strong>       <br>한 개 꺼내기: <hk>shift</hk> + <hk>rightmouse</hk>.     <br>한 개 넣기: <hk>shift</hk> + <hk>rightmouse</hk>.         <br>많이 넣기: <hk>ctrl</hk> + <hk>rightmouse</hk>."
 }
