@@ -7,6 +7,6 @@
     "version": "3.0.2",
     "dependencies": {
         "game": "1.21.0",
-        "attributerenderinglibrary": "2.1.1"
+        "attributerenderinglibrary": "2.4.0"
     }
 }
