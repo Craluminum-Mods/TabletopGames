@@ -68,6 +68,7 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
         api.RegisterItemClass("TabletopGames.ItemShuffler", typeof(ItemShuffler));
+        api.RegisterItemClass("TabletopGames.ItemRollable", typeof(ItemRollable));
     }
 
     private void RegisterBlocks()
