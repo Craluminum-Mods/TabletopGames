@@ -30,14 +30,6 @@ public static class GroundStorageInteractionFix
             return true;
         }
 
-        bool isGroundStorable = hotbarSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>();
-        if (!isGroundStorable && (ProcessInWorldCrafting(byPlayer, blockSel, begs, targetSlot) || ProcessContainerInteractions(byPlayer, blockSel, begs, targetSlot)))
-        {
-            begs.MarkDirty(true);
-            __result = true;
-            return false;
-        }
-
         if (targetSlot?.Itemstack?.ItemAttributes != null && targetSlot.Itemstack.ItemAttributes.KeyExists("tabletopGames.inWorldCraftingProps"))
         {
             List<CraftingStep> steps = targetSlot.Itemstack.ItemAttributes["tabletopGames.inWorldCraftingProps"].AsObject(defaultValue: new List<CraftingStep>());
@@ -50,15 +42,5 @@ public static class GroundStorageInteractionFix
         }
 
         return true;
-    }
-
-    private static bool ProcessInWorldCrafting(IPlayer byPlayer, BlockSelection blockSel, BlockEntityGroundStorage begs, ItemSlot targetSlot)
-    {
-        return targetSlot?.Itemstack?.Collectible is ItemIntermediate itemIntermediate && itemIntermediate.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel);
-    }
-
-    private static bool ProcessContainerInteractions(IPlayer byPlayer, BlockSelection blockSel, BlockEntityGroundStorage begs, ItemSlot targetSlot)
-    {
-        return targetSlot?.Itemstack?.Collectible is ItemContainer itemContainer && itemContainer.OnContainedInteractStart(begs, targetSlot, byPlayer, blockSel);
     }
 }

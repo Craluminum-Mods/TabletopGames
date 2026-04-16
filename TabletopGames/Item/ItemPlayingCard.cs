@@ -14,7 +14,7 @@ namespace TabletopGames;
 /// <summary>
 /// Implements stacking and container behavior. Renders shape and textures using attribute based type system.
 /// </summary>
-public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSource, IShufflable
+public class ItemPlayingCard : Item, IContainedMeshSource, IShufflable
 {
     public Dictionary<string, string> PackCodeByType { get; protected set; } = new();
     public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
@@ -85,7 +85,7 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
             _ => EnumCardRenderType.HandSafe
         };
 
-        string key = ((IContainedMeshSource)this).GetMeshCacheKey(itemstack) + '-' + renderType.ToString();
+        string key = ((IContainedMeshSource)this).GetMeshCacheKey(renderinfo.InSlot) + '-' + renderType.ToString();
 
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef meshref) || TabletopDebug.DebugOnBeforeRender)
         {
@@ -447,12 +447,12 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         inSlot.MarkDirty();
     }
 
-    MeshData IContainedMeshSource.GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    MeshData IContainedMeshSource.GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        MeshData mesh = GetOrCreateMesh(itemstack, targetAtlas, EnumCardRenderType.Stack);
+        MeshData mesh = GetOrCreateMesh(slot.Itemstack, targetAtlas, EnumCardRenderType.Stack);
 
         // Rotations are currently implemented for BlockEntityGroundStorage only
-        if (itemstack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
+        if (slot.Itemstack.Attributes.TryGetFloat("rotateYaw") is float rotateYaw)
         {
             mesh = mesh.Rotate(Vec3f.Half, 0, rotateYaw, 0);
         }
@@ -460,75 +460,40 @@ public class ItemPlayingCard : Item, IContainedInteractable, IContainedMeshSourc
         return mesh;
     }
 
-    string IContainedMeshSource.GetMeshCacheKey(ItemStack itemstack)
+    string IContainedMeshSource.GetMeshCacheKey(ItemSlot slot)
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.Append(itemstack.Collectible.Code);
+        stringBuilder.Append(slot.Itemstack.Collectible.Code);
         stringBuilder.Append('-');
-        stringBuilder.Append(Variants.FromStack(itemstack));
+        stringBuilder.Append(Variants.FromStack(slot.Itemstack));
         stringBuilder.Append("-rotateyaw:");
-        stringBuilder.Append(itemstack.Attributes.GetFloat("rotateYaw"));
+        stringBuilder.Append(slot.Itemstack.Attributes.GetFloat("rotateYaw"));
 
-        PlayingCardInventory inventory = GetInventory(itemstack);
+        PlayingCardInventory inventory = GetInventory(slot.Itemstack);
 
         if (!inventory.Empty)
         {
             stringBuilder.Append("-inv:");
-            foreach (ItemSlot slot in inventory)
+            foreach (ItemSlot _slot in inventory)
             {
                 stringBuilder.Append('-');
 
-                int slotId = inventory.GetSlotId(slot);
-                if (slot.Empty)
+                int slotId = inventory.GetSlotId(_slot);
+                if (_slot.Empty)
                 {
                     stringBuilder.Append($"{slotId}:empty");
                     continue;
                 }
 
-                if (slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is IContainedMeshSource meshSource)
+                if (_slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>() is IContainedMeshSource meshSource)
                 {
                     stringBuilder.Append($"{slotId}:");
-                    stringBuilder.Append(meshSource.GetMeshCacheKey(slot.Itemstack));
+                    stringBuilder.Append(meshSource.GetMeshCacheKey(_slot));
                 }
             }
         }
         return stringBuilder.ToString();
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStart
-    /// </summary>
-    bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
-        {
-            return interactions.OnContainedInteractStart(be, slot, byPlayer, blockSel);
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStep
-    /// </summary>
-    bool IContainedInteractable.OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
-        {
-            return interactions.OnContainedInteractStep(secondsUsed, be, slot, byPlayer, blockSel);
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStop
-    /// </summary>
-    void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IPlayingCardInteractions>() is IPlayingCardInteractions interactions)
-        {
-            interactions.OnContainedInteractStop(secondsUsed, be, slot, byPlayer, blockSel);
-        }
     }
 
     /// <summary>

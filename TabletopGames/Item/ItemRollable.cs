@@ -6,7 +6,7 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
-public class ItemRollable : ItemIntermediate
+public class ItemRollable : ItemShapeTexturesFromAttributes
 {
     private Dictionary<string, CompositeShape>? rolledShapeByType;
 

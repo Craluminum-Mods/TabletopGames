@@ -1,8 +1,0 @@
-[
-    {
-        "op": "addmerge",
-        "path": "/behaviors/-",
-        "value": { "name": "TabletopGames.ExtraBlockInteractionHelp" },
-        "file": "game:blocktypes/groundstorage.json"
-    }
-]

@@ -1,6 +1,6 @@
 {
     "code": "gameboard",
-    "class": "TabletopGames.ItemIntermediate",
+    "class": "AttributeRenderingLibrary.ItemShapeTexturesFromAttributes",
     "maxStackSize": 64,
     "attributes": {
         "handbook": { "groupBy": ["tabletopgames:gameboard"] },
@@ -101,72 +101,6 @@
                 "primarywood": { "base": "game:block/wood/debarked/{primarywood}", "rotation": 90, "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] },
                 "secondarywood": { "base": "game:block/wood/debarked/{secondarywood}", "blendedOverlays": [{ "base": "tabletopgames:block/board/chess/{size}", "blendMode": "OverlayCutout" }] }
             }
-        },
-        "inWorldCraftingProps": {
-            "type-generic": [
-                {
-                    "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                    "setVariants": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
-                },
-                { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-
-                // Floral Zones mods compatibility
-                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-
-                // Wildcraft Trees compatibility
-                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
-
-                // go boards
-                { "triggerBy": { "type": "item", "code": "game:charcoal" }, /*              */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, /*    */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:coke" }, /*                  */ "setVariants": { "size": "19x19", "color": "cokeblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, /*           */ "setVariants": { "size": "19x19", "color": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, /*       */ "setVariants": { "size": "19x19", "color": "limewhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, /*      */ "setVariants": { "size": "19x19", "color": "verdigris" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, /*       */ "setVariants": { "size": "19x19", "color": "ultramarine" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-                { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, /*          */ "setVariants": { "size": "19x19", "color": "cinnabar" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
-
-                // dice tray
-                {
-                    "triggerBy": { "type": "item", "code": "tabletopgames:dice" },
-                    "setVariants": { "type": "pentagon" },
-                    "convertTo": { "type": "block", "code": "tabletopgames:dicetray" },
-                    "copyAttributes": true,
-                    "consumeIngredient": false
-                }
-            ],
-
-            "type-chessboard_step1": [
-                {
-                    "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
-                    "setVariants": { "type": "chessboard_step2", "secondarystone": "{stone}" }
-                },
-                { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-
-                // Floral Zones mods compatibility
-                { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-                { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
-
-                // Wildcraft Trees compatibility
-                { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } }
-            ],
-            "type-chessboard_step2": [
-                {
-                    "triggerBy": { "type": "item", "code": "game:chisel-*", "isTool": true },
-                    "convertTo": { "type": "block", "code": "tabletopgames:chessboard" },
-                    "removeVariants": ["type"],
-                    "copyAttributes": true
-                }
-            ]
         }
     },
     "behaviors": [
@@ -176,6 +110,77 @@
                 "layout": "SingleCenter",
                 "selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+            }
+        },
+        {
+            "name": "TabletopGames.Intermediate",
+            "properties": {
+                "inWorldCraftingProps": {
+                    "type-generic": [
+                        {
+                            "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
+                            "setVariants": { "type": "chessboard_step1", "primarystone": "{stone}", "size": "8x8" }
+                        },
+                        { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+
+                        // Floral Zones mods compatibility
+                        { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                        { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+
+                        // Wildcraft Trees compatibility
+                        { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step1", "primarywood": "{wood}", "size": "8x8" } },
+
+                        // go boards
+                        { "triggerBy": { "type": "item", "code": "game:charcoal" }, /*              */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:ore-bituminouscoal" }, /*    */ "setVariants": { "size": "19x19", "color": "carbonblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:coke" }, /*                  */ "setVariants": { "size": "19x19", "color": "cokeblack" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:stone-chalk" }, /*           */ "setVariants": { "size": "19x19", "color": "chalkwhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:stone-limestone" }, /*       */ "setVariants": { "size": "19x19", "color": "limewhite" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:nugget-malachite" }, /*      */ "setVariants": { "size": "19x19", "color": "verdigris" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:ore-lapislazuli" }, /*       */ "setVariants": { "size": "19x19", "color": "ultramarine" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+                        { "triggerBy": { "type": "item", "code": "game:ore-cinnabar" }, /*          */ "setVariants": { "size": "19x19", "color": "cinnabar" }, "convertTo": { "type": "block", "code": "tabletopgames:goboard" }, "copyAttributes": true, "consumeIngredient": false, "removeVariants": ["type"] },
+
+                        // dice tray
+                        {
+                            "triggerBy": { "type": "item", "code": "tabletopgames:dice" },
+                            "setVariants": { "type": "pentagon" },
+                            "convertTo": { "type": "block", "code": "tabletopgames:dicetray" },
+                            "copyAttributes": true,
+                            "consumeIngredient": false
+                        }
+                    ],
+
+                    "type-chessboard_step1": [
+                        {
+                            "triggerBy": { "type": "item", "code": "game:stone-*", "quantity": 2, "name": "stone", "skipVariants": ["meteorite-iron"] },
+                            "setVariants": { "type": "chessboard_step2", "secondarystone": "{stone}" }
+                        },
+                        { "triggerBy": { "type": "item", "code": "game:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+
+                        // Floral Zones mods compatibility
+                        { "triggerBy": { "type": "item", "code": "floralzonescaperegion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonescaribbeanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonescentralaustralianregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                        { "triggerBy": { "type": "item", "code": "floralzoneseastasiaticregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonesmediterraneanregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+                        { "triggerBy": { "type": "item", "code": "floralzonesneozeylandicregion:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } },
+
+                        // Wildcraft Trees compatibility
+                        { "triggerBy": { "type": "item", "code": "wildcrafttree:plank-*", "quantity": 2, "name": "wood" }, "setVariants": { "type": "chessboard_step2", "secondarywood": "{wood}" } }
+                    ],
+                    "type-chessboard_step2": [
+                        {
+                            "triggerBy": { "type": "item", "code": "game:chisel-*", "isTool": true },
+                            "convertTo": { "type": "block", "code": "tabletopgames:chessboard" },
+                            "removeVariants": ["type"],
+                            "copyAttributes": true
+                        }
+                    ]
+                }
             }
         }
     ],

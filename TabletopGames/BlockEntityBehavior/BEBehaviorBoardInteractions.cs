@@ -42,12 +42,12 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         if (placeable)
         {
             bool flip = TryTake(byPlayer, blockSel);
-            AssetLocation? sound = slot.Itemstack?.Block?.Sounds?.Place;
+            SoundAttributes sound = slot.Itemstack?.Block?.Sounds?.Place ?? new SoundAttributes("sounds/player/build", true);
             if (TryPut(byPlayer, slot, blockSel))
             {
                 if (!flip)
                 {
-                    Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+                    Api.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer);
                 }
                 return true;
             }
@@ -82,8 +82,8 @@ public class BEBehaviorBoardInteractions : BlockEntityBehavior, IInteractable
         ItemStack stack = boardSlot.TakeOut(1);
         if (byPlayer.InventoryManager.TryGiveItemstack(stack))
         {
-            AssetLocation? sound = stack.Block?.Sounds?.Place;
-            Api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
+            SoundAttributes sound = stack?.Block?.Sounds?.Place ?? new SoundAttributes("sounds/player/build", true);
+            Api.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer);
         }
         if (stack.StackSize > 0)
         {

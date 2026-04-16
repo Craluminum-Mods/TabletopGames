@@ -118,7 +118,7 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
             : base.GetCollisionBoxes(blockAccessor, pos);
     }
 
-    public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
+    public override bool DoPartialSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardPartialSelection;
     public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardSelectionColor;
 
     public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
@@ -165,10 +165,10 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
     {
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_BlockChiseledBoard_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
-        string key = GetMeshCacheKey(itemstack);
+        string key = GetMeshCacheKey(renderinfo.InSlot);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef? meshref))
         {
-            MeshData mesh = GenGuiMesh(itemstack);
+            MeshData mesh = GenGuiMesh(renderinfo.InSlot);
             meshref = capi.Render.UploadMultiTextureMesh(mesh);
             meshRefs[key] = meshref;
         }
@@ -244,12 +244,12 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         return stack;
     }
 
-    public MeshData GenGuiMesh(ItemStack stack)
+    public MeshData GenGuiMesh(ItemSlot slot)
     {
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        ItemStack? stackHitboxes = GetChiseledStack(stack, api.World, EnumStackType.HitBoxes);
-        ItemStack? stackTextures = GetChiseledStack(stack, api.World, EnumStackType.Textures);
+        ItemStack? stackHitboxes = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.Textures);
         ItemStack? stackToRender = stackTextures ?? stackHitboxes;
 
         if (stackToRender != null)
@@ -276,18 +276,18 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         return mesh;
     }
 
-    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GenGuiMesh(itemstack);
+        return GenGuiMesh(slot);
     }
 
-    public string GetMeshCacheKey(ItemStack itemstack)
+    public string GetMeshCacheKey(ItemSlot slot)
     {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(itemstack.Collectible.Code);
+        stringBuilder.Append(slot.Itemstack.Collectible.Code);
 
-        ItemStack? stackHitboxes = GetChiseledStack(itemstack, api.World, EnumStackType.HitBoxes);
-        ItemStack? stackTextures = GetChiseledStack(itemstack, api.World, EnumStackType.Textures);
+        ItemStack? stackHitboxes = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(slot.Itemstack, api.World, EnumStackType.Textures);
         ItemStack? stackToRender = stackTextures ?? stackHitboxes;
 
         if (stackToRender != null)

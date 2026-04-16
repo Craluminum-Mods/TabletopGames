@@ -9,7 +9,7 @@ namespace TabletopGames;
 /// <summary>
 /// In-world interactions between shuffler and items that can be stored in a shuffler
 /// </summary>
-public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShufflable, IShufflerInteractions
+public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShufflable, IContainedInteractable
 {
     private ICoreAPI? api;
 
@@ -193,9 +193,9 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         return giveStack;
     }
 
-    public static void DidMoveItems(IPlayer byPlayer, AssetLocation sound)
+    public static void DidMoveItems(IPlayer byPlayer, SoundAttributes sound)
     {
-        byPlayer.Entity.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+        byPlayer.Entity.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer);
     }
 
     bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
@@ -204,12 +204,26 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         {
             return false;
         }
-        return TryPut(be, slot, byPlayer, blockSel) || TryTake(be, slot, byPlayer, blockSel);
+        if (TryPut(be, slot, byPlayer, blockSel) || TryTake(be, slot, byPlayer, blockSel))
+        {
+            be.MarkDirty();
+            return true;
+        }
+        return false;
     }
 
     bool IContainedInteractable.OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
 
     void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) { }
+
+    WorldInteraction[] IContainedInteractable.GetContainedInteractionHelp(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+    {
+        if (slot?.Itemstack?.Collectible.GetBehavior<CollectibleBehaviorInteractionHelpConstructor>()?.GetInteractionHelp(slot.Itemstack) is WorldInteraction[] interactions)
+        {
+            return interactions;
+        }
+        return [];
+    }
 
     /// <summary>
     /// <inheritdoc/>

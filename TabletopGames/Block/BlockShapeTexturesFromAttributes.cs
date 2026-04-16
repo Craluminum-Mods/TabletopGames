@@ -170,7 +170,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         Variants variants = Variants.FromStack(itemstack);
-        string key = GetMeshCacheKey(itemstack);
+        string key = GetMeshCacheKey(renderinfo.InSlot);
         if (!meshRefs.TryGetValue(key, out MultiTextureMeshRef? meshref))
         {
             MeshData mesh = GenGuiMesh(variants);
@@ -265,13 +265,13 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         variants.GetDebugDescription(dsc, withDebugInfo);
     }
 
-    public MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GenGuiMesh(Variants.FromStack(itemstack));
+        return GenGuiMesh(Variants.FromStack(slot.Itemstack));
     }
 
-    public string GetMeshCacheKey(ItemStack itemstack)
+    public string GetMeshCacheKey(ItemSlot slot)
     {
-        return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
+        return $"{slot.Itemstack.Collectible.Code}-{Variants.FromStack(slot.Itemstack)}";
     }
 }

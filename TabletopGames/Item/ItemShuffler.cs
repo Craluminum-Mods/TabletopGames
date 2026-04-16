@@ -5,7 +5,6 @@ using System.Text;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Util;
-using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
@@ -13,7 +12,7 @@ namespace TabletopGames;
 /// Implements container item that shuffles its content on request.
 /// <inheritdoc/>
 /// </summary>
-public class ItemShuffler : ItemShapeTexturesFromAttributes, IContainedInteractable
+public class ItemShuffler : ItemShapeTexturesFromAttributes
 {
     public Dictionary<string, int> QuantitySlotsByType { get; protected set; } = new();
 
@@ -91,41 +90,6 @@ public class ItemShuffler : ItemShapeTexturesFromAttributes, IContainedInteracta
         ShufflerInventory inv = new ShufflerInventory(api, qslots);
         inv.FromTreeAttributes(containerStack.Attributes);
         return inv;
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStart
-    /// </summary>
-    bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IShufflerInteractions>() is IShufflerInteractions interactions)
-        {
-            return interactions.OnContainedInteractStart(be, slot, byPlayer, blockSel);
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStep
-    /// </summary>
-    bool IContainedInteractable.OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IShufflerInteractions>() is IShufflerInteractions interactions)
-        {
-            return interactions.OnContainedInteractStep(secondsUsed, be, slot, byPlayer, blockSel);
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Temporary stub until base game starts using GetCollectibleInterface in BlockEntityGroundStorage.OnPlayerInteractStop
-    /// </summary>
-    void IContainedInteractable.OnContainedInteractStop(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-    {
-        if (GetCollectibleInterface<IShufflerInteractions>() is IShufflerInteractions interactions)
-        {
-            interactions.OnContainedInteractStop(secondsUsed, be, slot, byPlayer, blockSel);
-        }
     }
 
     public override string GetContainedInfo(ItemSlot inSlot)

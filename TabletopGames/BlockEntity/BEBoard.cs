@@ -110,7 +110,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && tfMatrices != null)
             {
-                MeshData? stackMesh = getMesh(itemSlot.Itemstack);
+                MeshData? stackMesh = getMesh(itemSlot);
                 if (stackMesh == null) continue;
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
@@ -124,7 +124,7 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
         return true;
     }
 
-    protected override string getMeshCacheKey(ItemStack stack) => $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
+    protected override string getMeshCacheKey(ItemSlot slot) => $"{AttributeTransformCode}-{base.getMeshCacheKey(slot)}";
 
     protected override float[][] genTransformationMatrices()
     {
@@ -179,5 +179,5 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
     protected void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>().GetOrCreateSelectionBoxes(forceNew);
 
     float[][] IBoardPreviewRendererHelper.GenTransformationMatrices() => genTransformationMatrices();
-    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
+    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(new DummySlot(stack), index);
 }

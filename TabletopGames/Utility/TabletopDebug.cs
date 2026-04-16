@@ -8,7 +8,7 @@ public static class TabletopDebug
     public static Vec3f DebugOnBeforeRenderVec = Vec3f.Zero;
     
     public static bool BoardDataDebugInfo = false;
-    public static bool BoardParticleSelection = true;
+    public static bool BoardPartialSelection = true;
     public static bool TagsDebugInfo = false;
     public static bool VariantsDebugInfo = false;
 

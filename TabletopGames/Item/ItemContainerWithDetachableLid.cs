@@ -34,12 +34,17 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         bool isClosed = HasLid(containerSlot.Itemstack);
         bool lidInteractions = byPlayer.Entity.Controls.CtrlKey;
 
-        if (!lidInteractions)
+        if (!lidInteractions && !isClosed && base.OnContainedInteractStart(be, containerSlot, byPlayer, blockSel))
         {
-            return !isClosed && base.OnContainedInteractStart(be, containerSlot, byPlayer, blockSel);
+            be.MarkDirty();
+            return true;
         }
-
-        return isClosed ? DetachLid(containerSlot, byPlayer) : TryAttachLid(containerSlot, byPlayer);
+        if (isClosed ? DetachLid(containerSlot, byPlayer) : TryAttachLid(containerSlot, byPlayer))
+        {
+            be.MarkDirty();
+            return true;
+        }
+        return false;
     }
 
     public bool HasLid(ItemStack containerStack)

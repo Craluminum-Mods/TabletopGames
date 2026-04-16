@@ -58,9 +58,10 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         if (hotbarSlot?.Itemstack?.Collectible is ItemContainer) return false;
 
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (inventoryInteractions)
+        if (inventoryInteractions && (TryPut(containerSlot, inventory, byPlayer, ownSlot) || TryTake(containerSlot, inventory, byPlayer, ownSlot)))
         {
-            return TryPut(containerSlot, inventory, byPlayer, ownSlot) || TryTake(containerSlot, inventory, byPlayer, ownSlot);
+            be.MarkDirty();
+            return true;
         }
         return false;
     }
@@ -141,8 +142,8 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
 
     protected virtual void didMoveItems(ItemStack stack, IPlayer byPlayer)
     {
-        AssetLocation? sound = stack?.Block?.Sounds?.Place;
-        api.World.PlaySoundAt(sound ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
+        SoundAttributes sound = stack?.Block?.Sounds?.Place ?? new SoundAttributes("sounds/player/build", true);
+        api.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer);
     }
 
     public virtual bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel) => false;
@@ -236,7 +237,7 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
     /// <returns>An array of strings summarizing the contents of the inventory.</returns>
     protected string[] GetContentSummary(StackContainerInventory inventory)
     {
-        OrderedDictionary<string, int> dict = new OrderedDictionary<string, int>();
+        System.Collections.Generic.OrderedDictionary<string, int> dict = new System.Collections.Generic.OrderedDictionary<string, int>();
 
         foreach (var slot in inventory)
         {
@@ -303,5 +304,14 @@ public class ItemContainer : ItemShapeTexturesFromAttributes, IContainedInteract
         StackContainerInventory inv = new StackContainerInventory(api, containerKey, qslots);
         inv.FromTreeAttributes(containerStack.Attributes);
         return inv;
+    }
+
+    WorldInteraction[] IContainedInteractable.GetContainedInteractionHelp(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+    {
+        if (slot?.Itemstack?.Collectible.GetBehavior<CollectibleBehaviorInteractionHelpConstructor>()?.GetInteractionHelp(slot.Itemstack) is WorldInteraction[] interactions)
+        {
+            return interactions;
+        }
+        return [];
     }
 }

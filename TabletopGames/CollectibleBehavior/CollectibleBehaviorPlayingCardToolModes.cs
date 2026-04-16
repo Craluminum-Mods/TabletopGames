@@ -214,7 +214,7 @@ public class CollectibleBehaviorPlayingCardToolModes : CollectibleBehavior
         }
 
         Dictionary<string, SkillItem[]> cachedModes = ObjectCacheUtil.GetOrCreate(api, "TabletopGames_PlayingCardModes", () => new Dictionary<string, SkillItem[]>());
-        string key = slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>()?.GetMeshCacheKey(slot.Itemstack) ?? "";
+        string key = slot.Itemstack.Collectible.GetCollectibleInterface<IContainedMeshSource>()?.GetMeshCacheKey(slot) ?? "";
 
         if (cachedModes.TryGetValue(key, out SkillItem[]? modes))
         {

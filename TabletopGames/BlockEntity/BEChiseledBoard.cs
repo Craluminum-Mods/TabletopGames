@@ -112,7 +112,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && tfMatrices != null)
             {
-                MeshData? stackMesh = getMesh(itemSlot.Itemstack);
+                MeshData? stackMesh = getMesh(itemSlot);
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }
@@ -125,7 +125,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         return true;
     }
 
-    protected override string getMeshCacheKey(ItemStack stack) => $"{AttributeTransformCode}-{base.getMeshCacheKey(stack)}";
+    protected override string getMeshCacheKey(ItemSlot slot) => $"{AttributeTransformCode}-{base.getMeshCacheKey(slot)}";
 
     protected override float[][] genTransformationMatrices()
     {
@@ -182,7 +182,7 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
     protected void GetOrCreateSelectionBoxes(bool forceNew = false) => GetBehavior<BEBehaviorBoardSelection>()?.GetOrCreateSelectionBoxes(forceNew);
 
     float[][] IBoardPreviewRendererHelper.GenTransformationMatrices() => genTransformationMatrices();
-    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(stack, index);
+    MeshData IBoardPreviewRendererHelper.GetOrCreateMesh(ItemStack stack, int index) => getOrCreateMesh(new DummySlot(stack), index);
 
     void IRotatable.OnTransformed(IWorldAccessor worldAccessor, ITreeAttribute tree, int degreeRotation,
         Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, EnumAxis? flipAxis)

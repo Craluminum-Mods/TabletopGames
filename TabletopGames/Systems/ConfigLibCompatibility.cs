@@ -84,7 +84,7 @@ public class ConfigLibCompatibility
         ImGui.Checkbox($"Show variants debug info##VariantsDebug-{id}", ref TabletopDebug.VariantsDebugInfo);
         ImGui.Checkbox($"Show board data debug info##BoardDataDebug-{id}", ref TabletopDebug.BoardDataDebugInfo);
         ImGui.Checkbox($"Show tags debug info##TagsDebug-{id}", ref TabletopDebug.TagsDebugInfo);
-        ImGui.Checkbox($"Enable board particle selection##ParticleSelection-{id}", ref TabletopDebug.BoardParticleSelection);
+        ImGui.Checkbox($"Enable board particle selection##PartialSelection-{id}", ref TabletopDebug.BoardPartialSelection);
 
         if (ImGui.CollapsingHeader($"Selection Colors##SelectionColors-{id}"))
         {

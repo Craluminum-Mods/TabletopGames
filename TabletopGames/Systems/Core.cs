@@ -64,7 +64,6 @@ public class Core : ModSystem
         api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
         api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
-        api.RegisterItemClass("TabletopGames.ItemIntermediate", typeof(ItemIntermediate));
         api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
         api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
         api.RegisterItemClass("TabletopGames.ItemShuffler", typeof(ItemShuffler));
@@ -99,8 +98,8 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.PackTyped", typeof(CollectibleBehaviorPackTyped));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerInteractions", typeof(CollectibleBehaviorShufflerInteractions));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.Intermediate", typeof(CollectibleBehaviorIntermediate));
 
-        api.RegisterBlockBehaviorClass("TabletopGames.ExtraBlockInteractionHelp", typeof(BlockBehaviorExtraBlockInteractionHelp));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardData", typeof(BlockBehaviorBoardData));
         api.RegisterBlockBehaviorClass("TabletopGames.ChiseledBoardTags", typeof(BlockBehaviorChiseledBoardTags));

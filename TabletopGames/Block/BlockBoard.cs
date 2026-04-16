@@ -14,6 +14,6 @@ public class BlockBoard : BlockShapeTexturesFromAttributes
             : base.GetSelectionBoxes(blockAccessor, pos);
     }
 
-    public override bool DoParticalSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardParticleSelection;
+    public override bool DoPartialSelection(IWorldAccessor world, BlockPos pos) => TabletopDebug.BoardPartialSelection;
     public override Vec4f GetSelectionColor(ICoreClientAPI capi, BlockPos pos) => TabletopDebug.BoardSelectionColor;
 }
