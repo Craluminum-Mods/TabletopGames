@@ -110,7 +110,7 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
     /// <param name="byPlayer">The player interacting with the item.</param>
     public void PlayOpenSound(ItemSlot containerSlot, IPlayer byPlayer)
     {
-        if (Variants.FromStack(containerSlot.Itemstack).FindByVariant(openSoundByType, out string sound))
+        if (containerSlot.Itemstack!.FindByVariant(openSoundByType!, out AssetLocation sound))
         {
             api.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
         }
@@ -123,17 +123,17 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
     /// <param name="byPlayer">The player interacting with the item.</param>
     public void PlayCloseSound(ItemSlot containerSlot, IPlayer byPlayer)
     {
-        if (Variants.FromStack(containerSlot.Itemstack).FindByVariant(closeSoundByType, out string sound))
+        if (containerSlot.Itemstack!.FindByVariant(closeSoundByType!, out AssetLocation sound))
         {
             api.World.PlaySoundAt(sound, byPlayer.Entity, byPlayer, randomizePitch: true, 16f);
         }
     }
 
-    public override MeshData GetOrCreateMesh(ItemStack containerStack, ITextureAtlasAPI targetAtlas)
+    public override MeshData GetOrCreateMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas)
     {
-        MeshData containerMesh = base.GetOrCreateMesh(containerStack, targetAtlas).Clone();
+        MeshData containerMesh = base.GetOrCreateMesh(slot, targetAtlas).Clone();
 
-        if (GetOrCreateLidMesh(containerStack, targetAtlas) is MeshData lidMesh && lidMesh != null)
+        if (GetOrCreateLidMesh(slot.Itemstack, targetAtlas) is MeshData lidMesh && lidMesh != null)
         {
             containerMesh.AddMeshData(lidMesh);
         }
@@ -152,11 +152,11 @@ public class ItemContainerWithDetachableLid : ItemContainer, IContainedInteracta
         return null;
     }
 
-    public override string GetMeshCacheKey(ItemStack itemstack)
+    public override string GetMeshCacheKey(ItemSlot slot)
     {
-        StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(itemstack));
+        StringBuilder stringBuilder = new StringBuilder(base.GetMeshCacheKey(slot));
 
-        ItemStack? lidStack = GetLid(itemstack);
+        ItemStack? lidStack = GetLid(slot.Itemstack!);
         if (lidStack != null)
         {
             stringBuilder.Append("-lid:");

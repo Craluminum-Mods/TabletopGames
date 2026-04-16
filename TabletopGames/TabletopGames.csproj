@@ -56,7 +56,7 @@
 			<HintPath>../configlib.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
-		<PackageReference Include="CraluminumMods.VintageStory.AttributeRenderingLibrary" Version="2.8.1" PrivateAssets="all" />
+		<PackageReference Include="CraluminumMods.VintageStory.AttributeRenderingLibrary" Version="3.0.0-pre.11" PrivateAssets="all" />
 		<PackageReference Include="VSImGui" Version="0.0.6" PrivateAssets="all"  />
 	</ItemGroup>
 

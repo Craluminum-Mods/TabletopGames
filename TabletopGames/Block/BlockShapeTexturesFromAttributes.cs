@@ -15,10 +15,10 @@ namespace TabletopGames;
 /// </summary>
 public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSource
 {
-    public Dictionary<string, List<object>> NameByType { get; protected set; } = new();
-    public Dictionary<string, List<object>> DescriptionByType { get; protected set; } = new();
-    protected Dictionary<string, CompositeShape> shapeByType = new();
-    protected Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
+    public Dictionary<string, List<object>>? NameByType { get; protected set; }
+    public Dictionary<string, List<object>>? DescriptionByType { get; protected set; }
+    protected Dictionary<string, CompositeShape>? shapeByType;
+    protected Dictionary<string, Dictionary<string, CompositeTexture>>? texturesByType;
 
     #nullable disable
     private ICoreClientAPI clientApi => api as ICoreClientAPI;
@@ -34,11 +34,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     {
         base.OnUnloaded(api);
 
-        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
+        Dictionary<string, MultiTextureMeshRef>? meshRefs = ObjectCacheUtil.TryGet<Dictionary<string, MultiTextureMeshRef>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
         meshRefs?.Foreach(meshRef => meshRef.Value?.Dispose());
         ObjectCacheUtil.Delete(api, "TabletopGames_BlockShapeTexturesFromAttributes_MeshRefs");
 
-        Dictionary<string, MeshData> meshes = ObjectCacheUtil.TryGet<Dictionary<string, MeshData>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes");
+        Dictionary<string, MeshData>? meshes = ObjectCacheUtil.TryGet<Dictionary<string, MeshData>>(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes");
         meshRefs?.Foreach(mesh => mesh.Value?.Dispose());
         ObjectCacheUtil.Delete(api, "TabletopGames_BlockShapeTexturesFromAttributes_Meshes");
     }
@@ -47,11 +47,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     {
         if (Attributes != null)
         {
-            NameByType = Attributes["name"].AsObject(defaultValue: new Dictionary<string, List<object>>());
-            DescriptionByType = Attributes["description"].AsObject(defaultValue: new Dictionary<string, List<object>>());
+            NameByType = Attributes["name"].AsObject<Dictionary<string, List<object>>>();
+            DescriptionByType = Attributes["description"].AsObject<Dictionary<string, List<object>>>();
 
-            shapeByType = Attributes["shape"].AsObject(defaultValue: new Dictionary<string, CompositeShape>());
-            texturesByType = Attributes["textures"].AsObject(defaultValue: new Dictionary<string, Dictionary<string, CompositeTexture>>());
+            shapeByType = Attributes["shape"].AsObject<Dictionary<string, CompositeShape>>(null, Code.Domain);
+            texturesByType = Attributes["textures"].AsObject<Dictionary<string, Dictionary<string, CompositeTexture>>>(null, Code.Domain);
         }
     }
 
@@ -78,7 +78,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     {
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        variants.FindByVariant(shapeByType, out CompositeShape _shape);
+        variants.FindByVariant(shapeByType!, out CompositeShape _shape);
         if (_shape == null) return mesh;
 
         CompositeShape rcshape = _shape.Clone();
@@ -88,7 +88,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
         if (shape == null) return mesh;
 
-        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        variants.FindByVariant(texturesByType!, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
         ShapeTextureSource stexSource = new ShapeTextureSource(clientApi, shape, rcshape.Base.ToString());
@@ -113,7 +113,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
         {
             mesh = RenderExtensions.GenEmptyMesh();
 
-            variants.FindByVariant(shapeByType, out CompositeShape _shape);
+            variants.FindByVariant(shapeByType!, out CompositeShape _shape);
             if (_shape == null) return mesh;
 
             CompositeShape rcshape = _shape.Clone();
@@ -126,7 +126,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             ITexPositionSource? texSource = overrideTexturesource;
             if (overrideTexturesource == null)
             {
-                variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+                variants.FindByVariant(texturesByType!, out Dictionary<string, CompositeTexture> _textures);
                 _textures ??= new Dictionary<string, CompositeTexture>();
 
                 ShapeTextureSource stexSource = new ShapeTextureSource(clientApi, shape, rcshape.Base.ToString());
@@ -195,7 +195,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
     {
         BlockDropItemStack[] drops = base.GetDropsForHandbook(handbookStack, forPlayer);
         drops[0] = drops[0].Clone();
-        drops[0].ResolvedItemstack.SetFrom(handbookStack);
+        drops[0].ResolvedItemstack?.SetFrom(handbookStack);
         return drops;
     }
 
@@ -259,7 +259,7 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
             return;
         }
 
-        Variants variants = Variants.FromStack(inSlot.Itemstack);
+        Variants variants = Variants.FromStack(inSlot.Itemstack!);
         variants.FindByVariant(DescriptionByType, out List<object> _langKeys);
         variants.GetDescription(dsc, _langKeys);
         variants.GetDebugDescription(dsc, withDebugInfo);
@@ -267,11 +267,11 @@ public abstract class BlockShapeTexturesFromAttributes : Block, IContainedMeshSo
 
     public MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return GenGuiMesh(Variants.FromStack(slot.Itemstack));
+        return GenGuiMesh(Variants.FromStack(slot.Itemstack!));
     }
 
     public string GetMeshCacheKey(ItemSlot slot)
     {
-        return $"{slot.Itemstack.Collectible.Code}-{Variants.FromStack(slot.Itemstack)}";
+        return $"{slot.Itemstack!.Collectible.Code}-{Variants.FromStack(slot.Itemstack)}";
     }
 }

@@ -16,27 +16,27 @@ public class ItemRollable : ItemShapeTexturesFromAttributes
 
         if (Attributes != null)
         {
-            rolledShapeByType = Attributes["rolledShape"].AsObject<Dictionary<string, CompositeShape>>();
+            rolledShapeByType = Attributes["rolledShape"].AsObject<Dictionary<string, CompositeShape>>(null, Code.Domain);
         }
     }
 
-    public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public override MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         if (atBlockPos != null && api.World.BlockAccessor.GetBlockEntity(atBlockPos) is BlockEntityScrollRack)
         {
-            return GenRolledMesh(itemstack, targetAtlas);
+            return GenRolledMesh(slot, targetAtlas);
         }
-        return base.GenMesh(itemstack, targetAtlas, atBlockPos);
+        return base.GenMesh(slot, targetAtlas, atBlockPos!);
     }
 
-    public MeshData GenRolledMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas)
+    public MeshData GenRolledMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
+        ICoreClientAPI capi = (api as ICoreClientAPI)!;
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        Variants variants = Variants.FromStack(itemstack);
-        variants.FindByVariant(rolledShapeByType, out CompositeShape _shape);
-        if (_shape == null) return mesh;
+        Variants variants = Variants.FromStack(slot.Itemstack!);
+        variants.FindByVariant(rolledShapeByType!, out CompositeShape _shape);
+        if (_shape == null) return base.GenMesh(slot, targetAtlas, null!);
 
         CompositeShape rcshape = _shape.Clone();
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
@@ -44,7 +44,7 @@ public class ItemRollable : ItemShapeTexturesFromAttributes
 
         Shape? shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
 
-        variants.FindByVariant(texturesByType, out Dictionary<string, CompositeTexture> _textures);
+        variants.FindByVariant(texturesByType!, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
         UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());

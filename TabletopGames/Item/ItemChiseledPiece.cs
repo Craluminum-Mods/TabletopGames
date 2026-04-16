@@ -102,55 +102,55 @@ public class ItemChiseledPiece : ItemBoardPiece
         return null;
     }
 
-    public override MeshData GenMesh(ItemStack itemstack, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public override MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        ICoreClientAPI capi = api as ICoreClientAPI;
+        ICoreClientAPI capi = (api as ICoreClientAPI)!;
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        ITreeAttribute chiseledStacksTree = itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
+        ITreeAttribute chiseledStacksTree = slot.Itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
         if (chiseledStacksTree != null && chiseledStacksTree.Any())
         {
             foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
             {
-                Vec3i offset = FromXYZString(attr.Key);
+                Vec3i? offset = FromXYZString(attr.Key);
                 if (offset == null) continue;
 
-                ItemStack containedStack = GetChiseledStack(itemstack, xyz: attr.Key, api.World);
+                ItemStack containedStack = GetChiseledStack(slot.Itemstack, xyz: attr.Key, api.World);
                 if (containedStack == null) continue;
 
                 MeshData containedMesh = containedStack.CreateChiseledMesh(api);
                 mesh.AddMeshData(containedMesh, offset.X, offset.Y, offset.Z);
             }
         }
-        if (itemstack.Attributes.HasAttribute(RotateYAttributeName))
+        if (slot.Itemstack.Attributes.HasAttribute(RotateYAttributeName))
         {
-            mesh = mesh.Clone().Rotate(Vec3f.Half, 0, GameMath.DEG2RAD * itemstack.Attributes.GetInt(RotateYAttributeName), 0);
+            mesh = mesh.Clone().Rotate(Vec3f.Half, 0, GameMath.DEG2RAD * slot.Itemstack.Attributes.GetInt(RotateYAttributeName), 0);
         }
-        if (itemstack.Attributes.HasAttribute(ScaleAttributeName))
+        if (slot.Itemstack.Attributes.HasAttribute(ScaleAttributeName))
         {
-            float scale = itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
+            float scale = slot.Itemstack.Attributes.GetFloat(ScaleAttributeName, 1);
             mesh = mesh.Clone().Scale(new Vec3f(0.5f, 0, 0.5f), scale, scale, scale);
         }
 
         return mesh;
     }
 
-    public override string GetMeshCacheKey(ItemStack itemstack)
+    public override string GetMeshCacheKey(ItemSlot slot)
     {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append(itemstack.Collectible.Code);
+        stringBuilder.Append(slot.Itemstack!.Collectible.Code);
         stringBuilder.Append("-rotY:");
-        stringBuilder.Append(itemstack.Attributes.GetInt(RotateYAttributeName));
+        stringBuilder.Append(slot.Itemstack!.Attributes.GetInt(RotateYAttributeName));
         stringBuilder.Append("-scale:");
-        stringBuilder.Append(itemstack.Attributes.GetFloat(ScaleAttributeName, 1));
+        stringBuilder.Append(slot.Itemstack!.Attributes.GetFloat(ScaleAttributeName, 1));
 
-        ITreeAttribute chiseledStacksTree = itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
+        ITreeAttribute chiseledStacksTree = slot.Itemstack!.Attributes.GetTreeAttribute(InventoryAttributeName);
         if (chiseledStacksTree != null && chiseledStacksTree.Any())
         {
             stringBuilder.Append("-inv:");
             foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
             {
-                ItemStack containedStack = GetChiseledStack(itemstack, xyz: attr.Key, api.World);
+                ItemStack containedStack = GetChiseledStack(slot.Itemstack!, xyz: attr.Key, api.World);
                 stringBuilder.Append(attr.Key);
                 stringBuilder.Append('-');
                 stringBuilder.Append(containedStack?.Collectible.Code);
