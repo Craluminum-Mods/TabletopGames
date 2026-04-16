@@ -49,13 +49,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
         {
             DidMoveItems(byPlayer, HeldSounds.InvPlaceDefault);
 
-            Core.GetInstance(byPlayer.Entity.Api).Mod.Logger.Audit(
-                "{0} Put {1}x{2} into {3} at {4}.",
-                byPlayer.PlayerName,
-                movedQuantity,
-                movedStack.Collectible.Code,
-                containerSlot.Itemstack.Collectible.Code,
-                be.Pos.ToString());
+            LoggerUtil.Audit(byPlayer.Entity.Api, this, $"{byPlayer.PlayerName} Put {movedQuantity}x{movedStack.Collectible.Code} into {containerSlot.Itemstack.Collectible.Code} at {be.Pos.ToString()}.");
         }
 
         containerSlot.MarkDirty();
@@ -88,13 +82,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
             byPlayer.Entity.Api.World.SpawnItemEntity(giveStack, byPlayer.Entity.SidedPos.AsBlockPos);
         }
 
-        Core.GetInstance(byPlayer.Entity.Api).Mod.Logger.Audit(
-            "{0} Took {1}x{2} from {3} at {4}.",
-            byPlayer.PlayerName,
-            movedQuantity,
-            giveStack.Collectible.Code,
-            containerSlot.Itemstack.Collectible.Code,
-            be.Pos.ToString());
+        LoggerUtil.Audit(byPlayer.Entity.Api, this, $"{byPlayer.PlayerName} Took {movedQuantity}x{giveStack.Collectible.Code} from {containerSlot.Itemstack.Collectible.Code} at {be.Pos.ToString()}.");
 
         containerSlot.MarkDirty();
         return true;
@@ -125,10 +113,6 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
 
     WorldInteraction[] IContainedInteractable.GetContainedInteractionHelp(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (slot?.Itemstack?.Collectible.GetBehavior<CollectibleBehaviorInteractionHelpConstructor>()?.GetInteractionHelp(slot.Itemstack) is WorldInteraction[] interactions)
-        {
-            return interactions;
-        }
-        return [];
+        return slot?.Itemstack?.Collectible.GetBehavior<CollectibleBehaviorInteractionHelpConstructor>()?.GetInteractionHelp(slot.Itemstack) ?? [];
     }
 }
