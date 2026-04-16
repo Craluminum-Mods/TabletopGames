@@ -9,6 +9,8 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
+// TODO: Use AttributeRenderingLibrary.BlockBehaviorShapeTexturesFromAttributes instead of this class
+
 /// <summary>
 /// Base class for blocks that render shapes and textures dynamically from attributes.
 /// Implements a type system for variations in shape, texture, and selection boxes.

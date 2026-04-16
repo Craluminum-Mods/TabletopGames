@@ -7,6 +7,8 @@ using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
+// TODO: Use AttributeRenderingLibrary.BlockEntityBehaviorShapeTexturesFromAttributes instead of this class
+
 /// <summary>
 /// Base class for block entities that render meshes and textures dynamically based on block attributes.
 /// Also implements rotation.
