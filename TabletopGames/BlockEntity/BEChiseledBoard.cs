@@ -107,12 +107,14 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
     {
         mesher.AddMeshData(mesh, Mat);
 
+        tfMatrices ??= genTransformationMatrices() ?? [];
+
         for (int i = 0; i < DisplayedItems; i++)
         {
             ItemSlot itemSlot = Inventory[i];
             if (!itemSlot.Empty && tfMatrices != null)
             {
-                MeshData? stackMesh = getMesh(itemSlot);
+                MeshData? stackMesh = getOrCreateMesh(itemSlot, i);
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
             }

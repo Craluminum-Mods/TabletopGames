@@ -105,12 +105,14 @@ public class BlockEntityBoard : BlockEntityDisplayShapeTexturesFromAttributes, I
     {
         mesher.AddMeshData(mesh, Mat);
 
+        tfMatrices ??= genTransformationMatrices() ?? [];
+
         for (int i = 0; i < DisplayedItems; i++)
         {
             ItemSlot itemSlot = Inventory[i];
-            if (!itemSlot.Empty && tfMatrices != null)
+            if (!itemSlot.Empty)
             {
-                MeshData? stackMesh = getMesh(itemSlot);
+                MeshData? stackMesh = getOrCreateMesh(itemSlot, i);
                 if (stackMesh == null) continue;
                 BEBehaviorBoardInteractions.ApplyPieceMeshRotation(itemSlot.Itemstack, ref stackMesh);
                 mesher.AddMeshData(stackMesh, tfMatrices[i]);
