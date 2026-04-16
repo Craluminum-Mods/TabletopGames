@@ -22,6 +22,7 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
     {
         this.api = api;
         this.pos = pos;
+        api.Event.RegisterRenderer(this, EnumRenderStage.AfterOIT, "tabletopgames.boardpreview-AfterOIT");
     }
 
     void IRenderer.OnRenderFrame(float deltaTime, EnumRenderStage stage)
@@ -108,7 +109,6 @@ public class BoardPreviewRenderer : IRenderer, IDisposable
 
     void IDisposable.Dispose()
     {
-        api.Event.UnregisterRenderer(this, EnumRenderStage.OIT);
         api.Event.UnregisterRenderer(this, EnumRenderStage.AfterOIT);
         heldItemMeshRef?.Dispose();
     }

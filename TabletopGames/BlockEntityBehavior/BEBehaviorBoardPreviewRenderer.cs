@@ -14,7 +14,7 @@ public class BEBehaviorBoardPreviewRenderer : BlockEntityBehavior
 
         if (api is ICoreClientAPI capi)
         {
-            capi.Event.RegisterRenderer(new BoardPreviewRenderer(Pos, capi), EnumRenderStage.OIT, "tabletopgames.boardpreview");
+            new BoardPreviewRenderer(Pos, capi);
         }
     }
 }
