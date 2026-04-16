@@ -5,7 +5,6 @@ namespace TabletopGames;
 /// <summary>
 /// Allows to store collectible in ItemShuffler
 /// </summary>
-public class CollectibleBehaviorShufflerContainable : CollectibleBehavior, IShufflerContainable
+public class CollectibleBehaviorShufflerContainable(CollectibleObject collObj) : CollectibleBehavior(collObj), IShufflerContainable
 {
-    public CollectibleBehaviorShufflerContainable(CollectibleObject collObj) : base(collObj) { }
 }

@@ -7,19 +7,18 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
 /// <summary>
 /// Item that contains chiseled blocks. Works in tandem with CollectibleBehaviorChiseledPieceToolModes
 /// </summary>
-public class ItemChiseledPiece : ItemBoardPiece
+public class ItemChiseledPiece : Item, IContainedMeshSource
 {
     public const string InventoryAttributeName = "containedChiseledStacks";
     public const string RotateYAttributeName = "rotateY";
     public const string ScaleAttributeName = "scale";
-
-    public override void LoadTypes() { }
 
     public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
     {
@@ -30,12 +29,12 @@ public class ItemChiseledPiece : ItemBoardPiece
     public override void OnGroundIdle(EntityItem entityItem)
     {
         base.OnGroundIdle(entityItem);
-        SelfDestroyIfEmpty(entityItem?.Slot);
+        SelfDestroyIfEmpty(entityItem?.Slot!);
     }
 
     public override string GetHeldItemName(ItemStack itemStack)
     {
-        string name = GetChiseledStack(itemStack, Vec3i.Zero, api.World)?.Attributes.GetString("blockName");
+        string? name = GetChiseledStack(itemStack, Vec3i.Zero, api.World)?.Attributes.GetString("blockName");
         return !string.IsNullOrEmpty(name) ? name : base.GetHeldItemName(itemStack);
     }
 
@@ -56,10 +55,10 @@ public class ItemChiseledPiece : ItemBoardPiece
         }
     }
 
-    public static void SelfDestroyIfEmpty(ItemSlot slot)
+    public static void SelfDestroyIfEmpty(ItemSlot? slot)
     {
-        ITreeAttribute stacks = slot?.Itemstack?.Attributes?.GetTreeAttribute(InventoryAttributeName);
-        if (stacks == null || !stacks.Any())
+        ITreeAttribute? stacks = slot?.Itemstack?.Attributes?.GetTreeAttribute(InventoryAttributeName);
+        if (stacks == null || stacks.Count == 0)
         {
             slot.Itemstack = null;
             slot.MarkDirty();
@@ -71,14 +70,14 @@ public class ItemChiseledPiece : ItemBoardPiece
         ownStack.Attributes.GetOrAddTreeAttribute(InventoryAttributeName).SetItemstack(ToXYZString(pos), inputStack);
     }
 
-    public static ItemStack GetChiseledStack(ItemStack ownStack, Vec3i xyz, IWorldAccessor worldForResolving, bool removeAttribute = false)
+    public static ItemStack? GetChiseledStack(ItemStack ownStack, Vec3i xyz, IWorldAccessor worldForResolving, bool removeAttribute = false)
     {
         return GetChiseledStack(ownStack, ToXYZString(xyz), worldForResolving, removeAttribute);
     }
 
-    public static ItemStack GetChiseledStack(ItemStack ownStack, string xyz, IWorldAccessor worldForResolving, bool removeAttribute = false)
+    public static ItemStack? GetChiseledStack(ItemStack ownStack, string xyz, IWorldAccessor worldForResolving, bool removeAttribute = false)
     {
-        ItemStack stack = ownStack.Attributes.GetTreeAttribute(InventoryAttributeName)?.GetItemstack(xyz);
+        ItemStack? stack = ownStack.Attributes.GetTreeAttribute(InventoryAttributeName)?.GetItemstack(xyz);
         stack?.ResolveBlockOrItem(worldForResolving);
         if (removeAttribute)
         {
@@ -102,12 +101,12 @@ public class ItemChiseledPiece : ItemBoardPiece
         return null;
     }
 
-    public override MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
+    public virtual MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         ICoreClientAPI capi = (api as ICoreClientAPI)!;
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
-        ITreeAttribute chiseledStacksTree = slot.Itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
+        ITreeAttribute? chiseledStacksTree = slot.Itemstack.Attributes.GetTreeAttribute(InventoryAttributeName);
         if (chiseledStacksTree != null && chiseledStacksTree.Any())
         {
             foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
@@ -115,7 +114,7 @@ public class ItemChiseledPiece : ItemBoardPiece
                 Vec3i? offset = FromXYZString(attr.Key);
                 if (offset == null) continue;
 
-                ItemStack containedStack = GetChiseledStack(slot.Itemstack, xyz: attr.Key, api.World);
+                ItemStack? containedStack = GetChiseledStack(slot.Itemstack, xyz: attr.Key, api.World);
                 if (containedStack == null) continue;
 
                 MeshData containedMesh = containedStack.CreateChiseledMesh(api);
@@ -135,7 +134,7 @@ public class ItemChiseledPiece : ItemBoardPiece
         return mesh;
     }
 
-    public override string GetMeshCacheKey(ItemSlot slot)
+    public virtual string GetMeshCacheKey(ItemSlot slot)
     {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.Append(slot.Itemstack!.Collectible.Code);
@@ -150,7 +149,9 @@ public class ItemChiseledPiece : ItemBoardPiece
             stringBuilder.Append("-inv:");
             foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
             {
-                ItemStack containedStack = GetChiseledStack(slot.Itemstack!, xyz: attr.Key, api.World);
+                ItemStack? containedStack = GetChiseledStack(slot.Itemstack!, xyz: attr.Key, api.World);
+                if (containedStack == null) continue;
+
                 stringBuilder.Append(attr.Key);
                 stringBuilder.Append('-');
                 stringBuilder.Append(containedStack?.Collectible.Code);

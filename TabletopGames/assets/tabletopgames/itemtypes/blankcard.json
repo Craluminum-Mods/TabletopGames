@@ -1,8 +1,6 @@
 {
     "code": "blankcard",
-    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
     "maxStackSize": 512,
-    // fixes default transformation
     "shape": { "base": "game:block/basic/invisible" },
     "attributes": {
         "handbook": {
@@ -17,19 +15,22 @@
         "shelvable": true,
         "displaycaseable": true,
         "onshelfTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
-        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
-        "name": {},
-        "description": {},
-        "shape": { "*": { "base": "tabletopgames:item/playingcard" } },
-        "textures": {
-            "*": {
-                "front": { "base": "tabletopgames:item/playingcard/background-parchment" },
-                "back": { "base": "tabletopgames:item/playingcard/background-parchment" },
-                "side": { "base": "game:block/cloth/paper/blank-small" }
-            }
-        }
+        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } }
     },
     "behaviors": [
+        {
+            "name": "AttributeRenderingLibrary.ShapeTexturesFromAttributes",
+            "properties": {
+                "shape": { "*": { "base": "tabletopgames:item/playingcard" } },
+                "textures": {
+                    "*": {
+                        "front": { "base": "tabletopgames:item/playingcard/background-parchment" },
+                        "back": { "base": "tabletopgames:item/playingcard/background-parchment" },
+                        "side": { "base": "game:block/cloth/paper/blank-small" }
+                    }
+                }
+            }
+        },
         {
             "name": "GroundStorable",
             "properties": {

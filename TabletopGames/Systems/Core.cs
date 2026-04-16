@@ -59,15 +59,11 @@ public class Core : ModSystem
 
     private void RegisterItems()
     {
-        api.RegisterItemClass("TabletopGames.ItemBoardPiece", typeof(ItemBoardPiece));
         api.RegisterItemClass("TabletopGames.ItemChiseledPiece", typeof(ItemChiseledPiece));
         api.RegisterItemClass("TabletopGames.ItemContainer", typeof(ItemContainer));
         api.RegisterItemClass("TabletopGames.ItemContainerWithDetachableLid", typeof(ItemContainerWithDetachableLid));
         api.RegisterItemClass("TabletopGames.ItemDice", typeof(ItemDice));
         api.RegisterItemClass("TabletopGames.ItemPlayingCard", typeof(ItemPlayingCard));
-        api.RegisterItemClass("TabletopGames.ItemShapeTexturesFromAttributes", typeof(ItemShapeTexturesFromAttributes));
-        api.RegisterItemClass("TabletopGames.ItemShuffler", typeof(ItemShuffler));
-        api.RegisterItemClass("TabletopGames.ItemRollable", typeof(ItemRollable));
     }
 
     private void RegisterBlocks()
@@ -84,6 +80,8 @@ public class Core : ModSystem
 
     private void RegisterBehaviors()
     {
+        api.RegisterCollectibleBehaviorClass("TabletopGames.ShapeTexturesFromAttributes.RotateFromOrigin", typeof(TabletopGames.CollectibleBehaviorSTFARotateFromOrigin));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.Rollable", typeof(TabletopGames.CollectibleBehaviorRollable));
         api.RegisterCollectibleBehaviorClass("TabletopGames.AdvancedToolModes", typeof(CollectibleBehaviorAdvancedToolModes));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Containable", typeof(CollectibleBehaviorContainable));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ContainableTyped", typeof(CollectibleBehaviorContainableTyped));
@@ -96,8 +94,8 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardInteractions", typeof(CollectibleBehaviorPlayingCardInteractions));
         api.RegisterCollectibleBehaviorClass("TabletopGames.PlayingCardToolModes", typeof(CollectibleBehaviorPlayingCardToolModes));
         api.RegisterCollectibleBehaviorClass("TabletopGames.PackTyped", typeof(CollectibleBehaviorPackTyped));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.Shuffler", typeof(CollectibleBehaviorShuffler));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
-        api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerInteractions", typeof(CollectibleBehaviorShufflerInteractions));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Intermediate", typeof(CollectibleBehaviorIntermediate));
 
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));

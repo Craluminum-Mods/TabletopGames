@@ -1,31 +1,34 @@
 {
     "code": "pack",
-    "class": "TabletopGames.ItemShapeTexturesFromAttributes",
     "maxStackSize": 4,
-    // fixes default transformation
     "shape": { "base": "game:block/basic/invisible" },
     "attributes": {
         "handbook": {
             "groupBy": ["tabletopgames:pack"]
-        },
-        "name": {
-            "*": ["tabletopgames:item-pack-{type}"]
-        },
-        "description": {
-            "type-playingcards_vs": ["<br>", "tabletopgames:itemdesc-pack-{type}"]
-        },
-        "shape": {
-            "type-playingcards_vs": { "base": "tabletopgames:item/pack-of-cards" }
-        },
-        "textures": {
-            "type-playingcards_vs": {
-                "fibers": { "base": "game:item/resource/fibers" },
-                "card-side": { "base": "game:block/cloth/paper/blank-small" },
-                "card-back": { "base": "tabletopgames:item/playingcard/pack-vs/back" }
-            }
         }
     },
     "behaviors": [
+        {
+            "name": "AttributeRenderingLibrary.ShapeTexturesFromAttributes",
+            "properties": {
+                "name": {
+                    "*": ["tabletopgames:item-pack-{type}"]
+                },
+                "description": {
+                    "type-playingcards_vs": ["<br>", "tabletopgames:itemdesc-pack-{type}"]
+                },
+                "shape": {
+                    "type-playingcards_vs": { "base": "tabletopgames:item/pack-of-cards" }
+                },
+                "textures": {
+                    "type-playingcards_vs": {
+                        "fibers": { "base": "game:item/resource/fibers" },
+                        "card-side": { "base": "game:block/cloth/paper/blank-small" },
+                        "card-back": { "base": "tabletopgames:item/playingcard/pack-vs/back" }
+                    }
+                }
+            }
+        },
         {
             "name": "GroundStorable",
             "properties": {

@@ -1,6 +1,5 @@
 {
     "code": "chesspiece",
-    "class": "TabletopGames.ItemBoardPiece",
     "maxStackSize": 64,
     "attributes": {
         "handbook": {
@@ -19,34 +18,39 @@
         "groundStorageTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.13, "z": 0.5 }, "scale": 0.75 },
         "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
         "onChiseledBoardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.6 },
-        "name": {
-            "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:item-chesspiece-{type}", ")"]
-        },
-        "description": {
-            "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"],
-            "stone-flint": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "item-flint"],
-            "stone-meteorite-iron": ["tabletopgames:trivia-chesspiece-{type}", "Material: ", "item-stone-meteorite-iron"],
-            "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
-            "metal-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Metal", ": ", "material-{metal}"],
-            "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "item-{ore_ungraded}"],
-            "ore_ungraded-*": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "ore-{ore_ungraded}"]
-        },
-        "shape": {
-            "*": { "base": "tabletopgames:item/piece/chesspiece/{type}" }
-        },
-        "textures": {
-            "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
-            "stone-flint": { "material": { "base": "game:block/stone/flint" } },
-            "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
-            "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" } },
-            "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
-            "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
-            "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
-            "ore_ungraded-*": { "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
-        },
         "rotateWhenPlacedOnBoard": true
     },
     "behaviors": [
+        {
+            "name": "AttributeRenderingLibrary.ShapeTexturesFromAttributes",
+            "properties": {
+                "name": {
+                    "*": ["tabletopgames:item-chesspiece", " (", "tabletopgames:item-chesspiece-{type}", ")"]
+                },
+                "description": {
+                    "wood-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Wood", ": ", "material-{wood}"],
+                    "stone-flint": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "item-flint"],
+                    "stone-meteorite-iron": ["tabletopgames:trivia-chesspiece-{type}", "Material: ", "item-stone-meteorite-iron"],
+                    "stone-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Stone", ": ", "rock-{stone}"],
+                    "metal-*": ["tabletopgames:trivia-chesspiece-{type}", "blockmaterial-Metal", ": ", "material-{metal}"],
+                    "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "item-{ore_ungraded}"],
+                    "ore_ungraded-*": ["tabletopgames:trivia-chesspiece-{type}", "item-mineral", ": ", "ore-{ore_ungraded}"]
+                },
+                "shape": {
+                    "*": { "base": "tabletopgames:item/piece/chesspiece/{type}" }
+                },
+                "textures": {
+                    "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+                    "stone-flint": { "material": { "base": "game:block/stone/flint" } },
+                    "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+                    "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" } },
+                    "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
+                    "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
+                    "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
+                    "ore_ungraded-*": { "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
+                }
+            }
+        },
         {
             "name": "TabletopGames.AdvancedToolModes",
             "properties": {

@@ -5,11 +5,10 @@ using Vintagestory.API.MathTools;
 
 namespace TabletopGames;
 
-public class ItemShapeTexturesFromAttributes : AttributeRenderingLibrary.ItemShapeTexturesFromAttributes
+public class CollectibleBehaviorSTFARotateFromOrigin(CollectibleObject collObj) : AttributeRenderingLibrary.CollectibleBehaviorShapeTexturesFromAttributes(collObj)
 {
     public override MeshData GetOrCreateMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas)
     {
-        ICoreClientAPI capi = (api as ICoreClientAPI)!;
         MeshData mesh = RenderExtensions.GenEmptyMesh();
 
         Variants variants = Variants.FromStack(slot.Itemstack!);
@@ -20,23 +19,23 @@ public class ItemShapeTexturesFromAttributes : AttributeRenderingLibrary.ItemSha
         rcshape.Base.Path = variants.ReplacePlaceholders(rcshape.Base.Path);
         rcshape.Base.WithPathAppendixOnce(".json").WithPathPrefixOnce("shapes/");
 
-        Shape? shape = capi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
+        Shape? shape = clientApi.Assets.TryGet(rcshape.Base)?.ToObject<Shape>();
         if (shape == null) return mesh;
 
         variants.FindByVariant(texturesByType!, out Dictionary<string, CompositeTexture> _textures);
         _textures ??= new Dictionary<string, CompositeTexture>();
 
-        UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(capi, targetAtlas, shape, rcshape.Base.ToString());
+        UniversalShapeTextureSource stexSource = new UniversalShapeTextureSource(clientApi, targetAtlas, shape, rcshape.Base.ToString());
 
         foreach (KeyValuePair<string, CompositeTexture> val in _textures)
         {
             CompositeTexture ctex = val.Value.Clone();
             ctex = variants.ReplacePlaceholders(ctex);
-            ctex.Bake(capi.Assets);
+            ctex.Bake(clientApi.Assets);
             stexSource.textures[val.Key] = ctex;
         }
 
-        capi.Tesselator.TesselateShape("ShapeTexturesFromAttributes item", shape, out mesh, stexSource);
+        clientApi.Tesselator.TesselateShape("ShapeTexturesFromAttributes item", shape, out mesh, stexSource);
         TryRotateShape(ref mesh, _shape, shape);
         return mesh;
     }
@@ -50,7 +49,7 @@ public class ItemShapeTexturesFromAttributes : AttributeRenderingLibrary.ItemSha
 
         if (origin?.RotationOrigin?.Length != 3)
         {
-            Core.GetInstance(api).Mod.Logger.Debug("Shape {0} for item {1} is missing origin cube, it will not rotate!", cshape.Base, Code);
+            LoggerUtil.Debug(clientApi, this, $"Shape {cshape.Base} for item {collObj.Code} is missing origin cube, it won't rotate correctly");
             return;
         }
 

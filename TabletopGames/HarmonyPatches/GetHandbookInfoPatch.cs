@@ -18,23 +18,23 @@ public static class GetHandbookInfoPatch
     [HarmonyPostfix]
     public static void Postfix(ref RichTextComponentBase[] __result, ItemSlot inSlot, ICoreClientAPI capi, ActionConsumable<string> openDetailPageFor)
     {
-        List<RichTextComponentBase> list = __result?.ToList() ?? new();
+        List<RichTextComponentBase> list = __result?.ToList() ?? [];
 
-        if (inSlot.Itemstack.Collectible is ItemShuffler)
+        if (inSlot.Itemstack!.Collectible.HasBehavior<CollectibleBehaviorShuffler>())
         {
             list.AddRange(GetShuffleContaintableInfo(capi, openDetailPageFor));
         }
 
-        __result = list.ToArray();
+        __result = [.. list];
     }
 
     public static List<RichTextComponentBase> GetShuffleContaintableInfo(ICoreClientAPI api, ActionConsumable<string> openDetailPageFor)
     {
         return ObjectCacheUtil.GetOrCreate(api, "tabletopgames:shufflerContainableHandbook", delegate
         {
-            List<RichTextComponentBase> richText = new();
-            List<string> names = new();
-            List<List<ItemStack>> listsOfStacks = new();
+            List<RichTextComponentBase> richText = [];
+            List<string> names = [];
+            List<List<ItemStack>> listsOfStacks = [];
 
             foreach (CollectibleObject obj in api.World.Collectibles)
             {
@@ -65,7 +65,7 @@ public static class GetHandbookInfoPatch
                 foreach (List<ItemStack> stacks in listsOfStacks)
                 {
 
-                    richText.Add(new SlideshowItemstackTextComponent(api, stacks.ToArray(), 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs)))
+                    richText.Add(new SlideshowItemstackTextComponent(api, [.. stacks], 40, EnumFloat.Inline, (cs) => openDetailPageFor(GuiHandbookItemStackPage.PageCodeForStack(cs)))
                     {
                         ShowStackSize = false
                     });

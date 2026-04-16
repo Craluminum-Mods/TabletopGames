@@ -1,8 +1,6 @@
 {
     "code": "shuffler",
-    "class": "TabletopGames.ItemShuffler",
     "maxStackSize": 1,
-    // fixes default transformation
     "shape": { "base": "game:block/basic/invisible" },
     "attributes": {
         "handbook": {
@@ -17,30 +15,35 @@
         "shelvable": true,
         "displaycaseable": true,
         "onshelfTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
-        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } },
-        "name": {
-            "*": ["tabletopgames:item-shuffler-{type}"]
-        },
-        "description": {
-            "*": [
-                //
-                "tabletopgames:itemdesc-shuffler-{type}"
-            ]
-        },
-        "shape": {
-            "type-linensack": { "base": "game:item/bag/linensack" }
-        },
-        "textures": {
-            "type-linensack": {
-                "top": { "base": "game:item/bag/linensack/top" },
-                "linen": { "base": "game:item/bag/linensack/linen" }
-            }
-        },
-        "quantitySlots": {
-            "*": 256
-        }
+        "groundStorageTransform": { "rotation": { "x": 0, "y": 45, "z": 0 } }
     },
     "behaviors": [
+        {
+            "name": "TabletopGames.Shuffler",
+            "properties": {
+                "name": {
+                    "*": ["tabletopgames:item-shuffler-{type}"]
+                },
+                "description": {
+                    "*": [
+                        //
+                        "tabletopgames:itemdesc-shuffler-{type}"
+                    ]
+                },
+                "shape": {
+                    "type-linensack": { "base": "game:item/bag/linensack" }
+                },
+                "textures": {
+                    "type-linensack": {
+                        "top": { "base": "game:item/bag/linensack/top" },
+                        "linen": { "base": "game:item/bag/linensack/linen" }
+                    }
+                },
+                "quantitySlots": {
+                    "*": 256
+                }
+            }
+        },
         {
             "name": "GroundStorable",
             "properties": {
@@ -49,7 +52,6 @@
                 "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
             }
         },
-        { "name": "TabletopGames.ShufflerInteractions" },
         {
             "name": "TabletopGames.InteractionHelpConstructor",
             "properties": {

@@ -1,35 +1,106 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
 /// <summary>
-/// In-world interactions between shuffler and items that can be stored in a shuffler
+/// Implements item container that shuffles its content on request
 /// </summary>
-public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShufflable, IContainedInteractable
+public class CollectibleBehaviorShuffler(CollectibleObject collObj) : AttributeRenderingLibrary.CollectibleBehaviorShapeTexturesFromAttributes(collObj), IShufflable, IContainedInteractable
 {
-    private ICoreAPI? api;
+    protected Dictionary<string, int>? QuantitySlotsByType;
 
-    public CollectibleBehaviorShufflerInteractions(CollectibleObject collObj) : base(collObj) { }
-
-    public override void OnLoaded(ICoreAPI api)
+    public override void LoadTypes(JsonObject properties)
     {
-        this.api = api;
+        base.LoadTypes(properties);
+
+        if (properties == null) return;
+
+        QuantitySlotsByType = properties["quantitySlots"].AsObject<Dictionary<string, int>>();
+    }
+
+    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+    {
+        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+        GetInventoryInfo(inSlot, dsc);
+    }
+
+    /// <summary>
+    /// Appends the content information of the inventory in the specified item containerSlot.
+    /// </summary>
+    protected void GetInventoryInfo(ItemSlot containerSlot, StringBuilder dsc)
+    {
+        dsc.AppendLine();
+
+        ShufflerInventory inventory = GetInventory(containerSlot.Itemstack!);
+        if (inventory.Empty)
+        {
+            dsc.AppendLine(Lang.Get("Empty"));
+            return;
+        }
+
+        dsc.Append(Lang.Get("Contents: ") + inventory.TotalItemCount + " / " + inventory.Count);
+    }
+
+    /// <summary>
+    /// Convenient method to check if this container contains anything
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
+    public bool IsEmpty(ItemStack containerStack) => GetInventory(containerStack).Empty;
+
+    /// <summary>
+    /// Returns the number of slots in this inventory.
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
+    public int GetQuantitySlots(ItemStack containerStack)
+    {
+        int quantitySlots = 0;
+        if (containerStack == null)
+        {
+            return quantitySlots;
+        }
+        Variants.FromStack(containerStack).FindByVariant(QuantitySlotsByType!, out quantitySlots);
+        return Math.Max(quantitySlots, 1);
+    }
+
+    /// <summary>
+    /// Retrieves the inventory stored within the attributes of the container item.
+    /// </summary>
+    /// <param name="containerStack">The ItemStack representing the container.</param>
+    /// <returns>The inventory associated with the container.</returns>
+    public ShufflerInventory GetInventory(ItemStack containerStack)
+    {
+        int qslots = GetQuantitySlots(containerStack);
+        ShufflerInventory inv = new ShufflerInventory(coreApi, qslots);
+        inv.FromTreeAttributes(containerStack.Attributes);
+        return inv;
+    }
+
+    public override string GetContainedInfo(ItemSlot inSlot)
+    {
+        StringBuilder dsc = new(base.GetContainedInfo(inSlot));
+        GetInventoryInfo(inSlot, dsc);
+        return dsc.ToString();
     }
 
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
     {
-        WorldInteraction[] interactions = new WorldInteraction[]
-        {
+        WorldInteraction[] interactions =
+        [
             new WorldInteraction()
             {
                 ActionLangCode = "tabletopgames:heldhelp-shuffle",
                 HotKeyCode = "tabletopgames:shuffle"
             }
-        };
+        ];
 
         handling = EnumHandling.Handled;
         return interactions;
@@ -37,11 +108,6 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
 
     protected bool TryPut(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (collObj is not ItemShuffler shuffler)
-        {
-            return false;
-        }
-
         bool putOne = byPlayer.Entity.Controls.ShiftKey;
         bool putMany = byPlayer.Entity.Controls.CtrlKey;
         
@@ -96,12 +162,12 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
     protected bool TryTake(BlockEntityContainer be, ItemSlot containerSlot, IPlayer byPlayer, BlockSelection blockSel)
     {
         bool inventoryInteractions = byPlayer.Entity.Controls.ShiftKey;
-        if (!inventoryInteractions || collObj is not ItemShuffler shuffler)
+        if (!inventoryInteractions)
         {
             return false;
         }
-
-        ItemStack? giveStack = TryTakeFromInventory(containerSlot.Itemstack);
+        
+        ItemStack? giveStack = TryTakeFromInventory(containerSlot.Itemstack!);
         if (giveStack == null)
         {
             return false;
@@ -139,12 +205,12 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
     {
         movedQuantity = 0;
 
-        if (collObj is not ItemShuffler shuffler || ownStack == null || newStack == null)
+        if (ownStack == null || newStack == null)
         {
             return false;
         }
 
-        ShufflerInventory inventory = shuffler.GetInventory(ownStack);
+        ShufflerInventory inventory = GetInventory(ownStack);
         ItemSlot? invSlot = null;
 
         if (inventory.NonEmptyCount < inventory.Count)
@@ -158,7 +224,7 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         }
 
         DummySlot dummySlot = new(newStack);
-        movedQuantity = dummySlot.TryPutInto(api?.World, invSlot);
+        movedQuantity = dummySlot.TryPutInto(coreApi?.World, invSlot);
         if (movedQuantity <= 0)
         {
             return false;
@@ -174,12 +240,12 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
     /// <param name="ownStack">Own item stack with inventory</param>
     public ItemStack? TryTakeFromInventory(ItemStack ownStack)
     {
-        if (collObj is not ItemShuffler shuffler || ownStack == null)
+        if (ownStack == null)
         {
             return null;
         }
-
-        ShufflerInventory inventory = shuffler.GetInventory(ownStack);
+        
+        ShufflerInventory inventory = GetInventory(ownStack);
 
         // default value is null, since we always need the most last slot
         ItemSlot? invSlot = inventory.LastOrDefault(slot => slot != null && !slot.Empty, defaultValue: null);
@@ -200,10 +266,6 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
 
     bool IContainedInteractable.OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
     {
-        if (collObj is not ItemShuffler)
-        {
-            return false;
-        }
         if (TryPut(be, slot, byPlayer, blockSel) || TryTake(be, slot, byPlayer, blockSel))
         {
             be.MarkDirty();
@@ -225,25 +287,16 @@ public class CollectibleBehaviorShufflerInteractions : CollectibleBehavior, IShu
         return [];
     }
 
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
-    bool IShufflable.CanShuffle(ItemSlot inSlot)
-    {
-        return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemShuffler;
-    }
+    bool IShufflable.CanShuffle(ItemSlot inSlot) => !inSlot.Empty;
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
     void IShufflable.Shuffle(ItemSlot inSlot, IWorldAccessor world)
     {
-        if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemShuffler shuffler)
-        {
-            return;
-        }
+        if (inSlot.Empty) return;
 
-        ShufflerInventory inventory = shuffler.GetInventory(inSlot.Itemstack);
+        ShufflerInventory inventory = GetInventory(inSlot.Itemstack);
         if (inventory.Empty) return;
 
         ItemSlot[] slots = inventory.Slots.Select(slot => new DummySlot(slot?.Itemstack?.Clone())).ToArray();

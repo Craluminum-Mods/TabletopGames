@@ -7,9 +7,9 @@ namespace TabletopGames;
 /// Represents a dice item that handles animations when dropped 
 /// and randomization behavior when dropped or placed in a slot.
 /// </summary>
-public class ItemDice : ItemShapeTexturesFromAttributes
+public class ItemDice : Item
 {
-    public ModelTransform OriginalGroundTransform;
+    public required ModelTransform OriginalGroundTransform;
 
     public override void OnLoaded(ICoreAPI api)
     {

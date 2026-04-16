@@ -496,17 +496,11 @@ public class ItemPlayingCard : Item, IContainedMeshSource, IShufflable
         return stringBuilder.ToString();
     }
 
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
     bool IShufflable.CanShuffle(ItemSlot inSlot)
     {
         return !inSlot.Empty && inSlot.Itemstack.Collectible is ItemPlayingCard;
     }
 
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
     void IShufflable.Shuffle(ItemSlot inSlot, IWorldAccessor world)
     {
         if (inSlot.Empty || inSlot.Itemstack.Collectible is not ItemPlayingCard card)
