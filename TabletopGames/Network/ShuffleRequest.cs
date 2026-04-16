@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace TabletopGames;
+namespace TabletopGames.Network;
 
 [ProtoContract]
 public class ShuffleRequest

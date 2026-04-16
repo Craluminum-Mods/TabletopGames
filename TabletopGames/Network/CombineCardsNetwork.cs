@@ -3,7 +3,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Server;
 
-namespace TabletopGames;
+namespace TabletopGames.Network;
 
 public class CombineCardsNetwork : ModSystem
 {
