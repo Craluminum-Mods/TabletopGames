@@ -34,7 +34,7 @@ public class CollectibleBehaviorRollable(CollectibleObject collObj) : AttributeR
 
     public override string GetMeshCacheKey(ItemSlot slot)
     {
-        if (slot.Inventory.Pos != null && clientApi.World.BlockAccessor.GetBlockEntity(slot.Inventory.Pos) is BlockEntityScrollRack)
+        if (slot.Inventory != null && slot.Inventory.Pos != null && clientApi.World.BlockAccessor.GetBlockEntity(slot.Inventory.Pos) is BlockEntityScrollRack)
         {
             return "rollable-" + base.GetMeshCacheKey(slot);
         }
