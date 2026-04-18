@@ -4,7 +4,7 @@
     "name": "Tabletop Games",
     "authors": ["Craluminum2413"],
     "description": "Tabletop simulator. Play real-world tabletop games or create your own",
-    "version": "4.0.0-pre.1",
+    "version": "4.0.0-pre.2",
     "dependencies": {
         "game": "1.22.0-pre.1",
         "attributerenderinglibrary": "3.0.0-pre.11"
