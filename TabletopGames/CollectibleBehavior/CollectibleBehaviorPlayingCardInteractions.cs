@@ -58,6 +58,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
                 be.Pos.ToString());
         }
 
+        hotbarSlot.TakeOut(movedQuantity);
         containerSlot.MarkDirty();
         hotbarSlot.MarkDirty();
         return result;

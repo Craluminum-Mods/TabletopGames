@@ -679,3 +679,4 @@ blockAtlas-*
 itemAtlas-*
 entityAtlas-*
 Lib
+*.lscache
