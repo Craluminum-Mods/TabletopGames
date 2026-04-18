@@ -3,10 +3,10 @@
     "modid": "tabletopgames",
     "name": "Tabletop Games",
     "authors": ["Craluminum2413"],
-    "description": "A literal tabletop simulator to play real-world tabletop games or create your own",
-    "version": "3.0.5",
+    "description": "Tabletop simulator. Play real-world tabletop games or create your own",
+    "version": "4.0.0-pre.1",
     "dependencies": {
-        "game": "1.21.0",
-        "attributerenderinglibrary": "2.8.0"
+        "game": "1.22.0-pre.1",
+        "attributerenderinglibrary": "3.0.0-pre.11"
     }
 }
