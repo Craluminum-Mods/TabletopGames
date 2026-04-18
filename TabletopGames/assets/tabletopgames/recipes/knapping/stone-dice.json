@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_"
+		]
+	],
+	"name": "Stone-typed die",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:dice",
+		"attributes": {
+			"types": {
+				"type": "classic_cube",
+				"stone": "{stone}",
+				"dot": "6",
+				"color": "carbonblack"
+			}
+		},
+		"stacksize": 1
+	}
+}

@@ -1,10 +1,13 @@
 global using AttributeRenderingLibrary;
 using HarmonyLib;
+using Newtonsoft.Json.Linq;
 using TabletopGames.Configuration;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
+using Vintagestory.GameContent;
 
 namespace TabletopGames;
 
@@ -45,6 +48,18 @@ public class Core : ModSystem
         RegisterBehaviors();
         InitializeWorldConfigs();
         Mod.Logger.Event("started '{0}' mod", Mod.Info.Name);
+    }
+
+    public override void AssetsFinalize(ICoreAPI api)
+    {
+        foreach (var item in api.World.Items)
+        {
+            if (item is ItemStone)
+            {
+                item.Attributes ??= new JsonObject(new JObject());
+                item.Attributes.Token?["knappable"] = JToken.FromObject(true);
+            }
+        }
     }
 
     public override void StartClientSide(ICoreClientAPI api)

@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Stone-typed chess piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:chesspiece",
+		"attributes": {
+			"types": {
+				"type": "pawn",
+				"stone": "{stone}"
+			}
+		},
+		"stacksize": 16
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Stone-typed Shogi piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:shogipiece",
+		"attributes": {
+			"types": {
+				"type": "fuhyo",
+				"stone": "{stone}"
+			}
+		},
+		"stacksize": 20
+	}
+}

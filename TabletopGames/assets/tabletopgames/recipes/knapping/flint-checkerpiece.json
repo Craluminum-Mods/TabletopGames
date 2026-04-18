@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:flint" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Flint checker piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:checkerpiece",
+		"attributes": {
+			"types": {
+				"type": "pawn",
+				"stone": "flint"
+			}
+		},
+		"stacksize": 12
+	}
+}

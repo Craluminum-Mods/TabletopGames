@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:flint" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Flint chess piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:chesspiece",
+		"attributes": {
+			"types": {
+				"type": "pawn",
+				"stone": "flint"
+			}
+		},
+		"stacksize": 16
+	}
+}

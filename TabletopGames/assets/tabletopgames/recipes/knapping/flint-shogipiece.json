@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:flint" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Flint shogi piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:shogipiece",
+		"attributes": {
+			"types": {
+				"type": "fuhyo",
+				"stone": "flint"
+			}
+		},
+		"stacksize": 20
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"ingredient": { "type": "item", "code": "game:flint" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Flint go stone",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:gostone",
+		"attributes": {
+			"types": {
+				"stone": "flint"
+			}
+		},
+		"stacksize": 64
+	}
+}

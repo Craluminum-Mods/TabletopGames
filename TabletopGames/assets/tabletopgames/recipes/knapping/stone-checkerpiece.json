@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Stone-typed checker piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:checkerpiece",
+		"attributes": {
+			"types": {
+				"type": "pawn",
+				"stone": "{stone}"
+			}
+		},
+		"stacksize": 12
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##",
+			"________",
+			"##_##_##",
+			"##_##_##"
+		]
+	],
+	"name": "Stone-typed Go stone",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:gostone",
+		"attributes": {
+			"types": {
+				"stone": "{stone}"
+			}
+		},
+		"stacksize": 64
+	}
+}

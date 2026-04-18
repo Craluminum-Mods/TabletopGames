@@ -1,0 +1,25 @@
+{
+	"ingredient": { "type": "item", "code": "game:stone-*", "name": "stone" },
+	"pattern": [
+		[
+			//
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_"
+		]
+	],
+	"name": "Stone-typed Go bowl",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:gobowl",
+		"attributes": {
+			"types": {
+				"stone": "{stone}"
+			}
+		},
+		"stacksize": 1
+	}
+}

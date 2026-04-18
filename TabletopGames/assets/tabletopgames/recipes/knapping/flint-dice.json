@@ -1,0 +1,28 @@
+{
+	"ingredient": { "type": "item", "code": "game:flint" },
+	"pattern": [
+		[
+			//
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_",
+			"_######_"
+		]
+	],
+	"name": "Flint die",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:dice",
+		"attributes": {
+			"types": {
+				"type": "classic_cube",
+				"stone": "flint",
+				"dot": "6",
+				"color": "carbonblack"
+			}
+		},
+		"stacksize": 1
+	}
+}
