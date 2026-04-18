@@ -52,6 +52,7 @@ public class CollectibleBehaviorPlayingCardInteractions : CollectibleBehavior, I
             LoggerUtil.Audit(byPlayer.Entity.Api, this, $"{byPlayer.PlayerName} Put {movedQuantity}x{movedStack.Collectible.Code} into {containerSlot.Itemstack.Collectible.Code} at {be.Pos.ToString()}.");
         }
 
+        hotbarSlot.TakeOut(movedQuantity);
         containerSlot.MarkDirty();
         hotbarSlot.MarkDirty();
         return result;

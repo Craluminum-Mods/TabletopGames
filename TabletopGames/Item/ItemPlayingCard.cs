@@ -349,11 +349,7 @@ public class ItemPlayingCard : Item, IContainedMeshSource, IShufflable
     public bool TryAddCardToInventory(ItemStack stack, ItemStack newStack, out int movedQuantity)
     {
         movedQuantity = 0;
-
-        if (stack == null || newStack == null)
-        {
-            return false;
-        }
+        if (stack == null || newStack == null) return false;
 
         PlayingCardInventory inventory = GetInventory(stack);
         ItemSlot? invSlot = null;
@@ -363,17 +359,11 @@ public class ItemPlayingCard : Item, IContainedMeshSource, IShufflable
             invSlot = inventory[inventory.NonEmptyCount];
         }
 
-        if (invSlot == null)
-        {
-            return false;
-        }
+        if (invSlot == null) return false;
 
-        DummySlot dummySlot = new(newStack);
-        movedQuantity = dummySlot.TryPutInto(api.World, invSlot);
-        if (movedQuantity <= 0)
-        {
-            return false;
-        }
+        invSlot.Itemstack = newStack.Clone();
+        invSlot.Itemstack.StackSize = 1;
+        movedQuantity = 1;
 
         inventory.ToTreeAttributes(stack.Attributes);
         return true;
