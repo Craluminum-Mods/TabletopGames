@@ -21,7 +21,7 @@
     "item-gameboard-generic": "Універсальна ігрова дошка (Не функціональна",
     "itemdesc-gameboard-generic": "Розмістіть на твердій поверхні, щоб створити всі можливі дошки",
     "item-schematic-generic_piece": "Креслення для настільних фігур",
-    "itemdesc-schematic-generic_piece": "Використовується для створення всіх можливих настільних фігур",
+    "itemdesc-schematic-generic_piece": "Використовується для створення деяких настільних фігур",
     "item-chiseledpiece": "Різьблена фігура",
     "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>Різьблена фігура</i></font>     <br>Порада: Створюйте різьблені блоки в одному напрямку        <br><br>Натисніть <hk>toolmodeselect</hk> (Режим інструменту), щоб відкрити меню для різних маніпуляцій із предметом.",
     "item-chesspiece": "Шахова фігура",

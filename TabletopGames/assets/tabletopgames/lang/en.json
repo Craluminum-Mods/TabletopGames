@@ -21,7 +21,7 @@
     "item-gameboard-generic": "Generic game board (Not functional)",
     "itemdesc-gameboard-generic": "Place on the solid surface to make all possible boards",
     "item-schematic-generic_piece": "Tabletop pieces Schematic",
-    "itemdesc-schematic-generic_piece": "Used for creating all possible pieces",
+    "itemdesc-schematic-generic_piece": "Used for creating some pieces",
     "item-chiseledpiece": "Chiseled piece",
     "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>Chiseled piece</i></font>     <br>Protip: Chisel blocks facing in one direction        <br><br>Press <hk>toolmodeselect</hk> key (Tool Mode) to manipulate with it in various ways.",
     "item-chesspiece": "Chess piece",

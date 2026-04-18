@@ -1,0 +1,26 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"##_##_##_##",
+			"##_##_##_##",
+			"___________",
+			"##_##_##_##",
+			"##_##_##_##"
+		]
+	],
+	"code": "tabletop-games-chess-piece-{metal}",
+	"name": "Metal chess piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:chesspiece",
+		"attributes": {
+			"types": {
+				"type": "pawn",
+				"metal": "{metal}"
+			}
+		},
+		"stacksize": 16
+	}
+}

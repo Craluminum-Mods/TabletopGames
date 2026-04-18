@@ -1,0 +1,24 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"#_#_#_#",
+			"#_#_#_#",
+			"#_#_#_#",
+			"#_#_#_#"
+		]
+	],
+	"code": "tabletop-games-gostone-{metal}",
+	"name": "Metal Go stone",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:gostone",
+		"attributes": {
+			"types": {
+				"metal": "{metal}"
+			}
+		},
+		"stacksize": 64
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"##_##_##_##",
+			"##_##_##_##",
+			"___________",
+			"##_##_##_##",
+			"##_##_##_##"
+		]
+	],
+	"code": "tabletop-games-shogipiece-{metal}",
+	"name": "Metal Shogi piece",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:shogipiece",
+		"attributes": {
+			"types": {
+				"type": "fuhyo",
+				"metal": "{metal}"
+			}
+		},
+		"stacksize": 20
+	}
+}

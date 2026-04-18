@@ -1,0 +1,34 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"__###___",
+			"_#####__",
+			"_#####__",
+			"_#####__",
+			"__###___"
+		],
+		[
+			//
+			"__###___",
+			"_#___#__",
+			"_#___#__",
+			"_#___#__",
+			"__###___"
+		]
+	],
+	"code": "tabletop-games-gobowl-lid-{metal}",
+	"name": "Metal Go bowl lid",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:lid",
+		"attributes": {
+			"types": {
+				"type": "gobowl",
+				"metal": "{metal}"
+			}
+		},
+		"stacksize": 1
+	}
+}

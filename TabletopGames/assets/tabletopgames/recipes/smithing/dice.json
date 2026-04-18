@@ -1,0 +1,38 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"###",
+			"###",
+			"###"
+		],
+		[
+			//
+			"###",
+			"###",
+			"###"
+		],
+		[
+			//
+			"###",
+			"###",
+			"###"
+		]
+	],
+	"code": "tabletop-games-dice-{metal}",
+	"name": "Metal die",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:dice",
+		"attributes": {
+			"types": {
+				"type": "classic_cube",
+				"metal": "{metal}",
+				"dot": "6",
+				"color": "carbonblack"
+			}
+		},
+		"stacksize": 1
+	}
+}

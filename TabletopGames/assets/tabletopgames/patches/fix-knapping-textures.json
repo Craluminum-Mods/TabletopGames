@@ -5,7 +5,6 @@
 	{ "op": "add", "path": "/textures/kimberlite", "value": { "base": "block/stone/rock/kimberlite1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
 	{ "op": "add", "path": "/textures/limestone", "value": { "base": "block/stone/rock/limestone1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
 	{ "op": "add", "path": "/textures/meteorite-iron", "value": { "base": "block/stone/rock/meteorite-iron1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
-	{ "op": "add", "path": "/textures/meteoriteiron", "value": { "base": "block/stone/rock/meteorite-iron1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
 	{ "op": "add", "path": "/textures/phyllite", "value": { "base": "block/stone/rock/phyllite1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
 	{ "op": "add", "path": "/textures/scoria", "value": { "base": "block/stone/rock/scoria1" }, "file": "game:blocktypes/stone/knappingsurface.json" },
 	{ "op": "add", "path": "/textures/slate", "value": { "base": "block/stone/rock/slate1" }, "file": "game:blocktypes/stone/knappingsurface.json" },

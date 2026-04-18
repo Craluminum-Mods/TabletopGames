@@ -1,0 +1,33 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal" },
+	"pattern": [
+		[
+			//
+			"__###___",
+			"_#####__",
+			"_#####__",
+			"_#####__",
+			"__###___"
+		],
+		[
+			//
+			"__###___",
+			"_#___#__",
+			"_#___#__",
+			"_#___#__",
+			"__###___"
+		]
+	],
+	"code": "tabletop-games-gobowl-{metal}",
+	"name": "Metal Go bowl",
+	"output": {
+		"type": "item",
+		"code": "tabletopgames:gobowl",
+		"attributes": {
+			"types": {
+				"metal": "{metal}"
+			}
+		},
+		"stacksize": 1
+	}
+}

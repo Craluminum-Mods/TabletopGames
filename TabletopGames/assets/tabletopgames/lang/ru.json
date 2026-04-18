@@ -21,7 +21,7 @@
     "item-gameboard-generic": "Универсальная игровая доска (Не функциональна)",
     "itemdesc-gameboard-generic": "Разместите на твердой поверхности, чтобы создать все возможные доски",
     "item-schematic-generic_piece": "Чертеж для настольных фигур",
-    "itemdesc-schematic-generic_piece": "Используется для создания всех возможных настольных фигур",
+    "itemdesc-schematic-generic_piece": "Используется для создания некоторых настольных фигур",
     "item-chiseledpiece": "Резная фигура",
     "itemdesc-chiseledpiece": "<font color=\"#99c9f9\"><i>Резная фигура</i></font>     <br>Совет: Создавайте резные блоки в одном направлении        <br><br>Нажмите <hk>toolmodeselect</hk> (Режим инструмента), чтобы открыть меню для различных манипуляций с предметом.",
     "item-chesspiece": "Шахматная фигура",
