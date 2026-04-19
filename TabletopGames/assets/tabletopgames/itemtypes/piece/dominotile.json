@@ -1,0 +1,199 @@
+{
+	"code": "dominotile",
+	"maxStackSize": 64,
+	"shape": { "base": "game:block/basic/invisible" },
+	"attributes": {
+		"handbook": {
+			"groupBy": ["tabletopgames:dominotile"],
+			"extraSections": [
+				{
+					"title": "tabletopgames:item-handbooktitle-generic-howtoobtain",
+					"text": "tabletopgames:item-handbooktext-generic-howtoobtain"
+				}
+			]
+		},
+		"rotateWithHotkey": true,
+		"groundStorageTransform": { "rotation": { "x": 0, "y": -35, "z": 0 }, "origin": { "x": 0.5, "y": -0, "z": 0.5 }, "scale": 0.25 }
+
+		// "shelvable": true,
+		// "displaycaseable": true,
+		// "onDisplayTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.13, "z": 0.5 }, "scale": 0.75 },
+		// "onshelfTransform": { "translation": { "x": 0, "y": 0.4, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0.1, "z": 0.5 }, "scale": 0.6 },
+		// "onGoboard19x19Transform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.25 },
+		// "onGoboard13x13Transform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.3 },
+		// "onGoboard9x9Transform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.35 },
+		// "onMorrisTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
+		// "onChessboardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 },
+		// "onChiseledBoardTransform": { "translation": { "x": -1.52, "y": -1.02, "z": 0 }, "rotation": { "x": -90, "y": 0, "z": 0 }, "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.5 }
+	},
+	"behaviors": [
+		{
+			"name": "TabletopGames.ShapeTexturesFromAttributes.RotateFromOrigin",
+			"properties": {
+				"name": {
+					"*": ["tabletopgames:item-dominotile"]
+				},
+				"description": {
+					// "wood-*": ["blockmaterial-Wood", ": ", "material-{wood}"],
+					// "stone-flint": ["blockmaterial-Stone", ": ", "item-flint"],
+					// "stone-meteorite-iron": ["Material: ", "item-stone-meteorite-iron"],
+					// "stone-*": ["blockmaterial-Stone", ": ", "rock-{stone}"],
+					// "metal-*": ["blockmaterial-Metal", ": ", "material-{metal}"],
+					// "@ore_ungraded-(charcoal|coke|clearquartz|smokyquartz|rosequartz|amethyst)": ["item-mineral", ": ", "item-{ore_ungraded}"],
+					// "ore_ungraded-*": ["item-mineral", ": ", "ore-{ore_ungraded}"]
+				},
+				"shape": {
+					// "*": { "base": "tabletopgames:item/dominotile", "scale": 0.125 }
+					"*": { "base": "tabletopgames:item/dominotile" }
+				},
+				"textures": {
+					"main_stone-*::pips_stone-*": {
+						"material": { "base": "game:block/stone/rock/{main_stone}1" },
+						"pips": { "base": "game:block/stone/rock/{pips_stone}1", "blendedOverlays": [{ "base": "tabletopgames:item/domino/{style}/{pattern}", "blendMode": "OverlayCutout" }] }
+					},
+					"main_bone-generic::pips_stone-*": {
+						"material": { "base": "game:block/creature/bone-yellow" },
+						"pips": { "base": "game:block/stone/rock/{pips_stone}1", "blendedOverlays": [{ "base": "tabletopgames:item/domino/{style}/{pattern}", "blendMode": "OverlayCutout" }] }
+					},
+					"main_stone-*::pips_bone-generic": {
+						"material": { "base": "game:block/stone/rock/{main_stone}1" },
+						"pips": { "base": "game:block/creature/bone-yellow", "blendedOverlays": [{ "base": "tabletopgames:item/domino/{style}/{pattern}", "blendMode": "OverlayCutout" }] }
+					}
+					// "main_bone-generic::pips_stone-*": {
+					// 	"material": { "base": "game:block/creature/bone-yellow" },
+					// 	"pips": { "base": "game:block/creature/bone-yellow", "blendedOverlays": [{ "base": "tabletopgames:item/domino/{style}/{pattern}", "blendMode": "OverlayCutout" }] }
+					// },
+					// "wood-*": { "material": { "base": "game:block/wood/debarked/{wood}" } },
+					// "stone-flint": { "material": { "base": "game:block/stone/flint" } },
+					// "stone-*": { "material": { "base": "game:block/stone/rock/{stone}1" } },
+					// "metal-*": { "material": { "base": "game:block/metal/ingot/{metal}" } },
+					// "@ore_ungraded-(charcoal|coke)": { "material": { "base": "game:block/coal/{ore_ungraded}" } },
+					// "ore_ungraded-rosequartz": { "material": { "base": "game:item/resource/ungraded/rosyquartz" } },
+					// "ore_ungraded-alum": { "material": { "base": "game:item/resource/ungraded/quartz" } },
+					// "ore_ungraded-*": { "material": { "base": "game:item/resource/ungraded/{ore_ungraded}" } }
+				}
+			}
+		},
+		{
+			"name": "GroundStorable",
+			"properties": {
+				"layout": "Quadrants",
+				"selectionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.0625, "z2": 1 },
+				"collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }
+			}
+		},
+		{ "name": "TabletopGames.PieceTags", "properties": { "tabletopTags": { "tags": ["domino_piece"] } } },
+		{
+			"name": "TabletopGames.RotatableDisplayableProps",
+			"properties": {
+				"displayable": {
+					"*": {
+						"shelf": {
+							"size": { "width": 2, "height": 0.5, "length": 4 },
+							"RandYRotAngle": 0,
+                            "Behavior": "Stacking",
+							"transform": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.125 }
+						}
+					}
+				}
+			}
+		}
+	],
+	"creativeinventoryStacks": [
+		{
+			"tabs": ["tabletopgames", "general", "items"],
+			"stacks": [
+				// main bone + pips stone
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "9x9", "main_bone": "generic", "pips_stone": "basalt" } } },
+				// main stone + pips bone
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "9x9", "main_stone": "basalt", "pips_bone": "generic" } } },
+				// all white dominos
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x0", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x1", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x2", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x3", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x4", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x1", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x2", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x3", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x4", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x2", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x3", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x4", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x3", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x4", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x4", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "5x5", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "5x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "6x6", "main_stone": "chalk", "pips_stone": "basalt" } } },
+				// all black dominos
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x0", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x1", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x2", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x3", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x4", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "0x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x1", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x2", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x3", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x4", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "1x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x2", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x3", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x4", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "2x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x3", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x4", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "3x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x4", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "4x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "5x5", "main_stone": "basalt", "pips_stone": "chalk" } } },
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "5x6", "main_stone": "basalt", "pips_stone": "chalk" } } },
+
+				{ "type": "item", "code": "dominotile", "attributes": { "types": { "style": "classic", "pattern": "6x6", "main_stone": "basalt", "pips_stone": "chalk" } } }
+			]
+		}
+	],
+	"guiTransform": {
+		"rotation": { "x": 112, "y": -137, "z": 14 },
+		"origin": { "x": 0.55, "y": 0.125, "z": 0.55 },
+		"scale": 0.75
+	},
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 }
+	},
+	"tpHandTransform": {
+		"translation": { "x": -3.4, "y": -0.1, "z": -2 },
+		"rotation": { "x": 90, "y": -90, "z": -90 },
+		"origin": { "x": 0.5, "y": 0.0625, "z": 0.5 },
+		"scale": 0.125
+	}
+}

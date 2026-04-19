@@ -112,6 +112,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.Shuffler", typeof(CollectibleBehaviorShuffler));
         api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Intermediate", typeof(CollectibleBehaviorIntermediate));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.RotatableDisplayableProps", typeof(CollectibleBehaviorRotatableDisplayableProps));
 
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardData", typeof(BlockBehaviorBoardData));

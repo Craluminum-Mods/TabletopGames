@@ -234,6 +234,8 @@
 
     "hotkey-shuffle": "(Tabletop Games) Shuffle held cards or shuffler",
     "hotkey-combinecards": "(Tabletop Games) Combine all cards in the inventory",
+    "hotkey-rotatepiece-clockwise": "(Tabletop Games) Rotate piece clockwise by 90 degrees",
+    "hotkey-rotatepiece-counterclockwise": "(Tabletop Games) Rotate piece counterclockwise by 90 degrees",
 
     "handbooktitle-shuffler-containable": "Can contain",
     
