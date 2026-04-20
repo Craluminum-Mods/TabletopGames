@@ -222,6 +222,7 @@
     "blockhelp-playingcard-add-1": "Add one playing card",
     "blockhelp-playingcard-add-1-flipped": "Add one flipped playing card",
     "blockhelp-playingcard-remove-1": "Take one playing card",
+    "blockhelp-place-dominotile-to-play": "Place a domino tile to play",
     "ingameerror-stacksize-mismatch": "Only same amount is allowed",
     "ingameerror-chiseled-block-only": "Only chiseled blocks are allowed",
     "ingameerror-hitbox-removal-requires-texture-removal": "Can't remove block for hitboxes without removing block for textures first",

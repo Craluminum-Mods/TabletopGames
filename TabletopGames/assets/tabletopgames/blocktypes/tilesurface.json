@@ -1,0 +1,39 @@
+{
+	"code": "tilesurface",
+	"class": "BlockGeneric",
+	"behaviors": [
+		//
+		{ "name": "BlockEntityInteract" },
+		{ "name": "Display" },
+		{ "name": "RotateablePlaceable", "properties": { "intervalDeg": 90 } } // not needed, but "Display" behavior refuses to work without it
+	],
+	"entityBehaviors": [
+		//
+		{ "name": "RotatablePlaceable" }, // not needed, but "Display" behavior refuses to work without it
+		{ "name": "Display" }
+	],
+	"shape": {
+		"base": "tabletopgames:block/board/tilesurface",
+		"ignoreElements": ["psurface0-w16-h16-d16-tabletop_games_tile"]
+	},
+	"textures": {
+		"glass": { "base": "game:block/glass/plain" }
+	},
+	"attributes": {
+		"handbook": { "exclude": true }
+	},
+	"creativeinventoryStacks": [
+		{
+			"tabs": ["tabletopgames", "general", "decorative"],
+			"stacks": [{ "type": "block", "code": "tabletopgames:tilesurface" }]
+		}
+	],
+	"lightAbsorption": 1,
+	"sidesolid": { "all": false },
+	"sideopaque": { "all": false },
+	"sideAO": { "all": false },
+	"emitSideAO": { "all": false },
+	"resistance": 1,
+	"collisionboxes": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }],
+	"selectionBoxes": [{ "x1": 0, "y1": 0, "z1": 0, "x2": 0, "y2": 0, "z2": 0 }]
+}

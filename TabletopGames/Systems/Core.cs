@@ -26,7 +26,10 @@ public class Core : ModSystem
         GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.Append("rotateY");
         GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.Append("scale");
 
-        HarmonyInstance.PatchAllUncategorized();
+        if (!Harmony.HasAnyPatches(HarmonyInstance.Id))
+        {
+            HarmonyInstance.PatchAllUncategorized();
+        }
 
         if (api.Side.IsClient())
         {
@@ -113,6 +116,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("TabletopGames.ShufflerContainable", typeof(CollectibleBehaviorShufflerContainable));
         api.RegisterCollectibleBehaviorClass("TabletopGames.Intermediate", typeof(CollectibleBehaviorIntermediate));
         api.RegisterCollectibleBehaviorClass("TabletopGames.RotatableDisplayableProps", typeof(CollectibleBehaviorRotatableDisplayableProps));
+        api.RegisterCollectibleBehaviorClass("TabletopGames.PlaceTileSurface", typeof(CollectibleBehaviorPlaceTileSurface));
 
         api.RegisterBlockBehaviorClass("TabletopGames.BoardTags", typeof(BlockBehaviorBoardTags));
         api.RegisterBlockBehaviorClass("TabletopGames.BoardData", typeof(BlockBehaviorBoardData));
