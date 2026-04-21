@@ -39,35 +39,11 @@ public class RotatePieceNetwork : ModSystem
         clientChannel = api.Network
             .GetChannel("tabletopgames:rotatepiece");
 
-        api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-counterclockwise", Lang.Get("tabletopgames:hotkey-rotatepiece-counterclockwise"), GlKeys.Minus);
-        api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-clockwise", Lang.Get("tabletopgames:hotkey-rotatepiece-clockwise"), GlKeys.Plus);
-        api.Event.KeyDown += Event_KeyDown;
+        api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-clockwise", "Rotate Clockwise", GlKeys.Plus);
+        api.Input.SetHotKeyHandler("tabletopgames:rotatepiece-clockwise", (key) => HandleHotkey(EnumRotDirection.Clockwise));
 
-        dialogHotkeys = new()
-        {
-            { "tabletopgames:rotatepiece-counterclockwise", () => HandleHotkey(EnumRotDirection.Counterclockwise) },
-            { "tabletopgames:rotatepiece-clockwise", () => HandleHotkey(EnumRotDirection.Clockwise) }
-        };
-    }
-
-    private void Event_KeyDown(KeyEvent args)
-    {
-        foreach ((string hotkeyCode, Func<bool> func) in dialogHotkeys)
-        {
-            HotKey hotkey = clientApi.Input.GetHotKeyByCode(hotkeyCode);
-            if (hotkey == null) continue;
-
-            if (hotkey.DidPress(args, clientApi.World, clientApi.World.Player, allowCharacterControls: true) && func.Invoke())
-            {
-                args.Handled = true;
-                return;
-            }
-            else if (hotkey.FallbackDidPress(args, clientApi.World, clientApi.World.Player, allowCharacterControls: true) && func.Invoke())
-            {
-                args.Handled = true;
-                return;
-            }
-        }
+        api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-counterclockwise", "Rotate Counter-clockwise", GlKeys.Minus);
+        api.Input.SetHotKeyHandler("tabletopgames:rotatepiece-counterclockwise", (key) => HandleHotkey(EnumRotDirection.Counterclockwise));
     }
 
     private bool HandleHotkey(EnumRotDirection dir)
@@ -76,7 +52,14 @@ public class RotatePieceNetwork : ModSystem
         if (activeSlot.Empty) return false;
         if (!activeSlot.Itemstack.ItemAttributes.IsTrue("rotateWithHotkey")) return false;
 
-        clientChannel.SendPacket(new RotatePieceRequest() { direction = (int)dir });
+        int direction = dir switch
+        {
+            EnumRotDirection.Clockwise => 1,
+            EnumRotDirection.Counterclockwise => -1,
+            _ => 0,
+        };
+
+        clientChannel.SendPacket(new RotatePieceRequest() { direction = direction });
         return true;
     }
 
