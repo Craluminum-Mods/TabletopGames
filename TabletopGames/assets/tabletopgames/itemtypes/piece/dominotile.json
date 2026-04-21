@@ -99,12 +99,12 @@
 							"size": { "width": 2, "height": 0.5, "length": 4 },
 							"RandYRotAngle": 0,
 							"behavior": "Stacking",
-							"transform": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.125 }
+							"transform": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.12 }
 						},
 						"tabletop_games_tile": {
 							"size": { "width": 2, "height": 0.5, "length": 4 },
 							"RandYRotAngle": 0,
-							"transform": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.125 }
+							"transform": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.12 }
 						}
 					}
 				}
