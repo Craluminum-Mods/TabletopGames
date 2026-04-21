@@ -1,4 +1,6 @@
 using ProtoBuf;
+using System;
+using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -29,6 +31,8 @@ public class RotatePieceNetwork : ModSystem
     IClientNetworkChannel clientChannel;
     ICoreClientAPI clientApi;
 
+    private Dictionary<string, Func<bool>> dialogHotkeys;
+
     public override void StartClientSide(ICoreClientAPI api)
     {
         clientApi = api;
@@ -36,10 +40,34 @@ public class RotatePieceNetwork : ModSystem
             .GetChannel("tabletopgames:rotatepiece");
 
         api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-counterclockwise", Lang.Get("tabletopgames:hotkey-rotatepiece-counterclockwise"), GlKeys.Minus);
-        api.Input.SetHotKeyHandler("tabletopgames:rotatepiece-counterclockwise", (_) => HandleHotkey(EnumRotDirection.Counterclockwise));
-
         api.Input.RegisterHotKeyFirst("tabletopgames:rotatepiece-clockwise", Lang.Get("tabletopgames:hotkey-rotatepiece-clockwise"), GlKeys.Plus);
-        api.Input.SetHotKeyHandler("tabletopgames:rotatepiece-clockwise", (_) => HandleHotkey(EnumRotDirection.Clockwise));
+        api.Event.KeyDown += Event_KeyDown;
+
+        dialogHotkeys = new()
+        {
+            { "tabletopgames:rotatepiece-counterclockwise", () => HandleHotkey(EnumRotDirection.Counterclockwise) },
+            { "tabletopgames:rotatepiece-clockwise", () => HandleHotkey(EnumRotDirection.Clockwise) }
+        };
+    }
+
+    private void Event_KeyDown(KeyEvent args)
+    {
+        foreach ((string hotkeyCode, Func<bool> func) in dialogHotkeys)
+        {
+            HotKey hotkey = clientApi.Input.GetHotKeyByCode(hotkeyCode);
+            if (hotkey == null) continue;
+
+            if (hotkey.DidPress(args, clientApi.World, clientApi.World.Player, allowCharacterControls: true) && func.Invoke())
+            {
+                args.Handled = true;
+                return;
+            }
+            else if (hotkey.FallbackDidPress(args, clientApi.World, clientApi.World.Player, allowCharacterControls: true) && func.Invoke())
+            {
+                args.Handled = true;
+                return;
+            }
+        }
     }
 
     private bool HandleHotkey(EnumRotDirection dir)
@@ -50,6 +78,11 @@ public class RotatePieceNetwork : ModSystem
 
         clientChannel.SendPacket(new RotatePieceRequest() { direction = (int)dir });
         return true;
+    }
+
+    public override void Dispose()
+    {
+        dialogHotkeys.Clear();
     }
     #endregion
 
