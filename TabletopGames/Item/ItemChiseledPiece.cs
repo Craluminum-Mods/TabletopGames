@@ -101,6 +101,22 @@ public class ItemChiseledPiece : Item, IContainedMeshSource
         return null;
     }
 
+    public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
+    {
+        Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(capi, $"TabletopGames_{this}_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
+        string key = GetMeshCacheKey(renderinfo.InSlot);
+        if (!meshRefs.TryGetValue(key, out var meshRef))
+        {
+            MeshData mesh = GenMesh(renderinfo.InSlot, capi.ItemTextureAtlas, null);
+            meshRef = meshRefs[key] = capi.Render.UploadMultiTextureMesh(mesh);
+        }
+
+        renderinfo.ModelRef = meshRef;
+        renderinfo.NormalShaded = true;
+
+        base.OnBeforeRender(capi, itemstack, target, ref renderinfo);
+    }
+
     public virtual MeshData GenMesh(ItemSlot slot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
         ICoreClientAPI capi = (api as ICoreClientAPI)!;
