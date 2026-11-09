@@ -193,4 +193,51 @@ public class BlockEntityChiseledBoard : BlockEntityDisplay, IRotatable, IBoardPr
         MeshAngleRad -= degreeRotation * GameMath.DEG2RAD;
         tree.SetFloat("meshAngleRad", MeshAngleRad);
     }
+
+	public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, int schematicSeed, bool resolveImports)
+	{
+		base.OnLoadCollectibleMappings(worldForResolve, oldBlockIdMapping, oldItemIdMapping, schematicSeed, resolveImports);
+
+		if (ChiseledStackHitboxes != null)
+		{
+			if (!ChiseledStackHitboxes.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve))
+			{
+				ChiseledStackHitboxes = null;
+			}
+			else
+			{
+				ChiseledStackHitboxes.Collectible.OnLoadCollectibleMappings(worldForResolve, new DummySlot(ChiseledStackHitboxes), oldBlockIdMapping, oldItemIdMapping, resolveImports);
+			}
+
+			if (ChiseledStackHitboxes?.Collectible is IResolvableCollectible resolvable)
+			{
+				resolvable.Resolve(new DummySlot(ChiseledStackHitboxes), worldForResolve, resolveImports);
+			}
+		}
+
+		if (ChiseledStackTextures != null)
+		{
+			if (!ChiseledStackTextures.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve))
+			{
+				ChiseledStackTextures = null;
+			}
+			else
+			{
+				ChiseledStackTextures.Collectible.OnLoadCollectibleMappings(worldForResolve, new DummySlot(ChiseledStackTextures), oldBlockIdMapping, oldItemIdMapping, resolveImports);
+			}
+
+			if (ChiseledStackTextures?.Collectible is IResolvableCollectible resolvable)
+			{
+				resolvable.Resolve(new DummySlot(ChiseledStackTextures), worldForResolve, resolveImports);
+			}
+		}
+	}
+
+	public override void OnStoreCollectibleMappings(Dictionary<int, AssetLocation> blockIdMapping, Dictionary<int, AssetLocation> itemIdMapping)
+	{
+		base.OnStoreCollectibleMappings(blockIdMapping, itemIdMapping);
+
+		ChiseledStackHitboxes?.Collectible.OnStoreCollectibleMappings(Api.World, new DummySlot(ChiseledStackHitboxes), blockIdMapping, itemIdMapping);
+		ChiseledStackTextures?.Collectible.OnStoreCollectibleMappings(Api.World, new DummySlot(ChiseledStackTextures), blockIdMapping, itemIdMapping);
+	}
 }

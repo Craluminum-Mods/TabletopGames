@@ -178,4 +178,67 @@ public class ItemChiseledPiece : Item, IContainedMeshSource
 
         return stringBuilder.ToString();
     }
+
+	public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, ItemSlot inSlot, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, bool resolveImports)
+	{
+		base.OnLoadCollectibleMappings(worldForResolve, inSlot, oldBlockIdMapping, oldItemIdMapping, resolveImports);
+
+        ITreeAttribute? chiseledStacksTree = inSlot.Itemstack!.Attributes.GetTreeAttribute(InventoryAttributeName);
+        if (chiseledStacksTree != null && chiseledStacksTree.Any())
+        {
+            foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
+            {
+                Vec3i? offset = FromXYZString(attr.Key);
+                if (offset == null) continue;
+
+                ItemStack? containedStack = GetChiseledStack(inSlot.Itemstack, xyz: attr.Key, api.World);
+                if (containedStack == null) continue;
+
+				if (!containedStack.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve))
+				{
+					containedStack = null;
+				}
+				else
+				{
+					containedStack.Collectible.OnLoadCollectibleMappings(worldForResolve, new DummySlot(containedStack), oldBlockIdMapping, oldItemIdMapping, resolveImports);
+				}
+
+				if (containedStack?.Collectible is IResolvableCollectible resolvable)
+				{
+					resolvable.Resolve(new DummySlot(containedStack), worldForResolve, resolveImports);
+				}
+
+				if (containedStack != null)
+				{
+					SetChiseledStack(inSlot.Itemstack, containedStack, offset);	
+				}
+				else
+				{
+        			inSlot.Itemstack.Attributes.GetOrAddTreeAttribute(InventoryAttributeName).RemoveAttribute(attr.Key);
+				}
+            }
+        }
+	}
+
+	public override void OnStoreCollectibleMappings(IWorldAccessor world, ItemSlot inSlot, Dictionary<int, AssetLocation> blockIdMapping, Dictionary<int, AssetLocation> itemIdMapping)
+	{
+		base.OnStoreCollectibleMappings(world, inSlot, blockIdMapping, itemIdMapping);
+
+        ITreeAttribute? chiseledStacksTree = inSlot.Itemstack!.Attributes.GetTreeAttribute(InventoryAttributeName);
+        if (chiseledStacksTree != null && chiseledStacksTree.Any())
+		{
+            foreach (KeyValuePair<string, IAttribute> attr in chiseledStacksTree)
+			{
+                Vec3i? offset = FromXYZString(attr.Key);
+                if (offset == null) continue;
+
+                ItemStack? containedStack = GetChiseledStack(inSlot.Itemstack, xyz: attr.Key, api.World);
+                if (containedStack == null) continue;
+
+				containedStack.Collectible.OnStoreCollectibleMappings(world, new DummySlot(containedStack), blockIdMapping, itemIdMapping);
+
+				SetChiseledStack(inSlot.Itemstack, containedStack, offset);	
+			}	
+		}
+	}
 }

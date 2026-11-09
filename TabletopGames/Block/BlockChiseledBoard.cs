@@ -300,4 +300,86 @@ public class BlockChiseledBoard : Block, IContainedMeshSource
         }
         return stringBuilder.ToString();
     }
+
+	public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, ItemSlot inSlot, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, bool resolveImports)
+	{
+		base.OnLoadCollectibleMappings(worldForResolve, inSlot, oldBlockIdMapping, oldItemIdMapping, resolveImports);
+
+        ItemStack? stackHitboxes = GetChiseledStack(inSlot.Itemstack!, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(inSlot.Itemstack!, api.World, EnumStackType.Textures);
+
+		if (stackHitboxes != null)
+		{
+			if (!stackHitboxes.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve))
+			{
+				stackHitboxes = null;
+			}
+			else
+			{
+				stackHitboxes.Collectible.OnLoadCollectibleMappings(worldForResolve, new DummySlot(stackHitboxes), oldBlockIdMapping, oldItemIdMapping, resolveImports);
+			}
+
+			if (stackHitboxes?.Collectible is IResolvableCollectible resolvable)
+			{
+				resolvable.Resolve(new DummySlot(stackHitboxes), worldForResolve, resolveImports);
+			}
+
+			if (stackHitboxes != null)
+			{
+				SetChiseledStack(inSlot.Itemstack!, stackHitboxes, EnumStackType.HitBoxes);	
+			}
+			else
+			{
+				inSlot.Itemstack!.Attributes.RemoveAttribute(ChiseledStackHitboxesAttributeName);
+			}			
+		}
+
+		if (stackTextures != null)
+		{
+			if (!stackTextures.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve))
+			{
+				stackTextures = null;
+			}
+			else
+			{
+				stackTextures.Collectible.OnLoadCollectibleMappings(worldForResolve, new DummySlot(stackTextures), oldBlockIdMapping, oldItemIdMapping, resolveImports);
+			}
+
+			if (stackTextures?.Collectible is IResolvableCollectible resolvable)
+			{
+				resolvable.Resolve(new DummySlot(stackTextures), worldForResolve, resolveImports);
+			}
+
+			if (stackTextures != null)
+			{
+				SetChiseledStack(inSlot.Itemstack!, stackTextures, EnumStackType.Textures);	
+			}
+			else
+			{
+				inSlot.Itemstack!.Attributes.RemoveAttribute(ChiseledStackTexturesAttributeName);
+			}			
+		}
+	}
+
+	public override void OnStoreCollectibleMappings(IWorldAccessor world, ItemSlot inSlot, Dictionary<int, AssetLocation> blockIdMapping, Dictionary<int, AssetLocation> itemIdMapping)
+	{
+		base.OnStoreCollectibleMappings(world, inSlot, blockIdMapping, itemIdMapping);
+
+        ItemStack? stackHitboxes = GetChiseledStack(inSlot.Itemstack!, api.World, EnumStackType.HitBoxes);
+        ItemStack? stackTextures = GetChiseledStack(inSlot.Itemstack!, api.World, EnumStackType.Textures);
+
+		if (stackHitboxes != null)
+		{
+			stackHitboxes.Collectible.OnStoreCollectibleMappings(world, new DummySlot(stackHitboxes), blockIdMapping, itemIdMapping);
+
+			SetChiseledStack(inSlot.Itemstack!, stackHitboxes, EnumStackType.HitBoxes);
+		}
+
+		if (stackTextures != null)
+		{
+			stackTextures.Collectible.OnStoreCollectibleMappings(world, new DummySlot(stackTextures), blockIdMapping, itemIdMapping);
+
+			SetChiseledStack(inSlot.Itemstack!, stackTextures, EnumStackType.Textures);
+		}
+	}
 }
