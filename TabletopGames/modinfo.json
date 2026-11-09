@@ -2,9 +2,9 @@
     "type": "code",
     "modid": "tabletopgames",
     "name": "Tabletop Games",
-    "authors": ["Craluminum2413"],
+    "authors": ["DanaCraluminum"],
     "description": "Tabletop simulator. Play real-world tabletop games or create your own",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "dependencies": {
         "game": "1.22.0",
         "attributerenderinglibrary": "3.0.0"
